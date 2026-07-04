@@ -1,0 +1,34 @@
+{
+  "InterruptCallbackCallVBlank": {},
+  "InterruptCallbackSetVBlank": {
+    "calledBy": [
+      "CutsceneSubroutine",
+      "func_80728C0",
+      "func_8072B98",
+      "func_807A4B4",
+      "func_8088830",
+      "func_8089BBC",
+      "func_8090104",
+      "func_80909B0",
+      "func_8090A40",
+      "func_80914B4",
+      "func_8092B30",
+      "func_8093084",
+      "func_809329C"
+    ]
+  },
+  "InterruptCallbackCallHBlank": {},
+  "InterruptCallbackSetHBlank": {
+    "calledBy": [
+      "func_8071600"
+    ]
+  },
+  "InterruptCallbackCallVCount": {},
+  "InterruptCallbackSetVCount": {
+    "calledBy": [
+      "func_8005F1C",
+      "func_809329C"
+    ]
+  },
+  "InterruptCallbackEmpty": {}
+}

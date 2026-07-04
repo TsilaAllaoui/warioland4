@@ -1,0 +1,44 @@
+{
+  "CPUSet": {
+    "disasm": [
+      "thumb_func_start CPUSet",
+      "CPUSet:  @ 0x8003220",
+      "    svc SYSCALL_CPUSet",
+      "    bx lr",
+      ""
+    ]
+  },
+  "LZ77UnCompVram": {
+    "calledBy": [
+      "func_8003DC4",
+      "func_8003F88",
+      "func_8004244",
+      "func_800450C",
+      "func_80047B8",
+      "func_8004BFC",
+      "func_8005500",
+      "func_80058AC",
+      "func_8005F1C",
+      "func_8006680",
+      "func_8006E00",
+      "func_8006FA0",
+      "func_80077C4",
+      "func_8007B14",
+      "func_8007C30",
+      "func_8008900",
+      "func_8009B38",
+      "func_800A180",
+      "func_800AFDC",
+      "func_806B410",
+      "func_8082428",
+      "func_8090A40",
+      "func_8092B30"
+    ],
+    "disasm": [
+      "thumb_func_start LZ77UnCompVram",
+      "LZ77UnCompVram:  @ 0x8003224",
+      "    svc SYSCALL_LZ77UnCompVram",
+      "    bx lr"
+    ]
+  }
+}

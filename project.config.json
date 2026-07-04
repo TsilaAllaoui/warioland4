@@ -1,0 +1,12 @@
+{
+  "name": "warioland4",
+  "title": "Wario Land 4 Chaos Viewer",
+  "tagline": "Interactive matching-decomp atlas for Wario Land 4.",
+  "github": "https://github.com/TsilaAllaoui/warioland4",
+  "compiler": "./tools/agbcc/agbcc -O2 -mthumb-interwork -fhex-asm -fprologue-bugfix -Wall",
+  "cppNote": "This is an agbcc/GBA C project. Keep functions in C; one-line register binding asm is okay when needed.",
+  "setup": "git clone {github}; cd warioland4; git submodule update --init; make tools; place the clean ROM as baserom_us.gba; make extract; make",
+  "verifyCommand": "make VERSION=us",
+  "readFirst": "README.md, Makefile, and the target module's existing C/ASM style.",
+  "rules": "Do not use long inline asm blocks for decompiled functions. Preserve ROM checksum behavior."
+}

@@ -1,0 +1,20 @@
+{
+  "AutosaveStageClear": {},
+  "AutosaveBossClear": {
+    "calledBy": [
+      "func_80782A4"
+    ]
+  },
+  "AutosaveDefeat": {
+    "calledBy": [
+      "func_8075888",
+      "func_80782A4",
+      "func_8086354"
+    ]
+  },
+  "AutosaveFinalBoss": {
+    "calledBy": [
+      "func_80782A4"
+    ]
+  }
+}

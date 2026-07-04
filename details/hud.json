@@ -1,0 +1,36 @@
+{
+  "func_80746C0": {},
+  "func_80747D8": {
+    "calledBy": [
+      "func_802EBB8",
+      "func_802F218",
+      "func_802F64C",
+      "func_802FA6C",
+      "func_802FB14",
+      "func_803AB4C",
+      "func_803B2EC",
+      "func_803B36C",
+      "func_803B49C",
+      "func_8048134",
+      "func_8048980",
+      "func_8048ACC",
+      "func_80493B8",
+      "func_8049458",
+      "func_8053FDC",
+      "func_8054D80",
+      "func_8054F70",
+      "func_8055010",
+      "func_805B24C",
+      "func_805C758",
+      "func_805CD4C",
+      "func_805CDF8",
+      "func_8063384",
+      "func_8063570",
+      "func_806360C",
+      "func_8063E00",
+      "func_8063FF4",
+      "func_80644EC",
+      "func_8064AF0"
+    ]
+  }
+}

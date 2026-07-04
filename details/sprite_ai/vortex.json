@@ -1,0 +1,15 @@
+{
+  "VortexSetCommonProperties": {},
+  "VortexInitSmallPart": {},
+  "VortexInitMediumPart": {},
+  "VortexInitLargePart": {},
+  "VortexFinishStage": {},
+  "VortexAnimatePalette": {},
+  "VortexInitWarioOrKeyzer": {},
+  "SpriteVortex": {},
+  "SpriteVortexPartMedium": {},
+  "SpriteVortexPartLarge": {},
+  "SpriteWarioExitingVortex": {},
+  "SpriteWarioEnteringVortex": {},
+  "SpriteKeyzerEnteringVortex": {}
+}

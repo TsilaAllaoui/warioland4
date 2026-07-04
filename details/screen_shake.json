@@ -1,0 +1,38 @@
+{
+  "ScreenShakeRequestY": {
+    "calledBy": [
+      "func_8012E5C",
+      "func_8016614",
+      "func_8018370",
+      "func_801996C",
+      "func_8047CA8",
+      "func_804DDAC",
+      "func_804E9C4",
+      "func_804EA04",
+      "func_80642CC",
+      "func_8064BC0",
+      "func_806708C",
+      "func_806F424"
+    ]
+  },
+  "ScreenShakeRequestX": {
+    "calledBy": [
+      "func_8075988"
+    ]
+  },
+  "ScreenShakeRequestXWithAmplitude": {
+    "calledBy": [
+      "func_8052590"
+    ]
+  },
+  "ScreenShakeUpdateY": {
+    "calledBy": [
+      "func_806C828"
+    ]
+  },
+  "ScreenShakeUpdateX": {
+    "calledBy": [
+      "func_806C828"
+    ]
+  }
+}

@@ -1,39 +1,24 @@
-# Wario Land 4
+# Wario Land 4 Chaos Viewer Data
 
-This is a work-in-progress decompilation of *Wario Land 4*.
+Generated from `/home/tsila/warioland4`.
 
-This repository can build the following versions:
-- US/EU `md5: 5fe47355a33e3fabec2a1607af88a404` (default)
-- JP `md5: 99c8ad779a16be513a9fdff502b6f5c2`
+## Publish
 
-## Dependencies
-
-- `binutils-arm-none-eabi`
-- `clang-format`
-- Python 3
-
-## Building
-
-The C compiler (agbcc) is provided as a submodule in this repository. Make sure you set it and the other tools up before
-building:
+From the Wario Land 4 repo:
 
 ```sh
-git submodule update --init
-make tools
+git checkout --orphan chaos-data
+git rm -rf .
+cp -r /home/tsila/warioland4/chaos-viewer-data/* .
+git add -A
+git commit -m "Publish Chaos Viewer atlas data"
+git push -u origin chaos-data --force
 ```
 
-This will also set up a Python virtual environment and dependencies for the asset extractor.
+Then open:
 
-To build the US version: place the ROM in the repository root as `baserom_us.gba`, then run `make extract` to extract
-the assets. Then you can run `make` to build the ROM.
+https://bmanus2-dotcom.github.io/chaos-viewer/?repo=https%3A%2F%2Fgithub.com%2FTsilaAllaoui%2Fwarioland4
 
-To build the JP version: add `VERSION=jp` when running `make extract` and `make`, e.g.
-`make extract VERSION=jp && make VERSION=jp`.
+Or directly:
 
-If there were no problems, a message such as this will be printed to the screen:
-
-```
-build/us/warioland4_us.gba: OK
-```
-
-For more details, run `make help`.
+https://bmanus2-dotcom.github.io/chaos-viewer/?data=https%3A%2F%2Fraw.githubusercontent.com%2FTsilaAllaoui%2Fwarioland4%2Fchaos-data%2Fchaos-db.json

@@ -1,0 +1,16 @@
+{
+  "SramWriteUncheckedInternal": {},
+  "SramWriteUnchecked": {
+    "calledBy": [
+      "func_8073B38"
+    ]
+  },
+  "SramWrite": {},
+  "SramCheckInternal": {},
+  "SramCheck": {},
+  "SramWriteChecked": {
+    "calledBy": [
+      "func_8073B38"
+    ]
+  }
+}

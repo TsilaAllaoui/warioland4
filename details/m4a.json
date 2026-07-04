@@ -1,0 +1,313 @@
+{
+  "MidiKeyToFreq": {
+    "calledBy": [
+      "MPlayMain",
+      "ply_note"
+    ]
+  },
+  "nullsub_140": {},
+  "MPlayContinue": {},
+  "MPlayFadeOut": {},
+  "m4aSoundInit": {},
+  "m4aSoundMain": {
+    "calledBy": [
+      "func_8003980",
+      "func_8072B88",
+      "func_8090A30",
+      "func_8092DEC"
+    ]
+  },
+  "m4aSongNumStart": {
+    "calledBy": [
+      "BossPause",
+      "FileSelectSubroutine",
+      "SaveResetSubroutine",
+      "SpriteProfessor",
+      "SpriteRotatingPlatform2",
+      "SpriteRotatingPlatform3",
+      "SpriteTogenobi",
+      "SpriteTogetoge",
+      "SpriteToyBlockRound",
+      "SpriteToyBlockTriangle",
+      "SpriteUnknown9C",
+      "SpriteUnknown9F",
+      "SpriteUnknownA8",
+      "SpriteUnknownBA",
+      "SpriteUnknownEC",
+      "func_800FD28",
+      "func_80101D0",
+      "func_8010554",
+      "func_8010D1C",
+      "func_8010FA8",
+      "func_80110A0",
+      "func_8011780",
+      "func_8011D70",
+      "func_80124E4",
+      "func_80126A8",
+      "func_8012914",
+      "func_8012AF4",
+      "func_8012BAC",
+      "func_8012CC8",
+      "func_8012E5C",
+      "func_801318C",
+      "func_8015F88",
+      "func_80164A4",
+      "func_8016614",
+      "func_8016B58",
+      "func_8016FF4",
+      "func_8017ADC",
+      "func_8018094",
+      "func_8018370",
+      "func_8018844"
+    ]
+  },
+  "m4aSongNumStartOrChange": {
+    "calledBy": [
+      "CutsceneSubroutine",
+      "func_8003DC4",
+      "func_8004070",
+      "func_800450C",
+      "func_8004B14",
+      "func_8004BFC",
+      "func_80058AC",
+      "func_8005CC0",
+      "func_8005F1C",
+      "func_8006FA0",
+      "func_8007C30",
+      "func_8008900",
+      "func_8008B20",
+      "func_800A43C",
+      "func_800B15C",
+      "func_800B8C4",
+      "func_800B9D0",
+      "func_800C8A0",
+      "func_800C9AC",
+      "func_800CB98",
+      "func_800CD6C",
+      "func_800CE0C",
+      "func_800D854",
+      "func_800DA40",
+      "func_800DC2C",
+      "func_800DE60",
+      "func_800E440",
+      "func_800E508",
+      "func_800E5F4",
+      "func_806BF88",
+      "func_806C0E8",
+      "func_8089FFC",
+      "func_808B104",
+      "func_809329C",
+      "func_80946AC"
+    ]
+  },
+  "m4aSongNumStartOrContinue": {
+    "calledBy": [
+      "func_806BF88"
+    ]
+  },
+  "m4aSongNumStop": {
+    "calledBy": [
+      "FileSelectSubroutine",
+      "MusicPauseFadeOut",
+      "func_806C21C",
+      "func_8072B24",
+      "func_8087594"
+    ]
+  },
+  "m4aSongNumContinue": {},
+  "m4aMPlayAllStop": {
+    "calledBy": [
+      "ItemShopSubroutine",
+      "StageSelectSubroutine",
+      "func_802B694",
+      "func_8072B98",
+      "func_808D44C"
+    ]
+  },
+  "m4aMPlayContinue": {
+    "calledBy": [
+      "PauseScreenSubroutine"
+    ]
+  },
+  "m4aMPlayAllContinue": {},
+  "m4aMPlayFadeOut": {
+    "calledBy": [
+      "FileSelectSubroutine",
+      "func_8005CC0",
+      "func_8008900",
+      "func_806C130",
+      "func_806FD74",
+      "func_8080A6C",
+      "func_8084E10",
+      "func_8089E74",
+      "func_808AC90",
+      "func_808D44C",
+      "func_80946AC"
+    ]
+  },
+  "m4aMPlayFadeOutTemporarily": {
+    "calledBy": [
+      "MusicPauseFadeOut",
+      "func_806C21C"
+    ]
+  },
+  "m4aMPlayFadeIn": {
+    "calledBy": [
+      "func_806BF88",
+      "func_806C21C"
+    ]
+  },
+  "m4aMPlayImmInit": {},
+  "MPlayExtender": {},
+  "MusicPlayerJumpTableCopy": {},
+  "ClearChain": {
+    "calledBy": [
+      "MPlayMain",
+      "ply_note"
+    ]
+  },
+  "Clear64byte": {
+    "calledBy": [
+      "MPlayMain"
+    ]
+  },
+  "SoundInit": {},
+  "SampleFreqSet": {},
+  "m4aSoundMode": {},
+  "SoundClear": {},
+  "m4aSoundVSyncOff": {},
+  "m4aSoundVSyncOn": {},
+  "MPlayOpen": {},
+  "MPlayStart": {},
+  "MPlayStop": {
+    "calledBy": [
+      "func_8006FA0",
+      "func_8010230",
+      "func_8016614",
+      "func_806FD74",
+      "func_8088900"
+    ]
+  },
+  "FadeOutBody": {
+    "calledBy": [
+      "MPlayMain"
+    ]
+  },
+  "TrkVolPitSet": {
+    "calledBy": [
+      "MPlayMain",
+      "ply_note"
+    ]
+  },
+  "MidiKeyToCgbFreq": {},
+  "CgbOscOff": {},
+  "CgbModVol": {},
+  "CgbSound": {},
+  "m4aMPlayTempoControl": {
+    "calledBy": [
+      "func_8006FA0",
+      "func_80158C8",
+      "func_80175A0",
+      "func_8017ECC",
+      "func_8018670",
+      "func_8018AA0",
+      "func_801930C",
+      "func_8019CF4",
+      "func_801A424",
+      "func_801A878",
+      "func_801AE68",
+      "func_801B4EC",
+      "func_803B9FC",
+      "func_803BCB8",
+      "func_803C2A0",
+      "func_8087C10",
+      "func_808D44C"
+    ]
+  },
+  "m4aMPlayVolumeControl": {
+    "calledBy": [
+      "BossPause",
+      "StageSelectSubroutine",
+      "func_8004B14",
+      "func_8005500",
+      "func_80058AC",
+      "func_80067BC",
+      "func_8006FA0",
+      "func_800B15C",
+      "func_806BF88",
+      "func_806C130",
+      "func_807AEF0",
+      "func_8087C10",
+      "func_8090A40",
+      "func_8091ACC",
+      "func_8091D7C"
+    ]
+  },
+  "m4aMPlayPitchControl": {
+    "calledBy": [
+      "func_8006FA0",
+      "func_80158C8",
+      "func_80175A0",
+      "func_8017ECC",
+      "func_8018670",
+      "func_8018AA0",
+      "func_801930C",
+      "func_8019CF4",
+      "func_801A424",
+      "func_801A878",
+      "func_801AE68",
+      "func_801B4EC",
+      "func_8087C10",
+      "func_808D44C"
+    ]
+  },
+  "m4aMPlayPanpotControl": {},
+  "ClearModM": {},
+  "m4aMPlayModDepthSet": {
+    "calledBy": [
+      "func_8006FA0",
+      "func_80158C8",
+      "func_80175A0",
+      "func_8017ECC",
+      "func_8018670",
+      "func_8018AA0",
+      "func_801930C",
+      "func_8019CF4",
+      "func_801A424",
+      "func_801A878",
+      "func_801AE68",
+      "func_801B4EC",
+      "func_808D44C"
+    ]
+  },
+  "m4aMPlayLFOSpeedSet": {
+    "calledBy": [
+      "func_8006FA0",
+      "func_80158C8",
+      "func_80175A0",
+      "func_8017ECC",
+      "func_8018670",
+      "func_8018AA0",
+      "func_801930C",
+      "func_8019CF4",
+      "func_801A424",
+      "func_801A878",
+      "func_801AE68",
+      "func_801B4EC"
+    ]
+  },
+  "ply_memacc": {},
+  "ply_xcmd": {},
+  "ply_xxx": {},
+  "ply_xwave": {},
+  "ply_xtype": {},
+  "ply_xatta": {},
+  "ply_xdeca": {},
+  "ply_xsust": {},
+  "ply_xrele": {},
+  "ply_xiecv": {},
+  "ply_xiecl": {},
+  "ply_xleng": {},
+  "ply_xswee": {},
+  "nullsub_141": {}
+}

@@ -1,0 +1,38 @@
+{
+  "LZ77UnCompVramWrapper": {},
+  "PollInput": {},
+  "InitializeVideoMemory": {
+    "calledBy": [
+      "func_807AEF0",
+      "func_807CADC",
+      "func_807F924",
+      "func_80816A4",
+      "func_8082428",
+      "func_80838E8",
+      "func_80846F4",
+      "func_8086064",
+      "func_80870D4",
+      "func_8089FFC",
+      "func_808FCE0",
+      "func_8090A40",
+      "func_8092B30",
+      "func_809329C"
+    ]
+  },
+  "InitializeInterruptHandler": {},
+  "ResetFreeOam": {
+    "calledBy": [
+      "CreditsSubroutine",
+      "FileSelectSubroutine",
+      "ItemShopSubroutine",
+      "MinigameSubroutine",
+      "PauseScreenSubroutine",
+      "SaveResetSubroutine",
+      "StageSelectSubroutine",
+      "func_8090A40",
+      "func_80914B4",
+      "func_8092B30",
+      "func_809329C"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "func_802BADC": {},
+  "func_802BC24": {},
+  "CoinPose44": {},
+  "CoinPose46": {},
+  "CoinInit": {},
+  "CoinPose2F": {},
+  "CoinPose30": {},
+  "CoinCollect": {},
+  "CoinPose1D": {},
+  "CoinPose2B": {},
+  "CoinPose2C": {},
+  "CoinPose2D": {},
+  "CoinPose2E": {},
+  "DiamondInit": {},
+  "DiamondFloat": {},
+  "DiamondCollect": {},
+  "ChanceWheelDiamondInit": {},
+  "SpriteCoin": {},
+  "SpriteDiamond": {},
+  "SpriteChanceWheelDiamond": {}
+}

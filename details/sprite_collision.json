@@ -1,0 +1,144 @@
+{
+  "func_801E4B0": {
+    "calledBy": [
+      "func_804AF14"
+    ]
+  },
+  "func_801E4D4": {
+    "calledBy": [
+      "func_8075888",
+      "func_8075974",
+      "func_80782A4"
+    ]
+  },
+  "func_801E518": {
+    "calledBy": [
+      "func_804EDC8"
+    ]
+  },
+  "SpriteCollisionMakeWarioDropCoins": {},
+  "func_801E884": {},
+  "func_801E92C": {},
+  "SpriteCollisionTransformWarioFlaming": {
+    "calledBy": [
+      "func_8039550"
+    ]
+  },
+  "SpriteCollisionTransformWarioFat": {
+    "calledBy": [
+      "func_8039550"
+    ]
+  },
+  "SpriteCollisionTransformWarioZombie": {},
+  "SpriteCollisionTransformWarioSnowman": {},
+  "SpriteCollisionTransformWarioPuffy": {},
+  "SpriteCollisionTransformWarioBouncy": {
+    "calledBy": [
+      "func_8039550"
+    ]
+  },
+  "SpriteCollisionTransformWarioBat": {},
+  "SpriteCollisionTransformWarioFrozen": {},
+  "SpriteCollisionTransformWarioFlat": {
+    "calledBy": [
+      "func_8039550"
+    ]
+  },
+  "SpriteCollisionTransformWarioMask": {},
+  "func_801EBCC": {},
+  "func_801EC30": {},
+  "func_801EC74": {},
+  "func_801ECB8": {},
+  "func_801ECFC": {},
+  "func_801ED18": {},
+  "func_801ED48": {},
+  "SpriteCollisionMaybeTransformWarioBubble": {},
+  "SpriteCollisionTakeDamageLeft": {},
+  "SpriteCollisionTakeDamageRight": {},
+  "SpriteCollisionLandOnEnemyLeft": {},
+  "SpriteCollisionLandOnEnemyRight": {},
+  "func_801EE9C": {},
+  "func_801EEE0": {},
+  "SpriteCollisionLandOnEnemy": {},
+  "func_801EF50": {},
+  "func_801EF94": {},
+  "func_801EFD4": {},
+  "func_801F00C": {},
+  "func_801F14C": {},
+  "func_801F200": {},
+  "func_801F43C": {},
+  "SpriteCollisionCheckObjectsTouching": {
+    "calledBy": [
+      "func_803F414",
+      "func_803F528",
+      "func_804012C",
+      "func_8040238",
+      "func_80421DC",
+      "func_8042D70",
+      "func_804AF14",
+      "func_8053BBC",
+      "func_8062D98"
+    ]
+  },
+  "SpriteCollisionProcess": {
+    "calledBy": [
+      "func_801D684"
+    ]
+  },
+  "SpriteCollisionTakeDamageUnderwater": {},
+  "SpriteCollisionUnderwaterBonk": {},
+  "func_80204F4": {},
+  "func_80206B8": {},
+  "func_80207D8": {},
+  "func_8020958": {},
+  "func_80209E0": {},
+  "func_8020B10": {},
+  "func_8020BB8": {},
+  "func_8020C78": {},
+  "func_8020CEC": {},
+  "func_8020E1C": {},
+  "func_8020F28": {},
+  "func_8020FF4": {},
+  "func_80210E8": {},
+  "func_80211E0": {},
+  "func_802125C": {},
+  "func_8021318": {},
+  "func_80213F4": {},
+  "func_8021434": {},
+  "func_8021500": {},
+  "func_8021564": {},
+  "func_80215C0": {},
+  "func_80215E8": {},
+  "func_8021650": {},
+  "func_80216B8": {},
+  "func_8021720": {},
+  "func_8021734": {},
+  "func_8021784": {},
+  "func_8021C30": {},
+  "func_8021CC8": {},
+  "func_8021D5C": {},
+  "func_8021DD0": {},
+  "func_8021E6C": {},
+  "func_8021F84": {},
+  "func_80220F8": {},
+  "func_8022118": {},
+  "func_8022188": {},
+  "func_8022220": {},
+  "func_80222D8": {},
+  "func_8022524": {},
+  "func_8022724": {},
+  "func_8022948": {},
+  "func_8022AE8": {},
+  "func_8022C64": {},
+  "func_8022CE8": {},
+  "func_8022EF8": {},
+  "func_8022FC8": {},
+  "func_8023110": {},
+  "func_80231F8": {},
+  "func_80232C4": {},
+  "func_80233B8": {},
+  "func_802349C": {},
+  "func_80235A0": {},
+  "func_80236C4": {},
+  "func_80237E4": {}
+}

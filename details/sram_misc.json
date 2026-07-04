@@ -1,0 +1,90 @@
+{
+  "func_8000CA8": {},
+  "func_8000CE0": {
+    "calledBy": [
+      "func_8072D24"
+    ]
+  },
+  "func_8000D18": {
+    "calledBy": [
+      "func_806B864"
+    ]
+  },
+  "func_8000D98": {
+    "calledBy": [
+      "func_8091ACC"
+    ]
+  },
+  "func_8000E3C": {},
+  "func_8000E54": {
+    "calledBy": [
+      "func_8072CA0",
+      "func_8072D24"
+    ]
+  },
+  "func_8000E94": {
+    "calledBy": [
+      "func_8072D24"
+    ]
+  },
+  "func_8000EAC": {
+    "calledBy": [
+      "func_8072D24"
+    ]
+  },
+  "func_8000EC4": {
+    "calledBy": [
+      "func_8072F0C"
+    ]
+  },
+  "func_8000EEC": {
+    "calledBy": [
+      "func_8073880"
+    ]
+  },
+  "func_8000F14": {},
+  "func_8000F3C": {
+    "calledBy": [
+      "func_80741F0"
+    ]
+  },
+  "func_8000F64": {
+    "calledBy": [
+      "func_8073CDC",
+      "func_80915A8"
+    ]
+  },
+  "func_8000F90": {
+    "calledBy": [
+      "func_8073BA0",
+      "func_8073CDC",
+      "func_80915A8"
+    ]
+  },
+  "func_8000FBC": {
+    "calledBy": [
+      "func_8073E9C",
+      "func_80915A8"
+    ]
+  },
+  "func_8000FE8": {
+    "calledBy": [
+      "func_8074088"
+    ]
+  },
+  "func_8001000": {
+    "calledBy": [
+      "func_8072B98"
+    ]
+  },
+  "func_800101C": {
+    "calledBy": [
+      "func_8073BE0"
+    ]
+  },
+  "func_8001038": {
+    "calledBy": [
+      "func_8072D24"
+    ]
+  }
+}

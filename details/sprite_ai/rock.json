@@ -1,0 +1,18 @@
+{
+  "RockInit": {},
+  "RockIdleInit": {},
+  "RockIdle": {},
+  "RockPose1B": {},
+  "RockPose2B": {},
+  "RockPose2D": {},
+  "RockPose47": {},
+  "RockPose49": {},
+  "RockBumpedRightInit": {},
+  "RockBumpedLeftInit": {},
+  "RockGroundPounded": {},
+  "RockLiftedRightInit": {},
+  "RockLiftedLeftInit": {},
+  "RockCarriedRightInit": {},
+  "RockCarriedLeftInit": {},
+  "SpriteRock": {}
+}
