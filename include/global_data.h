@@ -193,5 +193,11 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+extern u16 gUnk_300188E;
+extern u16 gUnk_3002C60;
+extern s32 gUnk_3002C64;
+extern u32 gUnk_3002C6C;
+extern OamData *gUnk_3002C70;
+extern u32 gUnk_3002C74;
 
 #endif  // GLOBAL_DATA_H

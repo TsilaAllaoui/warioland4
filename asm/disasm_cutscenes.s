@@ -4225,7 +4225,7 @@ func_8005CC0:
 	ldr	r0, [r0, #0]
 	cmp	r0, #0
 	beq	.L_5cf4
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	ldr	r0, .L_5cec
 	mov	r1, #12
 	bl	m4aMPlayFadeOut
