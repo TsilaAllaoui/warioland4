@@ -743,6 +743,7 @@ SECTIONS {
         obj/disasm_pause_screen.o(.text);
         obj/disasm_minigame.o(.text);
         obj/minigames/disasm_roulette.o(.text);
+        obj/minigames/minigame_wario_hop.o(.text);
         obj/minigames/disasm_wario_hop.o(.text);
         obj/minigames/disasm_homerun_derby.o(.text);
         obj/disasm_shop.o(.text);
