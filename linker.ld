@@ -722,7 +722,7 @@ SECTIONS {
         obj/disasm_demo.o(.text);
         obj/quit.o(.text);
         obj/disasm_save_file.o(.text);
-        obj/disasm_0x0743BC.o(.text);
+        obj/boss_pause.o(.text);
         obj/hud.o(.text);
         obj/disasm_hud.o(.text);
         obj/disasm_score.o(.text);
