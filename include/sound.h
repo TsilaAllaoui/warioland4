@@ -226,7 +226,8 @@ enum SoundID {
     SOUND_DA,
     SOUND_DB,
     SE_BOX_OPENING,
-
+    MAGMA_RISE_SOUND = 0x10E,
+    MAGMA_SINK_SOUND = 0x10F,
     SE_THUNDER = 0x115,
     SE_116,
     SE_117,

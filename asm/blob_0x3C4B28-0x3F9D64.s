@@ -1350,18 +1350,18 @@ sUnk_83D23A4:
 
 baserom_blob 0x3D23A4, 0x3D2570
 
-.global sUnk_83D2570
-sUnk_83D2570:
+.global sMagmaOam_83D2570
+sMagmaOam_83D2570:
 
 baserom_blob 0x3D2570, 0x3D2598
 
-.global sUnk_83D2598
-sUnk_83D2598:
+.global sMagmaOam_83D2598
+sMagmaOam_83D2598:
 
 baserom_blob 0x3D2598, 0x3D25C0
 
-.global sUnk_83D25C0
-sUnk_83D25C0:
+.global sMagmaYVelocity
+sMagmaYVelocity:
 
 baserom_blob 0x3D25C0, 0x3D27C8
 
