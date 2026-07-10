@@ -2435,18 +2435,18 @@ sUnk_83DD5F4:
 
 baserom_blob 0x3DD5F4, 0x3DD658
 
-.global sUnk_83DD658
-sUnk_83DD658:
+.global sPencilPurpleOam
+sPencilPurpleOam:
 
 baserom_blob 0x3DD658, 0x3DD668
 
-.global sUnk_83DD668
-sUnk_83DD668:
+.global sPencilBlueOam
+sPencilBlueOam:
 
 baserom_blob 0x3DD668, 0x3DD678
 
-.global sUnk_83DD678
-sUnk_83DD678:
+.global sPencilRedOam
+sPencilRedOam:
 
 baserom_blob 0x3DD678, 0x3DD720
 
