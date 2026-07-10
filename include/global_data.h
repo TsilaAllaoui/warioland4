@@ -194,4 +194,32 @@ extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
 
+struct WarioCollisionData {
+    u16 unk_00;
+    u16 flags;
+    u8 pad_04[4];
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+    u8 unk_0C;
+    u8 unk_0D;
+    u8 pad_0E[2];
+    u8 unk_10;
+    u8 unk_11;
+    u8 unk_12;
+    u8 unk_13;
+};
+
+struct WarioEffectFrame {
+    const void *data;
+    u16 time;
+    u16 pad;
+};
+
+extern struct WarioCollisionData gWarioCollisionData;
+extern s8 gWarioMusicState;
+extern const s16 sWarioHitboxes[][4];
+extern const struct WarioEffectFrame sWarioAfterimageFrames[];
+
 #endif  // GLOBAL_DATA_H

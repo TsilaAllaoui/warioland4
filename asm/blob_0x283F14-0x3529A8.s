@@ -4601,13 +4601,13 @@ sUnk_82DD800:
 
 baserom_blob 0x2DD800, 0x2DD850
 
-.global sUnk_82DD850
-sUnk_82DD850:
+.global sFatWarioGraphicsTable
+sFatWarioGraphicsTable:
 
 baserom_blob 0x2DD850, 0x2DD8A8
 
-.global sUnk_82DD8A8
-sUnk_82DD8A8:
+.global sFatWarioPoseProperties
+sFatWarioPoseProperties:
 
 baserom_blob 0x2DD8A8, 0x2DD900
 
@@ -4851,8 +4851,8 @@ sUnk_82DEAF8:
 
 baserom_blob 0x2DEAF8, 0x2DEB18
 
-.global sUnk_82DEB18
-sUnk_82DEB18:
+.global sWarioHitboxes
+sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
@@ -5042,8 +5042,8 @@ sUnk_82E0394:
 
 baserom_blob 0x2E0394, 0x2E03BC
 
-.global sUnk_82E03BC
-sUnk_82E03BC:
+.global sWarioAfterimageFrames
+sWarioAfterimageFrames:
 
 baserom_blob 0x2E03BC, 0x2E04C4
 
@@ -5407,33 +5407,33 @@ sUnk_83251FC:
 
 baserom_blob 0x3251FC, 0x325274
 
-.global sUnk_8325274
-sUnk_8325274:
+.global sFatWarioTransformingFrames
+sFatWarioTransformingFrames:
 
 baserom_blob 0x325274, 0x325370
 
-.global sUnk_8325370
-sUnk_8325370:
+.global sFatWarioTurningFrames
+sFatWarioTurningFrames:
 
 baserom_blob 0x325370, 0x3253A0
 
-.global sUnk_83253A0
-sUnk_83253A0:
+.global sFatWarioWalkingFrames
+sFatWarioWalkingFrames:
 
 baserom_blob 0x3253A0, 0x325424
 
-.global sUnk_8325424
-sUnk_8325424:
+.global sFatWarioJumpingFrames
+sFatWarioJumpingFrames:
 
 baserom_blob 0x325424, 0x325460
 
-.global sUnk_8325460
-sUnk_8325460:
+.global sFatWarioKillingEnemyFrames
+sFatWarioKillingEnemyFrames:
 
 baserom_blob 0x325460, 0x325484
 
-.global sUnk_8325484
-sUnk_8325484:
+.global sFatWarioDetransformingFrames
+sFatWarioDetransformingFrames:
 
 baserom_blob 0x325484, 0x325544
 
