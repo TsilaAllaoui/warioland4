@@ -772,18 +772,18 @@ sUnk_83BD5D4:
 
 baserom_blob 0x3BD5D4, 0x3BD660
 
-.global sUnk_83BD660
-sUnk_83BD660:
+.global sTogemasukuIdleOam
+sTogemasukuIdleOam:
 
 baserom_blob 0x3BD660, 0x3BD6D8
 
-.global sUnk_83BD6D8
-sUnk_83BD6D8:
+.global sTogemasukuDefeatedOam
+sTogemasukuDefeatedOam:
 
 baserom_blob 0x3BD6D8, 0x3BD6F0
 
-.global sUnk_83BD6F0
-sUnk_83BD6F0:
+.global sTogemasukuRespawningOam
+sTogemasukuRespawningOam:
 
 baserom_blob 0x3BD6F0, 0x3BD9A0
 
