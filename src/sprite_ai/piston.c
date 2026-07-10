@@ -14,7 +14,7 @@ extern const struct AnimationFrame sPistonPostImpactOam[];
 extern const struct AnimationFrame sPistonExtendOam[];
 extern const struct AnimationFrame sPistonImpactOam[];
 extern const s16 sPistonYMovement[];
-extern u8 gUnk_3000964[];
+extern u8 gUnk_3000964[][3];
 
 void InitPiston(void)
 {
@@ -141,7 +141,7 @@ void PistonWaitAfterImpact(void)
 void PistonRetract(void)
 {
     u8 value;
-    value = gUnk_3000964[gCurrentSprite.roomSlot * 3];
+    value = gUnk_3000964[gCurrentSprite.roomSlot][0];
     if (gCurrentSprite.yPosition <= (value << 6) + 64)
         gCurrentSprite.pose = 15;
     else
