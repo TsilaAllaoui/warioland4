@@ -355,7 +355,6 @@ extern u8 gDisableWario;
 extern struct WarioAfterimageData gUnk_3003138;
 extern s16 gUnk_30031B8;
 extern s8 gUnk_30031BA;
-extern s8 gUnk_30031BC;
 extern u8 gUnk_30031BD;
 extern s8 gUnk_30031BE;
 

@@ -4591,13 +4591,13 @@ sUnk_82DD730:
 
 baserom_blob 0x2DD730, 0x2DD7B0
 
-.global sUnk_82DD7B0
-sUnk_82DD7B0:
+.global sFlamingWarioGraphicsTable
+sFlamingWarioGraphicsTable:
 
 baserom_blob 0x2DD7B0, 0x2DD800
 
-.global sUnk_82DD800
-sUnk_82DD800:
+.global sFlamingWarioPoseProperties
+sFlamingWarioPoseProperties:
 
 baserom_blob 0x2DD800, 0x2DD850
 
@@ -4781,38 +4781,38 @@ sUnk_82DE5F8:
 
 baserom_blob 0x2DE5F8, 0x2DE618
 
-.global sUnk_82DE618
-sUnk_82DE618:
+.global sFlamingWarioBluePalette
+sFlamingWarioBluePalette:
 
 baserom_blob 0x2DE618, 0x2DE658
 
-.global sUnk_82DE658
-sUnk_82DE658:
+.global sFlamingWarioGreenPalette
+sFlamingWarioGreenPalette:
 
 baserom_blob 0x2DE658, 0x2DE698
 
-.global sUnk_82DE698
-sUnk_82DE698:
+.global sFlamingWarioRedPalette
+sFlamingWarioRedPalette:
 
 baserom_blob 0x2DE698, 0x2DE6D8
 
-.global sUnk_82DE6D8
-sUnk_82DE6D8:
+.global sFlamingWarioEngulfedPalette1
+sFlamingWarioEngulfedPalette1:
 
 baserom_blob 0x2DE6D8, 0x2DE718
 
-.global sUnk_82DE718
-sUnk_82DE718:
+.global sFlamingWarioEngulfedPalette2
+sFlamingWarioEngulfedPalette2:
 
 baserom_blob 0x2DE718, 0x2DE798
 
-.global sUnk_82DE798
-sUnk_82DE798:
+.global sFlamingWarioEngulfedPalette3
+sFlamingWarioEngulfedPalette3:
 
 baserom_blob 0x2DE798, 0x2DE7D8
 
-.global sUnk_82DE7D8
-sUnk_82DE7D8:
+.global sFlamingWarioRecoveringPalette
+sFlamingWarioRecoveringPalette:
 
 baserom_blob 0x2DE7D8, 0x2DE818
 
@@ -4851,8 +4851,8 @@ sUnk_82DEAF8:
 
 baserom_blob 0x2DEAF8, 0x2DEB18
 
-.global sUnk_82DEB18
-sUnk_82DEB18:
+.global sWarioHitboxes
+sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
@@ -5627,28 +5627,28 @@ sUnk_83409B4:
 
 baserom_blob 0x3409B4, 0x34B0B4
 
-.global sUnk_834B0B4
-sUnk_834B0B4:
+.global sFlamingWarioBlueFrames
+sFlamingWarioBlueFrames:
 
 baserom_blob 0x34B0B4, 0x34B120
 
-.global sUnk_834B120
-sUnk_834B120:
+.global sFlamingWarioRedFrames
+sFlamingWarioRedFrames:
 
 baserom_blob 0x34B120, 0x34B15C
 
-.global sUnk_834B15C
-sUnk_834B15C:
+.global sFlamingWarioEngulfedFrames
+sFlamingWarioEngulfedFrames:
 
 baserom_blob 0x34B15C, 0x34B198
 
-.global sUnk_834B198
-sUnk_834B198:
+.global sFlamingWarioRecoveringFrames
+sFlamingWarioRecoveringFrames:
 
 baserom_blob 0x34B198, 0x34B264
 
-.global sUnk_834B264
-sUnk_834B264:
+.global sFlamingWarioGreenFrames
+sFlamingWarioGreenFrames:
 
 baserom_blob 0x34B264, 0x34F04C
 

@@ -486,5 +486,5 @@ void GameScreenInitWario(void)
             gHeartMeter.current = 1;
         }
     }
-    gUnk_30031BC = 0;
+    gWarioMusicState = 0;
 }

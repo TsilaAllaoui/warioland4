@@ -183,7 +183,7 @@ SECTIONS {
         . = 0x18D4; gWarioDataCopy = .;
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
-        . = 0x1918; gUnk_3001918 = .;
+        . = 0x1918; gWarioCollisionData = .;
         . = 0x1930; gUnk_3001930 = .;
         . = 0x1938; gUnk_3001938 = .;
         . = 0x1940; gCurrentWarioEffect = .;
@@ -262,7 +262,7 @@ SECTIONS {
         . = 0x31b8; gUnk_30031B8 = .;
         . = 0x31ba; gUnk_30031BA = .;
         . = 0x31bb; gUnk_30031BB = .;
-        . = 0x31bc; gUnk_30031BC = .;
+        . = 0x31bc; gWarioMusicState = .;
         . = 0x31bd; gUnk_30031BD = .;
         . = 0x31be; gUnk_30031BE = .;
         . = 0x31c8; gUnk_30031C8 = .;
@@ -612,7 +612,7 @@ SECTIONS {
         obj/demo_input.o(.text);
         obj/wario/disasm_normal.o(.text);
         obj/wario/disasm_swimming.o(.text);
-        obj/wario/disasm_flaming.o(.text);
+        obj/wario/flaming.o(.text);
         obj/wario/disasm_fat.o(.text);
         obj/wario/disasm_frozen.o(.text);
         obj/wario/disasm_zombie.o(.text);

@@ -206,7 +206,7 @@ func_800FE58:
 .L_fe94:
 	.4byte	sUnk_82DEB60
 .L_fe98:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_fe9c:
 	.4byte	gUnk_30031C8
 .L_fea0:
@@ -458,7 +458,7 @@ WarioProcessControls:
 	bx	r0
 	.align	2, 0
 .L_1006c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_10070:
 	.4byte	gSubGameMode
 .L_10074:
@@ -512,7 +512,7 @@ WarioProcessCollision:
 	ldr	r0, .L_100e0
 	b	.L_1010c
 .L_100d0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_100d4:
 	.4byte	gUnk_30031BB
 .L_100d8:
