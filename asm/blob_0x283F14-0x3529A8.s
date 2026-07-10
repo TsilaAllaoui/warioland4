@@ -4621,13 +4621,13 @@ sUnk_82DD920:
 
 baserom_blob 0x2DD920, 0x2DD940
 
-.global sUnk_82DD940
-sUnk_82DD940:
+.global sZombieWarioGraphicsTable
+sZombieWarioGraphicsTable:
 
 baserom_blob 0x2DD940, 0x2DD9A8
 
-.global sUnk_82DD9A8
-sUnk_82DD9A8:
+.global sZombieWarioPoseProperties
+sZombieWarioPoseProperties:
 
 baserom_blob 0x2DD9A8, 0x2DDA10
 
@@ -4821,8 +4821,8 @@ sUnk_82DE818:
 
 baserom_blob 0x2DE818, 0x2DE838
 
-.global sUnk_82DE838
-sUnk_82DE838:
+.global sZombieWarioPalette
+sZombieWarioPalette:
 
 baserom_blob 0x2DE838, 0x2DE878
 
@@ -4851,8 +4851,8 @@ sUnk_82DEAF8:
 
 baserom_blob 0x2DEAF8, 0x2DEB18
 
-.global sUnk_82DEB18
-sUnk_82DEB18:
+.global sWarioHitboxes
+sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
@@ -4991,8 +4991,8 @@ sFrozenWarioPoseTable:
 
 baserom_blob 0x2DEF90, 0x2DEFA0
 
-.global sUnk_82DEFA0
-sUnk_82DEFA0:
+.global sZombieWarioPoseUnk05Values
+sZombieWarioPoseUnk05Values:
 
 baserom_blob 0x2DEFA0, 0x2DEFB0
 
@@ -5447,33 +5447,33 @@ sUnk_8325598:
 
 baserom_blob 0x325598, 0x331224
 
-.global sUnk_8331224
-sUnk_8331224:
+.global sZombieWarioWalkingFrames
+sZombieWarioWalkingFrames:
 
 baserom_blob 0x331224, 0x33126C
 
-.global sUnk_833126C
-sUnk_833126C:
+.global sZombieWarioEmergingFromHatFrames
+sZombieWarioEmergingFromHatFrames:
 
 baserom_blob 0x33126C, 0x3312A8
 
-.global sUnk_83312A8
-sUnk_83312A8:
+.global sZombieWarioJumpingFrames
+sZombieWarioJumpingFrames:
 
 baserom_blob 0x3312A8, 0x3312D8
 
-.global sUnk_83312D8
-sUnk_83312D8:
+.global sZombieWarioFallingThroughPlatformFrames
+sZombieWarioFallingThroughPlatformFrames:
 
 baserom_blob 0x3312D8, 0x3313F8
 
-.global sUnk_83313F8
-sUnk_83313F8:
+.global sZombieWarioLandingFrames
+sZombieWarioLandingFrames:
 
 baserom_blob 0x3313F8, 0x33144C
 
-.global sUnk_833144C
-sUnk_833144C:
+.global sZombieWarioHatLandingFrames
+sZombieWarioHatLandingFrames:
 
 baserom_blob 0x33144C, 0x3314A0
 
@@ -5492,23 +5492,23 @@ sUnk_8331548:
 
 baserom_blob 0x331548, 0x331620
 
-.global sUnk_8331620
-sUnk_8331620:
+.global sZombieWarioFallingFrames
+sZombieWarioFallingFrames:
 
 baserom_blob 0x331620, 0x331650
 
-.global sUnk_8331650
-sUnk_8331650:
+.global sZombieWarioHatFallingFrames
+sZombieWarioHatFallingFrames:
 
 baserom_blob 0x331650, 0x3316D4
 
-.global sUnk_83316D4
-sUnk_83316D4:
+.global sZombieWarioTouchingLightFrames
+sZombieWarioTouchingLightFrames:
 
 baserom_blob 0x3316D4, 0x33186C
 
-.global sUnk_833186C
-sUnk_833186C:
+.global sZombieWarioUnknown11Frames
+sZombieWarioUnknown11Frames:
 
 baserom_blob 0x33186C, 0x33189C
 

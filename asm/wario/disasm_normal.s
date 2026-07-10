@@ -7227,7 +7227,7 @@ func_8013894:
 	mov	pc, r0
 	.align	2, 0
 .L_138dc:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_138e0:
 	.4byte	sUnk_82DD430
 .L_138e4:
@@ -7489,7 +7489,7 @@ func_8013A98:
 	mov	pc, r0
 	.align	2, 0
 .L_13af4:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13af8:
 	.4byte	sUnk_82DD430
 .L_13afc:
@@ -7560,7 +7560,7 @@ func_8013A98:
 	bl	func_8014C4C
 	b	.L_13c32
 .L_13bb0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13bb4:
 	mov	r0, #128	@ 0x80
 	and	r0, r1
@@ -7672,7 +7672,7 @@ func_8013A98:
 	strb	r0, [r6, #8]
 	b	.L_13cf0
 .L_13cac:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13cb0:
 	ldr	r0, .L_13cbc
 	ldrb	r0, [r0, #18]
@@ -7681,7 +7681,7 @@ func_8013A98:
 	mov	r4, #2
 	b	.L_13cf0
 .L_13cbc:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13cc0:
 	cmp	r4, #252	@ 0xfc
 	bne	.L_13cf0
@@ -7731,7 +7731,7 @@ func_8013A98:
 	bl	func_8016614
 	b	.L_13d5c
 .L_13d20:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13d24:
 	.4byte	gWarioData
 .L_13d28:
@@ -7768,7 +7768,7 @@ func_8013A98:
 	pop	{r0}
 	bx	r0
 .L_13d64:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13d68:
 	.4byte	gWarioData
 
@@ -8180,7 +8180,7 @@ func_8013EFC:
 	pop	{r1}
 	bx	r1
 .L_14080:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14084:
 	.4byte	gWarioData
 .L_14088:
@@ -8419,7 +8419,7 @@ func_8014090:
 	bx	r1
 	.align	2, 0
 .L_14258:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1425c:
 	.4byte	gPreviousYPosition
 .L_14260:
@@ -8482,7 +8482,7 @@ func_8014268:
 	add	r6, #1
 	b	.L_142e8
 .L_142d0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_142d4:
 	.4byte	gWarioData
 .L_142d8:
@@ -8537,7 +8537,7 @@ func_8014268:
 .L_14338:
 	.4byte	sUnk_82DEB60
 .L_1433c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14340:
 	mov	r0, #255	@ 0xff
 	and	r0, r1
@@ -8592,7 +8592,7 @@ func_8014268:
 .L_143a4:
 	.4byte	gWarioData
 .L_143a8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_143ac:
 	mov	r0, #255	@ 0xff
 	and	r0, r1
@@ -8667,7 +8667,7 @@ func_80143D8:
 	b	.L_1473e
 	.align	2, 0
 .L_14430:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14434:
 	.4byte	gWarioData
 .L_14438:
@@ -8690,7 +8690,7 @@ func_80143D8:
 .L_14458:
 	.4byte	gWarioData
 .L_1445c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14460:
 	cmp	r1, #1
 	bne	.L_14466
@@ -8756,7 +8756,7 @@ func_80143D8:
 	strb	r1, [r2, #26]
 	b	.L_1473c
 .L_144d8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_144dc:
 	.4byte	sUnk_82DEB60
 .L_144e0:
@@ -9130,7 +9130,7 @@ func_8014758:
 	b	.L_147e0
 	.align	2, 0
 .L_147a8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_147ac:
 	.4byte	sUnk_82DEB60
 .L_147b0:
@@ -9376,7 +9376,7 @@ func_8014930:
 	strb	r0, [r4, #18]
 	b	.L_149f4
 .L_1497c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14980:
 	.4byte	gWarioData
 .L_14984:
@@ -9582,7 +9582,7 @@ func_8014930:
 	strh	r2, [r0, #22]
 	b	.L_14c38
 .L_14b04:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14b08:
 	ldr	r1, [sp, #16]
 	mov	r0, r8
@@ -9786,7 +9786,7 @@ func_8014C4C:
 	strb	r0, [r1, #0]
 	b	.L_14c9c
 .L_14c88:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14c8c:
 	.4byte	gWarioData
 .L_14c90:
@@ -9843,7 +9843,7 @@ func_8014C4C:
 .L_14cf4:
 	.4byte	sUnk_82DEB60
 .L_14cf8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14cfc:
 	.4byte	gWarioData
 .L_14d00:
@@ -9952,7 +9952,7 @@ func_8014C4C:
 .L_14dc4:
 	.4byte	gButtonsHeld
 .L_14dc8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14dcc:
 	cmp	r0, #10
 	bne	.L_14de0
@@ -10004,7 +10004,7 @@ func_8014C4C:
 	strh	r2, [r7, #28]
 	b	.L_14e68
 .L_14e2c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14e30:
 	.4byte	gWarioData
 .L_14e34:
@@ -10063,7 +10063,7 @@ func_8014C4C:
 .L_14e9c:
 	.4byte	gWarioData
 .L_14ea0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14ea4:
 	cmp	r0, #1
 	beq	.L_14eae
@@ -10098,7 +10098,7 @@ func_8014C4C:
 	neg	r0, r1
 	b	.L_14eea
 .L_14ee0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14ee4:
 	.4byte	gWarioData
 .L_14ee8:
@@ -10185,7 +10185,7 @@ func_8014F00:
 .L_14f7c:
 	.4byte	gPreviousXPosition
 .L_14f80:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14f84:
 	mov	r0, #32
 	and	r0, r3
@@ -10262,7 +10262,7 @@ func_8014FAC:
 	strh	r0, [r7, #20]
 	b	.L_150c0
 .L_1500c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_15010:
 	.4byte	gWarioData
 .L_15014:
@@ -10409,7 +10409,7 @@ func_80150D0:
 	b	.L_15150
 	.align	2, 0
 .L_15128:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1512c:
 	.4byte	gWarioData
 .L_15130:
@@ -10488,7 +10488,7 @@ func_8015194:
 	mov	r0, #255	@ 0xff
 	b	.L_1520e
 .L_151b8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_151bc:
 	.4byte	gWarioData
 .L_151c0:
@@ -11412,7 +11412,7 @@ func_80158C8:
 .L_1595c:
 	.4byte	gSwitchPressed
 .L_15960:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_15964:
 	.4byte	gMPlayTable
 .L_15968:
@@ -11488,7 +11488,7 @@ func_80158C8:
 	b	.L_15b30
 	.align	2, 0
 .L_15a58:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_15a5c:
 	.4byte	gMPlayTable
 .L_15a60:
@@ -11511,7 +11511,7 @@ func_80158C8:
 	b	.L_15b30
 	.align	2, 0
 .L_15a88:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_15a8c:
 	.4byte	gMPlayTable
 .L_15a90:
@@ -11544,7 +11544,7 @@ func_80158C8:
 	b	.L_15b2e
 	.align	2, 0
 .L_15ad0:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_15ad4:
 	.4byte	gMPlayTable
 .L_15ad8:
@@ -11595,7 +11595,7 @@ func_80158C8:
 	pop	{r0}
 	bx	r0
 .L_15b3c:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_15b40:
 	.4byte	gMPlayTable
 .L_15b44:
@@ -11643,7 +11643,7 @@ func_8015B48:
 .L_15b90:
 	.4byte	gWarioData
 .L_15b94:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_15b98:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

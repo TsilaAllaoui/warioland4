@@ -355,7 +355,6 @@ extern u8 gDisableWario;
 extern struct WarioAfterimageData gUnk_3003138;
 extern s16 gUnk_30031B8;
 extern s8 gUnk_30031BA;
-extern s8 gUnk_30031BC;
 extern u8 gUnk_30031BD;
 extern s8 gUnk_30031BE;
 
@@ -376,7 +375,6 @@ extern WarioPoseFunc sWarioWaterPoseTable[WPOSE_WATER_COUNT];
 extern WarioPoseFunc sFlamingWarioPoseTable[WPOSE_FLAMING_COUNT];
 extern WarioPoseFunc sFatWarioPoseTable[WPOSE_FAT_COUNT];
 extern WarioPoseFunc sFrozenWarioPoseTable[WPOSE_FROZEN_COUNT];
-// sUnk_82DEFA0
 extern WarioPoseFunc sZombieWarioPoseTable[WPOSE_ZOMBIE_COUNT];
 extern WarioPoseFunc sSnowmanWarioPoseTable[WPOSE_SNOWMAN_COUNT];
 extern WarioPoseFunc sBouncyWarioPoseTable[WPOSE_BOUNCY_COUNT];
