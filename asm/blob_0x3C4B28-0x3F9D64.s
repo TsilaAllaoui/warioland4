@@ -3200,28 +3200,28 @@ sUnk_83E3B78:
 
 baserom_blob 0x3E3B78, 0x3E45F0
 
-.global sUnk_83E45F0
-sUnk_83E45F0:
+.global sGlassBirdOam
+sGlassBirdOam:
 
 baserom_blob 0x3E45F0, 0x3E4778
 
-.global sUnk_83E4778
-sUnk_83E4778:
+.global sGlassBirdFragmentOam
+sGlassBirdFragmentOam:
 
 baserom_blob 0x3E4778, 0x3E4790
 
-.global sUnk_83E4790
-sUnk_83E4790:
+.global sGlassBirdFragmentCarriedOam
+sGlassBirdFragmentCarriedOam:
 
 baserom_blob 0x3E4790, 0x3E47A8
 
-.global sUnk_83E47A8
-sUnk_83E47A8:
+.global sGlassBirdFragmentBrokenOam
+sGlassBirdFragmentBrokenOam:
 
 baserom_blob 0x3E47A8, 0x3E4818
 
-.global sUnk_83E4818
-sUnk_83E4818:
+.global sGlassBirdFragmentDyingOam
+sGlassBirdFragmentDyingOam:
 
 baserom_blob 0x3E4818, 0x3EDC88
 

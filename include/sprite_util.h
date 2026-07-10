@@ -185,4 +185,6 @@ void func_8026E78(void);
 void SpriteUtilFadeBackgroundToBlack(void);
 void SpriteUtilSetWarioBossVictoryPose(void);
 
+void func_8023FA8(void);
+
 #endif  // SPRITE_UTIL_H

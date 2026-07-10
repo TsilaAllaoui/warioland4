@@ -2,6 +2,6 @@
 #define SPRITE_AI_GLASS_BIRD_H
 
 void SpriteGlassBird(void);
-void SpriteUnknownEB(void);
+void SpriteGlassBirdFragment(void);
 
 #endif  // SPRITE_AI_GLASS_BIRD_H

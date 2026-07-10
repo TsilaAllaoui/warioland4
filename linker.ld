@@ -702,7 +702,7 @@ SECTIONS {
         obj/sprite_ai/disasm_onomi.o(.text);
         obj/sprite_ai/disasm_cat.o(.text);
         obj/sprite_ai/disasm_petbottom.o(.text);
-        obj/sprite_ai/disasm_glass_bird.o(.text);
+        obj/sprite_ai/glass_bird.o(.text);
         obj/sprite_ai/disasm_golden_diva.o(.text);
         obj/sprite_ai/disasm_chandelier.o(.text);
         obj/sprite_ai/disasm_crumbling_block.o(.text);
