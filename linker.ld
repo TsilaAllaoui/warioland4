@@ -704,7 +704,7 @@ SECTIONS {
         obj/sprite_ai/disasm_petbottom.o(.text);
         obj/sprite_ai/disasm_glass_bird.o(.text);
         obj/sprite_ai/disasm_golden_diva.o(.text);
-        obj/sprite_ai/disasm_chandelier.o(.text);
+        obj/sprite_ai/chandelier.o(.text);
         obj/sprite_ai/disasm_crumbling_block.o(.text);
         obj/sprite_ai/disasm_professor.o(.text);
         obj/screen_shake.o(.text);

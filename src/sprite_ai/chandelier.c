@@ -1,0 +1,182 @@
+#include "sprite_ai/chandelier.h"
+
+#include "global_data.h"
+#include "sound.h"
+#include "sprite_util.h"
+
+void InitChandelier(void)
+{
+    gCurrentSprite.status |= SPRITE_STATUS_BACKGROUND | SPRITE_STATUS_IGNORE_SPRITE_COLLISION;
+    gCurrentSprite.warioCollision = 14;
+    gCurrentSprite.drawDistanceDown = 32;
+    gCurrentSprite.drawDistanceUp = 0;
+    gCurrentSprite.drawDistanceLeftRight = 16;
+    gCurrentSprite.hitboxExtentUp = 96;
+    gCurrentSprite.hitboxExtentDown = 192;
+    gCurrentSprite.hitboxExtentLeft = 48;
+    gCurrentSprite.hitboxExtentRight = 44;
+    gCurrentSprite.pOamData = sChandelierIdleOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 16;
+    gCurrentSprite.work0 = 1;
+    gCurrentSprite.xPosition += 32;
+}
+
+void ChandelierStartShaking(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pOamData = sChandelierShakingOam;
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.animationTimer = 0;
+        gCurrentSprite.work0 = 96;
+        gCurrentSprite.pose = 18;
+    }
+}
+
+void ChandelierShake(void)
+{
+    register struct PrimarySpriteData *sprite asm("r1");
+    register u32 animation asm("r2");
+
+    sprite = &gCurrentSprite;
+    animation = *(u32 *)&sprite->animationTimer;
+    animation &= 0xFFFFFF;
+    if (animation == 0x60001) {
+        if (sprite->status & SPRITE_STATUS_ONSCREEN) {
+            m4aSongNumStart(SE_CHANDELIER_SHAKE);
+        }
+    } else if (animation == 0x60009) {
+        if (sprite->status & SPRITE_STATUS_ONSCREEN) {
+            m4aSongNumStart(SE_CHANDELIER_SHAKE);
+        }
+    }
+
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pOamData = sChandelierFallingOam;
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.animationTimer = 0;
+        gCurrentSprite.work3 = 0;
+        gCurrentSprite.pose = 20;
+        gCurrentSprite.drawPriority = 1;
+        if (gCurrentSprite.status & SPRITE_STATUS_ONSCREEN) {
+            m4aSongNumStart(SE_CHANDELIER_FALL);
+        }
+    }
+}
+
+void ChandelierFall(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 yPosition asm("r1");
+
+    sprite = &gCurrentSprite;
+    yPosition = func_8023A60(sprite->yPosition, sprite->xPosition);
+    if (gUnk_3000A50 != 0) {
+        sprite->yPosition = yPosition;
+        sprite->pose = 49;
+        if (sprite->status & SPRITE_STATUS_ONSCREEN) {
+            m4aSongNumStart(SE_CHANDELIER_LAND);
+        }
+    } else {
+        register u8 *indexPointer asm("ip");
+        register u8 index asm("r2");
+        register const s16 *velocities asm("r5");
+        register const s16 *entry asm("r0");
+        register u16 velocityRaw asm("r3");
+        register s32 velocity asm("r1");
+        register int zero asm("r6");
+
+        indexPointer = &sprite->work3;
+        index = *indexPointer;
+        velocities = sChandelierFallVelocity;
+        entry = (const s16 *)((index << 1) + (u32)velocities);
+        velocityRaw = *(const u16 *)entry;
+        zero = 0;
+        /* agbcc otherwise reuses the unsigned load instead of emitting the target ldrsh. */
+        asm("ldrsh %0, [%1, %2]" : "=r"(velocity) : "r"(entry), "r"(zero));
+        if (velocity == 0x7FFF) {
+            register u32 previousOffset asm("r1");
+            register u16 currentY asm("r0");
+            register u16 previousVelocity asm("r1");
+
+            previousOffset = index - 1;
+            asm("" : "+r"(previousOffset));
+            previousOffset <<= 1;
+            asm("" : "+r"(previousOffset));
+            previousOffset += (u32)velocities;
+            currentY = sprite->yPosition;
+            previousVelocity = *(const u16 *)previousOffset;
+            currentY += previousVelocity;
+            sprite->yPosition = currentY;
+        } else {
+            register u8 nextIndex asm("r0");
+            register u8 *pointer asm("r1");
+            nextIndex = index + 1;
+            pointer = indexPointer;
+            *pointer = nextIndex;
+            sprite->yPosition += velocityRaw;
+        }
+    }
+}
+
+void InitFallenChandelier(void)
+{
+    gCurrentSprite.drawDistanceLeftRight = 56;
+    gCurrentSprite.hitboxExtentUp = 64;
+    gCurrentSprite.hitboxExtentDown = 0;
+    gCurrentSprite.hitboxExtentLeft = 48;
+    gCurrentSprite.hitboxExtentRight = 44;
+    gCurrentSprite.pOamData = sChandelierFallenOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 255;
+    gCurrentSprite.pose = 50;
+    gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
+}
+
+void FallenChandelierWait(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.work0 = 25;
+        gCurrentSprite.pose = 109;
+    }
+}
+
+void FallenChandelierDisappear(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.status = 0;
+    }
+}
+
+void SpriteChandelier(void)
+{
+    switch (gCurrentSprite.pose) {
+        case 0:
+            InitChandelier();
+            break;
+        case 16:
+            ChandelierStartShaking();
+            break;
+        case 18:
+            ChandelierShake();
+            break;
+        case 20:
+            ChandelierFall();
+            break;
+        case 50:
+            FallenChandelierWait();
+            break;
+        case 109:
+            FallenChandelierDisappear();
+            break;
+        default:
+            InitFallenChandelier();
+            break;
+    }
+}

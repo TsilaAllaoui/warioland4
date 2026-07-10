@@ -3545,28 +3545,28 @@ sUnk_83F096A:
 
 baserom_blob 0x3F096A, 0x3F0E4C
 
-.global sUnk_83F0E4C
-sUnk_83F0E4C:
+.global sChandelierIdleOam
+sChandelierIdleOam:
 
 baserom_blob 0x3F0E4C, 0x3F0E64
 
-.global sUnk_83F0E64
-sUnk_83F0E64:
+.global sChandelierShakingOam
+sChandelierShakingOam:
 
 baserom_blob 0x3F0E64, 0x3F0EEC
 
-.global sUnk_83F0EEC
-sUnk_83F0EEC:
+.global sChandelierFallingOam
+sChandelierFallingOam:
 
 baserom_blob 0x3F0EEC, 0x3F0F04
 
-.global sUnk_83F0F04
-sUnk_83F0F04:
+.global sChandelierFallenOam
+sChandelierFallenOam:
 
 baserom_blob 0x3F0F04, 0x3F1084
 
-.global sUnk_83F1084
-sUnk_83F1084:
+.global sChandelierFallVelocity
+sChandelierFallVelocity:
 
 baserom_blob 0x3F1084, 0x3F122C
 
