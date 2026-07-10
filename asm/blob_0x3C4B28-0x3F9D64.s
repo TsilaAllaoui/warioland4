@@ -1165,23 +1165,23 @@ sUnk_83D0C48:
 
 baserom_blob 0x3D0C48, 0x3D0D3C
 
-.global sUnk_83D0D3C
-sUnk_83D0D3C:
+.global sSpikeCannonProjectileFlyingOam
+sSpikeCannonProjectileFlyingOam:
 
 baserom_blob 0x3D0D3C, 0x3D0D64
 
-.global sUnk_83D0D64
-sUnk_83D0D64:
+.global sSpikeCannonProjectileDespawnOam
+sSpikeCannonProjectileDespawnOam:
 
 baserom_blob 0x3D0D64, 0x3D0DB4
 
-.global sUnk_83D0DB4
-sUnk_83D0DB4:
+.global sSpikeCannonOam
+sSpikeCannonOam:
 
 baserom_blob 0x3D0DB4, 0x3D0DDC
 
-.global sUnk_83D0DDC
-sUnk_83D0DDC:
+.global sSpikeCannonProjectileYVelocity
+sSpikeCannonProjectileYVelocity:
 
 baserom_blob 0x3D0DDC, 0x3D0E94
 

@@ -104,7 +104,7 @@ enum SoundID {
     SOUND_60,
     SOUND_61,
     SOUND_62,
-    SOUND_63,
+    SE_SPIKE_CANNON_FIRE,
     SOUND_64,
     SOUND_65,
     SOUND_66,
