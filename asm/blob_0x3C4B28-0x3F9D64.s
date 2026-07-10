@@ -700,38 +700,38 @@ sUnk_83CA47E:
 
 baserom_blob 0x3CA47E, 0x3CA850
 
-.global sUnk_83CA850
-sUnk_83CA850:
+.global sPistonChildOam
+sPistonChildOam:
 
 baserom_blob 0x3CA850, 0x3CA898
 
-.global sUnk_83CA898
-sUnk_83CA898:
+.global sPistonIdleOam
+sPistonIdleOam:
 
 baserom_blob 0x3CA898, 0x3CA8E0
 
-.global sUnk_83CA8E0
-sUnk_83CA8E0:
+.global sPistonPrepareOam
+sPistonPrepareOam:
 
 baserom_blob 0x3CA8E0, 0x3CA8F8
 
-.global sUnk_83CA8F8
-sUnk_83CA8F8:
+.global sPistonPostImpactOam
+sPistonPostImpactOam:
 
 baserom_blob 0x3CA8F8, 0x3CA910
 
-.global sUnk_83CA910
-sUnk_83CA910:
+.global sPistonExtendOam
+sPistonExtendOam:
 
 baserom_blob 0x3CA910, 0x3CA920
 
-.global sUnk_83CA920
-sUnk_83CA920:
+.global sPistonImpactOam
+sPistonImpactOam:
 
 baserom_blob 0x3CA920, 0x3CA980
 
-.global sUnk_83CA980
-sUnk_83CA980:
+.global sPistonYMovement
+sPistonYMovement:
 
 baserom_blob 0x3CA980, 0x3CBE54
 
