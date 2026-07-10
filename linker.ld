@@ -668,7 +668,7 @@ SECTIONS {
         obj/sprite_ai/disasm_menhammer.o(.text);
         obj/sprite_ai/disasm_menono.o(.text);
         obj/sprite_ai/disasm_goggley_blade.o(.text);
-        obj/sprite_ai/disasm_dice_block.o(.text);
+        obj/sprite_ai/dice_block.o(.text);
         obj/sprite_ai/disasm_tobawani.o(.text);
         obj/sprite_ai/disasm_shieragutchi.o(.text);
         obj/sprite_ai/disasm_ringosuki.o(.text);

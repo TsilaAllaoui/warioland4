@@ -515,18 +515,18 @@ sUnk_83C8DAE:
 
 baserom_blob 0x3C8DAE, 0x3C959C
 
-.global sUnk_83C959C
-sUnk_83C959C:
+.global sDiceBlockIdleOam
+sDiceBlockIdleOam:
 
 baserom_blob 0x3C959C, 0x3C95AC
 
-.global sUnk_83C95AC
-sUnk_83C95AC:
+.global sDiceBlockCrushedOam
+sDiceBlockCrushedOam:
 
 baserom_blob 0x3C95AC, 0x3C9614
 
-.global sUnk_83C9614
-sUnk_83C9614:
+.global sDiceBlockBreakingOam
+sDiceBlockBreakingOam:
 
 baserom_blob 0x3C9614, 0x3C99E0
 

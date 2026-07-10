@@ -226,7 +226,7 @@ enum SoundID {
     SOUND_DA,
     SOUND_DB,
     SE_BOX_OPENING,
-
+    SOUND_DICE_BLOCK_BREAK = 0xFB,
     SE_THUNDER = 0x115,
     SE_116,
     SE_117,
