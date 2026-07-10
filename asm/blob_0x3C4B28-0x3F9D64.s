@@ -580,33 +580,33 @@ sUnk_83C9B96:
 
 baserom_blob 0x3C9B96, 0x3C9C20
 
-.global sUnk_83C9C20
-sUnk_83C9C20:
+.global sShieragutchiIdleOam
+sShieragutchiIdleOam:
 
 baserom_blob 0x3C9C20, 0x3C9C38
 
-.global sUnk_83C9C38
-sUnk_83C9C38:
+.global sShieragutchiRiseOam
+sShieragutchiRiseOam:
 
 baserom_blob 0x3C9C38, 0x3C9CB0
 
-.global sUnk_83C9CB0
-sUnk_83C9CB0:
+.global sShieragutchiGrabbedOam
+sShieragutchiGrabbedOam:
 
 baserom_blob 0x3C9CB0, 0x3C9CC8
 
-.global sUnk_83C9CC8
-sUnk_83C9CC8:
+.global sShieragutchiDefeatOam
+sShieragutchiDefeatOam:
 
 baserom_blob 0x3C9CC8, 0x3C9CF0
 
-.global sUnk_83C9CF0
-sUnk_83C9CF0:
+.global sShieragutchiRiseYVelocity
+sShieragutchiRiseYVelocity:
 
 baserom_blob 0x3C9CF0, 0x3C9D58
 
-.global sUnk_83C9D58
-sUnk_83C9D58:
+.global sShieragutchiFallYVelocity
+sShieragutchiFallYVelocity:
 
 baserom_blob 0x3C9D58, 0x3CA178
 
