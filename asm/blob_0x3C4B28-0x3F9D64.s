@@ -2490,23 +2490,23 @@ sUnk_83DDC34:
 
 baserom_blob 0x3DDC34, 0x3DDF00
 
-.global sUnk_83DDF00
-sUnk_83DDF00:
+.global sUtsuboankoEmergingOam
+sUtsuboankoEmergingOam:
 
 baserom_blob 0x3DDF00, 0x3DDFB0
 
-.global sUnk_83DDFB0
-sUnk_83DDFB0:
+.global sUtsuboankoHidingOam
+sUtsuboankoHidingOam:
 
 baserom_blob 0x3DDFB0, 0x3DE028
 
-.global sUnk_83DE028
-sUnk_83DE028:
+.global sUtsuboankoRetreatingOam
+sUtsuboankoRetreatingOam:
 
 baserom_blob 0x3DE028, 0x3DE0E0
 
-.global sUnk_83DE0E0
-sUnk_83DE0E0:
+.global sUtsuboankoIdleOam
+sUtsuboankoIdleOam:
 
 baserom_blob 0x3DE0E0, 0x3DE218
 
