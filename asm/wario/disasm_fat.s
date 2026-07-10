@@ -754,7 +754,7 @@ func_8018468:
 	b	.L_184de
 	.align	2, 0
 .L_184d0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_184d4:
 	.4byte	sUnk_82DD8A8
 .L_184d8:
@@ -824,7 +824,7 @@ func_80184F8:
 	bl	func_8014C4C
 	b	.L_1858c
 .L_18550:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_18554:
 	.4byte	sUnk_82DD8A8
 .L_18558:
@@ -913,7 +913,7 @@ func_80184F8:
 	pop	{r0}
 	bx	r0
 .L_18600:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 
 
 thumb_func_start func_8018604
@@ -1078,7 +1078,7 @@ func_80186F8:
 .L_18740:
 	.4byte	gWarioData
 .L_18744:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_18748:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

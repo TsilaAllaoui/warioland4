@@ -1067,7 +1067,7 @@ func_8019AD0:
 	b	.L_19b46
 	.align	2, 0
 .L_19b38:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19b3c:
 	.4byte	sUnk_82DDA90
 .L_19b40:
@@ -1137,7 +1137,7 @@ func_8019B60:
 	bl	func_8014C4C
 	b	.L_19bf4
 .L_19bb8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19bbc:
 	.4byte	sUnk_82DDA90
 .L_19bc0:
@@ -1204,7 +1204,7 @@ func_8019B60:
 	mov	r5, #3
 	b	.L_19c64
 .L_19c3c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19c40:
 	ldr	r1, .L_19c78
 	ldrb	r0, [r1, #1]
@@ -1405,7 +1405,7 @@ func_8019D7C:
 .L_19dc4:
 	.4byte	gWarioData
 .L_19dc8:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_19dcc:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

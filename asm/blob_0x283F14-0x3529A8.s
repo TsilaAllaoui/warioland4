@@ -4681,13 +4681,13 @@ sUnk_82DDC78:
 
 baserom_blob 0x2DDC78, 0x2DDCB0
 
-.global sUnk_82DDCB0
-sUnk_82DDCB0:
+.global sMaskWarioGraphicsTable
+sMaskWarioGraphicsTable:
 
 baserom_blob 0x2DDCB0, 0x2DDCC0
 
-.global sUnk_82DDCC0
-sUnk_82DDCC0:
+.global sMaskWarioPoseProperties
+sMaskWarioPoseProperties:
 
 baserom_blob 0x2DDCC0, 0x2DDCD0
 
@@ -4846,13 +4846,13 @@ sUnk_82DE938:
 
 baserom_blob 0x2DE938, 0x2DEAF8
 
-.global sUnk_82DEAF8
-sUnk_82DEAF8:
+.global sMaskWarioPalette
+sMaskWarioPalette:
 
 baserom_blob 0x2DEAF8, 0x2DEB18
 
-.global sUnk_82DEB18
-sUnk_82DEB18:
+.global sWarioHitboxes
+sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
@@ -5517,8 +5517,8 @@ sUnk_833189C:
 
 baserom_blob 0x33189C, 0x3318D8
 
-.global sUnk_83318D8
-sUnk_83318D8:
+.global sMaskWarioTransformAnimation
+sMaskWarioTransformAnimation:
 
 baserom_blob 0x3318D8, 0x33B9E4
 

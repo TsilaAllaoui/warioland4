@@ -183,7 +183,7 @@ SECTIONS {
         . = 0x18D4; gWarioDataCopy = .;
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
-        . = 0x1918; gUnk_3001918 = .;
+        . = 0x1918; gWarioCollisionData = .;
         . = 0x1930; gUnk_3001930 = .;
         . = 0x1938; gUnk_3001938 = .;
         . = 0x1940; gCurrentWarioEffect = .;
@@ -621,7 +621,7 @@ SECTIONS {
         obj/wario/disasm_puffy.o(.text);
         obj/wario/disasm_bat.o(.text);
         obj/wario/disasm_flat.o(.text);
-        obj/wario/disasm_mask.o(.text);
+        obj/wario/mask.o(.text);
         obj/game_screen.o(.text);
         obj/game_screen_gfx.o(.text);
         obj/game_screen_debug.o(.text);

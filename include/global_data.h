@@ -138,6 +138,20 @@ struct ScreenShakeParameters {
     u8 direction;
 };
 
+struct WarioCollisionData {
+    u8 pad_00[2];
+    u16 flags;
+    u8 pad_04[4];
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+    u8 unk_0C;
+    u8 unk_0D;
+    u8 pad_0E[3];
+    u8 unk_11;
+};
+
 // gUnk_3000000
 extern u8 gCurrentPassage;
 extern u8 gCurrentStageNumber;
@@ -193,5 +207,7 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+extern struct WarioCollisionData gWarioCollisionData;
+extern const s16 sWarioHitboxes[][4];
 
 #endif  // GLOBAL_DATA_H

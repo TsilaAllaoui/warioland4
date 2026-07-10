@@ -393,4 +393,12 @@ void func_80101D0();
 void func_8010154();
 u32 WarioCheckReaction(u8 reaction);
 
+void func_800FD90(const void *src, u8 arg1, u8 arg2);
+void func_800FF64(void);
+void func_8010230(void);
+void func_8012BAC(u8 arg0);
+u8 func_8014930(void);
+u8 func_8014C4C(void);
+void func_8016614(u8 arg0);
+
 #endif  // WARIO_H

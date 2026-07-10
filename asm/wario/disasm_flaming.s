@@ -835,7 +835,7 @@ func_8017C40:
 	b	.L_17cb6
 	.align	2, 0
 .L_17ca8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_17cac:
 	.4byte	sUnk_82DD800
 .L_17cb0:
@@ -906,7 +906,7 @@ func_8017CD0:
 	b	.L_17d64
 	.align	2, 0
 .L_17d28:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_17d2c:
 	.4byte	sUnk_82DD800
 .L_17d30:
@@ -989,7 +989,7 @@ func_8017CD0:
 	bx	r0
 	.align	2, 0
 .L_17dc8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 
 
 thumb_func_start func_8017DCC
@@ -1230,7 +1230,7 @@ func_8017F50:
 	add	r0, r3, r2
 	lsl	r0, r0, #12
 .L_17f9c:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_17fa0:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

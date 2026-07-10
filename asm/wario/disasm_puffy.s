@@ -378,7 +378,7 @@ func_801A744:
 	pop	{r0}
 	bx	r0
 .L_1a7a0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1a7a4:
 	.4byte	sUnk_82DDBD0
 .L_1a7a8:
@@ -429,7 +429,7 @@ func_801A7AC:
 	pop	{r0}
 	bx	r0
 .L_1a800:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1a804:
 	.4byte	sUnk_82DDBD0
 .L_1a808:
@@ -590,4 +590,4 @@ func_801A8F0:
 .L_1a938:
 	.4byte	gWarioData
 .L_1a93c:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
