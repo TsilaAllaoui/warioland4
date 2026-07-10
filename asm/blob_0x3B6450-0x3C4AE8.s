@@ -732,43 +732,43 @@ sUnk_83BD1AC:
 
 baserom_blob 0x3BD1AC, 0x3BD42C
 
-.global sUnk_83BD42C
-sUnk_83BD42C:
+.global sFallingSnowIdleOam
+sFallingSnowIdleOam:
 
 baserom_blob 0x3BD42C, 0x3BD4AC
 
-.global sUnk_83BD4AC
-sUnk_83BD4AC:
+.global sFallingSnowFallingOam
+sFallingSnowFallingOam:
 
 baserom_blob 0x3BD4AC, 0x3BD4BC
 
-.global sUnk_83BD4BC
-sUnk_83BD4BC:
+.global sFallingSnowMeltingOam
+sFallingSnowMeltingOam:
 
 baserom_blob 0x3BD4BC, 0x3BD504
 
-.global sUnk_83BD504
-sUnk_83BD504:
+.global sFallingSnowChildOam
+sFallingSnowChildOam:
 
 baserom_blob 0x3BD504, 0x3BD574
 
-.global sUnk_83BD574
-sUnk_83BD574:
+.global sFallingSnowDropOam
+sFallingSnowDropOam:
 
 baserom_blob 0x3BD574, 0x3BD58C
 
-.global sUnk_83BD58C
-sUnk_83BD58C:
+.global sFallingSnowResetOam
+sFallingSnowResetOam:
 
 baserom_blob 0x3BD58C, 0x3BD5C4
 
-.global sUnk_83BD5C4
-sUnk_83BD5C4:
+.global sFallingSnowFragmentRightOam
+sFallingSnowFragmentRightOam:
 
 baserom_blob 0x3BD5C4, 0x3BD5D4
 
-.global sUnk_83BD5D4
-sUnk_83BD5D4:
+.global sFallingSnowFragmentLeftOam
+sFallingSnowFragmentLeftOam:
 
 baserom_blob 0x3BD5D4, 0x3BD660
 
