@@ -3570,23 +3570,23 @@ sUnk_83F1084:
 
 baserom_blob 0x3F1084, 0x3F122C
 
-.global sUnk_83F122C
-sUnk_83F122C:
+.global sCrumblingBlockIdleOam
+sCrumblingBlockIdleOam:
 
 baserom_blob 0x3F122C, 0x3F123C
 
-.global sUnk_83F123C
-sUnk_83F123C:
+.global sCrumblingBlockCrackingOam
+sCrumblingBlockCrackingOam:
 
 baserom_blob 0x3F123C, 0x3F12BC
 
-.global sUnk_83F12BC
-sUnk_83F12BC:
+.global sCrumblingBlockReformingOam
+sCrumblingBlockReformingOam:
 
 baserom_blob 0x3F12BC, 0x3F132C
 
-.global sUnk_83F132C
-sUnk_83F132C:
+.global sCrumblingBlockCollapsedOam
+sCrumblingBlockCollapsedOam:
 
 baserom_blob 0x3F132C, 0x3F1AA0
 

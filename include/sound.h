@@ -228,8 +228,8 @@ enum SoundID {
     SE_BOX_OPENING,
 
     SE_THUNDER = 0x115,
-    SE_116,
-    SE_117,
+    SE_CRUMBLING_BLOCK_CRACK,
+    SE_CRUMBLING_BLOCK_REFORM,
     SE_118,
     SE_119,
     SE_11A,
