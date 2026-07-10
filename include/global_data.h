@@ -142,6 +142,8 @@ struct ScreenShakeParameters {
 extern u8 gCurrentPassage;
 extern u8 gCurrentStageNumber;
 extern s8 gCurrentStageID;
+extern const u16 sHorizontalOscillationVelocity[];
+
 extern u16 gRandomSeed;
 // gMedalCount
 // gMinigameHighScores
@@ -167,7 +169,7 @@ extern u8 gUnk_3000022;
 extern u8 gCurrentRoom;
 extern u8 gUnk_3000025;
 // gUnk_3000026
-// gUnk_3000027
+extern u8 gUnk_3000027;
 extern s8 gUnk_3000028;
 extern u16 gBldAlpha;
 extern u16 gBldCnt;

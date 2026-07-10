@@ -602,23 +602,23 @@ sUnk_83BC730:
 
 baserom_blob 0x3BC730, 0x3BC84C
 
-.global sUnk_83BC84C
-sUnk_83BC84C:
+.global sBubbleMovingOam
+sBubbleMovingOam:
 
 baserom_blob 0x3BC84C, 0x3BC894
 
-.global sUnk_83BC894
-sUnk_83BC894:
+.global sBubbleIdleOam
+sBubbleIdleOam:
 
 baserom_blob 0x3BC894, 0x3BC8BC
 
-.global sUnk_83BC8BC
-sUnk_83BC8BC:
+.global sBubblePopOam
+sBubblePopOam:
 
 baserom_blob 0x3BC8BC, 0x3BC8E4
 
-.global sUnk_83BC8E4
-sUnk_83BC8E4:
+.global sBubbleSpawnerOam
+sBubbleSpawnerOam:
 
 baserom_blob 0x3BC8E4, 0x3BCEB4
 

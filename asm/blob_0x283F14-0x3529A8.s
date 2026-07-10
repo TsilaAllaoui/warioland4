@@ -4866,8 +4866,8 @@ sUnk_82DEBA2:
 
 baserom_blob 0x2DEBA2, 0x2DEBC2
 
-.global sUnk_82DEBC2
-sUnk_82DEBC2:
+.global sHorizontalOscillationVelocity
+sHorizontalOscillationVelocity:
 
 baserom_blob 0x2DEBC2, 0x2DEBDA
 

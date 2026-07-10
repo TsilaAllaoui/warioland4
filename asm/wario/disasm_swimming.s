@@ -1188,7 +1188,7 @@ func_80164A4:
 .L_16518:
 	.4byte	gWarioData
 .L_1651c:
-	.4byte	sUnk_82DEBC2
+	.4byte	sHorizontalOscillationVelocity
 .L_16520:
 	ldr	r1, .L_16554
 	add	r0, r2, #0
@@ -1219,7 +1219,7 @@ func_80164A4:
 	strb	r0, [r3, #0]
 	b	.L_16564
 .L_16554:
-	.4byte	sUnk_82DEBC2
+	.4byte	sHorizontalOscillationVelocity
 .L_16558:
 	ldrh	r0, [r2, #14]
 	mov	r1, #48	@ 0x30
