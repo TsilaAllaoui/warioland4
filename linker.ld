@@ -283,7 +283,7 @@ SECTIONS {
         . = 0x37bf; gUnk_30037BF = .;
         . = 0x37c0; gUnk_30037C0 = .;
         . = 0x3928; gUnk_3003928 = .;
-        . = 0x3b08; gUnk_3003B08 = .;
+        . = 0x3b08; gAnimatedGraphicsStates = .;
         . = 0x3bc8; gUnk_3003BC8 = .;
         . = 0x3bcc; gUnk_3003BCC = .;
         . = 0x3bd0; gUnk_3003BD0 = .;
@@ -713,7 +713,7 @@ SECTIONS {
         obj/disasm_scrolling.o(.text);
         obj/disasm_block.o(.text);
         obj/disasm_bg_clip.o(.text);
-        obj/disasm_animated_graphics.o(.text);
+        obj/animated_graphics.o(.text);
         obj/disasm_0x06E3BC.o(.text);
         obj/disasm_0x06EC50.o(.text);
         obj/disasm_color_fading.o(.text);

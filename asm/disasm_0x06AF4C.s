@@ -863,7 +863,7 @@ func_806B410:
 	bl	func_806BDF8
 .L_6b678:
 	bl	func_806F7CC
-	bl	func_806E1E8
+	bl	InitAnimatedGraphics
 	bl	func_8071598
 	bl	func_8071A2C
 	ldr	r1, .L_6b6c0
@@ -3199,7 +3199,7 @@ func_806C75C:
 	ldrb	r0, [r0, #0]
 	cmp	r0, #0
 	bne	.L_6c784
-	bl	func_806E08C
+	bl	UpdateAnimatedGraphics
 .L_6c784:
 	pop	{r0}
 	bx	r0

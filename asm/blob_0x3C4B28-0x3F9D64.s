@@ -3675,22 +3675,22 @@ sUnk_83F7820:
 
 baserom_blob 0x3F7820, 0x3F7828
 
-.global sUnk_83F7828
-sUnk_83F7828:
+.global sAnimatedGraphicsDefinitions
+sAnimatedGraphicsDefinitions:
 
 baserom_blob 0x3F7828, 0x3F8098
 
-.global sUnk_83F8098
-sUnk_83F8098:
+.global sAnimatedGraphicsInactiveIds
+sAnimatedGraphicsInactiveIds:
 
 baserom_blob 0x3F8098, 0x3F8C18
 
-.global sUnk_83F8C18
-sUnk_83F8C18:
+.global sAnimatedGraphicsSwitchIds
+sAnimatedGraphicsSwitchIds:
 
 baserom_blob 0x3F8C18, 0x3F91D8
 
-.global sUnk_83F91D8
-sUnk_83F91D8:
+.global sAnimatedGraphicsActiveIds
+sAnimatedGraphicsActiveIds:
 
 baserom_blob 0x3F91D8, 0x3F9D64
