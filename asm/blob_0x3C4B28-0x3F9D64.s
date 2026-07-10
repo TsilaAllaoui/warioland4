@@ -1365,93 +1365,93 @@ sUnk_83D25C0:
 
 baserom_blob 0x3D25C0, 0x3D27C8
 
-.global sUnk_83D27C8
-sUnk_83D27C8:
+.global sBossDoorEntryClosedOam
+sBossDoorEntryClosedOam:
 
 baserom_blob 0x3D27C8, 0x3D27D8
 
-.global sUnk_83D27D8
-sUnk_83D27D8:
+.global sBossDoorEntryOpenOam
+sBossDoorEntryOpenOam:
 
 baserom_blob 0x3D27D8, 0x3D2820
 
-.global sUnk_83D2820
-sUnk_83D2820:
+.global sBossDoorEntryOpeningOam
+sBossDoorEntryOpeningOam:
 
 baserom_blob 0x3D2820, 0x3D2A0C
 
-.global sUnk_83D2A0C
-sUnk_83D2A0C:
+.global sBossDoorEmeraldClosedOam
+sBossDoorEmeraldClosedOam:
 
 baserom_blob 0x3D2A0C, 0x3D2A1C
 
-.global sUnk_83D2A1C
-sUnk_83D2A1C:
+.global sBossDoorEmeraldOpenOam
+sBossDoorEmeraldOpenOam:
 
 baserom_blob 0x3D2A1C, 0x3D2A64
 
-.global sUnk_83D2A64
-sUnk_83D2A64:
+.global sBossDoorEmeraldOpeningOam
+sBossDoorEmeraldOpeningOam:
 
 baserom_blob 0x3D2A64, 0x3D2BF0
 
-.global sUnk_83D2BF0
-sUnk_83D2BF0:
+.global sBossDoorRubyClosedOam
+sBossDoorRubyClosedOam:
 
 baserom_blob 0x3D2BF0, 0x3D2C00
 
-.global sUnk_83D2C00
-sUnk_83D2C00:
+.global sBossDoorRubyOpenOam
+sBossDoorRubyOpenOam:
 
 baserom_blob 0x3D2C00, 0x3D2C48
 
-.global sUnk_83D2C48
-sUnk_83D2C48:
+.global sBossDoorRubyOpeningOam
+sBossDoorRubyOpeningOam:
 
 baserom_blob 0x3D2C48, 0x3D2E1C
 
-.global sUnk_83D2E1C
-sUnk_83D2E1C:
+.global sBossDoorTopazClosedOam
+sBossDoorTopazClosedOam:
 
 baserom_blob 0x3D2E1C, 0x3D2E2C
 
-.global sUnk_83D2E2C
-sUnk_83D2E2C:
+.global sBossDoorTopazOpenOam
+sBossDoorTopazOpenOam:
 
 baserom_blob 0x3D2E2C, 0x3D2E74
 
-.global sUnk_83D2E74
-sUnk_83D2E74:
+.global sBossDoorTopazOpeningOam
+sBossDoorTopazOpeningOam:
 
 baserom_blob 0x3D2E74, 0x3D3048
 
-.global sUnk_83D3048
-sUnk_83D3048:
+.global sBossDoorSapphireClosedOam
+sBossDoorSapphireClosedOam:
 
 baserom_blob 0x3D3048, 0x3D3058
 
-.global sUnk_83D3058
-sUnk_83D3058:
+.global sBossDoorSapphireOpenOam
+sBossDoorSapphireOpenOam:
 
 baserom_blob 0x3D3058, 0x3D30A0
 
-.global sUnk_83D30A0
-sUnk_83D30A0:
+.global sBossDoorSapphireOpeningOam
+sBossDoorSapphireOpeningOam:
 
 baserom_blob 0x3D30A0, 0x3D3274
 
-.global sUnk_83D3274
-sUnk_83D3274:
+.global sBossDoorGoldenPyramidClosedOam
+sBossDoorGoldenPyramidClosedOam:
 
 baserom_blob 0x3D3274, 0x3D3284
 
-.global sUnk_83D3284
-sUnk_83D3284:
+.global sBossDoorGoldenPyramidOpenOam
+sBossDoorGoldenPyramidOpenOam:
 
 baserom_blob 0x3D3284, 0x3D32CC
 
-.global sUnk_83D32CC
-sUnk_83D32CC:
+.global sBossDoorGoldenPyramidOpeningOam
+sBossDoorGoldenPyramidOpeningOam:
 
 baserom_blob 0x3D32CC, 0x3D6ADC
 

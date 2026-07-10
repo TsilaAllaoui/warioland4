@@ -681,7 +681,7 @@ SECTIONS {
         obj/sprite_ai/disasm_yeti.o(.text);
         obj/sprite_ai/disasm_bowler.o(.text);
         obj/sprite_ai/disasm_magma.o(.text);
-        obj/sprite_ai/disasm_boss_door.o(.text);
+        obj/sprite_ai/boss_door.o(.text);
         obj/sprite_ai/disasm_shopkeeper.o(.text);
         obj/sprite_ai/disasm_aerodent.o(.text);
         obj/sprite_ai/disasm_boss_treasure.o(.text);
