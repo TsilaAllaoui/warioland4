@@ -2450,18 +2450,18 @@ sUnk_83DD678:
 
 baserom_blob 0x3DD678, 0x3DD720
 
-.global sUnk_83DD720
-sUnk_83DD720:
+.global sFoldingDoorClosedOam
+sFoldingDoorClosedOam:
 
 baserom_blob 0x3DD720, 0x3DD730
 
-.global sUnk_83DD730
-sUnk_83DD730:
+.global sFoldingDoorOpeningOam
+sFoldingDoorOpeningOam:
 
 baserom_blob 0x3DD730, 0x3DD758
 
-.global sUnk_83DD758
-sUnk_83DD758:
+.global sFoldingDoorOpenOam
+sFoldingDoorOpenOam:
 
 baserom_blob 0x3DD758, 0x3DDB14
 
