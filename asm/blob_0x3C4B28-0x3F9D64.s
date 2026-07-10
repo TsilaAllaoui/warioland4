@@ -275,8 +275,8 @@ sUnk_83C798C:
 
 baserom_blob 0x3C798C, 0x3C799C
 
-.global sUnk_83C799C
-sUnk_83C799C:
+.global sToyBlockSquareOam
+sToyBlockSquareOam:
 
 baserom_blob 0x3C799C, 0x3C79AC
 
@@ -305,8 +305,8 @@ sUnk_83C7A5C:
 
 baserom_blob 0x3C7A5C, 0x3C7A6C
 
-.global sUnk_83C7A6C
-sUnk_83C7A6C:
+.global sToyBlockSquareYMovement
+sToyBlockSquareYMovement:
 
 baserom_blob 0x3C7A6C, 0x3C7DA0
 
