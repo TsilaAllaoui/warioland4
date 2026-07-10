@@ -1185,28 +1185,28 @@ sUnk_83D0DDC:
 
 baserom_blob 0x3D0DDC, 0x3D0E94
 
-.global sUnk_83D0E94
-sUnk_83D0E94:
+.global sMoneySunflowerFullOam
+sMoneySunflowerFullOam:
 
 baserom_blob 0x3D0E94, 0x3D0EA4
 
-.global sUnk_83D0EA4
-sUnk_83D0EA4:
+.global sMoneySunflowerLargeOam
+sMoneySunflowerLargeOam:
 
 baserom_blob 0x3D0EA4, 0x3D0EB4
 
-.global sUnk_83D0EB4
-sUnk_83D0EB4:
+.global sMoneySunflowerMediumOam
+sMoneySunflowerMediumOam:
 
 baserom_blob 0x3D0EB4, 0x3D0EC4
 
-.global sUnk_83D0EC4
-sUnk_83D0EC4:
+.global sMoneySunflowerSmallOam
+sMoneySunflowerSmallOam:
 
 baserom_blob 0x3D0EC4, 0x3D0ED4
 
-.global sUnk_83D0ED4
-sUnk_83D0ED4:
+.global sMoneySunflowerDepletedOam
+sMoneySunflowerDepletedOam:
 
 baserom_blob 0x3D0ED4, 0x3D1404
 
