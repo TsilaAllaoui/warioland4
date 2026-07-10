@@ -227,6 +227,8 @@ enum SoundID {
     SOUND_DB,
     SE_BOX_OPENING,
 
+    SE_ELECTRIC_LIFT_ACTIVATE = 0xF4,
+
     SE_THUNDER = 0x115,
     SE_116,
     SE_117,

@@ -822,33 +822,33 @@ sUnk_83BDB00:
 
 baserom_blob 0x3BDB00, 0x3BDD54
 
-.global sUnk_83BDD54
-sUnk_83BDD54:
+.global sElectricLiftStationaryIdleOam
+sElectricLiftStationaryIdleOam:
 
 baserom_blob 0x3BDD54, 0x3BDD64
 
-.global sUnk_83BDD64
-sUnk_83BDD64:
+.global sElectricLiftStationaryTransitionOam
+sElectricLiftStationaryTransitionOam:
 
 baserom_blob 0x3BDD64, 0x3BDD74
 
-.global sUnk_83BDD74
-sUnk_83BDD74:
+.global sElectricLiftStationaryResetOam
+sElectricLiftStationaryResetOam:
 
 baserom_blob 0x3BDD74, 0x3BDEA4
 
-.global sUnk_83BDEA4
-sUnk_83BDEA4:
+.global sElectricLiftStationaryActiveOam
+sElectricLiftStationaryActiveOam:
 
 baserom_blob 0x3BDEA4, 0x3BDFC0
 
-.global sUnk_83BDFC0
-sUnk_83BDFC0:
+.global sElectricLiftMovingTurnOam
+sElectricLiftMovingTurnOam:
 
 baserom_blob 0x3BDFC0, 0x3BDFF0
 
-.global sUnk_83BDFF0
-sUnk_83BDFF0:
+.global sElectricLiftMovingOam
+sElectricLiftMovingOam:
 
 baserom_blob 0x3BDFF0, 0x3BE164
 
