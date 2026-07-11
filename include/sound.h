@@ -352,6 +352,7 @@ enum SoundID {
     SOUND_1E6,
     SOUND_1E7,
     SOUND_1E8,
+    SE_BOSS_CORRIDOR_CAT_MEOW = 0x1EB,
 
     SOUND_208 = 0x208,
     SOUND_209,
