@@ -9,17 +9,6 @@
 #include "wario/flaming.h"
 #include "wario_palette.h"
 
-void func_800FD90(const void *, u32, u32);
-int func_800FDBC(void);
-void func_800FE58(void);
-void func_800FF64(void);
-void func_8010230(void);
-int func_80143D8(void);
-int func_8014758(void);
-int func_8014930(void);
-int func_8014C4C(void);
-void func_8016614(u8);
-
 u8 UpdateFlamingWario(void)
 {
     return sFlamingWarioPoseTable[gWarioData.pose]();
