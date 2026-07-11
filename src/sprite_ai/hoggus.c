@@ -3,6 +3,7 @@
 #include "sound.h"
 #include "sprite.h"
 #include "sprite_util.h"
+#include "transparency.h"
 #include "wario.h"
 #include "sprite_ai/hoggus.h"
 
@@ -468,7 +469,7 @@ void SpriteHoggus(void)
     initialSprite = &gCurrentSprite;
     pose = initialSprite->pose;
     sprite = initialSprite;
-    if (pose != 110 && gUnk_30000D8 == 16)
+    if (pose != 110 && gUnk_30000D8.targetAlpha == 16)
         sprite->pose = 110;
 
     switch (sprite->pose)
