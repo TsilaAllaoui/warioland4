@@ -4611,13 +4611,13 @@ sUnk_82DD8A8:
 
 baserom_blob 0x2DD8A8, 0x2DD900
 
-.global sUnk_82DD900
-sUnk_82DD900:
+.global sFrozenGraphicsTable
+sFrozenGraphicsTable:
 
 baserom_blob 0x2DD900, 0x2DD920
 
-.global sUnk_82DD920
-sUnk_82DD920:
+.global sFrozenPoseData
+sFrozenPoseData:
 
 baserom_blob 0x2DD920, 0x2DD940
 
@@ -4816,8 +4816,8 @@ sUnk_82DE7D8:
 
 baserom_blob 0x2DE7D8, 0x2DE818
 
-.global sUnk_82DE818
-sUnk_82DE818:
+.global sFrozenPalette
+sFrozenPalette:
 
 baserom_blob 0x2DE818, 0x2DE838
 
@@ -5437,13 +5437,13 @@ sUnk_8325484:
 
 baserom_blob 0x325484, 0x325544
 
-.global sUnk_8325544
-sUnk_8325544:
+.global sFrozenTransformAnimation
+sFrozenTransformAnimation:
 
 baserom_blob 0x325544, 0x325598
 
-.global sUnk_8325598
-sUnk_8325598:
+.global sFrozenBonkAnimation
+sFrozenBonkAnimation:
 
 baserom_blob 0x325598, 0x331224
 

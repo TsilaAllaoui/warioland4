@@ -614,7 +614,7 @@ SECTIONS {
         obj/wario/disasm_swimming.o(.text);
         obj/wario/disasm_flaming.o(.text);
         obj/wario/disasm_fat.o(.text);
-        obj/wario/disasm_frozen.o(.text);
+        obj/wario/frozen.o(.text);
         obj/wario/disasm_zombie.o(.text);
         obj/wario/disasm_snowman.o(.text);
         obj/wario/disasm_bouncy.o(.text);
