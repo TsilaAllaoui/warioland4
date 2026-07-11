@@ -122,7 +122,7 @@ enum SoundID {
     SOUND_72,
     SOUND_73,
     SOUND_74,
-    SOUND_75,
+    SE_TOGENOBI_SPIN,
     SOUND_76,
     SOUND_77,
     SOUND_78,
