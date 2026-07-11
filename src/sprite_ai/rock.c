@@ -407,7 +407,7 @@ void SpriteRock(void)
         if (gCurrentSprite.status & SPRITE_STATUS_UNDERWATER) {
             gCurrentSprite.health += 1;
             SpriteSpawnSecondary(gCurrentSprite.yPosition, gCurrentSprite.xPosition, SSPRITE_07);
-            m4aSongNumStart(SOUND_3D);
+            m4aSongNumStart(SE_HEAVY_OBJECT_SPLASH);
         }
     } else if ((gCurrentSprite.health & 0xF) == 2) {
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
