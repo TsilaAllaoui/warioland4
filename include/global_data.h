@@ -279,4 +279,6 @@ extern const struct WarioAnimationFrame* const sUnk_82DDB10[][2];
 extern const struct WarioPoseProperty sUnk_82DDB60[];
 extern const u16 sBouncyWarioPalette[];
 
+extern u8 gUnk_30000D8;
+
 #endif  // GLOBAL_DATA_H
