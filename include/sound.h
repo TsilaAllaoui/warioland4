@@ -66,7 +66,7 @@ enum SoundID {
     SOUND_3A,
     SOUND_3B,
     SOUND_3C,
-    SOUND_3D,
+    SE_HEAVY_OBJECT_SPLASH,
     SOUND_3E,
     SOUND_3F,
     SOUND_40,
@@ -226,6 +226,8 @@ enum SoundID {
     SOUND_DA,
     SOUND_DB,
     SE_BOX_OPENING,
+
+    SE_TOY_BLOCK_ROLL = 0xF9,
 
     SE_THUNDER = 0x115,
     SE_116,
