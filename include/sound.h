@@ -117,7 +117,7 @@ enum SoundID {
     SOUND_6D,
     SOUND_6E,
     SOUND_6F,
-    SOUND_70,
+    SE_ROBOBIRD_ATTACK,
     SOUND_71,
     SOUND_72,
     SOUND_73,

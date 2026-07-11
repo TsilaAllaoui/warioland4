@@ -2465,28 +2465,28 @@ sUnk_83DD758:
 
 baserom_blob 0x3DD758, 0x3DDB14
 
-.global sUnk_83DDB14
-sUnk_83DDB14:
+.global sRobobirdIdleOam
+sRobobirdIdleOam:
 
 baserom_blob 0x3DDB14, 0x3DDB7C
 
-.global sUnk_83DDB7C
-sUnk_83DDB7C:
+.global sRobobirdAttackStartupOam
+sRobobirdAttackStartupOam:
 
 baserom_blob 0x3DDB7C, 0x3DDBB4
 
-.global sUnk_83DDBB4
-sUnk_83DDBB4:
+.global sRobobirdAttackOam
+sRobobirdAttackOam:
 
 baserom_blob 0x3DDBB4, 0x3DDC1C
 
-.global sUnk_83DDC1C
-sUnk_83DDC1C:
+.global sRobobirdFallingOam
+sRobobirdFallingOam:
 
 baserom_blob 0x3DDC1C, 0x3DDC34
 
-.global sUnk_83DDC34
-sUnk_83DDC34:
+.global sRobobirdFastAttackOam
+sRobobirdFastAttackOam:
 
 baserom_blob 0x3DDC34, 0x3DDF00
 
