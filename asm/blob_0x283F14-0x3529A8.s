@@ -4837,7 +4837,9 @@ sBouncyWarioPalette:
 baserom_blob 0x2DE8B8, 0x2DE918
 
 .global sPuffyPalette
+.global sUnk_82DE918
 sPuffyPalette:
+sUnk_82DE918:
 
 baserom_blob 0x2DE918, 0x2DE938
 
