@@ -1787,47 +1787,47 @@ sUnk_83C491C:
 
 baserom_blob 0x3C491C, 0x3C4984
 
-.global sUnk_83C4984
-sUnk_83C4984:
+.global sMayubirdIdleOam
+sMayubirdIdleOam:
 
 baserom_blob 0x3C4984, 0x3C49AC
 
-.global sUnk_83C49AC
-sUnk_83C49AC:
+.global sMayubirdFlightEndOam
+sMayubirdFlightEndOam:
 
 baserom_blob 0x3C49AC, 0x3C49D4
 
-.global sUnk_83C49D4
-sUnk_83C49D4:
+.global sMayubirdWaitOam
+sMayubirdWaitOam:
 
 baserom_blob 0x3C49D4, 0x3C49EC
 
-.global sUnk_83C49EC
-sUnk_83C49EC:
+.global sMayubirdFlightOam
+sMayubirdFlightOam:
 
 baserom_blob 0x3C49EC, 0x3C4A04
 
-.global sUnk_83C4A04
-sUnk_83C4A04:
+.global sMayubirdFallOam
+sMayubirdFallOam:
 
 baserom_blob 0x3C4A04, 0x3C4A24
 
-.global sUnk_83C4A24
-sUnk_83C4A24:
+.global sMayubirdFloatXVelocity
+sMayubirdFloatXVelocity:
 
 baserom_blob 0x3C4A24, 0x3C4A46
 
-.global sUnk_83C4A46
-sUnk_83C4A46:
+.global sMayubirdFloatYVelocity
+sMayubirdFloatYVelocity:
 
 baserom_blob 0x3C4A46, 0x3C4AC8
 
-.global sUnk_83C4AC8
-sUnk_83C4AC8:
+.global sMayubirdFlyLeftXVelocity
+sMayubirdFlyLeftXVelocity:
 
 baserom_blob 0x3C4AC8, 0x3C4AD8
 
-.global sUnk_83C4AD8
-sUnk_83C4AD8:
+.global sMayubirdFlyRightXVelocity
+sMayubirdFlyRightXVelocity:
 
 baserom_blob 0x3C4AD8, 0x3C4AE8
