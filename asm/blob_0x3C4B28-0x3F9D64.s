@@ -2340,33 +2340,33 @@ sUnk_83DC9E0:
 
 baserom_blob 0x3DC9E0, 0x3DCCBC
 
-.global sUnk_83DCCBC
-sUnk_83DCCBC:
+.global sButatabiMovingOam
+sButatabiMovingOam:
 
 baserom_blob 0x3DCCBC, 0x3DCCE4
 
-.global sUnk_83DCCE4
-sUnk_83DCCE4:
+.global sButatabiTurningOam
+sButatabiTurningOam:
 
 baserom_blob 0x3DCCE4, 0x3DCD2C
 
-.global sUnk_83DCD2C
-sUnk_83DCD2C:
+.global sButatabiTurnAroundOam
+sButatabiTurnAroundOam:
 
 baserom_blob 0x3DCD2C, 0x3DCD74
 
-.global sUnk_83DCD74
-sUnk_83DCD74:
+.global sButatabiFallingOam
+sButatabiFallingOam:
 
 baserom_blob 0x3DCD74, 0x3DCDDC
 
-.global sUnk_83DCDDC
-sUnk_83DCDDC:
+.global sButatabiXVelocity
+sButatabiXVelocity:
 
 baserom_blob 0x3DCDDC, 0x3DCE3E
 
-.global sUnk_83DCE3E
-sUnk_83DCE3E:
+.global sButatabiYVelocity
+sButatabiYVelocity:
 
 baserom_blob 0x3DCE3E, 0x3DD344
 

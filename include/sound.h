@@ -114,7 +114,7 @@ enum SoundID {
     SOUND_6A,
     SOUND_6B,
     SOUND_6C,
-    SOUND_6D,
+    SE_BUTATABI_JUMP,
     SOUND_6E,
     SOUND_6F,
     SOUND_70,
