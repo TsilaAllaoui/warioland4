@@ -72,7 +72,7 @@ void IcicleWaitToFall(void)
         if (compareTimer > 32) {
             sprite->disableWarioCollisionTimer = 1;
             if (compareTimer == 52) {
-                SpriteSpawnAsChild(PSPRITE_D7, sprite->roomSlot, sprite->gfxSlot,
+                SpriteSpawnAsChild(PSPRITE_ICICLE_WARNING, sprite->roomSlot, sprite->gfxSlot,
                                    sprite->yPosition, sprite->xPosition);
             }
         }
