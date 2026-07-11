@@ -618,7 +618,7 @@ SECTIONS {
         obj/wario/disasm_zombie.o(.text);
         obj/wario/disasm_snowman.o(.text);
         obj/wario/disasm_bouncy.o(.text);
-        obj/wario/disasm_puffy.o(.text);
+        obj/wario/puffy.o(.text);
         obj/wario/disasm_bat.o(.text);
         obj/wario/disasm_flat.o(.text);
         obj/wario/disasm_mask.o(.text);

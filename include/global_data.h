@@ -194,4 +194,8 @@ extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
 
+
+extern u8 gUnk_3001918[];
+extern const u8 sUnk_82DE918[];
+extern const u16 sUnk_82DEB18[];
 #endif  // GLOBAL_DATA_H
