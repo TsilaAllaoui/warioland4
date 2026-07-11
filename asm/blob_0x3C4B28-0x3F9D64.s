@@ -3110,33 +3110,33 @@ sUnk_83E27B4:
 
 baserom_blob 0x3E27B4, 0x3E2A0C
 
-.global sUnk_83E2A0C
-sUnk_83E2A0C:
+.global sBossCorridorCatRunOam
+sBossCorridorCatRunOam:
 
 baserom_blob 0x3E2A0C, 0x3E2A2C
 
-.global sUnk_83E2A2C
-sUnk_83E2A2C:
+.global sBossCorridorCatWalkLeftOam
+sBossCorridorCatWalkLeftOam:
 
 baserom_blob 0x3E2A2C, 0x3E2A6C
 
-.global sUnk_83E2A6C
-sUnk_83E2A6C:
+.global sBossCorridorCatTurnOam
+sBossCorridorCatTurnOam:
 
 baserom_blob 0x3E2A6C, 0x3E2AEC
 
-.global sUnk_83E2AEC
-sUnk_83E2AEC:
+.global sBossCorridorCatWaitToTurnOam
+sBossCorridorCatWaitToTurnOam:
 
 baserom_blob 0x3E2AEC, 0x3E2B5C
 
-.global sUnk_83E2B5C
-sUnk_83E2B5C:
+.global sBossCorridorCatWaitLeftOam
+sBossCorridorCatWaitLeftOam:
 
 baserom_blob 0x3E2B5C, 0x3E2B8C
 
-.global sUnk_83E2B8C
-sUnk_83E2B8C:
+.global sBossCorridorCatWaitRightOam
+sBossCorridorCatWaitRightOam:
 
 baserom_blob 0x3E2B8C, 0x3E3878
 
