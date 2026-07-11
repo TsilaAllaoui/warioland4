@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████░░░░░░░░░░░░░░░░░░░░░░  26.9%   1,097 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  22.5%   137,422 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████░░░░░░░░░░░░░░░░░░░░░░  26.7%   1,086 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  22.0%   134,218 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1592,28 +1592,28 @@
 <rect x="603.78" y="445.75" width="5.43" height="7.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B808: 36 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_homerun_derby: 45.2% matched, 7,092 bytes</title>
+<title>disasm_homerun_derby: 0.0% matched, 7,092 bytes</title>
 <rect x="507.95" y="454.43" width="102.00" height="105.58" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip18"><rect x="509.95" y="455.43" width="98.60" height="18.00"/></clipPath>
 <rect x="508.95" y="455.43" width="100.60" height="18.00" fill="#05080d"/>
 <text x="510.45" y="468.43" clip-path="url(#moduleLabelClip18)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_homeru…</text>
-<text x="607.55" y="467.43" text-anchor="end" clip-path="url(#moduleLabelClip18)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">45%</text>
+<text x="607.55" y="467.43" text-anchor="end" clip-path="url(#moduleLabelClip18)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
 <rect x="508.95" y="473.43" width="57.58" height="58.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808EDFC: 2,792 bytes, not matched, size=symbol</title></rect>
-<rect x="508.95" y="532.35" width="57.58" height="26.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808DFD0: 1,292 bytes, matched, size=symbol</title></rect>
-<rect x="566.89" y="473.43" width="42.32" height="20.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E55C: 728 bytes, matched, size=symbol</title></rect>
+<rect x="508.95" y="532.35" width="57.58" height="26.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808DFD0: 1,292 bytes, not matched, size=symbol</title></rect>
+<rect x="566.89" y="473.43" width="42.32" height="20.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E55C: 728 bytes, not matched, size=symbol</title></rect>
 <rect x="566.89" y="494.29" width="26.49" height="20.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E9B4: 468 bytes, not matched, size=symbol</title></rect>
-<rect x="593.73" y="494.29" width="15.48" height="20.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808F9E0: 276 bytes, matched, size=symbol</title></rect>
+<rect x="593.73" y="494.29" width="15.48" height="20.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808F9E0: 276 bytes, not matched, size=symbol</title></rect>
 <rect x="566.89" y="515.61" width="22.24" height="13.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808F8E4: 252 bytes, not matched, size=symbol</title></rect>
 <rect x="589.47" y="515.61" width="19.73" height="13.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808EC10: 224 bytes, not matched, size=symbol</title></rect>
-<rect x="566.89" y="529.25" width="12.21" height="15.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E8CC: 160 bytes, matched, size=symbol</title></rect>
+<rect x="566.89" y="529.25" width="12.21" height="15.22" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E8CC: 160 bytes, not matched, size=symbol</title></rect>
 <rect x="566.89" y="544.82" width="12.21" height="14.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808ECF0: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="579.44" y="529.25" width="15.13" height="11.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808FAF4: 144 bytes, matched, size=symbol</title></rect>
-<rect x="594.93" y="529.25" width="14.27" height="11.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808EB88: 136 bytes, matched, size=symbol</title></rect>
-<rect x="579.44" y="540.62" width="15.35" height="9.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E4DC: 128 bytes, matched, size=symbol</title></rect>
-<rect x="579.44" y="550.58" width="15.35" height="8.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808ED88: 116 bytes, matched, size=symbol</title></rect>
-<rect x="595.14" y="540.62" width="14.06" height="8.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E834: 100 bytes, matched, size=symbol</title></rect>
-<rect x="595.14" y="549.10" width="8.02" height="10.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E96C: 72 bytes, matched, size=symbol</title></rect>
-<rect x="603.51" y="549.10" width="5.69" height="10.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E898: 52 bytes, matched, size=symbol</title></rect>
+<rect x="579.44" y="529.25" width="15.13" height="11.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808FAF4: 144 bytes, not matched, size=symbol</title></rect>
+<rect x="594.93" y="529.25" width="14.27" height="11.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808EB88: 136 bytes, not matched, size=symbol</title></rect>
+<rect x="579.44" y="540.62" width="15.35" height="9.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E4DC: 128 bytes, not matched, size=symbol</title></rect>
+<rect x="579.44" y="550.58" width="15.35" height="8.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808ED88: 116 bytes, not matched, size=symbol</title></rect>
+<rect x="595.14" y="540.62" width="14.06" height="8.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E834: 100 bytes, not matched, size=symbol</title></rect>
+<rect x="595.14" y="549.10" width="8.02" height="10.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E96C: 72 bytes, not matched, size=symbol</title></rect>
+<rect x="603.51" y="549.10" width="5.69" height="10.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_homerun_derby/func_808E898: 52 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_swimming: 0.0% matched, 6,644 bytes</title>
