@@ -272,6 +272,7 @@ extern u32 gUnk_3002C74;
 extern u16 gUnk_300188E;
 extern s8 gWarioMusicState;
 extern struct WarioCollisionData gWarioCollisionData;
+extern u8 gWarioCollisionBytes[];
 extern const s16 sWarioHitboxes[][4];
 extern const struct WarioEffectFrame sWarioAfterimageFrames[];
 extern const struct WarioAnimationFrame* const sUnk_82DDB10[][2];
