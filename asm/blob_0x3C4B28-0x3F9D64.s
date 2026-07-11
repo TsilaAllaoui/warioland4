@@ -280,8 +280,8 @@ sToyBlockSquareOam:
 
 baserom_blob 0x3C799C, 0x3C79AC
 
-.global sUnk_83C79AC
-sUnk_83C79AC:
+.global sToyBlockRoundOam
+sToyBlockRoundOam:
 
 baserom_blob 0x3C79AC, 0x3C79BC
 
