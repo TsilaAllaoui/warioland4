@@ -4631,13 +4631,13 @@ sUnk_82DD9A8:
 
 baserom_blob 0x2DD9A8, 0x2DDA10
 
-.global sUnk_82DDA10
-sUnk_82DDA10:
+.global sSnowmanWarioAnimationTable
+sSnowmanWarioAnimationTable:
 
 baserom_blob 0x2DDA10, 0x2DDA90
 
-.global sUnk_82DDA90
-sUnk_82DDA90:
+.global sSnowmanWarioPoseProperties
+sSnowmanWarioPoseProperties:
 
 baserom_blob 0x2DDA90, 0x2DDB10
 
@@ -4826,8 +4826,8 @@ sUnk_82DE838:
 
 baserom_blob 0x2DE838, 0x2DE878
 
-.global sUnk_82DE878
-sUnk_82DE878:
+.global sSnowmanWarioPalette
+sSnowmanWarioPalette:
 
 baserom_blob 0x2DE878, 0x2DE8B8
 
@@ -5522,48 +5522,48 @@ sUnk_83318D8:
 
 baserom_blob 0x3318D8, 0x33B9E4
 
-.global sUnk_833B9E4
-sUnk_833B9E4:
+.global sSnowmanWarioWalkingAnimation
+sSnowmanWarioWalkingAnimation:
 
 baserom_blob 0x33B9E4, 0x33BA2C
 
-.global sUnk_833BA2C
-sUnk_833BA2C:
+.global sSnowmanWarioBonkAnimation
+sSnowmanWarioBonkAnimation:
 
 baserom_blob 0x33BA2C, 0x33BA74
 
-.global sUnk_833BA74
-sUnk_833BA74:
+.global sSnowmanWarioJumpingAnimation
+sSnowmanWarioJumpingAnimation:
 
 baserom_blob 0x33BA74, 0x33BAE0
 
-.global sUnk_833BAE0
-sUnk_833BAE0:
+.global sSnowmanWarioTransformingAnimation
+sSnowmanWarioTransformingAnimation:
 
 baserom_blob 0x33BAE0, 0x33BB10
 
-.global sUnk_833BB10
-sUnk_833BB10:
+.global sSnowmanWarioLandingAfterMidairSnowContactAnimation
+sSnowmanWarioLandingAfterMidairSnowContactAnimation:
 
 baserom_blob 0x33BB10, 0x33BBA0
 
-.global sUnk_833BBA0
-sUnk_833BBA0:
+.global sSnowmanWarioTurningAnimation
+sSnowmanWarioTurningAnimation:
 
 baserom_blob 0x33BBA0, 0x33BBC4
 
-.global sUnk_833BBC4
-sUnk_833BBC4:
+.global sSnowmanWarioRollingSmallAnimation
+sSnowmanWarioRollingSmallAnimation:
 
 baserom_blob 0x33BBC4, 0x33BC18
 
-.global sUnk_833BC18
-sUnk_833BC18:
+.global sSnowmanWarioRollingMediumAnimation
+sSnowmanWarioRollingMediumAnimation:
 
 baserom_blob 0x33BC18, 0x33BC54
 
-.global sUnk_833BC54
-sUnk_833BC54:
+.global sSnowmanWarioRollingLargeAnimation
+sSnowmanWarioRollingLargeAnimation:
 
 baserom_blob 0x33BC54, 0x33BCC0
 

@@ -8,7 +8,7 @@ enum SoundID {
 
     SOUND_1,
     SOUND_2,
-    SOUND_3,
+    SE_SNOWMAN_WARIO_STEP,
     SOUND_4,
     SOUND_5,
     SOUND_6,
@@ -29,7 +29,7 @@ enum SoundID {
     SOUND_15,
     SOUND_16,
     SOUND_17,
-    SOUND_18,
+    SE_SNOWMAN_WARIO_LAND,
     SOUND_19,
     SOUND_1A,
     SOUND_1B,
@@ -50,7 +50,7 @@ enum SoundID {
     SOUND_2A,
     SOUND_2B,
     SOUND_2C,
-    SOUND_2D,
+    SE_SNOWMAN_WARIO_ROLL,
     SOUND_2E,
     SOUND_2F,
     SOUND_30,
@@ -294,6 +294,9 @@ enum SoundID {
     SOUND_154,
     SE_GET_LITTLE_HEART_UNDERWATER,
     SE_GET_ALL_JEWEL_PIECES,
+
+    SE_SNOWMAN_WARIO_BOUNCE = 0x15E,
+    SE_SNOWMAN_WARIO_BONK,
 
     SOUND_1B0 = 0x1B0,
     SOUND_1B1,
