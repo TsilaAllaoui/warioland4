@@ -2535,23 +2535,23 @@ sUnk_83DE320:
 
 baserom_blob 0x3DE320, 0x3DE498
 
-.global sUnk_83DE498
-sUnk_83DE498:
+.global sIcicleIdleOam
+sIcicleIdleOam:
 
 baserom_blob 0x3DE498, 0x3DE528
 
-.global sUnk_83DE528
-sUnk_83DE528:
+.global sIcicleWarningOam
+sIcicleWarningOam:
 
 baserom_blob 0x3DE528, 0x3DE580
 
-.global sUnk_83DE580
-sUnk_83DE580:
+.global sIcicleFallingOam
+sIcicleFallingOam:
 
 baserom_blob 0x3DE580, 0x3DE590
 
-.global sUnk_83DE590
-sUnk_83DE590:
+.global sIcicleImpactOam
+sIcicleImpactOam:
 
 baserom_blob 0x3DE590, 0x3DF0B0
 

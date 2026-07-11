@@ -694,7 +694,7 @@ SECTIONS {
         obj/sprite_ai/robobird.o(.text);
         obj/sprite_ai/disasm_utsuboanko.o(.text);
         obj/sprite_ai/disasm_togenobi.o(.text);
-        obj/sprite_ai/disasm_icicle.o(.text);
+        obj/sprite_ai/icicle.o(.text);
         obj/sprite_ai/disasm_cractus.o(.text);
         obj/sprite_ai/disasm_dice.o(.text);
         obj/sprite_ai/disasm_toy_car.o(.text);
