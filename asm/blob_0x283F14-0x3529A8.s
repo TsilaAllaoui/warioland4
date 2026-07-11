@@ -4831,8 +4831,8 @@ sUnk_82DE878:
 
 baserom_blob 0x2DE878, 0x2DE8B8
 
-.global sUnk_82DE8B8
-sUnk_82DE8B8:
+.global sBouncyWarioPalette
+sBouncyWarioPalette:
 
 baserom_blob 0x2DE8B8, 0x2DE918
 
@@ -5592,38 +5592,38 @@ sUnk_833BE10:
 
 baserom_blob 0x33BE10, 0x340750
 
-.global sUnk_8340750
-sUnk_8340750:
+.global sBouncyWarioTransformingAnimation
+sBouncyWarioTransformingAnimation:
 
 baserom_blob 0x340750, 0x340768
 
-.global sUnk_8340768
-sUnk_8340768:
+.global sBouncyWarioJumpingAnimation
+sBouncyWarioJumpingAnimation:
 
 baserom_blob 0x340768, 0x3407BC
 
-.global sUnk_83407BC
-sUnk_83407BC:
+.global sBouncyWarioHittingCeilingAnimation
+sBouncyWarioHittingCeilingAnimation:
 
 baserom_blob 0x3407BC, 0x34084C
 
-.global sUnk_834084C
-sUnk_834084C:
+.global sBouncyWarioStartingJumpAnimation
+sBouncyWarioStartingJumpAnimation:
 
 baserom_blob 0x34084C, 0x3408DC
 
-.global sUnk_83408DC
-sUnk_83408DC:
+.global sBouncyWarioFinalLandingAnimation
+sBouncyWarioFinalLandingAnimation:
 
 baserom_blob 0x3408DC, 0x340924
 
-.global sUnk_8340924
-sUnk_8340924:
+.global sBouncyWarioFinalBounceAnimation
+sBouncyWarioFinalBounceAnimation:
 
 baserom_blob 0x340924, 0x3409B4
 
-.global sUnk_83409B4
-sUnk_83409B4:
+.global sBouncyWarioHoppingAnimation
+sBouncyWarioHoppingAnimation:
 
 baserom_blob 0x3409B4, 0x34B0B4
 
