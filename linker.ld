@@ -684,7 +684,7 @@ SECTIONS {
         obj/sprite_ai/disasm_boss_door.o(.text);
         obj/sprite_ai/disasm_shopkeeper.o(.text);
         obj/sprite_ai/disasm_aerodent.o(.text);
-        obj/sprite_ai/disasm_boss_treasure.o(.text);
+        obj/sprite_ai/boss_treasure.o(.text);
         obj/sprite_ai/disasm_hoggus.o(.text);
         obj/sprite_ai/disasm_denden.o(.text);
         obj/sprite_ai/disasm_butatabi.o(.text);

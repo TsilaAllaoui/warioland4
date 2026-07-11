@@ -191,6 +191,7 @@ extern struct RoomHeader gCurrentRoomHeader;
 extern struct Unk_30000A0 gUnk_30000A0;
 extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
+extern u8 gUnk_30000FC;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
 

@@ -154,7 +154,7 @@ u8* gCurrentHeartGaugeGfx;
 extern u8 gVortexGfxSlot;
 extern u16 gVortexYPosition;
 extern u16 gVortexXPosition;
-// gUnk_3000C2A
+extern u8 gUnk_3000C2A;
 // gUnk_3000C2B
 #define gHasBossChest55sec gCollectedNEJewelPiece
 #define gHasBossChest35sec gCollectedSEJewelPiece
