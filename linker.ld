@@ -183,7 +183,7 @@ SECTIONS {
         . = 0x18D4; gWarioDataCopy = .;
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
-        . = 0x1918; gWarioCollisionData = .;
+        . = 0x1918; gWarioCollisionData = .; gWarioCollisionBytes = .;
         . = 0x1930; gUnk_3001930 = .;
         . = 0x1938; gUnk_3001938 = .;
         . = 0x1940; gCurrentWarioEffect = .;
@@ -614,12 +614,12 @@ SECTIONS {
         obj/wario/disasm_swimming.o(.text);
         obj/wario/flaming.o(.text);
         obj/wario/fat.o(.text);
-        obj/wario/disasm_frozen.o(.text);
+        obj/wario/frozen.o(.text);
         obj/wario/disasm_zombie.o(.text);
         obj/wario/snowman.o(.text);
         obj/wario/bouncy.o(.text);
-        obj/wario/disasm_puffy.o(.text);
-        obj/wario/disasm_bat.o(.text);
+        obj/wario/puffy.o(.text);
+        obj/wario/bat.o(.text);
         obj/wario/disasm_flat.o(.text);
         obj/wario/mask.o(.text);
         obj/game_screen.o(.text);
