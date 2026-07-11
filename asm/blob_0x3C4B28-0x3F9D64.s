@@ -2230,38 +2230,38 @@ sUnk_83DBC68:
 
 baserom_blob 0x3DBC68, 0x3DC264
 
-.global sUnk_83DC264
-sUnk_83DC264:
+.global sHoggusIdleOam
+sHoggusIdleOam:
 
 baserom_blob 0x3DC264, 0x3DC28C
 
-.global sUnk_83DC28C
-sUnk_83DC28C:
+.global sHoggusChargeOam
+sHoggusChargeOam:
 
 baserom_blob 0x3DC28C, 0x3DC35C
 
-.global sUnk_83DC35C
-sUnk_83DC35C:
+.global sHoggusAttackVariant1Oam
+sHoggusAttackVariant1Oam:
 
 baserom_blob 0x3DC35C, 0x3DC394
 
-.global sUnk_83DC394
-sUnk_83DC394:
+.global sHoggusAttackVariant0Oam
+sHoggusAttackVariant0Oam:
 
 baserom_blob 0x3DC394, 0x3DC3CC
 
-.global sUnk_83DC3CC
-sUnk_83DC3CC:
+.global sHoggusEggOam
+sHoggusEggOam:
 
 baserom_blob 0x3DC3CC, 0x3DC41C
 
-.global sUnk_83DC41C
-sUnk_83DC41C:
+.global sHoggusSpawnVariant1Oam
+sHoggusSpawnVariant1Oam:
 
 baserom_blob 0x3DC41C, 0x3DC444
 
-.global sUnk_83DC444
-sUnk_83DC444:
+.global sHoggusSpawnVariant0Oam
+sHoggusSpawnVariant0Oam:
 
 baserom_blob 0x3DC444, 0x3DC770
 
