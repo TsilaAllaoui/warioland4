@@ -222,7 +222,7 @@ enum PrimarySpriteID {
     PSPRITE_D4,
     PSPRITE_D5,
     PSPRITE_D6,
-    PSPRITE_D7,
+    PSPRITE_ICICLE_WARNING,
     PSPRITE_D8,
     PSPRITE_D9,
     PSPRITE_DA,
