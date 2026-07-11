@@ -633,7 +633,7 @@ SECTIONS {
         obj/sprite_ai/keyzer.o(.text);
         obj/sprite_ai/treasure.o(.text);
         obj/sprite_ai/vortex.o(.text);
-        obj/sprite_ai/disasm_switch.o(.text);
+        obj/sprite_ai/switch.o(.text);
         obj/sprite_ai/coins.o(.text);
         obj/sprite_ai/disasm_skeleton_bird.o(.text);
         obj/sprite_ai/disasm_kaentsubo.o(.text);
