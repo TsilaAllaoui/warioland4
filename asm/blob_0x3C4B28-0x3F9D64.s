@@ -435,83 +435,83 @@ sUnk_83C83B8:
 
 baserom_blob 0x3C83B8, 0x3C89F0
 
-.global sUnk_83C89F0
-sUnk_83C89F0:
+.global sGoggleyBladeHorizontalOam
+sGoggleyBladeHorizontalOam:
 
 baserom_blob 0x3C89F0, 0x3C8A38
 
-.global sUnk_83C8A38
-sUnk_83C8A38:
+.global sGoggleyBladeKnockbackHorizontalOam
+sGoggleyBladeKnockbackHorizontalOam:
 
 baserom_blob 0x3C8A38, 0x3C8A60
 
-.global sUnk_83C8A60
-sUnk_83C8A60:
+.global sGoggleyBladeHurtHorizontalOam
+sGoggleyBladeHurtHorizontalOam:
 
 baserom_blob 0x3C8A60, 0x3C8A88
 
-.global sUnk_83C8A88
-sUnk_83C8A88:
+.global sGoggleyBladeDefeatedHorizontalOam
+sGoggleyBladeDefeatedHorizontalOam:
 
 baserom_blob 0x3C8A88, 0x3C8AB0
 
-.global sUnk_83C8AB0
-sUnk_83C8AB0:
+.global sGoggleyBladeVerticalUpOam
+sGoggleyBladeVerticalUpOam:
 
 baserom_blob 0x3C8AB0, 0x3C8AF8
 
-.global sUnk_83C8AF8
-sUnk_83C8AF8:
+.global sGoggleyBladeKnockbackVerticalUpOam
+sGoggleyBladeKnockbackVerticalUpOam:
 
 baserom_blob 0x3C8AF8, 0x3C8B20
 
-.global sUnk_83C8B20
-sUnk_83C8B20:
+.global sGoggleyBladeHurtVerticalUpOam
+sGoggleyBladeHurtVerticalUpOam:
 
 baserom_blob 0x3C8B20, 0x3C8B48
 
-.global sUnk_83C8B48
-sUnk_83C8B48:
+.global sGoggleyBladeDefeatedVerticalUpOam
+sGoggleyBladeDefeatedVerticalUpOam:
 
 baserom_blob 0x3C8B48, 0x3C8B70
 
-.global sUnk_83C8B70
-sUnk_83C8B70:
+.global sGoggleyBladeVerticalDownOam
+sGoggleyBladeVerticalDownOam:
 
 baserom_blob 0x3C8B70, 0x3C8BB8
 
-.global sUnk_83C8BB8
-sUnk_83C8BB8:
+.global sGoggleyBladeKnockbackVerticalDownOam
+sGoggleyBladeKnockbackVerticalDownOam:
 
 baserom_blob 0x3C8BB8, 0x3C8BE0
 
-.global sUnk_83C8BE0
-sUnk_83C8BE0:
+.global sGoggleyBladeHurtVerticalDownOam
+sGoggleyBladeHurtVerticalDownOam:
 
 baserom_blob 0x3C8BE0, 0x3C8C08
 
-.global sUnk_83C8C08
-sUnk_83C8C08:
+.global sGoggleyBladeDefeatedVerticalDownOam
+sGoggleyBladeDefeatedVerticalDownOam:
 
 baserom_blob 0x3C8C08, 0x3C8C60
 
-.global sUnk_83C8C60
-sUnk_83C8C60:
+.global sGoggleyBladeTurnDownOam
+sGoggleyBladeTurnDownOam:
 
 baserom_blob 0x3C8C60, 0x3C8C98
 
-.global sUnk_83C8C98
-sUnk_83C8C98:
+.global sGoggleyBladeTurnUpOam
+sGoggleyBladeTurnUpOam:
 
 baserom_blob 0x3C8C98, 0x3C8CD0
 
-.global sUnk_83C8CD0
-sUnk_83C8CD0:
+.global sGoggleyBladeMovementVelocity
+sGoggleyBladeMovementVelocity:
 
 baserom_blob 0x3C8CD0, 0x3C8DAE
 
-.global sUnk_83C8DAE
-sUnk_83C8DAE:
+.global sGoggleyBladeTurnVelocity
+sGoggleyBladeTurnVelocity:
 
 baserom_blob 0x3C8DAE, 0x3C959C
 
