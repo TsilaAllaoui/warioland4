@@ -1,0 +1,207 @@
+#include "types.h"
+
+#define func_800FD90 PuffyHeader_func_800FD90
+#define func_8014C4C PuffyHeader_func_8014C4C
+#include "wario.h"
+#undef func_800FD90
+#undef func_8014C4C
+
+#include "gba/m4a.h"
+#include "global_data.h"
+#include "input.h"
+#include "oam.h"
+#include "sound.h"
+#include "wario/puffy.h"
+#include "wario_palette.h"
+
+/* ABI-sensitive declarations required by the original matched source. */
+void func_8014C4C(void);
+void func_800FD90(const void *source, u32 destination, u32 size);
+
+u8 UpdatePuffyWario(void) { return sPuffyWarioPoseTable[gWarioData.pose](); }
+
+u8 PuffyWarioTransforming(void)
+{
+    const struct PuffyAnimationFrame *animation;
+    if ((u8)(gWarioData.unk_1F - 2) <= 1) gWarioData.yPosition -= 8;
+    animation = sPuffyTransformingAnimation;
+    if (gWarioData.unk_1E >= animation[gWarioData.unk_1F].time) {
+        gWarioData.unk_1E = 0; gWarioData.unk_1F++;
+        if (animation[gWarioData.unk_1F].time == 0) return 1;
+    }
+    return 0xFF;
+}
+
+u8 PuffyWarioFloating(void)
+{
+    register struct WarioData *wario asm("r3");
+    register int held asm("r2"); register int direction asm("r1"); register int temp asm("r0");
+    register struct WarioData *animationWario asm("r2");
+    register const struct PuffyAnimationFrame *animation asm("r3");
+    u16 *heldPtr;
+    if (gButtonsPressed & 2) return 2;
+    heldPtr = &gButtonsHeld; wario = &gWarioData; held = *heldPtr; direction = wario->horizontalDirection;
+    temp = held; temp &= direction;
+    if (temp != 0) {
+        temp = 0x10; temp &= direction;
+        if (temp != 0) wario->xVelocity = 0x20; else wario->xVelocity = -0x20;
+    } else {
+        direction ^= 0x30; temp = direction; asm("" : "+r"(temp)); temp &= held; temp <<= 16;
+        if (temp != 0) { wario->horizontalDirection = direction; m4aSongNumStart(SE_PUFFY_TURN); }
+    }
+    animationWario = &gWarioData; animation = sPuffyFloatingAnimation;
+    if (animationWario->unk_1E >= animation[animationWario->unk_1F].time) {
+        animationWario->unk_1E = 0; animationWario->unk_1F++;
+        if (animation[animationWario->unk_1F].time == 0) animationWario->unk_1F = 0;
+    }
+    return 0xFF;
+}
+
+u8 PuffyWarioInhaling(void)
+{
+    const struct PuffyAnimationFrame *animation;
+    if (!(gButtonsHeld & 2) || gWarioData.yVelocity <= 24) return 1;
+    animation = sPuffyInhalingAnimation;
+    if (gWarioData.unk_1E >= animation[gWarioData.unk_1F].time) {
+        gWarioData.unk_1E = 0; gWarioData.unk_1F++;
+        if (animation[gWarioData.unk_1F].time == 0) gWarioData.unk_1F = 0;
+    }
+    return 0xFF;
+}
+
+u8 PuffyWarioHitCeiling(void)
+{
+    register struct WarioData *wario asm("r2"); register const struct PuffyAnimationFrame *animation asm("r3"); int frame;
+    wario = &gWarioData; animation = sPuffyHitCeilingAnimation;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0; frame = wario->unk_1F + 1; wario->unk_1F = frame;
+        if ((u8)frame == 3) wario->yPosition -= 16;
+        else if (animation[wario->unk_1F].time == 0) {
+            wario->reaction = 0; wario->damageTimer = 0x60; wario->yPosition += 0x40; return 2;
+        }
+    }
+    return 0xFF;
+}
+
+void SetPuffyWarioPose(u8 pose)
+{
+    register int value asm("r4");
+    register int copy asm("r5");
+    u8 temp;
+
+    value = pose;
+    copy = value;
+    temp = value + 3;
+    if (temp <= 1)
+        goto end;
+
+    func_8010230();
+    gWarioData.pose = value;
+
+    if (value == 1)
+        goto pose1;
+    if (value > 1)
+        goto greater;
+    if (value == 0)
+        goto pose0;
+    goto end;
+
+greater:
+    if (copy == 2)
+        goto pose2;
+    if (copy == 3)
+        goto pose3;
+    goto end;
+
+pose0:
+    m4aSongNumStart(SE_PUFFY_TRANSFORM);
+    goto end;
+
+pose1:
+    gWarioData.yVelocity = 24;
+    goto end;
+
+pose2:
+    gWarioData.yVelocity = 108;
+    m4aSongNumStart(SE_PUFFY_INHALE);
+    goto end;
+
+pose3:
+    m4aSongNumStart(SE_PUFFY_HIT_CEILING);
+
+end:
+    return;
+}
+
+void UpdatePuffyWarioPosition(void)
+{
+    register u8 *hitbox asm("r3"); register const u8 *data asm("r2"); register struct WarioData *wario asm("r4");
+    const u8 *ptr; u32 index; u16 yVelocity, velocity, xMovement;
+    hitbox = gWarioCollisionBytes; data = sPuffyPoseData; wario = &gWarioData;
+    index = wario->pose * 8; ptr = data + 1; index += (u32)ptr; hitbox[8] = *(const u8 *)index;
+    index = wario->pose * 8; ptr = data + 2; index += (u32)ptr; hitbox[9] = *(const u8 *)index;
+    index = wario->pose * 8; data += 3; index += (u32)data; hitbox[10] = *(const u8 *)index;
+    yVelocity = wario->yVelocity; velocity = (u16)(((s16)yVelocity) >> 3);
+    if (wario->pose == 2) wario->yVelocity = yVelocity - 4;
+    wario->yPosition -= velocity; xMovement = (u16)(((s16)wario->xVelocity) >> 3); wario->xPosition += xMovement;
+}
+
+void UpdatePuffyWarioCollision(void)
+{
+    register u8 *hitbox asm("r5"); register const u8 *data asm("r2"); register struct WarioData *wario asm("r4");
+    const u8 *ptr; u32 index;
+    hitbox = gWarioCollisionBytes; data = sPuffyPoseData; wario = &gWarioData;
+    index = wario->pose * 8; ptr = data + 4; index += (u32)ptr; hitbox[11] = *(const u8 *)index;
+    index = wario->pose * 8; ptr = data + 5; index += (u32)ptr; hitbox[12] = *(const u8 *)index;
+    index = wario->pose * 8; ptr = data + 6; index += (u32)ptr; hitbox[13] = *(const u8 *)index;
+    index = wario->pose * 8; data += 7; index += (u32)data; hitbox[17] = *(const u8 *)index;
+    func_8014C4C(); if (wario->pose != 3 && hitbox[19] != 0) SetPuffyWarioPose(3);
+}
+
+void LoadPuffyWarioGraphics(int index)
+{
+    register u32 value asm("r4"); register const struct PuffyGraphicsFrame **table asm("r1"); register struct WarioData *wario asm("r2");
+    const struct PuffyGraphicsFrame *frame; const u8 *data;
+    value = index; asm("" : "+r"(value)); value <<= 24; value >>= 24; func_800FF64();
+    table = sPuffyGraphicsTable; value <<= 2; wario = &gWarioData; value += wario->pose << 3; value += (u32)table;
+    frame = *(const struct PuffyGraphicsFrame **)value; frame += wario->unk_1F; data = frame->data;
+    wario->objData1Size = data[0] << 5; data++; wario->objData2Size = data[0] << 5; data++;
+    wario->pObjData1 = (u8 *)data; wario->pObjData2 = (u8 *)data + wario->objData1Size; wario->pOamData = frame->oam;
+    gWarioPaletteSize = 0x20; func_800FD90(sPuffyPalette, 0, 16);
+}
+
+void ApplyPuffyWarioMusicEffect(void)
+{
+    s8 *state;
+    void *player0;
+    void *player1;
+    u16 tracks;
+
+    state = &gWarioMusicState;
+    if (*state != 12) {
+        player0 = gMPlayTable[0].info;
+        m4aMPlayTempoControl(player0, 200);
+        player1 = gMPlayTable[1].info;
+        m4aMPlayTempoControl(player1, 200);
+        tracks = 0xFFFF;
+        m4aMPlayPitchControl(player0, tracks, 200);
+        m4aMPlayPitchControl(player1, tracks, 200);
+        m4aMPlayModDepthSet(player0, tracks, 10);
+        m4aMPlayModDepthSet(player1, tracks, 10);
+        m4aMPlayLFOSpeedSet(player0, tracks, 20);
+        m4aMPlayLFOSpeedSet(player1, tracks, 20);
+        *state = 12;
+    }
+}
+
+void UpdatePuffyWarioHitbox(void)
+{
+    register const u8 *data asm("r4"); register struct WarioData *wario asm("r3"); register const u8 *hitboxes asm("r2");
+    register u32 offset asm("r1"); register u32 address asm("r0"); u32 poseOffset;
+    data = sPuffyPoseData; wario = &gWarioData; offset = data[wario->pose * 8]; hitboxes = (const u8 *)sWarioHitboxes; offset <<= 3;
+    address = offset + (u32)hitboxes; wario->hitboxOffsetLeft = *(const u16 *)address;
+    address = (u32)(hitboxes + 2); asm("" : "+r"(address)); address = offset + address; wario->hitboxOffsetTop = *(const u16 *)address;
+    address = (u32)(hitboxes + 4); asm("" : "+r"(address)); address = offset + address; wario->hitboxOffsetRight = *(const u16 *)address;
+    hitboxes += 6; offset += (u32)hitboxes; wario->hitboxOffsetBottom = *(const u16 *)offset;
+    poseOffset = wario->pose * 8; data += 7; poseOffset += (u32)data; wario->unk_1A = *(const u8 *)poseOffset;
+}
