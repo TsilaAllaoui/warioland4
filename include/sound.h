@@ -315,6 +315,7 @@ enum SoundID {
     SE_BOUNCY_WARIO_BOUNCE = 0x170,
     SE_BOUNCY_WARIO_JUMP,
     SE_BOUNCY_WARIO_HIT_CEILING,
+    SE_BAT_WARIO_FLAP = 0x173,
     SOUND_1B0 = 0x1B0,
     SOUND_1B1,
     SOUND_1B2,
@@ -597,5 +598,8 @@ enum SoundID {
     SE_WARIO_WOWWW,
     SE_WARIO_YAHOO_6,
 };
+
+/* Compatibility name used by the matched Bat Wario source. */
+#define SE_BAT_WARIO_TRANSFORM SE_WARIO_TRANSFORM_LOOP
 
 #endif  // SOUND_H

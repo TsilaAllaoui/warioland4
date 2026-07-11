@@ -4661,13 +4661,13 @@ sPuffyPoseData:
 
 baserom_blob 0x2DDBD0, 0x2DDBF0
 
-.global sUnk_82DDBF0
-sUnk_82DDBF0:
+.global sBatGraphicsTable
+sBatGraphicsTable:
 
 baserom_blob 0x2DDBF0, 0x2DDC18
 
-.global sUnk_82DDC18
-sUnk_82DDC18:
+.global sBatPoseData
+sBatPoseData:
 
 baserom_blob 0x2DDC18, 0x2DDC40
 
@@ -4841,8 +4841,8 @@ sPuffyPalette:
 
 baserom_blob 0x2DE918, 0x2DE938
 
-.global sUnk_82DE938
-sUnk_82DE938:
+.global sBatPalette
+sBatPalette:
 
 baserom_blob 0x2DE938, 0x2DEAF8
 
@@ -5567,28 +5567,28 @@ sSnowmanWarioRollingLargeAnimation:
 
 baserom_blob 0x33BC54, 0x33BCC0
 
-.global sUnk_833BCC0
-sUnk_833BCC0:
+.global sBatFlyAnimation
+sBatFlyAnimation:
 
 baserom_blob 0x33BCC0, 0x33BD14
 
-.global sUnk_833BD14
-sUnk_833BD14:
+.global sBatLandAnimation
+sBatLandAnimation:
 
 baserom_blob 0x33BD14, 0x33BD5C
 
-.global sUnk_833BD5C
-sUnk_833BD5C:
+.global sBatTurnAnimation
+sBatTurnAnimation:
 
 baserom_blob 0x33BD5C, 0x33BD8C
 
-.global sUnk_833BD8C
-sUnk_833BD8C:
+.global sBatRecoverAnimation
+sBatRecoverAnimation:
 
 baserom_blob 0x33BD8C, 0x33BE10
 
-.global sUnk_833BE10
-sUnk_833BE10:
+.global sBatTransformAnimation
+sBatTransformAnimation:
 
 baserom_blob 0x33BE10, 0x340750
 

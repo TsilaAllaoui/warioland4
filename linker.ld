@@ -619,7 +619,7 @@ SECTIONS {
         obj/wario/snowman.o(.text);
         obj/wario/bouncy.o(.text);
         obj/wario/puffy.o(.text);
-        obj/wario/disasm_bat.o(.text);
+        obj/wario/bat.o(.text);
         obj/wario/disasm_flat.o(.text);
         obj/wario/mask.o(.text);
         obj/game_screen.o(.text);
