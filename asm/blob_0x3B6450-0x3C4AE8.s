@@ -437,33 +437,33 @@ sUnk_83BB480:
 
 baserom_blob 0x3BB480, 0x3BB63C
 
-.global sUnk_83BB63C
-sUnk_83BB63C:
+.global sPigHeadStatueIdleOam
+sPigHeadStatueIdleOam:
 
 baserom_blob 0x3BB63C, 0x3BB64C
 
-.global sUnk_83BB64C
-sUnk_83BB64C:
+.global sPigHeadStatueOpeningOam
+sPigHeadStatueOpeningOam:
 
 baserom_blob 0x3BB64C, 0x3BB69C
 
-.global sUnk_83BB69C
-sUnk_83BB69C:
+.global sPigHeadStatueFiringOam
+sPigHeadStatueFiringOam:
 
 baserom_blob 0x3BB69C, 0x3BB6AC
 
-.global sUnk_83BB6AC
-sUnk_83BB6AC:
+.global sPigHeadStatueChildFallingOam
+sPigHeadStatueChildFallingOam:
 
 baserom_blob 0x3BB6AC, 0x3BB704
 
-.global sUnk_83BB704
-sUnk_83BB704:
+.global sPigHeadStatueChildLandedOam
+sPigHeadStatueChildLandedOam:
 
 baserom_blob 0x3BB704, 0x3BB7AC
 
-.global sUnk_83BB7AC
-sUnk_83BB7AC:
+.global sPigHeadStatueChildDisappearingOam
+sPigHeadStatueChildDisappearingOam:
 
 baserom_blob 0x3BB7AC, 0x3BBD6C
 

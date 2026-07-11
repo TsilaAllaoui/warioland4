@@ -123,7 +123,7 @@ enum SoundID {
     SOUND_73,
     SOUND_74,
     SOUND_75,
-    SOUND_76,
+    SE_PIG_HEAD_STATUE_LAUNCH,
     SOUND_77,
     SOUND_78,
     SOUND_79,
