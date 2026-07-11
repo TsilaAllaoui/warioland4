@@ -369,7 +369,7 @@ void GameScreenInitAndLoadGenerics(void)
 
     DmaCopy16(3, sUnk_82DF094, 0x06010B00, 0x100);
     func_80746C0();
-    DmaCopy16(3, sUnk_82DDDA0, OBJ_PLTT, 0x20);
+    DmaCopy16(3, sWarioDefaultObjPalette, OBJ_PLTT, 0x20);
     DmaCopy16(3, sUnk_82DDDC0, OBJ_PLTT + 0x40, 0x20);
     DmaCopy16(3, sCommonSpritesPal, OBJ_PLTT + 0x80, 0x80) GameScreenInitWario();
     do {
@@ -486,5 +486,5 @@ void GameScreenInitWario(void)
             gHeartMeter.current = 1;
         }
     }
-    gUnk_30031BC = 0;
+    gWarioMusicState = 0;
 }

@@ -790,7 +790,7 @@ func_801907C:
 	b	.L_190f2
 	.align	2, 0
 .L_190e4:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_190e8:
 	.4byte	sUnk_82DD9A8
 .L_190ec:
@@ -862,7 +862,7 @@ func_801910C:
 	mov	r4, #255	@ 0xff
 	b	.L_191b8
 .L_19168:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1916c:
 	.4byte	sUnk_82DD9A8
 .L_19170:
@@ -942,7 +942,7 @@ func_801910C:
 	mov	r4, #7
 	b	.L_1923c
 .L_19204:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19208:
 	bl	func_8019250
 	lsl	r0, r0, #24
@@ -1009,7 +1009,7 @@ func_8019250:
 	mov	r0, #253	@ 0xfd
 	b	.L_19296
 .L_19284:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19288:
 	.4byte	gWarioData
 .L_1928c:
@@ -1139,7 +1139,7 @@ func_801930C:
 	bx	r0
 	.align	2, 0
 .L_19384:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_19388:
 	.4byte	gMPlayTable
 .L_1938c:
@@ -1189,7 +1189,7 @@ func_8019394:
 .L_193dc:
 	.4byte	gWarioData
 .L_193e0:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_193e4:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

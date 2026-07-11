@@ -1,0 +1,92 @@
+#ifndef CUTSCENE_OAM_ANIM_H
+#define CUTSCENE_OAM_ANIM_H
+
+#include "types.h"
+
+extern u16 sUnk_829A7C0[];
+extern u16 sUnk_829A7E6[];
+extern u16 sUnk_829A80C[];
+extern u16 sUnk_829A850[];
+extern u16 sUnk_829A894[];
+extern u16 sUnk_829A8A8[];
+extern u16 sUnk_829A8BC[];
+extern u16 sUnk_829A8D0[];
+extern u16 sUnk_829A8E4[];
+extern u16 sUnk_829A8F8[];
+extern u16 sUnk_829A90C[];
+extern u16 sUnk_829A926[];
+extern u16 sUnk_829A92E[];
+extern u16 sUnk_829A936[];
+extern u16 sUnk_829A93E[];
+extern u16 sUnk_829A952[];
+extern u16 sUnk_829A966[];
+extern u16 sUnk_829A986[];
+extern u16 sUnk_829A9A6[];
+extern u16 sUnk_829A9AE[];
+extern u16 sUnk_829A9B6[];
+extern u16 sUnk_829A9BE[];
+extern u16 sUnk_829A9D8[];
+extern u16 sUnk_829A9F2[];
+extern u16 sUnk_829AA0C[];
+extern u16 sUnk_829AA26[];
+extern u16 sUnk_829AA3A[];
+extern u16 sUnk_829AA48[];
+extern u16 sUnk_829AA56[];
+extern u16 sUnk_829AA5E[];
+extern u16 sUnk_829AA6C[];
+extern u16 sUnk_829AA7A[];
+extern u16 sUnk_829AA94[];
+extern u16 sUnk_829AAAE[];
+extern u16 sUnk_829AAE0[];
+extern u16 sUnk_829AB1E[];
+extern u16 sUnk_829AB2C[];
+extern u16 sUnk_829AB46[];
+extern u16 sUnk_829AB84[];
+extern u16 sUnk_829ABB6[];
+extern u16 sUnk_829AC00[];
+extern u16 sUnk_829AC62[];
+extern u16 sUnk_829ACC4[];
+extern u16 sUnk_829AD0E[];
+extern u16 sUnk_829AD58[];
+extern u16 sUnk_829AD8A[];
+extern u16 sUnk_829ADA4[];
+extern u16 sUnk_829ADBE[];
+extern u16 sUnk_829ADEA[];
+extern u16 sUnk_829ADF8[];
+extern u16 sUnk_829AE06[];
+extern u16 sUnk_829AE14[];
+extern u16 sUnk_829AE22[];
+extern u16 sUnk_829AE30[];
+extern u8 sUnk_829AE3E[];
+extern u8 sUnk_829B03E[];
+
+s32 func_800BE64(s32 timer, u16 **ppOamData);
+s32 func_800BE94(s32 timer, u16 **ppOamData);
+s32 func_800BEC4(s32 timer, u16 **ppOamData);
+void func_800BF0C(u16 **ppOamData);
+void func_800BF18(u16 **ppOamData);
+void func_800BF24(u16 **ppOamData);
+s32 func_800BF30(s32 timer, u16 **ppOamData);
+s32 func_800BF6C(s32 timer, u16 **ppOamData);
+s32 func_800BFA8(s32 timer, u16 **ppOamData);
+s32 func_800BFF0(s32 timer, u16 **ppOamData);
+s32 func_800C020(s32 timer, u16 **ppOamData);
+s32 func_800C05C(s32 timer, u16 **ppOamData);
+s32 func_800C098(s32 timer, u16 **ppOamData);
+void func_800C11C(u16 **ppOamData);
+void func_800C128(u16 **ppOamData);
+void func_800C134(u16 **ppOamData);
+void func_800C140(u16 **ppOamData);
+void func_800C14C(u16 **ppOamData);
+void func_800C158(u16 **ppOamData);
+void func_800C164(u16 **ppOamData);
+void func_800C170(u16 **ppOamData);
+void func_800C17C(u16 **ppOamData);
+void func_800C188(u16 **ppOamData);
+void func_800C194(u16 **ppOamData);
+void func_800C1A0(u16 **ppOamData);
+s32 func_800C1AC(s32 timer, u16 **ppOamData);
+s32 func_800C1E8(s32 timer, u16 **ppOamData);
+void CutsceneLoadObjPalette(u32 paletteFrame);
+
+#endif /* CUTSCENE_OAM_ANIM_H */

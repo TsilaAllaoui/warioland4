@@ -355,7 +355,6 @@ extern u8 gDisableWario;
 extern struct WarioAfterimageData gUnk_3003138;
 extern s16 gUnk_30031B8;
 extern s8 gUnk_30031BA;
-extern s8 gUnk_30031BC;
 extern u8 gUnk_30031BD;
 extern s8 gUnk_30031BE;
 
@@ -367,10 +366,11 @@ extern struct WarioEffect sStartingWarioEffect;
 extern struct CarriedSprite sEmptyCarriedSprite;
 extern struct WarioDustEffect sEmptyDustEffect;
 extern struct WarioAnimation sUnk_82DDCD0[];
-extern u16 sUnk_82DDDA0[];
+extern u16 sWarioDefaultObjPalette[];
 extern u16 sUnk_82DDDC0[];
 extern WarioPoseFunc sWarioPoseHandlerTable[REACTION_COUNT];
 extern WarioInteractionFunc sWarioPoseRequestFuncTable[REACTION_COUNT];
+extern WarioInteractionFunc sUnk_82DED30[];
 extern WarioPoseFunc sWarioNormalPoseTable[WPOSE_NORMAL_COUNT];
 extern WarioPoseFunc sWarioWaterPoseTable[WPOSE_WATER_COUNT];
 extern WarioPoseFunc sFlamingWarioPoseTable[WPOSE_FLAMING_COUNT];
@@ -392,5 +392,13 @@ void func_8010154();
 void func_80101D0();
 void func_8010154();
 u32 WarioCheckReaction(u8 reaction);
+
+void func_800FD90(const void *src, u8 arg1, u8 arg2);
+void func_800FF64(void);
+void func_8010230(void);
+void func_8012BAC(u8 arg0);
+u8 func_8014930(void);
+u8 func_8014C4C(void);
+void func_8016614(u8 arg0);
 
 #endif  // WARIO_H

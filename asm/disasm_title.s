@@ -220,7 +220,7 @@ CutsceneSubroutine:
 	strh	r0, [r4, #0]
 	bl	func_800B280
 	mov	r0, #0
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	ldr	r0, .L_35dc
 	mov	r2, #0
 	str	r2, [r0, #0]
@@ -262,13 +262,13 @@ CutsceneSubroutine:
 	strh	r2, [r1, #0]
 	lsl	r0, r0, #16
 	lsr	r0, r0, #16
-	bl	func_8003C70
+	bl	SubGameWaitAndAdvance
 	b	.L_3906
 .L_3608:
 	.4byte	gUnk_300188E
 .L_360c:
 	mov	r0, #2
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3614:
 	ldr	r1, .L_3628
@@ -284,7 +284,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_362c:
 	mov	r0, #6
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3634:
 	ldr	r1, .L_3648
@@ -300,7 +300,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_364c:
 	mov	r0, #8
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3654:
 	ldr	r1, .L_3668
@@ -316,7 +316,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_366c:
 	mov	r0, #14
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3674:
 	ldr	r1, .L_3688
@@ -332,7 +332,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_368c:
 	mov	r0, #16
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3694:
 	ldr	r1, .L_36a8
@@ -347,7 +347,7 @@ CutsceneSubroutine:
 .L_36a8:
 	.4byte	gUnk_300188E
 .L_36ac:
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	mov	r6, #1
 	b	.L_3906
 .L_36b4:
@@ -363,9 +363,9 @@ CutsceneSubroutine:
 	mov	r1, #1
 	orr	r0, r1
 	strh	r0, [r4, #0]
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	mov	r0, #19
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 	.align	2, 0
 .L_36dc:
@@ -386,7 +386,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_36fc:
 	mov	r0, #21
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3704:
 	ldr	r1, .L_3718
@@ -402,7 +402,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_371c:
 	mov	r0, #23
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3724:
 	ldr	r1, .L_3738
@@ -417,7 +417,7 @@ CutsceneSubroutine:
 .L_3738:
 	.4byte	gUnk_300188E
 .L_373c:
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	mov	r6, #2
 	b	.L_3906
 .L_3744:
@@ -438,9 +438,9 @@ CutsceneSubroutine:
 	ldrb	r0, [r0, #0]
 	str	r0, [r1, #0]
 	bl	func_800B280
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	mov	r0, #26
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 	.align	2, 0
 .L_3778:
@@ -465,7 +465,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_37a0:
 	mov	r0, #28
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_37a8:
 	ldr	r1, .L_37bc
@@ -481,7 +481,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_37c0:
 	mov	r0, #30
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_37c8:
 	ldr	r1, .L_37dc
@@ -497,7 +497,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_37e0:
 	mov	r0, #32
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_37e8:
 	ldr	r1, .L_37fc
@@ -512,7 +512,7 @@ CutsceneSubroutine:
 .L_37fc:
 	.4byte	gUnk_300188E
 .L_3800:
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	mov	r6, #3
 	b	.L_3906
 .L_3808:
@@ -536,10 +536,10 @@ CutsceneSubroutine:
 	mov	r0, #1
 	str	r0, [r1, #0]
 	bl	func_800B280
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 .L_3838:
 	mov	r0, #4
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3840:
 	.4byte	0x4000200
@@ -565,7 +565,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_386c:
 	mov	r0, #10
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3874:
 	ldr	r1, .L_3888
@@ -581,7 +581,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_388c:
 	mov	r0, #12
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_3894:
 	ldr	r1, .L_38a8
@@ -597,7 +597,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_38ac:
 	mov	r0, #41	@ 0x29
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_38b4:
 	ldr	r1, .L_38c8
@@ -613,7 +613,7 @@ CutsceneSubroutine:
 	.4byte	gUnk_300188E
 .L_38cc:
 	mov	r0, #43	@ 0x2b
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 	b	.L_3906
 .L_38d4:
 	ldr	r1, .L_38e8
@@ -631,7 +631,7 @@ CutsceneSubroutine:
 	ldr	r1, .L_38fc
 	mov	r0, #0
 	strb	r0, [r1, #0]
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	mov	r6, #4
 	b	.L_3906
 	.align	2, 0
@@ -639,7 +639,7 @@ CutsceneSubroutine:
 	.4byte	gDisableSoftReset
 .L_3900:
 	mov	r0, #46	@ 0x2e
-	bl	func_8003A18
+	bl	SubGameInitAndDispatch
 .L_3906:
 	ldr	r0, .L_3960
 	ldr	r1, .L_3964
@@ -760,7 +760,7 @@ func_8003980:
 	ldrsh	r0, [r0, r1]
 	cmp	r0, #22
 	bne	.L_39f2
-	bl	func_800C82C
+	bl	CutsceneWarioLoadObjTiles
 .L_39f2:
 	bl	m4aSoundMain
 	pop	{r0}

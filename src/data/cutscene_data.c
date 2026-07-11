@@ -55,14 +55,14 @@ void* sUnk_878E790[] = {
     sUnk_82890DA,
 };
 
-void* sUnk_878E7A0[] = {
+void* sEndingCutscenePathXTable[] = {
     (void*)0x82C4894,
     (void*)0x82C563C,
     (void*)0x82C32BC,
     (void*)0x82C3DA8,
 };
 
-void* sUnk_878E7B0[] = {
+void* sEndingCutscenePathYTable[] = {
     (void*)0x82C4E0A,
     (void*)0x82C5BB2,
     (void*)0x82C3832,

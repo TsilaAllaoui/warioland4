@@ -4083,7 +4083,7 @@ func_80058AC:
 	ldr	r0, .L_5bc8
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800FA3C
+	bl	SelectTitleScreenSHardLogoIntroOamFrame
 	b	.L_5bd6
 .L_5bc4:
 	.4byte	gTitleScreenStyle
@@ -4093,7 +4093,7 @@ func_80058AC:
 	ldr	r0, .L_5bf8
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800F9E0
+	bl	SelectTitleScreenNormalLogoIntroOamFrame
 .L_5bd6:
 	ldr	r4, .L_5bf8
 	ldr	r0, [r4, #0]
@@ -4127,7 +4127,7 @@ func_80058AC:
 	ldr	r0, .L_5c20
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800FA8C
+	bl	SelectTitleScreenSHardLogoIdleOamFrame
 	b	.L_5c2e
 .L_5c1c:
 	.4byte	gTitleScreenStyle
@@ -4137,7 +4137,7 @@ func_80058AC:
 	ldr	r0, .L_5c8c
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800FA28
+	bl	SelectTitleScreenNormalLogoIdleOamFrame
 .L_5c2e:
 	add	r2, r0, #0
 	ldr	r1, .L_5c8c
@@ -4165,7 +4165,7 @@ func_80058AC:
 	ldr	r0, .L_5c8c
 	ldr	r0, [r0, #0]
 	add	r1, sp, #4
-	bl	func_800FAA0
+	bl	SelectTitleScreenOverlayOamFrame
 	ldr	r0, [sp, #4]
 	add	r1, r4, #0
 	mov	r2, #120	@ 0x78
@@ -4225,7 +4225,7 @@ func_8005CC0:
 	ldr	r0, [r0, #0]
 	cmp	r0, #0
 	beq	.L_5cf4
-	bl	func_8003BF0
+	bl	SubGameClearGraphicsMemory
 	ldr	r0, .L_5cec
 	mov	r1, #12
 	bl	m4aMPlayFadeOut
@@ -4291,7 +4291,7 @@ func_8005CC0:
 	add	r0, r2, #0
 	bl	func_800B734
 	mov	r0, #15
-	bl	func_800C224
+	bl	CutsceneLoadObjPalette
 	b	.L_5dbe
 	.align	2, 0
 .L_5d5c:
@@ -4724,7 +4724,7 @@ func_8005F1C:
 	orr	r0, r1
 	strh	r0, [r2, #0]
 	ldrh	r0, [r4, #0]
-	bl	func_800C224
+	bl	CutsceneLoadObjPalette
 	ldrh	r0, [r4, #0]
 	cmp	r0, #16
 	beq	.L_60c4
@@ -5859,7 +5859,7 @@ func_80067BC:
 	lsr	r0, r1, #3
 	add	r1, #1
 	str	r1, [r2, #0]
-	bl	func_800C400
+	bl	CutsceneLoadBgObjPalette
 .L_699c:
 	ldr	r1, .L_6aa4
 	ldrh	r2, [r1, #0]
@@ -6498,11 +6498,11 @@ func_8006E00:
 	ldr	r0, .L_6f70
 	ldr	r1, .L_6f74
 	bl	func_800B734
-	bl	func_800C87C
+	bl	CutsceneWarioLoadObjPalette
 	mov	r0, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	ldr	r0, .L_6f78
 	mov	r3, #32
 	neg	r3, r3
@@ -6767,7 +6767,7 @@ func_8006FA0:
 	mov	r0, #0
 	mov	r1, #51	@ 0x33
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	mov	r0, #3
 	bl	VoiceSetPlay
 .L_70d0:
@@ -6798,7 +6798,7 @@ func_8006FA0:
 	mov	r0, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	b	.L_7506
 .L_7108:
 	.4byte	gUnk_3002C64
@@ -7021,7 +7021,7 @@ func_8006FA0:
 	mov	r0, #0
 	mov	r1, #2
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	ldr	r1, .L_72e4
 	mov	r0, #0
 	str	r0, [r1, #0]
@@ -7032,7 +7032,7 @@ func_8006FA0:
 .L_72ce:
 	mov	r0, #0
 	add	r1, sp, #4
-	bl	func_800C5B0
+	bl	CutsceneWarioSelectEffectCAnimOam
 	b	.L_7506
 .L_72d8:
 	.4byte	gUnk_3002C46
@@ -7051,7 +7051,7 @@ func_8006FA0:
 	add	r1, #1
 	str	r1, [r4, #0]
 	add	r1, sp, #4
-	bl	func_800C5B0
+	bl	CutsceneWarioSelectEffectCAnimOam
 	cmp	r0, #0
 	bne	.L_7302
 	b	.L_7506
@@ -7080,7 +7080,7 @@ func_8006FA0:
 	add	r1, #1
 	str	r1, [r2, #0]
 	add	r1, sp, #4
-	bl	func_800C568
+	bl	CutsceneWarioSelectEffectBAnimOam
 	ldr	r1, .L_7360
 	ldrh	r0, [r1, #0]
 	add	r0, #2
@@ -7095,7 +7095,7 @@ func_8006FA0:
 	mov	r0, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	ldr	r1, .L_7364
 	b	.L_7500
 	.align	2, 0
@@ -7205,7 +7205,7 @@ func_8006FA0:
 	mov	r0, #0
 	mov	r1, #2
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 .L_7430:
 	ldr	r4, .L_746c
 	ldr	r1, [r4, #0]
@@ -7213,13 +7213,13 @@ func_8006FA0:
 	add	r1, #1
 	str	r1, [r4, #0]
 	add	r1, sp, #4
-	bl	func_800C470
+	bl	CutsceneWarioSelectEffectAAnimOam
 	cmp	r0, #0
 	beq	.L_7456
 	mov	r0, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	ldr	r1, .L_7470
 	ldrh	r0, [r1, #0]
 	add	r0, #1
@@ -7256,7 +7256,7 @@ func_8006FA0:
 	mov	r0, #0
 	mov	r1, #27
 	mov	r2, #16
-	bl	func_800C704
+	bl	CutsceneWarioSetPose
 	ldr	r0, .L_74a0
 	bl	m4aSongNumStartOrChange
 	ldr	r1, .L_74a4
@@ -7328,7 +7328,7 @@ func_8006FA0:
 	str	r2, [sp, #0]
 	mov	r2, #1
 	mov	r3, r9
-	bl	func_800C718
+	bl	CutsceneWarioDrawPoseOam
 	add	r7, r0, #0
 	ldr	r1, .L_75a8
 	ldr	r0, [r1, #0]
@@ -7376,7 +7376,7 @@ func_8006FA0:
 	lsl	r4, r5, #1
 	add	r0, r6, #0
 	mov	r1, r8
-	bl	func_800C604
+	bl	CutsceneWarioSelectEffectDAnimOam
 	ldr	r0, [sp, #8]
 	ldr	r1, .L_75b8
 	add	r1, r4, r1
@@ -7420,7 +7420,7 @@ func_8006FA0:
 	lsl	r4, r5, #1
 	add	r0, r6, #0
 	mov	r1, r8
-	bl	func_800C604
+	bl	CutsceneWarioSelectEffectDAnimOam
 	ldr	r0, [sp, #8]
 	ldr	r1, .L_7604
 	add	r1, r4, r1
@@ -7460,7 +7460,7 @@ func_8006FA0:
 	lsl	r4, r5, #1
 	add	r0, r6, #0
 	mov	r1, r8
-	bl	func_800C604
+	bl	CutsceneWarioSelectEffectDAnimOam
 	ldr	r0, [sp, #8]
 	ldr	r1, .L_7698
 	add	r1, r4, r1
@@ -7494,7 +7494,7 @@ func_8006FA0:
 	lsl	r0, r0, #16
 	asr	r0, r0, #16
 	mov	r1, r8
-	bl	func_800C658
+	bl	CutsceneWarioSelectEffectEAnimOam
 	cmp	r0, #0
 	beq	.L_767e
 	ldr	r1, .L_76ac
@@ -7844,7 +7844,7 @@ func_8007890:
 	cmp	r0, #1
 	bhi	.L_7942
 	mov	r0, sp
-	bl	func_800C6F8
+	bl	CutsceneWarioGetStaticOam
 	ldr	r0, [sp, #0]
 	ldr	r1, .L_795c
 	mov	r3, #0
@@ -7918,11 +7918,11 @@ func_8007970:
 .L_79a0:
 	.4byte	gUnk_3002C84
 .L_79a4:
-	.4byte	func_800C930
+	.4byte	SelectLayeredCutsceneOamSequence01
 .L_79a8:
-	.4byte	func_800CAE0
+	.4byte	SelectLayeredCutsceneOamSequence07
 .L_79ac:
-	.4byte	func_800CB5C
+	.4byte	SelectLayeredCutsceneOamSequence09
 .L_79b0:
 	.4byte	gUnk_3002CA0
 .L_79b4:
@@ -7954,9 +7954,9 @@ func_8007970:
 .L_79e2:
 	bx	lr
 .L_79e4:
-	.4byte	func_800CA20
+	.4byte	SelectLayeredCutsceneOamSequence03
 .L_79e8:
-	.4byte	func_800CA8C
+	.4byte	SelectLayeredCutsceneOamSequence05
 .L_79ec:
 	.4byte	gUnk_3002CA0
 .L_79f0:
@@ -8335,13 +8335,13 @@ func_8007C30:
 .L_7cda:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C9AC
+	bl	SelectLayeredCutsceneOamSequence02
 	mov	r4, sl
 	cmp	r4, #0
 	beq	.L_7cf6
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CA20
+	bl	SelectLayeredCutsceneOamSequence03
 	ldr	r0, .L_7d54
 	bl	func_8007970
 .L_7cf6:
@@ -8382,7 +8382,7 @@ func_8007C30:
 .L_7d36:
 	add	r1, sp, #12
 	add	r0, r3, #0
-	bl	func_800CD30
+	bl	SelectLayeredCutsceneOamSequence15
 	ldr	r1, .L_7d64
 	mov	r2, #0
 	ldrsh	r0, [r1, r2]
@@ -8519,7 +8519,7 @@ func_8007C30:
 .L_7e2c:
 	add	r1, sp, #12
 	add	r0, r3, #0
-	bl	func_800CCA0
+	bl	SelectLayeredCutsceneOamSequence13
 	b	.L_7e60
 	.align	2, 0
 .L_7e38:
@@ -8533,7 +8533,7 @@ func_8007C30:
 	add	r1, #1
 	str	r1, [r4, #0]
 	add	r1, sp, #12
-	bl	func_800CCDC
+	bl	SelectLayeredCutsceneOamSequence14
 	cmp	r0, #0
 	beq	.L_7e60
 	mov	r0, #0
@@ -8565,7 +8565,7 @@ func_8007C30:
 .L_7e84:
 	add	r1, sp, #12
 	mov	r0, #100	@ 0x64
-	bl	func_800CCDC
+	bl	SelectLayeredCutsceneOamSequence14
 	ldr	r2, .L_7ed8
 	ldr	r0, [r2, #0]
 	add	r1, r0, #0
@@ -8580,7 +8580,7 @@ func_8007C30:
 	bgt	.L_7ee4
 	add	r1, sp, #16
 	mov	r0, #0
-	bl	func_800CE7C
+	bl	SelectLayeredCutsceneOamSequence19
 	mov	r0, #1
 	mov	r5, r8
 	and	r0, r5
@@ -8615,7 +8615,7 @@ func_8007C30:
 	bgt	.L_7f14
 	add	r1, sp, #16
 	mov	r0, #8
-	bl	func_800CE7C
+	bl	SelectLayeredCutsceneOamSequence19
 	ldrh	r0, [r4, #0]
 	add	r0, #1
 	strh	r0, [r4, #0]
@@ -8668,13 +8668,13 @@ func_8007C30:
 	bgt	.L_7f8c
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C9AC
+	bl	SelectLayeredCutsceneOamSequence02
 	mov	r6, sl
 	cmp	r6, #0
 	beq	.L_7f68
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CA20
+	bl	SelectLayeredCutsceneOamSequence03
 	ldr	r0, .L_7f84
 	bl	func_8007970
 .L_7f68:
@@ -8694,19 +8694,19 @@ func_8007C30:
 .L_7f80:
 	.4byte	gUnk_3002C9C
 .L_7f84:
-	.4byte	func_800CA20
+	.4byte	SelectLayeredCutsceneOamSequence03
 .L_7f88:
 	.4byte	gUnk_3002C4C
 .L_7f8c:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CA78
+	bl	SelectLayeredCutsceneOamSequence04
 	mov	r2, sl
 	cmp	r2, #0
 	beq	.L_7fa8
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CA8C
+	bl	SelectLayeredCutsceneOamSequence05
 	ldr	r0, .L_7fc4
 	bl	func_8007970
 .L_7fa8:
@@ -8725,13 +8725,13 @@ func_8007C30:
 	b	.L_8642
 	.align	2, 0
 .L_7fc4:
-	.4byte	func_800CA8C
+	.4byte	SelectLayeredCutsceneOamSequence05
 .L_7fc8:
 	.4byte	gUnk_3002C4C
 .L_7fcc:
 	add	r1, sp, #12
 	mov	r0, #28
-	bl	func_800CCDC
+	bl	SelectLayeredCutsceneOamSequence14
 	ldr	r4, .L_7fe4
 	ldr	r2, [r4, #0]
 	cmp	r2, #160	@ 0xa0
@@ -8749,7 +8749,7 @@ func_8007C30:
 	bls	.L_7ffa
 	add	r1, sp, #16
 	add	r0, r2, #0
-	bl	func_800CD6C
+	bl	SelectLayeredCutsceneOamSequence16
 	b	.L_802e
 .L_7ffa:
 	mov	r0, #8
@@ -8758,7 +8758,7 @@ func_8007C30:
 	beq	.L_8018
 	add	r1, sp, #16
 	add	r0, r2, #0
-	bl	func_800CD6C
+	bl	SelectLayeredCutsceneOamSequence16
 	ldr	r1, .L_8014
 	ldrh	r0, [r1, #0]
 	sub	r0, #1
@@ -8769,7 +8769,7 @@ func_8007C30:
 .L_8018:
 	add	r1, sp, #16
 	add	r0, r2, #0
-	bl	func_800CE0C
+	bl	SelectLayeredCutsceneOamSequence18
 	ldr	r0, [r4, #0]
 	cmp	r0, #4
 	bls	.L_802e
@@ -8802,13 +8802,13 @@ func_8007C30:
 .L_8054:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C9AC
+	bl	SelectLayeredCutsceneOamSequence02
 	mov	r4, sl
 	cmp	r4, #0
 	beq	.L_8070
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CA20
+	bl	SelectLayeredCutsceneOamSequence03
 	ldr	r0, .L_8084
 	bl	func_8007970
 .L_8070:
@@ -8824,13 +8824,13 @@ func_8007C30:
 	sub	r0, #1
 	b	.L_8640
 .L_8084:
-	.4byte	func_800CA20
+	.4byte	SelectLayeredCutsceneOamSequence03
 .L_8088:
 	.4byte	gUnk_3002C4C
 .L_808c:
 	add	r1, sp, #12
 	mov	r0, #100	@ 0x64
-	bl	func_800CCDC
+	bl	SelectLayeredCutsceneOamSequence14
 	ldr	r4, .L_80cc
 	mov	r6, #0
 	ldrsh	r1, [r4, r6]
@@ -8838,7 +8838,7 @@ func_8007C30:
 	ble	.L_80d4
 	add	r1, sp, #16
 	mov	r0, r8
-	bl	func_800CDDC
+	bl	SelectLayeredCutsceneOamSequence17
 	ldrh	r0, [r4, #0]
 	sub	r0, #1
 	strh	r0, [r4, #0]
@@ -8870,7 +8870,7 @@ func_8007C30:
 	ble	.L_80ec
 	add	r1, sp, #16
 	mov	r0, r8
-	bl	func_800CD6C
+	bl	SelectLayeredCutsceneOamSequence16
 	ldrh	r0, [r4, #0]
 	sub	r0, #2
 	strh	r0, [r4, #0]
@@ -8886,13 +8886,13 @@ func_8007C30:
 .L_80fa:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C9AC
+	bl	SelectLayeredCutsceneOamSequence02
 	mov	r2, sl
 	cmp	r2, #0
 	beq	.L_8116
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CA20
+	bl	SelectLayeredCutsceneOamSequence03
 	ldr	r0, .L_8134
 	bl	func_8007970
 .L_8116:
@@ -8913,7 +8913,7 @@ func_8007C30:
 .L_8130:
 	.4byte	gUnk_3002C60
 .L_8134:
-	.4byte	func_800CA20
+	.4byte	SelectLayeredCutsceneOamSequence03
 .L_8138:
 	.4byte	gUnk_3002C4C
 .L_813c:
@@ -8927,21 +8927,21 @@ func_8007C30:
 	beq	.L_816c
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CB20
+	bl	SelectLayeredCutsceneOamSequence08
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CB5C
+	bl	SelectLayeredCutsceneOamSequence09
 	ldr	r0, .L_8168
 	bl	func_8007970
 	b	.L_8174
 .L_8164:
 	.4byte	gUnk_3002C4A
 .L_8168:
-	.4byte	func_800CB5C
+	.4byte	SelectLayeredCutsceneOamSequence09
 .L_816c:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CC64
+	bl	SelectLayeredCutsceneOamSequence12
 .L_8174:
 	ldr	r0, .L_81b0
 	ldrh	r1, [r0, #0]
@@ -8970,7 +8970,7 @@ func_8007C30:
 .L_81a4:
 	add	r1, sp, #12
 	mov	r0, #100	@ 0x64
-	bl	func_800CCDC
+	bl	SelectLayeredCutsceneOamSequence14
 	b	.L_8642
 	.align	2, 0
 .L_81b0:
@@ -8983,20 +8983,20 @@ func_8007C30:
 	beq	.L_81dc
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CAA0
+	bl	SelectLayeredCutsceneOamSequence06
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CAE0
+	bl	SelectLayeredCutsceneOamSequence07
 	ldr	r0, .L_81d8
 	bl	func_8007970
 	b	.L_81e4
 	.align	2, 0
 .L_81d8:
-	.4byte	func_800CAE0
+	.4byte	SelectLayeredCutsceneOamSequence07
 .L_81dc:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CC28
+	bl	SelectLayeredCutsceneOamSequence11
 .L_81e4:
 	ldr	r4, .L_8204
 	ldr	r1, [r4, #0]
@@ -9004,7 +9004,7 @@ func_8007C30:
 	add	r1, #1
 	str	r1, [r4, #0]
 	add	r1, sp, #12
-	bl	func_800CD30
+	bl	SelectLayeredCutsceneOamSequence15
 	cmp	r0, #0
 	bne	.L_81fa
 	b	.L_8642
@@ -9028,7 +9028,7 @@ func_8007C30:
 	ble	.L_825a
 	add	r1, sp, #12
 	mov	r0, r8
-	bl	func_800CCA0
+	bl	SelectLayeredCutsceneOamSequence13
 	ldrh	r0, [r4, #0]
 	sub	r0, #2
 	strh	r0, [r4, #0]
@@ -9037,10 +9037,10 @@ func_8007C30:
 	beq	.L_8250
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CAA0
+	bl	SelectLayeredCutsceneOamSequence06
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800CAE0
+	bl	SelectLayeredCutsceneOamSequence07
 	ldr	r0, .L_824c
 	bl	func_8007970
 	b	.L_8642
@@ -9048,11 +9048,11 @@ func_8007C30:
 .L_8248:
 	.4byte	gUnk_3002C98
 .L_824c:
-	.4byte	func_800CAE0
+	.4byte	SelectLayeredCutsceneOamSequence07
 .L_8250:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CC28
+	bl	SelectLayeredCutsceneOamSequence11
 	b	.L_8642
 .L_825a:
 	mov	r4, sl
@@ -9060,19 +9060,19 @@ func_8007C30:
 	beq	.L_827c
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C8A0
+	bl	SelectLayeredCutsceneOamSequence00
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800C930
+	bl	SelectLayeredCutsceneOamSequence01
 	ldr	r0, .L_8278
 	bl	func_8007970
 	b	.L_8284
 .L_8278:
-	.4byte	func_800C930
+	.4byte	SelectLayeredCutsceneOamSequence01
 .L_827c:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CB98
+	bl	SelectLayeredCutsceneOamSequence10
 .L_8284:
 	ldr	r0, .L_82a4
 	ldrh	r1, [r0, #0]
@@ -9205,20 +9205,20 @@ func_8007C30:
 	beq	.L_83a0
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C8A0
+	bl	SelectLayeredCutsceneOamSequence00
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800C930
+	bl	SelectLayeredCutsceneOamSequence01
 	ldr	r0, .L_839c
 	bl	func_8007970
 	b	.L_83a8
 	.align	2, 0
 .L_839c:
-	.4byte	func_800C930
+	.4byte	SelectLayeredCutsceneOamSequence01
 .L_83a0:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CB98
+	bl	SelectLayeredCutsceneOamSequence10
 .L_83a8:
 	ldr	r2, .L_83c0
 	ldrh	r3, [r2, #0]
@@ -9267,7 +9267,7 @@ func_8007C30:
 .L_83fe:
 	add	r1, sp, #12
 	mov	r0, r8
-	bl	func_800CCA0
+	bl	SelectLayeredCutsceneOamSequence13
 	ldr	r2, .L_8458
 	ldrh	r3, [r2, #0]
 	mov	r4, #0
@@ -9438,26 +9438,26 @@ func_8007C30:
 	beq	.L_8562
 	add	r1, sp, #20
 	mov	r0, r8
-	bl	func_800D134
+	bl	SelectCutsceneGfx5
 .L_8562:
 	mov	r4, sl
 	cmp	r4, #0
 	beq	.L_8584
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800C8A0
+	bl	SelectLayeredCutsceneOamSequence00
 	add	r1, sp, #8
 	mov	r0, r8
-	bl	func_800C930
+	bl	SelectLayeredCutsceneOamSequence01
 	ldr	r0, .L_8580
 	bl	func_8007970
 	b	.L_858c
 .L_8580:
-	.4byte	func_800C930
+	.4byte	SelectLayeredCutsceneOamSequence01
 .L_8584:
 	add	r1, sp, #4
 	mov	r0, r8
-	bl	func_800CB98
+	bl	SelectLayeredCutsceneOamSequence10
 .L_858c:
 	ldr	r2, .L_85a4
 	ldrh	r3, [r2, #0]
@@ -9502,7 +9502,7 @@ func_8007C30:
 .L_85dc:
 	add	r1, sp, #12
 	mov	r0, r8
-	bl	func_800CCA0
+	bl	SelectLayeredCutsceneOamSequence13
 	ldr	r2, .L_8628
 	ldrh	r3, [r2, #0]
 	mov	r4, #0
@@ -9585,7 +9585,7 @@ func_8007C30:
 	add	r4, sp, #24
 	mov	r0, r8
 	add	r1, r4, #0
-	bl	func_800CEAC
+	bl	SelectLayeredCutsceneOamSequence20
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9596,7 +9596,7 @@ func_8007C30:
 	add	r7, r0, #0
 	mov	r0, r8
 	add	r1, r4, #0
-	bl	func_800CF90
+	bl	SelectLayeredCutsceneOamSequence21
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9607,7 +9607,7 @@ func_8007C30:
 	add	r7, r0, #0
 	mov	r0, r8
 	add	r1, r4, #0
-	bl	func_800CF9C
+	bl	SelectLayeredCutsceneOamSequence22
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9618,7 +9618,7 @@ func_8007C30:
 	add	r7, r0, #0
 	mov	r0, r8
 	add	r1, r4, #0
-	bl	func_800CFA8
+	bl	SelectLayeredCutsceneOamSequence23
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9629,7 +9629,7 @@ func_8007C30:
 	add	r7, r0, #0
 	mov	r0, r8
 	add	r1, r4, #0
-	bl	func_800CFB4
+	bl	SelectLayeredCutsceneOamSequence24
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9641,7 +9641,7 @@ func_8007C30:
 	mov	r0, r8
 	add	r0, #24
 	add	r1, r4, #0
-	bl	func_800CEAC
+	bl	SelectLayeredCutsceneOamSequence20
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9653,7 +9653,7 @@ func_8007C30:
 	mov	r0, r8
 	add	r0, #56	@ 0x38
 	add	r1, r4, #0
-	bl	func_800CEAC
+	bl	SelectLayeredCutsceneOamSequence20
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	add	r5, #2
@@ -9665,7 +9665,7 @@ func_8007C30:
 	mov	r0, r8
 	add	r0, #72	@ 0x48
 	add	r1, r4, #0
-	bl	func_800CEAC
+	bl	SelectLayeredCutsceneOamSequence20
 	ldr	r0, [sp, #24]
 	ldrh	r2, [r5, #0]
 	ldrh	r3, [r6, #0]
@@ -10241,7 +10241,7 @@ func_8008B20:
 	strh	r0, [r2, #0]
 	add	r1, sp, #12
 	ldr	r0, [sp, #32]
-	bl	func_800D1AC
+	bl	SelectEndingCutsceneOamSequence00
 	b	.L_8dbe
 .L_8bb4:
 	.4byte	gUnk_3002C64
@@ -10253,7 +10253,7 @@ func_8008B20:
 	cmp	r0, #119	@ 0x77
 	bhi	.L_8bd0
 	add	r1, sp, #12
-	bl	func_800D1EC
+	bl	SelectEndingCutsceneOamSequence01
 	b	.L_8c08
 .L_8bcc:
 	.4byte	gUnk_3002C64
@@ -10262,7 +10262,7 @@ func_8008B20:
 	bls	.L_8bf4
 	sub	r0, #240	@ 0xf0
 	add	r1, sp, #12
-	bl	func_800D2B0
+	bl	SelectEndingCutsceneOamSequence05
 	cmp	r0, #0
 	beq	.L_8c08
 	str	r7, [r4, #0]
@@ -10278,7 +10278,7 @@ func_8008B20:
 .L_8bf4:
 	sub	r0, #120	@ 0x78
 	add	r1, sp, #12
-	bl	func_800D280
+	bl	SelectEndingCutsceneOamSequence04
 	ldr	r0, [r4, #0]
 	cmp	r0, #120	@ 0x78
 	bne	.L_8c08
@@ -10326,7 +10326,7 @@ func_8008B20:
 	beq	.L_8c78
 	add	r1, sp, #16
 	mov	r0, #0
-	bl	func_800D338
+	bl	SelectEndingCutsceneOamSequence07
 	ldr	r0, [r4, #0]
 	sub	r0, #1
 	str	r0, [r4, #0]
@@ -10345,7 +10345,7 @@ func_8008B20:
 .L_8c78:
 	add	r1, sp, #16
 	mov	r0, #0
-	bl	func_800D324
+	bl	SelectEndingCutsceneOamSequence06
 .L_8c80:
 	ldr	r0, .L_8ca0
 	mov	r4, #0
@@ -10359,7 +10359,7 @@ func_8008B20:
 	lsl	r0, r0, #16
 	asr	r0, r0, #16
 	add	r1, sp, #12
-	bl	func_800D34C
+	bl	SelectEndingCutsceneOamSequence08
 	b	.L_8cb2
 	.align	2, 0
 .L_8ca0:
@@ -10370,7 +10370,7 @@ func_8008B20:
 	ldr	r0, .L_8cd4
 	ldr	r0, [r0, #0]
 	add	r1, sp, #12
-	bl	func_800D22C
+	bl	SelectEndingCutsceneOamSequence02
 .L_8cb2:
 	ldr	r2, .L_8cd4
 	ldr	r0, [r2, #0]
@@ -10412,7 +10412,7 @@ func_8008B20:
 	ldr	r0, .L_8d10
 	ldr	r0, [r0, #0]
 	add	r1, sp, #16
-	bl	func_800DE60
+	bl	SelectEndingCutsceneOamSequence32
 	b	.L_8d4a
 .L_8d04:
 	.4byte	gUnk_3002C9A
@@ -10428,7 +10428,7 @@ func_8008B20:
 	ldr	r0, .L_8d24
 	ldr	r0, [r0, #0]
 	add	r1, sp, #16
-	bl	func_800DC2C
+	bl	SelectEndingCutsceneOamSequence31
 	b	.L_8d4a
 .L_8d24:
 	.4byte	gUnk_3002C64
@@ -10438,7 +10438,7 @@ func_8008B20:
 	ldr	r0, .L_8d38
 	ldr	r0, [r0, #0]
 	add	r1, sp, #16
-	bl	func_800D854
+	bl	SelectEndingCutsceneOamSequence29
 	b	.L_8d4a
 .L_8d38:
 	.4byte	gUnk_3002C64
@@ -10448,7 +10448,7 @@ func_8008B20:
 	ldr	r0, .L_8d74
 	ldr	r0, [r0, #0]
 	add	r1, sp, #16
-	bl	func_800DA40
+	bl	SelectEndingCutsceneOamSequence30
 .L_8d4a:
 	add	r5, r0, #0
 .L_8d4c:
@@ -10469,7 +10469,7 @@ func_8008B20:
 	lsl	r0, r0, #16
 	asr	r0, r0, #16
 	add	r1, sp, #12
-	bl	func_800D34C
+	bl	SelectEndingCutsceneOamSequence08
 	b	.L_8d98
 	.align	2, 0
 .L_8d74:
@@ -10482,10 +10482,10 @@ func_8008B20:
 	ldr	r4, .L_9110
 	ldr	r0, [r4, #0]
 	add	r1, sp, #12
-	bl	func_800D3C0
+	bl	SelectEndingCutsceneOamSequence09
 	ldr	r0, [r4, #0]
 	add	r1, sp, #20
-	bl	func_800D7E0
+	bl	SelectEndingCutsceneOamSequence28
 	ldr	r0, [r4, #0]
 	add	r0, #1
 	str	r0, [r4, #0]
@@ -10548,13 +10548,13 @@ func_8008B20:
 	sub	r4, #46	@ 0x2e
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D6CC
+	bl	SelectEndingCutsceneOamSequence24
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E8C8
+	bl	ReadEndingCutscenePath03
 	cmp	r0, #0
 	beq	.L_8e34
 	ldr	r1, .L_9128
@@ -10592,13 +10592,13 @@ func_8008B20:
 	sub	r4, #30
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D6B8
+	bl	SelectEndingCutsceneOamSequence23
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E868
+	bl	ReadEndingCutscenePath02
 	cmp	r0, #0
 	beq	.L_8e8e
 	ldr	r2, .L_9128
@@ -10635,13 +10635,13 @@ func_8008B20:
 	sub	r4, #15
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D6A4
+	bl	SelectEndingCutsceneOamSequence22
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E808
+	bl	ReadEndingCutscenePath01
 	cmp	r0, #0
 	beq	.L_8ee8
 	ldr	r2, .L_9128
@@ -10673,13 +10673,13 @@ func_8008B20:
 .L_8f0c:
 	mov	r0, r8
 	mov	r1, sl
-	bl	func_800D690
+	bl	SelectEndingCutsceneOamSequence21
 	str	r7, [sp, #0]
 	mov	r0, r8
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E7A8
+	bl	ReadEndingCutscenePath00
 	cmp	r0, #0
 	beq	.L_8f38
 	ldr	r2, .L_9128
@@ -10715,13 +10715,13 @@ func_8008B20:
 	sub	r4, #45	@ 0x2d
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F1C8
+	bl	ReadEndingCutscenePath28
 	cmp	r0, #0
 	bne	.L_8fae
 	ldr	r0, [sp, #24]
@@ -10752,13 +10752,13 @@ func_8008B20:
 	sub	r4, #49	@ 0x31
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F224
+	bl	ReadEndingCutscenePath29
 	cmp	r0, #0
 	bne	.L_9000
 	ldr	r0, [sp, #24]
@@ -10789,13 +10789,13 @@ func_8008B20:
 	sub	r4, #53	@ 0x35
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F280
+	bl	ReadEndingCutscenePath30
 	cmp	r0, #0
 	bne	.L_9052
 	ldr	r0, [sp, #24]
@@ -10826,13 +10826,13 @@ func_8008B20:
 	sub	r4, #57	@ 0x39
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F2DC
+	bl	ReadEndingCutscenePath31
 	cmp	r0, #0
 	bne	.L_90a4
 	ldr	r0, [sp, #24]
@@ -10863,13 +10863,13 @@ func_8008B20:
 	sub	r4, #61	@ 0x3d
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F338
+	bl	ReadEndingCutscenePath32
 	cmp	r0, #0
 	bne	.L_90f6
 	ldr	r0, [sp, #24]
@@ -10900,7 +10900,7 @@ func_8008B20:
 	sub	r4, #65	@ 0x41
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
@@ -10924,7 +10924,7 @@ func_8008B20:
 .L_9130:
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F394
+	bl	ReadEndingCutscenePath33
 	cmp	r0, #0
 	bne	.L_916a
 	ldr	r0, [sp, #24]
@@ -10955,13 +10955,13 @@ func_8008B20:
 	sub	r4, #69	@ 0x45
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F3F0
+	bl	ReadEndingCutscenePath34
 	cmp	r0, #0
 	bne	.L_91bc
 	ldr	r0, [sp, #24]
@@ -10992,13 +10992,13 @@ func_8008B20:
 	sub	r4, #73	@ 0x49
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F44C
+	bl	ReadEndingCutscenePath35
 	cmp	r0, #0
 	bne	.L_920e
 	ldr	r0, [sp, #24]
@@ -11029,13 +11029,13 @@ func_8008B20:
 	sub	r4, #30
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EEE8
+	bl	ReadEndingCutscenePath20
 	cmp	r0, #0
 	bne	.L_9260
 	ldr	r0, [sp, #24]
@@ -11066,13 +11066,13 @@ func_8008B20:
 	sub	r4, #34	@ 0x22
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EF44
+	bl	ReadEndingCutscenePath21
 	cmp	r0, #0
 	bne	.L_92b2
 	ldr	r0, [sp, #24]
@@ -11103,13 +11103,13 @@ func_8008B20:
 	sub	r4, #38	@ 0x26
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EFA0
+	bl	ReadEndingCutscenePath22
 	cmp	r0, #0
 	bne	.L_9304
 	ldr	r0, [sp, #24]
@@ -11140,13 +11140,13 @@ func_8008B20:
 	sub	r4, #42	@ 0x2a
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EFFC
+	bl	ReadEndingCutscenePath23
 	cmp	r0, #0
 	bne	.L_9356
 	ldr	r0, [sp, #24]
@@ -11177,13 +11177,13 @@ func_8008B20:
 	sub	r4, #46	@ 0x2e
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F058
+	bl	ReadEndingCutscenePath24
 	cmp	r0, #0
 	bne	.L_93a8
 	ldr	r0, [sp, #24]
@@ -11214,13 +11214,13 @@ func_8008B20:
 	sub	r4, #50	@ 0x32
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F0B4
+	bl	ReadEndingCutscenePath25
 	cmp	r0, #0
 	bne	.L_93fa
 	ldr	r0, [sp, #24]
@@ -11251,13 +11251,13 @@ func_8008B20:
 	sub	r4, #54	@ 0x36
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F110
+	bl	ReadEndingCutscenePath26
 	cmp	r0, #0
 	bne	.L_944c
 	ldr	r0, [sp, #24]
@@ -11288,13 +11288,13 @@ func_8008B20:
 	sub	r4, #58	@ 0x3a
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800F16C
+	bl	ReadEndingCutscenePath27
 	cmp	r0, #0
 	bne	.L_949e
 	ldr	r0, [sp, #24]
@@ -11325,13 +11325,13 @@ func_8008B20:
 	sub	r4, #15
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EC08
+	bl	ReadEndingCutscenePath12
 	cmp	r0, #0
 	bne	.L_94f0
 	ldr	r0, [sp, #24]
@@ -11362,13 +11362,13 @@ func_8008B20:
 	sub	r4, #19
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EC64
+	bl	ReadEndingCutscenePath13
 	cmp	r0, #0
 	bne	.L_9542
 	ldr	r0, [sp, #24]
@@ -11399,13 +11399,13 @@ func_8008B20:
 	sub	r4, #23
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800ECC0
+	bl	ReadEndingCutscenePath14
 	cmp	r0, #0
 	bne	.L_9594
 	ldr	r0, [sp, #24]
@@ -11436,13 +11436,13 @@ func_8008B20:
 	sub	r4, #27
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800ED1C
+	bl	ReadEndingCutscenePath15
 	cmp	r0, #0
 	bne	.L_95e6
 	ldr	r0, [sp, #24]
@@ -11473,13 +11473,13 @@ func_8008B20:
 	sub	r4, #31
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800ED78
+	bl	ReadEndingCutscenePath16
 	cmp	r0, #0
 	bne	.L_9638
 	ldr	r0, [sp, #24]
@@ -11510,13 +11510,13 @@ func_8008B20:
 	sub	r4, #35	@ 0x23
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EDD4
+	bl	ReadEndingCutscenePath17
 	cmp	r0, #0
 	bne	.L_968a
 	ldr	r0, [sp, #24]
@@ -11547,13 +11547,13 @@ func_8008B20:
 	sub	r4, #39	@ 0x27
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EE30
+	bl	ReadEndingCutscenePath18
 	cmp	r0, #0
 	bne	.L_96dc
 	ldr	r0, [sp, #24]
@@ -11584,13 +11584,13 @@ func_8008B20:
 	sub	r4, #43	@ 0x2b
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EE8C
+	bl	ReadEndingCutscenePath19
 	cmp	r0, #0
 	bne	.L_972e
 	ldr	r0, [sp, #24]
@@ -11620,13 +11620,13 @@ func_8008B20:
 	mov	r4, r8
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E928
+	bl	ReadEndingCutscenePath04
 	cmp	r0, #0
 	bne	.L_977e
 	ldr	r0, [sp, #24]
@@ -11657,13 +11657,13 @@ func_8008B20:
 	sub	r4, #4
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E984
+	bl	ReadEndingCutscenePath05
 	cmp	r0, #0
 	bne	.L_97d0
 	ldr	r0, [sp, #24]
@@ -11694,13 +11694,13 @@ func_8008B20:
 	sub	r4, #8
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800E9E0
+	bl	ReadEndingCutscenePath06
 	cmp	r0, #0
 	bne	.L_9822
 	ldr	r0, [sp, #24]
@@ -11731,13 +11731,13 @@ func_8008B20:
 	sub	r4, #12
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EA3C
+	bl	ReadEndingCutscenePath07
 	cmp	r0, #0
 	bne	.L_9874
 	ldr	r0, [sp, #24]
@@ -11768,13 +11768,13 @@ func_8008B20:
 	sub	r4, #16
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EA98
+	bl	ReadEndingCutscenePath08
 	cmp	r0, #0
 	bne	.L_98c6
 	ldr	r0, [sp, #24]
@@ -11805,13 +11805,13 @@ func_8008B20:
 	sub	r4, #20
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EAF4
+	bl	ReadEndingCutscenePath09
 	cmp	r0, #0
 	bne	.L_9918
 	ldr	r0, [sp, #24]
@@ -11842,13 +11842,13 @@ func_8008B20:
 	sub	r4, #24
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EB50
+	bl	ReadEndingCutscenePath10
 	cmp	r0, #0
 	bne	.L_996a
 	ldr	r0, [sp, #24]
@@ -11879,13 +11879,13 @@ func_8008B20:
 	sub	r4, #28
 	add	r0, r4, #0
 	mov	r1, sl
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	str	r7, [sp, #0]
 	add	r0, r4, #0
 	add	r1, sp, #4
 	add	r2, r5, #0
 	add	r3, r6, #0
-	bl	func_800EBAC
+	bl	ReadEndingCutscenePath11
 	cmp	r0, #0
 	bne	.L_99bc
 	ldr	r0, [sp, #24]
@@ -11916,7 +11916,7 @@ func_8008B20:
 	ldr	r0, .L_9a04
 	ldr	r0, [r0, #0]
 	add	r1, sp, #28
-	bl	func_800D6E0
+	bl	SelectEndingCutsceneOamSequence25
 	ldr	r0, [sp, #28]
 	ldr	r1, .L_9a08
 	mov	r2, #0
@@ -12003,7 +12003,7 @@ func_8008B20:
 	add	r4, sp, #28
 	ldr	r0, [sp, #32]
 	add	r1, r4, #0
-	bl	func_800D640
+	bl	SelectEndingCutsceneOamSequence20
 	ldr	r0, [sp, #28]
 	mov	r1, r9
 	mov	r2, #60	@ 0x3c
@@ -12012,7 +12012,7 @@ func_8008B20:
 	mov	r9, r0
 	ldr	r0, [sp, #32]
 	add	r1, r4, #0
-	bl	func_800D5A0
+	bl	SelectEndingCutsceneOamSequence18
 	ldr	r0, [sp, #28]
 	mov	r1, r9
 	mov	r2, #72	@ 0x48
@@ -12057,7 +12057,7 @@ func_8008B20:
 	mov	r9, r0
 	ldr	r0, [sp, #32]
 	add	r1, r4, #0
-	bl	func_800D5F0
+	bl	SelectEndingCutsceneOamSequence19
 	ldr	r0, [sp, #28]
 	mov	r1, r9
 	mov	r2, #180	@ 0xb4
@@ -13150,7 +13150,7 @@ func_800A360:
 	mov	r3, #135	@ 0x87
 	lsl	r3, r3, #1
 	add	r0, r2, r3
-	bl	func_800DE60
+	bl	SelectEndingCutsceneOamSequence32
 	b	.L_a3b2
 .L_a37c:
 	.4byte	0x1FF
@@ -13162,7 +13162,7 @@ func_800A360:
 	mov	r3, #159	@ 0x9f
 	lsl	r3, r3, #1
 	add	r0, r2, r3
-	bl	func_800DC2C
+	bl	SelectEndingCutsceneOamSequence31
 	b	.L_a3b2
 .L_a394:
 	cmp	r0, #2
@@ -13170,7 +13170,7 @@ func_800A360:
 	mov	r3, #149	@ 0x95
 	lsl	r3, r3, #1
 	add	r0, r2, r3
-	bl	func_800D854
+	bl	SelectEndingCutsceneOamSequence29
 	b	.L_a3b2
 .L_a3a4:
 	cmp	r0, #3
@@ -13178,7 +13178,7 @@ func_800A360:
 	mov	r3, #148	@ 0x94
 	lsl	r3, r3, #1
 	add	r0, r2, r3
-	bl	func_800DA40
+	bl	SelectEndingCutsceneOamSequence30
 .L_a3b2:
 	pop	{r0}
 	bx	r0
@@ -13194,7 +13194,7 @@ func_800A3B8:
 	cmp	r0, #0
 	bne	.L_a3d0
 	add	r0, r2, #0
-	bl	func_800E144
+	bl	SelectEndingCutsceneOamSequence35
 	b	.L_a3f2
 .L_a3cc:
 	.4byte	gUnk_3002C84
@@ -13202,19 +13202,19 @@ func_800A3B8:
 	cmp	r0, #1
 	bne	.L_a3dc
 	add	r0, r2, #0
-	bl	func_800E174
+	bl	SelectEndingCutsceneOamSequence36
 	b	.L_a3f2
 .L_a3dc:
 	cmp	r0, #2
 	bne	.L_a3e8
 	add	r0, r2, #0
-	bl	func_800E0CC
+	bl	SelectEndingCutsceneOamSequence33
 	b	.L_a3f2
 .L_a3e8:
 	cmp	r0, #3
 	bne	.L_a3f2
 	add	r0, r2, #0
-	bl	func_800E108
+	bl	SelectEndingCutsceneOamSequence34
 .L_a3f2:
 	pop	{r0}
 	bx	r0
@@ -13410,7 +13410,7 @@ func_800A43C:
 .L_a568:
 	add	r1, sp, #8
 	mov	r0, #0
-	bl	func_800D3F0
+	bl	SelectEndingCutsceneOamSequence10
 	b	.L_a90e
 	.align	2, 0
 .L_a574:
@@ -13426,7 +13426,7 @@ func_800A43C:
 .L_a588:
 	add	r1, sp, #8
 	mov	r0, #0
-	bl	func_800D3F0
+	bl	SelectEndingCutsceneOamSequence10
 	add	r1, sp, #4
 	mov	r0, sl
 	bl	func_800A360
@@ -13436,7 +13436,7 @@ func_800A43C:
 	ldr	r1, [r4, #0]
 	ldr	r2, .L_a5c8
 	ldr	r3, .L_a5cc
-	bl	func_800F4A8
+	bl	ReadEndingCutsceneIndexedPathPair
 	ldr	r0, [r4, #0]
 	add	r0, #1
 	str	r0, [r4, #0]
@@ -13489,7 +13489,7 @@ func_800A43C:
 	ldr	r1, [r4, #0]
 	ldr	r2, .L_a63c
 	ldr	r3, .L_a640
-	bl	func_800F4A8
+	bl	ReadEndingCutsceneIndexedPathPair
 	cmp	r0, #0
 	beq	.L_a620
 	mov	r0, #0
@@ -13505,7 +13505,7 @@ func_800A43C:
 	bhi	.L_a64c
 	add	r1, sp, #8
 	add	r0, r2, #0
-	bl	func_800D3F0
+	bl	SelectEndingCutsceneOamSequence10
 	b	.L_a656
 	.align	2, 0
 .L_a634:
@@ -13524,7 +13524,7 @@ func_800A43C:
 	ldr	r1, .L_a664
 	add	r0, r2, r1
 	add	r1, sp, #8
-	bl	func_800D510
+	bl	SelectEndingCutsceneOamSequence16
 .L_a656:
 	ldr	r1, .L_a668
 	ldr	r0, [r1, #0]
@@ -13578,7 +13578,7 @@ func_800A43C:
 .L_a6b2:
 	add	r1, sp, #8
 	mov	r0, #0
-	bl	func_800D4FC
+	bl	SelectEndingCutsceneOamSequence15
 	b	.L_a90e
 .L_a6bc:
 	.4byte	gUnk_3002C5A
@@ -13593,7 +13593,7 @@ func_800A43C:
 .L_a6d0:
 	add	r1, sp, #8
 	mov	r0, #0
-	bl	func_800D4FC
+	bl	SelectEndingCutsceneOamSequence15
 	ldr	r1, .L_a6f0
 	ldr	r0, [r1, #0]
 	add	r0, #1
@@ -13618,7 +13618,7 @@ func_800A43C:
 	bhi	.L_a710
 	add	r1, sp, #8
 	mov	r0, #0
-	bl	func_800D4E8
+	bl	SelectEndingCutsceneOamSequence14
 	b	.L_a8e2
 	.align	2, 0
 .L_a70c:
@@ -13629,7 +13629,7 @@ func_800A43C:
 	add	r0, r1, #0
 	sub	r0, #65	@ 0x41
 	add	r1, sp, #8
-	bl	func_800D404
+	bl	SelectEndingCutsceneOamSequence11
 	ldr	r0, [r4, #0]
 	cmp	r0, #65	@ 0x41
 	beq	.L_a726
@@ -13648,7 +13648,7 @@ func_800A43C:
 	add	r0, r1, #0
 	sub	r0, #120	@ 0x78
 	add	r1, sp, #8
-	bl	func_800D44C
+	bl	SelectEndingCutsceneOamSequence12
 	b	.L_a8e2
 	.align	2, 0
 .L_a748:
@@ -13665,7 +13665,7 @@ func_800A43C:
 	ldr	r3, .L_a774
 	add	r0, r0, r3
 	add	r1, sp, #8
-	bl	func_800D488
+	bl	SelectEndingCutsceneOamSequence13
 	cmp	r0, #0
 	bne	.L_a76c
 	b	.L_a8e2
@@ -13687,7 +13687,7 @@ func_800A43C:
 	ldr	r0, .L_a79c
 	ldr	r0, [r0, #0]
 	add	r1, sp, #8
-	bl	func_800E440
+	bl	SelectEndingCutsceneOamSequence42
 	ldrh	r0, [r4, #0]
 	add	r0, #2
 	strh	r0, [r4, #0]
@@ -13700,7 +13700,7 @@ func_800A43C:
 	ldr	r4, .L_a7d4
 	ldr	r0, [r4, #0]
 	add	r1, sp, #8
-	bl	func_800E4CC
+	bl	SelectEndingCutsceneOamSequence43
 	ldr	r0, .L_a7d8
 	mov	r2, #0
 	ldrsh	r1, [r0, r2]
@@ -13745,7 +13745,7 @@ func_800A43C:
 	ldr	r5, .L_a810
 	ldr	r0, [r5, #0]
 	add	r1, sp, #8
-	bl	func_800E594
+	bl	SelectEndingCutsceneOamSequence45
 	cmp	r0, #0
 	beq	.L_a8e2
 	str	r4, [r5, #0]
@@ -13781,10 +13781,10 @@ func_800A43C:
 .L_a83e:
 	ldr	r0, [r4, #0]
 	add	r1, sp, #12
-	bl	func_800E750
+	bl	SelectEndingCutsceneOamSequence49
 	ldr	r0, [r4, #0]
 	add	r1, sp, #8
-	bl	func_800E6F8
+	bl	SelectEndingCutsceneOamSequence48
 	cmp	r0, #0
 	beq	.L_a8e2
 	mov	r0, #0
@@ -13814,10 +13814,10 @@ func_800A43C:
 	ldr	r4, .L_a898
 	ldr	r0, [r4, #0]
 	add	r1, sp, #8
-	bl	func_800E5F4
+	bl	SelectEndingCutsceneOamSequence46
 	ldr	r0, [r4, #0]
 	add	r1, sp, #12
-	bl	func_800E680
+	bl	SelectEndingCutsceneOamSequence47
 	b	.L_a8a6
 .L_a894:
 	.4byte	gUnk_3002C80
@@ -13827,7 +13827,7 @@ func_800A43C:
 	ldr	r0, .L_a8ec
 	ldr	r0, [r0, #0]
 	add	r1, sp, #8
-	bl	func_800E508
+	bl	SelectEndingCutsceneOamSequence44
 .L_a8a6:
 	ldr	r0, .L_a8f0
 	ldrh	r1, [r0, #0]
@@ -13896,7 +13896,7 @@ func_800A43C:
 	ldr	r0, .L_acb8
 	ldr	r0, [r0, #0]
 	add	r1, sp, #12
-	bl	func_800D6E0
+	bl	SelectEndingCutsceneOamSequence25
 	ldr	r0, [sp, #12]
 	ldr	r1, .L_acbc
 	mov	r3, #0
@@ -13929,7 +13929,7 @@ func_800A43C:
 	add	r4, sp, #16
 	mov	r0, sl
 	add	r1, r4, #0
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_a9b6
 	ldr	r7, .L_acd4
@@ -13982,7 +13982,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #9
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_aa22
 	ldr	r7, .L_acd4
@@ -14034,7 +14034,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #18
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_aa8c
 	ldr	r7, .L_acd4
@@ -14086,7 +14086,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #27
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_aaf6
 	ldr	r7, .L_acd4
@@ -14138,7 +14138,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #36	@ 0x24
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_ab60
 	ldr	r7, .L_acd4
@@ -14190,7 +14190,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #45	@ 0x2d
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_abca
 	ldr	r7, .L_acd4
@@ -14242,7 +14242,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #54	@ 0x36
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_ac34
 	ldr	r7, .L_acd4
@@ -14294,7 +14294,7 @@ func_800A43C:
 	mov	r0, sl
 	add	r0, #63	@ 0x3f
 	add	r1, sp, #16
-	bl	func_800D780
+	bl	SelectEndingCutsceneOamSequence27
 	cmp	r0, #0
 	beq	.L_ac9e
 	ldr	r7, .L_acd4
@@ -14388,14 +14388,14 @@ func_800A43C:
 	add	r1, sp, #20
 	mov	r8, r1
 	add	r0, r7, #0
-	bl	func_800E208
+	bl	SelectEndingCutsceneOamSequence38
 	mov	r2, r9
 	ldr	r0, [r2, #0]
 	mov	r5, sp
 	add	r5, #2
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F4F4
+	bl	ReadEndingCutscenePath36
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14408,12 +14408,12 @@ func_800A43C:
 	add	r4, r7, #7
 	add	r0, r4, #0
 	mov	r1, r8
-	bl	func_800E1C8
+	bl	SelectEndingCutsceneOamSequence37
 	mov	r1, r9
 	ldr	r0, [r1, #0]
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F530
+	bl	ReadEndingCutscenePath37
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14425,12 +14425,12 @@ func_800A43C:
 	add	r6, r0, #0
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800E248
+	bl	SelectEndingCutsceneOamSequence39
 	mov	r2, r9
 	ldr	r0, [r2, #0]
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F56C
+	bl	ReadEndingCutscenePath38
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14442,12 +14442,12 @@ func_800A43C:
 	add	r6, r0, #0
 	add	r0, r4, #0
 	mov	r1, r8
-	bl	func_800E288
+	bl	SelectEndingCutsceneOamSequence40
 	mov	r2, r9
 	ldr	r0, [r2, #0]
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F5A8
+	bl	ReadEndingCutscenePath39
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14464,11 +14464,11 @@ func_800A43C:
 	sub	r7, #216	@ 0xd8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F5E4
+	bl	ReadEndingCutscenePath40
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14483,11 +14483,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F618
+	bl	ReadEndingCutscenePath41
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14502,11 +14502,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F654
+	bl	ReadEndingCutscenePath42
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14521,11 +14521,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F690
+	bl	ReadEndingCutscenePath43
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14540,11 +14540,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F6CC
+	bl	ReadEndingCutscenePath44
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14559,11 +14559,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F708
+	bl	ReadEndingCutscenePath45
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14578,11 +14578,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F744
+	bl	ReadEndingCutscenePath46
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14597,11 +14597,11 @@ func_800A43C:
 	bl	func_800A3F8
 	add	r0, r7, #0
 	mov	r1, r8
-	bl	func_800D708
+	bl	SelectEndingCutsceneOamSequence26
 	add	r0, r7, #0
 	mov	r1, sp
 	add	r2, r5, #0
-	bl	func_800F780
+	bl	ReadEndingCutscenePath47
 	ldr	r0, [sp, #20]
 	mov	r1, sp
 	mov	r3, #0
@@ -14976,7 +14976,7 @@ func_800B15C:
 	ldr	r0, .L_b20c
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800FA3C
+	bl	SelectTitleScreenSHardLogoIntroOamFrame
 	b	.L_b252
 .L_b1f8:
 	.4byte	gMPlayInfo_2
@@ -14994,7 +14994,7 @@ func_800B15C:
 	ldr	r0, .L_b21c
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800F9E0
+	bl	SelectTitleScreenNormalLogoIntroOamFrame
 	b	.L_b252
 .L_b21c:
 	.4byte	gUnk_3002C64
@@ -15007,7 +15007,7 @@ func_800B15C:
 	ldr	r0, .L_b240
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800FA8C
+	bl	SelectTitleScreenSHardLogoIdleOamFrame
 	b	.L_b250
 	.align	2, 0
 .L_b238:
@@ -15021,7 +15021,7 @@ func_800B15C:
 	ldr	r0, .L_b278
 	ldr	r0, [r0, #0]
 	mov	r1, sp
-	bl	func_800FA28
+	bl	SelectTitleScreenNormalLogoIdleOamFrame
 .L_b250:
 	strh	r0, [r4, #0]
 .L_b252:

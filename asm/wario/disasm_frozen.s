@@ -257,7 +257,7 @@ func_80188A8:
 	b	.L_1891e
 	.align	2, 0
 .L_18910:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_18914:
 	.4byte	sUnk_82DD920
 .L_18918:
@@ -327,7 +327,7 @@ func_8018938:
 	b	.L_189cc
 	.align	2, 0
 .L_18990:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_18994:
 	.4byte	sUnk_82DD920
 .L_18998:
@@ -405,7 +405,7 @@ func_8018938:
 	pop	{r0}
 	bx	r0
 .L_18a24:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 
 
 thumb_func_start func_8018A28
@@ -465,7 +465,7 @@ func_8018A28:
 .L_18a94:
 	.4byte	gWarioPaletteSize
 .L_18a98:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultObjPalette
 .L_18a9c:
 	.4byte	sUnk_82DE818
 
@@ -528,7 +528,7 @@ func_8018AA0:
 	bx	r0
 	.align	2, 0
 .L_18b1c:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicState
 .L_18b20:
 	.4byte	gMPlayTable
 .L_18b24:
@@ -576,7 +576,7 @@ func_8018B28:
 .L_18b70:
 	.4byte	gWarioData
 .L_18b74:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_18b78:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

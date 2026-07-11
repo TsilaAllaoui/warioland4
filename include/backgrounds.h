@@ -1,6 +1,14 @@
 #ifndef BACKGROUNDS_H
 #define BACKGROUNDS_H
 
+struct BgTileLookupPointers {
+    u8 *bg0;
+    u8 *bg1;
+    u8 *bg2;
+};
+
+extern struct BgTileLookupPointers gUnk_30031F4;
+
 void BackgroundProcessMain();
 void func_806C75C();
 void func_806DE8C();

@@ -935,7 +935,7 @@ func_809329C:
 .L_936c0:
 	.4byte	gUnk_3004B25
 .L_936c4:
-	.4byte	gUnk_300188B
+	.4byte	gVideoMode
 .L_936c8:
 	.4byte	gUnk_3004ABC
 .L_936cc:
@@ -3224,7 +3224,7 @@ func_80946AC:
 	b	.L_948be
 	.align	2, 0
 .L_94834:
-	.4byte	gUnk_300188B
+	.4byte	gVideoMode
 .L_94838:
 	.4byte	gUnk_3004AFC
 .L_9483c:
@@ -3326,7 +3326,7 @@ func_80946AC:
 .L_948ec:
 	.4byte	0x000001ff
 .L_948f0:
-	.4byte	gUnk_300188B
+	.4byte	gVideoMode
 .L_948f4:
 	.4byte	gUnk_3004B04
 .L_948f8:
@@ -3456,7 +3456,7 @@ func_80946AC:
 .L_949e0:
 	.4byte	0x00001844
 .L_949e4:
-	.4byte	gUnk_300188B
+	.4byte	gVideoMode
 .L_949e8:
 	ldr	r0, .L_94a38
 	ldrb	r1, [r0, #0]

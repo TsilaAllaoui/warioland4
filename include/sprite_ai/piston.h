@@ -2,6 +2,6 @@
 #define SPRITE_AI_PISTON_H
 
 void SpritePiston(void);
-void SpriteUnknownB9(void);
+void SpritePistonChild(void);
 
 #endif  // SPRITE_AI_PISTON_H

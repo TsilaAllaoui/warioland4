@@ -339,7 +339,7 @@ func_806AF4C:
 	cmp	r0, #0
 	beq	.L_6b286
 	mov	r0, #0
-	bl	func_806ADD4
+	bl	TransparencyProcessTiles
 	ldrb	r0, [r4, #0]
 	strb	r0, [r4, #1]
 .L_6b286:
@@ -863,7 +863,7 @@ func_806B410:
 	bl	func_806BDF8
 .L_6b678:
 	bl	func_806F7CC
-	bl	func_806E1E8
+	bl	InitAnimatedGraphics
 	bl	func_8071598
 	bl	func_8071A2C
 	ldr	r1, .L_6b6c0
@@ -3002,7 +3002,7 @@ BackgroundProcessMain:
 	bhi	.L_6c620
 	cmp	r0, #17
 	bne	.L_6c614
-	bl	func_806AED4
+	bl	TransparencyProcessWater
 	b	.L_6c620
 .L_6c610:
 	.4byte	gCurrentRoomHeader
@@ -3011,7 +3011,7 @@ BackgroundProcessMain:
 	cmp	r0, #23
 	bls	.L_6c620
 	mov	r0, #1
-	bl	func_806ADD4
+	bl	TransparencyProcessTiles
 .L_6c620:
 	ldr	r0, .L_6c67c
 	ldrb	r0, [r0, #0]
@@ -3199,7 +3199,7 @@ func_806C75C:
 	ldrb	r0, [r0, #0]
 	cmp	r0, #0
 	bne	.L_6c784
-	bl	func_806E08C
+	bl	UpdateAnimatedGraphics
 .L_6c784:
 	pop	{r0}
 	bx	r0

@@ -437,33 +437,33 @@ sUnk_83BB480:
 
 baserom_blob 0x3BB480, 0x3BB63C
 
-.global sUnk_83BB63C
-sUnk_83BB63C:
+.global sPigHeadStatueIdleOam
+sPigHeadStatueIdleOam:
 
 baserom_blob 0x3BB63C, 0x3BB64C
 
-.global sUnk_83BB64C
-sUnk_83BB64C:
+.global sPigHeadStatueOpeningOam
+sPigHeadStatueOpeningOam:
 
 baserom_blob 0x3BB64C, 0x3BB69C
 
-.global sUnk_83BB69C
-sUnk_83BB69C:
+.global sPigHeadStatueFireOam
+sPigHeadStatueFireOam:
 
 baserom_blob 0x3BB69C, 0x3BB6AC
 
-.global sUnk_83BB6AC
-sUnk_83BB6AC:
+.global sPigHeadProjectileFallOam
+sPigHeadProjectileFallOam:
 
 baserom_blob 0x3BB6AC, 0x3BB704
 
-.global sUnk_83BB704
-sUnk_83BB704:
+.global sPigHeadProjectileLandedOam
+sPigHeadProjectileLandedOam:
 
 baserom_blob 0x3BB704, 0x3BB7AC
 
-.global sUnk_83BB7AC
-sUnk_83BB7AC:
+.global sPigHeadProjectileDespawnOam
+sPigHeadProjectileDespawnOam:
 
 baserom_blob 0x3BB7AC, 0x3BBD6C
 
@@ -602,23 +602,23 @@ sUnk_83BC730:
 
 baserom_blob 0x3BC730, 0x3BC84C
 
-.global sUnk_83BC84C
-sUnk_83BC84C:
+.global sBubbleMovingOam
+sBubbleMovingOam:
 
 baserom_blob 0x3BC84C, 0x3BC894
 
-.global sUnk_83BC894
-sUnk_83BC894:
+.global sBubbleIdleOam
+sBubbleIdleOam:
 
 baserom_blob 0x3BC894, 0x3BC8BC
 
-.global sUnk_83BC8BC
-sUnk_83BC8BC:
+.global sBubblePopOam
+sBubblePopOam:
 
 baserom_blob 0x3BC8BC, 0x3BC8E4
 
-.global sUnk_83BC8E4
-sUnk_83BC8E4:
+.global sBubbleSpawnerOam
+sBubbleSpawnerOam:
 
 baserom_blob 0x3BC8E4, 0x3BCEB4
 
@@ -732,58 +732,58 @@ sUnk_83BD1AC:
 
 baserom_blob 0x3BD1AC, 0x3BD42C
 
-.global sUnk_83BD42C
-sUnk_83BD42C:
+.global sFallingSnowIdleOam
+sFallingSnowIdleOam:
 
 baserom_blob 0x3BD42C, 0x3BD4AC
 
-.global sUnk_83BD4AC
-sUnk_83BD4AC:
+.global sFallingSnowFallingOam
+sFallingSnowFallingOam:
 
 baserom_blob 0x3BD4AC, 0x3BD4BC
 
-.global sUnk_83BD4BC
-sUnk_83BD4BC:
+.global sFallingSnowMeltingOam
+sFallingSnowMeltingOam:
 
 baserom_blob 0x3BD4BC, 0x3BD504
 
-.global sUnk_83BD504
-sUnk_83BD504:
+.global sFallingSnowChildOam
+sFallingSnowChildOam:
 
 baserom_blob 0x3BD504, 0x3BD574
 
-.global sUnk_83BD574
-sUnk_83BD574:
+.global sFallingSnowDropOam
+sFallingSnowDropOam:
 
 baserom_blob 0x3BD574, 0x3BD58C
 
-.global sUnk_83BD58C
-sUnk_83BD58C:
+.global sFallingSnowResetOam
+sFallingSnowResetOam:
 
 baserom_blob 0x3BD58C, 0x3BD5C4
 
-.global sUnk_83BD5C4
-sUnk_83BD5C4:
+.global sFallingSnowFragmentRightOam
+sFallingSnowFragmentRightOam:
 
 baserom_blob 0x3BD5C4, 0x3BD5D4
 
-.global sUnk_83BD5D4
-sUnk_83BD5D4:
+.global sFallingSnowFragmentLeftOam
+sFallingSnowFragmentLeftOam:
 
 baserom_blob 0x3BD5D4, 0x3BD660
 
-.global sUnk_83BD660
-sUnk_83BD660:
+.global sTogemasukuIdleOam
+sTogemasukuIdleOam:
 
 baserom_blob 0x3BD660, 0x3BD6D8
 
-.global sUnk_83BD6D8
-sUnk_83BD6D8:
+.global sTogemasukuDefeatedOam
+sTogemasukuDefeatedOam:
 
 baserom_blob 0x3BD6D8, 0x3BD6F0
 
-.global sUnk_83BD6F0
-sUnk_83BD6F0:
+.global sTogemasukuRespawningOam
+sTogemasukuRespawningOam:
 
 baserom_blob 0x3BD6F0, 0x3BD9A0
 
@@ -822,33 +822,33 @@ sUnk_83BDB00:
 
 baserom_blob 0x3BDB00, 0x3BDD54
 
-.global sUnk_83BDD54
-sUnk_83BDD54:
+.global sElectricLiftStationaryIdleOam
+sElectricLiftStationaryIdleOam:
 
 baserom_blob 0x3BDD54, 0x3BDD64
 
-.global sUnk_83BDD64
-sUnk_83BDD64:
+.global sElectricLiftStationaryTransitionOam
+sElectricLiftStationaryTransitionOam:
 
 baserom_blob 0x3BDD64, 0x3BDD74
 
-.global sUnk_83BDD74
-sUnk_83BDD74:
+.global sElectricLiftStationaryResetOam
+sElectricLiftStationaryResetOam:
 
 baserom_blob 0x3BDD74, 0x3BDEA4
 
-.global sUnk_83BDEA4
-sUnk_83BDEA4:
+.global sElectricLiftStationaryActiveOam
+sElectricLiftStationaryActiveOam:
 
 baserom_blob 0x3BDEA4, 0x3BDFC0
 
-.global sUnk_83BDFC0
-sUnk_83BDFC0:
+.global sElectricLiftMovingTurnOam
+sElectricLiftMovingTurnOam:
 
 baserom_blob 0x3BDFC0, 0x3BDFF0
 
-.global sUnk_83BDFF0
-sUnk_83BDFF0:
+.global sElectricLiftMovingOam
+sElectricLiftMovingOam:
 
 baserom_blob 0x3BDFF0, 0x3BE164
 
