@@ -227,6 +227,9 @@ enum SoundID {
     SOUND_DB,
     SE_BOX_OPENING,
 
+    SE_TOY_BLOCK_ROLL = 0xF9,
+    SE_TOY_BLOCK_TRIANGLE_UNLOCK = 0xFA,
+
     SE_THUNDER = 0x115,
     SE_116,
     SE_117,

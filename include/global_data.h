@@ -165,6 +165,7 @@ extern u8 gUnk_3000021;
 extern u8 gUnk_3000022;
 // gUnk_3000023
 extern u8 gCurrentRoom;
+extern u8 gUnk_3000964[][3];
 extern u8 gUnk_3000025;
 // gUnk_3000026
 // gUnk_3000027

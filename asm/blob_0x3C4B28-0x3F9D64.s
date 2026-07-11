@@ -270,8 +270,8 @@ sUnk_83C788C:
 
 baserom_blob 0x3C788C, 0x3C798C
 
-.global sUnk_83C798C
-sUnk_83C798C:
+.global sToyBlockTriangleOam
+sToyBlockTriangleOam:
 
 baserom_blob 0x3C798C, 0x3C799C
 
@@ -285,23 +285,23 @@ sUnk_83C79AC:
 
 baserom_blob 0x3C79AC, 0x3C79BC
 
-.global sUnk_83C79BC
-sUnk_83C79BC:
+.global sToyBlockTriangleDoorOpenIdleAnimationOam
+sToyBlockTriangleDoorOpenIdleAnimationOam:
 
 baserom_blob 0x3C79BC, 0x3C79FC
 
-.global sUnk_83C79FC
-sUnk_83C79FC:
+.global sToyBlockTriangleDoorOpeningOam
+sToyBlockTriangleDoorOpeningOam:
 
 baserom_blob 0x3C79FC, 0x3C7A4C
 
-.global sUnk_83C7A4C
-sUnk_83C7A4C:
+.global sToyBlockTriangleDoorOpenOam
+sToyBlockTriangleDoorOpenOam:
 
 baserom_blob 0x3C7A4C, 0x3C7A5C
 
-.global sUnk_83C7A5C
-sUnk_83C7A5C:
+.global sToyBlockTriangleDoorClosedOam
+sToyBlockTriangleDoorClosedOam:
 
 baserom_blob 0x3C7A5C, 0x3C7A6C
 
