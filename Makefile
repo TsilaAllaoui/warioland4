@@ -17,6 +17,7 @@ MD5SUM = md5sum
 
 TOOL_DIR = tools
 GBAFIX = $(TOOL_DIR)/gbafix/gbafix
+PROGRESS = $(TOOL_DIR)/gen_decomp_progress.py
 
 VENV = .venv
 REQUIREMENTS = $(TOOL_DIR)/requirements.txt
@@ -90,13 +91,17 @@ endif
 USE_VENV = . $(VENV)/bin/activate &&
 
 
-.PHONY: all check dump diff extract tools clean help
+.PHONY: all check progress dump diff extract tools clean help
 
 all: check
 
-check: $(TARGET)
+check: $(TARGET) $(PROGRESS)
 	$(MSG) MD5SUM $(MD5FILE)
 	$Q$(MD5SUM) -c $(MD5FILE)
+	$Q$(PYTHON) $(PROGRESS) --root . >/dev/null
+
+progress: $(ELF) $(PROGRESS)
+	$Q$(PYTHON) $(PROGRESS) --root . >/dev/null
 
 dump: $(DUMPS)
 
@@ -134,7 +139,8 @@ endif
 help:
 	@echo 'Targets:'
 	@echo '  all: build and checksum the ROM'
-	@echo '  check: same as `all`'
+	@echo '  check: same as `all`, then update progress docs and README'
+	@echo '  progress: update docs/progress-treemap.svg, docs/progress.html, and README.md'
 	@echo '  dump: dump the ROMs'
 	@echo '  diff: dump and compare the ROMs'
 	@echo '  tools: set up build tools'
