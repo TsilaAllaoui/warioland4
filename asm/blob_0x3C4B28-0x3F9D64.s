@@ -530,53 +530,53 @@ sUnk_83C9614:
 
 baserom_blob 0x3C9614, 0x3C99E0
 
-.global sUnk_83C99E0
-sUnk_83C99E0:
+.global sTobawaniPatrolOam
+sTobawaniPatrolOam:
 
 baserom_blob 0x3C99E0, 0x3C9A08
 
-.global sUnk_83C9A08
-sUnk_83C9A08:
+.global sTobawaniTurnOam
+sTobawaniTurnOam:
 
 baserom_blob 0x3C9A08, 0x3C9A20
 
-.global sUnk_83C9A20
-sUnk_83C9A20:
+.global sTobawaniChargeOam
+sTobawaniChargeOam:
 
 baserom_blob 0x3C9A20, 0x3C9A50
 
-.global sUnk_83C9A50
-sUnk_83C9A50:
+.global sTobawaniRecoveryOam
+sTobawaniRecoveryOam:
 
 baserom_blob 0x3C9A50, 0x3C9A78
 
-.global sUnk_83C9A78
-sUnk_83C9A78:
+.global sTobawaniKnockbackOam
+sTobawaniKnockbackOam:
 
 baserom_blob 0x3C9A78, 0x3C9AA0
 
-.global sUnk_83C9AA0
-sUnk_83C9AA0:
+.global sTobawaniFallingOam
+sTobawaniFallingOam:
 
 baserom_blob 0x3C9AA0, 0x3C9AE8
 
-.global sUnk_83C9AE8
-sUnk_83C9AE8:
+.global sTobawaniDefeatedOam
+sTobawaniDefeatedOam:
 
 baserom_blob 0x3C9AE8, 0x3C9B28
 
-.global sUnk_83C9B28
-sUnk_83C9B28:
+.global sTobawaniKnockbackYVelocity
+sTobawaniKnockbackYVelocity:
 
 baserom_blob 0x3C9B28, 0x3C9B56
 
-.global sUnk_83C9B56
-sUnk_83C9B56:
+.global sTobawaniFallYVelocity
+sTobawaniFallYVelocity:
 
 baserom_blob 0x3C9B56, 0x3C9B96
 
-.global sUnk_83C9B96
-sUnk_83C9B96:
+.global sTobawaniWallFallYVelocity
+sTobawaniWallFallYVelocity:
 
 baserom_blob 0x3C9B96, 0x3C9C20
 
