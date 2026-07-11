@@ -35,7 +35,7 @@ void func_801E4D4(void)
     m4aMPlayFadeOut(gMPlayTable[0].info, 2);
     m4aMPlayFadeOut(gMPlayTable[1].info, 2);
     m4aMPlayFadeOut(gMPlayTable[2].info, 2);
-    m4aSongNumStop(SOUND_D9);
+    m4aSongNumStop(SE_ESCAPE_SWITCH_COUNTDOWN);
     m4aSongNumStop(SOUND_1C2);
 }
 

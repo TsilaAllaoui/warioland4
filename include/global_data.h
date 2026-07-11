@@ -174,7 +174,7 @@ extern u16 gBldCnt;
 extern u8 gSwitchStates[SWITCH_COUNT];
 extern u8 gDrawWarioOverBackground;
 // gUnk_3000034
-// gUnk_3000035
+extern u8 gUnk_3000035;
 extern u8 gEnableHBlank;
 // gUnk_300003A
 // gUnk_300003C

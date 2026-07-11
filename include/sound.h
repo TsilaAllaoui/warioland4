@@ -222,7 +222,7 @@ enum SoundID {
     SOUND_D6,
     SOUND_D7,
     SOUND_D8,
-    SOUND_D9,
+    SE_ESCAPE_SWITCH_COUNTDOWN,
     SOUND_DA,
     SOUND_DB,
     SE_BOX_OPENING,

@@ -5,47 +5,47 @@
 
 baserom_blob 0x3B548C, 0x3B59EC
 
-.global sUnk_83B59EC
-sUnk_83B59EC:
+.global sSwitchIdleOam
+sSwitchIdleOam:
 
 baserom_blob 0x3B59EC, 0x3B59FC
 
-.global sUnk_83B59FC
-sUnk_83B59FC:
+.global sEscapeSwitchPressedOam
+sEscapeSwitchPressedOam:
 
 baserom_blob 0x3B59FC, 0x3B5A24
 
-.global sUnk_83B5A24
-sUnk_83B5A24:
+.global sEscapeSwitchActiveOam
+sEscapeSwitchActiveOam:
 
 baserom_blob 0x3B5A24, 0x3B5A34
 
-.global sUnk_83B5A34
-sUnk_83B5A34:
+.global sSwitchReleasedOam
+sSwitchReleasedOam:
 
 baserom_blob 0x3B5A34, 0x3B5A8C
 
-.global sUnk_83B5A8C
-sUnk_83B5A8C:
+.global sSwitchPressedOam
+sSwitchPressedOam:
 
 baserom_blob 0x3B5A8C, 0x3B5AB4
 
-.global sUnk_83B5AB4
-sUnk_83B5AB4:
+.global sSwitchEffectIdleOam
+sSwitchEffectIdleOam:
 
 baserom_blob 0x3B5AB4, 0x3B5B1C
 
-.global sUnk_83B5B1C
-sUnk_83B5B1C:
+.global sEscapeSwitchWaitingOam
+sEscapeSwitchWaitingOam:
 
 baserom_blob 0x3B5B1C, 0x3B5BE4
 
-.global sUnk_83B5BE4
-sUnk_83B5BE4:
+.global sEscapeSwitchIdleOam
+sEscapeSwitchIdleOam:
 
 baserom_blob 0x3B5BE4, 0x3B5BF4
 
-.global sUnk_83B5BF4
-sUnk_83B5BF4:
+.global sSwitchEffectActiveOam
+sSwitchEffectActiveOam:
 
 baserom_blob 0x3B5BF4, 0x3B5C5C
