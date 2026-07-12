@@ -310,6 +310,3 @@ void SpriteBossCorridorCat(void)
             break;
     }
 }
-
-/* Preserve the original module's zero-filled 4-byte text alignment. */
-asm(".align 2, 0");

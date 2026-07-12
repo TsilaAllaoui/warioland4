@@ -270,5 +270,3 @@ void SpriteCrumblingBlock(void)
             break;
     }
 }
-
-asm(".short 0");
