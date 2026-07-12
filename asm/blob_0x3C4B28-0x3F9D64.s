@@ -375,63 +375,63 @@ sMenhammerYVelocity:
 
 baserom_blob 0x3C7F20, 0x3C8250
 
-.global sUnk_83C8250
-sUnk_83C8250:
+.global sMenonoPushedOam
+sMenonoPushedOam:
 
 baserom_blob 0x3C8250, 0x3C8260
 
-.global sUnk_83C8260
-sUnk_83C8260:
+.global sMenonoTurningOam
+sMenonoTurningOam:
 
 baserom_blob 0x3C8260, 0x3C8278
 
-.global sUnk_83C8278
-sUnk_83C8278:
+.global sMenonoPreparingAttackOam
+sMenonoPreparingAttackOam:
 
 baserom_blob 0x3C8278, 0x3C82A0
 
-.global sUnk_83C82A0
-sUnk_83C82A0:
+.global sMenonoWalkingOam
+sMenonoWalkingOam:
 
 baserom_blob 0x3C82A0, 0x3C82E8
 
-.global sUnk_83C82E8
-sUnk_83C82E8:
+.global sMenonoAttackingOam
+sMenonoAttackingOam:
 
 baserom_blob 0x3C82E8, 0x3C8318
 
-.global sUnk_83C8318
-sUnk_83C8318:
+.global sMenonoStunnedOam
+sMenonoStunnedOam:
 
 baserom_blob 0x3C8318, 0x3C8338
 
-.global sUnk_83C8338
-sUnk_83C8338:
+.global sMenonoFallingOam
+sMenonoFallingOam:
 
 baserom_blob 0x3C8338, 0x3C8358
 
-.global sUnk_83C8358
-sUnk_83C8358:
+.global sMenonoTackledOam
+sMenonoTackledOam:
 
 baserom_blob 0x3C8358, 0x3C8370
 
-.global sUnk_83C8370
-sUnk_83C8370:
+.global sMenonoCrushedOam
+sMenonoCrushedOam:
 
 baserom_blob 0x3C8370, 0x3C8390
 
-.global sUnk_83C8390
-sUnk_83C8390:
+.global sMenonoGettingUpOam
+sMenonoGettingUpOam:
 
 baserom_blob 0x3C8390, 0x3C83A0
 
-.global sUnk_83C83A0
-sUnk_83C83A0:
+.global sMenonoTurningAroundOam
+sMenonoTurningAroundOam:
 
 baserom_blob 0x3C83A0, 0x3C83B8
 
-.global sUnk_83C83B8
-sUnk_83C83B8:
+.global sMenonoCrushedWhileStunnedOam
+sMenonoCrushedWhileStunnedOam:
 
 baserom_blob 0x3C83B8, 0x3C89F0
 

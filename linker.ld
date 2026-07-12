@@ -666,7 +666,7 @@ SECTIONS {
         obj/sprite_ai/toy_block_square.o(.text);
         obj/sprite_ai/toy_block_round.o(.text);
         obj/sprite_ai/menhammer.o(.text);
-        obj/sprite_ai/disasm_menono.o(.text);
+        obj/sprite_ai/menono.o(.text);
         obj/sprite_ai/goggley_blade.o(.text);
         obj/sprite_ai/dice_block.o(.text);
         obj/sprite_ai/tobawani.o(.text);
