@@ -648,7 +648,7 @@ SECTIONS {
         obj/sprite_ai/disasm_togemasuku.o(.text);
         obj/sprite_ai/disasm_ball_lightning.o(.text);
         obj/sprite_ai/disasm_electric_lift.o(.text);
-        obj/sprite_ai/disasm_flying_carpet.o(.text);
+        obj/sprite_ai/flying_carpet.o(.text);
         obj/sprite_ai/disasm_bow_balloon.o(.text);
         obj/sprite_ai/disasm_chance_wheel.o(.text);
         obj/sprite_ai/disasm_marumen.o(.text);

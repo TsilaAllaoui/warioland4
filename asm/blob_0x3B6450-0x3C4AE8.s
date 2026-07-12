@@ -852,23 +852,23 @@ sUnk_83BDFF0:
 
 baserom_blob 0x3BDFF0, 0x3BE164
 
-.global sUnk_83BE164
-sUnk_83BE164:
+.global sMagicCarpetRiddenOam
+sMagicCarpetRiddenOam:
 
 baserom_blob 0x3BE164, 0x3BE19C
 
-.global sUnk_83BE19C
-sUnk_83BE19C:
+.global sMagicCarpetFlyingOam
+sMagicCarpetFlyingOam:
 
 baserom_blob 0x3BE19C, 0x3BE1D4
 
-.global sUnk_83BE1D4
-sUnk_83BE1D4:
+.global sMagicCarpetIdleOam
+sMagicCarpetIdleOam:
 
 baserom_blob 0x3BE1D4, 0x3BE234
 
-.global sUnk_83BE234
-sUnk_83BE234:
+.global sMagicCarpetVerticalVelocity
+sMagicCarpetVerticalVelocity:
 
 baserom_blob 0x3BE234, 0x3BEBF4
 
