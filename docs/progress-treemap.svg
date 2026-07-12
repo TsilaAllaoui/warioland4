@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  30.8%   1,254 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  25.3%   154,006 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  31.0%   1,263 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  25.6%   156,070 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4074,21 +4074,21 @@
 <rect x="953.32" y="733.39" width="5.83" height="3.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018F5C: 20 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_flying_carpet: 0.0% matched, 2,064 bytes</title>
+<title>flying_carpet: 100.0% matched, 2,064 bytes</title>
 <rect x="905.65" y="738.16" width="54.25" height="57.21" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip86"><rect x="907.65" y="739.16" width="50.85" height="10.41"/></clipPath>
 <rect x="906.65" y="739.16" width="52.85" height="10.41" fill="#05080d"/>
-<text x="908.15" y="746.57" clip-path="url(#moduleLabelClip86)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_…</text>
-<text x="957.49" y="746.57" text-anchor="end" clip-path="url(#moduleLabelClip86)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="906.65" y="749.57" width="21.16" height="23.65" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_803828C: 444 bytes, not matched, size=symbol</title></rect>
-<rect x="906.65" y="773.57" width="21.16" height="21.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_80385A4: 396 bytes, not matched, size=symbol</title></rect>
-<rect x="928.16" y="749.57" width="18.07" height="21.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_8038448: 348 bytes, not matched, size=symbol</title></rect>
-<rect x="946.58" y="749.57" width="12.57" height="21.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/SpriteMagicCarpet: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="928.16" y="771.53" width="14.72" height="11.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_80380DC: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="928.16" y="783.25" width="14.72" height="11.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_80381F4: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="943.23" y="771.53" width="15.91" height="8.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_8038174: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="943.23" y="780.68" width="9.41" height="13.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_8038064: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="952.99" y="780.68" width="6.16" height="13.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_flying_carpet/func_8038014: 80 bytes, not matched, size=symbol</title></rect>
+<text x="908.15" y="746.57" clip-path="url(#moduleLabelClip86)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">flying_…</text>
+<text x="957.49" y="746.57" text-anchor="end" clip-path="url(#moduleLabelClip86)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="906.65" y="749.57" width="21.16" height="23.65" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/MagicCarpetRiseAndMove: 444 bytes, matched, size=symbol</title></rect>
+<rect x="906.65" y="773.57" width="21.16" height="21.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/MagicCarpetMoveWithWario: 396 bytes, matched, size=symbol</title></rect>
+<rect x="928.16" y="749.57" width="18.07" height="21.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/MagicCarpetMoveUnridden: 348 bytes, matched, size=symbol</title></rect>
+<rect x="946.58" y="749.57" width="12.57" height="21.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/SpriteMagicCarpet: 244 bytes, matched, size=symbol</title></rect>
+<rect x="928.16" y="771.53" width="14.72" height="11.37" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/MagicCarpetHandleStandingWario: 152 bytes, matched, size=symbol</title></rect>
+<rect x="928.16" y="783.25" width="14.72" height="11.37" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/SetMagicCarpetMovementState: 152 bytes, matched, size=symbol</title></rect>
+<rect x="943.23" y="771.53" width="15.91" height="8.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/MagicCarpetWaitForWario: 128 bytes, matched, size=symbol</title></rect>
+<rect x="943.23" y="780.68" width="9.41" height="13.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/InitMagicCarpet: 120 bytes, matched, size=symbol</title></rect>
+<rect x="952.99" y="780.68" width="6.16" height="13.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>flying_carpet/UpdateMagicCarpetCollisionTimer: 80 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_save_data_clear: 0.0% matched, 2,036 bytes</title>
