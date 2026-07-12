@@ -83,7 +83,7 @@ enum SoundID {
     SOUND_4B,
     SOUND_4C,
     SOUND_4D,
-    SOUND_4E,
+    SE_MENHAMMER_ATTACK,
     SOUND_4F,
     SOUND_50,
     SOUND_51,

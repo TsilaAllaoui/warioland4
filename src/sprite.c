@@ -38,7 +38,7 @@
 #include "sprite_ai/magma.h"
 #include "sprite_ai/marumen.h"
 #include "sprite_ai/mayubird.h"
-#include "sprite_ai/menhanma.h"
+#include "sprite_ai/menhammer.h"
 #include "sprite_ai/menono.h"
 #include "sprite_ai/minicula.h"
 #include "sprite_ai/moguramen.h"
@@ -153,7 +153,7 @@ ProcedureFunc sPrimarySpriteAITable[PSPRITE_COUNT] = {
     [PSPRITE_TOY_BLOCK_SQUARE] = SpriteToyBlockSquare,
     [PSPRITE_TOY_BLOCK_ROUND] = SpriteToyBlockRound,
     [PSPRITE_TOY_BLOCK_TRIANGLE_DOOR] = SpriteToyBlockTriangleDoor,
-    [PSPRITE_MENHANMA] = SpriteMenhanma,
+    [PSPRITE_MENHANMA] = SpriteMenhammer,
     [PSPRITE_MENONO] = SpriteMenono,
     [PSPRITE_GOGGLEY_BLADE] = SpriteGoggleyBlade,
     [PSPRITE_GOGGLEY_BLADE_2] = SpriteGoggleyBlade,
