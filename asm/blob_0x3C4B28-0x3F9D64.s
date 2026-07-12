@@ -2885,78 +2885,78 @@ sUnk_83E1010:
 
 baserom_blob 0x3E1010, 0x3E1650
 
-.global sUnk_83E1650
-sUnk_83E1650:
+.global sToyCarIdleOam
+sToyCarIdleOam:
 
 baserom_blob 0x3E1650, 0x3E16A8
 
-.global sUnk_83E16A8
-sUnk_83E16A8:
+.global sToyCarFallingOam
+sToyCarFallingOam:
 
 baserom_blob 0x3E16A8, 0x3E16D8
 
-.global sUnk_83E16D8
-sUnk_83E16D8:
+.global sToyCarTurningOam
+sToyCarTurningOam:
 
 baserom_blob 0x3E16D8, 0x3E1708
 
-.global sUnk_83E1708
-sUnk_83E1708:
+.global sToyCarTurningAroundOam
+sToyCarTurningAroundOam:
 
 baserom_blob 0x3E1708, 0x3E1738
 
-.global sUnk_83E1738
-sUnk_83E1738:
+.global sToyCarAlternateStunnedOam
+sToyCarAlternateStunnedOam:
 
 baserom_blob 0x3E1738, 0x3E1790
 
-.global sUnk_83E1790
-sUnk_83E1790:
+.global sToyCarStunnedOam
+sToyCarStunnedOam:
 
 baserom_blob 0x3E1790, 0x3E17B0
 
-.global sUnk_83E17B0
-sUnk_83E17B0:
+.global sToyCarGettingUpOam
+sToyCarGettingUpOam:
 
 baserom_blob 0x3E17B0, 0x3E1818
 
-.global sUnk_83E1818
-sUnk_83E1818:
+.global sToyCarHeldOam
+sToyCarHeldOam:
 
 baserom_blob 0x3E1818, 0x3E1830
 
-.global sUnk_83E1830
-sUnk_83E1830:
+.global sToyCarAlternatePushedOam
+sToyCarAlternatePushedOam:
 
 baserom_blob 0x3E1830, 0x3E1850
 
-.global sUnk_83E1850
-sUnk_83E1850:
+.global sToyCarPushedOam
+sToyCarPushedOam:
 
 baserom_blob 0x3E1850, 0x3E1870
 
-.global sUnk_83E1870
-sUnk_83E1870:
+.global sToyCarAlternateCrushedOam
+sToyCarAlternateCrushedOam:
 
 baserom_blob 0x3E1870, 0x3E18A0
 
-.global sUnk_83E18A0
-sUnk_83E18A0:
+.global sToyCarCrushedOam
+sToyCarCrushedOam:
 
 baserom_blob 0x3E18A0, 0x3E18D0
 
-.global sUnk_83E18D0
-sUnk_83E18D0:
+.global sToyCarAlternateTackledOam
+sToyCarAlternateTackledOam:
 
 baserom_blob 0x3E18D0, 0x3E18E8
 
-.global sUnk_83E18E8
-sUnk_83E18E8:
+.global sToyCarTackledOam
+sToyCarTackledOam:
 
 baserom_blob 0x3E18E8, 0x3E1900
 
-.global sUnk_83E1900
-sUnk_83E1900:
+.global sToyCarRecoveringOam
+sToyCarRecoveringOam:
 
 baserom_blob 0x3E1900, 0x3E1F30
 
