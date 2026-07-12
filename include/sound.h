@@ -95,7 +95,7 @@ enum SoundID {
     SOUND_57,
     SOUND_58,
     SOUND_59,
-    SOUND_5A,
+    SE_BOW_BALLOON_SHOOT,
     SOUND_5B,
     SOUND_5C,
     SOUND_5D,
