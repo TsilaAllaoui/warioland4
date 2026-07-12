@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  29.0%   1,182 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  24.0%   146,118 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  29.9%   1,216 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  24.4%   149,082 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3649,46 +3649,46 @@
 <rect x="898.52" y="499.03" width="5.78" height="5.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806D3A4: 28 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_toy_block_triangle: 0.0% matched, 2,964 bytes</title>
+<title>toy_block_triangle: 100.0% matched, 2,964 bytes</title>
 <rect x="842.71" y="505.41" width="62.33" height="71.75" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip71"><rect x="844.71" y="506.41" width="58.93" height="13.02"/></clipPath>
 <rect x="843.71" y="506.41" width="60.93" height="13.02" fill="#05080d"/>
-<text x="845.21" y="516.41" clip-path="url(#moduleLabelClip71)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_to…</text>
-<text x="902.65" y="515.41" text-anchor="end" clip-path="url(#moduleLabelClip71)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="843.71" y="519.44" width="26.54" height="43.65" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/SpriteToyBlockTriangle: 1,004 bytes, not matched, size=symbol</title></rect>
-<rect x="843.71" y="563.44" width="26.54" height="12.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80421DC: 304 bytes, not matched, size=symbol</title></rect>
-<rect x="870.60" y="519.44" width="18.15" height="12.39" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/SpriteToyBlockTriangleDoor: 200 bytes, not matched, size=symbol</title></rect>
-<rect x="889.11" y="519.44" width="15.19" height="12.39" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042624: 168 bytes, not matched, size=symbol</title></rect>
-<rect x="870.60" y="532.17" width="12.26" height="10.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80427A8: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="883.21" y="532.17" width="10.58" height="10.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042384: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="894.14" y="532.17" width="10.16" height="10.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80426CC: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="870.60" y="543.39" width="8.55" height="12.36" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_804230C: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="870.60" y="556.10" width="8.55" height="12.36" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042594: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="870.60" y="568.82" width="8.55" height="7.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/SpriteToyBlockTriangleLock: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="879.50" y="543.39" width="8.03" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042778: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="887.88" y="543.39" width="8.03" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042820: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="896.27" y="543.39" width="8.03" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042850: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="879.50" y="550.14" width="5.94" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042460: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="885.79" y="550.14" width="5.94" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042484: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="892.08" y="550.14" width="5.94" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80424A8: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="898.36" y="550.14" width="5.94" height="6.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80424CC: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="879.50" y="556.89" width="6.05" height="6.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80424F0: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="879.50" y="563.51" width="6.05" height="6.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042514: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="879.50" y="570.14" width="6.05" height="6.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042538: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="885.91" y="556.89" width="6.40" height="5.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042730: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="892.65" y="556.89" width="6.40" height="5.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042754: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="899.40" y="556.89" width="4.90" height="5.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042428: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="885.91" y="563.18" width="4.51" height="6.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042444: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="885.91" y="569.97" width="4.51" height="6.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80425F4: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="890.77" y="563.18" width="5.20" height="4.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_804236C: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="890.77" y="568.27" width="5.20" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_80423EC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="890.77" y="572.52" width="5.20" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042400: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="896.32" y="563.18" width="3.81" height="5.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042414: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="900.48" y="563.18" width="3.81" height="5.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042610: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="896.32" y="568.84" width="4.41" height="3.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042574: 16 bytes, not matched, size=symbol</title></rect>
-<rect x="896.32" y="572.80" width="4.41" height="3.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042584: 16 bytes, not matched, size=symbol</title></rect>
-<rect x="901.08" y="568.84" width="3.22" height="3.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_804255C: 12 bytes, not matched, size=symbol</title></rect>
-<rect x="901.08" y="572.80" width="3.22" height="3.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_block_triangle/func_8042568: 12 bytes, not matched, size=symbol</title></rect>
+<text x="845.21" y="516.41" clip-path="url(#moduleLabelClip71)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">toy_block…</text>
+<text x="902.65" y="515.41" text-anchor="end" clip-path="url(#moduleLabelClip71)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="843.71" y="519.44" width="26.54" height="43.65" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/SpriteToyBlockTriangle: 1,004 bytes, matched, size=symbol</title></rect>
+<rect x="843.71" y="563.44" width="26.54" height="12.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ToyBlockTriangleUnlockTouchedLock: 304 bytes, matched, size=symbol</title></rect>
+<rect x="870.60" y="519.44" width="18.15" height="12.39" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/SpriteToyBlockTriangleDoor: 200 bytes, matched, size=symbol</title></rect>
+<rect x="889.11" y="519.44" width="15.19" height="12.39" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/UnlockMatchingToyBlockTriangleLock: 168 bytes, matched, size=symbol</title></rect>
+<rect x="870.60" y="532.17" width="12.26" height="10.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ToyBlockTriangleDoorOpen: 120 bytes, matched, size=symbol</title></rect>
+<rect x="883.21" y="532.17" width="10.58" height="10.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ToyBlockTriangleIdle: 104 bytes, matched, size=symbol</title></rect>
+<rect x="894.14" y="532.17" width="10.16" height="10.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitToyBlockTriangleDoor: 100 bytes, matched, size=symbol</title></rect>
+<rect x="870.60" y="543.39" width="8.55" height="12.36" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitToyBlockTriangle: 96 bytes, matched, size=symbol</title></rect>
+<rect x="870.60" y="556.10" width="8.55" height="12.36" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitToyBlockTriangleLock: 96 bytes, matched, size=symbol</title></rect>
+<rect x="870.60" y="568.82" width="8.55" height="7.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/SpriteToyBlockTriangleLock: 60 bytes, matched, size=symbol</title></rect>
+<rect x="879.50" y="543.39" width="8.03" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ToyBlockTriangleDoorFinishOpenIdleAnimation: 48 bytes, matched, size=symbol</title></rect>
+<rect x="887.88" y="543.39" width="8.03" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ToyBlockTriangleDoorStartOpenIdleAnimation: 48 bytes, matched, size=symbol</title></rect>
+<rect x="896.27" y="543.39" width="8.03" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ToyBlockTriangleDoorWaitToOpen: 48 bytes, matched, size=symbol</title></rect>
+<rect x="879.50" y="550.14" width="5.94" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitClosedToyBlockTriangleDoor: 36 bytes, matched, size=symbol</title></rect>
+<rect x="885.79" y="550.14" width="5.94" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitOpenToyBlockTriangleDoor: 36 bytes, matched, size=symbol</title></rect>
+<rect x="892.08" y="550.14" width="5.94" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTrianglePose60: 36 bytes, matched, size=symbol</title></rect>
+<rect x="898.36" y="550.14" width="5.94" height="6.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTrianglePose66: 36 bytes, matched, size=symbol</title></rect>
+<rect x="879.50" y="556.89" width="6.05" height="6.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTrianglePushedLeft: 36 bytes, matched, size=symbol</title></rect>
+<rect x="879.50" y="563.51" width="6.05" height="6.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTrianglePushedRight: 36 bytes, matched, size=symbol</title></rect>
+<rect x="879.50" y="570.14" width="6.05" height="6.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleRollAwayFromWario: 36 bytes, matched, size=symbol</title></rect>
+<rect x="885.91" y="556.89" width="6.40" height="5.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleRollLeft: 36 bytes, matched, size=symbol</title></rect>
+<rect x="892.65" y="556.89" width="6.40" height="5.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleRollRight: 36 bytes, matched, size=symbol</title></rect>
+<rect x="899.40" y="556.89" width="4.90" height="5.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitClosedToyBlockTriangleLock: 28 bytes, matched, size=symbol</title></rect>
+<rect x="885.91" y="563.18" width="4.51" height="6.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleClockwiseSpin: 28 bytes, matched, size=symbol</title></rect>
+<rect x="885.91" y="569.97" width="4.51" height="6.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleCounterclockwiseSpin: 28 bytes, matched, size=symbol</title></rect>
+<rect x="890.77" y="563.18" width="5.20" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/ResetToyBlockTriangle: 24 bytes, matched, size=symbol</title></rect>
+<rect x="890.77" y="568.27" width="5.20" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/InitOpenToyBlockTriangleLock: 20 bytes, matched, size=symbol</title></rect>
+<rect x="890.77" y="572.52" width="5.20" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleClockwisePush: 20 bytes, matched, size=symbol</title></rect>
+<rect x="896.32" y="563.18" width="3.81" height="5.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleCounterclockwisePush: 20 bytes, matched, size=symbol</title></rect>
+<rect x="900.48" y="563.18" width="3.81" height="5.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartToyBlockTriangleFalling: 20 bytes, matched, size=symbol</title></rect>
+<rect x="896.32" y="568.84" width="4.41" height="3.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartCarryingToyBlockTriangleLeft: 16 bytes, matched, size=symbol</title></rect>
+<rect x="896.32" y="572.80" width="4.41" height="3.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartCarryingToyBlockTriangleRight: 16 bytes, matched, size=symbol</title></rect>
+<rect x="901.08" y="568.84" width="3.22" height="3.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartLiftingToyBlockTriangleLeft: 12 bytes, matched, size=symbol</title></rect>
+<rect x="901.08" y="572.80" width="3.22" height="3.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartLiftingToyBlockTriangleRight: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_dice: 0.0% matched, 2,908 bytes</title>

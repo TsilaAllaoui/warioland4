@@ -290,7 +290,7 @@ void ToyBlockSquareFalling(void)
         } while (0);
 
         ToyBlockSquareSetSolidTiles();
-        m4aSongNumStart(SE_TOY_BLOCK_SQUARE_LAND);
+        m4aSongNumStart(SE_TOY_BLOCK_ROLL);
         return;
     }
 
