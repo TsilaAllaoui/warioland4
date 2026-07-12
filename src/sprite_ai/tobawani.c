@@ -415,7 +415,7 @@ void TobawaniWallFallRight(void)
                  gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
     if (gUnk_3000A51 == 17) {
         gCurrentSprite.pose = 54;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
     }
     TobawaniWallFall();
 }
@@ -427,7 +427,7 @@ void TobawaniWallFallLeft(void)
                  gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
     if (gUnk_3000A51 == 17) {
         gCurrentSprite.pose = 52;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
     }
     TobawaniWallFall();
 }

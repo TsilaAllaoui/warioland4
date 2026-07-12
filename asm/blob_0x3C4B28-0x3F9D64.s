@@ -310,68 +310,68 @@ sToyBlockSquareYMovement:
 
 baserom_blob 0x3C7A6C, 0x3C7DA0
 
-.global sUnk_83C7DA0
-sUnk_83C7DA0:
+.global sMenhammerPushedOam
+sMenhammerPushedOam:
 
 baserom_blob 0x3C7DA0, 0x3C7DB0
 
-.global sUnk_83C7DB0
-sUnk_83C7DB0:
+.global sMenhammerWalkingOam
+sMenhammerWalkingOam:
 
 baserom_blob 0x3C7DB0, 0x3C7DE8
 
-.global sUnk_83C7DE8
-sUnk_83C7DE8:
+.global sMenhammerFallingOam
+sMenhammerFallingOam:
 
 baserom_blob 0x3C7DE8, 0x3C7E10
 
-.global sUnk_83C7E10
-sUnk_83C7E10:
+.global sMenhammerTurningOam
+sMenhammerTurningOam:
 
 baserom_blob 0x3C7E10, 0x3C7E28
 
-.global sUnk_83C7E28
-sUnk_83C7E28:
+.global sMenhammerGettingUpOam
+sMenhammerGettingUpOam:
 
 baserom_blob 0x3C7E28, 0x3C7E40
 
-.global sUnk_83C7E40
-sUnk_83C7E40:
+.global sMenhammerJumpingAttackOam
+sMenhammerJumpingAttackOam:
 
 baserom_blob 0x3C7E40, 0x3C7E78
 
-.global sUnk_83C7E78
-sUnk_83C7E78:
+.global sMenhammerStunnedOam
+sMenhammerStunnedOam:
 
 baserom_blob 0x3C7E78, 0x3C7EA0
 
-.global sUnk_83C7EA0
-sUnk_83C7EA0:
+.global sMenhammerCrushedOam
+sMenhammerCrushedOam:
 
 baserom_blob 0x3C7EA0, 0x3C7EB8
 
-.global sUnk_83C7EB8
-sUnk_83C7EB8:
+.global sMenhammerTackledOam
+sMenhammerTackledOam:
 
 baserom_blob 0x3C7EB8, 0x3C7ED8
 
-.global sUnk_83C7ED8
-sUnk_83C7ED8:
+.global sMenhammerCrushedWhileStunnedOam
+sMenhammerCrushedWhileStunnedOam:
 
 baserom_blob 0x3C7ED8, 0x3C7EF0
 
-.global sUnk_83C7EF0
-sUnk_83C7EF0:
+.global sMenhammerTurningAroundOam
+sMenhammerTurningAroundOam:
 
 baserom_blob 0x3C7EF0, 0x3C7F08
 
-.global sUnk_83C7F08
-sUnk_83C7F08:
+.global sMenhammerLandingAttackOam
+sMenhammerLandingAttackOam:
 
 baserom_blob 0x3C7F08, 0x3C7F20
 
-.global sUnk_83C7F20
-sUnk_83C7F20:
+.global sMenhammerYVelocity
+sMenhammerYVelocity:
 
 baserom_blob 0x3C7F20, 0x3C8250
 

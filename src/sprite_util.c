@@ -625,7 +625,7 @@ void func_8024180(void)
             gCurrentSprite.work2--;
         }
         gCurrentSprite.pose = SPOSE_2D;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
         return;
     }
 
@@ -684,7 +684,7 @@ void func_80242C8(void)
             gCurrentSprite.work2--;
         }
         gCurrentSprite.pose = SPOSE_2B;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
         return;
     }
 
@@ -828,7 +828,7 @@ void func_8024570(void)
         (func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition),
          ((0xF & gUnk_3000A51) != 0))) {
         pose = SPOSE_45;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
     } else {
         gCurrentSprite.work0--;
         if (gCurrentSprite.work0) {
@@ -852,7 +852,7 @@ void func_80245FC(void)
         (func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition),
          ((0xF & gUnk_3000A51) != 0))) {
         pose = SPOSE_43;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
     } else {
         gCurrentSprite.work0--;
         if (gCurrentSprite.work0) {
@@ -1009,7 +1009,7 @@ void func_8024AD4(void)
     );
     if (gUnk_3000A51 == 0x11) {
         gCurrentSprite.pose = SPOSE_45;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
     }
 }
 
@@ -1056,7 +1056,7 @@ void func_8024C00(void)
     );
     if (gUnk_3000A51 == 0x11) {
         gCurrentSprite.pose = SPOSE_43;
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
     }
 }
 
@@ -1109,7 +1109,7 @@ void SpriteUtilLiftingSpriteRight(void)
                 gCurrentSprite.pose = SPOSE_47;
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = 0;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1118,7 +1118,7 @@ void SpriteUtilLiftingSpriteRight(void)
                 gCurrentSprite.pose = SPOSE_47;
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = 0;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1183,7 +1183,7 @@ void SpriteUtilLiftingSpriteLeft(void)
                 gCurrentSprite.pose = SPOSE_49;
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = 0;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1192,7 +1192,7 @@ void SpriteUtilLiftingSpriteLeft(void)
                 gCurrentSprite.pose = SPOSE_49;
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = 0;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1236,7 +1236,7 @@ void SpriteUtilCarryingSpriteRight(void)
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = SPRITE_STATUS_NONE;
                 gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1250,7 +1250,7 @@ void SpriteUtilCarryingSpriteRight(void)
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = SPRITE_STATUS_NONE;
                 gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1298,7 +1298,7 @@ void SpriteUtilCarryingSpriteRight(void)
                 func_801E4B0();
                 gCurrentCarriedSprite.state = SPRITE_STATUS_NONE;
                 gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
             }
             return;
 
@@ -1370,7 +1370,7 @@ void SpriteUtilCarryingSpriteLeft(void)
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = SPRITE_STATUS_NONE;
                 gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1384,7 +1384,7 @@ void SpriteUtilCarryingSpriteLeft(void)
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
                 gCurrentCarriedSprite.state = SPRITE_STATUS_NONE;
                 gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
                 return;
             }
 
@@ -1432,7 +1432,7 @@ void SpriteUtilCarryingSpriteLeft(void)
                 func_801E4B0();
                 gCurrentCarriedSprite.state = SPRITE_STATUS_NONE;
                 gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
-                m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+                m4aSongNumStart(SE_WALL_BOUNCE);
             }
             return;
 
@@ -1512,7 +1512,7 @@ void func_80254E8(void)
         if ((gCurrentSprite.pose == SPOSE_THROWN_LEFT_SOFT) || (gCurrentSprite.pose == SPOSE_THROWN_UP_LEFT_SOFT) ||
             (gCurrentSprite.work0 == 2)) {
             gCurrentSprite.pose = SPOSE_49;
-            m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+            m4aSongNumStart(SE_WALL_BOUNCE);
         } else {
             gCurrentSprite.pose = SPOSE_6B;
         }
@@ -1526,7 +1526,7 @@ void func_80254E8(void)
             gCurrentSprite.pose = SPOSE_6B;
         } else {
             gCurrentSprite.pose = SPOSE_47;
-            m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+            m4aSongNumStart(SE_WALL_BOUNCE);
         }
         return;
     }
@@ -1634,7 +1634,7 @@ void func_80258B4(void)
         if ((gCurrentSprite.pose == SPOSE_THROWN_RIGHT_SOFT) || (gCurrentSprite.pose == SPOSE_THROWN_UP_RIGHT_SOFT) ||
             (gCurrentSprite.work0 == 2)) {
             gCurrentSprite.pose = SPOSE_47;
-            m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+            m4aSongNumStart(SE_WALL_BOUNCE);
         } else {
             gCurrentSprite.pose = SPOSE_6B;
         }
@@ -1648,7 +1648,7 @@ void func_80258B4(void)
             gCurrentSprite.pose = SPOSE_6B;
         } else {
             gCurrentSprite.pose = SPOSE_49;
-            m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+            m4aSongNumStart(SE_WALL_BOUNCE);
         }
         return;
     }
@@ -1853,7 +1853,7 @@ void func_8025F48(void)
         } else {
             gCurrentSprite.pose = SPOSE_2D;
         }
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
         return;
     }
 
@@ -1913,7 +1913,7 @@ void func_802608C(void)
         } else {
             gCurrentSprite.pose = SPOSE_2B;
         }
-        m4aSongNumStart(SE_TOBAWANI_WALL_BOUNCE);
+        m4aSongNumStart(SE_WALL_BOUNCE);
         return;
     }
 
