@@ -13,7 +13,7 @@ void TobawaniEnterWater(void)
     gCurrentSprite.yPosition = gUnk_3000964[gCurrentSprite.roomSlot][0] * 64 + 64;
     gCurrentSprite.pose = 39;
     gCurrentSprite.warioCollision = 80;
-    m4aSongNumStart(SE_TOBAWANI_ENTER_WATER);
+    m4aSongNumStart(SE_ENTER_WATER);
     SpriteSpawnSecondary(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, SSPRITE_07);
     gCurrentSprite.status &= ~0x200;
     gCurrentSprite.status |= 0x400;
