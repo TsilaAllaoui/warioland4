@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████░░░░░░░░░░░░░░░░░░░░  32.3%   1,316 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  26.3%   160,658 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████░░░░░░░░░░░░░░░░░░░░  32.8%   1,334 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  26.8%   163,262 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3848,30 +3848,30 @@
 <rect x="899.71" y="847.24" width="4.59" height="4.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetTurnHorizontal: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_chance_wheel: 0.0% matched, 2,604 bytes</title>
+<title>chance_wheel: 100.0% matched, 2,604 bytes</title>
 <rect x="905.65" y="432.97" width="64.78" height="60.59" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip76"><rect x="907.65" y="433.97" width="61.38" height="11.01"/></clipPath>
 <rect x="906.65" y="433.97" width="63.38" height="11.01" fill="#05080d"/>
-<text x="908.15" y="441.98" clip-path="url(#moduleLabelClip76)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_ch…</text>
-<text x="968.02" y="441.98" text-anchor="end" clip-path="url(#moduleLabelClip76)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="906.65" y="444.98" width="17.37" height="26.12" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_803962C: 400 bytes, not matched, size=symbol</title></rect>
-<rect x="906.65" y="471.45" width="17.37" height="21.35" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_80398F4: 328 bytes, not matched, size=symbol</title></rect>
-<rect x="924.37" y="444.98" width="16.90" height="17.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/SpriteChanceWheel: 260 bytes, not matched, size=symbol</title></rect>
-<rect x="941.62" y="444.98" width="14.52" height="17.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039B40: 224 bytes, not matched, size=symbol</title></rect>
-<rect x="956.49" y="444.98" width="13.19" height="17.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039CCC: 204 bytes, not matched, size=symbol</title></rect>
-<rect x="924.37" y="462.65" width="11.64" height="16.47" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039C20: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="924.37" y="479.47" width="11.64" height="13.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039AB4: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="936.36" y="462.65" width="14.41" height="10.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_803986C: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="936.36" y="473.45" width="14.41" height="9.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_80395AC: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="936.36" y="483.62" width="14.41" height="9.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039A3C: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="951.11" y="462.65" width="9.50" height="11.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039D98: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="960.96" y="462.65" width="8.71" height="11.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039550: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="951.11" y="474.55" width="8.73" height="9.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_803981C: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="951.11" y="484.89" width="8.73" height="7.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039510: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="960.19" y="474.55" width="9.48" height="5.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_80397E8: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="960.19" y="480.75" width="9.48" height="4.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_80397BC: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="960.19" y="486.00" width="4.89" height="6.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/SpriteUnknownA2: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="965.44" y="486.00" width="4.24" height="6.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_chance_wheel/func_8039DFC: 28 bytes, not matched, size=symbol</title></rect>
+<text x="908.15" y="441.98" clip-path="url(#moduleLabelClip76)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">chance_wh…</text>
+<text x="968.02" y="441.98" text-anchor="end" clip-path="url(#moduleLabelClip76)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="906.65" y="444.98" width="17.37" height="26.12" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/ApplyChanceWheelReward: 400 bytes, matched, size=symbol</title></rect>
+<rect x="906.65" y="471.45" width="17.37" height="21.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/StartChanceWheelResult: 328 bytes, matched, size=symbol</title></rect>
+<rect x="924.37" y="444.98" width="16.90" height="17.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/SpriteChanceWheel: 260 bytes, matched, size=symbol</title></rect>
+<rect x="941.62" y="444.98" width="14.52" height="17.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/ChanceWheelShrink: 224 bytes, matched, size=symbol</title></rect>
+<rect x="956.49" y="444.98" width="13.19" height="17.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/GoalBlockShrink: 204 bytes, matched, size=symbol</title></rect>
+<rect x="924.37" y="462.65" width="11.64" height="16.47" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/ResetGoalBlock: 172 bytes, matched, size=symbol</title></rect>
+<rect x="924.37" y="479.47" width="11.64" height="13.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/FinishChanceWheelResult: 140 bytes, matched, size=symbol</title></rect>
+<rect x="936.36" y="462.65" width="14.41" height="10.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/InitChanceWheel: 136 bytes, matched, size=symbol</title></rect>
+<rect x="936.36" y="473.45" width="14.41" height="9.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/PlayChanceWheelSpaceSound: 128 bytes, matched, size=symbol</title></rect>
+<rect x="936.36" y="483.62" width="14.41" height="9.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/ChanceWheelDropToResult: 120 bytes, matched, size=symbol</title></rect>
+<rect x="951.11" y="462.65" width="9.50" height="11.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/InitChanceWheelRewardEffect: 100 bytes, matched, size=symbol</title></rect>
+<rect x="960.96" y="462.65" width="8.71" height="11.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/TransformWarioFromChanceWheel: 92 bytes, matched, size=symbol</title></rect>
+<rect x="951.11" y="474.55" width="8.73" height="9.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/CheckWarioNearChanceWheel: 80 bytes, matched, size=symbol</title></rect>
+<rect x="951.11" y="484.89" width="8.73" height="7.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/ClearChanceWheelRewardSprites: 64 bytes, matched, size=symbol</title></rect>
+<rect x="960.19" y="474.55" width="9.48" height="5.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/SetChanceWheelSecondaryResult: 52 bytes, matched, size=symbol</title></rect>
+<rect x="960.19" y="480.75" width="9.48" height="4.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/IsChanceWheelResultReady: 44 bytes, matched, size=symbol</title></rect>
+<rect x="960.19" y="486.00" width="4.89" height="6.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/SpriteChanceWheelRewardEffect: 32 bytes, matched, size=symbol</title></rect>
+<rect x="965.44" y="486.00" width="4.24" height="6.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>chance_wheel/UpdateChanceWheelRewardEffect: 28 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_hud: 0.0% matched, 2,548 bytes</title>

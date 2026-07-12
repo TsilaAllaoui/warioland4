@@ -243,7 +243,7 @@ extern u8 gUnk_3000038;
 // gUnk_300003C
 // gUnk_300003E
 // gUnk_3000040
-// gUnk_3000044
+extern u8 gUnk_3000044;
 // gUnk_3000045
 // gUnk_3000046
 extern u8 gTimerState;
