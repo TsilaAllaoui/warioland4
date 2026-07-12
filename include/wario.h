@@ -376,7 +376,6 @@ extern WarioPoseFunc sWarioWaterPoseTable[WPOSE_WATER_COUNT];
 extern WarioPoseFunc sFlamingWarioPoseTable[WPOSE_FLAMING_COUNT];
 extern WarioPoseFunc sFatWarioPoseTable[WPOSE_FAT_COUNT];
 extern WarioPoseFunc sFrozenWarioPoseTable[WPOSE_FROZEN_COUNT];
-// sUnk_82DEFA0
 extern WarioPoseFunc sZombieWarioPoseTable[WPOSE_ZOMBIE_COUNT];
 extern WarioPoseFunc sSnowmanWarioPoseTable[WPOSE_SNOWMAN_COUNT];
 extern WarioPoseFunc sBouncyWarioPoseTable[WPOSE_BOUNCY_COUNT];

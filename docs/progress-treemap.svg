@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  31.0%   1,263 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  25.6%   156,070 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  31.4%   1,277 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  25.9%   157,822 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4045,33 +4045,33 @@
 <rect x="953.64" y="669.62" width="5.51" height="6.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80728C0: 36 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_zombie: 0.0% matched, 2,156 bytes</title>
+<title>zombie: 81.3% matched, 2,156 bytes</title>
 <rect x="905.65" y="677.78" width="54.25" height="59.79" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip85"><rect x="907.65" y="678.78" width="50.85" height="10.87"/></clipPath>
 <rect x="906.65" y="678.78" width="52.85" height="10.87" fill="#05080d"/>
-<text x="908.15" y="686.65" clip-path="url(#moduleLabelClip85)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_…</text>
-<text x="957.49" y="686.65" text-anchor="end" clip-path="url(#moduleLabelClip85)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="906.65" y="689.65" width="14.16" height="25.66" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_801910C: 324 bytes, not matched, size=symbol</title></rect>
-<rect x="906.65" y="715.65" width="14.16" height="21.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018F70: 268 bytes, not matched, size=symbol</title></rect>
-<rect x="921.16" y="689.65" width="13.37" height="12.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018BC0: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="934.87" y="689.65" width="12.31" height="12.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_801907C: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="947.54" y="689.65" width="11.61" height="12.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_801930C: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="921.16" y="702.89" width="11.61" height="12.11" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018D14: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="921.16" y="715.36" width="11.61" height="10.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018C5C: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="921.16" y="726.65" width="11.61" height="10.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_801929E: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="933.12" y="702.89" width="9.86" height="10.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8019394: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="943.33" y="702.89" width="8.16" height="10.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8019250: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="951.84" y="702.89" width="7.31" height="10.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018ED4: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="933.12" y="713.85" width="9.44" height="7.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018CD0: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="933.12" y="721.94" width="9.44" height="7.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018D94: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="933.12" y="729.55" width="9.44" height="7.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018DD4: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="942.91" y="713.85" width="7.94" height="8.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018E14: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="951.20" y="713.85" width="7.94" height="8.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018E54: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="942.91" y="722.84" width="10.06" height="6.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018E94: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="942.91" y="730.00" width="10.06" height="6.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018F1C: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="953.32" y="722.84" width="5.83" height="6.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018B88: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="953.32" y="729.62" width="5.83" height="3.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018BAC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="953.32" y="733.39" width="5.83" height="3.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_zombie/func_8018F5C: 20 bytes, not matched, size=symbol</title></rect>
+<text x="908.15" y="686.65" clip-path="url(#moduleLabelClip85)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">zombie</text>
+<text x="957.49" y="686.65" text-anchor="end" clip-path="url(#moduleLabelClip85)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">81%</text>
+<rect x="906.65" y="689.65" width="14.16" height="25.66" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ProcessZombieWarioCollision: 324 bytes, matched, size=symbol</title></rect>
+<rect x="906.65" y="715.65" width="14.16" height="21.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/SetZombieWarioPose: 268 bytes, matched, size=symbol</title></rect>
+<rect x="921.16" y="689.65" width="13.37" height="12.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioWalking: 156 bytes, matched, size=symbol</title></rect>
+<rect x="934.87" y="689.65" width="12.31" height="12.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/UpdateZombieWarioMotion: 144 bytes, matched, size=symbol</title></rect>
+<rect x="947.54" y="689.65" width="11.61" height="12.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/UpdateZombieWarioMusic: 136 bytes, matched, size=symbol</title></rect>
+<rect x="921.16" y="702.89" width="11.61" height="12.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioFalling: 128 bytes, matched, size=symbol</title></rect>
+<rect x="921.16" y="715.36" width="11.61" height="10.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioEmergingFromHat: 116 bytes, matched, size=symbol</title></rect>
+<rect x="921.16" y="726.65" width="11.61" height="10.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/LoadZombieWarioGraphics: 108 bytes, matched, size=symbol</title></rect>
+<rect x="933.12" y="702.89" width="9.86" height="10.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/UpdateZombieWarioHitbox: 96 bytes, matched, size=symbol</title></rect>
+<rect x="943.33" y="702.89" width="8.16" height="10.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/CheckZombieWarioFloor: 80 bytes, matched, size=symbol</title></rect>
+<rect x="951.84" y="702.89" width="7.31" height="10.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioTouchingLightSource: 72 bytes, matched, size=symbol</title></rect>
+<rect x="933.12" y="713.85" width="9.44" height="7.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioJumping: 68 bytes, matched, size=symbol</title></rect>
+<rect x="933.12" y="721.94" width="9.44" height="7.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioFallingThroughPlatform: 64 bytes, not matched, size=symbol</title></rect>
+<rect x="933.12" y="729.55" width="9.44" height="7.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioHatFalling: 64 bytes, not matched, size=symbol</title></rect>
+<rect x="942.91" y="713.85" width="7.94" height="8.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioHatLanding: 64 bytes, not matched, size=symbol</title></rect>
+<rect x="951.20" y="713.85" width="7.94" height="8.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioLanding: 64 bytes, not matched, size=symbol</title></rect>
+<rect x="942.91" y="722.84" width="10.06" height="6.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioUnknown11: 64 bytes, not matched, size=symbol</title></rect>
+<rect x="942.91" y="730.00" width="10.06" height="6.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioUnknown5: 64 bytes, not matched, size=symbol</title></rect>
+<rect x="953.32" y="722.84" width="5.83" height="6.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/UpdateZombieWario: 36 bytes, matched, size=symbol</title></rect>
+<rect x="953.32" y="729.62" width="5.83" height="3.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioFallingAfterJump: 20 bytes, not matched, size=symbol</title></rect>
+<rect x="953.32" y="733.39" width="5.83" height="3.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>zombie/ZombieWarioTransforming: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>flying_carpet: 100.0% matched, 2,064 bytes</title>

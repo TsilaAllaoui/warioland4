@@ -374,7 +374,7 @@ void SetSnowmanWarioPose(u8 result)
             break;
         case WPOSE_SNOWMAN_BONK:
             gWarioData.pose = result;
-            m4aSongNumStart(SE_SNOWMAN_WARIO_BONK);
+            m4aSongNumStart(SE_WARIO_BONK);
             VoiceSetPlay(0);
             break;
         case WPOSE_SNOWMAN_ROLLING_SMALL:

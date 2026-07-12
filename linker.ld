@@ -615,7 +615,7 @@ SECTIONS {
         obj/wario/flaming.o(.text);
         obj/wario/fat.o(.text);
         obj/wario/frozen.o(.text);
-        obj/wario/disasm_zombie.o(.text);
+        obj/wario/zombie.o(.text);
         obj/wario/snowman.o(.text);
         obj/wario/bouncy.o(.text);
         obj/wario/puffy.o(.text);
