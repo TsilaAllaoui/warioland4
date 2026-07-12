@@ -92,6 +92,7 @@ void func_8023BFC(u16 y, u16 x);
 void func_8023C94(void);
 void func_8023CD8(void);
 void func_8023D48(void);
+void func_8023E00(void);
 void func_8023EE0(void);
 void SpriteUtilFallOffscreenRight(void);
 void SpriteUtilFallOffscreenLeft(void);
