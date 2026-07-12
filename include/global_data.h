@@ -165,7 +165,6 @@ extern u8 gUnk_3000021;
 extern u8 gUnk_3000022;
 // gUnk_3000023
 extern u8 gCurrentRoom;
-extern u8 gUnk_3000964[][3];
 extern u8 gUnk_3000025;
 // gUnk_3000026
 // gUnk_3000027
@@ -194,5 +193,6 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+extern u8 gUnk_3000964[][3];
 
 #endif  // GLOBAL_DATA_H
