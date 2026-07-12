@@ -124,9 +124,6 @@ void OnomiWalk(void)
     }
 }
 
-/* Preserve the original four-byte boundary between the walking and attack states. */
-asm(".align 2, 0");
-
 void OnomiPrepareAttack(void)
 {
     gCurrentSprite.pOamData = sOnomiPreparingAttackOam;
