@@ -3650,23 +3650,23 @@ sUnk_83F1E28:
 
 baserom_blob 0x3F1E28, 0x3F1E80
 
-.global sUnk_83F1E80
-sUnk_83F1E80:
+.global sBossPauseBackgroundTiles
+sBossPauseBackgroundTiles:
 
 baserom_blob 0x3F1E80, 0x3F2020
 
-.global sUnk_83F2020
-sUnk_83F2020:
+.global sBlankBackgroundTiles
+sBlankBackgroundTiles:
 
 baserom_blob 0x3F2020, 0x3F2240
 
-.global sUnk_83F2240
-sUnk_83F2240:
+.global sBossRoomBackgroundData
+sBossRoomBackgroundData:
 
 baserom_blob 0x3F2240, 0x3F2298
 
-.global sUnk_83F2298
-sUnk_83F2298:
+.global sTilesetLoadData
+sTilesetLoadData:
 
 baserom_blob 0x3F2298, 0x3F7820
 

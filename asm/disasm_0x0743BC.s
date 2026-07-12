@@ -127,7 +127,7 @@ BossPause:
 	orr	r0, r1
 	strh	r0, [r2, #0]
 	mov	r0, #0
-	bl	func_806BF04
+	bl	LoadBossPauseBackgroundTiles
 	ldr	r1, .L_74500
 	ldr	r0, .L_74504
 	str	r0, [r1, #0]
@@ -301,7 +301,7 @@ BossPause:
 	orr	r0, r1
 	strh	r0, [r2, #0]
 	mov	r0, #1
-	bl	func_806BF04
+	bl	LoadBossPauseBackgroundTiles
 	ldr	r1, .L_74650
 	ldr	r0, .L_74654
 	str	r0, [r1, #0]

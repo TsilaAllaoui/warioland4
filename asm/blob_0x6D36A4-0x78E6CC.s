@@ -38,8 +38,8 @@ sUnk_86D370C:
 
 baserom_blob 0x6D370C, 0x6D371C
 
-.global sUnk_86D371C
-sUnk_86D371C:
+.global sWarioTransformationMusic
+sWarioTransformationMusic:
 
 baserom_blob 0x6D371C, 0x6D3CF8
 

@@ -56,13 +56,13 @@ sUnk_878F1D4:
 
 baserom_blob 0x78F1D4, 0x78F21C
 
-.global sUnk_878F21C
-sUnk_878F21C:
+.global sRoomStartDataTables
+sRoomStartDataTables:
 
 baserom_blob 0x78F21C, 0x78F280
 
-.global sUnk_878F280
-sUnk_878F280:
+.global sRoomHeaderTables
+sRoomHeaderTables:
 
 baserom_blob 0x78F280, 0x78F2E4
 
