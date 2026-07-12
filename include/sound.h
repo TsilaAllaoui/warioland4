@@ -78,7 +78,7 @@ enum SoundID {
     SOUND_45,
     SOUND_46,
     SE_SHIERAGUTCHI_RISE,
-    SOUND_48,
+    SE_GOGGLEY_BLADE_HIT,
     SOUND_49,
     SOUND_4A,
     SOUND_4B,

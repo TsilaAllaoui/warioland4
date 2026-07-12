@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████░░░░░░░░░░░░░░░░░░░░░░  27.2%   1,106 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  22.5%   137,298 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████░░░░░░░░░░░░░░░░░░░░░░  27.6%   1,125 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  22.9%   139,934 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3821,31 +3821,31 @@
 <rect x="901.04" y="781.14" width="3.26" height="6.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_caterpillar/func_8041E54: 20 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_goggley_blade: 0.0% matched, 2,636 bytes</title>
+<title>goggley_blade: 100.0% matched, 2,636 bytes</title>
 <rect x="842.71" y="788.66" width="62.33" height="63.74" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip75"><rect x="844.71" y="789.66" width="58.93" height="11.58"/></clipPath>
 <rect x="843.71" y="789.66" width="60.93" height="11.58" fill="#05080d"/>
-<text x="845.21" y="798.24" clip-path="url(#moduleLabelClip75)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_go…</text>
-<text x="902.65" y="798.24" text-anchor="end" clip-path="url(#moduleLabelClip75)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="843.71" y="801.24" width="19.25" height="35.09" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/SpriteGoggleyBlade: 592 bytes, not matched, size=symbol</title></rect>
-<rect x="843.71" y="836.68" width="19.25" height="14.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045584: 256 bytes, not matched, size=symbol</title></rect>
-<rect x="863.32" y="801.24" width="13.50" height="19.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045350: 240 bytes, not matched, size=symbol</title></rect>
-<rect x="877.17" y="801.24" width="13.50" height="19.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045454: 240 bytes, not matched, size=symbol</title></rect>
-<rect x="891.02" y="801.24" width="13.27" height="19.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045064: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="863.32" y="821.57" width="12.45" height="15.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045238: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="863.32" y="837.33" width="12.45" height="14.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045174: 160 bytes, not matched, size=symbol</title></rect>
-<rect x="876.12" y="821.57" width="16.14" height="10.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_804571C: 148 bytes, not matched, size=symbol</title></rect>
-<rect x="892.61" y="821.57" width="11.69" height="10.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_80452E4: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="876.12" y="832.09" width="10.50" height="10.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045004: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="876.12" y="842.48" width="10.50" height="9.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_80456C4: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="886.96" y="832.09" width="8.49" height="8.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045544: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="895.81" y="832.09" width="8.49" height="8.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045684: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="886.96" y="840.59" width="7.46" height="5.66" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8044FDC: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="886.96" y="846.59" width="7.46" height="5.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045150: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="894.78" y="840.59" width="6.00" height="6.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045214: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="901.12" y="840.59" width="3.18" height="6.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_8045440: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="894.78" y="847.24" width="4.59" height="4.41" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_80457B0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="899.71" y="847.24" width="4.59" height="4.41" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_goggley_blade/func_80457C4: 20 bytes, not matched, size=symbol</title></rect>
+<text x="845.21" y="798.24" clip-path="url(#moduleLabelClip75)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">goggley_b…</text>
+<text x="902.65" y="798.24" text-anchor="end" clip-path="url(#moduleLabelClip75)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="843.71" y="801.24" width="19.25" height="35.09" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/SpriteGoggleyBlade: 592 bytes, matched, size=symbol</title></rect>
+<rect x="843.71" y="836.68" width="19.25" height="14.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeKnockback: 256 bytes, matched, size=symbol</title></rect>
+<rect x="863.32" y="801.24" width="13.50" height="19.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeTurnHorizontal: 240 bytes, matched, size=symbol</title></rect>
+<rect x="877.17" y="801.24" width="13.50" height="19.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeVerticalMovement: 240 bytes, matched, size=symbol</title></rect>
+<rect x="891.02" y="801.24" width="13.27" height="19.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeHorizontalMovement: 236 bytes, matched, size=symbol</title></rect>
+<rect x="863.32" y="821.57" width="12.45" height="15.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeTurnUp: 172 bytes, matched, size=symbol</title></rect>
+<rect x="863.32" y="837.33" width="12.45" height="14.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeTurnDown: 160 bytes, matched, size=symbol</title></rect>
+<rect x="876.12" y="821.57" width="16.14" height="10.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/DefeatGoggleyBlade: 148 bytes, matched, size=symbol</title></rect>
+<rect x="892.61" y="821.57" width="11.69" height="10.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetVerticalMovement: 108 bytes, matched, size=symbol</title></rect>
+<rect x="876.12" y="832.09" width="10.50" height="10.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetHorizontalMovement: 96 bytes, matched, size=symbol</title></rect>
+<rect x="876.12" y="842.48" width="10.50" height="9.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeStunned: 88 bytes, matched, size=symbol</title></rect>
+<rect x="886.96" y="832.09" width="8.49" height="8.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetKnockback: 64 bytes, matched, size=symbol</title></rect>
+<rect x="895.81" y="832.09" width="8.49" height="8.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetStunned: 64 bytes, matched, size=symbol</title></rect>
+<rect x="886.96" y="840.59" width="7.46" height="5.66" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/InitGoggleyBlade: 40 bytes, matched, size=symbol</title></rect>
+<rect x="886.96" y="846.59" width="7.46" height="5.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetTurnDown: 36 bytes, matched, size=symbol</title></rect>
+<rect x="894.78" y="840.59" width="6.00" height="6.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetTurnUp: 36 bytes, matched, size=symbol</title></rect>
+<rect x="901.12" y="840.59" width="3.18" height="6.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeFallLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="894.78" y="847.24" width="4.59" height="4.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeFallRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="899.71" y="847.24" width="4.59" height="4.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>goggley_blade/GoggleyBladeSetTurnHorizontal: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_chance_wheel: 0.0% matched, 2,604 bytes</title>
