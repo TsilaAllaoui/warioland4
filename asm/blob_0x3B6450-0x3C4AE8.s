@@ -952,83 +952,83 @@ sUnk_83BF986:
 
 baserom_blob 0x3BF986, 0x3BFB8C
 
-.global sUnk_83BFB8C
-sUnk_83BFB8C:
+.global sChanceWheelIdleOam
+sChanceWheelIdleOam:
 
 baserom_blob 0x3BFB8C, 0x3BFCB4
 
-.global sUnk_83BFCB4
-sUnk_83BFCB4:
+.global sChanceWheelResult1Oam
+sChanceWheelResult1Oam:
 
 baserom_blob 0x3BFCB4, 0x3BFCE4
 
-.global sUnk_83BFCE4
-sUnk_83BFCE4:
+.global sChanceWheelResult2Oam
+sChanceWheelResult2Oam:
 
 baserom_blob 0x3BFCE4, 0x3BFD14
 
-.global sUnk_83BFD14
-sUnk_83BFD14:
+.global sChanceWheelResult3Oam
+sChanceWheelResult3Oam:
 
 baserom_blob 0x3BFD14, 0x3BFD44
 
-.global sUnk_83BFD44
-sUnk_83BFD44:
+.global sChanceWheelResult4Oam
+sChanceWheelResult4Oam:
 
 baserom_blob 0x3BFD44, 0x3BFD74
 
-.global sUnk_83BFD74
-sUnk_83BFD74:
+.global sChanceWheelResult5Oam
+sChanceWheelResult5Oam:
 
 baserom_blob 0x3BFD74, 0x3BFDA4
 
-.global sUnk_83BFDA4
-sUnk_83BFDA4:
+.global sChanceWheelResult6Oam
+sChanceWheelResult6Oam:
 
 baserom_blob 0x3BFDA4, 0x3BFDD4
 
-.global sUnk_83BFDD4
-sUnk_83BFDD4:
+.global sChanceWheelRewardEffectOam
+sChanceWheelRewardEffectOam:
 
 baserom_blob 0x3BFDD4, 0x3C0A28
 
-.global sUnk_83C0A28
-sUnk_83C0A28:
+.global sGoalBlockIdleOam
+sGoalBlockIdleOam:
 
 baserom_blob 0x3C0A28, 0x3C0B50
 
-.global sUnk_83C0B50
-sUnk_83C0B50:
+.global sGoalBlockResult1Oam
+sGoalBlockResult1Oam:
 
 baserom_blob 0x3C0B50, 0x3C0B80
 
-.global sUnk_83C0B80
-sUnk_83C0B80:
+.global sGoalBlockResult2Oam
+sGoalBlockResult2Oam:
 
 baserom_blob 0x3C0B80, 0x3C0BB0
 
-.global sUnk_83C0BB0
-sUnk_83C0BB0:
+.global sGoalBlockResult3Oam
+sGoalBlockResult3Oam:
 
 baserom_blob 0x3C0BB0, 0x3C0BE0
 
-.global sUnk_83C0BE0
-sUnk_83C0BE0:
+.global sGoalBlockResult4Oam
+sGoalBlockResult4Oam:
 
 baserom_blob 0x3C0BE0, 0x3C0C10
 
-.global sUnk_83C0C10
-sUnk_83C0C10:
+.global sGoalBlockResult5Oam
+sGoalBlockResult5Oam:
 
 baserom_blob 0x3C0C10, 0x3C0C40
 
-.global sUnk_83C0C40
-sUnk_83C0C40:
+.global sGoalBlockResult6Oam
+sGoalBlockResult6Oam:
 
 baserom_blob 0x3C0C40, 0x3C0D50
 
-.global sUnk_83C0D50
-sUnk_83C0D50:
+.global sChanceWheelDropYVelocity
+sChanceWheelDropYVelocity:
 
 baserom_blob 0x3C0D50, 0x3C1270
 
