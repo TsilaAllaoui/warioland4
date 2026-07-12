@@ -3050,63 +3050,63 @@ sUnk_83E22C8:
 
 baserom_blob 0x3E22C8, 0x3E264C
 
-.global sUnk_83E264C
-sUnk_83E264C:
+.global sOnomiPushedOam
+sOnomiPushedOam:
 
 baserom_blob 0x3E264C, 0x3E265C
 
-.global sUnk_83E265C
-sUnk_83E265C:
+.global sOnomiTurningOam
+sOnomiTurningOam:
 
 baserom_blob 0x3E265C, 0x3E2674
 
-.global sUnk_83E2674
-sUnk_83E2674:
+.global sOnomiPreparingAttackOam
+sOnomiPreparingAttackOam:
 
 baserom_blob 0x3E2674, 0x3E269C
 
-.global sUnk_83E269C
-sUnk_83E269C:
+.global sOnomiWalkingOam
+sOnomiWalkingOam:
 
 baserom_blob 0x3E269C, 0x3E26E4
 
-.global sUnk_83E26E4
-sUnk_83E26E4:
+.global sOnomiAttackingOam
+sOnomiAttackingOam:
 
 baserom_blob 0x3E26E4, 0x3E2714
 
-.global sUnk_83E2714
-sUnk_83E2714:
+.global sOnomiStunnedOam
+sOnomiStunnedOam:
 
 baserom_blob 0x3E2714, 0x3E2734
 
-.global sUnk_83E2734
-sUnk_83E2734:
+.global sOnomiFallingOam
+sOnomiFallingOam:
 
 baserom_blob 0x3E2734, 0x3E2754
 
-.global sUnk_83E2754
-sUnk_83E2754:
+.global sOnomiTackledOam
+sOnomiTackledOam:
 
 baserom_blob 0x3E2754, 0x3E276C
 
-.global sUnk_83E276C
-sUnk_83E276C:
+.global sOnomiCrushedOam
+sOnomiCrushedOam:
 
 baserom_blob 0x3E276C, 0x3E278C
 
-.global sUnk_83E278C
-sUnk_83E278C:
+.global sOnomiGettingUpOam
+sOnomiGettingUpOam:
 
 baserom_blob 0x3E278C, 0x3E279C
 
-.global sUnk_83E279C
-sUnk_83E279C:
+.global sOnomiTurningAroundOam
+sOnomiTurningAroundOam:
 
 baserom_blob 0x3E279C, 0x3E27B4
 
-.global sUnk_83E27B4
-sUnk_83E27B4:
+.global sOnomiCrushedWhileStunnedOam
+sOnomiCrushedWhileStunnedOam:
 
 baserom_blob 0x3E27B4, 0x3E2A0C
 

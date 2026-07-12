@@ -699,7 +699,7 @@ SECTIONS {
         obj/sprite_ai/disasm_dice.o(.text);
         obj/sprite_ai/disasm_toy_car.o(.text);
         obj/sprite_ai/disasm_sprite_a9.o(.text);
-        obj/sprite_ai/disasm_onomi.o(.text);
+        obj/sprite_ai/onomi.o(.text);
         obj/sprite_ai/boss_corridor_cat.o(.text);
         obj/sprite_ai/disasm_petbottom.o(.text);
         obj/sprite_ai/glass_bird.o(.text);
