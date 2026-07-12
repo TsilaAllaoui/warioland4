@@ -215,58 +215,58 @@ sUnk_83C7424:
 
 baserom_blob 0x3C7424, 0x3C770C
 
-.global sUnk_83C770C
-sUnk_83C770C:
+.global sCaterpillarCrawlingOam
+sCaterpillarCrawlingOam:
 
 baserom_blob 0x3C770C, 0x3C7734
 
-.global sUnk_83C7734
-sUnk_83C7734:
+.global sCaterpillarFallingOam
+sCaterpillarFallingOam:
 
 baserom_blob 0x3C7734, 0x3C775C
 
-.global sUnk_83C775C
-sUnk_83C775C:
+.global sCaterpillarTurningOam
+sCaterpillarTurningOam:
 
 baserom_blob 0x3C775C, 0x3C777C
 
-.global sUnk_83C777C
-sUnk_83C777C:
+.global sCaterpillarTurningAroundOam
+sCaterpillarTurningAroundOam:
 
 baserom_blob 0x3C777C, 0x3C779C
 
-.global sUnk_83C779C
-sUnk_83C779C:
+.global sCaterpillarPushedBackwardOam
+sCaterpillarPushedBackwardOam:
 
 baserom_blob 0x3C779C, 0x3C77BC
 
-.global sUnk_83C77BC
-sUnk_83C77BC:
+.global sCaterpillarPushedForwardOam
+sCaterpillarPushedForwardOam:
 
 baserom_blob 0x3C77BC, 0x3C77DC
 
-.global sUnk_83C77DC
-sUnk_83C77DC:
+.global sCaterpillarCrushedOam
+sCaterpillarCrushedOam:
 
 baserom_blob 0x3C77DC, 0x3C780C
 
-.global sUnk_83C780C
-sUnk_83C780C:
+.global sCaterpillarTackledOam
+sCaterpillarTackledOam:
 
 baserom_blob 0x3C780C, 0x3C7834
 
-.global sUnk_83C7834
-sUnk_83C7834:
+.global sCaterpillarStunnedOam
+sCaterpillarStunnedOam:
 
 baserom_blob 0x3C7834, 0x3C785C
 
-.global sUnk_83C785C
-sUnk_83C785C:
+.global sCaterpillarGettingUpOam
+sCaterpillarGettingUpOam:
 
 baserom_blob 0x3C785C, 0x3C788C
 
-.global sUnk_83C788C
-sUnk_83C788C:
+.global sCaterpillarCarriedOam
+sCaterpillarCarriedOam:
 
 baserom_blob 0x3C788C, 0x3C798C
 
