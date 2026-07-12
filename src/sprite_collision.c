@@ -66,7 +66,7 @@ void SpriteCollisionMakeWarioDropCoins(s32 slot)
         case PSPRITE_MOGURAMEN:
         case PSPRITE_SPIKY_Z:
         case PSPRITE_9A:
-        case PSPRITE_9F:
+        case PSPRITE_BALL_LIGHTNING_BOLT:
             amount = CONVERT_SCORE(-500);
             break;
 

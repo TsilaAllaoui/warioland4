@@ -787,38 +787,38 @@ sTogemasukuRespawningOam:
 
 baserom_blob 0x3BD6F0, 0x3BD9A0
 
-.global sUnk_83BD9A0
-sUnk_83BD9A0:
+.global sBallLightningBoltFallingLeftOam
+sBallLightningBoltFallingLeftOam:
 
 baserom_blob 0x3BD9A0, 0x3BD9E8
 
-.global sUnk_83BD9E8
-sUnk_83BD9E8:
+.global sBallLightningBoltFallingRightOam
+sBallLightningBoltFallingRightOam:
 
 baserom_blob 0x3BD9E8, 0x3BDA30
 
-.global sUnk_83BDA30
-sUnk_83BDA30:
+.global sBallLightningBoltIdleOam
+sBallLightningBoltIdleOam:
 
 baserom_blob 0x3BDA30, 0x3BDA90
 
-.global sUnk_83BDA90
-sUnk_83BDA90:
+.global sBallLightningTrailOam
+sBallLightningTrailOam:
 
 baserom_blob 0x3BDA90, 0x3BDAB8
 
-.global sUnk_83BDAB8
-sUnk_83BDAB8:
+.global sBallLightningBoltDisappearingOam
+sBallLightningBoltDisappearingOam:
 
 baserom_blob 0x3BDAB8, 0x3BDAF0
 
-.global sUnk_83BDAF0
-sUnk_83BDAF0:
+.global sBallLightningSpawnerOam
+sBallLightningSpawnerOam:
 
 baserom_blob 0x3BDAF0, 0x3BDB00
 
-.global sUnk_83BDB00
-sUnk_83BDB00:
+.global sBallLightningTrailYVelocity
+sBallLightningTrailYVelocity:
 
 baserom_blob 0x3BDB00, 0x3BDD54
 
