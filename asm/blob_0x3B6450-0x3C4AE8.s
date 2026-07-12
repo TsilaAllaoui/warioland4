@@ -552,53 +552,53 @@ sUnk_83BC0AE:
 
 baserom_blob 0x3BC0AE, 0x3BC570
 
-.global sUnk_83BC570
-sUnk_83BC570:
+.global sSpikyIdleOam
+sSpikyIdleOam:
 
 baserom_blob 0x3BC570, 0x3BC5A8
 
-.global sUnk_83BC5A8
-sUnk_83BC5A8:
+.global sSpikyFallingOam
+sSpikyFallingOam:
 
 baserom_blob 0x3BC5A8, 0x3BC5E0
 
-.global sUnk_83BC5E0
-sUnk_83BC5E0:
+.global sSpikyTurningOam
+sSpikyTurningOam:
 
 baserom_blob 0x3BC5E0, 0x3BC5F8
 
-.global sUnk_83BC5F8
-sUnk_83BC5F8:
+.global sSpikyTurningAroundOam
+sSpikyTurningAroundOam:
 
 baserom_blob 0x3BC5F8, 0x3BC618
 
-.global sUnk_83BC618
-sUnk_83BC618:
+.global sSpikyAirborneOam
+sSpikyAirborneOam:
 
 baserom_blob 0x3BC618, 0x3BC670
 
-.global sUnk_83BC670
-sUnk_83BC670:
+.global sSpikyGettingUpOam
+sSpikyGettingUpOam:
 
 baserom_blob 0x3BC670, 0x3BC6C0
 
-.global sUnk_83BC6C0
-sUnk_83BC6C0:
+.global sSpikyRecoveringOam
+sSpikyRecoveringOam:
 
 baserom_blob 0x3BC6C0, 0x3BC6E0
 
-.global sUnk_83BC6E0
-sUnk_83BC6E0:
+.global sSpikyStunnedOam
+sSpikyStunnedOam:
 
 baserom_blob 0x3BC6E0, 0x3BC718
 
-.global sUnk_83BC718
-sUnk_83BC718:
+.global sSpikyPushedOam
+sSpikyPushedOam:
 
 baserom_blob 0x3BC718, 0x3BC730
 
-.global sUnk_83BC730
-sUnk_83BC730:
+.global sSpikyDefeatedOam
+sSpikyDefeatedOam:
 
 baserom_blob 0x3BC730, 0x3BC84C
 
