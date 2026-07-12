@@ -98,7 +98,7 @@ void ToyBlockRoundFalling(void)
     newY = func_8023A60(sprite->yPosition, sprite->xPosition);
     if (gUnk_30000A0.unk_02 == 1) {
         sprite->status |= SPRITE_STATUS_UNDERWATER;
-        m4aSongNumStart(SE_HEAVY_OBJECT_SPLASH);
+        m4aSongNumStart(SE_ENTER_WATER);
     }
 
     if (gUnk_3000A50 != 0) {

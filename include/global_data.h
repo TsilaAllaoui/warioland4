@@ -281,4 +281,6 @@ extern const struct WarioPoseProperty sUnk_82DDB60[];
 extern const u16 sBouncyWarioPalette[];
 
 
+extern u8 gUnk_3000964[][3];
+
 #endif  // GLOBAL_DATA_H

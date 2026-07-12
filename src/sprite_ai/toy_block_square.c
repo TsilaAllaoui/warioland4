@@ -278,7 +278,7 @@ void ToyBlockSquareFalling(void)
     if ((double)(gUnk_30000A0.unk_02 == 1))
     {
         sprite->status |= SPRITE_STATUS_UNDERWATER;
-        m4aSongNumStart(SOUND_3D);
+        m4aSongNumStart(SE_ENTER_WATER);
     }
 
     if (gUnk_3000A50 != 0)

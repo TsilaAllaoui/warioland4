@@ -20,7 +20,7 @@ enum SoundID {
     SOUND_C,
     SOUND_D,
     SOUND_E,
-    SOUND_F,
+    SE_TOBAWANI_KNOCKBACK,
     SOUND_10,
     SOUND_11,
     SOUND_12,
@@ -60,14 +60,13 @@ enum SoundID {
     SOUND_34,
     SOUND_35,
     SOUND_36,
-    SOUND_37,
+    SE_TOBAWANI_WALL_BOUNCE,
     SOUND_38,
     SOUND_39,
     SOUND_3A,
     SOUND_3B,
     SOUND_3C,
-    SE_HEAVY_OBJECT_SPLASH,
-    SOUND_3D = SE_HEAVY_OBJECT_SPLASH,
+    SE_ENTER_WATER,
     SOUND_3E,
     SE_CHANDELIER_SHAKE,
     SE_CHANDELIER_FALL,
@@ -603,7 +602,7 @@ enum SoundID {
     SE_WARIO_WOW_1,
     SE_WARIO_WOW_2,
     SE_WARIO_WOWWW,
-    SE_WARIO_YAHOO_6,
+    SE_WARIO_YAHOO_6
 };
 
 /* Compatibility name used by the matched Bat Wario source. */
