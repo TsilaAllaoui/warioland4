@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████░░░░░░░░░░░░░░░░░░░░░░  27.6%   1,125 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  22.9%   139,934 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████░░░░░░░░░░░░░░░░░░░░░░  28.2%   1,147 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  23.3%   141,854 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4153,32 +4153,32 @@
 <rect x="1065.11" y="536.91" width="2.96" height="12.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>fat/UpdateFatWario: 36 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_money_flower: 0.0% matched, 1,920 bytes</title>
+<title>money_flower: 100.0% matched, 1,920 bytes</title>
 <rect x="1069.42" y="494.15" width="51.74" height="55.75" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip90"><rect x="1071.42" y="495.15" width="48.34" height="10.14"/></clipPath>
 <rect x="1070.42" y="495.15" width="50.34" height="10.14" fill="#05080d"/>
-<text x="1071.92" y="502.30" clip-path="url(#moduleLabelClip90)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_…</text>
-<rect x="1070.42" y="505.30" width="21.46" height="34.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/SpriteMoneyFlower: 648 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.42" y="539.73" width="21.46" height="9.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_804135C: 184 bytes, not matched, size=symbol</title></rect>
-<rect x="1092.24" y="505.30" width="9.43" height="11.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041240: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="1102.02" y="505.30" width="9.02" height="11.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_80411B4: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="1111.39" y="505.30" width="9.02" height="11.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_80412D0: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="1092.24" y="516.68" width="9.49" height="9.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8040F48: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="1102.07" y="516.68" width="8.99" height="9.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_80410EC: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="1111.42" y="516.68" width="8.99" height="9.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041138: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="1092.24" y="526.10" width="7.18" height="8.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_80410B4: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1092.24" y="534.73" width="7.18" height="7.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041184: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1092.24" y="542.12" width="7.18" height="7.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041210: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.77" y="526.10" width="7.06" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_80412A0: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1107.18" y="526.10" width="6.44" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8040F98: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1113.97" y="526.10" width="6.44" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8040FE8: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.77" y="533.61" width="6.07" height="7.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041014: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.77" y="541.56" width="6.07" height="7.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041040: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1106.18" y="533.61" width="6.94" height="6.65" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_804132C: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1113.47" y="533.61" width="6.94" height="6.65" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041414: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1106.18" y="540.60" width="4.34" height="8.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8040FC4: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.87" y="540.60" width="4.34" height="8.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_804106C: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1115.56" y="540.60" width="4.86" height="7.66" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_money_flower/func_8041090: 36 bytes, not matched, size=symbol</title></rect>
+<text x="1071.92" y="502.30" clip-path="url(#moduleLabelClip90)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">money_f…</text>
+<rect x="1070.42" y="505.30" width="21.46" height="34.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/SpriteMoneyFlower: 648 bytes, matched, size=symbol</title></rect>
+<rect x="1070.42" y="539.73" width="21.46" height="9.43" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/CollectMoneyFlower: 184 bytes, matched, size=symbol</title></rect>
+<rect x="1092.24" y="505.30" width="9.43" height="11.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/StartMoneyFlowerStage4Growth: 96 bytes, matched, size=symbol</title></rect>
+<rect x="1102.02" y="505.30" width="9.02" height="11.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/StartMoneyFlowerStage3Growth: 92 bytes, matched, size=symbol</title></rect>
+<rect x="1111.39" y="505.30" width="9.02" height="11.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/StartMoneyFlowerStage5Growth: 92 bytes, matched, size=symbol</title></rect>
+<rect x="1092.24" y="516.68" width="9.49" height="9.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/SetupMoneyFlower: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1102.07" y="516.68" width="8.99" height="9.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/MoneyFlowerFinishStage1: 76 bytes, matched, size=symbol</title></rect>
+<rect x="1111.42" y="516.68" width="8.99" height="9.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/StartMoneyFlowerStage2Growth: 76 bytes, matched, size=symbol</title></rect>
+<rect x="1092.24" y="526.10" width="7.18" height="8.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/MoneyFlowerSeedOpening: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1092.24" y="534.73" width="7.18" height="7.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/MoneyFlowerStage2Idle: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1092.24" y="542.12" width="7.18" height="7.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/MoneyFlowerStage3Idle: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1099.77" y="526.10" width="7.06" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/MoneyFlowerStage4Idle: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1107.18" y="526.10" width="6.44" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/FinishMoneyFlowerCollection: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1113.97" y="526.10" width="6.44" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerSeed: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1099.77" y="533.61" width="6.07" height="7.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerStage2: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1099.77" y="541.56" width="6.07" height="7.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerStage3: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1106.18" y="533.61" width="6.94" height="6.65" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerStage4: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1113.47" y="533.61" width="6.94" height="6.65" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/MoneyFlowerStage5Idle: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1106.18" y="540.60" width="4.34" height="8.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerCollected: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1110.87" y="540.60" width="4.34" height="8.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerStage1: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1115.56" y="540.60" width="4.86" height="7.66" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>money_flower/InitMoneyFlowerStage5: 36 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>ball_lightning: 100.0% matched, 1,868 bytes</title>
