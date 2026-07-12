@@ -4671,13 +4671,13 @@ sBatPoseData:
 
 baserom_blob 0x2DDC18, 0x2DDC40
 
-.global sUnk_82DDC40
-sUnk_82DDC40:
+.global sFlatWarioAnimationTable
+sFlatWarioAnimationTable:
 
 baserom_blob 0x2DDC40, 0x2DDC78
 
-.global sUnk_82DDC78
-sUnk_82DDC78:
+.global sFlatWarioPoseProperties
+sFlatWarioPoseProperties:
 
 baserom_blob 0x2DDC78, 0x2DDCB0
 
@@ -4873,13 +4873,13 @@ sHorizontalOscillationVelocity:
 
 baserom_blob 0x2DEBC2, 0x2DEBDA
 
-.global sUnk_82DEBDA
-sUnk_82DEBDA:
+.global sFlatWarioHorizontalMovement
+sFlatWarioHorizontalMovement:
 
 baserom_blob 0x2DEBDA, 0x2DEBF2
 
-.global sUnk_82DEBF2
-sUnk_82DEBF2:
+.global sFlatWarioVerticalMovement
+sFlatWarioVerticalMovement:
 
 baserom_blob 0x2DEBF2, 0x2DEC0A
 
@@ -5379,33 +5379,33 @@ sUnk_831D9C0:
 
 baserom_blob 0x31D9C0, 0x32504C
 
-.global sUnk_832504C
-sUnk_832504C:
+.global sFlatWarioTransformingAnimation
+sFlatWarioTransformingAnimation:
 
 baserom_blob 0x32504C, 0x3250A0
 
-.global sUnk_83250A0
-sUnk_83250A0:
+.global sFlatWarioUnknown1Animation
+sFlatWarioUnknown1Animation:
 
 baserom_blob 0x3250A0, 0x3250DC
 
-.global sUnk_83250DC
-sUnk_83250DC:
+.global sFlatWarioFloatingAnimation
+sFlatWarioFloatingAnimation:
 
 baserom_blob 0x3250DC, 0x32513C
 
-.global sUnk_832513C
-sUnk_832513C:
+.global sFlatWarioStandingAnimation
+sFlatWarioStandingAnimation:
 
 baserom_blob 0x32513C, 0x325160
 
-.global sUnk_8325160
-sUnk_8325160:
+.global sFlatWarioWalkingAnimation
+sFlatWarioWalkingAnimation:
 
 baserom_blob 0x325160, 0x3251FC
 
-.global sUnk_83251FC
-sUnk_83251FC:
+.global sFlatWarioDetransformingAnimation
+sFlatWarioDetransformingAnimation:
 
 baserom_blob 0x3251FC, 0x325274
 
