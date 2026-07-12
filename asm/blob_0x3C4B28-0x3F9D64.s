@@ -135,83 +135,83 @@ sUnk_83C6616:
 
 baserom_blob 0x3C6616, 0x3C6F9C
 
-.global sUnk_83C6F9C
-sUnk_83C6F9C:
+.global sMoneyFlowerSeedIdleOam
+sMoneyFlowerSeedIdleOam:
 
 baserom_blob 0x3C6F9C, 0x3C6FAC
 
-.global sUnk_83C6FAC
-sUnk_83C6FAC:
+.global sMoneyFlowerSeedOpeningOam
+sMoneyFlowerSeedOpeningOam:
 
 baserom_blob 0x3C6FAC, 0x3C7034
 
-.global sUnk_83C7034
-sUnk_83C7034:
+.global sMoneyFlowerStage1IdleOam
+sMoneyFlowerStage1IdleOam:
 
 baserom_blob 0x3C7034, 0x3C70CC
 
-.global sUnk_83C70CC
-sUnk_83C70CC:
+.global sMoneyFlowerStage2GrowingOam
+sMoneyFlowerStage2GrowingOam:
 
 baserom_blob 0x3C70CC, 0x3C715C
 
-.global sUnk_83C715C
-sUnk_83C715C:
+.global sMoneyFlowerStage2IdleOam
+sMoneyFlowerStage2IdleOam:
 
 baserom_blob 0x3C715C, 0x3C716C
 
-.global sUnk_83C716C
-sUnk_83C716C:
+.global sMoneyFlowerStage3GrowingOam
+sMoneyFlowerStage3GrowingOam:
 
 baserom_blob 0x3C716C, 0x3C7194
 
-.global sUnk_83C7194
-sUnk_83C7194:
+.global sMoneyFlowerStage3IdleOam
+sMoneyFlowerStage3IdleOam:
 
 baserom_blob 0x3C7194, 0x3C71A4
 
-.global sUnk_83C71A4
-sUnk_83C71A4:
+.global sMoneyFlowerStage4GrowingOam
+sMoneyFlowerStage4GrowingOam:
 
 baserom_blob 0x3C71A4, 0x3C71CC
 
-.global sUnk_83C71CC
-sUnk_83C71CC:
+.global sMoneyFlowerStage4IdleOam
+sMoneyFlowerStage4IdleOam:
 
 baserom_blob 0x3C71CC, 0x3C71DC
 
-.global sUnk_83C71DC
-sUnk_83C71DC:
+.global sMoneyFlowerStage5GrowingOam
+sMoneyFlowerStage5GrowingOam:
 
 baserom_blob 0x3C71DC, 0x3C7214
 
-.global sUnk_83C7214
-sUnk_83C7214:
+.global sMoneyFlowerStage5IdleOam
+sMoneyFlowerStage5IdleOam:
 
 baserom_blob 0x3C7214, 0x3C72CC
 
-.global sUnk_83C72CC
-sUnk_83C72CC:
+.global sMoneyFlowerCollectedOam
+sMoneyFlowerCollectedOam:
 
 baserom_blob 0x3C72CC, 0x3C72DC
 
-.global sUnk_83C72DC
-sUnk_83C72DC:
+.global sMoneyFlowerStage2CollectionOam
+sMoneyFlowerStage2CollectionOam:
 
 baserom_blob 0x3C72DC, 0x3C733C
 
-.global sUnk_83C733C
-sUnk_83C733C:
+.global sMoneyFlowerStage3CollectionOam
+sMoneyFlowerStage3CollectionOam:
 
 baserom_blob 0x3C733C, 0x3C739C
 
-.global sUnk_83C739C
-sUnk_83C739C:
+.global sMoneyFlowerStage4CollectionOam
+sMoneyFlowerStage4CollectionOam:
 
 baserom_blob 0x3C739C, 0x3C7424
 
-.global sUnk_83C7424
-sUnk_83C7424:
+.global sMoneyFlowerStage5CollectionOam
+sMoneyFlowerStage5CollectionOam:
 
 baserom_blob 0x3C7424, 0x3C770C
 
