@@ -150,13 +150,13 @@ void SpriteTogetoge(void)
             goto pose_54;
         case 55:
             func_8024688();
-            m4aSongNumStart(SE_TOGETOGE_BOUNCE);
+            m4aSongNumStart(SE_BOUNCE);
         case 56:
             func_80246B8();
             break;
         case 57:
             func_802473C();
-            m4aSongNumStart(SE_TOGETOGE_BOUNCE);
+            m4aSongNumStart(SE_BOUNCE);
 pose_54:
         case 54:
         case 58:
@@ -164,19 +164,19 @@ pose_54:
             break;
         case 59:
             func_80247F0();
-            m4aSongNumStart(SE_TOGETOGE_BOUNCE);
+            m4aSongNumStart(SE_BOUNCE);
         case 60:
             func_8024820();
             break;
         case 61:
             func_80248A4();
-            m4aSongNumStart(SE_TOGETOGE_BOUNCE);
+            m4aSongNumStart(SE_BOUNCE);
         case 62:
             func_80248D4();
             break;
         case 63:
             func_8024958();
-            m4aSongNumStart(SE_TOGETOGE_BOUNCE);
+            m4aSongNumStart(SE_BOUNCE);
 pose_52:
         case 52:
         case 64:
@@ -184,7 +184,7 @@ pose_52:
             break;
         case 65:
             func_8024A0C();
-            m4aSongNumStart(SE_TOGETOGE_BOUNCE);
+            m4aSongNumStart(SE_BOUNCE);
         case 66:
             func_8024A3C();
             break;

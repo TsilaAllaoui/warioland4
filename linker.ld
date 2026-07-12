@@ -679,7 +679,7 @@ SECTIONS {
         obj/sprite_ai/spike_cannon.o(.text);
         obj/sprite_ai/money_sunflower.o(.text);
         obj/sprite_ai/disasm_yeti.o(.text);
-        obj/sprite_ai/disasm_bowler.o(.text);
+        obj/sprite_ai/bowler.o(.text);
         obj/sprite_ai/magma.o(.text);
         obj/sprite_ai/boss_door.o(.text);
         obj/sprite_ai/disasm_shopkeeper.o(.text);

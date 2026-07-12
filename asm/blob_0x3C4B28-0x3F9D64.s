@@ -1290,63 +1290,63 @@ sUnk_83D172C:
 
 baserom_blob 0x3D172C, 0x3D204C
 
-.global sUnk_83D204C
-sUnk_83D204C:
+.global sBowlerIdleOam
+sBowlerIdleOam:
 
 baserom_blob 0x3D204C, 0x3D205C
 
-.global sUnk_83D205C
-sUnk_83D205C:
+.global sBowlerTurningOam
+sBowlerTurningOam:
 
 baserom_blob 0x3D205C, 0x3D2074
 
-.global sUnk_83D2074
-sUnk_83D2074:
+.global sBowlerTurnAroundOam
+sBowlerTurnAroundOam:
 
 baserom_blob 0x3D2074, 0x3D208C
 
-.global sUnk_83D208C
-sUnk_83D208C:
+.global sBowlerThrowOam
+sBowlerThrowOam:
 
 baserom_blob 0x3D208C, 0x3D21E4
 
-.global sUnk_83D21E4
-sUnk_83D21E4:
+.global sBowlerWalkingOam
+sBowlerWalkingOam:
 
 baserom_blob 0x3D21E4, 0x3D221C
 
-.global sUnk_83D221C
-sUnk_83D221C:
+.global sBowlerDyingOam
+sBowlerDyingOam:
 
 baserom_blob 0x3D221C, 0x3D222C
 
-.global sUnk_83D222C
-sUnk_83D222C:
+.global sBowlerKnockbackLeftOam
+sBowlerKnockbackLeftOam:
 
 baserom_blob 0x3D222C, 0x3D2244
 
-.global sUnk_83D2244
-sUnk_83D2244:
+.global sBowlerKnockbackUpOam
+sBowlerKnockbackUpOam:
 
 baserom_blob 0x3D2244, 0x3D2264
 
-.global sUnk_83D2264
-sUnk_83D2264:
+.global sBowlerBallOam
+sBowlerBallOam:
 
 baserom_blob 0x3D2264, 0x3D2274
 
-.global sUnk_83D2274
-sUnk_83D2274:
+.global sBowlerTransformOam
+sBowlerTransformOam:
 
 baserom_blob 0x3D2274, 0x3D238C
 
-.global sUnk_83D238C
-sUnk_83D238C:
+.global sBowlerKnockbackRightOam
+sBowlerKnockbackRightOam:
 
 baserom_blob 0x3D238C, 0x3D23A4
 
-.global sUnk_83D23A4
-sUnk_83D23A4:
+.global sBowlerBallYMovement
+sBowlerBallYMovement:
 
 baserom_blob 0x3D23A4, 0x3D2570
 

@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  29.9%   1,216 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  24.4%   149,082 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  30.5%   1,240 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  25.0%   152,338 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3196,36 +3196,36 @@
 <rect x="836.76" y="578.66" width="4.60" height="2.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038EC8: 12 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_bowler: 0.0% matched, 3,256 bytes</title>
+<title>bowler: 100.0% matched, 3,256 bytes</title>
 <rect x="770.65" y="582.53" width="71.46" height="68.81" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip60"><rect x="772.65" y="583.53" width="68.06" height="12.49"/></clipPath>
 <rect x="771.65" y="583.53" width="70.06" height="12.49" fill="#05080d"/>
-<text x="773.15" y="593.02" clip-path="url(#moduleLabelClip60)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_bowl…</text>
-<text x="839.71" y="592.53" text-anchor="end" clip-path="url(#moduleLabelClip60)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="771.65" y="596.02" width="33.73" height="31.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/SpriteUnknownBA: 912 bytes, not matched, size=symbol</title></rect>
-<rect x="771.65" y="627.64" width="33.73" height="22.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/SpriteBowler: 672 bytes, not matched, size=symbol</title></rect>
-<rect x="805.73" y="596.02" width="22.87" height="14.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DA24: 284 bytes, not matched, size=symbol</title></rect>
-<rect x="828.96" y="596.02" width="12.41" height="14.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DF80: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="805.73" y="610.47" width="14.37" height="11.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DEF0: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="820.45" y="610.47" width="10.28" height="11.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DD44: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="831.08" y="610.47" width="10.28" height="11.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DE44: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="805.73" y="622.03" width="11.42" height="9.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DB60: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="805.73" y="632.07" width="11.42" height="9.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DBC4: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="805.73" y="642.11" width="11.42" height="8.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DC48: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="817.51" y="622.03" width="8.73" height="10.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804D9B4: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="826.59" y="622.03" width="7.43" height="10.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DDAC: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="834.37" y="622.03" width="7.00" height="10.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DEAC: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="817.51" y="632.97" width="8.59" height="5.99" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DE14: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="817.51" y="639.31" width="8.59" height="5.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DCB8: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="817.51" y="645.12" width="8.59" height="5.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DCE4: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="826.45" y="632.97" width="4.74" height="7.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804D994: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="831.54" y="632.97" width="4.74" height="7.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DB40: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="836.63" y="632.97" width="4.74" height="7.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DC28: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="826.45" y="640.40" width="6.38" height="5.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DDF4: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="826.45" y="646.02" width="6.38" height="4.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DA08: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="833.19" y="640.40" width="4.24" height="6.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DD28: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="837.78" y="640.40" width="3.59" height="6.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DCA0: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="833.19" y="647.61" width="8.18" height="2.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bowler/func_804DD10: 24 bytes, not matched, size=symbol</title></rect>
+<text x="773.15" y="593.02" clip-path="url(#moduleLabelClip60)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">bowler</text>
+<text x="839.71" y="592.53" text-anchor="end" clip-path="url(#moduleLabelClip60)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="771.65" y="596.02" width="33.73" height="31.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/SpriteBowlerBall: 912 bytes, matched, size=symbol</title></rect>
+<rect x="771.65" y="627.64" width="33.73" height="22.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/SpriteBowler: 672 bytes, matched, size=symbol</title></rect>
+<rect x="805.73" y="596.02" width="22.87" height="14.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerWalking: 284 bytes, matched, size=symbol</title></rect>
+<rect x="828.96" y="596.02" width="12.41" height="14.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/DestroyBowlerBall: 156 bytes, matched, size=symbol</title></rect>
+<rect x="805.73" y="610.47" width="14.37" height="11.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerBallMoving: 144 bytes, matched, size=symbol</title></rect>
+<rect x="820.45" y="610.47" width="10.28" height="11.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartThrowingBall: 104 bytes, matched, size=symbol</title></rect>
+<rect x="831.08" y="610.47" width="10.28" height="11.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/InitBowlerBall: 104 bytes, matched, size=symbol</title></rect>
+<rect x="805.73" y="622.03" width="11.42" height="9.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartDying: 100 bytes, matched, size=symbol</title></rect>
+<rect x="805.73" y="632.07" width="11.42" height="9.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerTurning: 100 bytes, matched, size=symbol</title></rect>
+<rect x="805.73" y="642.11" width="11.42" height="8.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerIdle: 88 bytes, matched, size=symbol</title></rect>
+<rect x="817.51" y="622.03" width="8.73" height="10.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/InitBowler: 84 bytes, matched, size=symbol</title></rect>
+<rect x="826.59" y="622.03" width="7.43" height="10.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerThrowingBall: 72 bytes, matched, size=symbol</title></rect>
+<rect x="834.37" y="622.03" width="7.00" height="10.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerBallStartSpinning: 68 bytes, matched, size=symbol</title></rect>
+<rect x="817.51" y="632.97" width="8.59" height="5.99" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerTransformingIntoYeti: 48 bytes, matched, size=symbol</title></rect>
+<rect x="817.51" y="639.31" width="8.59" height="5.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartKnockbackBackward: 44 bytes, matched, size=symbol</title></rect>
+<rect x="817.51" y="645.12" width="8.59" height="5.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartKnockbackForward: 44 bytes, matched, size=symbol</title></rect>
+<rect x="826.45" y="632.97" width="4.74" height="7.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerCheckSwitch: 32 bytes, matched, size=symbol</title></rect>
+<rect x="831.54" y="632.97" width="4.74" height="7.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartIdle: 32 bytes, matched, size=symbol</title></rect>
+<rect x="836.63" y="632.97" width="4.74" height="7.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartTransformingIntoYeti: 32 bytes, matched, size=symbol</title></rect>
+<rect x="826.45" y="640.40" width="6.38" height="5.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartTurning: 32 bytes, matched, size=symbol</title></rect>
+<rect x="826.45" y="646.02" width="6.38" height="4.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerKnockback: 28 bytes, matched, size=symbol</title></rect>
+<rect x="833.19" y="640.40" width="4.24" height="6.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartWalking: 28 bytes, matched, size=symbol</title></rect>
+<rect x="837.78" y="640.40" width="3.59" height="6.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartKnockback: 24 bytes, matched, size=symbol</title></rect>
+<rect x="833.19" y="647.61" width="8.18" height="2.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bowler/BowlerStartKnockbackUp: 24 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>vortex: 100.0% matched, 3,244 bytes</title>
