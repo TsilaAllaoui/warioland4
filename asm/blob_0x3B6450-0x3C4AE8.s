@@ -1032,73 +1032,73 @@ sUnk_83C0D50:
 
 baserom_blob 0x3C0D50, 0x3C1270
 
-.global sUnk_83C1270
-sUnk_83C1270:
+.global sMarumenIdleOam
+sMarumenIdleOam:
 
 baserom_blob 0x3C1270, 0x3C12A8
 
-.global sUnk_83C12A8
-sUnk_83C12A8:
+.global sMarumenFallingOam
+sMarumenFallingOam:
 
 baserom_blob 0x3C12A8, 0x3C12E0
 
-.global sUnk_83C12E0
-sUnk_83C12E0:
+.global sMarumenTurningOam
+sMarumenTurningOam:
 
 baserom_blob 0x3C12E0, 0x3C1308
 
-.global sUnk_83C1308
-sUnk_83C1308:
+.global sMarumenTurningAroundOam
+sMarumenTurningAroundOam:
 
 baserom_blob 0x3C1308, 0x3C1330
 
-.global sUnk_83C1330
-sUnk_83C1330:
+.global sMarumenAirborneOam
+sMarumenAirborneOam:
 
 baserom_blob 0x3C1330, 0x3C13D8
 
-.global sUnk_83C13D8
-sUnk_83C13D8:
+.global sMarumenStunnedOam
+sMarumenStunnedOam:
 
 baserom_blob 0x3C13D8, 0x3C1410
 
-.global sUnk_83C1410
-sUnk_83C1410:
+.global sMarumenGettingUpOam
+sMarumenGettingUpOam:
 
 baserom_blob 0x3C1410, 0x3C1490
 
-.global sUnk_83C1490
-sUnk_83C1490:
+.global sMarumenDefeatedOam
+sMarumenDefeatedOam:
 
 baserom_blob 0x3C1490, 0x3C14C8
 
-.global sUnk_83C14C8
-sUnk_83C14C8:
+.global sMarumenAlternateCrushedOam
+sMarumenAlternateCrushedOam:
 
 baserom_blob 0x3C14C8, 0x3C14F0
 
-.global sUnk_83C14F0
-sUnk_83C14F0:
+.global sMarumenCrushedOam
+sMarumenCrushedOam:
 
 baserom_blob 0x3C14F0, 0x3C1518
 
-.global sUnk_83C1518
-sUnk_83C1518:
+.global sMarumenRecoveringOam
+sMarumenRecoveringOam:
 
 baserom_blob 0x3C1518, 0x3C1528
 
-.global sUnk_83C1528
-sUnk_83C1528:
+.global sMarumenPushedOam
+sMarumenPushedOam:
 
 baserom_blob 0x3C1528, 0x3C1540
 
-.global sUnk_83C1540
-sUnk_83C1540:
+.global sMarumenGettingUpYVelocity
+sMarumenGettingUpYVelocity:
 
 baserom_blob 0x3C1540, 0x3C1596
 
-.global sUnk_83C1596
-sUnk_83C1596:
+.global sMarumenAirborneYVelocity
+sMarumenAirborneYVelocity:
 
 baserom_blob 0x3C1596, 0x3C2C14
 
