@@ -214,7 +214,7 @@ enum PrimarySpriteID {
     PSPRITE_CC,
     PSPRITE_0xCD,  // LMAO
     PSPRITE_CE,
-    PSPRITE_CF,
+    PSPRITE_BOSS_TREASURE,
     PSPRITE_D0,
     PSPRITE_D1,
     PSPRITE_D2,
