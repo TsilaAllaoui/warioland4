@@ -10,9 +10,7 @@
 
 #include "wario/flat.h"
 
-extern const struct WarioHitbox sUnk_82DEB18[];
 extern const u16 sUnk_82DE918[];
-extern struct WarioCollisionState gUnk_3001918;
 
 extern void func_8010230(void);
 extern int func_800FDBC(void);
@@ -273,7 +271,7 @@ void SetFlatWarioPose(u8 value)
 
 void UpdateFlatWarioMovement(void)
 {
-    register struct WarioCollisionState* collision asm("r3");
+    register struct WarioCollisionData* collision asm("r3");
     register const u8* properties asm("r2");
     register struct WarioData* wario asm("r4");
     u16 movement;
@@ -282,7 +280,7 @@ void UpdateFlatWarioMovement(void)
     int velocity;
     int offset;
 
-    collision = &gUnk_3001918;
+    collision = &gWarioCollisionData;
     properties = (const u8*)sFlatWarioPoseProperties;
     wario = &gWarioData;
 
@@ -290,19 +288,19 @@ void UpdateFlatWarioMovement(void)
     offset *= 8;
     entry = properties + 1;
     offset += (int)entry;
-    collision->unk8 = *(const u8*)offset;
+    collision->unk_08 = *(const u8*)offset;
 
     offset = wario->pose;
     offset *= 8;
     entry = properties + 2;
     offset += (int)entry;
-    collision->unk9 = *(const u8*)offset;
+    collision->unk_09 = *(const u8*)offset;
 
     offset = wario->pose;
     offset *= 8;
     properties += 3;
     offset += (int)properties;
-    collision->unkA = *(const u8*)offset;
+    collision->unk_0A = *(const u8*)offset;
     func_800FE58();
 
     movement = 0;
@@ -331,7 +329,7 @@ void UpdateFlatWarioMovement(void)
 
 void ProcessFlatWarioCollision(void)
 {
-    register struct WarioCollisionState* collision asm("r4");
+    register struct WarioCollisionData* collision asm("r4");
     register const u8* properties asm("r2");
     register struct WarioData* wario asm("r3");
     u8 result;
@@ -341,7 +339,7 @@ void ProcessFlatWarioCollision(void)
     int offset;
     u8 pose;
 
-    collision = &gUnk_3001918;
+    collision = &gWarioCollisionData;
     properties = (const u8*)sFlatWarioPoseProperties;
     wario = &gWarioData;
 
@@ -349,42 +347,42 @@ void ProcessFlatWarioCollision(void)
     offset *= 8;
     entry = properties + 4;
     offset += (int)entry;
-    collision->unkB = *(const u8*)offset;
+    collision->unk_0B = *(const u8*)offset;
 
     offset = wario->pose;
     offset *= 8;
     entry = properties + 5;
     offset += (int)entry;
-    collision->unkC = *(const u8*)offset;
+    collision->unk_0C = *(const u8*)offset;
 
     offset = wario->pose;
     offset *= 8;
     entry = properties + 6;
     offset += (int)entry;
-    collision->unkD = *(const u8*)offset;
+    collision->unk_0D = *(const u8*)offset;
 
     offset = wario->pose;
     offset *= 8;
     properties += 7;
     offset += (int)properties;
-    collision->unk11 = *(const u8*)offset;
+    collision->unk_11 = *(const u8*)offset;
 
     if (wario->yVelocity <= 0x2F) {
-        collision->unkC = 0;
+        collision->unk_0C = 0;
     }
 
     result = 0xFF;
-    if (collision->unk2 & 0x40) {
+    if (collision->flags & 0x40) {
         result = func_8014C4C();
-    } else if (collision->unk2 & 0x80) {
+    } else if (collision->flags & 0x80) {
         result = func_8014930();
-    } else if (collision->unk0 != 0) {
-        if (collision->unk11 == 2) {
+    } else if (collision->unk_00 != 0) {
+        if (collision->unk_11 == 2) {
             result = func_8014930();
         } else {
             result = func_80143D8();
         }
-    } else if (collision->unk11 == 0) {
+    } else if (collision->unk_11 == 0) {
         result = func_8014758();
     }
 
@@ -396,8 +394,8 @@ void ProcessFlatWarioCollision(void)
         gWarioData.reaction = maskedResult;
         gWarioData.damageTimer = 0x60;
         func_8016614(0);
-    } else if (gUnk_3001918.unk11 != 0xFF) {
-        if (gUnk_3001918.unk12 != 0) {
+    } else if (gWarioCollisionData.unk_11 != 0xFF) {
+        if (gWarioCollisionData.unk_12 != 0) {
             pose = gWarioData.pose;
             if (pose == WPOSE_FLAT_FLOATING) {
                 goto flip_direction;
@@ -424,12 +422,12 @@ void LoadFlatWarioGraphics(u8 value)
     func_800FF64();
     frame = sFlatWarioAnimationTable[gWarioData.pose][value];
     frame += gWarioData.unk_1F;
-    graphics = (const u8*)frame->leftOam;
+    graphics = (const u8*)frame->objData;
     gWarioData.objData1Size = *graphics++ << 5;
     gWarioData.objData2Size = *graphics++ << 5;
     gWarioData.pObjData1 = (u8*)graphics;
     gWarioData.pObjData2 = (u8*)(graphics + gWarioData.objData1Size);
-    gWarioData.pOamData = frame->rightOam;
+    gWarioData.pOamData = frame->oamData;
     gWarioPaletteSize = 0x20;
     func_800FD90(sUnk_82DE918, 0, 0x10);
 }
@@ -468,11 +466,11 @@ void UpdateFlatWarioHitbox(void)
     properties = (const u8*)sFlatWarioPoseProperties;
     wario = &gWarioData;
     hitboxIndex = properties[wario->pose * 8];
-    hitboxData = (const s16*)sUnk_82DEB18;
+    hitboxData = (const s16*)sWarioHitboxes;
     wario->hitboxOffsetLeft = hitboxData[hitboxIndex * 4];
-    wario->hitboxOffsetTop = ((const s16*)sUnk_82DEB18)[hitboxIndex * 4 + 1];
-    wario->hitboxOffsetRight = ((const s16*)sUnk_82DEB18)[hitboxIndex * 4 + 2];
-    wario->hitboxOffsetBottom = ((const s16*)sUnk_82DEB18)[hitboxIndex * 4 + 3];
+    wario->hitboxOffsetTop = ((const s16*)sWarioHitboxes)[hitboxIndex * 4 + 1];
+    wario->hitboxOffsetRight = ((const s16*)sWarioHitboxes)[hitboxIndex * 4 + 2];
+    wario->hitboxOffsetBottom = ((const s16*)sWarioHitboxes)[hitboxIndex * 4 + 3];
 
     propertyOffset = wario->pose;
     propertyOffset *= 8;
