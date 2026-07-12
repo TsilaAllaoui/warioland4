@@ -84,8 +84,6 @@ void ToyCarIdle(void)
     SpriteUtilMoveForward1HalfPixel();
 }
 
-asm(".align 2, 0");
-
 void ToyCarTurnInit(void)
 {
     gCurrentSprite.pOamData = sToyCarTurningOam;
