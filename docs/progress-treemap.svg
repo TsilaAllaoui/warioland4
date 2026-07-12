@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  28.8%   1,171 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  23.6%   144,082 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  29.0%   1,182 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  24.0%   146,118 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4109,23 +4109,23 @@
 <rect x="953.25" y="849.02" width="5.89" height="2.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_save_data_clear/func_8092DEC: 16 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_togenobi: 0.0% matched, 2,036 bytes</title>
+<title>togenobi: 100.0% matched, 2,036 bytes</title>
 <rect x="960.49" y="494.15" width="54.90" height="55.75" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip88"><rect x="962.49" y="495.15" width="51.50" height="10.14"/></clipPath>
 <rect x="961.49" y="495.15" width="53.50" height="10.14" fill="#05080d"/>
-<text x="962.99" y="502.30" clip-path="url(#moduleLabelClip88)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_…</text>
-<text x="1013.00" y="502.30" text-anchor="end" clip-path="url(#moduleLabelClip88)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="961.49" y="505.30" width="16.15" height="24.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A564: 352 bytes, not matched, size=symbol</title></rect>
-<rect x="961.49" y="530.08" width="16.15" height="19.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A178: 276 bytes, not matched, size=symbol</title></rect>
-<rect x="978.00" y="505.30" width="19.00" height="13.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A354: 228 bytes, not matched, size=symbol</title></rect>
-<rect x="997.34" y="505.30" width="17.30" height="13.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/SpriteTogenobi: 208 bytes, not matched, size=symbol</title></rect>
-<rect x="978.00" y="518.99" width="14.88" height="14.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A28C: 200 bytes, not matched, size=symbol</title></rect>
-<rect x="978.00" y="534.25" width="14.88" height="14.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A49C: 200 bytes, not matched, size=symbol</title></rect>
-<rect x="993.22" y="518.99" width="10.66" height="18.22" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/SpriteUnknownD4: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="1004.23" y="518.99" width="10.41" height="18.22" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/SpriteUnknownD5: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="993.22" y="537.56" width="9.37" height="11.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A438: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1002.94" y="537.56" width="8.98" height="11.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/func_805A6C4: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="1012.27" y="537.56" width="2.37" height="11.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_togenobi/SpriteUnknownD6: 28 bytes, not matched, size=symbol</title></rect>
+<text x="962.99" y="502.30" clip-path="url(#moduleLabelClip88)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">togenobi</text>
+<text x="1013.00" y="502.30" text-anchor="end" clip-path="url(#moduleLabelClip88)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="961.49" y="505.30" width="16.15" height="24.43" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/UpdateTogenobiInnerPartPosition: 352 bytes, matched, size=symbol</title></rect>
+<rect x="961.49" y="530.08" width="16.15" height="19.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/InitTogenobi: 276 bytes, matched, size=symbol</title></rect>
+<rect x="978.00" y="505.30" width="19.00" height="13.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/UpdateTogenobiOuterPartPosition: 228 bytes, matched, size=symbol</title></rect>
+<rect x="997.34" y="505.30" width="17.30" height="13.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/SpriteTogenobi: 208 bytes, matched, size=symbol</title></rect>
+<rect x="978.00" y="518.99" width="14.88" height="14.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/InitTogenobiInnerPart: 200 bytes, matched, size=symbol</title></rect>
+<rect x="978.00" y="534.25" width="14.88" height="14.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/InitTogenobiOuterPart: 200 bytes, matched, size=symbol</title></rect>
+<rect x="993.22" y="518.99" width="10.66" height="18.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/SpriteTogenobiOuterPart: 176 bytes, matched, size=symbol</title></rect>
+<rect x="1004.23" y="518.99" width="10.41" height="18.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/SpriteTogenobiInnerPart: 172 bytes, matched, size=symbol</title></rect>
+<rect x="993.22" y="537.56" width="9.37" height="11.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/FindTogenobiPartSlot: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1002.94" y="537.56" width="8.98" height="11.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/InitTogenobiCenterPart: 96 bytes, matched, size=symbol</title></rect>
+<rect x="1012.27" y="537.56" width="2.37" height="11.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>togenobi/SpriteTogenobiCenterPart: 28 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>fat: 100.0% matched, 1,960 bytes</title>

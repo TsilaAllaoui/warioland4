@@ -2510,28 +2510,28 @@ sUtsuboankoIdleOam:
 
 baserom_blob 0x3DE0E0, 0x3DE218
 
-.global sUnk_83DE218
-sUnk_83DE218:
+.global sTogenobiCenterPartOam
+sTogenobiCenterPartOam:
 
 baserom_blob 0x3DE218, 0x3DE240
 
-.global sUnk_83DE240
-sUnk_83DE240:
+.global sTogenobiOuterPartVerticalOam
+sTogenobiOuterPartVerticalOam:
 
 baserom_blob 0x3DE240, 0x3DE2A8
 
-.global sUnk_83DE2A8
-sUnk_83DE2A8:
+.global sTogenobiOuterPartHorizontalOam
+sTogenobiOuterPartHorizontalOam:
 
 baserom_blob 0x3DE2A8, 0x3DE310
 
-.global sUnk_83DE310
-sUnk_83DE310:
+.global sTogenobiInnerPartOam
+sTogenobiInnerPartOam:
 
 baserom_blob 0x3DE310, 0x3DE320
 
-.global sUnk_83DE320
-sUnk_83DE320:
+.global sTogenobiOam
+sTogenobiOam:
 
 baserom_blob 0x3DE320, 0x3DE498
 

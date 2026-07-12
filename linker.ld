@@ -693,7 +693,7 @@ SECTIONS {
         obj/sprite_ai/folding_door.o(.text);
         obj/sprite_ai/robobird.o(.text);
         obj/sprite_ai/utsuboanko.o(.text);
-        obj/sprite_ai/disasm_togenobi.o(.text);
+        obj/sprite_ai/togenobi.o(.text);
         obj/sprite_ai/icicle.o(.text);
         obj/sprite_ai/disasm_cractus.o(.text);
         obj/sprite_ai/disasm_dice.o(.text);
