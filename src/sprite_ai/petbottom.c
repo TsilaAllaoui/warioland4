@@ -84,8 +84,6 @@ void PetbottomIdle(void)
     SpriteUtilMoveForward1HalfPixel();
 }
 
-asm(".align 2, 0");
-
 void PetbottomTurnInit(void)
 {
     gCurrentSprite.pOamData = sPetbottomTurningOam;
