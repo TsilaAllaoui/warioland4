@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ███████████░░░░░░░░░░░░░░░░░░░  37.6%   1,530 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  █████████░░░░░░░░░░░░░░░░░░░░░  29.2%   178,274 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████░░░░░░░░░░░░░░░░░░  38.6%   1,572 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  █████████░░░░░░░░░░░░░░░░░░░░░  29.7%   181,318 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3347,101 +3347,101 @@
 <rect x="838.16" y="845.36" width="3.20" height="6.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_marumen/func_803A7C4: 20 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_toy_car: 0.0% matched, 3,044 bytes</title>
+<title>menhammer: 100.0% matched, 3,044 bytes</title>
 <rect x="842.71" y="368.50" width="71.94" height="63.86" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip64"><rect x="844.71" y="369.50" width="68.54" height="11.60"/></clipPath>
 <rect x="843.71" y="369.50" width="70.54" height="11.60" fill="#05080d"/>
-<text x="845.21" y="378.11" clip-path="url(#moduleLabelClip64)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_toy_…</text>
-<text x="912.25" y="378.11" text-anchor="end" clip-path="url(#moduleLabelClip64)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="843.71" y="381.11" width="27.27" height="37.88" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/SpriteToyCar: 896 bytes, not matched, size=symbol</title></rect>
-<rect x="843.71" y="419.34" width="27.27" height="12.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805EFC8: 296 bytes, not matched, size=symbol</title></rect>
-<rect x="871.34" y="381.11" width="15.15" height="11.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F120: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="886.83" y="381.11" width="13.56" height="11.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F694: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="900.74" y="381.11" width="13.16" height="11.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F268: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="871.34" y="392.97" width="9.32" height="13.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F318: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="871.34" y="407.11" width="9.32" height="13.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F4CC: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="871.34" y="421.24" width="9.32" height="10.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F578: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="881.01" y="392.97" width="8.67" height="8.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F3B4: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="890.02" y="392.97" width="8.10" height="8.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F658: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="898.48" y="392.97" width="7.54" height="8.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F540: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="906.36" y="392.97" width="7.54" height="8.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F5F8: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="881.01" y="401.34" width="7.35" height="7.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F1BC: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="881.01" y="409.30" width="7.35" height="7.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F234: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="881.01" y="417.26" width="7.35" height="7.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805EF40: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="881.01" y="424.62" width="7.35" height="7.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805EF70: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="888.70" y="401.34" width="8.17" height="6.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F0F0: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="897.22" y="401.34" width="8.17" height="6.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F41C: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="905.74" y="401.34" width="8.17" height="6.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F474: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="888.70" y="407.98" width="6.33" height="6.70" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805EFA0: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="888.70" y="415.03" width="6.33" height="6.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F1F0: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="888.70" y="421.38" width="6.33" height="5.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F214: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="888.70" y="427.03" width="6.33" height="4.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F760: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="895.39" y="407.98" width="5.04" height="4.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F720: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="900.78" y="407.98" width="4.14" height="4.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F2F0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="905.27" y="407.98" width="4.14" height="4.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F304: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="909.76" y="407.98" width="4.14" height="4.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F38C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="895.39" y="413.23" width="4.68" height="4.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F3A0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="895.39" y="417.91" width="4.68" height="4.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F3F4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="895.39" y="422.60" width="4.68" height="4.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F408: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="895.39" y="427.28" width="4.68" height="4.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F44C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="900.42" y="413.23" width="4.26" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F460: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="905.03" y="413.23" width="4.26" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F4A4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="909.64" y="413.23" width="4.26" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F4B8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="900.42" y="418.34" width="4.84" height="4.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F5D0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="900.42" y="422.88" width="4.84" height="4.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F5E4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="900.42" y="427.42" width="4.84" height="4.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F630: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="905.61" y="418.34" width="3.97" height="5.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F644: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="909.93" y="418.34" width="3.97" height="5.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F738: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="905.61" y="423.79" width="5.42" height="3.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F74C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="905.61" y="427.88" width="5.42" height="3.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F77C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="911.37" y="423.79" width="2.53" height="7.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_toy_car/func_805F790: 20 bytes, not matched, size=symbol</title></rect>
+<text x="845.21" y="378.11" clip-path="url(#moduleLabelClip64)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">menhammer</text>
+<text x="912.25" y="378.11" text-anchor="end" clip-path="url(#moduleLabelClip64)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="843.71" y="381.11" width="29.22" height="35.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/SpriteMenhammer: 908 bytes, matched, size=symbol</title></rect>
+<rect x="843.71" y="417.30" width="29.22" height="14.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerAttack: 368 bytes, matched, size=symbol</title></rect>
+<rect x="873.28" y="381.11" width="21.69" height="16.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerWalk: 312 bytes, matched, size=symbol</title></rect>
+<rect x="895.32" y="381.11" width="9.54" height="16.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerAirborne: 140 bytes, matched, size=symbol</title></rect>
+<rect x="905.21" y="381.11" width="8.69" height="16.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTurn: 128 bytes, matched, size=symbol</title></rect>
+<rect x="873.28" y="397.79" width="9.31" height="9.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTackledInit: 80 bytes, matched, size=symbol</title></rect>
+<rect x="873.28" y="407.56" width="9.31" height="8.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerCrushed: 72 bytes, matched, size=symbol</title></rect>
+<rect x="873.28" y="416.34" width="9.31" height="7.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerStunnedInit: 68 bytes, matched, size=symbol</title></rect>
+<rect x="873.28" y="424.64" width="9.31" height="6.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerDefeatedInit: 60 bytes, matched, size=symbol</title></rect>
+<rect x="882.94" y="397.79" width="7.77" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="891.06" y="397.79" width="7.77" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerStunnedWithoutTimerInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="899.18" y="397.79" width="7.19" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerGetUpInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="906.71" y="397.79" width="7.19" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerStunnedFallingInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="882.94" y="405.92" width="6.17" height="8.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerAirborneInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="882.94" y="414.60" width="6.17" height="8.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerInitWalk: 48 bytes, matched, size=symbol</title></rect>
+<rect x="882.94" y="423.28" width="6.17" height="8.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose2BOr2DInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="889.46" y="405.92" width="8.40" height="6.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPushedInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="898.21" y="405.92" width="8.40" height="6.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerSetWalkingHitbox: 48 bytes, matched, size=symbol</title></rect>
+<rect x="906.96" y="405.92" width="6.94" height="6.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPrepareAttack: 40 bytes, matched, size=symbol</title></rect>
+<rect x="889.46" y="412.38" width="5.91" height="7.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTurnInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="889.46" y="419.92" width="5.91" height="5.67" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerFallingInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="889.46" y="425.94" width="5.91" height="5.67" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerRecoverInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="895.72" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerDefeatedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="900.35" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerDefeatedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="904.98" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose2BInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="909.62" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose2DInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="895.72" y="417.47" width="4.53" height="4.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose33: 20 bytes, matched, size=symbol</title></rect>
+<rect x="895.72" y="422.30" width="4.53" height="4.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose35: 20 bytes, matched, size=symbol</title></rect>
+<rect x="895.72" y="427.13" width="4.53" height="4.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose47Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="900.59" y="417.47" width="4.20" height="4.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose49Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="905.15" y="417.47" width="4.20" height="4.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="909.70" y="417.47" width="4.20" height="4.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="900.59" y="422.65" width="4.71" height="4.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="900.59" y="427.31" width="4.71" height="4.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="905.65" y="422.65" width="3.95" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerCarriedLeft: 16 bytes, matched, size=symbol</title></rect>
+<rect x="909.95" y="422.65" width="3.95" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerCarriedRight: 16 bytes, matched, size=symbol</title></rect>
+<rect x="905.65" y="427.03" width="2.52" height="4.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerInstantlyKill: 12 bytes, matched, size=symbol</title></rect>
+<rect x="908.52" y="427.03" width="2.52" height="4.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerLiftedLeftInit: 12 bytes, matched, size=symbol</title></rect>
+<rect x="911.39" y="427.03" width="2.52" height="4.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerLiftedRightInit: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>menhammer: 100.0% matched, 3,044 bytes</title>
+<title>toy_car: 100.0% matched, 3,044 bytes</title>
 <rect x="915.25" y="368.50" width="71.94" height="63.86" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip65"><rect x="917.25" y="369.50" width="68.54" height="11.60"/></clipPath>
 <rect x="916.25" y="369.50" width="70.54" height="11.60" fill="#05080d"/>
-<text x="917.75" y="378.11" clip-path="url(#moduleLabelClip65)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">menhammer</text>
+<text x="917.75" y="378.11" clip-path="url(#moduleLabelClip65)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">toy_car</text>
 <text x="984.79" y="378.11" text-anchor="end" clip-path="url(#moduleLabelClip65)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
-<rect x="916.25" y="381.11" width="29.22" height="35.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/SpriteMenhammer: 908 bytes, matched, size=symbol</title></rect>
-<rect x="916.25" y="417.30" width="29.22" height="14.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerAttack: 368 bytes, matched, size=symbol</title></rect>
-<rect x="945.82" y="381.11" width="21.69" height="16.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerWalk: 312 bytes, matched, size=symbol</title></rect>
-<rect x="967.86" y="381.11" width="9.54" height="16.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerAirborne: 140 bytes, matched, size=symbol</title></rect>
-<rect x="977.75" y="381.11" width="8.69" height="16.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTurn: 128 bytes, matched, size=symbol</title></rect>
-<rect x="945.82" y="397.79" width="9.31" height="9.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTackledInit: 80 bytes, matched, size=symbol</title></rect>
-<rect x="945.82" y="407.56" width="9.31" height="8.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerCrushed: 72 bytes, matched, size=symbol</title></rect>
-<rect x="945.82" y="416.34" width="9.31" height="7.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerStunnedInit: 68 bytes, matched, size=symbol</title></rect>
-<rect x="945.82" y="424.64" width="9.31" height="6.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerDefeatedInit: 60 bytes, matched, size=symbol</title></rect>
-<rect x="955.48" y="397.79" width="7.77" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerInit: 56 bytes, matched, size=symbol</title></rect>
-<rect x="963.60" y="397.79" width="7.77" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerStunnedWithoutTimerInit: 56 bytes, matched, size=symbol</title></rect>
-<rect x="971.72" y="397.79" width="7.19" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerGetUpInit: 52 bytes, matched, size=symbol</title></rect>
-<rect x="979.26" y="397.79" width="7.19" height="7.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerStunnedFallingInit: 52 bytes, matched, size=symbol</title></rect>
-<rect x="955.48" y="405.92" width="6.17" height="8.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerAirborneInit: 48 bytes, matched, size=symbol</title></rect>
-<rect x="955.48" y="414.60" width="6.17" height="8.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerInitWalk: 48 bytes, matched, size=symbol</title></rect>
-<rect x="955.48" y="423.28" width="6.17" height="8.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose2BOr2DInit: 48 bytes, matched, size=symbol</title></rect>
-<rect x="962.00" y="405.92" width="8.40" height="6.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPushedInit: 48 bytes, matched, size=symbol</title></rect>
-<rect x="970.75" y="405.92" width="8.40" height="6.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerSetWalkingHitbox: 48 bytes, matched, size=symbol</title></rect>
-<rect x="979.50" y="405.92" width="6.94" height="6.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPrepareAttack: 40 bytes, matched, size=symbol</title></rect>
-<rect x="962.00" y="412.38" width="5.91" height="7.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTurnInit: 40 bytes, matched, size=symbol</title></rect>
-<rect x="962.00" y="419.92" width="5.91" height="5.67" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerFallingInit: 32 bytes, matched, size=symbol</title></rect>
-<rect x="962.00" y="425.94" width="5.91" height="5.67" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerRecoverInit: 32 bytes, matched, size=symbol</title></rect>
-<rect x="968.26" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerDefeatedLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="972.89" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerDefeatedRightInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="977.53" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose2BInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="982.16" y="412.38" width="4.28" height="4.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose2DInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="968.26" y="417.47" width="4.53" height="4.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose33: 20 bytes, matched, size=symbol</title></rect>
-<rect x="968.26" y="422.30" width="4.53" height="4.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose35: 20 bytes, matched, size=symbol</title></rect>
-<rect x="968.26" y="427.13" width="4.53" height="4.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose47Init: 20 bytes, matched, size=symbol</title></rect>
-<rect x="973.13" y="417.47" width="4.20" height="4.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPose49Init: 20 bytes, matched, size=symbol</title></rect>
-<rect x="977.69" y="417.47" width="4.20" height="4.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="982.24" y="417.47" width="4.20" height="4.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="973.13" y="422.65" width="4.71" height="4.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="973.13" y="427.31" width="4.71" height="4.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="978.19" y="422.65" width="3.95" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerCarriedLeft: 16 bytes, matched, size=symbol</title></rect>
-<rect x="982.49" y="422.65" width="3.95" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerCarriedRight: 16 bytes, matched, size=symbol</title></rect>
-<rect x="978.19" y="427.03" width="2.52" height="4.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerInstantlyKill: 12 bytes, matched, size=symbol</title></rect>
-<rect x="981.06" y="427.03" width="2.52" height="4.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerLiftedLeftInit: 12 bytes, matched, size=symbol</title></rect>
-<rect x="983.93" y="427.03" width="2.52" height="4.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>menhammer/MenhammerLiftedRightInit: 12 bytes, matched, size=symbol</title></rect>
+<rect x="916.25" y="381.11" width="27.27" height="37.88" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/SpriteToyCar: 896 bytes, matched, size=symbol</title></rect>
+<rect x="916.25" y="419.34" width="27.27" height="12.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarIdle: 296 bytes, matched, size=symbol</title></rect>
+<rect x="943.88" y="381.11" width="15.15" height="11.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarTurn: 156 bytes, matched, size=symbol</title></rect>
+<rect x="959.37" y="381.11" width="13.56" height="11.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarAirborne: 140 bytes, matched, size=symbol</title></rect>
+<rect x="973.28" y="381.11" width="13.16" height="11.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarTackledInit: 136 bytes, matched, size=symbol</title></rect>
+<rect x="943.88" y="392.97" width="9.32" height="13.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarCrushed: 116 bytes, matched, size=symbol</title></rect>
+<rect x="943.88" y="407.11" width="9.32" height="13.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarDefeatedInit: 116 bytes, matched, size=symbol</title></rect>
+<rect x="943.88" y="421.24" width="9.32" height="10.37" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarStunnedInit: 88 bytes, matched, size=symbol</title></rect>
+<rect x="953.55" y="392.97" width="8.67" height="8.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPushedInit: 64 bytes, matched, size=symbol</title></rect>
+<rect x="962.56" y="392.97" width="8.10" height="8.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarAirborneInit: 60 bytes, matched, size=symbol</title></rect>
+<rect x="971.02" y="392.97" width="7.54" height="8.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarInstantlyKill: 56 bytes, matched, size=symbol</title></rect>
+<rect x="978.91" y="392.97" width="7.54" height="8.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarStunnedWithoutTimerInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="953.55" y="401.34" width="7.35" height="7.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarRecoverInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="953.55" y="409.30" width="7.35" height="7.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarStunnedFallingInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="953.55" y="417.26" width="7.35" height="7.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarAlternatePushedInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="953.55" y="424.62" width="7.35" height="7.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="961.24" y="401.34" width="8.17" height="6.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose2BOr2DInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="969.76" y="401.34" width="8.17" height="6.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarTurnInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="978.28" y="401.34" width="8.17" height="6.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/UpdateToyCarHorizontalHitbox: 48 bytes, matched, size=symbol</title></rect>
+<rect x="961.24" y="407.98" width="6.33" height="6.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarIdleInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="961.24" y="415.03" width="6.33" height="6.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarGetUpInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="961.24" y="421.38" width="6.33" height="5.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarFallingInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="961.24" y="427.03" width="6.33" height="4.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarCarriedInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="967.93" y="407.98" width="5.04" height="4.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarHeldInit: 24 bytes, matched, size=symbol</title></rect>
+<rect x="973.32" y="407.98" width="4.14" height="4.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarAlternatePushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="977.81" y="407.98" width="4.14" height="4.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarAlternatePushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="982.30" y="407.98" width="4.14" height="4.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarCarriedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="967.93" y="413.23" width="4.68" height="4.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarCarriedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="967.93" y="417.91" width="4.68" height="4.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarDefeatedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="967.93" y="422.60" width="4.68" height="4.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarDefeatedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="967.93" y="427.28" width="4.68" height="4.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="972.96" y="413.23" width="4.26" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="977.57" y="413.23" width="4.26" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose2BInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="982.18" y="413.23" width="4.26" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose2DInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="972.96" y="418.34" width="4.84" height="4.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose33Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="972.96" y="422.88" width="4.84" height="4.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose35Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="972.96" y="427.42" width="4.84" height="4.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose47Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="978.15" y="418.34" width="3.97" height="5.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPose49Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="982.47" y="418.34" width="3.97" height="5.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="978.15" y="423.79" width="5.42" height="3.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="978.15" y="427.88" width="5.42" height="3.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="983.91" y="423.79" width="2.53" height="7.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_car/ToyCarTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>spiky: 100.0% matched, 3,004 bytes</title>
