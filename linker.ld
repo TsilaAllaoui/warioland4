@@ -620,7 +620,7 @@ SECTIONS {
         obj/wario/disasm_bouncy.o(.text);
         obj/wario/disasm_puffy.o(.text);
         obj/wario/disasm_bat.o(.text);
-        obj/wario/disasm_flat.o(.text);
+        obj/wario/flat.o(.text);
         obj/wario/disasm_mask.o(.text);
         obj/game_screen.o(.text);
         obj/game_screen_gfx.o(.text);
