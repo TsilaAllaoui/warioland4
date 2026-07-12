@@ -74,9 +74,6 @@ void TransformWarioFromChanceWheel(void)
     }
 }
 
-/* The original module pads the next function with a zero halfword, not a NOP. */
-asm(".short 0");
-
 void PlayChanceWheelSpaceSound(void)
 {
     register struct ChanceWheelSecondarySprite* secondary asm("r1");
@@ -267,9 +264,6 @@ next:
 end:
     return;
 }
-
-/* Preserve the original zero-filled four-byte function alignment. */
-asm(".short 0");
 
 void CheckWarioNearChanceWheel(void)
 {
