@@ -3140,63 +3140,63 @@ sBossCorridorCatLongWaitOam:
 
 baserom_blob 0x3E2B8C, 0x3E3878
 
-.global sUnk_83E3878
-sUnk_83E3878:
+.global sPetbottomIdleOam
+sPetbottomIdleOam:
 
 baserom_blob 0x3E3878, 0x3E38E0
 
-.global sUnk_83E38E0
-sUnk_83E38E0:
+.global sPetbottomFallingOam
+sPetbottomFallingOam:
 
 baserom_blob 0x3E38E0, 0x3E3948
 
-.global sUnk_83E3948
-sUnk_83E3948:
+.global sPetbottomTurningOam
+sPetbottomTurningOam:
 
 baserom_blob 0x3E3948, 0x3E3970
 
-.global sUnk_83E3970
-sUnk_83E3970:
+.global sPetbottomTurningAroundOam
+sPetbottomTurningAroundOam:
 
 baserom_blob 0x3E3970, 0x3E39A0
 
-.global sUnk_83E39A0
-sUnk_83E39A0:
+.global sPetbottomAlternateStunnedOam
+sPetbottomAlternateStunnedOam:
 
 baserom_blob 0x3E39A0, 0x3E39F8
 
-.global sUnk_83E39F8
-sUnk_83E39F8:
+.global sPetbottomGettingUpOam
+sPetbottomGettingUpOam:
 
 baserom_blob 0x3E39F8, 0x3E3A58
 
-.global sUnk_83E3A58
-sUnk_83E3A58:
+.global sPetbottomStunnedOam
+sPetbottomStunnedOam:
 
 baserom_blob 0x3E3A58, 0x3E3AC0
 
-.global sUnk_83E3AC0
-sUnk_83E3AC0:
+.global sPetbottomAlternatePushedOam
+sPetbottomAlternatePushedOam:
 
 baserom_blob 0x3E3AC0, 0x3E3AE8
 
-.global sUnk_83E3AE8
-sUnk_83E3AE8:
+.global sPetbottomPushedOam
+sPetbottomPushedOam:
 
 baserom_blob 0x3E3AE8, 0x3E3B20
 
-.global sUnk_83E3B20
-sUnk_83E3B20:
+.global sPetbottomCrushedOam
+sPetbottomCrushedOam:
 
 baserom_blob 0x3E3B20, 0x3E3B40
 
-.global sUnk_83E3B40
-sUnk_83E3B40:
+.global sPetbottomTackledOam
+sPetbottomTackledOam:
 
 baserom_blob 0x3E3B40, 0x3E3B78
 
-.global sUnk_83E3B78
-sUnk_83E3B78:
+.global sPetbottomRecoveringOam
+sPetbottomRecoveringOam:
 
 baserom_blob 0x3E3B78, 0x3E45F0
 

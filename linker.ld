@@ -701,7 +701,7 @@ SECTIONS {
         obj/sprite_ai/disasm_sprite_a9.o(.text);
         obj/sprite_ai/onomi.o(.text);
         obj/sprite_ai/boss_corridor_cat.o(.text);
-        obj/sprite_ai/disasm_petbottom.o(.text);
+        obj/sprite_ai/petbottom.o(.text);
         obj/sprite_ai/glass_bird.o(.text);
         obj/sprite_ai/disasm_golden_diva.o(.text);
         obj/sprite_ai/chandelier.o(.text);
