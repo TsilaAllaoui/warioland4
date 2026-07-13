@@ -3,22 +3,22 @@
 .section .rodata
 
 
-.global sUnk_83FA838
-sUnk_83FA838:
+.global sBossRoomOverlayTiles
+sBossRoomOverlayTiles:
 
 baserom_blob 0x3FA838, 0x3FBDF0
 
-.global sUnk_83FBDF0
-sUnk_83FBDF0:
+.global sGoldenBossRoomOverlayTiles
+sGoldenBossRoomOverlayTiles:
 
 baserom_blob 0x3FBDF0, 0x3FD4A8
 
-.global sUnk_83FD4A8
-sUnk_83FD4A8:
+.global sBossRoomOverlayTilemap
+sBossRoomOverlayTilemap:
 
 baserom_blob 0x3FD4A8, 0x3FD74F
 
-.global sUnk_83FD74F
-sUnk_83FD74F:
+.global sGoldenBossRoomOverlayTilemap
+sGoldenBossRoomOverlayTilemap:
 
 baserom_blob 0x3FD74F, 0x3FDA2C

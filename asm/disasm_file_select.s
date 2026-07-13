@@ -186,7 +186,7 @@ func_8090A40:
 	ldr	r5, .L_90bd8
 	mov	r0, #0
 	add	r2, r5, #0
-	bl	func_806BDF8
+	bl	DecompressRoomBackground
 	add	r2, r0, #0
 	ldr	r4, .L_90ba4
 	str	r5, [r4, #0]
@@ -209,7 +209,7 @@ func_8090A40:
 .L_90b3c:
 	mov	r0, #0
 	add	r2, r5, #0
-	bl	func_806BDF8
+	bl	DecompressRoomBackground
 	add	r2, r0, #0
 	str	r5, [r4, #0]
 	ldr	r0, .L_90bec

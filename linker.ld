@@ -709,7 +709,7 @@ SECTIONS {
         obj/sprite_ai/disasm_professor.o(.text);
         obj/screen_shake.o(.text);
         obj/transparency.o(.text);
-        obj/disasm_0x06AF4C.o(.text);
+        obj/game_screen_helpers.o(.text);
         obj/disasm_scrolling.o(.text);
         obj/disasm_block.o(.text);
         obj/disasm_bg_clip.o(.text);

@@ -1724,7 +1724,7 @@ func_807A700:
 .L_7a798:
 	.4byte	gCurrentPassage
 .L_7a79c:
-	.4byte	sUnk_8639068
+	.4byte	sStageRoomCounts
 .L_7a7a0:
 	.4byte	gUnk_3000023
 .L_7a7a4:

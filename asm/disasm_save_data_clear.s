@@ -577,7 +577,7 @@ func_8092B30:
 .L_92c12:
 	ldr	r2, .L_92c8c
 	mov	r0, #0
-	bl	func_806BDF8
+	bl	DecompressRoomBackground
 	add	r1, r0, #0
 	ldr	r2, .L_92c90
 	ldr	r0, .L_92c8c

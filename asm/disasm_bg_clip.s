@@ -526,7 +526,7 @@ func_806DDE4:
 .L_6de64:
 	.4byte	gSubGameMode
 .L_6de68:
-	.4byte	sUnk_878F21C
+	.4byte	sRoomStartDataTables
 .L_6de6c:
 	.4byte	gUnk_3000023
 .L_6de70:
@@ -571,7 +571,7 @@ func_806DE8C:
 .L_6deb0:
 	.4byte	gSubGameMode
 .L_6deb4:
-	.4byte	sUnk_878F21C
+	.4byte	sRoomStartDataTables
 .L_6deb8:
 	.4byte	gUnk_3000023
 .L_6debc:
@@ -616,7 +616,7 @@ func_806DE8C:
 	bl	func_806E01C
 	cmp	r6, #0
 	beq	.L_6df34
-	bl	MusicPauseFadeOut
+	bl	FadeOutMusicForPause
 	ldr	r1, .L_6df28
 	mov	r0, #1
 	strb	r0, [r1, #0]

@@ -95,7 +95,7 @@ func_806D3C0:
 .L_6d470:
 	.4byte	gUnk_30031F4
 .L_6d474:
-	.4byte	sUnk_878F21C
+	.4byte	sRoomStartDataTables
 .L_6d478:
 	.4byte	gUnk_3000023
 .L_6d47c:

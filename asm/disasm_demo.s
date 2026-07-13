@@ -176,7 +176,7 @@ func_8072964:
 .L_72ab8:
 	.4byte	gUnk_3000023
 .L_72abc:
-	.4byte	sUnk_8639068
+	.4byte	sStageRoomCounts
 .L_72ac0:
 	.4byte	gUnk_3003200
 .L_72ac4:

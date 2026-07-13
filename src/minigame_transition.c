@@ -6,6 +6,7 @@
 #define SUBGAME_MODE_RETURN_TARGET 17
 #define SUBGAME_INIT_DELAY_FRAMES 0x15
 
+
 void SubGameInitAndDispatch(u32 subGameMode)
 {
     u32 value;
