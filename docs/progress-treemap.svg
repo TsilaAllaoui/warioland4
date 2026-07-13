@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████░░░░░░░░░░░░░░░░░  42.9%   1,745 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████░░░░░░░░░░░░░░░░░░░░  31.8%   194,162 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████░░░░░░░░░░░░░░░░░  43.5%   1,769 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████░░░░░░░░░░░░░░░░░░░░  32.9%   200,526 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1719,36 +1719,36 @@
 <rect x="606.73" y="751.59" width="2.47" height="4.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pinball/func_804AEE8: 12 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_0x06AF4C: 0.0% matched, 6,364 bytes</title>
+<title>game_screen_helpers: 100.0% matched, 6,364 bytes</title>
 <rect x="507.95" y="757.72" width="102.00" height="94.68" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip21"><rect x="509.95" y="758.72" width="98.60" height="17.15"/></clipPath>
 <rect x="508.95" y="758.72" width="100.60" height="17.15" fill="#05080d"/>
-<text x="510.45" y="771.72" clip-path="url(#moduleLabelClip21)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_0x06AF…</text>
-<text x="607.55" y="770.72" text-anchor="end" clip-path="url(#moduleLabelClip21)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="508.95" y="775.87" width="30.63" height="45.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806AF4C: 1,180 bytes, not matched, size=symbol</title></rect>
-<rect x="508.95" y="821.70" width="30.63" height="29.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806B410: 780 bytes, not matched, size=symbol</title></rect>
-<rect x="539.94" y="775.87" width="24.76" height="30.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C330: 652 bytes, not matched, size=symbol</title></rect>
-<rect x="565.04" y="775.87" width="23.52" height="30.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806B864: 620 bytes, not matched, size=symbol</title></rect>
-<rect x="588.92" y="775.87" width="20.29" height="30.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BB4C: 536 bytes, not matched, size=symbol</title></rect>
-<rect x="539.94" y="807.12" width="16.28" height="25.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BF88: 352 bytes, not matched, size=symbol</title></rect>
-<rect x="539.94" y="832.60" width="16.28" height="19.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BDF8: 268 bytes, not matched, size=symbol</title></rect>
-<rect x="556.56" y="807.12" width="17.89" height="15.75" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806B71C: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="556.56" y="823.23" width="17.89" height="15.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C130: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="556.56" y="838.80" width="17.89" height="12.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C694: 200 bytes, not matched, size=symbol</title></rect>
-<rect x="574.80" y="807.12" width="12.50" height="16.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C21C: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="587.65" y="807.12" width="10.75" height="16.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/BackgroundProcessMain: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="598.75" y="807.12" width="10.46" height="16.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/GameScreenDraw: 148 bytes, not matched, size=symbol</title></rect>
-<rect x="574.80" y="823.60" width="11.18" height="15.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BD64: 148 bytes, not matched, size=symbol</title></rect>
-<rect x="574.80" y="839.06" width="11.18" height="12.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BAD0: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="586.33" y="823.60" width="11.84" height="7.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806B810: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="598.52" y="823.60" width="10.68" height="7.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BF3C: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="586.33" y="831.90" width="7.79" height="10.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C0E8: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="586.33" y="842.54" width="7.79" height="9.11" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C5BC: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="594.47" y="831.90" width="7.19" height="8.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806BF04: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="602.01" y="831.90" width="7.19" height="8.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C2CC: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="594.47" y="840.83" width="5.68" height="10.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806C75C: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="600.50" y="840.83" width="8.70" height="5.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/MusicPauseFadeOut: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="600.50" y="846.68" width="8.70" height="4.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06AF4C/func_806B3E8: 40 bytes, not matched, size=symbol</title></rect>
+<text x="510.45" y="771.72" clip-path="url(#moduleLabelClip21)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">game_screen_h…</text>
+<text x="607.55" y="770.72" text-anchor="end" clip-path="url(#moduleLabelClip21)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="508.95" y="775.87" width="30.63" height="45.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/ConfigureRoomDisplay: 1,180 bytes, matched, size=symbol</title></rect>
+<rect x="508.95" y="821.70" width="30.63" height="29.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/LoadRoom: 780 bytes, matched, size=symbol</title></rect>
+<rect x="539.94" y="775.87" width="24.76" height="30.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/ProcessGoldenPassageBossTransition: 652 bytes, matched, size=symbol</title></rect>
+<rect x="565.04" y="775.87" width="23.52" height="30.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/InitializeRoomState: 620 bytes, matched, size=symbol</title></rect>
+<rect x="588.92" y="775.87" width="20.29" height="30.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/DrawRoomBackgroundLayer: 536 bytes, matched, size=symbol</title></rect>
+<rect x="539.94" y="807.12" width="16.28" height="25.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/InitializeRoomMusic: 352 bytes, matched, size=symbol</title></rect>
+<rect x="539.94" y="832.60" width="16.28" height="19.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/DecompressRoomBackground: 268 bytes, matched, size=symbol</title></rect>
+<rect x="556.56" y="807.12" width="17.89" height="15.75" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/LoadRoomBackgrounds: 244 bytes, matched, size=symbol</title></rect>
+<rect x="556.56" y="823.23" width="17.89" height="15.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/ProcessRoomMusic: 236 bytes, matched, size=symbol</title></rect>
+<rect x="556.56" y="838.80" width="17.89" height="12.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/ProcessRoomWindowEffect: 200 bytes, matched, size=symbol</title></rect>
+<rect x="574.80" y="807.12" width="12.50" height="16.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/ProcessWarioTransformationMusic: 176 bytes, matched, size=symbol</title></rect>
+<rect x="587.65" y="807.12" width="10.75" height="16.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/ProcessRoomBackgrounds: 152 bytes, matched, size=symbol</title></rect>
+<rect x="598.75" y="807.12" width="10.46" height="16.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/DrawGameScreen: 148 bytes, matched, size=symbol</title></rect>
+<rect x="574.80" y="823.60" width="11.18" height="15.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/PreloadStageRoomBackgrounds: 148 bytes, matched, size=symbol</title></rect>
+<rect x="574.80" y="839.06" width="11.18" height="12.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/InitializeRoomEffects: 124 bytes, matched, size=symbol</title></rect>
+<rect x="586.33" y="823.60" width="11.84" height="7.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/RestoreTemporarySaveRoomTiles: 84 bytes, matched, size=symbol</title></rect>
+<rect x="598.52" y="823.60" width="10.68" height="7.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/UpdateBossRoomState: 76 bytes, matched, size=symbol</title></rect>
+<rect x="586.33" y="831.90" width="7.79" height="10.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/SetHurryUpMusic: 72 bytes, matched, size=symbol</title></rect>
+<rect x="586.33" y="842.54" width="7.79" height="9.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/UpdateGoldenPassageBossTransitionTimer: 64 bytes, matched, size=symbol</title></rect>
+<rect x="594.47" y="831.90" width="7.19" height="8.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/LoadBossPauseBackgroundTiles: 56 bytes, matched, size=symbol</title></rect>
+<rect x="602.01" y="831.90" width="7.19" height="8.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/SelectWarioTransformationMusic: 56 bytes, matched, size=symbol</title></rect>
+<rect x="594.47" y="840.83" width="5.68" height="10.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/UpdateRoomAnimatedGraphics: 56 bytes, matched, size=symbol</title></rect>
+<rect x="600.50" y="840.83" width="8.70" height="5.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/FadeOutMusicForPause: 44 bytes, matched, size=symbol</title></rect>
+<rect x="600.50" y="846.68" width="8.70" height="4.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/GetBackgroundScreenSize: 40 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_score: 0.0% matched, 6,232 bytes</title>

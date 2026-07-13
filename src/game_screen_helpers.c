@@ -8,32 +8,19 @@
 #include "score.h"
 #include "sound.h"
 #include "wario.h"
+#include "transparency.h"
+#include "animated_graphics.h"
 
 #include "gba/m4a.h"
 
 
-extern const struct TilesetLoadData sUnk_83F2298[];
-extern const struct RoomHeader *const sUnk_878F280[];
-extern const struct RoomStartData *const sUnk_878F21C[];
-extern const u8 sUnk_83F2020[];
-extern const u8 sUnk_83F2240[];
-extern const u8 sUnk_83F1E80[];
-extern const u8 sUnk_854EE1C[];
-extern const u8 sUnk_858DA7C[];
-extern const u32 sUnk_83FA838[];
-extern const u32 sUnk_83FBDF0[];
-extern const u8 sUnk_83FD4A8[];
-extern const u8 sUnk_83FD74F[];
-extern const u8 sUnk_8639068[];
-extern const u32 sUnk_86D371C[];
-
 /* Neighboring modules still use these original ABI symbols on the main base. */
-void func_806ADD4();
+void TransparencyProcessTiles();
 void func_806D3A4();
 void func_806E7F8();
 void func_806C828();
 void func_806F7CC();
-void func_806E1E8();
+void InitAnimatedGraphics();
 void func_8071598();
 void func_8071A2C();
 void func_806DF3C();
@@ -42,13 +29,13 @@ void func_8000D18();
 void func_8072B24();
 void func_806E598();
 void func_8071600();
-void func_806AED4();
+void TransparencyProcessWater();
 void func_8070E24();
 void func_8070BB8();
 void func_8070C38();
 void func_806F684();
 void func_80701F4();
-void func_806E08C();
+void UpdateAnimatedGraphics();
 void func_806CF28();
 void func_806D218();
 void func_806CA00();
@@ -311,7 +298,7 @@ void ConfigureRoomDisplay(void)
             gUnk_30000D8.defaultAlpha = blendLevel;
             if (gUnk_3000C3F != 0)
             {
-                func_806ADD4(0);
+                TransparencyProcessTiles(0);
                 gUnk_30000D8.currentAlpha = gUnk_30000D8.targetAlpha;
             }
         }
@@ -435,13 +422,13 @@ void LoadRoom(void)
 
     InitializeRoomState();
     roomHeader = &gCurrentRoomHeader;
-    roomTableBase = sUnk_878F280;
+    roomTableBase = sRoomHeaderTables;
     roomTablePointer = (const struct RoomHeader *const *)(gUnk_3000023 * 4);
     roomTablePointer = (const struct RoomHeader *const *)((u32)roomTablePointer + (u32)roomTableBase);
     roomIndex = gCurrentRoom;
     roomTable = *roomTablePointer;
     *roomHeader = roomTable[roomIndex];
-    tileset = sUnk_83F2298[roomHeader->tileset];
+    tileset = sTilesetLoadData[roomHeader->tileset];
     UpdateBossRoomState();
     if (gDifficulty == DIFFICULTY_NORMAL)
         roomHeader->pHardSpriteData = roomHeader->pNormalSpriteData;
@@ -465,7 +452,7 @@ void LoadRoom(void)
     dma->destination = (void *)0x06004820;
     dma->control = (tileset.backgroundGraphicsSize >> 1) | (dmaEnable = 0x80000000);
     func_806D3A4(dma->control);
-    blankTiles = sUnk_83F2020;
+    blankTiles = sBlankBackgroundTiles;
     dma->source = blankTiles;
     dma->destination = (void *)0x06004800;
     dmaFillControl = 0x80000010;
@@ -510,11 +497,11 @@ void LoadRoom(void)
     DrawRoomBackgroundLayer(2);
     if (gUnk_300001B == 1) {
         if (gCurrentPassage == PASSAGE_GOLDEN) {
-            LZ77UnCompVram(sUnk_83FBDF0, (void *)0x06008000);
-            selectedData = sUnk_83FD74F;
+            LZ77UnCompVram(sGoldenBossRoomOverlayTiles, (void *)0x06008000);
+            selectedData = sGoldenBossRoomOverlayTilemap;
         } else {
-            LZ77UnCompVram(sUnk_83FA838, (void *)0x06008000);
-            selectedData = sUnk_83FD4A8;
+            LZ77UnCompVram(sBossRoomOverlayTiles, (void *)0x06008000);
+            selectedData = sBossRoomOverlayTilemap;
         }
         {
             register s32 transferSize asm("r3");
@@ -539,9 +526,9 @@ void LoadRoom(void)
         }
     }
     if (gUnk_300001B != 0)
-        DecompressRoomBackground(0, sUnk_83F2240, (u8 *)0x0201F040);
+        DecompressRoomBackground(0, sBossRoomBackgroundData, (u8 *)0x0201F040);
     func_806F7CC();
-    func_806E1E8();
+    InitAnimatedGraphics();
     func_8071598();
     func_8071A2C();
     if (gWarioData.unk_02 != 0) {
@@ -692,12 +679,12 @@ void InitializeRoomState(void)
         gUnk_30000F4[3] = 0;
         gUnk_30000F4[4] = 0;
         gUnk_30000F4[5] = 0;
-        gUnk_30000FC[0] = 0;
-        gUnk_30000FC[1] = 0;
-        gUnk_30000FC[2] = 0;
-        gUnk_30000FC[3] = 0;
-        gUnk_30000FC[4] = 0;
-        gUnk_30000FC[5] = 0;
+        ((u8 *)&gUnk_30000FC)[0] = 0;
+        ((u8 *)&gUnk_30000FC)[1] = 0;
+        ((u8 *)&gUnk_30000FC)[2] = 0;
+        ((u8 *)&gUnk_30000FC)[3] = 0;
+        ((u8 *)&gUnk_30000FC)[4] = 0;
+        ((u8 *)&gUnk_30000FC)[5] = 0;
         gUnk_3000028 = 0;
         if (gHasTemporarySave == 0) {
             if ((gUnk_3000020 & 0x80) == 0)
@@ -723,7 +710,7 @@ void InitializeRoomState(void)
         return;
 
     gUnk_3000046 = 0;
-    roomData = sUnk_878F21C[gUnk_3000023];
+    roomData = sRoomStartDataTables[gUnk_3000023];
     roomIndex = gUnk_3000025;
     roomData += roomIndex;
     gCurrentRoom = roomData->room;
@@ -1146,7 +1133,7 @@ RenderComplete:
             register u32 vramBase asm("r0");
             register u32 secondVramBase asm("r0");
 
-            compressedData = sUnk_858DA7C;
+            compressedData = sEmptyRoomBackgroundTilemap;
             bufferRegister = (u8 *)0x0201F040;
             DecompressRoomBackground(0, compressedData, bufferRegister);
             dmaRegister = (struct DmaRegisters *)0x040000D4;
@@ -1185,9 +1172,9 @@ void PreloadStageRoomBackgrounds(void)
     s32 stageOffset;
 
     destination = (u8 *)0x02000040;
-    entry = sUnk_878F280[gUnk_3000023];
+    entry = sRoomHeaderTables[gUnk_3000023];
     index = 0;
-    stageCountBase = sUnk_8639068;
+    stageCountBase = sStageRoomCounts;
     stageOffset = gCurrentStageID * 12;
     stageCountBase++;
     if (index < stageCountBase[stageOffset]) {
@@ -1316,10 +1303,10 @@ u32 LoadBossPauseBackgroundTiles(u8 useAlternateTiles)
 
     if (useAlternateTiles != 0) {
         dma = (struct DmaRegisters *)0x040000D4;
-        dma->source = sUnk_854EE1C;
+        dma->source = sBossPauseAlternateBackgroundTiles;
     } else {
         dma = (struct DmaRegisters *)0x040000D4;
-        dma->source = sUnk_83F1E80;
+        dma->source = sBossPauseBackgroundTiles;
     }
     dma->destination = (void *)0x0600FE40;
     dma->control = 0x800000D0;
@@ -1516,7 +1503,7 @@ void SelectWarioTransformationMusic(void)
     if (currentMusicIndex <= 16)
         index = currentMusicIndex;
     musicState = &gUnk_3003200;
-    specialMusicTable = sUnk_86D371C;
+    specialMusicTable = sWarioTransformationMusic;
     tableOffset = index << 2;
     tableOffset += (u32)specialMusicTable;
     musicState->specialSongId = *(const u32 *)tableOffset;
@@ -1671,9 +1658,9 @@ void ProcessRoomBackgrounds(void)
 {
     if (gCurrentRoomHeader.bg0Param <= 31) {
         if (gCurrentRoomHeader.bg0Param == 17)
-            func_806AED4();
+            TransparencyProcessWater();
         else if (gCurrentRoomHeader.bgPriorityAlpha > 23)
-            func_806ADD4(1);
+            TransparencyProcessTiles(1);
     }
     if (gTimerState != 0)
         func_8070E24();
@@ -1777,7 +1764,7 @@ void UpdateRoomAnimatedGraphics(void)
     if (gSubGameMode == 2 || gSubGameMode == 6 ||
         (gSubGameMode == 4 && gUnk_300001B == 1)) {
         if (gUnk_3000046 == 0)
-            func_806E08C();
+            UpdateAnimatedGraphics();
     }
 }
 

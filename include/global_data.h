@@ -284,7 +284,7 @@ extern struct Window gWindow;
 extern u8 gUnk_30000C8;
 extern struct TransparencyState gUnk_30000D8;
 extern u8 gUnk_30000F4[6];
-extern u8 gUnk_30000FC[6];
+extern u8 gUnk_30000FC;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
 
@@ -298,11 +298,11 @@ extern u8 gUnk_3000964[][3];
 extern u16 gUnk_300188E;
 
 /* 0x03002C60 */
-extern u8 gUnk_3002C60;
-extern u8 gUnk_3002C64;
-extern u8 gUnk_3002C6C;
+extern u16 gUnk_3002C60;
+extern s32 gUnk_3002C64;
+extern u32 gUnk_3002C6C;
 extern OamData *gUnk_3002C70;
-extern u8 gUnk_3002C74;
+extern u32 gUnk_3002C74;
 
 /* 0x030031F4 */
 extern struct BackgroundTileTables gUnk_30031F4;
