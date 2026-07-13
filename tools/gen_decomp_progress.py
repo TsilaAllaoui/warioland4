@@ -547,6 +547,125 @@ def remove_comments(line: str, in_block: bool) -> tuple[str, bool]:
     return "".join(out), in_block
 
 
+
+def split_macro_arguments(text: str) -> list[str]:
+    """Split a C macro argument list without being confused by nested calls."""
+    args: list[str] = []
+    current: list[str] = []
+    depth = 0
+    in_string: str | None = None
+    escaped = False
+
+    for ch in text:
+        if in_string is not None:
+            current.append(ch)
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == in_string:
+                in_string = None
+            continue
+
+        if ch in {"\"", "'"}:
+            in_string = ch
+            current.append(ch)
+        elif ch in "([{":
+            depth += 1
+            current.append(ch)
+        elif ch in ")]}" and depth > 0:
+            depth -= 1
+            current.append(ch)
+        elif ch == "," and depth == 0:
+            args.append("".join(current).strip())
+            current = []
+        else:
+            current.append(ch)
+
+    args.append("".join(current).strip())
+    return args
+
+
+def collect_macro_generated_function_names(root: Path) -> set[str]:
+    """Return real linker symbols created only through function-generating macros.
+
+    A macro is considered function-generating when one of its parameters is used
+    as the function declarator in the macro body, for example::
+
+        #define SIMPLE_ANIM(name, table, result) \
+        u8 name(void) \
+        { ... }
+
+    Invocations such as ``SIMPLE_ANIM(ZombieWarioLanding, ...)`` are then
+    excluded from progress totals. Explicit C function definitions are untouched.
+    """
+    generated: set[str] = set()
+
+    for path in iter_files(root, (".c", ".h")):
+        rel = path.relative_to(root)
+        if rel.parts and rel.parts[0] == "tools":
+            continue
+
+        raw_lines = read_text(path).splitlines()
+        logical_lines: list[str] = []
+        current = ""
+        for raw in raw_lines:
+            stripped = raw.rstrip()
+            current += stripped[:-1] + " " if stripped.endswith("\\") else stripped
+            if not stripped.endswith("\\"):
+                logical_lines.append(current)
+                current = ""
+        if current:
+            logical_lines.append(current)
+
+        generator_params: dict[str, list[int]] = {}
+        for line in logical_lines:
+            match = re.match(
+                r"^\s*#\s*define\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*(.*)$",
+                line,
+            )
+            if not match:
+                continue
+
+            macro_name, params_text, body = match.groups()
+            params = [param.strip() for param in params_text.split(",") if param.strip()]
+            indexes: list[int] = []
+            for index, param in enumerate(params):
+                if not FUNC_NAME_RE.match(param):
+                    continue
+                # The parameter must be used as a function declarator followed by
+                # a body, not merely as a callback, expression, or data symbol.
+                declarator = re.compile(
+                    rf"\b{re.escape(param)}\s*\([^;{{}}]*\)\s*\{{"
+                )
+                if declarator.search(body):
+                    indexes.append(index)
+            if indexes:
+                generator_params[macro_name] = indexes
+
+        if not generator_params:
+            continue
+
+        for line in logical_lines:
+            if line.lstrip().startswith("#"):
+                continue
+            for macro_name, indexes in generator_params.items():
+                invocation = re.match(
+                    rf"^\s*{re.escape(macro_name)}\s*\((.*)\)\s*;?\s*$",
+                    line,
+                )
+                if not invocation:
+                    continue
+                args = split_macro_arguments(invocation.group(1))
+                for index in indexes:
+                    if index >= len(args):
+                        continue
+                    name = args[index].strip()
+                    if FUNC_NAME_RE.match(name) and is_probably_function_name(name):
+                        generated.add(name)
+
+    return generated
+
 def find_c_function_name(signature: str) -> str | None:
     signature = re.sub(r"\s+", " ", signature.strip())
     if ";" in signature:
@@ -613,9 +732,16 @@ def collect_c_functions(root: Path) -> dict[str, FunctionInfo]:
 
 
 def merge_functions(root: Path) -> list[FunctionInfo]:
-    map_rows = collect_map_functions(root)
+    macro_generated = collect_macro_generated_function_names(root)
+    map_rows = [
+        row for row in collect_map_functions(root)
+        if row.name not in macro_generated
+    ]
     if map_rows:
-        c_funcs = collect_c_functions(root)
+        c_funcs = {
+            name: info for name, info in collect_c_functions(root).items()
+            if name not in macro_generated
+        }
         by_name = {row.name: row for row in map_rows}
         for name, c_info in c_funcs.items():
             row = by_name.get(name)
@@ -628,9 +754,18 @@ def merge_functions(root: Path) -> list[FunctionInfo]:
                 row.module = c_info.module
         return sorted(map_rows, key=lambda row: (row.module, row.name))
 
-    asm_funcs = collect_asm_functions(root)
-    c_funcs = collect_c_functions(root)
-    symbol_infos = collect_symbol_info(root)
+    asm_funcs = {
+        name: info for name, info in collect_asm_functions(root).items()
+        if name not in macro_generated
+    }
+    c_funcs = {
+        name: info for name, info in collect_c_functions(root).items()
+        if name not in macro_generated
+    }
+    symbol_infos = {
+        name: info for name, info in collect_symbol_info(root).items()
+        if name not in macro_generated
+    }
 
     names = sorted(set(asm_funcs) | set(c_funcs) | set(symbol_infos))
     merged: list[FunctionInfo] = []
