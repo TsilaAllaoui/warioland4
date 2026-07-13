@@ -184,11 +184,14 @@ extern u8 gEnableHBlank;
 // gUnk_3000045
 // gUnk_3000046
 extern u8 gTimerState;
+extern u8 gUnk_3000A62;
 extern u8 gStageExitType;
 extern struct DebugInfo gUnk_300004C;
 extern struct BackgroundInfo gBackgroundInfo;
 extern struct RoomHeader gCurrentRoomHeader;
 extern struct Unk_30000A0 gUnk_30000A0;
+extern u8 gUnk_30000F4;
+extern u8 gUnk_30000FC;
 extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
