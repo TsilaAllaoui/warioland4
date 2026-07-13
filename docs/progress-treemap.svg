@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  30.5%   1,240 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████░░░░░░░░░░░░░░░░░░░░░░░  25.0%   152,338 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  31.6%   1,286 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  25.5%   155,646 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3142,58 +3142,58 @@
 <rect x="838.21" y="506.96" width="3.15" height="3.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen/func_801C1B4: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_bow_balloon: 0.0% matched, 3,308 bytes</title>
+<title>bow_balloon: 100.0% matched, 3,308 bytes</title>
 <rect x="770.65" y="512.01" width="71.46" height="69.92" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip59"><rect x="772.65" y="513.01" width="68.06" height="12.69"/></clipPath>
 <rect x="771.65" y="513.01" width="70.06" height="12.69" fill="#05080d"/>
-<text x="773.15" y="522.70" clip-path="url(#moduleLabelClip59)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_bow_…</text>
-<text x="839.71" y="522.01" text-anchor="end" clip-path="url(#moduleLabelClip59)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="771.65" y="525.70" width="26.08" height="40.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/SpriteBowBalloon: 916 bytes, not matched, size=symbol</title></rect>
-<rect x="771.65" y="566.68" width="26.08" height="14.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038898: 332 bytes, not matched, size=symbol</title></rect>
-<rect x="798.08" y="525.70" width="18.70" height="13.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038BD8: 220 bytes, not matched, size=symbol</title></rect>
-<rect x="817.13" y="525.70" width="12.12" height="13.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038B00: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="829.59" y="525.70" width="11.77" height="13.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038F50: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="798.08" y="539.36" width="11.31" height="12.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8039060: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="798.08" y="552.34" width="11.31" height="12.22" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038A04: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="798.08" y="564.90" width="11.31" height="8.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038824: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="798.08" y="573.42" width="11.31" height="7.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038CFC: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="809.75" y="539.36" width="11.11" height="7.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/SpriteUnknownA1: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="821.21" y="539.36" width="11.11" height="7.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038E7C: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="832.67" y="539.36" width="8.70" height="7.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038D74: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="809.75" y="547.20" width="9.17" height="6.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038A80: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="819.27" y="547.20" width="7.81" height="6.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038DD8: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="827.43" y="547.20" width="7.13" height="6.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038ED4: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="834.91" y="547.20" width="6.45" height="6.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038BB0: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="809.75" y="554.16" width="6.04" height="7.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038CD4: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="809.75" y="561.55" width="6.04" height="7.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038F28: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="809.75" y="568.95" width="6.04" height="6.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038E30: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="809.75" y="575.61" width="6.04" height="5.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038878: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="816.14" y="554.16" width="6.04" height="5.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_80389E4: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="822.53" y="554.16" width="6.04" height="5.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038AE0: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="828.93" y="554.16" width="6.04" height="5.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038B90: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="835.32" y="554.16" width="6.04" height="5.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038CB4: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="816.14" y="560.08" width="5.82" height="5.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_80390E0: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="816.14" y="566.20" width="5.82" height="5.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_803901C: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="816.14" y="571.57" width="5.82" height="5.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8039114: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="816.14" y="576.93" width="5.82" height="4.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038FDC: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="822.31" y="560.08" width="4.50" height="4.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038AB8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="827.16" y="560.08" width="4.50" height="4.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038ACC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="832.01" y="560.08" width="4.50" height="4.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038D4C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="836.86" y="560.08" width="4.50" height="4.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038D60: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="822.31" y="564.95" width="3.93" height="5.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038DB0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="822.31" y="570.48" width="3.93" height="5.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038DC4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="822.31" y="576.00" width="3.93" height="5.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038E08: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="826.59" y="564.95" width="4.69" height="4.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038E1C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="831.63" y="564.95" width="4.69" height="4.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038E54: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="836.67" y="564.95" width="4.69" height="4.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038E68: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="826.59" y="569.64" width="3.63" height="5.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038F00: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="826.59" y="575.59" width="3.63" height="5.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038F14: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="830.57" y="569.64" width="5.22" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038FF4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="836.14" y="569.64" width="5.22" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8039008: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="830.57" y="573.89" width="5.84" height="3.47" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8039038: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="830.57" y="577.71" width="5.84" height="3.47" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_803904C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="836.76" y="573.89" width="4.60" height="4.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8039100: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="836.76" y="578.66" width="4.60" height="2.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bow_balloon/func_8038EC8: 12 bytes, not matched, size=symbol</title></rect>
+<text x="773.15" y="522.70" clip-path="url(#moduleLabelClip59)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">bow_balloon</text>
+<text x="839.71" y="522.01" text-anchor="end" clip-path="url(#moduleLabelClip59)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="771.65" y="525.70" width="26.08" height="40.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/SpriteBowBalloon: 916 bytes, matched, size=symbol</title></rect>
+<rect x="771.65" y="566.68" width="26.08" height="14.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonIdle: 332 bytes, matched, size=symbol</title></rect>
+<rect x="798.08" y="525.70" width="18.70" height="13.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonGetUp: 220 bytes, matched, size=symbol</title></rect>
+<rect x="817.13" y="525.70" width="12.12" height="13.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonAttack: 144 bytes, matched, size=symbol</title></rect>
+<rect x="829.59" y="525.70" width="11.77" height="13.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonAirborne: 140 bytes, matched, size=symbol</title></rect>
+<rect x="798.08" y="539.36" width="11.31" height="12.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonProjectileInit: 128 bytes, matched, size=symbol</title></rect>
+<rect x="798.08" y="552.34" width="11.31" height="12.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonTurn: 124 bytes, matched, size=symbol</title></rect>
+<rect x="798.08" y="564.90" width="11.31" height="8.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonInit: 84 bytes, matched, size=symbol</title></rect>
+<rect x="798.08" y="573.42" width="11.31" height="7.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonTackledInit: 80 bytes, matched, size=symbol</title></rect>
+<rect x="809.75" y="539.36" width="11.11" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonCrushed: 76 bytes, matched, size=symbol</title></rect>
+<rect x="821.21" y="539.36" width="11.11" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/SpriteBowBalloonProjectile: 76 bytes, matched, size=symbol</title></rect>
+<rect x="832.67" y="539.36" width="8.70" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonDefeatedInit: 60 bytes, matched, size=symbol</title></rect>
+<rect x="809.75" y="547.20" width="9.17" height="6.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonStunnedInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="819.27" y="547.20" width="7.81" height="6.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPushedInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="827.43" y="547.20" width="7.13" height="6.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonStunnedWithoutTimerInit: 44 bytes, matched, size=symbol</title></rect>
+<rect x="834.91" y="547.20" width="6.45" height="6.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonAirborneInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="809.75" y="554.16" width="6.04" height="7.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonGetUpInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="809.75" y="561.55" width="6.04" height="7.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonStunnedFallingInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="809.75" y="568.95" width="6.04" height="6.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose2BOr2DInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="809.75" y="575.61" width="6.04" height="5.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonAttackInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="816.14" y="554.16" width="6.04" height="5.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonFallingInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="822.53" y="554.16" width="6.04" height="5.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonIdleInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="828.93" y="554.16" width="6.04" height="5.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonProjectileMove: 32 bytes, matched, size=symbol</title></rect>
+<rect x="835.32" y="554.16" width="6.04" height="5.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonRecoverInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="816.14" y="560.08" width="5.82" height="5.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonTurnInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="816.14" y="566.20" width="5.82" height="5.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonCarriedInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="816.14" y="571.57" width="5.82" height="5.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonProjectileDisappear: 28 bytes, matched, size=symbol</title></rect>
+<rect x="816.14" y="576.93" width="5.82" height="4.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonHeldInit: 24 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="560.08" width="4.50" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonCarriedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="827.16" y="560.08" width="4.50" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonCarriedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="832.01" y="560.08" width="4.50" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonDefeatedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="836.86" y="560.08" width="4.50" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonDefeatedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="564.95" width="3.93" height="5.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="570.48" width="3.93" height="5.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="576.00" width="3.93" height="5.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose2BInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="826.59" y="564.95" width="4.69" height="4.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose2DInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="831.63" y="564.95" width="4.69" height="4.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose33Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="836.67" y="564.95" width="4.69" height="4.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose35Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="826.59" y="569.64" width="3.63" height="5.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose47Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="826.59" y="575.59" width="3.63" height="5.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPose49Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="830.57" y="569.64" width="5.22" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonProjectileDisappearInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="836.14" y="569.64" width="5.22" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="830.57" y="573.89" width="5.84" height="3.47" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="830.57" y="577.71" width="5.84" height="3.47" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="836.76" y="573.89" width="4.60" height="4.43" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="836.76" y="578.66" width="4.60" height="2.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bow_balloon/BowBalloonInstantlyKill: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>bowler: 100.0% matched, 3,256 bytes</title>
