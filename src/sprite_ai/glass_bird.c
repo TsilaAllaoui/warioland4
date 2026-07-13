@@ -163,10 +163,31 @@ void GlassBirdFragmentCarriedInit(void)
     sprite->animationTimer = 0;
 }
 
-void GlassBirdFragmentCarriedRightInit(void) { gCurrentSprite.pose = 82; GlassBirdFragmentCarriedInit(); }
-void GlassBirdFragmentCarriedLeftInit(void) { gCurrentSprite.pose = 84; GlassBirdFragmentCarriedInit(); }
-void GlassBirdFragmentThrownRightInit(void) { gCurrentSprite.disableWarioCollisionTimer = 1; gCurrentSprite.pose = 88; GlassBirdFragmentCarriedInit(); }
-void GlassBirdFragmentThrownLeftInit(void) { gCurrentSprite.disableWarioCollisionTimer = 1; gCurrentSprite.pose = 86; GlassBirdFragmentCarriedInit(); }
+void GlassBirdFragmentCarriedRightInit(void)
+{
+    gCurrentSprite.pose = 82;
+    GlassBirdFragmentCarriedInit();
+}
+
+void GlassBirdFragmentCarriedLeftInit(void)
+{
+    gCurrentSprite.pose = 84;
+    GlassBirdFragmentCarriedInit();
+}
+
+void GlassBirdFragmentThrownRightInit(void)
+{
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+    gCurrentSprite.pose = 88;
+    GlassBirdFragmentCarriedInit();
+}
+
+void GlassBirdFragmentThrownLeftInit(void)
+{
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+    gCurrentSprite.pose = 86;
+    GlassBirdFragmentCarriedInit();
+}
 
 void SpriteGlassBird(void)
 {
