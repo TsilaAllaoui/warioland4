@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████░░░░░░░░░░░░░░░░░░░░░  31.6%   1,286 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  25.5%   155,646 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████░░░░░░░░░░░░░░░░░░░░  32.6%   1,328 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  26.0%   158,554 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3691,54 +3691,54 @@
 <rect x="901.08" y="572.80" width="3.22" height="3.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>toy_block_triangle/StartLiftingToyBlockTriangleRight: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_dice: 0.0% matched, 2,908 bytes</title>
+<title>dice: 100.0% matched, 2,908 bytes</title>
 <rect x="842.71" y="577.76" width="62.33" height="70.38" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip72"><rect x="844.71" y="578.76" width="58.93" height="12.78"/></clipPath>
 <rect x="843.71" y="578.76" width="60.93" height="12.78" fill="#05080d"/>
-<text x="845.21" y="588.54" clip-path="url(#moduleLabelClip72)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_di…</text>
-<text x="902.65" y="587.76" text-anchor="end" clip-path="url(#moduleLabelClip72)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="843.71" y="591.54" width="24.63" height="41.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/SpriteDice: 896 bytes, not matched, size=symbol</title></rect>
-<rect x="843.71" y="633.79" width="24.63" height="13.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E478: 296 bytes, not matched, size=symbol</title></rect>
-<rect x="868.69" y="591.54" width="13.96" height="12.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E5D0: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="883.00" y="591.54" width="12.49" height="12.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EAB0: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="895.84" y="591.54" width="8.46" height="12.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E72C: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="868.69" y="604.38" width="10.20" height="9.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E994: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="879.24" y="604.38" width="8.76" height="9.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E7B4: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="888.35" y="604.38" width="8.28" height="9.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E940: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="896.98" y="604.38" width="7.32" height="9.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E828: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="868.69" y="614.20" width="7.66" height="8.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E414: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="868.69" y="623.03" width="7.66" height="8.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EA74: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="868.69" y="631.86" width="7.66" height="7.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EA14: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="868.69" y="640.09" width="7.66" height="7.30" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E66C: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="876.70" y="614.20" width="6.92" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E6C4: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="883.96" y="614.20" width="6.92" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E6F8: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="891.23" y="614.20" width="6.36" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E3E4: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="897.94" y="614.20" width="6.36" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E5A0: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="876.70" y="622.63" width="6.03" height="8.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E890: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="876.70" y="631.49" width="6.03" height="8.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E8E8: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="876.70" y="640.36" width="6.03" height="7.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E450: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="883.07" y="622.63" width="6.84" height="5.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E6A0: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="890.27" y="622.63" width="5.24" height="5.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EB7C: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="895.86" y="622.63" width="4.44" height="5.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EB3C: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="900.65" y="622.63" width="3.65" height="5.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E78C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="883.07" y="628.53" width="4.55" height="4.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E7A0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="883.07" y="633.33" width="4.55" height="4.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E800: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="883.07" y="638.14" width="4.55" height="4.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E814: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="883.07" y="642.94" width="4.55" height="4.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E868: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="887.98" y="628.53" width="5.21" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E87C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="893.53" y="628.53" width="5.21" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E8C0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="899.09" y="628.53" width="5.21" height="3.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E8D4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="887.98" y="632.77" width="4.37" height="4.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E918: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="887.98" y="637.76" width="4.37" height="4.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E92C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="887.98" y="642.75" width="4.37" height="4.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E9EC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="892.70" y="632.77" width="3.63" height="5.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EA00: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="896.68" y="632.77" width="3.63" height="5.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EA4C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="900.66" y="632.77" width="3.63" height="5.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EA60: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="892.70" y="638.68" width="4.85" height="4.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EB54: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="892.70" y="643.21" width="4.85" height="4.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EB68: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="897.89" y="638.68" width="6.41" height="3.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EB98: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="897.89" y="642.16" width="3.87" height="5.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805EBAC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="902.11" y="642.16" width="2.18" height="5.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_dice/func_805E988: 12 bytes, not matched, size=symbol</title></rect>
+<text x="845.21" y="588.54" clip-path="url(#moduleLabelClip72)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">dice</text>
+<text x="902.65" y="587.76" text-anchor="end" clip-path="url(#moduleLabelClip72)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="843.71" y="591.54" width="24.63" height="41.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/SpriteDice: 896 bytes, matched, size=symbol</title></rect>
+<rect x="843.71" y="633.79" width="24.63" height="13.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceIdle: 296 bytes, matched, size=symbol</title></rect>
+<rect x="868.69" y="591.54" width="13.96" height="12.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceTurn: 156 bytes, matched, size=symbol</title></rect>
+<rect x="883.00" y="591.54" width="12.49" height="12.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceAirborne: 140 bytes, matched, size=symbol</title></rect>
+<rect x="895.84" y="591.54" width="8.46" height="12.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceTackledInit: 96 bytes, matched, size=symbol</title></rect>
+<rect x="868.69" y="604.38" width="10.20" height="9.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceStunnedInit: 88 bytes, matched, size=symbol</title></rect>
+<rect x="879.24" y="604.38" width="8.76" height="9.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceDefeatedInit: 76 bytes, matched, size=symbol</title></rect>
+<rect x="888.35" y="604.38" width="8.28" height="9.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceCrushed: 72 bytes, matched, size=symbol</title></rect>
+<rect x="896.98" y="604.38" width="7.32" height="9.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePushedInit: 64 bytes, matched, size=symbol</title></rect>
+<rect x="868.69" y="614.20" width="7.66" height="8.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceAirborneInit: 60 bytes, matched, size=symbol</title></rect>
+<rect x="868.69" y="623.03" width="7.66" height="8.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceInit: 60 bytes, matched, size=symbol</title></rect>
+<rect x="868.69" y="631.86" width="7.66" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceStunnedWithoutTimerInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="868.69" y="640.09" width="7.66" height="7.30" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceFallingInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="876.70" y="614.20" width="6.92" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceRecoverInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="883.96" y="614.20" width="6.92" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceStunnedFallingInit: 52 bytes, matched, size=symbol</title></rect>
+<rect x="891.23" y="614.20" width="6.36" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceAlternatePushedInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="897.94" y="614.20" width="6.36" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose2BOr2DInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="876.70" y="622.63" width="6.03" height="8.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceTurnInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="876.70" y="631.49" width="6.03" height="8.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/UpdateDiceHorizontalHitbox: 48 bytes, matched, size=symbol</title></rect>
+<rect x="876.70" y="640.36" width="6.03" height="7.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceIdleInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="883.07" y="622.63" width="6.84" height="5.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceGetUpInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="890.27" y="622.63" width="5.24" height="5.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceCarriedInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="895.86" y="622.63" width="4.44" height="5.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceHeldInit: 24 bytes, matched, size=symbol</title></rect>
+<rect x="900.65" y="622.63" width="3.65" height="5.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceAlternatePushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="883.07" y="628.53" width="4.55" height="4.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceAlternatePushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="883.07" y="633.33" width="4.55" height="4.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceCarriedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="883.07" y="638.14" width="4.55" height="4.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceCarriedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="883.07" y="642.94" width="4.55" height="4.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceDefeatedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="887.98" y="628.53" width="5.21" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceDefeatedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="893.53" y="628.53" width="5.21" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="899.09" y="628.53" width="5.21" height="3.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="887.98" y="632.77" width="4.37" height="4.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose2BInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="887.98" y="637.76" width="4.37" height="4.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose2DInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="887.98" y="642.75" width="4.37" height="4.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose33Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="892.70" y="632.77" width="3.63" height="5.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose35Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="896.68" y="632.77" width="3.63" height="5.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose47Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="900.66" y="632.77" width="3.63" height="5.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePose49Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="892.70" y="638.68" width="4.85" height="4.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="892.70" y="643.21" width="4.85" height="4.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DicePushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="897.89" y="638.68" width="6.41" height="3.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="897.89" y="642.16" width="3.87" height="5.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="902.11" y="642.16" width="2.18" height="5.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>dice/DiceInstantlyKill: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_hblank: 0.0% matched, 2,896 bytes</title>

@@ -2815,73 +2815,73 @@ sUnk_83E05B8:
 
 baserom_blob 0x3E05B8, 0x3E0D68
 
-.global sUnk_83E0D68
-sUnk_83E0D68:
+.global sDiceIdleOam
+sDiceIdleOam:
 
 baserom_blob 0x3E0D68, 0x3E0DC0
 
-.global sUnk_83E0DC0
-sUnk_83E0DC0:
+.global sDiceFallingOam
+sDiceFallingOam:
 
 baserom_blob 0x3E0DC0, 0x3E0E18
 
-.global sUnk_83E0E18
-sUnk_83E0E18:
+.global sDiceTurningOam
+sDiceTurningOam:
 
 baserom_blob 0x3E0E18, 0x3E0E38
 
-.global sUnk_83E0E38
-sUnk_83E0E38:
+.global sDiceTurningAroundOam
+sDiceTurningAroundOam:
 
 baserom_blob 0x3E0E38, 0x3E0E50
 
-.global sUnk_83E0E50
-sUnk_83E0E50:
+.global sDiceAlternateStunnedOam
+sDiceAlternateStunnedOam:
 
 baserom_blob 0x3E0E50, 0x3E0ED8
 
-.global sUnk_83E0ED8
-sUnk_83E0ED8:
+.global sDiceGettingUpOam
+sDiceGettingUpOam:
 
 baserom_blob 0x3E0ED8, 0x3E0F08
 
-.global sUnk_83E0F08
-sUnk_83E0F08:
+.global sDiceStunnedOam
+sDiceStunnedOam:
 
 baserom_blob 0x3E0F08, 0x3E0F60
 
-.global sUnk_83E0F60
-sUnk_83E0F60:
+.global sDiceAlternatePushedOam
+sDiceAlternatePushedOam:
 
 baserom_blob 0x3E0F60, 0x3E0F80
 
-.global sUnk_83E0F80
-sUnk_83E0F80:
+.global sDicePushedOam
+sDicePushedOam:
 
 baserom_blob 0x3E0F80, 0x3E0FA0
 
-.global sUnk_83E0FA0
-sUnk_83E0FA0:
+.global sDiceAlternateCrushedOam
+sDiceAlternateCrushedOam:
 
 baserom_blob 0x3E0FA0, 0x3E0FC0
 
-.global sUnk_83E0FC0
-sUnk_83E0FC0:
+.global sDiceCrushedOam
+sDiceCrushedOam:
 
 baserom_blob 0x3E0FC0, 0x3E0FE0
 
-.global sUnk_83E0FE0
-sUnk_83E0FE0:
+.global sDiceAlternateTackledOam
+sDiceAlternateTackledOam:
 
 baserom_blob 0x3E0FE0, 0x3E0FF8
 
-.global sUnk_83E0FF8
-sUnk_83E0FF8:
+.global sDiceTackledOam
+sDiceTackledOam:
 
 baserom_blob 0x3E0FF8, 0x3E1010
 
-.global sUnk_83E1010
-sUnk_83E1010:
+.global sDiceRecoveringOam
+sDiceRecoveringOam:
 
 baserom_blob 0x3E1010, 0x3E1650
 
