@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████░░░░░░░░░░░░░░░░░░░░  33.6%   1,367 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  26.5%   161,642 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████░░░░░░░░░░░░░░░░░░░░  34.7%   1,413 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████░░░░░░░░░░░░░░░░░░░░░░  27.1%   165,182 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3030,58 +3030,58 @@
 <rect x="1123.77" y="364.19" width="6.81" height="2.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8059120: 20 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_yeti: 0.0% matched, 3,540 bytes</title>
+<title>yeti: 100.0% matched, 3,540 bytes</title>
 <rect x="1131.93" y="291.71" width="70.22" height="76.19" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip55"><rect x="1133.93" y="292.71" width="66.82" height="13.82"/></clipPath>
 <rect x="1132.93" y="292.71" width="68.82" height="13.82" fill="#05080d"/>
-<text x="1134.43" y="302.71" clip-path="url(#moduleLabelClip55)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_yeti</text>
-<text x="1199.74" y="301.71" text-anchor="end" clip-path="url(#moduleLabelClip55)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="1132.93" y="306.53" width="25.70" height="44.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/SpriteYeti: 992 bytes, not matched, size=symbol</title></rect>
-<rect x="1132.93" y="351.67" width="25.70" height="15.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CC58: 348 bytes, not matched, size=symbol</title></rect>
-<rect x="1158.98" y="306.53" width="15.16" height="10.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D340: 148 bytes, not matched, size=symbol</title></rect>
-<rect x="1174.49" y="306.53" width="14.32" height="10.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CEC4: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="1189.17" y="306.53" width="12.23" height="10.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CBC0: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1158.98" y="317.84" width="10.52" height="12.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D044: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1169.85" y="317.84" width="10.52" height="12.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D214: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1180.72" y="317.84" width="10.52" height="12.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D458: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1191.60" y="317.84" width="9.80" height="12.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CDD4: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="1158.98" y="330.92" width="9.63" height="12.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CF74: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="1158.98" y="343.27" width="9.63" height="12.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D4D0: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="1158.98" y="355.63" width="9.63" height="11.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D0E4: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1168.96" y="330.92" width="8.15" height="7.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/SpriteUnknownBB: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1177.46" y="330.92" width="8.15" height="7.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CE44: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1185.96" y="330.92" width="8.15" height="7.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D28C: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1194.46" y="330.92" width="6.94" height="7.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D170: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1168.96" y="338.73" width="6.24" height="7.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D2C4: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1168.96" y="346.64" width="6.24" height="6.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D01C: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1168.96" y="353.84" width="6.24" height="6.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D318: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1168.96" y="361.03" width="6.24" height="6.12" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CF50: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1175.55" y="338.73" width="6.58" height="5.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D1C8: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1182.48" y="338.73" width="6.58" height="5.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D538: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1189.42" y="338.73" width="5.81" height="5.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CC38: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1195.58" y="338.73" width="5.81" height="5.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CDB4: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1175.55" y="344.88" width="6.36" height="5.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CEA4: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1175.55" y="350.54" width="6.36" height="5.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CFDC: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1175.55" y="356.19" width="6.36" height="5.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CFFC: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1175.55" y="361.85" width="6.36" height="5.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D55C: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1182.25" y="344.88" width="5.58" height="5.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D414: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1188.19" y="344.88" width="4.73" height="5.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D3D4: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="1193.27" y="344.88" width="3.89" height="5.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CE7C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1197.51" y="344.88" width="3.89" height="5.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804CE90: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1182.25" y="350.48" width="5.22" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D0BC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1182.25" y="354.73" width="5.22" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D0D0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1182.25" y="358.99" width="5.22" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D148: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1182.25" y="363.25" width="5.22" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D15C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1187.82" y="350.48" width="4.29" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D1A0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1192.46" y="350.48" width="4.29" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D1B4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1197.10" y="350.48" width="4.29" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D1EC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1187.82" y="355.59" width="3.63" height="5.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D200: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1187.82" y="361.54" width="3.63" height="5.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D2F0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1191.80" y="355.59" width="4.62" height="4.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D304: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1196.77" y="355.59" width="4.62" height="4.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D3EC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1191.80" y="360.35" width="6.28" height="3.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D400: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1191.80" y="363.93" width="6.28" height="3.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D430: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1198.43" y="360.35" width="2.96" height="6.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_yeti/func_804D444: 20 bytes, not matched, size=symbol</title></rect>
+<text x="1134.43" y="302.71" clip-path="url(#moduleLabelClip55)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">yeti</text>
+<text x="1199.74" y="301.71" text-anchor="end" clip-path="url(#moduleLabelClip55)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="1132.93" y="306.53" width="25.70" height="44.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/SpriteYeti: 992 bytes, matched, size=symbol</title></rect>
+<rect x="1132.93" y="351.67" width="25.70" height="15.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiIdle: 348 bytes, matched, size=symbol</title></rect>
+<rect x="1158.98" y="306.53" width="15.16" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiAirborne: 148 bytes, matched, size=symbol</title></rect>
+<rect x="1174.49" y="306.53" width="14.32" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiAttack: 140 bytes, matched, size=symbol</title></rect>
+<rect x="1189.17" y="306.53" width="12.23" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiCrushed: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1158.98" y="317.84" width="10.52" height="12.73" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiInit: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1169.85" y="317.84" width="10.52" height="12.73" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiSnowballInit: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1180.72" y="317.84" width="10.52" height="12.73" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiTackledInit: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1191.60" y="317.84" width="9.80" height="12.73" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiTurn: 112 bytes, matched, size=symbol</title></rect>
+<rect x="1158.98" y="330.92" width="9.63" height="12.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiAttackRecover: 104 bytes, matched, size=symbol</title></rect>
+<rect x="1158.98" y="343.27" width="9.63" height="12.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiSnowballMove: 104 bytes, matched, size=symbol</title></rect>
+<rect x="1158.98" y="355.63" width="9.63" height="11.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiDefeatedInit: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1168.96" y="330.92" width="8.15" height="7.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/SpriteYetiSnowball: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1177.46" y="330.92" width="8.15" height="7.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiInstantlyKill: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1185.96" y="330.92" width="8.15" height="7.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiStunnedInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1194.46" y="330.92" width="6.94" height="7.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPushedInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1168.96" y="338.73" width="6.24" height="7.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiStunnedWithoutTimerInit: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1168.96" y="346.64" width="6.24" height="6.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiAirborneInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1168.96" y="353.84" width="6.24" height="6.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiStunnedFallingInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1168.96" y="361.03" width="6.24" height="6.12" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiAttackRecoverInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1175.55" y="338.73" width="6.58" height="5.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose2BOr2DInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1182.48" y="338.73" width="6.58" height="5.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiSnowballDisappearInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1189.42" y="338.73" width="5.81" height="5.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiAttackInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1195.58" y="338.73" width="5.81" height="5.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiFallingInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1175.55" y="344.88" width="6.36" height="5.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiIdleInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1175.55" y="350.54" width="6.36" height="5.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiRecoverInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1175.55" y="356.19" width="6.36" height="5.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiSnowballDisappear: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1175.55" y="361.85" width="6.36" height="5.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiTurnInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1182.25" y="344.88" width="5.58" height="5.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiCarriedInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1188.19" y="344.88" width="4.73" height="5.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiHeldInit: 24 bytes, matched, size=symbol</title></rect>
+<rect x="1193.27" y="344.88" width="3.89" height="5.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiCarriedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1197.51" y="344.88" width="3.89" height="5.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiCarriedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1182.25" y="350.48" width="5.22" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiDefeatedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1182.25" y="354.73" width="5.22" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiDefeatedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1182.25" y="358.99" width="5.22" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1182.25" y="363.25" width="5.22" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1187.82" y="350.48" width="4.29" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose2BInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1192.46" y="350.48" width="4.29" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose2DInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1197.10" y="350.48" width="4.29" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose33Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1187.82" y="355.59" width="3.63" height="5.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose35Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1187.82" y="361.54" width="3.63" height="5.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose47Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1191.80" y="355.59" width="4.62" height="4.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPose49Init: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1196.77" y="355.59" width="4.62" height="4.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1191.80" y="360.35" width="6.28" height="3.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1191.80" y="363.93" width="6.28" height="3.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1198.43" y="360.35" width="2.96" height="6.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>yeti/YetiTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>coins: 100.0% matched, 3,512 bytes</title>

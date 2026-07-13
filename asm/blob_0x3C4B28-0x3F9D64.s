@@ -1210,83 +1210,83 @@ sMoneySunflowerDepletedOam:
 
 baserom_blob 0x3D0ED4, 0x3D1404
 
-.global sUnk_83D1404
-sUnk_83D1404:
+.global sYetiAttackOam
+sYetiAttackOam:
 
 baserom_blob 0x3D1404, 0x3D1494
 
-.global sUnk_83D1494
-sUnk_83D1494:
+.global sYetiPushedOam
+sYetiPushedOam:
 
 baserom_blob 0x3D1494, 0x3D150C
 
-.global sUnk_83D150C
-sUnk_83D150C:
+.global sYetiAttackRecoverOam
+sYetiAttackRecoverOam:
 
 baserom_blob 0x3D150C, 0x3D155C
 
-.global sUnk_83D155C
-sUnk_83D155C:
+.global sYetiIdleOam
+sYetiIdleOam:
 
 baserom_blob 0x3D155C, 0x3D1594
 
-.global sUnk_83D1594
-sUnk_83D1594:
+.global sYetiTurningOam
+sYetiTurningOam:
 
 baserom_blob 0x3D1594, 0x3D15B4
 
-.global sUnk_83D15B4
-sUnk_83D15B4:
+.global sYetiTurningAroundOam
+sYetiTurningAroundOam:
 
 baserom_blob 0x3D15B4, 0x3D15D4
 
-.global sUnk_83D15D4
-sUnk_83D15D4:
+.global sYetiFallingOam
+sYetiFallingOam:
 
 baserom_blob 0x3D15D4, 0x3D15FC
 
-.global sUnk_83D15FC
-sUnk_83D15FC:
+.global sYetiCrushedOam
+sYetiCrushedOam:
 
 baserom_blob 0x3D15FC, 0x3D1614
 
-.global sUnk_83D1614
-sUnk_83D1614:
+.global sYetiCrushedWhileStunnedOam
+sYetiCrushedWhileStunnedOam:
 
 baserom_blob 0x3D1614, 0x3D162C
 
-.global sUnk_83D162C
-sUnk_83D162C:
+.global sYetiStunnedOam
+sYetiStunnedOam:
 
 baserom_blob 0x3D162C, 0x3D1664
 
-.global sUnk_83D1664
-sUnk_83D1664:
+.global sYetiAirborneOam
+sYetiAirborneOam:
 
 baserom_blob 0x3D1664, 0x3D1674
 
-.global sUnk_83D1674
-sUnk_83D1674:
+.global sYetiRecoveringOam
+sYetiRecoveringOam:
 
 baserom_blob 0x3D1674, 0x3D168C
 
-.global sUnk_83D168C
-sUnk_83D168C:
+.global sYetiSnowballMovingOam
+sYetiSnowballMovingOam:
 
 baserom_blob 0x3D168C, 0x3D16AC
 
-.global sUnk_83D16AC
-sUnk_83D16AC:
+.global sYetiSnowballOam
+sYetiSnowballOam:
 
 baserom_blob 0x3D16AC, 0x3D1704
 
-.global sUnk_83D1704
-sUnk_83D1704:
+.global sYetiSnowballDisappearOam
+sYetiSnowballDisappearOam:
 
 baserom_blob 0x3D1704, 0x3D172C
 
-.global sUnk_83D172C
-sUnk_83D172C:
+.global sYetiTackledOrDefeatedOam
+sYetiTackledOrDefeatedOam:
 
 baserom_blob 0x3D172C, 0x3D204C
 
