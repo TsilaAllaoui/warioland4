@@ -14,7 +14,6 @@
 #include "input.h"
 #include "interrupt_callbacks.h"
 #include "main.h"
-#include "music.h"
 #include "oam.h"
 #include "save_file.h"
 #include "score.h"
@@ -66,7 +65,7 @@ u32 GameScreenSubroutine(void)
                 } else {
                     gSubGameMode++;
                     gPauseFlag = TRUE;
-                    MusicPauseFadeOut();
+                    FadeOutMusicForPause();
                 }
 
                 if (gSubGameMode != 2 && gDemoState != DEMO_STATE_PLAYBACK) {
@@ -86,7 +85,7 @@ u32 GameScreenSubroutine(void)
                 }
             }
 
-            BackgroundProcessMain();
+            ProcessRoomBackgrounds();
             break;
 
         case 3:
@@ -137,12 +136,12 @@ u32 GameScreenSubroutine(void)
 
         case 8:
             GameScreenDebugSubroutine();
-            BackgroundProcessMain();
+            ProcessRoomBackgrounds();
             break;
     }
 
     if (gSubGameMode != 0) {
-        func_806C75C();
+        UpdateRoomAnimatedGraphics();
         func_801D684();
         if (!gDisableWario) {
             func_806E7F8();
@@ -156,11 +155,11 @@ u32 GameScreenSubroutine(void)
         }
         func_801D8C4();
         ResetFreeOam();
-        GameScreenDraw();
+        DrawGameScreen();
     }
 
     func_80101D0();
-    func_806C130();
+    ProcessRoomMusic();
 
     return result;
 }
@@ -375,7 +374,7 @@ void GameScreenInitAndLoadGenerics(void)
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
 
-    func_806B410();
+    LoadRoom();
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
 
@@ -391,7 +390,7 @@ void GameScreenInitAndLoadGenerics(void)
     func_8075F44();
     func_801DE7C();
     func_80711E8();
-    func_806BF88();
+    InitializeRoomMusic();
     if (gUnk_3000C3F == 0) {
         func_801D684();
         func_8074808();

@@ -660,18 +660,18 @@ sUnk_8416AA4:
 
 baserom_blob 0x416AA4, 0x54EE1C
 
-.global sUnk_854EE1C
-sUnk_854EE1C:
+.global sBossPauseAlternateBackgroundTiles
+sBossPauseAlternateBackgroundTiles:
 
 baserom_blob 0x54EE1C, 0x58DA7C
 
-.global sUnk_858DA7C
-sUnk_858DA7C:
+.global sEmptyRoomBackgroundTilemap
+sEmptyRoomBackgroundTilemap:
 
 baserom_blob 0x58DA7C, 0x639068
 
-.global sUnk_8639068
-sUnk_8639068:
+.global sStageRoomCounts
+sStageRoomCounts:
 
 baserom_blob 0x639068, 0x6391C4
 

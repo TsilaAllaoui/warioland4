@@ -1792,7 +1792,7 @@ func_8070E24:
 	.4byte	.L_70fce
 .L_70ed4:
 	mov	r0, #1
-	bl	func_806C0E8
+	bl	SetHurryUpMusic
 	b	.L_70fc0
 .L_70edc:
 	ldr	r0, .L_70ee8

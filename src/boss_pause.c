@@ -29,7 +29,7 @@ s32 BossPause(void)
         break;
     case 3:
         REG_BG3CNT = (REG_BG3CNT & 0xE0FF) | 0x700;
-        func_806BF04(0);
+        LoadBossPauseBackgroundTiles(0);
         DmaSet(3, (void *)0x0201F040, (void *)0x06003800, 0x80000400);
         *(vu8 *)REG_ADDR_WINOUT |= 8;
         gUnk_300001A++;
@@ -69,7 +69,7 @@ s32 BossPause(void)
         break;
     case 7:
         REG_BG3CNT = (REG_BG3CNT & 0xE0FF) | 0x600;
-        func_806BF04(1);
+        LoadBossPauseBackgroundTiles(1);
         DmaSet(3, (void *)0x0201F840, (void *)0x06003800, 0x80000400);
         gUnk_300001A++;
         break;

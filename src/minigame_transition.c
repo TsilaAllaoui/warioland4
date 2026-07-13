@@ -6,6 +6,12 @@
 #define SUBGAME_MODE_RETURN_TARGET 17
 #define SUBGAME_INIT_DELAY_FRAMES 0x15
 
+extern u8 gUnk_3002C6C;
+extern u8 gUnk_3002C60;
+extern u8 gUnk_3002C64;
+extern u8 gUnk_3002C74;
+extern OamData* gUnk_3002C70;
+
 void SubGameInitAndDispatch(u32 subGameMode)
 {
     u32 value;

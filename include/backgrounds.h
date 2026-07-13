@@ -7,7 +7,7 @@ struct BgTileLookupPointers {
     u8 *bg2;
 };
 
-extern struct BgTileLookupPointers gUnk_30031F4;
+// extern struct BgTileLookupPointers gUnk_30031F4;
 
 void BackgroundProcessMain();
 void func_806C75C();
