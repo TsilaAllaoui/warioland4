@@ -85,8 +85,6 @@ void DiceIdle(void)
     SpriteUtilMoveForward1HalfPixel();
 }
 
-asm(".align 2, 0");
-
 void DiceTurnInit(void)
 {
     gCurrentSprite.pOamData = sDiceTurningOam;
