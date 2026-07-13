@@ -698,7 +698,7 @@ SECTIONS {
         obj/sprite_ai/disasm_cractus.o(.text);
         obj/sprite_ai/disasm_dice.o(.text);
         obj/sprite_ai/disasm_toy_car.o(.text);
-        obj/sprite_ai/disasm_sprite_a9.o(.text);
+        obj/sprite_ai/sprite_a9.o(.text);
         obj/sprite_ai/disasm_onomi.o(.text);
         obj/sprite_ai/disasm_cat.o(.text);
         obj/sprite_ai/disasm_petbottom.o(.text);
