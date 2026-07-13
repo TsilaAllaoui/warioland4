@@ -81,8 +81,6 @@ void MarumenIdle(void)
     func_80263AC();
 }
 
-asm(".align 2, 0");
-
 void MarumenTurnInit(void)
 {
     gCurrentSprite.pOamData = sMarumenTurningOam;
