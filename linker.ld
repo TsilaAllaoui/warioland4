@@ -659,7 +659,7 @@ SECTIONS {
         obj/sprite_ai/disasm_minicula.o(.text);
         obj/sprite_ai/disasm_togetoge.o(.text);
         obj/sprite_ai/disasm_ghost.o(.text);
-        obj/sprite_ai/disasm_beezley.o(.text);
+        obj/sprite_ai/beezley.o(.text);
         obj/sprite_ai/disasm_money_flower.o(.text);
         obj/sprite_ai/disasm_caterpillar.o(.text);
         obj/sprite_ai/disasm_toy_block_triangle.o(.text);
