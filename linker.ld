@@ -629,7 +629,7 @@ SECTIONS {
         obj/sprite_collision.o(.text);
         obj/sprite_util.o(.text);
         obj/sprite_ai/spear_mask.o(.text);
-        obj/sprite_ai/disasm_rotating_platform.o(.text);
+        obj/sprite_ai/rotating_platform.o(.text);
         obj/sprite_ai/keyzer.o(.text);
         obj/sprite_ai/treasure.o(.text);
         obj/sprite_ai/vortex.o(.text);
