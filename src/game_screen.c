@@ -14,7 +14,6 @@
 #include "input.h"
 #include "interrupt_callbacks.h"
 #include "main.h"
-#include "music.h"
 #include "oam.h"
 #include "save_file.h"
 #include "score.h"
