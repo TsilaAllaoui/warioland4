@@ -674,7 +674,7 @@ SECTIONS {
         obj/sprite_ai/disasm_ringosuki.o(.text);
         obj/sprite_ai/piston.o(.text);
         obj/sprite_ai/disasm_catbat.o(.text);
-        obj/sprite_ai/disasm_swinging_platform.o(.text);
+        obj/sprite_ai/swinging_platform.o(.text);
         obj/sprite_ai/disasm_pinball.o(.text);
         obj/sprite_ai/spike_cannon.o(.text);
         obj/sprite_ai/money_sunflower.o(.text);
