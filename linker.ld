@@ -643,7 +643,7 @@ SECTIONS {
         obj/sprite_ai/disasm_moguramen.o(.text);
         obj/sprite_ai/disasm_spiky.o(.text);
         obj/sprite_ai/disasm_bubble.o(.text);
-        obj/sprite_ai/disasm_togerobo.o(.text);
+        obj/sprite_ai/togerobo.o(.text);
         obj/sprite_ai/disasm_falling_snow.o(.text);
         obj/sprite_ai/disasm_togemasuku.o(.text);
         obj/sprite_ai/disasm_ball_lightning.o(.text);

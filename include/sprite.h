@@ -483,6 +483,7 @@ extern const u16 sUnk_83B35F8[][2];
 extern const u16 sUnk_83B37FC[][2];
 
 void SpriteSpawnAsChild(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
+void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 void func_801D684(void);
 void func_801D8C4(void);
 void func_801DE7C(void);
