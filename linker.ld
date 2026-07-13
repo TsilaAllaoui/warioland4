@@ -649,9 +649,9 @@ SECTIONS {
         obj/sprite_ai/ball_lightning.o(.text);
         obj/sprite_ai/electric_lift.o(.text);
         obj/sprite_ai/flying_carpet.o(.text);
-        obj/sprite_ai/disasm_bow_balloon.o(.text);
+        obj/sprite_ai/bow_balloon.o(.text);
         obj/sprite_ai/chance_wheel.o(.text);
-        obj/sprite_ai/disasm_marumen.o(.text);
+        obj/sprite_ai/marumen.o(.text);
         obj/sprite_ai/disasm_spoiled_rotten.o(.text);
         obj/sprite_ai/disasm_dominoes.o(.text);
         obj/sprite_ai/mayubird.o(.text);
@@ -678,7 +678,7 @@ SECTIONS {
         obj/sprite_ai/disasm_pinball.o(.text);
         obj/sprite_ai/spike_cannon.o(.text);
         obj/sprite_ai/money_sunflower.o(.text);
-        obj/sprite_ai/disasm_yeti.o(.text);
+        obj/sprite_ai/yeti.o(.text);
         obj/sprite_ai/bowler.o(.text);
         obj/sprite_ai/magma.o(.text);
         obj/sprite_ai/boss_door.o(.text);
@@ -696,7 +696,7 @@ SECTIONS {
         obj/sprite_ai/togenobi.o(.text);
         obj/sprite_ai/icicle.o(.text);
         obj/sprite_ai/disasm_cractus.o(.text);
-        obj/sprite_ai/disasm_dice.o(.text);
+        obj/sprite_ai/dice.o(.text);
         obj/sprite_ai/toy_car.o(.text);
         obj/sprite_ai/disasm_sprite_a9.o(.text);
         obj/sprite_ai/onomi.o(.text);

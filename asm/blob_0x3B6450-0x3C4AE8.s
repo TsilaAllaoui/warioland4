@@ -872,78 +872,78 @@ sMagicCarpetVerticalVelocity:
 
 baserom_blob 0x3BE234, 0x3BEBF4
 
-.global sUnk_83BEBF4
-sUnk_83BEBF4:
+.global sBowBalloonIdleOam
+sBowBalloonIdleOam:
 
 baserom_blob 0x3BEBF4, 0x3BEC2C
 
-.global sUnk_83BEC2C
-sUnk_83BEC2C:
+.global sBowBalloonFallingOam
+sBowBalloonFallingOam:
 
 baserom_blob 0x3BEC2C, 0x3BEC64
 
-.global sUnk_83BEC64
-sUnk_83BEC64:
+.global sBowBalloonTurningOam
+sBowBalloonTurningOam:
 
 baserom_blob 0x3BEC64, 0x3BEC84
 
-.global sUnk_83BEC84
-sUnk_83BEC84:
+.global sBowBalloonTurningAroundOam
+sBowBalloonTurningAroundOam:
 
 baserom_blob 0x3BEC84, 0x3BECA4
 
-.global sUnk_83BECA4
-sUnk_83BECA4:
+.global sBowBalloonRecoveringOam
+sBowBalloonRecoveringOam:
 
 baserom_blob 0x3BECA4, 0x3BED0C
 
-.global sUnk_83BED0C
-sUnk_83BED0C:
+.global sBowBalloonAirborneOam
+sBowBalloonAirborneOam:
 
 baserom_blob 0x3BED0C, 0x3BED4C
 
-.global sUnk_83BED4C
-sUnk_83BED4C:
+.global sBowBalloonPushedOam
+sBowBalloonPushedOam:
 
 baserom_blob 0x3BED4C, 0x3BED6C
 
-.global sUnk_83BED6C
-sUnk_83BED6C:
+.global sBowBalloonAttackingOam
+sBowBalloonAttackingOam:
 
 baserom_blob 0x3BED6C, 0x3BEDC4
 
-.global sUnk_83BEDC4
-sUnk_83BEDC4:
+.global sBowBalloonStunnedOam
+sBowBalloonStunnedOam:
 
 baserom_blob 0x3BEDC4, 0x3BEDFC
 
-.global sUnk_83BEDFC
-sUnk_83BEDFC:
+.global sBowBalloonGettingUpOam
+sBowBalloonGettingUpOam:
 
 baserom_blob 0x3BEDFC, 0x3BEE8C
 
-.global sUnk_83BEE8C
-sUnk_83BEE8C:
+.global sBowBalloonCrushedWhileStunnedOam
+sBowBalloonCrushedWhileStunnedOam:
 
 baserom_blob 0x3BEE8C, 0x3BEEBC
 
-.global sUnk_83BEEBC
-sUnk_83BEEBC:
+.global sBowBalloonCrushedOam
+sBowBalloonCrushedOam:
 
 baserom_blob 0x3BEEBC, 0x3BEEFC
 
-.global sUnk_83BEEFC
-sUnk_83BEEFC:
+.global sBowBalloonTackledOam
+sBowBalloonTackledOam:
 
 baserom_blob 0x3BEEFC, 0x3BEF34
 
-.global sUnk_83BEF34
-sUnk_83BEF34:
+.global sBowBalloonProjectileOam
+sBowBalloonProjectileOam:
 
 baserom_blob 0x3BEF34, 0x3BEF44
 
-.global sUnk_83BEF44
-sUnk_83BEF44:
+.global sBowBalloonGettingUpYVelocity
+sBowBalloonGettingUpYVelocity:
 
 baserom_blob 0x3BEF44, 0x3BF986
 
@@ -1032,73 +1032,73 @@ sChanceWheelDropYVelocity:
 
 baserom_blob 0x3C0D50, 0x3C1270
 
-.global sUnk_83C1270
-sUnk_83C1270:
+.global sMarumenIdleOam
+sMarumenIdleOam:
 
 baserom_blob 0x3C1270, 0x3C12A8
 
-.global sUnk_83C12A8
-sUnk_83C12A8:
+.global sMarumenFallingOam
+sMarumenFallingOam:
 
 baserom_blob 0x3C12A8, 0x3C12E0
 
-.global sUnk_83C12E0
-sUnk_83C12E0:
+.global sMarumenTurningOam
+sMarumenTurningOam:
 
 baserom_blob 0x3C12E0, 0x3C1308
 
-.global sUnk_83C1308
-sUnk_83C1308:
+.global sMarumenTurningAroundOam
+sMarumenTurningAroundOam:
 
 baserom_blob 0x3C1308, 0x3C1330
 
-.global sUnk_83C1330
-sUnk_83C1330:
+.global sMarumenAirborneOam
+sMarumenAirborneOam:
 
 baserom_blob 0x3C1330, 0x3C13D8
 
-.global sUnk_83C13D8
-sUnk_83C13D8:
+.global sMarumenStunnedOam
+sMarumenStunnedOam:
 
 baserom_blob 0x3C13D8, 0x3C1410
 
-.global sUnk_83C1410
-sUnk_83C1410:
+.global sMarumenGettingUpOam
+sMarumenGettingUpOam:
 
 baserom_blob 0x3C1410, 0x3C1490
 
-.global sUnk_83C1490
-sUnk_83C1490:
+.global sMarumenDefeatedOam
+sMarumenDefeatedOam:
 
 baserom_blob 0x3C1490, 0x3C14C8
 
-.global sUnk_83C14C8
-sUnk_83C14C8:
+.global sMarumenAlternateCrushedOam
+sMarumenAlternateCrushedOam:
 
 baserom_blob 0x3C14C8, 0x3C14F0
 
-.global sUnk_83C14F0
-sUnk_83C14F0:
+.global sMarumenCrushedOam
+sMarumenCrushedOam:
 
 baserom_blob 0x3C14F0, 0x3C1518
 
-.global sUnk_83C1518
-sUnk_83C1518:
+.global sMarumenRecoveringOam
+sMarumenRecoveringOam:
 
 baserom_blob 0x3C1518, 0x3C1528
 
-.global sUnk_83C1528
-sUnk_83C1528:
+.global sMarumenPushedOam
+sMarumenPushedOam:
 
 baserom_blob 0x3C1528, 0x3C1540
 
-.global sUnk_83C1540
-sUnk_83C1540:
+.global sMarumenGettingUpYVelocity
+sMarumenGettingUpYVelocity:
 
 baserom_blob 0x3C1540, 0x3C1596
 
-.global sUnk_83C1596
-sUnk_83C1596:
+.global sMarumenAirborneYVelocity
+sMarumenAirborneYVelocity:
 
 baserom_blob 0x3C1596, 0x3C2C14
 
