@@ -76,9 +76,9 @@ void TransformWarioFromChanceWheel(void)
 
 void PlayChanceWheelSpaceSound(void)
 {
-    register struct ChanceWheelSecondarySprite* secondary asm("r1");
-    register struct ChanceWheelSecondarySprite* saved asm("r4");
-    register struct ChanceWheelSecondarySprite* previous asm("r2");
+    register struct SecondarySprite* secondary asm("r1");
+    register struct SecondarySprite* saved asm("r4");
+    register struct SecondarySprite* previous asm("r2");
     register int space asm("r5");
     register int i asm("r3");
 
@@ -116,9 +116,9 @@ void PlayChanceWheelSpaceSound(void)
 
 void ApplyChanceWheelReward(void)
 {
-    register struct ChanceWheelSecondarySprite* secondary asm("r1");
-    register struct ChanceWheelSecondarySprite* saved asm("r4");
-    register struct ChanceWheelSecondarySprite* previous asm("r2");
+    register struct SecondarySprite* secondary asm("r1");
+    register struct SecondarySprite* saved asm("r4");
+    register struct SecondarySprite* previous asm("r2");
     register int y asm("r6");
     register int x asm("r5");
     int space;
@@ -203,7 +203,7 @@ void ApplyChanceWheelReward(void)
 
 int IsChanceWheelResultReady(void)
 {
-    register struct ChanceWheelSecondarySprite* secondary asm("r1");
+    register struct SecondarySprite* secondary asm("r1");
     register int i asm("r2");
     register int value asm("r0");
 
@@ -233,7 +233,7 @@ next:
 
 void SetChanceWheelSecondaryResult(u8 value)
 {
-    register struct ChanceWheelSecondarySprite* secondary asm("r1");
+    register struct SecondarySprite* secondary asm("r1");
     register int i asm("r2");
     register u8 work asm("r3");
     register u8 timer asm("r4");
@@ -452,7 +452,7 @@ void FinishChanceWheelResult(void)
         if (ptr[0] != 0 && ptr[2] == 81) {
             value = ptr[1];
         }
-        ptr += sizeof(struct ChanceWheelSecondarySprite);
+        ptr += sizeof(struct SecondarySprite);
         i--;
     } while (i >= 0);
 

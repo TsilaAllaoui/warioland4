@@ -658,7 +658,7 @@ SECTIONS {
         obj/sprite_ai/rock.o(.text);
         obj/sprite_ai/minicula.o(.text);
         obj/sprite_ai/togetoge.o(.text);
-        obj/sprite_ai/disasm_ghost.o(.text);
+        obj/sprite_ai/ghost.o(.text);
         obj/sprite_ai/disasm_beezley.o(.text);
         obj/sprite_ai/money_flower.o(.text);
         obj/sprite_ai/caterpillar.o(.text);

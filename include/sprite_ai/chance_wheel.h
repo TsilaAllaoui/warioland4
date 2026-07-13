@@ -4,19 +4,6 @@
 #include "types.h"
 #include "sprite.h"
 
-struct ChanceWheelSecondarySprite {
-    u8 status;
-    u8 work0;
-    u8 id;
-    u8 pose;
-    u8 timer;
-    u8 unk5;
-    u16 animationTimer;
-    u16 yPosition;
-    u16 xPosition;
-};
-
-extern struct ChanceWheelSecondarySprite gSecondarySpriteData[8];
 extern const u8 sBigBoardSpaces[];
 extern const struct AnimationFrame sChanceWheelIdleOam[];
 extern const struct AnimationFrame sChanceWheelResult1Oam[];

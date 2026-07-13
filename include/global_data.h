@@ -228,6 +228,18 @@ struct WarioEffectFrame {
     u16 pad;
 };
 
+struct SecondarySprite {
+    u8 status;
+    u8 work0;
+    u8 id;
+    u8 pose;
+    u8 timer;
+    u8 unk5;
+    u16 animationTimer;
+    u16 yPosition;
+    u16 xPosition;
+};
+
 /* 0x03000000 */
 extern u8 gCurrentPassage;
 extern u8 gCurrentStageNumber;
@@ -293,6 +305,9 @@ extern u8 gUnk_3000544[];
 
 /* 0x03000964 */
 extern u8 gUnk_3000964[][3];
+
+/* 0x03000B80 */
+extern struct SecondarySprite gSecondarySpriteData[8];
 
 /* 0x0300188E */
 extern u16 gUnk_300188E;

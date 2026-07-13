@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████░░░░░░░░░░░░░░░░░  43.7%   1,777 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████░░░░░░░░░░░░░░░░░░░░  33.2%   202,714 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████░░░░░░░░░░░░░░░░░  44.2%   1,798 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████░░░░░░░░░░░░░░░░░░░░  33.9%   206,578 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2668,33 +2668,33 @@
 <rect x="765.86" y="450.31" width="3.44" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A580: 20 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_ghost: 0.0% matched, 3,864 bytes</title>
+<title>ghost: 100.0% matched, 3,864 bytes</title>
 <rect x="697.27" y="457.59" width="72.78" height="80.29" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip45"><rect x="699.27" y="458.59" width="69.38" height="14.56"/></clipPath>
 <rect x="698.27" y="458.59" width="71.38" height="14.56" fill="#05080d"/>
-<text x="699.77" y="468.59" clip-path="url(#moduleLabelClip45)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_ghost</text>
-<text x="767.65" y="467.59" text-anchor="end" clip-path="url(#moduleLabelClip45)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="698.27" y="473.15" width="20.86" height="24.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F958: 444 bytes, not matched, size=symbol</title></rect>
-<rect x="698.27" y="498.03" width="20.86" height="20.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F7CC: 376 bytes, not matched, size=symbol</title></rect>
-<rect x="698.27" y="519.10" width="20.86" height="18.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FB28: 328 bytes, not matched, size=symbol</title></rect>
-<rect x="719.48" y="473.15" width="18.91" height="19.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F528: 324 bytes, not matched, size=symbol</title></rect>
-<rect x="738.74" y="473.15" width="16.06" height="19.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F414: 276 bytes, not matched, size=symbol</title></rect>
-<rect x="755.14" y="473.15" width="14.16" height="19.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F320: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="719.48" y="493.15" width="15.73" height="17.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FCF8: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="719.48" y="511.18" width="15.73" height="12.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F718: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="719.48" y="524.48" width="15.73" height="12.66" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/SpriteUnknownA8: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="735.56" y="493.15" width="17.10" height="11.36" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F66C: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="753.01" y="493.15" width="16.29" height="11.36" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FEC8: 164 bytes, not matched, size=symbol</title></rect>
-<rect x="735.56" y="504.86" width="14.51" height="11.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/SpriteGhost: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="735.56" y="517.01" width="14.51" height="10.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FC70: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="735.56" y="527.89" width="14.51" height="9.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/SpriteUnknownA7: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="750.42" y="504.86" width="9.61" height="13.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FE54: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="760.38" y="504.86" width="8.92" height="13.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F2B4: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="750.42" y="518.70" width="11.29" height="10.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FDEC: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="750.42" y="529.32" width="11.29" height="7.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F214: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="762.06" y="518.70" width="7.24" height="12.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F264: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="762.06" y="531.22" width="3.45" height="5.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803F944: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.85" y="531.22" width="3.45" height="5.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ghost/func_803FB14: 20 bytes, not matched, size=symbol</title></rect>
+<text x="699.77" y="468.59" clip-path="url(#moduleLabelClip45)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">ghost</text>
+<text x="767.65" y="467.59" text-anchor="end" clip-path="url(#moduleLabelClip45)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="698.27" y="473.15" width="20.86" height="24.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F958: 444 bytes, matched, size=symbol</title></rect>
+<rect x="698.27" y="498.03" width="20.86" height="20.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F7CC: 376 bytes, matched, size=symbol</title></rect>
+<rect x="698.27" y="519.10" width="20.86" height="18.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FB28: 328 bytes, matched, size=symbol</title></rect>
+<rect x="719.48" y="473.15" width="18.91" height="19.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F528: 324 bytes, matched, size=symbol</title></rect>
+<rect x="738.74" y="473.15" width="16.06" height="19.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F414: 276 bytes, matched, size=symbol</title></rect>
+<rect x="755.14" y="473.15" width="14.16" height="19.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F320: 244 bytes, matched, size=symbol</title></rect>
+<rect x="719.48" y="493.15" width="15.73" height="17.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FCF8: 244 bytes, matched, size=symbol</title></rect>
+<rect x="719.48" y="511.18" width="15.73" height="12.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F718: 180 bytes, matched, size=symbol</title></rect>
+<rect x="719.48" y="524.48" width="15.73" height="12.66" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/SpriteUnknownA8: 176 bytes, matched, size=symbol</title></rect>
+<rect x="735.56" y="493.15" width="17.10" height="11.36" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F66C: 172 bytes, matched, size=symbol</title></rect>
+<rect x="753.01" y="493.15" width="16.29" height="11.36" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FEC8: 164 bytes, matched, size=symbol</title></rect>
+<rect x="735.56" y="504.86" width="14.51" height="11.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/SpriteGhost: 152 bytes, matched, size=symbol</title></rect>
+<rect x="735.56" y="517.01" width="14.51" height="10.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FC70: 136 bytes, matched, size=symbol</title></rect>
+<rect x="735.56" y="527.89" width="14.51" height="9.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/SpriteUnknownA7: 120 bytes, matched, size=symbol</title></rect>
+<rect x="750.42" y="504.86" width="9.61" height="13.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FE54: 116 bytes, matched, size=symbol</title></rect>
+<rect x="760.38" y="504.86" width="8.92" height="13.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F2B4: 108 bytes, matched, size=symbol</title></rect>
+<rect x="750.42" y="518.70" width="11.29" height="10.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FDEC: 104 bytes, matched, size=symbol</title></rect>
+<rect x="750.42" y="529.32" width="11.29" height="7.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F214: 80 bytes, matched, size=symbol</title></rect>
+<rect x="762.06" y="518.70" width="7.24" height="12.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F264: 80 bytes, matched, size=symbol</title></rect>
+<rect x="762.06" y="531.22" width="3.45" height="5.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803F944: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.85" y="531.22" width="3.45" height="5.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FB14: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_sprite_a9: 0.0% matched, 3,840 bytes</title>
