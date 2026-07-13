@@ -181,24 +181,73 @@ u8 ZombieWarioFalling(void)
     return 0xFF;
 }
 
-#define SIMPLE_ANIM(name, table, result) \
-u8 name(void) \
-{ \
-    register struct WarioData *wario asm("r2"); \
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3"); \
-    wario = &gWarioData; \
-    frames = table; \
-    if (wario->unk_1E >= frames[wario->unk_1F].time) { \
-        wario->unk_1E = 0; \
-        wario->unk_1F++; \
-        if (frames[wario->unk_1F].time == 0) return result; \
-    } \
-    return 0xFF; \
+u8 ZombieWarioUnknown5(void)
+{
+    register struct WarioData *wario asm("r2");
+    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+
+    wario = &gWarioData;
+    frames = sZombieWarioFallingFrames;
+    if (wario->unk_1E >= frames[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (frames[wario->unk_1F].time == 0) {
+            return 2;
+        }
+    }
+    return 0xFF;
 }
-SIMPLE_ANIM(ZombieWarioUnknown5, sZombieWarioFallingFrames, 2)
-SIMPLE_ANIM(ZombieWarioFallingThroughPlatform, sZombieWarioFallingThroughPlatformFrames, 9)
-SIMPLE_ANIM(ZombieWarioLanding, sZombieWarioLandingFrames, 2)
-SIMPLE_ANIM(ZombieWarioHatLanding, sZombieWarioHatLandingFrames, 2)
+
+u8 ZombieWarioFallingThroughPlatform(void)
+{
+    register struct WarioData *wario asm("r2");
+    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+
+    wario = &gWarioData;
+    frames = sZombieWarioFallingThroughPlatformFrames;
+    if (wario->unk_1E >= frames[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (frames[wario->unk_1F].time == 0) {
+            return 9;
+        }
+    }
+    return 0xFF;
+}
+
+u8 ZombieWarioLanding(void)
+{
+    register struct WarioData *wario asm("r2");
+    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+
+    wario = &gWarioData;
+    frames = sZombieWarioLandingFrames;
+    if (wario->unk_1E >= frames[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (frames[wario->unk_1F].time == 0) {
+            return 2;
+        }
+    }
+    return 0xFF;
+}
+
+u8 ZombieWarioHatLanding(void)
+{
+    register struct WarioData *wario asm("r2");
+    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+
+    wario = &gWarioData;
+    frames = sZombieWarioHatLandingFrames;
+    if (wario->unk_1E >= frames[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (frames[wario->unk_1F].time == 0) {
+            return 2;
+        }
+    }
+    return 0xFF;
+}
 
 u8 ZombieWarioHatFalling(void)
 {
@@ -231,7 +280,22 @@ u8 ZombieWarioTouchingLightSource(void)
     }
     return 0xFF;
 }
-SIMPLE_ANIM(ZombieWarioUnknown11, sZombieWarioUnknown11Frames, 2)
+u8 ZombieWarioUnknown11(void)
+{
+    register struct WarioData *wario asm("r2");
+    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+
+    wario = &gWarioData;
+    frames = sZombieWarioUnknown11Frames;
+    if (wario->unk_1E >= frames[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (frames[wario->unk_1F].time == 0) {
+            return 2;
+        }
+    }
+    return 0xFF;
+}
 
 u8 ZombieWarioFallingAfterJump(void)
 {
