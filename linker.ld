@@ -671,7 +671,7 @@ SECTIONS {
         obj/sprite_ai/dice_block.o(.text);
         obj/sprite_ai/tobawani.o(.text);
         obj/sprite_ai/shieragutchi.o(.text);
-        obj/sprite_ai/disasm_ringosuki.o(.text);
+        obj/sprite_ai/ringosuki.o(.text);
         obj/sprite_ai/piston.o(.text);
         obj/sprite_ai/disasm_catbat.o(.text);
         obj/sprite_ai/swinging_platform.o(.text);

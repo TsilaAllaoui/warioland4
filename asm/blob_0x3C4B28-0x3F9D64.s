@@ -610,93 +610,93 @@ sShieragutchiFallYVelocity:
 
 baserom_blob 0x3C9D58, 0x3CA178
 
-.global sUnk_83CA178
-sUnk_83CA178:
+.global sRingosukiIdleOam
+sRingosukiIdleOam:
 
 baserom_blob 0x3CA178, 0x3CA1A0
 
-.global sUnk_83CA1A0
-sUnk_83CA1A0:
+.global sRingosukiTurnStartOam
+sRingosukiTurnStartOam:
 
 baserom_blob 0x3CA1A0, 0x3CA1B8
 
-.global sUnk_83CA1B8
-sUnk_83CA1B8:
+.global sRingosukiTurnEndOam
+sRingosukiTurnEndOam:
 
 baserom_blob 0x3CA1B8, 0x3CA1D0
 
-.global sUnk_83CA1D0
-sUnk_83CA1D0:
+.global sRingosukiThrowAppleOam
+sRingosukiThrowAppleOam:
 
 baserom_blob 0x3CA1D0, 0x3CA270
 
-.global sUnk_83CA270
-sUnk_83CA270:
+.global sRingosukiStunnedOam
+sRingosukiStunnedOam:
 
 baserom_blob 0x3CA270, 0x3CA298
 
-.global sUnk_83CA298
-sUnk_83CA298:
+.global sRingosukiFallingOam
+sRingosukiFallingOam:
 
 baserom_blob 0x3CA298, 0x3CA2C0
 
-.global sUnk_83CA2C0
-sUnk_83CA2C0:
+.global sRingosukiRecoverOam
+sRingosukiRecoverOam:
 
 baserom_blob 0x3CA2C0, 0x3CA2E8
 
-.global sUnk_83CA2E8
-sUnk_83CA2E8:
+.global sRingosukiDefeatedOam
+sRingosukiDefeatedOam:
 
 baserom_blob 0x3CA2E8, 0x3CA300
 
-.global sUnk_83CA300
-sUnk_83CA300:
+.global sRingosukiDefeatedHardOam
+sRingosukiDefeatedHardOam:
 
 baserom_blob 0x3CA300, 0x3CA318
 
-.global sUnk_83CA318
-sUnk_83CA318:
+.global sRingosukiPushedOam
+sRingosukiPushedOam:
 
 baserom_blob 0x3CA318, 0x3CA328
 
-.global sUnk_83CA328
-sUnk_83CA328:
+.global sRingosukiStunnedStartOam
+sRingosukiStunnedStartOam:
 
 baserom_blob 0x3CA328, 0x3CA358
 
-.global sUnk_83CA358
-sUnk_83CA358:
+.global sRingosukiEatAppleOam
+sRingosukiEatAppleOam:
 
 baserom_blob 0x3CA358, 0x3CA3F0
 
-.global sUnk_83CA3F0
-sUnk_83CA3F0:
+.global sRingosukiFallOffscreenOam
+sRingosukiFallOffscreenOam:
 
 baserom_blob 0x3CA3F0, 0x3CA400
 
-.global sUnk_83CA400
-sUnk_83CA400:
+.global sRingosukiTurnHopOam
+sRingosukiTurnHopOam:
 
 baserom_blob 0x3CA400, 0x3CA430
 
-.global sUnk_83CA430
-sUnk_83CA430:
+.global sRingosukiAppleOam
+sRingosukiAppleOam:
 
 baserom_blob 0x3CA430, 0x3CA440
 
-.global sUnk_83CA440
-sUnk_83CA440:
+.global sRingosukiTurnHopYVelocity
+sRingosukiTurnHopYVelocity:
 
 baserom_blob 0x3CA440, 0x3CA462
 
-.global sUnk_83CA462
-sUnk_83CA462:
+.global sRingosukiRecoverYVelocity
+sRingosukiRecoverYVelocity:
 
 baserom_blob 0x3CA462, 0x3CA47E
 
-.global sUnk_83CA47E
-sUnk_83CA47E:
+.global sRingosukiAppleYVelocity
+sRingosukiAppleYVelocity:
 
 baserom_blob 0x3CA47E, 0x3CA850
 

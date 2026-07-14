@@ -185,7 +185,7 @@ enum PrimarySpriteID {
     PSPRITE_AF,
     PSPRITE_B0,
     PSPRITE_B1,
-    PSPRITE_B2,
+    PSPRITE_RINGOSUKI_APPLE,
     PSPRITE_WARIO_EXITING_VORTEX,
     PSPRITE_WARIO_ENTERING_VORTEX,
     PSPRITE_B5,
@@ -489,6 +489,7 @@ void func_801D8C4(void);
 void func_801DE7C(void);
 void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 void func_801E430(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
+void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
 void func_801E3A8(u8, u8, u8, u32, u32, u32);
 
