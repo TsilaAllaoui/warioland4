@@ -13,21 +13,21 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████░░░░░░░░░░░░░░░░  46.7%   1,902 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████████░░░░░░░░░░░░░░░░░░░  35.8%   218,194 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████░░░░░░░░░░░░░░░░  47.9%   1,950 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████████░░░░░░░░░░░░░░░░░░░  36.4%   222,034 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (609,788 / 609,818 bytes exact)</text>
 <rect x="24.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="40.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">FUNCTIONS</text>
-<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">1,902 / 4,071</text>
-<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">46.7% matched functions</text>
+<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">1,950 / 4,071</text>
+<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">47.9% matched functions</text>
 <rect x="335.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="351.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">CODE BYTES</text>
-<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">218,194 / 609,818</text>
-<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">35.8% matched code bytes</text>
+<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">222,034 / 609,818</text>
+<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">36.4% matched code bytes</text>
 <rect x="646.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="662.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">REMAINING</text>
-<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,169 funcs · 391,624 bytes</text>
+<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,121 funcs · 387,784 bytes</text>
 <text x="662.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">remaining unmatched code</text>
 <rect x="957.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="973.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">EXACT BYTE SIZING</text>
@@ -2713,60 +2713,60 @@
 <rect x="766.63" y="615.31" width="2.67" height="7.12" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ghost/func_803FB14: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_sprite_a9: 0.0% matched, 3,840 bytes</title>
+<title>sprite_a9: 100.0% matched, 3,840 bytes</title>
 <rect x="697.27" y="623.78" width="72.78" height="75.88" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip46"><rect x="699.27" y="624.78" width="69.38" height="13.77"/></clipPath>
 <rect x="698.27" y="624.78" width="71.38" height="13.77" fill="#05080d"/>
-<text x="699.77" y="634.78" clip-path="url(#moduleLabelClip46)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_spri…</text>
-<text x="767.65" y="633.78" text-anchor="end" clip-path="url(#moduleLabelClip46)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="698.27" y="638.55" width="24.41" height="45.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/SpriteUnknownA9: 1,000 bytes, not matched, size=symbol</title></rect>
-<rect x="698.27" y="684.13" width="24.41" height="14.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FBB8: 332 bytes, not matched, size=symbol</title></rect>
-<rect x="723.03" y="638.55" width="23.25" height="15.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FE90: 324 bytes, not matched, size=symbol</title></rect>
-<rect x="746.63" y="638.55" width="22.67" height="15.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806002C: 316 bytes, not matched, size=symbol</title></rect>
-<rect x="723.03" y="654.04" width="12.13" height="12.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806052C: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="723.03" y="666.70" width="12.13" height="11.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FD2C: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="723.03" y="678.28" width="12.13" height="10.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80601B4: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="723.03" y="689.13" width="12.13" height="9.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FB24: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="735.51" y="654.04" width="9.85" height="9.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FE34: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="745.71" y="654.04" width="8.52" height="9.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060274: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="754.57" y="654.04" width="8.07" height="9.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060450: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="763.00" y="654.04" width="6.30" height="9.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80602EC: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="735.51" y="664.22" width="7.36" height="7.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FDAC: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="743.22" y="664.22" width="6.81" height="7.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060350: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="750.38" y="664.22" width="6.26" height="7.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80603AC: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="756.98" y="664.22" width="6.26" height="7.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80604FC: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="763.59" y="664.22" width="5.71" height="7.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FFD4: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="735.51" y="672.42" width="6.71" height="6.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060000: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="735.51" y="679.45" width="6.71" height="6.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80604A8: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="735.51" y="686.48" width="6.71" height="6.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FD04: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="735.51" y="692.87" width="6.71" height="6.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FE0C: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="742.57" y="672.42" width="6.04" height="6.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060168: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="742.57" y="679.48" width="6.04" height="6.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806024C: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="742.57" y="686.55" width="6.04" height="6.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FB94: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="742.57" y="692.90" width="6.04" height="6.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060190: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="748.96" y="672.42" width="7.41" height="4.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060404: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="756.72" y="672.42" width="6.55" height="4.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806022C: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="763.62" y="672.42" width="5.68" height="4.89" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80605F8: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="748.96" y="677.66" width="5.56" height="4.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80605B8: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="754.87" y="677.66" width="4.58" height="4.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FDE4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="759.80" y="677.66" width="4.58" height="4.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_805FDF8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="764.72" y="677.66" width="4.58" height="4.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80602C4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="748.96" y="682.24" width="4.95" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80602D8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="748.96" y="686.50" width="4.95" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060328: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="748.96" y="690.75" width="4.95" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806033C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="748.96" y="695.01" width="4.95" height="3.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060384: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="754.27" y="682.24" width="4.78" height="4.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060398: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="759.39" y="682.24" width="4.78" height="4.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80603DC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="764.52" y="682.24" width="4.78" height="4.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80603F0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="754.27" y="686.64" width="5.02" height="3.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060428: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="754.27" y="690.85" width="5.02" height="3.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806043C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="754.27" y="695.06" width="5.02" height="3.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80604D4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="759.63" y="686.64" width="4.66" height="4.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80604E8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="764.64" y="686.64" width="4.66" height="4.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80605D0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="759.63" y="691.15" width="5.21" height="3.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_80605E4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="759.63" y="695.21" width="5.21" height="3.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060614: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.20" y="691.15" width="4.10" height="4.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_8060628: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.20" y="696.22" width="4.10" height="2.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite_a9/func_806049C: 12 bytes, not matched, size=symbol</title></rect>
+<text x="699.77" y="634.78" clip-path="url(#moduleLabelClip46)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">sprite_a9</text>
+<text x="767.65" y="633.78" text-anchor="end" clip-path="url(#moduleLabelClip46)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="698.27" y="638.55" width="24.41" height="45.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/SpriteUnknownA9: 1,000 bytes, matched, size=symbol</title></rect>
+<rect x="698.27" y="684.13" width="24.41" height="14.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FBB8: 332 bytes, matched, size=symbol</title></rect>
+<rect x="723.03" y="638.55" width="23.25" height="15.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FE90: 324 bytes, matched, size=symbol</title></rect>
+<rect x="746.63" y="638.55" width="22.67" height="15.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806002C: 316 bytes, matched, size=symbol</title></rect>
+<rect x="723.03" y="654.04" width="12.13" height="12.31" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806052C: 140 bytes, matched, size=symbol</title></rect>
+<rect x="723.03" y="666.70" width="12.13" height="11.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FD2C: 128 bytes, matched, size=symbol</title></rect>
+<rect x="723.03" y="678.28" width="12.13" height="10.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80601B4: 120 bytes, matched, size=symbol</title></rect>
+<rect x="723.03" y="689.13" width="12.13" height="9.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FB24: 112 bytes, matched, size=symbol</title></rect>
+<rect x="735.51" y="654.04" width="9.85" height="9.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FE34: 92 bytes, matched, size=symbol</title></rect>
+<rect x="745.71" y="654.04" width="8.52" height="9.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060274: 80 bytes, matched, size=symbol</title></rect>
+<rect x="754.57" y="654.04" width="8.07" height="9.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060450: 76 bytes, matched, size=symbol</title></rect>
+<rect x="763.00" y="654.04" width="6.30" height="9.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80602EC: 60 bytes, matched, size=symbol</title></rect>
+<rect x="735.51" y="664.22" width="7.36" height="7.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FDAC: 56 bytes, matched, size=symbol</title></rect>
+<rect x="743.22" y="664.22" width="6.81" height="7.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060350: 52 bytes, matched, size=symbol</title></rect>
+<rect x="750.38" y="664.22" width="6.26" height="7.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80603AC: 48 bytes, matched, size=symbol</title></rect>
+<rect x="756.98" y="664.22" width="6.26" height="7.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80604FC: 48 bytes, matched, size=symbol</title></rect>
+<rect x="763.59" y="664.22" width="5.71" height="7.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FFD4: 44 bytes, matched, size=symbol</title></rect>
+<rect x="735.51" y="672.42" width="6.71" height="6.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060000: 44 bytes, matched, size=symbol</title></rect>
+<rect x="735.51" y="679.45" width="6.71" height="6.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80604A8: 44 bytes, matched, size=symbol</title></rect>
+<rect x="735.51" y="686.48" width="6.71" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FD04: 40 bytes, matched, size=symbol</title></rect>
+<rect x="735.51" y="692.87" width="6.71" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FE0C: 40 bytes, matched, size=symbol</title></rect>
+<rect x="742.57" y="672.42" width="6.04" height="6.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060168: 40 bytes, matched, size=symbol</title></rect>
+<rect x="742.57" y="679.48" width="6.04" height="6.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806024C: 40 bytes, matched, size=symbol</title></rect>
+<rect x="742.57" y="686.55" width="6.04" height="6.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FB94: 36 bytes, matched, size=symbol</title></rect>
+<rect x="742.57" y="692.90" width="6.04" height="6.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060190: 36 bytes, matched, size=symbol</title></rect>
+<rect x="748.96" y="672.42" width="7.41" height="4.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060404: 36 bytes, matched, size=symbol</title></rect>
+<rect x="756.72" y="672.42" width="6.55" height="4.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806022C: 32 bytes, matched, size=symbol</title></rect>
+<rect x="763.62" y="672.42" width="5.68" height="4.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80605F8: 28 bytes, matched, size=symbol</title></rect>
+<rect x="748.96" y="677.66" width="5.56" height="4.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80605B8: 24 bytes, matched, size=symbol</title></rect>
+<rect x="754.87" y="677.66" width="4.58" height="4.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FDE4: 20 bytes, matched, size=symbol</title></rect>
+<rect x="759.80" y="677.66" width="4.58" height="4.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_805FDF8: 20 bytes, matched, size=symbol</title></rect>
+<rect x="764.72" y="677.66" width="4.58" height="4.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80602C4: 20 bytes, matched, size=symbol</title></rect>
+<rect x="748.96" y="682.24" width="4.95" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80602D8: 20 bytes, matched, size=symbol</title></rect>
+<rect x="748.96" y="686.50" width="4.95" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060328: 20 bytes, matched, size=symbol</title></rect>
+<rect x="748.96" y="690.75" width="4.95" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806033C: 20 bytes, matched, size=symbol</title></rect>
+<rect x="748.96" y="695.01" width="4.95" height="3.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060384: 20 bytes, matched, size=symbol</title></rect>
+<rect x="754.27" y="682.24" width="4.78" height="4.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060398: 20 bytes, matched, size=symbol</title></rect>
+<rect x="759.39" y="682.24" width="4.78" height="4.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80603DC: 20 bytes, matched, size=symbol</title></rect>
+<rect x="764.52" y="682.24" width="4.78" height="4.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80603F0: 20 bytes, matched, size=symbol</title></rect>
+<rect x="754.27" y="686.64" width="5.02" height="3.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060428: 20 bytes, matched, size=symbol</title></rect>
+<rect x="754.27" y="690.85" width="5.02" height="3.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806043C: 20 bytes, matched, size=symbol</title></rect>
+<rect x="754.27" y="695.06" width="5.02" height="3.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80604D4: 20 bytes, matched, size=symbol</title></rect>
+<rect x="759.63" y="686.64" width="4.66" height="4.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80604E8: 20 bytes, matched, size=symbol</title></rect>
+<rect x="764.64" y="686.64" width="4.66" height="4.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80605D0: 20 bytes, matched, size=symbol</title></rect>
+<rect x="759.63" y="691.15" width="5.21" height="3.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_80605E4: 20 bytes, matched, size=symbol</title></rect>
+<rect x="759.63" y="695.21" width="5.21" height="3.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060614: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.20" y="691.15" width="4.10" height="4.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_8060628: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.20" y="696.22" width="4.10" height="2.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite_a9/func_806049C: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>rotating_platform: 100.0% matched, 3,788 bytes</title>
