@@ -673,7 +673,7 @@ SECTIONS {
         obj/sprite_ai/disasm_shieragutchi.o(.text);
         obj/sprite_ai/disasm_ringosuki.o(.text);
         obj/sprite_ai/disasm_piston.o(.text);
-        obj/sprite_ai/disasm_catbat.o(.text);
+        obj/sprite_ai/catbat.o(.text);
         obj/sprite_ai/disasm_swinging_platform.o(.text);
         obj/sprite_ai/disasm_pinball.o(.text);
         obj/sprite_ai/disasm_spike_cannon.o(.text);
