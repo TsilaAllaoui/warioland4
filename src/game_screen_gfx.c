@@ -347,7 +347,7 @@ void GameScreenDrawWarioEffects(void)
             }
             gWarioDustEffect2.unk4 = gWarioData.xPosition + effectX;
             gWarioDustEffect2.unk6 = gWarioData.yPosition - 0x20;
-            temp = func_806DAC0(gWarioData.yPosition - 0x68, gWarioDustEffect2.unk4);
+            temp = GetBackgroundCollisionAtPosition(gWarioData.yPosition - 0x68, gWarioDustEffect2.unk4);
             if (!(temp & 0xFF)) {
                 gWarioDustEffect2.unk0 = 0;
                 break;
@@ -357,7 +357,7 @@ void GameScreenDrawWarioEffects(void)
                 gWarioDustEffect2.unk1 = 0;
                 gWarioDustEffect2.unk2++;
                 if (gWarioDustEffect2.unk2 == 2) {
-                    temp = func_806DAC0(gWarioDustEffect2.unk6 - 0x78, gWarioDustEffect2.unk4);
+                    temp = GetBackgroundCollisionAtPosition(gWarioDustEffect2.unk6 - 0x78, gWarioDustEffect2.unk4);
                     if (!(temp & 0xFF)) {
                         gWarioDustEffect2.unk2 = 4;
                     }

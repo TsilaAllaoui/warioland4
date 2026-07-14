@@ -712,7 +712,7 @@ SECTIONS {
         obj/disasm_0x06AF4C.o(.text);
         obj/disasm_scrolling.o(.text);
         obj/disasm_block.o(.text);
-        obj/disasm_bg_clip.o(.text);
+        obj/bg_clip.o(.text);
         obj/disasm_animated_graphics.o(.text);
         obj/disasm_0x06E3BC.o(.text);
         obj/disasm_0x06EC50.o(.text);

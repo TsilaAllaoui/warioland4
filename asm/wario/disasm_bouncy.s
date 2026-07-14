@@ -737,7 +737,7 @@ func_801A250:
 	lsl	r0, r0, #16
 	lsr	r0, r0, #16
 	ldrh	r1, [r4, #18]
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	add	r1, r0, #0
 	mov	r0, #255	@ 0xff
 	and	r1, r0

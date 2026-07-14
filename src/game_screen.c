@@ -3,6 +3,7 @@
 #include "game_screen_helpers.h"
 
 #include "background_registers.h"
+#include "bg_clip.h"
 #include "backgrounds.h"
 #include "boss_pause.h"
 #include "color_effects.h"
@@ -102,7 +103,7 @@ u32 GameScreenSubroutine(void)
         case 4:
             WarioProcessControls();
             if (gSubGameMode == 2) {
-                func_806DE8C(gUnk_3001892, gUnk_3001890);
+                CheckRoomTransitionAtPosition(gUnk_3001892, gUnk_3001890);
             }
             break;
 

@@ -616,7 +616,7 @@ func_80160F4:
 	ldr	r4, .L_16158
 	ldrh	r0, [r4, #20]
 	ldrh	r1, [r4, #18]
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	asr	r0, r0, #16
 	cmp	r0, #1
 	bne	.L_1615c
@@ -625,7 +625,7 @@ func_80160F4:
 	lsl	r0, r0, #16
 	lsr	r0, r0, #16
 	ldrh	r1, [r4, #18]
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	asr	r0, r0, #16
 	cmp	r0, #1
 	bne	.L_1615c
@@ -2318,7 +2318,7 @@ func_8016B58:
 	lsl	r0, r0, #16
 	lsr	r0, r0, #16
 	ldrh	r1, [r4, #18]
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	add	r1, r0, #0
 	mov	r0, #255	@ 0xff
 	and	r1, r0

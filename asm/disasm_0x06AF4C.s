@@ -1104,9 +1104,9 @@ func_806B810:
 	bne	.L_6b832
 .L_6b844:
 	mov	r0, #1
-	bl	func_806DF3C
+	bl	ApplyRoomTransitionTileOffset
 	mov	r0, #1
-	bl	func_806DFD8
+	bl	SetRoomTransitionTileValues
 .L_6b850:
 	pop	{r4, r5}
 	pop	{r0}
@@ -2591,7 +2591,9 @@ func_806C2CC:
 
 
 thumb_func_start MusicPauseFadeOut
+.global FadeOutMusicForPause
 MusicPauseFadeOut:
+FadeOutMusicForPause:
 	push	{r4, lr}
 	ldr	r4, .L_6c328
 	ldr	r0, [r4, #0]

@@ -112,6 +112,12 @@ struct Unk_30000A0 {
     u16 unk_04;
 };
 
+struct BackgroundTileTables {
+    const u16 *top;
+    const u16 *bottom;
+    const u16 *attributes;
+};
+
 struct BackgroundScroll {
     u16 bg0Horizontal;
     u16 bg0Vertical;
@@ -193,5 +199,8 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+extern u8 gUnk_3000023;
+extern struct BackgroundTileTables gUnk_30031F4;
+extern u8 gUnk_300342C;
 
 #endif  // GLOBAL_DATA_H
