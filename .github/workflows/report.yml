@@ -9,6 +9,9 @@ on:
       - "Makefile"
       - "linker.ld"
       - "tools/gen_decomp_progress.py"
+      - "tools/requirements.txt"
+      - "tools/agbcc/**"
+      - "tools/extract_assets.py"
       - "src/**"
       - "asm/**"
       - "include/**"
@@ -31,9 +34,9 @@ concurrency:
 jobs:
   build-and-report:
     name: Build ROM and generate report
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
-    # Fork pull requests cannot access the private ROM token.
+    # Repository secrets are not available to pull requests from forks.
     if: >
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
@@ -45,50 +48,44 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Install ARM toolchain and build dependencies
-        uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: >
-            gcc-arm-none-eabi
-            binutils-arm-none-eabi
-            build-essential
-            git
-            wget
-            unzip
-            zip
-          version: 1.0
+      - name: Install system dependencies
+        run: |
+          set -euxo pipefail
+
+          sudo apt-get update
+          sudo apt-get install -y             binutils-arm-none-eabi             build-essential             gcc-multilib             g++-multilib             libc6-dev-i386             flex             bison             git             wget             unzip             zip             file
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
-      - name: Cache agbcc
-        id: cache-agbcc
-        uses: actions/cache@v4
-        with:
-          path: |
-            tools/agbcc/bin
-            tools/agbcc/lib
-            tools/agbcc/include
-          key: agbcc-${{ hashFiles('tools/agbcc/**/*.c', 'tools/agbcc/**/*.h', 'tools/agbcc/build.sh', 'tools/agbcc/install.sh') }}
-
-      - name: Build agbcc
-        if: steps.cache-agbcc.outputs.cache-hit != 'true'
+      - name: Rebuild project tools
         run: |
           set -euxo pipefail
 
-          cd tools/agbcc
-          chmod +x build.sh install.sh
-          ./build.sh
-          ./install.sh ../..
+          # Always rebuild the project tools from scratch.
+          # This avoids restoring incomplete or stale agbcc binaries.
+          rm -rf .venv
 
-      - name: Verify agbcc installation
+          rm -f             tools/agbcc/agbcc             tools/agbcc/old_agbcc             tools/agbcc/agbcc_arm             tools/agbcc/libgcc.a             tools/agbcc/libc.a
+
+          rm -rf             tools/agbcc/gcc             tools/agbcc/gcc_arm
+
+          make tools
+
+      - name: Verify project tools
         run: |
           set -euxo pipefail
 
-          test -d tools/agbcc/bin
-          find tools/agbcc/bin -maxdepth 1 -type f -print
+          test -x tools/agbcc/agbcc
+          test -x .venv/bin/python
+
+          ls -l tools/agbcc/agbcc
+          file tools/agbcc/agbcc
+
+          .venv/bin/python --version
+          .venv/bin/python -m pip --version
 
       - name: Download private baserom
         env:
@@ -98,10 +95,7 @@ jobs:
 
           test -n "$GH_TOKEN"
 
-          gh release download baserom-us-v1 \
-            --repo TsilaAllaoui/wl4-ci-assets \
-            --pattern "warioland4-us.zip" \
-            --output warioland4-us.zip
+          gh release download baserom-us-v1             --repo TsilaAllaoui/wl4-ci-assets             --pattern "warioland4-us.zip"             --output warioland4-us.zip
 
           unzip -o warioland4-us.zip
 
@@ -124,6 +118,15 @@ jobs:
 
           echo "Baserom MD5: $ACTUAL_MD5"
           test "$ACTUAL_MD5" = "$EXPECTED_MD5"
+
+      - name: Extract assets from baserom
+        run: |
+          set -euxo pipefail
+
+          test -x .venv/bin/python
+          test -s baserom_us.gba
+
+          make extract
 
       - name: Build Wario Land 4
         run: |
@@ -151,10 +154,7 @@ jobs:
 
           MAP_FILE=""
 
-          for candidate in \
-            build/us/warioland4.map \
-            build/us/warioland4_us.map \
-            build/warioland4.map
+          for candidate in             build/us/warioland4.map             build/us/warioland4_us.map             build/warioland4.map
           do
             if [ -s "$candidate" ]; then
               MAP_FILE="$candidate"
@@ -194,7 +194,7 @@ jobs:
 
           report = json.loads(Path("report.json").read_text(encoding="utf-8"))
 
-          assert report.get("version") == 2, report.get("version")
+          assert report.get("version") == 2
           assert isinstance(report.get("measures"), dict)
           assert isinstance(report.get("units"), list)
           assert isinstance(report.get("categories"), list)
@@ -240,19 +240,26 @@ jobs:
         run: |
           set -euxo pipefail
 
-          grep -q "Progress controls" docs/progress.html
-          grep -q "Matched only" docs/progress.html
-          grep -q "Unmatched only" docs/progress.html
-          grep -q "Largest first" docs/progress.html
-          grep -q "Smallest first" docs/progress.html
+          grep -q 'data-status="all"' docs/progress.html
+          grep -q 'data-status="matched"' docs/progress.html
+          grep -q 'data-status="not matched"' docs/progress.html
+
+          grep -q 'id="search"' docs/progress.html
+          grep -q 'id="module"' docs/progress.html
+          grep -q 'id="sort"' docs/progress.html
+          grep -q 'id="reset"' docs/progress.html
+
+          grep -q '<option value="size-desc">Largest first</option>' docs/progress.html
+          grep -q '<option value="size-asc">Smallest first</option>' docs/progress.html
+          grep -q '<option value="module">Module</option>' docs/progress.html
+          grep -q '<option value="name">Name A–Z</option>' docs/progress.html
 
       - name: Validate SVG totals
         run: |
           set -euxo pipefail
 
           grep -q "Functions" docs/progress-treemap.svg
-          grep -q "Code bytes" docs/progress-treemap.svg
-          grep -q "Remaining" docs/progress-treemap.svg
+          grep -q "Code size" docs/progress-treemap.svg
 
       - name: Show progress summary
         run: |
