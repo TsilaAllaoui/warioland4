@@ -2265,78 +2265,78 @@ sUnk_83DC444:
 
 baserom_blob 0x3DC444, 0x3DC770
 
-.global sUnk_83DC770
-sUnk_83DC770:
+.global sDendenIdleOam
+sDendenIdleOam:
 
 baserom_blob 0x3DC770, 0x3DC798
 
-.global sUnk_83DC798
-sUnk_83DC798:
+.global sDendenAirborneOam
+sDendenAirborneOam:
 
 baserom_blob 0x3DC798, 0x3DC7C0
 
-.global sUnk_83DC7C0
-sUnk_83DC7C0:
+.global sDendenThrownOam
+sDendenThrownOam:
 
 baserom_blob 0x3DC7C0, 0x3DC818
 
-.global sUnk_83DC818
-sUnk_83DC818:
+.global sDendenLandingOam
+sDendenLandingOam:
 
 baserom_blob 0x3DC818, 0x3DC828
 
-.global sUnk_83DC828
-sUnk_83DC828:
+.global sDendenHideOam
+sDendenHideOam:
 
 baserom_blob 0x3DC828, 0x3DC880
 
-.global sUnk_83DC880
-sUnk_83DC880:
+.global sDendenPushedOam
+sDendenPushedOam:
 
 baserom_blob 0x3DC880, 0x3DC898
 
-.global sUnk_83DC898
-sUnk_83DC898:
+.global sDendenSpawnShellOam
+sDendenSpawnShellOam:
 
 baserom_blob 0x3DC898, 0x3DC8F0
 
-.global sUnk_83DC8F0
-sUnk_83DC8F0:
+.global sDendenShellOam
+sDendenShellOam:
 
 baserom_blob 0x3DC8F0, 0x3DC900
 
-.global sUnk_83DC900
-sUnk_83DC900:
+.global sDendenTurnStartOam
+sDendenTurnStartOam:
 
 baserom_blob 0x3DC900, 0x3DC928
 
-.global sUnk_83DC928
-sUnk_83DC928:
+.global sDendenTurnMiddleOam
+sDendenTurnMiddleOam:
 
 baserom_blob 0x3DC928, 0x3DC948
 
-.global sUnk_83DC948
-sUnk_83DC948:
+.global sDendenTurnEndOam
+sDendenTurnEndOam:
 
 baserom_blob 0x3DC948, 0x3DC970
 
-.global sUnk_83DC970
-sUnk_83DC970:
+.global sDendenDeathOam
+sDendenDeathOam:
 
 baserom_blob 0x3DC970, 0x3DC9A0
 
-.global sUnk_83DC9A0
-sUnk_83DC9A0:
+.global sDendenKnockedAwayOam
+sDendenKnockedAwayOam:
 
 baserom_blob 0x3DC9A0, 0x3DC9C8
 
-.global sUnk_83DC9C8
-sUnk_83DC9C8:
+.global sDendenRetreatOam
+sDendenRetreatOam:
 
 baserom_blob 0x3DC9C8, 0x3DC9E0
 
-.global sUnk_83DC9E0
-sUnk_83DC9E0:
+.global sDendenFallingYVelocity
+sDendenFallingYVelocity:
 
 baserom_blob 0x3DC9E0, 0x3DCCBC
 

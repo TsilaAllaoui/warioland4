@@ -66,7 +66,7 @@ enum SoundID {
     SOUND_3A,
     SOUND_3B,
     SOUND_3C,
-    SOUND_3D,
+    SE_SPLASH,
     SOUND_3E,
     SOUND_3F,
     SOUND_40,
