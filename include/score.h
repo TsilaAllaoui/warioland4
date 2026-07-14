@@ -176,6 +176,7 @@ void ProcessSecondarySprites(void);
 void func_8075F44(void);
 void ScoreGivePoints(s32);
 void SpriteSpawnSecondary(u32 y, u32 x, u8 id);
+void func_80767DC(u16 yPosition, u16 xPosition, s32 amount);
 void func_807687C(u32 id, u32 y, u32 x, u32 amount);
 void ScoreGiveOrDropCoins(s32);
 

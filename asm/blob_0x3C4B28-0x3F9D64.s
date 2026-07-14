@@ -1025,143 +1025,143 @@ sUnk_83D0370:
 
 baserom_blob 0x3D0370, 0x3D0938
 
-.global sUnk_83D0938
-sUnk_83D0938:
+.global sPinballLockUpOpenOam
+sPinballLockUpOpenOam:
 
 baserom_blob 0x3D0938, 0x3D0948
 
-.global sUnk_83D0948
-sUnk_83D0948:
+.global sPinballLockUpResetOam
+sPinballLockUpResetOam:
 
 baserom_blob 0x3D0948, 0x3D0960
 
-.global sUnk_83D0960
-sUnk_83D0960:
+.global sPinballLockUpWaitingOam
+sPinballLockUpWaitingOam:
 
 baserom_blob 0x3D0960, 0x3D0970
 
-.global sUnk_83D0970
-sUnk_83D0970:
+.global sPinballLockUpMovingOam
+sPinballLockUpMovingOam:
 
 baserom_blob 0x3D0970, 0x3D0988
 
-.global sUnk_83D0988
-sUnk_83D0988:
+.global sPinballLockDownOpenOam
+sPinballLockDownOpenOam:
 
 baserom_blob 0x3D0988, 0x3D0998
 
-.global sUnk_83D0998
-sUnk_83D0998:
+.global sPinballLockDownResetOam
+sPinballLockDownResetOam:
 
 baserom_blob 0x3D0998, 0x3D09B0
 
-.global sUnk_83D09B0
-sUnk_83D09B0:
+.global sPinballLockDownWaitingOam
+sPinballLockDownWaitingOam:
 
 baserom_blob 0x3D09B0, 0x3D09C0
 
-.global sUnk_83D09C0
-sUnk_83D09C0:
+.global sPinballLockDownMovingOam
+sPinballLockDownMovingOam:
 
 baserom_blob 0x3D09C0, 0x3D09D8
 
-.global sUnk_83D09D8
-sUnk_83D09D8:
+.global sPinballLockLeftOpenOam
+sPinballLockLeftOpenOam:
 
 baserom_blob 0x3D09D8, 0x3D09E8
 
-.global sUnk_83D09E8
-sUnk_83D09E8:
+.global sPinballLockLeftResetOam
+sPinballLockLeftResetOam:
 
 baserom_blob 0x3D09E8, 0x3D0A00
 
-.global sUnk_83D0A00
-sUnk_83D0A00:
+.global sPinballLockLeftWaitingOam
+sPinballLockLeftWaitingOam:
 
 baserom_blob 0x3D0A00, 0x3D0A10
 
-.global sUnk_83D0A10
-sUnk_83D0A10:
+.global sPinballLockLeftMovingOam
+sPinballLockLeftMovingOam:
 
 baserom_blob 0x3D0A10, 0x3D0A28
 
-.global sUnk_83D0A28
-sUnk_83D0A28:
+.global sPinballLockRightOpenOam
+sPinballLockRightOpenOam:
 
 baserom_blob 0x3D0A28, 0x3D0A38
 
-.global sUnk_83D0A38
-sUnk_83D0A38:
+.global sPinballLockRightResetOam
+sPinballLockRightResetOam:
 
 baserom_blob 0x3D0A38, 0x3D0A50
 
-.global sUnk_83D0A50
-sUnk_83D0A50:
+.global sPinballLockRightWaitingOam
+sPinballLockRightWaitingOam:
 
 baserom_blob 0x3D0A50, 0x3D0A60
 
-.global sUnk_83D0A60
-sUnk_83D0A60:
+.global sPinballLockRightMovingOam
+sPinballLockRightMovingOam:
 
 baserom_blob 0x3D0A60, 0x3D0B08
 
-.global sUnk_83D0B08
-sUnk_83D0B08:
+.global sPinballOam
+sPinballOam:
 
 baserom_blob 0x3D0B08, 0x3D0B18
 
-.global sUnk_83D0B18
-sUnk_83D0B18:
+.global sPinballCounterFourOam
+sPinballCounterFourOam:
 
 baserom_blob 0x3D0B18, 0x3D0B28
 
-.global sUnk_83D0B28
-sUnk_83D0B28:
+.global sPinballCounterThreeOam
+sPinballCounterThreeOam:
 
 baserom_blob 0x3D0B28, 0x3D0B38
 
-.global sUnk_83D0B38
-sUnk_83D0B38:
+.global sPinballCounterTwoOam
+sPinballCounterTwoOam:
 
 baserom_blob 0x3D0B38, 0x3D0B48
 
-.global sUnk_83D0B48
-sUnk_83D0B48:
+.global sPinballCounterOneOam
+sPinballCounterOneOam:
 
 baserom_blob 0x3D0B48, 0x3D0B58
 
-.global sUnk_83D0B58
-sUnk_83D0B58:
+.global sPinballCounterZeroOam
+sPinballCounterZeroOam:
 
 baserom_blob 0x3D0B58, 0x3D0B68
 
-.global sUnk_83D0B68
-sUnk_83D0B68:
+.global sPinballCompletionSparkleOam
+sPinballCompletionSparkleOam:
 
 baserom_blob 0x3D0B68, 0x3D0BE8
 
-.global sUnk_83D0BE8
-sUnk_83D0BE8:
+.global sPinballLockUpDisappearOam
+sPinballLockUpDisappearOam:
 
 baserom_blob 0x3D0BE8, 0x3D0C00
 
-.global sUnk_83D0C00
-sUnk_83D0C00:
+.global sPinballLockDownDisappearOam
+sPinballLockDownDisappearOam:
 
 baserom_blob 0x3D0C00, 0x3D0C18
 
-.global sUnk_83D0C18
-sUnk_83D0C18:
+.global sPinballLockLeftDisappearOam
+sPinballLockLeftDisappearOam:
 
 baserom_blob 0x3D0C18, 0x3D0C30
 
-.global sUnk_83D0C30
-sUnk_83D0C30:
+.global sPinballLockRightDisappearOam
+sPinballLockRightDisappearOam:
 
 baserom_blob 0x3D0C30, 0x3D0C48
 
-.global sUnk_83D0C48
-sUnk_83D0C48:
+.global sPinballCounterDisappearOam
+sPinballCounterDisappearOam:
 
 baserom_blob 0x3D0C48, 0x3D0D3C
 
