@@ -36,7 +36,6 @@ jobs:
     name: Build ROM and generate report
     runs-on: ubuntu-22.04
 
-    # Repository secrets are not available to pull requests from forks.
     if: >
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
@@ -64,20 +63,13 @@ jobs:
         run: |
           set -euxo pipefail
 
-          # Always rebuild the project tools from scratch.
-          # This avoids restoring incomplete or stale agbcc binaries.
+          # Recreate the Python environment every run.
           rm -rf .venv
 
-          rm -f \
-            tools/agbcc/agbcc \
-            tools/agbcc/old_agbcc \
-            tools/agbcc/agbcc_arm \
-            tools/agbcc/libgcc.a \
-            tools/agbcc/libc.a
-
-          # gcc/ is checked-in compiler source and must not be deleted.
-          # gcc_arm/ is generated build output and can be rebuilt safely.
-          rm -rf tools/agbcc/gcc_arm
+          # Remove only final generated artifacts.
+          # Do NOT remove tools/agbcc/gcc or tools/agbcc/gcc_arm:
+          # agbcc/build.sh expects both directories to exist.
+          rm -f             tools/agbcc/agbcc             tools/agbcc/old_agbcc             tools/agbcc/agbcc_arm             tools/agbcc/libgcc.a             tools/agbcc/libc.a
 
           make tools
 
@@ -86,10 +78,13 @@ jobs:
           set -euxo pipefail
 
           test -x tools/agbcc/agbcc
+          test -x tools/agbcc/old_agbcc
+          test -x tools/agbcc/agbcc_arm
           test -x .venv/bin/python
 
-          ls -l tools/agbcc/agbcc
-          file tools/agbcc/agbcc
+          ls -l             tools/agbcc/agbcc             tools/agbcc/old_agbcc             tools/agbcc/agbcc_arm
+
+          file             tools/agbcc/agbcc             tools/agbcc/old_agbcc             tools/agbcc/agbcc_arm
 
           .venv/bin/python --version
           .venv/bin/python -m pip --version
