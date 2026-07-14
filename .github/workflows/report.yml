@@ -68,9 +68,16 @@ jobs:
           # This avoids restoring incomplete or stale agbcc binaries.
           rm -rf .venv
 
-          rm -f             tools/agbcc/agbcc             tools/agbcc/old_agbcc             tools/agbcc/agbcc_arm             tools/agbcc/libgcc.a             tools/agbcc/libc.a
+          rm -f \
+            tools/agbcc/agbcc \
+            tools/agbcc/old_agbcc \
+            tools/agbcc/agbcc_arm \
+            tools/agbcc/libgcc.a \
+            tools/agbcc/libc.a
 
-          rm -rf             tools/agbcc/gcc             tools/agbcc/gcc_arm
+          # gcc/ is checked-in compiler source and must not be deleted.
+          # gcc_arm/ is generated build output and can be rebuilt safely.
+          rm -rf tools/agbcc/gcc_arm
 
           make tools
 
