@@ -1,0 +1,303 @@
+name: Build and generate progress report
+
+on:
+  push:
+    branches:
+      - progress_generation
+    paths:
+      - ".github/workflows/report.yml"
+      - "Makefile"
+      - "linker.ld"
+      - "tools/gen_decomp_progress.py"
+      - "src/**"
+      - "asm/**"
+      - "include/**"
+      - "data/**"
+
+  pull_request:
+    branches:
+      - progress_generation
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: wl4-progress-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-report:
+    name: Build ROM and generate report
+    runs-on: ubuntu-24.04
+
+    # Fork pull requests cannot access the private ROM token.
+    # They still appear in Actions, but this job is skipped safely.
+    if: >
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Install ARM toolchain and build dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: >
+            gcc-arm-none-eabi
+            binutils-arm-none-eabi
+            build-essential
+            git
+            wget
+            unzip
+            zip
+          version: 1.0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Cache agbcc
+        id: cache-agbcc
+        uses: actions/cache@v4
+        with:
+          path: |
+            tools/agbcc/bin
+            tools/agbcc/lib
+            tools/agbcc/include
+          key: >
+            agbcc-${{
+              hashFiles(
+                'tools/agbcc/**/*.c',
+                'tools/agbcc/**/*.h',
+                'tools/agbcc/build.sh',
+                'tools/agbcc/install.sh'
+              )
+            }}
+
+      - name: Build agbcc
+        if: steps.cache-agbcc.outputs.cache-hit != 'true'
+        run: |
+          set -euxo pipefail
+
+          cd tools/agbcc
+          chmod +x build.sh install.sh
+          ./build.sh
+          ./install.sh ../..
+
+      - name: Verify agbcc installation
+        run: |
+          set -euxo pipefail
+
+          test -d tools/agbcc/bin
+          find tools/agbcc/bin -maxdepth 1 -type f -print
+
+      - name: Download private baserom
+        env:
+          GH_TOKEN: ${{ secrets.WL4_ASSETS_TOKEN }}
+        run: |
+          set -euxo pipefail
+
+          test -n "$GH_TOKEN"
+
+          gh release download baserom-us-v1 \
+            --repo TsilaAllaoui/wl4-ci-assets \
+            --pattern "warioland4-us.zip" \
+            --output warioland4-us.zip
+
+          unzip -o warioland4-us.zip
+
+          ROM_FILE="$(find . -maxdepth 2 -type f -iname '*.gba' | head -n 1)"
+          test -n "$ROM_FILE"
+
+          if [ "$ROM_FILE" != "./baserom.gba" ]; then
+            mv "$ROM_FILE" baserom.gba
+          fi
+
+          test -s baserom.gba
+          mv baserom.gba baserom_us.gba
+
+      - name: Verify baserom checksum
+        run: |
+          set -euxo pipefail
+
+          ACTUAL_MD5="$(md5sum baserom.gba | awk '{print $1}')"
+          EXPECTED_MD5="5fe47355a33e3fabec2a1607af88a404"
+
+          echo "Baserom MD5: $ACTUAL_MD5"
+          test "$ACTUAL_MD5" = "$EXPECTED_MD5"
+
+      - name: Build Wario Land 4
+        run: |
+          set -euxo pipefail
+          make extract
+          make clean
+          make -j"$(nproc)"
+
+      - name: Verify matching ROM
+        run: |
+          set -euxo pipefail
+
+          test -s build/us/warioland4_us.gba
+
+          ACTUAL_MD5="$(md5sum build/us/warioland4_us.gba | awk '{print $1}')"
+          EXPECTED_MD5="5fe47355a33e3fabec2a1607af88a404"
+
+          echo "Built ROM MD5: $ACTUAL_MD5"
+          test "$ACTUAL_MD5" = "$EXPECTED_MD5"
+
+      - name: Verify linker map exists
+        run: |
+          set -euxo pipefail
+
+          test -s build/us/warioland4.map
+          ls -lh build/us/warioland4.map
+
+      - name: Generate HTML, SVG, and decomp.dev report
+        run: |
+          set -euxo pipefail
+
+          python3 -m py_compile tools/gen_decomp_progress.py
+          python3 tools/gen_decomp_progress.py
+
+          test -s docs/progress.html
+          test -s docs/progress-treemap.svg
+          test -s report.json
+
+      - name: Validate report.json
+        run: |
+          set -euxo pipefail
+
+          python3 -m json.tool report.json >/dev/null
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path("report.json").read_text(encoding="utf-8"))
+
+          assert report.get("version") == 2, report.get("version")
+          assert isinstance(report.get("measures"), dict)
+          assert isinstance(report.get("units"), list)
+          assert isinstance(report.get("categories"), list)
+
+          measures = report["measures"]
+
+          required_measures = (
+              "total_code",
+              "matched_code",
+              "total_functions",
+              "matched_functions",
+              "complete_code",
+              "total_units",
+              "complete_units",
+              "matched_code_percent",
+              "matched_functions_percent",
+          )
+
+          for key in required_measures:
+              assert key in measures, f"Missing measure: {key}"
+
+          assert measures["total_code"] >= measures["matched_code"]
+          assert measures["total_functions"] >= measures["matched_functions"]
+          assert measures["total_units"] == len(report["units"])
+
+          print("Report version:", report["version"])
+          print("Units:", measures["total_units"])
+          print(
+              "Functions:",
+              measures["matched_functions"],
+              "/",
+              measures["total_functions"],
+          )
+          print(
+              "Code bytes:",
+              measures["matched_code"],
+              "/",
+              measures["total_code"],
+          )
+          PY
+
+      - name: Validate HTML controls
+        run: |
+          set -euxo pipefail
+
+          grep -q "Progress controls" docs/progress.html
+          grep -q "Matched only" docs/progress.html
+          grep -q "Unmatched only" docs/progress.html
+          grep -q "Largest first" docs/progress.html
+          grep -q "Smallest first" docs/progress.html
+
+      - name: Validate SVG totals
+        run: |
+          set -euxo pipefail
+
+          grep -q "Functions" docs/progress-treemap.svg
+          grep -q "Code bytes" docs/progress-treemap.svg
+          grep -q "Remaining" docs/progress-treemap.svg
+
+      - name: Show progress summary
+        run: |
+          python3 - <<'PY'
+          import json
+
+          with open("report.json", encoding="utf-8") as report_file:
+              report = json.load(report_file)
+
+          measures = report["measures"]
+
+          print(
+              f"Code: {measures['matched_code']:,} / "
+              f"{measures['total_code']:,} bytes "
+              f"({measures['matched_code_percent']:.4f}%)"
+          )
+
+          print(
+              f"Functions: {measures['matched_functions']:,} / "
+              f"{measures['total_functions']:,} "
+              f"({measures['matched_functions_percent']:.4f}%)"
+          )
+
+          print(
+              f"Units: {measures['complete_units']:,} / "
+              f"{measures['total_units']:,}"
+          )
+          PY
+
+      - name: Upload decomp.dev progress artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: us_report
+          path: report.json
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 9
+
+      - name: Upload HTML and SVG progress artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wl4_visual_progress
+          path: |
+            docs/progress.html
+            docs/progress-treemap.svg
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 9
+
+      - name: Upload linker map for debugging
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wl4-linker-map-debug
+          path: |
+            build/us/warioland4.map
+            report.json
+          if-no-files-found: ignore
+          retention-days: 7
