@@ -125,10 +125,28 @@ jobs:
           echo "Baserom MD5: $ACTUAL_MD5"
           test "$ACTUAL_MD5" = "$EXPECTED_MD5"
 
+      - name: Set up project tools and Python virtual environment
+        run: |
+          set -euxo pipefail
+
+          # The Makefile creates .venv and installs tools/requirements.txt.
+          # make extract invokes: . .venv/bin/activate && python3 ...
+          make tools
+
+          test -x .venv/bin/python
+          .venv/bin/python --version
+          .venv/bin/python -m pip --version
+
+      - name: Extract assets from baserom
+        run: |
+          set -euxo pipefail
+
+          make extract
+
       - name: Build Wario Land 4
         run: |
           set -euxo pipefail
-          make extract
+
           make clean
           make -j"$(nproc)"
 
