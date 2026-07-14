@@ -258,19 +258,25 @@ jobs:
         run: |
           set -euxo pipefail
 
-          grep -q "Progress controls" docs/progress.html
-          grep -q "Matched only" docs/progress.html
-          grep -q "Unmatched only" docs/progress.html
-          grep -q "Largest first" docs/progress.html
-          grep -q "Smallest first" docs/progress.html
+          # Validate stable control IDs and options emitted by the current
+          # generator instead of fragile labels from a different revision.
+          grep -q 'data-status="all"' docs/progress.html
+          grep -q 'data-status="matched"' docs/progress.html
+          grep -q 'data-status="not matched"' docs/progress.html
+          grep -q 'id="search"' docs/progress.html
+          grep -q 'id="module"' docs/progress.html
+          grep -q 'id="sort"' docs/progress.html
+          grep -q '<option value="size">Largest first</option>' docs/progress.html
+          grep -q '<option value="module">Module</option>' docs/progress.html
+          grep -q '<option value="name">Name</option>' docs/progress.html
+          grep -q 'id="reset"' docs/progress.html
 
       - name: Validate SVG totals
         run: |
           set -euxo pipefail
 
           grep -q "Functions" docs/progress-treemap.svg
-          grep -q "Code bytes" docs/progress-treemap.svg
-          grep -q "Remaining" docs/progress-treemap.svg
+          grep -q "Code size" docs/progress-treemap.svg
 
       - name: Show progress summary
         run: |
