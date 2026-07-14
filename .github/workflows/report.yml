@@ -34,7 +34,6 @@ jobs:
     runs-on: ubuntu-24.04
 
     # Fork pull requests cannot access the private ROM token.
-    # They still appear in Actions, but this job is skipped safely.
     if: >
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
@@ -72,15 +71,7 @@ jobs:
             tools/agbcc/bin
             tools/agbcc/lib
             tools/agbcc/include
-          key: >
-            agbcc-${{
-              hashFiles(
-                'tools/agbcc/**/*.c',
-                'tools/agbcc/**/*.h',
-                'tools/agbcc/build.sh',
-                'tools/agbcc/install.sh'
-              )
-            }}
+          key: agbcc-${{ hashFiles('tools/agbcc/**/*.c', 'tools/agbcc/**/*.h', 'tools/agbcc/build.sh', 'tools/agbcc/install.sh') }}
 
       - name: Build agbcc
         if: steps.cache-agbcc.outputs.cache-hit != 'true'
@@ -117,18 +108,18 @@ jobs:
           ROM_FILE="$(find . -maxdepth 2 -type f -iname '*.gba' | head -n 1)"
           test -n "$ROM_FILE"
 
-          if [ "$ROM_FILE" != "./baserom.gba" ]; then
-            mv "$ROM_FILE" baserom.gba
+          if [ "$ROM_FILE" != "./baserom_us.gba" ]; then
+            mv "$ROM_FILE" baserom_us.gba
           fi
 
-          test -s baserom.gba
-          mv baserom.gba baserom_us.gba
+          test -s baserom_us.gba
+          ls -lh baserom_us.gba
 
       - name: Verify baserom checksum
         run: |
           set -euxo pipefail
 
-          ACTUAL_MD5="$(md5sum baserom.gba | awk '{print $1}')"
+          ACTUAL_MD5="$(md5sum baserom_us.gba | awk '{print $1}')"
           EXPECTED_MD5="5fe47355a33e3fabec2a1607af88a404"
 
           echo "Baserom MD5: $ACTUAL_MD5"
@@ -153,12 +144,32 @@ jobs:
           echo "Built ROM MD5: $ACTUAL_MD5"
           test "$ACTUAL_MD5" = "$EXPECTED_MD5"
 
-      - name: Verify linker map exists
+      - name: Locate linker map
+        id: map
         run: |
           set -euxo pipefail
 
-          test -s build/us/warioland4.map
-          ls -lh build/us/warioland4.map
+          MAP_FILE=""
+
+          for candidate in \
+            build/us/warioland4.map \
+            build/us/warioland4_us.map \
+            build/warioland4.map
+          do
+            if [ -s "$candidate" ]; then
+              MAP_FILE="$candidate"
+              break
+            fi
+          done
+
+          if [ -z "$MAP_FILE" ]; then
+            echo "No linker map was found."
+            find build -type f -name '*.map' -print || true
+            exit 1
+          fi
+
+          echo "map_file=$MAP_FILE" >> "$GITHUB_OUTPUT"
+          ls -lh "$MAP_FILE"
 
       - name: Generate HTML, SVG, and decomp.dev report
         run: |
@@ -297,7 +308,7 @@ jobs:
         with:
           name: wl4-linker-map-debug
           path: |
-            build/us/warioland4.map
+            ${{ steps.map.outputs.map_file }}
             report.json
           if-no-files-found: ignore
           retention-days: 7
