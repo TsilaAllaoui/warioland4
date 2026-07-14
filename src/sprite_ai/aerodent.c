@@ -15,7 +15,6 @@
 #include "voice_set.h"
 #include "wario.h"
 
-/* Old-style declarations preserve the original agbcc argument lowering. */
 s32 SpriteCollisionCheckObjectsTouching();
 void SpriteUtilCheckCollisionAtPositionOld(u32, u32) asm("func_8023BFC");
 
