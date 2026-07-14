@@ -257,7 +257,7 @@ enum PrimarySpriteID {
     PSPRITE_F7,
     PSPRITE_F8,
     PSPRITE_F9,
-    PSPRITE_FA,
+    PSPRITE_PROFESSOR_PROJECTILE,
     PSPRITE_FB,
     PSPRITE_COUNT
 };
@@ -486,6 +486,7 @@ void SpriteSpawnAsChild(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosi
 void func_801D684(void);
 void func_801D8C4(void);
 void func_801DE7C(void);
+void func_801E3A8(u8 id, u8 arg1, u8 arg2, u32 y, u32 x, u32 arg5);
 void func_801E430(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
 
 #endif  // SPRITE_H

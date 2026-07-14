@@ -900,7 +900,7 @@ func_80770C8:
 .L_770ec:
 	.4byte	gCurrentSecondarySprite
 .L_770f0:
-	.4byte	sUnk_840FFAC
+	.4byte	sProfessorProjectileOam
 
 
 thumb_func_start func_80770F4

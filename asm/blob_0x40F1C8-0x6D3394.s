@@ -68,8 +68,8 @@ sUnk_840FEA4:
 
 baserom_blob 0x40FEA4, 0x40FFAC
 
-.global sUnk_840FFAC
-sUnk_840FFAC:
+.global sProfessorProjectileOam
+sProfessorProjectileOam:
 
 baserom_blob 0x40FFAC, 0x41000C
 
