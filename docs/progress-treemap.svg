@@ -13,21 +13,21 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████░░░░░░░░░░░░░░░░░  44.4%   1,809 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████░░░░░░░░░░░░░░░░░░░░  34.0%   207,070 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████░░░░░░░░░░░░░░░░  45.3%   1,844 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████░░░░░░░░░░░░░░░░░░░░  34.5%   210,682 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (609,788 / 609,818 bytes exact)</text>
 <rect x="24.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="40.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">FUNCTIONS</text>
-<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">1,809 / 4,071</text>
-<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">44.4% matched functions</text>
+<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">1,844 / 4,071</text>
+<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">45.3% matched functions</text>
 <rect x="335.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="351.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">CODE BYTES</text>
-<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">207,070 / 609,818</text>
-<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">34.0% matched code bytes</text>
+<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">210,682 / 609,818</text>
+<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">34.5% matched code bytes</text>
 <rect x="646.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="662.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">REMAINING</text>
-<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,262 funcs · 402,748 bytes</text>
+<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,227 funcs · 399,136 bytes</text>
 <text x="662.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">remaining unmatched code</text>
 <rect x="957.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="973.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">EXACT BYTE SIZING</text>
@@ -2950,47 +2950,47 @@
 <rect x="975.14" y="458.92" width="12.21" height="1.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sprite/func_801E0D4: 24 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_beezley: 0.0% matched, 3,612 bytes</title>
+<title>beezley: 100.0% matched, 3,612 bytes</title>
 <rect x="988.70" y="389.02" width="71.66" height="72.46" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip53"><rect x="990.70" y="390.02" width="68.26" height="13.15"/></clipPath>
 <rect x="989.70" y="390.02" width="70.26" height="13.15" fill="#05080d"/>
-<text x="991.20" y="400.02" clip-path="url(#moduleLabelClip53)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_beez…</text>
-<text x="1057.95" y="399.02" text-anchor="end" clip-path="url(#moduleLabelClip53)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="989.70" y="403.17" width="19.96" height="36.70" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/SpriteBeezley: 668 bytes, not matched, size=symbol</title></rect>
-<rect x="989.70" y="440.22" width="19.96" height="20.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80403C0: 376 bytes, not matched, size=symbol</title></rect>
-<rect x="1010.00" y="403.17" width="16.99" height="17.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_804012C: 268 bytes, not matched, size=symbol</title></rect>
-<rect x="1027.34" y="403.17" width="16.21" height="17.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040238: 256 bytes, not matched, size=symbol</title></rect>
-<rect x="1043.91" y="403.17" width="15.70" height="17.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040720: 248 bytes, not matched, size=symbol</title></rect>
-<rect x="1010.00" y="420.58" width="14.78" height="13.35" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040818: 184 bytes, not matched, size=symbol</title></rect>
-<rect x="1010.00" y="434.27" width="14.78" height="13.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040A28: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="1010.00" y="447.67" width="14.78" height="13.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040ADC: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="1025.13" y="420.58" width="14.01" height="10.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80408D0: 132 bytes, not matched, size=symbol</title></rect>
-<rect x="1039.50" y="420.58" width="10.10" height="10.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040338: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="1049.94" y="420.58" width="9.66" height="10.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80405E4: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="1025.13" y="430.93" width="8.92" height="9.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040564: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="1025.13" y="441.14" width="8.92" height="9.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80406CC: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="1025.13" y="451.35" width="8.92" height="9.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040B90: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="1034.40" y="430.93" width="8.17" height="7.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040668: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1042.92" y="430.93" width="8.17" height="7.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040C08: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1051.44" y="430.93" width="8.17" height="7.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040C68: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1034.40" y="438.33" width="6.39" height="7.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80409D0: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1034.40" y="446.36" width="6.39" height="7.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040538: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1034.40" y="453.72" width="6.39" height="7.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80405B8: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1041.13" y="438.33" width="6.33" height="7.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80406A0: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1047.81" y="438.33" width="5.72" height="7.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040398: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1053.88" y="438.33" width="5.72" height="7.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040640: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1041.13" y="445.75" width="5.83" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040954: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1041.13" y="450.86" width="5.83" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040998: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1041.13" y="455.97" width="5.83" height="4.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_80409B4: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1047.31" y="445.75" width="3.86" height="4.99" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040970: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1051.52" y="445.75" width="3.86" height="4.99" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040984: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1055.74" y="445.75" width="3.86" height="4.99" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040A00: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1047.31" y="451.10" width="4.17" height="4.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040A14: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1047.31" y="456.09" width="4.17" height="4.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040BE0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1051.83" y="451.10" width="3.71" height="5.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040BF4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1055.89" y="451.10" width="3.71" height="5.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040C40: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1051.83" y="456.64" width="4.73" height="4.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040C54: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1056.91" y="456.64" width="2.70" height="4.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_beezley/func_8040CA0: 12 bytes, not matched, size=symbol</title></rect>
+<text x="991.20" y="400.02" clip-path="url(#moduleLabelClip53)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">beezley</text>
+<text x="1057.95" y="399.02" text-anchor="end" clip-path="url(#moduleLabelClip53)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="989.70" y="403.17" width="19.96" height="36.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/SpriteBeezley: 668 bytes, matched, size=symbol</title></rect>
+<rect x="989.70" y="440.22" width="19.96" height="20.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80403C0: 376 bytes, matched, size=symbol</title></rect>
+<rect x="1010.00" y="403.17" width="16.99" height="17.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_804012C: 268 bytes, matched, size=symbol</title></rect>
+<rect x="1027.34" y="403.17" width="16.21" height="17.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040238: 256 bytes, matched, size=symbol</title></rect>
+<rect x="1043.91" y="403.17" width="15.70" height="17.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040720: 248 bytes, matched, size=symbol</title></rect>
+<rect x="1010.00" y="420.58" width="14.78" height="13.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040818: 184 bytes, matched, size=symbol</title></rect>
+<rect x="1010.00" y="434.27" width="14.78" height="13.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040A28: 180 bytes, matched, size=symbol</title></rect>
+<rect x="1010.00" y="447.67" width="14.78" height="13.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040ADC: 180 bytes, matched, size=symbol</title></rect>
+<rect x="1025.13" y="420.58" width="14.01" height="10.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80408D0: 132 bytes, matched, size=symbol</title></rect>
+<rect x="1039.50" y="420.58" width="10.10" height="10.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040338: 96 bytes, matched, size=symbol</title></rect>
+<rect x="1049.94" y="420.58" width="9.66" height="10.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80405E4: 92 bytes, matched, size=symbol</title></rect>
+<rect x="1025.13" y="430.93" width="8.92" height="9.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040564: 84 bytes, matched, size=symbol</title></rect>
+<rect x="1025.13" y="441.14" width="8.92" height="9.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80406CC: 84 bytes, matched, size=symbol</title></rect>
+<rect x="1025.13" y="451.35" width="8.92" height="9.37" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040B90: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1034.40" y="430.93" width="8.17" height="7.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040668: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1042.92" y="430.93" width="8.17" height="7.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040C08: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1051.44" y="430.93" width="8.17" height="7.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040C68: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1034.40" y="438.33" width="6.39" height="7.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80409D0: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1034.40" y="446.36" width="6.39" height="7.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040538: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1034.40" y="453.72" width="6.39" height="7.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80405B8: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1041.13" y="438.33" width="6.33" height="7.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80406A0: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1047.81" y="438.33" width="5.72" height="7.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040398: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1053.88" y="438.33" width="5.72" height="7.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040640: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1041.13" y="445.75" width="5.83" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040954: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1041.13" y="450.86" width="5.83" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040998: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1041.13" y="455.97" width="5.83" height="4.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_80409B4: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1047.31" y="445.75" width="3.86" height="4.99" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040970: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1051.52" y="445.75" width="3.86" height="4.99" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040984: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1055.74" y="445.75" width="3.86" height="4.99" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040A00: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1047.31" y="451.10" width="4.17" height="4.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040A14: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1047.31" y="456.09" width="4.17" height="4.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040BE0: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1051.83" y="451.10" width="3.71" height="5.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040BF4: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1055.89" y="451.10" width="3.71" height="5.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040C40: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1051.83" y="456.64" width="4.73" height="4.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040C54: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1056.91" y="456.64" width="2.70" height="4.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040CA0: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_deburina: 0.0% matched, 3,548 bytes</title>
