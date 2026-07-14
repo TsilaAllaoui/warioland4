@@ -75,7 +75,7 @@ enum SoundID {
     SOUND_43,
     SOUND_44,
     SOUND_45,
-    SOUND_46,
+    SE_RINGOSUKI_THROW_APPLE,
     SOUND_47,
     SOUND_48,
     SOUND_49,

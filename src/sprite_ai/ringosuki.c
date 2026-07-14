@@ -7,7 +7,7 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void func_8046A6C(void)
+void InitRingosuki(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_HEAVY;
     gCurrentSprite.warioCollision = 1;
@@ -18,7 +18,7 @@ void func_8046A6C(void)
     gCurrentSprite.hitboxExtentDown = 0;
     gCurrentSprite.hitboxExtentLeft = 44;
     gCurrentSprite.hitboxExtentRight = 40;
-    gCurrentSprite.pOamData = sUnk_83CA178;
+    gCurrentSprite.pOamData = sRingosukiIdleOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
@@ -26,16 +26,16 @@ void func_8046A6C(void)
     SpriteUtilTurnTowardWario();
 }
 
-void func_8046AD4(void)
+void StartRingosukiIdle(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA178;
+    gCurrentSprite.pOamData = sRingosukiIdleOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
     gCurrentSprite.work1 = 42;
 }
 
-void func_8046AF4(void)
+void RingosukiIdle(void)
 {
     u32 nearby;
     register u8 collision asm("r2");
@@ -153,16 +153,16 @@ move:
     func_80263AC();
 }
 
-void func_8046C5C(void)
+void StartRingosukiTurn(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA1A0;
+    gCurrentSprite.pOamData = sRingosukiTurnStartOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
     gCurrentSprite.work0 = 9;
 }
 
-void func_8046C7C(void)
+void RingosukiTurn(void)
 {
     func_80238A4();
     func_8023B88();
@@ -175,7 +175,7 @@ void func_8046C7C(void)
         if (gCurrentSprite.pose == 18)
         {
             gCurrentSprite.status ^= SPRITE_STATUS_FACING_RIGHT;
-            gCurrentSprite.pOamData = sUnk_83CA1B8;
+            gCurrentSprite.pOamData = sRingosukiTurnEndOam;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.animationTimer = 0;
             gCurrentSprite.pose = 20;
@@ -188,9 +188,9 @@ void func_8046C7C(void)
     }
 }
 
-void func_8046CEC(void)
+void SetupRingosukiFallingKnockback(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA270;
+    gCurrentSprite.pOamData = sRingosukiStunnedOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work0 = 4;
@@ -200,61 +200,61 @@ void func_8046CEC(void)
         gCurrentSprite.warioCollision = 5;
 }
 
-void func_8046D24(void)
+void StartRingosukiFallingRight(void)
 {
     gCurrentSprite.pose = 52;
-    func_8046CEC();
+    SetupRingosukiFallingKnockback();
 }
 
-void func_8046D38(void)
+void StartRingosukiFallingLeft(void)
 {
     gCurrentSprite.pose = 54;
-    func_8046CEC();
+    SetupRingosukiFallingKnockback();
 }
 
-void func_8046D4C(void)
+void StartRingosukiThrowApple(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA1D0;
+    gCurrentSprite.pOamData = sRingosukiThrowAppleOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 111;
     gCurrentSprite.work0 = 61;
 }
 
-void func_8046D6C(void)
+void RingosukiThrowApple(void)
 {
-    struct PrimarySpriteData *sprite;
+    struct PrimarySpriteData *ringosuki;
     register u32 oldTimer asm("r0");
     register u32 newTimer asm("r1");
     u32 shifted;
-    u8 timer;
-    register u8 *timerPointer;
-    u16 facing;
+    u8 remainingTimer;
+    register u8 *throwTimer;
+    u16 facingRight;
 
-    sprite = &gCurrentSprite;
-    timerPointer = &sprite->work0;
-    oldTimer = *timerPointer;
+    ringosuki = &gCurrentSprite;
+    throwTimer = &ringosuki->work0;
+    oldTimer = *throwTimer;
     newTimer = oldTimer - 1;
-    *timerPointer = newTimer;
+    *throwTimer = newTimer;
     shifted = newTimer << 24;
     if (shifted != 0)
     {
-        timer = shifted >> 24;
-        if (timer == 48)
+        remainingTimer = shifted >> 24;
+        if (remainingTimer == 48)
         {
-            facing = sprite->status & SPRITE_STATUS_FACING_RIGHT;
-            if (facing != 0)
+            facingRight = ringosuki->status & SPRITE_STATUS_FACING_RIGHT;
+            if (facingRight != 0)
             {
-                func_801E3A8(178, sprite->roomSlot, sprite->gfxSlot,
-                             sprite->yPosition - 110, sprite->xPosition + 92,
+                func_801E3A8(PSPRITE_RINGOSUKI_APPLE, ringosuki->roomSlot, ringosuki->gfxSlot,
+                             ringosuki->yPosition - 110, ringosuki->xPosition + 92,
                              SPRITE_STATUS_FACING_RIGHT);
             }
             else
             {
-                func_801E3A8(178, sprite->roomSlot, sprite->gfxSlot,
-                             sprite->yPosition - 110, sprite->xPosition - 92, facing);
+                func_801E3A8(PSPRITE_RINGOSUKI_APPLE, ringosuki->roomSlot, ringosuki->gfxSlot,
+                             ringosuki->yPosition - 110, ringosuki->xPosition - 92, facingRight);
             }
-            m4aSongNumStart(SOUND_46);
+            m4aSongNumStart(SE_RINGOSUKI_THROW_APPLE);
         }
 
         func_80238A4();
@@ -264,13 +264,13 @@ void func_8046D6C(void)
     }
     else
     {
-        sprite->pose = 17;
+        ringosuki->pose = 17;
     }
 }
 
-void func_8046DFC(void)
+void StartRingosukiTurnHop(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA400;
+    gCurrentSprite.pOamData = sRingosukiTurnHopOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 113;
@@ -278,43 +278,43 @@ void func_8046DFC(void)
     gCurrentSprite.work3 = 0;
 }
 
-void func_8046E24(void)
+void RingosukiTurnHop(void)
 {
-    u8 index;
-    s16 velocity;
-    u16 value;
+    u8 velocityIndex;
+    s16 yVelocity;
+    u16 workValue;
 
-    value = gCurrentSprite.work3;
-    index = value;
-    velocity = sUnk_83CA440[index];
-    if (velocity == S16_MAX)
+    workValue = gCurrentSprite.work3;
+    velocityIndex = workValue;
+    yVelocity = sRingosukiTurnHopYVelocity[velocityIndex];
+    if (yVelocity == S16_MAX)
     {
-        value = sUnk_83CA440[index - 1];
-        gCurrentSprite.yPosition = gCurrentSprite.yPosition + value;
+        workValue = sRingosukiTurnHopYVelocity[velocityIndex - 1];
+        gCurrentSprite.yPosition = gCurrentSprite.yPosition + workValue;
     }
     else
     {
-        gCurrentSprite.work3 = index + 1;
-        gCurrentSprite.yPosition += velocity;
+        gCurrentSprite.work3 = velocityIndex + 1;
+        gCurrentSprite.yPosition += yVelocity;
     }
-    value = --gCurrentSprite.work0;
-    if (value == 0)
+    workValue = --gCurrentSprite.work0;
+    if (workValue == 0)
     {
-        value = 15;
-        gCurrentSprite.pose = value;
+        workValue = 15;
+        gCurrentSprite.pose = workValue;
     }
 }
 
-void func_8046E84(void)
+void StartRingosukiEatApple(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA358;
+    gCurrentSprite.pOamData = sRingosukiEatAppleOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 115;
     gCurrentSprite.work0 = 58;
 }
 
-void func_8046EA8(void)
+void RingosukiEatApple(void)
 {
     func_80238A4();
     func_8023B88();
@@ -324,18 +324,18 @@ void func_8046EA8(void)
         gCurrentSprite.pose = 17;
 }
 
-void func_8046EE4(void)
+void StartRingosukiStunned(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA328;
+    gCurrentSprite.pOamData = sRingosukiStunnedStartOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 24;
     gCurrentSprite.work0 = 14;
 }
 
-void func_8046F04(void)
+void StartRingosukiRecover(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA2C0;
+    gCurrentSprite.pOamData = sRingosukiRecoverOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 26;
@@ -343,25 +343,25 @@ void func_8046F04(void)
     gCurrentSprite.work3 = 0;
 }
 
-void func_8046F2C(void)
+void RingosukiRecover(void)
 {
-    u8 index;
-    s16 velocity;
-    u16 value;
+    u8 velocityIndex;
+    s16 yVelocity;
+    u16 workValue;
 
-    value = gCurrentSprite.work3;
-    index = value;
-    velocity = sUnk_83CA462[index];
-    if (velocity == S16_MAX)
+    workValue = gCurrentSprite.work3;
+    velocityIndex = workValue;
+    yVelocity = sRingosukiRecoverYVelocity[velocityIndex];
+    if (yVelocity == S16_MAX)
     {
-        value = sUnk_83CA462[index - 1];
-        gCurrentSprite.yPosition = gCurrentSprite.yPosition + value;
+        workValue = sRingosukiRecoverYVelocity[velocityIndex - 1];
+        gCurrentSprite.yPosition = gCurrentSprite.yPosition + workValue;
     }
     else
     {
-        value = index + 1;
-        gCurrentSprite.work3 = value;
-        gCurrentSprite.yPosition += velocity;
+        workValue = velocityIndex + 1;
+        gCurrentSprite.work3 = workValue;
+        gCurrentSprite.yPosition += yVelocity;
     }
 
     if (gCurrentSprite.work0 <= 17)
@@ -373,8 +373,8 @@ void func_8046F2C(void)
         gCurrentSprite.warioCollision = 1;
     }
 
-    value = --gCurrentSprite.work0;
-    if (value == 0)
+    workValue = --gCurrentSprite.work0;
+    if (workValue == 0)
     {
         if (gCurrentSprite.xPosition > gWarioData.xPosition)
         {
@@ -393,18 +393,18 @@ void func_8046F2C(void)
     }
 }
 
-void func_8046FE8(void)
+void StartRingosukiFall(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA298;
+    gCurrentSprite.pOamData = sRingosukiFallingOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 28;
     gCurrentSprite.work3 = 0;
 }
 
-void func_8047008(void)
+void StartRingosukiLand(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA270;
+    gCurrentSprite.pOamData = sRingosukiStunnedOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 30;
@@ -412,9 +412,9 @@ void func_8047008(void)
     gCurrentSprite.warioCollision = 5;
 }
 
-void func_8047030(void)
+void SetupRingosukiFallOffscreen(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA3F0;
+    gCurrentSprite.pOamData = sRingosukiFallOffscreenOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -426,21 +426,21 @@ void func_8047030(void)
                             SPRITE_STATUS_MAYBE_DEAD;
 }
 
-void func_8047080(void)
+void StartRingosukiFallOffscreenRight(void)
 {
     gCurrentSprite.pose = 32;
-    func_8047030();
+    SetupRingosukiFallOffscreen();
 }
 
-void func_8047094(void)
+void StartRingosukiFallOffscreenLeft(void)
 {
     gCurrentSprite.pose = 34;
-    func_8047030();
+    SetupRingosukiFallOffscreen();
 }
 
-void func_80470A8(void)
+void SetupRingosukiKnockbackFall(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA3F0;
+    gCurrentSprite.pOamData = sRingosukiFallOffscreenOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -450,21 +450,21 @@ void func_80470A8(void)
     SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
 }
 
-void func_80470E4(void)
+void StartRingosukiKnockbackFallRight(void)
 {
     gCurrentSprite.pose = 32;
-    func_80470A8();
+    SetupRingosukiKnockbackFall();
 }
 
-void func_80470F8(void)
+void StartRingosukiKnockbackFallLeft(void)
 {
     gCurrentSprite.pose = 34;
-    func_80470A8();
+    SetupRingosukiKnockbackFall();
 }
 
-void func_804710C(void)
+void SetupRingosukiPushed(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA318;
+    gCurrentSprite.pOamData = sRingosukiPushedOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 12;
@@ -472,40 +472,40 @@ void func_804710C(void)
     gCurrentSprite.work2 = 6;
 }
 
-void func_804713C(void)
+void StartRingosukiPushedRight(void)
 {
     gCurrentSprite.pose = 36;
-    func_804710C();
+    SetupRingosukiPushed();
 }
 
-void func_8047150(void)
+void StartRingosukiPushedLeft(void)
 {
     gCurrentSprite.pose = 38;
-    func_804710C();
+    SetupRingosukiPushed();
 }
 
-void func_8047164(void)
+void SetupRingosukiTumble(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA270;
+    gCurrentSprite.pOamData = sRingosukiStunnedOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work1 = 0;
     gCurrentSprite.warioCollision = 5;
 }
 
-void func_8047188(void)
+void StartRingosukiTumbleRight(void)
 {
     gCurrentSprite.pose = 44;
-    func_8047164();
+    SetupRingosukiTumble();
 }
 
-void func_804719C(void)
+void StartRingosukiTumbleLeft(void)
 {
     gCurrentSprite.pose = 46;
-    func_8047164();
+    SetupRingosukiTumble();
 }
 
-void func_80471B0(void)
+void StartRingosukiDefeat(void)
 {
     register u8 *workPointer;
     register struct PrimarySpriteData *sprite asm("r2");
@@ -516,11 +516,11 @@ void func_80471B0(void)
     sprite = (struct PrimarySpriteData *)workPointer;
     if (collision == 5)
     {
-        sprite->pOamData = sUnk_83CA300;
+        sprite->pOamData = sRingosukiDefeatedHardOam;
     }
     else
     {
-        sprite->pOamData = sUnk_83CA2E8;
+        sprite->pOamData = sRingosukiDefeatedOam;
         workPointer = (u8 *)sprite;
     }
     workPointer += 39;
@@ -532,14 +532,14 @@ void func_80471B0(void)
                      SPRITE_STATUS_MAYBE_DEAD;
 }
 
-void func_80471F8(void)
+void DefeatRingosuki(void)
 {
     SpriteUtilDie();
 }
 
-void func_8047204(void)
+void SetupRingosukiBounce(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA270;
+    gCurrentSprite.pOamData = sRingosukiStunnedOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work2 = 6;
@@ -547,21 +547,21 @@ void func_8047204(void)
     gCurrentSprite.warioCollision = 5;
 }
 
-void func_8047230(void)
+void StartRingosukiBounceRight(void)
 {
     gCurrentSprite.pose = 72;
-    func_8047204();
+    SetupRingosukiBounce();
 }
 
-void func_8047244(void)
+void StartRingosukiBounceLeft(void)
 {
     gCurrentSprite.pose = 74;
-    func_8047204();
+    SetupRingosukiBounce();
 }
 
-void func_8047258(void)
+void StartRingosukiThrown(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA318;
+    gCurrentSprite.pOamData = sRingosukiPushedOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 76;
@@ -569,7 +569,7 @@ void func_8047258(void)
     gCurrentSprite.work3 = 0;
 }
 
-void func_8047280(void)
+void RingosukiThrown(void)
 {
     register struct PrimarySpriteData *sprite;
     u8 *timerPointer;
@@ -629,46 +629,46 @@ end:
     ;
 }
 
-void func_804730C(void)
+void SetupRingosukiLifted(void)
 {
-    gCurrentSprite.pOamData = sUnk_83CA270;
+    gCurrentSprite.pOamData = sRingosukiStunnedOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
 
-void func_8047324(void)
+void StartRingosukiLiftedRight(void)
 {
     gCurrentSprite.pose = 82;
-    func_804730C();
+    SetupRingosukiLifted();
 }
 
-void func_8047338(void)
+void StartRingosukiLiftedLeft(void)
 {
     gCurrentSprite.pose = 84;
-    func_804730C();
+    SetupRingosukiLifted();
 }
 
-void func_804734C(void)
+void SetupRingosukiCarried(void)
 {
     gCurrentSprite.disableWarioCollisionTimer = 1;
-    gCurrentSprite.pOamData = sUnk_83CA270;
+    gCurrentSprite.pOamData = sRingosukiStunnedOam;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
 
-void func_8047368(void)
+void StartRingosukiCarriedRight(void)
 {
     gCurrentSprite.pose = 88;
-    func_804734C();
+    SetupRingosukiCarried();
 }
 
-void func_804737C(void)
+void StartRingosukiCarriedLeft(void)
 {
     gCurrentSprite.pose = 86;
-    func_804734C();
+    SetupRingosukiCarried();
 }
 
-void func_8047390(void)
+void InitRingosukiApple(void)
 {
     int collisionType;
 
@@ -681,7 +681,7 @@ void func_8047390(void)
     gCurrentSprite.hitboxExtentDown = 0;
     gCurrentSprite.hitboxExtentLeft = 24;
     gCurrentSprite.hitboxExtentRight = 20;
-    gCurrentSprite.pOamData = sUnk_83CA430;
+    gCurrentSprite.pOamData = sRingosukiAppleOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     collisionType = 15;
@@ -691,11 +691,11 @@ void func_8047390(void)
     gCurrentSprite.work3 = 0;
 }
 
-void func_8047404(void)
+void RingosukiAppleFly(void)
 {
-    u8 index;
-    s16 velocity;
-    u16 value;
+    u8 velocityIndex;
+    s16 yVelocity;
+    u16 workValue;
 
     func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
     if (gUnk_30000A0.unk_02 == 1 || (gUnk_3000A50 & 0xF) != 0)
@@ -714,18 +714,18 @@ void func_8047404(void)
         }
     }
 
-    value = gCurrentSprite.work3;
-    index = value;
-    velocity = sUnk_83CA47E[index];
-    if (velocity == S16_MAX)
+    workValue = gCurrentSprite.work3;
+    velocityIndex = workValue;
+    yVelocity = sRingosukiAppleYVelocity[velocityIndex];
+    if (yVelocity == S16_MAX)
     {
-        value = sUnk_83CA47E[index - 1];
-        gCurrentSprite.yPosition = gCurrentSprite.yPosition + value;
+        workValue = sRingosukiAppleYVelocity[velocityIndex - 1];
+        gCurrentSprite.yPosition = gCurrentSprite.yPosition + workValue;
     }
     else
     {
-        gCurrentSprite.work3 = index + 1;
-        gCurrentSprite.yPosition += velocity;
+        gCurrentSprite.work3 = velocityIndex + 1;
+        gCurrentSprite.yPosition += yVelocity;
     }
 
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
@@ -746,63 +746,63 @@ void func_8047404(void)
     }
 }
 
-void func_804750C(void)
+void StartRingosukiAppleFallRight(void)
 {
     gCurrentSprite.pose = 52;
     gCurrentSprite.work3 = 0;
 }
 
-void func_8047520(void)
+void RingosukiAppleFallRight(void)
 {
-    u8 index;
-    s16 velocity;
-    u16 value;
+    u8 velocityIndex;
+    s16 yVelocity;
+    u16 workValue;
 
-    value = gCurrentSprite.work3;
-    index = value;
-    velocity = sSpriteFallingOffscreenYVelocity[index];
-    if (velocity == S16_MAX)
+    workValue = gCurrentSprite.work3;
+    velocityIndex = workValue;
+    yVelocity = sSpriteFallingOffscreenYVelocity[velocityIndex];
+    if (yVelocity == S16_MAX)
     {
-        value = sSpriteFallingOffscreenYVelocity[index - 1];
-        gCurrentSprite.yPosition = gCurrentSprite.yPosition + value;
+        workValue = sSpriteFallingOffscreenYVelocity[velocityIndex - 1];
+        gCurrentSprite.yPosition = gCurrentSprite.yPosition + workValue;
     }
     else
     {
-        gCurrentSprite.work3 = index + 1;
-        gCurrentSprite.yPosition += velocity;
+        gCurrentSprite.work3 = velocityIndex + 1;
+        gCurrentSprite.yPosition += yVelocity;
     }
     gCurrentSprite.xPosition += 8;
 }
 
-void func_8047570(void)
+void StartRingosukiAppleFallLeft(void)
 {
     gCurrentSprite.pose = 54;
     gCurrentSprite.work3 = 0;
 }
 
-void func_8047584(void)
+void RingosukiAppleFallLeft(void)
 {
-    u8 index;
-    s16 velocity;
-    u16 value;
+    u8 velocityIndex;
+    s16 yVelocity;
+    u16 workValue;
 
-    value = gCurrentSprite.work3;
-    index = value;
-    velocity = sSpriteFallingOffscreenYVelocity[index];
-    if (velocity == S16_MAX)
+    workValue = gCurrentSprite.work3;
+    velocityIndex = workValue;
+    yVelocity = sSpriteFallingOffscreenYVelocity[velocityIndex];
+    if (yVelocity == S16_MAX)
     {
-        value = sSpriteFallingOffscreenYVelocity[index - 1];
-        gCurrentSprite.yPosition = gCurrentSprite.yPosition + value;
+        workValue = sSpriteFallingOffscreenYVelocity[velocityIndex - 1];
+        gCurrentSprite.yPosition = gCurrentSprite.yPosition + workValue;
     }
     else
     {
-        gCurrentSprite.work3 = index + 1;
-        gCurrentSprite.yPosition += velocity;
+        gCurrentSprite.work3 = velocityIndex + 1;
+        gCurrentSprite.yPosition += yVelocity;
     }
     gCurrentSprite.xPosition -= 8;
 }
 
-void func_80475D4(void)
+void RemoveRingosukiApple(void)
 {
     gCurrentSprite.status = 0;
 }
@@ -815,68 +815,68 @@ void SpriteRingosuki(void)
     switch (gCurrentSprite.pose)
     {
         case 0:
-            func_8046A6C();
+            InitRingosuki();
             break;
 
         case 15:
-            func_8046AD4();
+            StartRingosukiIdle();
             /* Fall through. */
         case 16:
-            func_8046AF4();
+            RingosukiIdle();
             break;
 
         case 17:
-            func_8046C5C();
+            StartRingosukiTurn();
             /* Fall through. */
         case 18:
         case 20:
-            func_8046C7C();
+            RingosukiTurn();
             break;
 
         case 110:
-            func_8046D4C();
+            StartRingosukiThrowApple();
             /* Fall through. */
         case 111:
-            func_8046D6C();
+            RingosukiThrowApple();
             break;
 
         case 112:
-            func_8046DFC();
+            StartRingosukiTurnHop();
             /* Fall through. */
         case 113:
-            func_8046E24();
+            RingosukiTurnHop();
             break;
 
         case 114:
-            func_8046E84();
+            StartRingosukiEatApple();
             /* Fall through. */
         case 115:
-            func_8046EA8();
+            RingosukiEatApple();
             break;
 
         case 23:
-            func_8046EE4();
+            StartRingosukiStunned();
             /* Fall through. */
         case 24:
             func_8023C94();
             break;
 
         case 25:
-            func_8046F04();
+            StartRingosukiRecover();
             /* Fall through. */
         case 26:
-            func_8046F2C();
+            RingosukiRecover();
             break;
 
         case 27:
-            func_8046FE8();
+            StartRingosukiFall();
             /* Fall through. */
         case 28:
             func_8023D48();
             break;
 
         case 29:
-            func_8047008();
+            StartRingosukiLand();
             /* Fall through. */
         case 30:
             func_8023EE0();
@@ -884,7 +884,7 @@ void SpriteRingosuki(void)
 
         case 31:
         case 79:
-            func_8047080();
+            StartRingosukiFallOffscreenRight();
             /* Fall through. */
         case 32:
             SpriteUtilFallOffscreenRight();
@@ -892,35 +892,35 @@ void SpriteRingosuki(void)
 
         case 33:
         case 80:
-            func_8047094();
+            StartRingosukiFallOffscreenLeft();
             /* Fall through. */
         case 34:
             SpriteUtilFallOffscreenLeft();
             break;
 
         case 35:
-            func_804713C();
+            StartRingosukiPushedRight();
             /* Fall through. */
         case 36:
             SpriteUtilPushedRight();
             break;
 
         case 37:
-            func_8047150();
+            StartRingosukiPushedLeft();
             /* Fall through. */
         case 38:
             SpriteUtilPushedLeft();
             break;
 
         case 43:
-            func_8047188();
+            StartRingosukiTumbleRight();
             /* Fall through. */
         case 44:
             func_8024478();
             break;
 
         case 45:
-            func_804719C();
+            StartRingosukiTumbleLeft();
             /* Fall through. */
         case 46:
             func_802449C();
@@ -934,18 +934,18 @@ void SpriteRingosuki(void)
             break;
 
         case 49:
-            func_80471B0();
+            StartRingosukiDefeat();
             /* Fall through. */
         case 50:
             SpriteUtilDieAfterDelay();
             break;
 
         case 51:
-            func_8046D24();
+            StartRingosukiFallingRight();
             goto state_53;
 
         case 53:
-            func_8046D38();
+            StartRingosukiFallingLeft();
             goto state_55;
 
         case 55:
@@ -1005,7 +1005,7 @@ state_53:
             goto state_71;
 
         case 71:
-            func_8047230();
+            StartRingosukiBounceRight();
             /* Fall through. */
         case 68:
         case 72:
@@ -1014,7 +1014,7 @@ state_69:
             break;
 
         case 73:
-            func_8047244();
+            StartRingosukiBounceLeft();
             /* Fall through. */
         case 70:
         case 74:
@@ -1023,14 +1023,14 @@ state_71:
             break;
 
         case 75:
-            func_8047258();
+            StartRingosukiThrown();
             /* Fall through. */
         case 76:
-            func_8047280();
+            RingosukiThrown();
             break;
 
         case 81:
-            func_8047324();
+            StartRingosukiLiftedRight();
             break;
 
         case 82:
@@ -1038,7 +1038,7 @@ state_71:
             break;
 
         case 83:
-            func_8047338();
+            StartRingosukiLiftedLeft();
             break;
 
         case 84:
@@ -1046,7 +1046,7 @@ state_71:
             break;
 
         case 87:
-            func_8047368();
+            StartRingosukiCarriedRight();
             break;
 
         case 88:
@@ -1054,7 +1054,7 @@ state_71:
             break;
 
         case 85:
-            func_804737C();
+            StartRingosukiCarriedLeft();
             break;
 
         case 86:
@@ -1118,53 +1118,53 @@ state_71:
             break;
 
         case 105:
-            func_80470F8();
+            StartRingosukiKnockbackFallLeft();
             break;
 
         case 106:
-            func_80470E4();
+            StartRingosukiKnockbackFallRight();
             break;
 
         default:
-            func_80471F8();
+            DefeatRingosuki();
             break;
     }
 }
 
-void SpriteUnknownB2(void)
+void SpriteRingosukiApple(void)
 {
     switch (gCurrentSprite.pose)
     {
         case 0:
-            func_8047390();
+            InitRingosukiApple();
             break;
 
         case 16:
-            func_8047404();
+            RingosukiAppleFly();
             break;
 
         case 31:
         case 35:
         case 51:
-            func_804750C();
+            StartRingosukiAppleFallRight();
             /* Fall through. */
         case 52:
             gCurrentSprite.disableWarioCollisionTimer = 1;
-            func_8047520();
+            RingosukiAppleFallRight();
             break;
 
         case 33:
         case 37:
         case 53:
-            func_8047570();
+            StartRingosukiAppleFallLeft();
             /* Fall through. */
         case 54:
             gCurrentSprite.disableWarioCollisionTimer = 1;
-            func_8047584();
+            RingosukiAppleFallLeft();
             break;
 
         case 49:
-            func_80475D4();
+            RemoveRingosukiApple();
             break;
 
         default:
