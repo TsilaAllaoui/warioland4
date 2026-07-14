@@ -1,35 +1,16 @@
 #!/usr/bin/env python3
-# -----------------------------------------------------------------------------
-# WL4 PROGRESS REPORT — FILTERED/VERIFIED EDITION
-#
-# Local project customization:
-#   * Adds visible HTML controls for matched/unmatched filtering and sorting.
-#   * Shows authoritative function and byte totals in both HTML and SVG output.
-#   * Uses linker-map ranges as the source of truth whenever a map is available.
-#   * Keeps UI filtering separate from accounting so totals never change when a
-#     user hides rows, changes sort order, or applies a minimum-size filter.
-#
-# This header is intentionally distinctive so `git diff` and `git status` make
-# it obvious that the customized generator has replaced the original script.
-# -----------------------------------------------------------------------------
-
 """
 Generate Wario Land 4 decompilation progress from the current repo.
 
-Generated repo artifact:
+Generated repo artifacts:
   docs/progress-treemap.svg
   docs/progress.html
+  report.json (decomp.dev version-2 unit/function progress artifact)
 
 Default run:
   python3 tools/gen_decomp_progress.py
 
 The script has no third-party dependencies.
-
-Progress report guarantees:
-  * A linker map is the authoritative source for function ranges and byte totals.
-  * Same-address aliases are counted once.
-  * Symbol-less text contributes bytes, but never inflates the function count.
-  * The HTML offers client-side filters; changing a filter never changes totals.
 """
 
 from __future__ import annotations
@@ -47,12 +28,8 @@ from pathlib import Path
 
 BAR_WIDTH = 30
 SVG_WIDTH = 1280
-SVG_HEIGHT = 930
+SVG_HEIGHT = 860
 SVG_PAD = 24
-
-# Increment this whenever the generated report UI or accounting rules change.
-# It is displayed in the HTML footer so stale generated pages are easy to spot.
-REPORT_FORMAT_VERSION = "2026.07-filter-audit-v4"
 
 CODE_ADDR_MIN = 0x08000000
 CODE_ADDR_MAX = 0x0A000000
@@ -98,7 +75,6 @@ class FunctionInfo:
     status: str
     source: str
     size_source: str
-    is_function: bool = True
 
     @property
     def matched(self) -> bool:
@@ -425,15 +401,7 @@ def parse_map_contributions(root: Path, map_path: Path) -> list[MapContribution]
 
 
 def collect_map_functions(root: Path) -> list[FunctionInfo]:
-    """Collect exact function extents from the linker map.
-
-    The linker map is the source of truth when available. Symbols that share an
-    address are aliases for the same code and therefore count as one function.
-    Gaps and symbol-less text contributions are retained for byte accounting,
-    but are not counted as functions.
-    """
     rows: list[FunctionInfo] = []
-    c_function_names = set(collect_c_functions(root))
 
     for map_path in symbol_candidates(root):
         if map_path.suffix != ".map":
@@ -450,38 +418,18 @@ def collect_map_functions(root: Path) -> list[FunctionInfo]:
             module = module_from_object_path(contrib.objpath)
             base_status, source_path = object_base_status(root, contrib.objpath)
             naked_names = naked_functions_in(source_path)
-
-            # One code range can have several symbol aliases. Count it once,
-            # preferring the name explicitly present in C, then a descriptive
-            # name, then the canonical address-style symbol.
-            aliases_by_addr: dict[int, set[str]] = {}
-            for addr, name in contrib.symbols:
-                aliases_by_addr.setdefault(addr, set()).add(name)
-
-            ordered: list[tuple[int, str]] = []
-            for addr, names in aliases_by_addr.items():
-                chosen = sorted(
-                    names,
-                    key=lambda name: (
-                        name not in c_function_names,
-                        bool(ADDR_FUNC_LABEL_RE.match(name)),
-                        name,
-                    ),
-                )[0]
-                ordered.append((addr, chosen))
-            ordered.sort(key=lambda item: item[0])
+            ordered = sorted(set(contrib.symbols), key=lambda item: item[0])
 
             if not ordered:
                 if contrib.size > 0:
                     rows.append(
                         FunctionInfo(
-                            name=f"({clean_module_label(contrib.objpath)} text)",
+                            name=f"({clean_module_label(contrib.objpath)})",
                             module=module,
                             size=contrib.size,
                             status=base_status,
                             source=f"{contrib.source}:{contrib.objpath}",
                             size_source="symbol",
-                            is_function=False,
                         )
                     )
                 continue
@@ -490,13 +438,12 @@ def collect_map_functions(root: Path) -> list[FunctionInfo]:
             if ordered[0][0] > contrib.addr:
                 rows.append(
                     FunctionInfo(
-                        name="(unnamed text)",
+                        name="(unnamed)",
                         module=module,
                         size=ordered[0][0] - contrib.addr,
                         status=base_status,
                         source=f"{contrib.source}:{contrib.objpath}",
                         size_source="symbol",
-                        is_function=False,
                     )
                 )
 
@@ -806,9 +753,6 @@ def merge_functions(root: Path) -> list[FunctionInfo]:
                 row.status = STATUS_MATCHED
             if row.module in {"unknown", "symbols"}:
                 row.module = c_info.module
-        # Do not append source-only names when a linker map exists. They may be
-        # inline, dead, macro helpers, declarations, or parser false positives.
-        # The map alone represents code that is actually present in the ROM.
         return sorted(map_rows, key=lambda row: (row.module, row.name))
 
     asm_funcs = {
@@ -881,31 +825,9 @@ def progress_bar(label: str, done: int, total: int, suffix: str = "") -> str:
     return f"{label:<10} {bar} {pct * 100:5.1f}%   {done:,} / {total:,}{suffix}"
 
 
-def validate_progress_rows(rows: list[FunctionInfo]) -> None:
-    """Fail early when accounting data is internally inconsistent.
-
-    This does not compare against the baserom. It verifies the invariants needed
-    for trustworthy progress percentages: positive sizes, valid statuses, and no
-    duplicate function identity inside one module. Non-function rows may share a
-    display name because separate object contributions can both contain gaps.
-    """
-    seen_functions: set[tuple[str, str]] = set()
-    for row in rows:
-        if row.size <= 0:
-            raise ValueError(f"invalid non-positive progress size: {row.module}/{row.name}: {row.size}")
-        if row.status not in {STATUS_MATCHED, STATUS_UNMATCHED}:
-            raise ValueError(f"invalid progress status: {row.module}/{row.name}: {row.status!r}")
-        if row.is_function:
-            key = (row.module, row.name)
-            if key in seen_functions:
-                raise ValueError(f"duplicate function in progress data: {row.module}/{row.name}")
-            seen_functions.add(key)
-
-
 def summarize(rows: list[FunctionInfo]) -> tuple[str, str]:
-    function_rows = [row for row in rows if row.is_function]
-    total_functions = len(function_rows)
-    matched_functions = sum(1 for row in function_rows if row.matched)
+    total_functions = len(rows)
+    matched_functions = sum(1 for row in rows if row.matched)
     total_size = sum(row.size for row in rows)
     matched_size = sum(row.size for row in rows if row.matched)
     return (
@@ -915,13 +837,11 @@ def summarize(rows: list[FunctionInfo]) -> tuple[str, str]:
 
 
 def stats(rows: list[FunctionInfo]) -> dict[str, int | float | str]:
-    function_rows = [row for row in rows if row.is_function]
-    total_functions = len(function_rows)
-    matched_functions = sum(1 for row in function_rows if row.matched)
+    total_functions = len(rows)
+    matched_functions = sum(1 for row in rows if row.matched)
     total_size = sum(row.size for row in rows)
     matched_size = sum(row.size for row in rows if row.matched)
-    exact_sizes = sum(1 for row in function_rows if row.exact_size)
-    exact_bytes = sum(row.size for row in rows if row.exact_size)
+    exact_sizes = sum(1 for row in rows if row.exact_size)
     return {
         "total_functions": total_functions,
         "matched_functions": matched_functions,
@@ -931,8 +851,7 @@ def stats(rows: list[FunctionInfo]) -> dict[str, int | float | str]:
         "size_pct": 0.0 if total_size == 0 else matched_size / total_size,
         "exact_sizes": exact_sizes,
         "exact_pct": 0.0 if total_functions == 0 else exact_sizes / total_functions,
-        "exact_bytes": exact_bytes,
-        "byte_label": "exact" if total_size > 0 and exact_bytes == total_size else "mixed/estimated",
+        "byte_label": "exact" if total_functions > 0 and exact_sizes == total_functions else "mixed/estimated",
     }
 
 
@@ -1086,9 +1005,6 @@ def add_card(body: list[str], x: float, y: float, w: float, h: float, label: str
 
 
 def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
-    # Validate once more at the output boundary so bad accounting cannot silently
-    # reach the committed SVG even when this function is called independently.
-    validate_progress_rows(rows)
     svg_path.parent.mkdir(parents=True, exist_ok=True)
     info = stats(rows)
     modules: dict[str, list[FunctionInfo]] = {}
@@ -1109,21 +1025,8 @@ def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
             }
         )
 
-    # The SVG repeats the same authoritative totals used by the HTML.  These
-    # values are computed before any visual layout, so small treemap rectangles
-    # or omitted labels can never affect function/byte accounting.
     function_line, size_line = summarize(rows)
-    function_value = f'{fmt_int(info["matched_functions"])} / {fmt_int(info["total_functions"])}'
-    function_sub = f'{fmt_pct(info["function_pct"])} matched functions'
-    code_value = f'{fmt_int(info["matched_size"])} / {fmt_int(info["total_size"])}'
-    code_sub = f'{fmt_pct(info["size_pct"])} matched code bytes'
-    unmatched_function_count = int(info["total_functions"]) - int(info["matched_functions"])
-    unmatched_byte_count = int(info["total_size"]) - int(info["matched_size"])
-    remaining_value = f'{fmt_int(unmatched_function_count)} funcs · {fmt_int(unmatched_byte_count)} bytes'
-    remaining_sub = 'remaining unmatched code'
-    exact_value = f'{fmt_int(info["exact_bytes"])} / {fmt_int(info["total_size"])}'
-    exact_sub = f'byte sizing: {info["byte_label"]}'
-    byte_note = f'byte sizes: {info["byte_label"]} ({fmt_int(info["exact_bytes"])} / {fmt_int(info["total_size"])} bytes exact)'
+    byte_note = f'byte sizes: {info["byte_label"]} ({fmt_int(info["exact_sizes"])} / {fmt_int(info["total_functions"])} exact)'
 
     body = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">',
@@ -1148,19 +1051,8 @@ def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
     body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="68" text-anchor="end" class="sub">green = matched C</text>')
     body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="88" text-anchor="end" class="sub">{esc(byte_note)}</text>')
 
-    # Four compact cards make the absolute counts readable in README embeds,
-    # where the monospace progress bars can become too small to inspect.
-    card_gap = 12
-    card_y = 108
-    card_h = 94
-    card_w = (SVG_WIDTH - SVG_PAD * 2 - card_gap * 3) / 4
-    add_card(body, SVG_PAD, card_y, card_w, card_h, "FUNCTIONS", function_value, function_sub)
-    add_card(body, SVG_PAD + (card_w + card_gap), card_y, card_w, card_h, "CODE BYTES", code_value, code_sub)
-    add_card(body, SVG_PAD + 2 * (card_w + card_gap), card_y, card_w, card_h, "REMAINING", remaining_value, remaining_sub)
-    add_card(body, SVG_PAD + 3 * (card_w + card_gap), card_y, card_w, card_h, "EXACT BYTE SIZING", exact_value, exact_sub)
-
     chart_x = 6
-    chart_y = 218
+    chart_y = 112
     chart_w = SVG_WIDTH - chart_x * 2
     chart_h = SVG_HEIGHT - chart_y - 6
     body.append(f'<rect x="{chart_x:.2f}" y="{chart_y:.2f}" width="{chart_w:.2f}" height="{chart_h:.2f}" fill="#05080d" stroke="#000000" stroke-width="1"/>')
@@ -1220,20 +1112,16 @@ def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
                     body.append(f'<text x="{fx + 4:.2f}" y="{fy + 14:.2f}" class="func">{esc(label)}</text>')
         body.append("</g>")
 
-    body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="{SVG_HEIGHT - 7}" text-anchor="end" class="sub">Generated by tools/gen_decomp_progress.py · report {REPORT_FORMAT_VERSION}</text>')
+    body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="{SVG_HEIGHT - 7}" text-anchor="end" class="sub">Generated by tools/gen_decomp_progress.py</text>')
     body.append("</svg>")
     svg_path.write_text("\n".join(body), encoding="utf-8")
     return svg_path
 
 
 def write_html(rows: list[FunctionInfo], html_path: Path) -> Path:
-    # HTML filtering is presentation-only. These validated rows remain the single
-    # immutable dataset used by all cards, filters, lists, and treemap views.
-    validate_progress_rows(rows)
     html_path.parent.mkdir(parents=True, exist_ok=True)
     info = stats(rows)
     payload = {
-        "reportVersion": REPORT_FORMAT_VERSION,
         "stats": info,
         "rows": [
             {
@@ -1245,7 +1133,6 @@ def write_html(rows: list[FunctionInfo], html_path: Path) -> Path:
                 "matched": row.matched,
                 "source": row.source,
                 "sizeSource": row.size_source,
-                "isFunction": row.is_function,
             }
             for row in rows
         ],
@@ -1323,22 +1210,6 @@ button.active {{ border-color: var(--green); color: #dcfce7; box-shadow: 0 0 0 1
 .label {{ color: var(--muted); font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }}
 .value {{ margin-top: 8px; font-size: 30px; font-weight: 850; }}
 .detail {{ margin-top: 5px; color: var(--muted); font-size: 13px; }}
-.controls-shell {{
-  margin-top: 18px;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: rgba(15, 23, 42, .72);
-}}
-.controls-head {{
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 12px;
-}}
-.controls-head h2 {{ margin: 0; font-size: 17px; }}
-.controls-head span {{ color: var(--muted); font-size: 12px; }}
 .tools {{
   display: grid;
   grid-template-columns: 1fr 170px 170px 110px;
@@ -1354,16 +1225,6 @@ button.active {{ border-color: var(--green); color: #dcfce7; box-shadow: 0 0 0 1
   overflow: hidden;
   box-shadow: 0 18px 50px rgba(0,0,0,.28);
 }}
-.min-bytes {{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 13px;
-  white-space: nowrap;
-}}
-.min-bytes input {{ width: 92px; }}
-
 .workspace {{
   display: grid;
   grid-template-columns: minmax(0, 1fr) 340px;
@@ -1462,8 +1323,8 @@ canvas {{
     </div>
     <div class="actions">
       <button class="active" data-status="all">All</button>
-      <button data-status="matched">Matched only</button>
-      <button data-status="not matched">Unmatched only</button>
+      <button data-status="matched">Matched</button>
+      <button data-status="not matched">Not matched</button>
     </div>
   </section>
   <section class="cards">
@@ -1472,36 +1333,15 @@ canvas {{
     <div class="card"><div class="label">Byte Sizing</div><div class="value" id="byteSizing"></div><div class="detail" id="byteDetail"></div></div>
     <div class="card"><div class="label">Visible</div><div class="value" id="visibleCount"></div><div class="detail" id="visibleDetail"></div></div>
   </section>
-  <section class="controls-shell">
-    <div class="controls-head">
-      <h2>Progress controls</h2>
-      <span>Filters change the visible treemap only; project totals stay exact.</span>
-    </div>
-    <div class="tools">
-      <!-- All controls below are client-side only; report totals remain immutable. -->
-      <input id="search" type="search" placeholder="Search function or module">
-    <select id="module" title="Filter by object/module"></select>
-    <select id="sizeQuality" title="Filter by exact linker-map sizing">
-      <option value="all">All size sources</option>
-      <option value="exact">Exact sizes only</option>
-      <option value="estimated">Estimated sizes only</option>
-    </select>
-    <select id="kind" title="Choose whether symbol-less text is visible">
-      <option value="functions">Functions only</option>
-      <option value="all">Functions + unassigned text</option>
-      <option value="text">Unassigned text only</option>
-    </select>
-    <label class="min-bytes">Min bytes <input id="minBytes" type="number" min="0" step="1" value="0"></label>
+  <section class="tools">
+    <input id="search" type="search" placeholder="Search function or module">
+    <select id="module"></select>
     <select id="sort">
-      <option value="size-desc">Largest first</option>
-      <option value="size-asc">Smallest first</option>
+      <option value="size">Largest first</option>
       <option value="module">Module</option>
-      <option value="name">Name A–Z</option>
-      <option value="name-desc">Name Z–A</option>
-      <option value="status">Unmatched first</option>
+      <option value="name">Name</option>
     </select>
-      <button id="reset">Reset filters</button>
-    </div>
+    <button id="reset">Reset</button>
   </section>
   <section class="workspace">
     <div class="stage">
@@ -1526,17 +1366,7 @@ canvas {{
 const DATA = {data_json};
 const rows = DATA.rows;
 const stats = DATA.stats;
-// UI state is deliberately separate from DATA: filters must never mutate the
-// authoritative rows used for the headline function/byte totals.
-const state = {{
-  status: "all",
-  query: "",
-  module: "all",
-  sizeQuality: "all",
-  kind: "functions",
-  minBytes: 0,
-  sort: "size-desc"
-}};
+const state = {{ status: "all", query: "", module: "all", sort: "size" }};
 const canvas = document.getElementById("treemap");
 const ctx = canvas.getContext("2d");
 const tip = document.getElementById("tooltip");
@@ -1551,7 +1381,7 @@ function init() {{
   document.getElementById("sizePct").textContent = pct(stats.size_pct);
   document.getElementById("sizeDetail").textContent = `${{fmtInt.format(stats.matched_size)}} / ${{fmtInt.format(stats.total_size)}} bytes`;
   document.getElementById("byteSizing").textContent = stats.byte_label;
-  document.getElementById("byteDetail").textContent = `${{fmtInt.format(stats.exact_bytes)}} / ${{fmtInt.format(stats.total_size)}} bytes exact`;
+  document.getElementById("byteDetail").textContent = `${{fmtInt.format(stats.exact_sizes)}} / ${{fmtInt.format(stats.total_functions)}} exact sizes`;
   document.getElementById("exactNote").textContent = `Byte sizing: ${{stats.byte_label}}`;
 
   const modules = [...new Set(rows.map(row => row.module))].sort();
@@ -1568,12 +1398,6 @@ function init() {{
   }});
   document.getElementById("search").addEventListener("input", event => {{ state.query = event.target.value.toLowerCase(); draw(); }});
   moduleSelect.addEventListener("change", event => {{ state.module = event.target.value; draw(); }});
-  document.getElementById("sizeQuality").addEventListener("change", event => {{ state.sizeQuality = event.target.value; draw(); }});
-  document.getElementById("kind").addEventListener("change", event => {{ state.kind = event.target.value; draw(); }});
-  document.getElementById("minBytes").addEventListener("input", event => {{
-    state.minBytes = Math.max(0, Number.parseInt(event.target.value || "0", 10) || 0);
-    draw();
-  }});
   document.getElementById("sort").addEventListener("change", event => {{ state.sort = event.target.value; draw(); }});
   document.getElementById("reset").addEventListener("click", reset);
   window.addEventListener("resize", draw);
@@ -1586,16 +1410,10 @@ function reset() {{
   state.status = "all";
   state.query = "";
   state.module = "all";
-  state.sizeQuality = "all";
-  state.kind = "functions";
-  state.minBytes = 0;
-  state.sort = "size-desc";
+  state.sort = "size";
   document.getElementById("search").value = "";
   document.getElementById("module").value = "all";
-  document.getElementById("sizeQuality").value = "all";
-  document.getElementById("kind").value = "functions";
-  document.getElementById("minBytes").value = "0";
-  document.getElementById("sort").value = "size-desc";
+  document.getElementById("sort").value = "size";
   document.querySelectorAll("[data-status]").forEach(item => item.classList.toggle("active", item.dataset.status === "all"));
   draw();
 }}
@@ -1605,25 +1423,15 @@ function escapeHtml(value) {{
 }}
 
 function filteredRows() {{
-  // Filtering never changes DATA.stats. It only selects rows for the current
-  // treemap/list view, preserving stable project-wide totals at the top.
   let out = rows.filter(row => {{
     if (state.status !== "all" && row.status !== state.status) return false;
     if (state.module !== "all" && row.module !== state.module) return false;
-    if (state.sizeQuality === "exact" && row.sizeSource !== "symbol") return false;
-    if (state.sizeQuality === "estimated" && row.sizeSource === "symbol") return false;
-    if (state.kind === "functions" && !row.isFunction) return false;
-    if (state.kind === "text" && row.isFunction) return false;
-    if (row.size < state.minBytes) return false;
     if (state.query && !(row.name.toLowerCase().includes(state.query) || row.module.toLowerCase().includes(state.query))) return false;
     return true;
   }});
   if (state.sort === "name") out.sort((a, b) => a.name.localeCompare(b.name));
-  else if (state.sort === "name-desc") out.sort((a, b) => b.name.localeCompare(a.name));
   else if (state.sort === "module") out.sort((a, b) => a.module.localeCompare(b.module) || b.size - a.size);
-  else if (state.sort === "status") out.sort((a, b) => Number(a.matched) - Number(b.matched) || b.size - a.size);
-  else if (state.sort === "size-asc") out.sort((a, b) => a.size - b.size || a.name.localeCompare(b.name));
-  else out.sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
+  else out.sort((a, b) => b.size - a.size);
   return out;
 }}
 
@@ -1774,8 +1582,7 @@ function draw() {{
 
   const visible = filteredRows();
   const visibleSize = visible.reduce((sum, row) => sum + row.size, 0);
-  const visibleFunctions = visible.filter(row => row.isFunction).length;
-  document.getElementById("visibleCount").textContent = fmtInt.format(visibleFunctions);
+  document.getElementById("visibleCount").textContent = fmtInt.format(visible.length);
   document.getElementById("visibleDetail").textContent = `${{fmtInt.format(visibleSize)}} visible bytes`;
   renderDoneList(visible);
 
@@ -1848,13 +1655,8 @@ function draw() {{
 
 function renderDoneList(visible) {{
   const done = visible
-    .filter(row => row.matched && row.isFunction);
-  if (state.sort === "size-asc") done.sort((a, b) => a.size - b.size || a.name.localeCompare(b.name));
-  else if (state.sort === "name") done.sort((a, b) => a.name.localeCompare(b.name));
-  else if (state.sort === "name-desc") done.sort((a, b) => b.name.localeCompare(a.name));
-  else if (state.sort === "module") done.sort((a, b) => a.module.localeCompare(b.module) || b.size - a.size);
-  else if (state.sort === "status") done.sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
-  else done.sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
+    .filter(row => row.matched)
+    .sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
   const list = document.getElementById("doneList");
   const shown = done.slice(0, 300);
   document.getElementById("doneSummary").textContent = `${{fmtInt.format(done.length)}} matched in current filters`;
@@ -1890,7 +1692,6 @@ function onMove(event) {{
   const row = hit.row;
   tip.innerHTML = `<strong>${{escapeHtml(row.name)}}</strong>
     <div>Module: ${{escapeHtml(row.module)}}</div>
-    <div>Kind: ${{row.isFunction ? "function" : "unassigned text"}}</div>
     <div>Status: ${{escapeHtml(row.status)}}</div>
     <div>Size: ${{fmtInt.format(row.size)}} bytes (${{escapeHtml(row.sizeSource)}})</div>
     <div>Source: ${{escapeHtml(row.source)}}</div>`;
@@ -1907,6 +1708,133 @@ init();
     html_path.write_text(html_text, encoding="utf-8")
     return html_path
 
+
+
+def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path:
+    """Write a decomp.dev version-2 progress report.
+
+    This follows the richer schema produced by WarioWare Inc.'s
+    ``tools/reportgen.py`` and consumed by decomp.dev:
+
+      * ``version`` is 2.
+      * ``measures`` contains project-wide code/function/unit totals.
+      * ``units`` contains one entry per object/module.
+      * ``functions`` contains each real function's byte size and match percent.
+      * ``categories`` is kept as an empty list for compatibility.
+
+    Synthetic map rows such as ``(unnamed)`` represent bytes without a function
+    symbol. They contribute to code-byte totals but not function totals.
+    """
+
+    def percent(done: int, total: int) -> float:
+        return 0.0 if total == 0 else done / total * 100.0
+
+    def is_real_function(row: FunctionInfo) -> bool:
+        return not (row.name.startswith("(") and row.name.endswith(")"))
+
+    grouped: dict[str, list[FunctionInfo]] = {}
+    unit_order: list[str] = []
+    for row in rows:
+        if row.module not in grouped:
+            grouped[row.module] = []
+            unit_order.append(row.module)
+        grouped[row.module].append(row)
+
+    report_measures = {
+        "total_code": 0,
+        "matched_code": 0,
+        "total_data": 0,
+        "total_functions": 0,
+        "matched_functions": 0,
+        "complete_code": 0,
+        "complete_data": 0,
+        "total_units": 0,
+        "complete_units": 0,
+    }
+    report_units: list[dict[str, object]] = []
+
+    for module_name in unit_order:
+        module_rows = grouped[module_name]
+        function_rows = [row for row in module_rows if is_real_function(row)]
+
+        total_code = sum(max(0, row.size) for row in module_rows)
+        matched_code = sum(max(0, row.size) for row in module_rows if row.matched)
+        total_functions = len(function_rows)
+        matched_functions = sum(1 for row in function_rows if row.matched)
+
+        functions = [
+            {
+                "name": row.name,
+                "size": max(0, row.size),
+                "fuzzy_match_percent": 100.0 if row.matched else 0.0,
+            }
+            for row in function_rows
+        ]
+
+        complete_unit = int(total_code == matched_code)
+        unit_measures = {
+            "total_code": total_code,
+            "matched_code": matched_code,
+            "total_data": 0,
+            "total_functions": total_functions,
+            "matched_functions": matched_functions,
+            "complete_code": matched_code,
+            "complete_data": 0,
+            "total_units": 1,
+            "complete_units": complete_unit,
+            "matched_code_percent": percent(matched_code, total_code),
+            "complete_code_percent": percent(matched_code, total_code),
+            "matched_functions_percent": percent(matched_functions, total_functions),
+            "fuzzy_match_percent": percent(matched_code, total_code),
+            "complete_data_percent": 0.0,
+        }
+
+        report_units.append(
+            {
+                "name": module_name,
+                "measures": unit_measures,
+                "sections": [],
+                "functions": functions,
+            }
+        )
+
+        report_measures["total_code"] += total_code
+        report_measures["matched_code"] += matched_code
+        report_measures["complete_code"] += matched_code
+        report_measures["total_functions"] += total_functions
+        report_measures["matched_functions"] += matched_functions
+        report_measures["total_units"] += 1
+        report_measures["complete_units"] += complete_unit
+
+    report_measures.update(
+        {
+            "matched_code_percent": percent(
+                report_measures["matched_code"], report_measures["total_code"]
+            ),
+            "complete_code_percent": percent(
+                report_measures["complete_code"], report_measures["total_code"]
+            ),
+            "matched_functions_percent": percent(
+                report_measures["matched_functions"],
+                report_measures["total_functions"],
+            ),
+            "fuzzy_match_percent": percent(
+                report_measures["matched_code"], report_measures["total_code"]
+            ),
+            "complete_data_percent": 0.0,
+        }
+    )
+
+    report = {
+        "measures": report_measures,
+        "units": report_units,
+        "version": 2,
+        "categories": [],
+    }
+
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    return report_path
 
 def infer_pages_url(root: Path, html_rel_path: str) -> str:
     repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
@@ -1969,7 +1897,13 @@ def main() -> int:
     parser.add_argument("--root", default=".", help="repo root to scan")
     parser.add_argument("--svg", default="docs/progress-treemap.svg", help="SVG path relative to repo root")
     parser.add_argument("--html", default="docs/progress.html", help="interactive HTML path relative to repo root")
+    parser.add_argument(
+        "--report",
+        default="report.json",
+        help="decomp.dev-compatible JSON report path relative to repo root",
+    )
     parser.add_argument("--no-html", action="store_true", help="skip interactive HTML generation")
+    parser.add_argument("--no-report", action="store_true", help="skip decomp.dev JSON report generation")
     parser.add_argument("--no-readme", action="store_true", help="do not update the README progress block")
     parser.add_argument("--update-readme", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--readme", default="README.md", help="README path relative to repo root")
@@ -1978,22 +1912,26 @@ def main() -> int:
     root = Path(args.root).resolve()
     svg_path = root / args.svg
     html_path = root / args.html
+    report_path = root / args.report
     readme_path = root / args.readme
 
     rows = merge_functions(root)
     written_svg = write_svg(rows, svg_path)
     written_html = None if args.no_html else write_html(rows, html_path)
+    written_report = None if args.no_report else write_decomp_dev_report(rows, report_path)
     written_readme = None if args.no_readme else update_readme(readme_path, args.svg, args.html)
     info = stats(rows)
 
     function_line, size_line = summarize(rows)
     print(function_line)
     print(size_line)
-    print(f'Byte sizes: {info["byte_label"]} ({fmt_int(info["exact_bytes"])} / {fmt_int(info["total_size"])} bytes exact)')
+    print(f'Byte sizes: {info["byte_label"]} ({fmt_int(info["exact_sizes"])} / {fmt_int(info["total_functions"])} exact)')
     print()
     print(f"SVG: {written_svg.relative_to(root)}")
     if written_html is not None:
         print(f"HTML: {written_html.relative_to(root)}")
+    if written_report is not None:
+        print(f"Report: {written_report.relative_to(root)}")
     if written_readme is not None:
         print(f"README: {written_readme.relative_to(root)}")
 
