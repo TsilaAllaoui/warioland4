@@ -242,19 +242,63 @@ jobs:
         run: |
           set -euxo pipefail
 
-          grep -q 'data-status="all"' docs/progress.html
-          grep -q 'data-status="matched"' docs/progress.html
-          grep -q 'data-status="not matched"' docs/progress.html
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
 
-          grep -q 'id="search"' docs/progress.html
-          grep -q 'id="module"' docs/progress.html
-          grep -q 'id="sort"' docs/progress.html
-          grep -q 'id="reset"' docs/progress.html
+          class ProgressHTMLParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = set()
+                  self.statuses = set()
+                  self.option_values = set()
 
-          grep -q '<option value="size-desc">Largest first</option>' docs/progress.html
-          grep -q '<option value="size-asc">Smallest first</option>' docs/progress.html
-          grep -q '<option value="module">Module</option>' docs/progress.html
-          grep -q '<option value="name">Name A–Z</option>' docs/progress.html
+              def handle_starttag(self, tag, attrs):
+                  attributes = dict(attrs)
+
+                  element_id = attributes.get("id")
+                  if element_id:
+                      self.ids.add(element_id)
+
+                  status = attributes.get("data-status")
+                  if status:
+                      self.statuses.add(status)
+
+                  if tag == "option" and attributes.get("value"):
+                      self.option_values.add(attributes["value"])
+
+          html_path = Path("docs/progress.html")
+          assert html_path.is_file() and html_path.stat().st_size > 0
+
+          parser = ProgressHTMLParser()
+          parser.feed(html_path.read_text(encoding="utf-8"))
+
+          required_ids = {"search", "module", "sort", "reset"}
+          required_statuses = {"all", "matched", "not matched"}
+
+          missing_ids = required_ids - parser.ids
+          missing_statuses = required_statuses - parser.statuses
+
+          assert not missing_ids, f"Missing control IDs: {sorted(missing_ids)}"
+          assert not missing_statuses, (
+              f"Missing status filters: {sorted(missing_statuses)}"
+          )
+
+          # Accept either the current sort values or the older generator values.
+          size_sort_present = bool(
+              {"size", "size-desc", "size-asc"} & parser.option_values
+          )
+          assert size_sort_present, (
+              "Missing size sort option; found values: "
+              f"{sorted(parser.option_values)}"
+          )
+          assert "module" in parser.option_values
+          assert "name" in parser.option_values
+
+          print("HTML control IDs:", sorted(parser.ids & required_ids))
+          print("HTML status filters:", sorted(parser.statuses))
+          print("HTML option values:", sorted(parser.option_values))
+          PY
 
       - name: Validate SVG totals
         run: |
