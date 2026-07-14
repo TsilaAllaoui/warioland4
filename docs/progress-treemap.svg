@@ -13,21 +13,21 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ███████████████░░░░░░░░░░░░░░░  49.5%   2,014 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████████░░░░░░░░░░░░░░░░░░░  37.3%   227,710 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ███████████████░░░░░░░░░░░░░░░  50.7%   2,062 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████████░░░░░░░░░░░░░░░░░░░  38.0%   231,718 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (609,788 / 609,818 bytes exact)</text>
 <rect x="24.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="40.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">FUNCTIONS</text>
-<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,014 / 4,071</text>
-<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">49.5% matched functions</text>
+<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,062 / 4,071</text>
+<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">50.7% matched functions</text>
 <rect x="335.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="351.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">CODE BYTES</text>
-<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">227,710 / 609,818</text>
-<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">37.3% matched code bytes</text>
+<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">231,718 / 609,818</text>
+<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">38.0% matched code bytes</text>
 <rect x="646.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="662.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">REMAINING</text>
-<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,057 funcs · 382,108 bytes</text>
+<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">2,009 funcs · 378,100 bytes</text>
 <text x="662.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">remaining unmatched code</text>
 <rect x="957.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="973.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">EXACT BYTE SIZING</text>
@@ -2584,60 +2584,60 @@
 <rect x="1268.65" y="383.97" width="3.00" height="3.70" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_ringosuki/func_80475D4: 12 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_totsumen: 0.0% matched, 4,008 bytes</title>
+<title>totsumen: 100.0% matched, 4,008 bytes</title>
 <rect x="697.27" y="389.02" width="72.78" height="79.22" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip43"><rect x="699.27" y="390.02" width="69.38" height="14.37"/></clipPath>
 <rect x="698.27" y="390.02" width="71.38" height="14.37" fill="#05080d"/>
-<text x="699.77" y="400.02" clip-path="url(#moduleLabelClip43)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_tots…</text>
-<text x="767.65" y="399.02" text-anchor="end" clip-path="url(#moduleLabelClip43)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="698.27" y="404.39" width="23.37" height="47.29" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/SpriteTotsumen: 1,000 bytes, not matched, size=symbol</title></rect>
-<rect x="698.27" y="452.02" width="23.37" height="15.47" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80323B0: 332 bytes, not matched, size=symbol</title></rect>
-<rect x="721.99" y="404.39" width="23.78" height="14.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032688: 324 bytes, not matched, size=symbol</title></rect>
-<rect x="746.12" y="404.39" width="23.18" height="14.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032824: 316 bytes, not matched, size=symbol</title></rect>
-<rect x="721.99" y="419.56" width="12.68" height="11.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032DD0: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="735.02" y="419.56" width="11.56" height="11.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032524: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="746.94" y="419.56" width="11.19" height="11.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032C98: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="758.48" y="419.56" width="10.82" height="11.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80329AC: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="721.99" y="431.70" width="9.91" height="12.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032A6C: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="721.99" y="444.92" width="9.91" height="11.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032320: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="721.99" y="456.82" width="9.91" height="10.67" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032B0C: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="732.25" y="431.70" width="7.66" height="12.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_803262C: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="732.25" y="444.69" width="7.66" height="7.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80325A4: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="732.25" y="452.59" width="7.66" height="7.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032D14: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="732.25" y="460.50" width="7.66" height="6.99" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032B98: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="740.25" y="431.70" width="7.32" height="6.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032BF4: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="747.92" y="431.70" width="7.32" height="6.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032DA0: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="755.59" y="431.70" width="6.68" height="6.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80327CC: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="762.62" y="431.70" width="6.68" height="6.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80327F8: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="740.25" y="438.78" width="6.03" height="7.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032D4C: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="740.25" y="446.57" width="6.03" height="6.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80324FC: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="740.25" y="453.66" width="6.03" height="6.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032604: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="740.25" y="460.75" width="6.03" height="6.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032960: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="746.63" y="438.78" width="5.87" height="6.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032A44: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="752.85" y="438.78" width="5.25" height="6.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_803238C: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="758.45" y="438.78" width="5.25" height="6.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032988: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="764.05" y="438.78" width="5.25" height="6.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032C4C: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="746.63" y="446.04" width="5.04" height="6.36" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032A24: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="746.63" y="452.75" width="5.04" height="5.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032E9C: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="746.63" y="458.62" width="5.04" height="4.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032E5C: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="746.63" y="463.65" width="5.04" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80325DC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="752.02" y="446.04" width="4.06" height="4.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_80325F0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="756.43" y="446.04" width="4.06" height="4.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032AE4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="760.84" y="446.04" width="4.06" height="4.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032AF8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.24" y="446.04" width="4.06" height="4.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032B70: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="752.02" y="451.17" width="5.07" height="3.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032B84: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="752.02" y="455.34" width="5.07" height="3.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032BCC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="752.02" y="459.51" width="5.07" height="3.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032BE0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="752.02" y="463.67" width="5.07" height="3.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032C24: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="757.45" y="451.17" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032C38: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="761.51" y="451.17" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032C70: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.58" y="451.17" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032C84: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="757.45" y="456.73" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032D78: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="757.45" y="462.28" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032D8C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="761.51" y="456.73" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032E74: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.58" y="456.73" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032E88: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="761.51" y="462.28" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032EB8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.58" y="462.28" width="3.72" height="5.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_totsumen/func_8032ECC: 20 bytes, not matched, size=symbol</title></rect>
+<text x="699.77" y="400.02" clip-path="url(#moduleLabelClip43)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">totsumen</text>
+<text x="767.65" y="399.02" text-anchor="end" clip-path="url(#moduleLabelClip43)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="698.27" y="404.39" width="23.37" height="47.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/SpriteTotsumen: 1,000 bytes, matched, size=symbol</title></rect>
+<rect x="698.27" y="452.02" width="23.37" height="15.47" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80323B0: 332 bytes, matched, size=symbol</title></rect>
+<rect x="721.99" y="404.39" width="23.78" height="14.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032688: 324 bytes, matched, size=symbol</title></rect>
+<rect x="746.12" y="404.39" width="23.18" height="14.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032824: 316 bytes, matched, size=symbol</title></rect>
+<rect x="721.99" y="419.56" width="12.68" height="11.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032DD0: 140 bytes, matched, size=symbol</title></rect>
+<rect x="735.02" y="419.56" width="11.56" height="11.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032524: 128 bytes, matched, size=symbol</title></rect>
+<rect x="746.94" y="419.56" width="11.19" height="11.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032C98: 124 bytes, matched, size=symbol</title></rect>
+<rect x="758.48" y="419.56" width="10.82" height="11.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80329AC: 120 bytes, matched, size=symbol</title></rect>
+<rect x="721.99" y="431.70" width="9.91" height="12.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032A6C: 120 bytes, matched, size=symbol</title></rect>
+<rect x="721.99" y="444.92" width="9.91" height="11.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032320: 108 bytes, matched, size=symbol</title></rect>
+<rect x="721.99" y="456.82" width="9.91" height="10.67" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032B0C: 100 bytes, matched, size=symbol</title></rect>
+<rect x="732.25" y="431.70" width="7.66" height="12.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_803262C: 92 bytes, matched, size=symbol</title></rect>
+<rect x="732.25" y="444.69" width="7.66" height="7.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80325A4: 56 bytes, matched, size=symbol</title></rect>
+<rect x="732.25" y="452.59" width="7.66" height="7.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032D14: 56 bytes, matched, size=symbol</title></rect>
+<rect x="732.25" y="460.50" width="7.66" height="6.99" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032B98: 52 bytes, matched, size=symbol</title></rect>
+<rect x="740.25" y="431.70" width="7.32" height="6.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032BF4: 48 bytes, matched, size=symbol</title></rect>
+<rect x="747.92" y="431.70" width="7.32" height="6.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032DA0: 48 bytes, matched, size=symbol</title></rect>
+<rect x="755.59" y="431.70" width="6.68" height="6.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80327CC: 44 bytes, matched, size=symbol</title></rect>
+<rect x="762.62" y="431.70" width="6.68" height="6.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80327F8: 44 bytes, matched, size=symbol</title></rect>
+<rect x="740.25" y="438.78" width="6.03" height="7.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032D4C: 44 bytes, matched, size=symbol</title></rect>
+<rect x="740.25" y="446.57" width="6.03" height="6.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80324FC: 40 bytes, matched, size=symbol</title></rect>
+<rect x="740.25" y="453.66" width="6.03" height="6.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032604: 40 bytes, matched, size=symbol</title></rect>
+<rect x="740.25" y="460.75" width="6.03" height="6.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032960: 40 bytes, matched, size=symbol</title></rect>
+<rect x="746.63" y="438.78" width="5.87" height="6.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032A44: 40 bytes, matched, size=symbol</title></rect>
+<rect x="752.85" y="438.78" width="5.25" height="6.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_803238C: 36 bytes, matched, size=symbol</title></rect>
+<rect x="758.45" y="438.78" width="5.25" height="6.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032988: 36 bytes, matched, size=symbol</title></rect>
+<rect x="764.05" y="438.78" width="5.25" height="6.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032C4C: 36 bytes, matched, size=symbol</title></rect>
+<rect x="746.63" y="446.04" width="5.04" height="6.36" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032A24: 32 bytes, matched, size=symbol</title></rect>
+<rect x="746.63" y="452.75" width="5.04" height="5.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032E9C: 28 bytes, matched, size=symbol</title></rect>
+<rect x="746.63" y="458.62" width="5.04" height="4.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032E5C: 24 bytes, matched, size=symbol</title></rect>
+<rect x="746.63" y="463.65" width="5.04" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80325DC: 20 bytes, matched, size=symbol</title></rect>
+<rect x="752.02" y="446.04" width="4.06" height="4.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_80325F0: 20 bytes, matched, size=symbol</title></rect>
+<rect x="756.43" y="446.04" width="4.06" height="4.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032AE4: 20 bytes, matched, size=symbol</title></rect>
+<rect x="760.84" y="446.04" width="4.06" height="4.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032AF8: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.24" y="446.04" width="4.06" height="4.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032B70: 20 bytes, matched, size=symbol</title></rect>
+<rect x="752.02" y="451.17" width="5.07" height="3.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032B84: 20 bytes, matched, size=symbol</title></rect>
+<rect x="752.02" y="455.34" width="5.07" height="3.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032BCC: 20 bytes, matched, size=symbol</title></rect>
+<rect x="752.02" y="459.51" width="5.07" height="3.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032BE0: 20 bytes, matched, size=symbol</title></rect>
+<rect x="752.02" y="463.67" width="5.07" height="3.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032C24: 20 bytes, matched, size=symbol</title></rect>
+<rect x="757.45" y="451.17" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032C38: 20 bytes, matched, size=symbol</title></rect>
+<rect x="761.51" y="451.17" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032C70: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.58" y="451.17" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032C84: 20 bytes, matched, size=symbol</title></rect>
+<rect x="757.45" y="456.73" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032D78: 20 bytes, matched, size=symbol</title></rect>
+<rect x="757.45" y="462.28" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032D8C: 20 bytes, matched, size=symbol</title></rect>
+<rect x="761.51" y="456.73" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032E74: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.58" y="456.73" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032E88: 20 bytes, matched, size=symbol</title></rect>
+<rect x="761.51" y="462.28" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032EB8: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.58" y="462.28" width="3.72" height="5.21" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032ECC: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_professor: 0.0% matched, 3,916 bytes</title>
