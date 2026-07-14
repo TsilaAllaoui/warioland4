@@ -3,7 +3,7 @@ name: Build and generate progress report
 on:
   push:
     branches:
-      - progress_generation
+      - master
     paths:
       - ".github/workflows/report.yml"
       - "Makefile"
@@ -19,7 +19,7 @@ on:
 
   pull_request:
     branches:
-      - progress_generation
+      - master
 
   workflow_dispatch:
 
