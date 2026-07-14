@@ -652,7 +652,7 @@ SECTIONS {
         obj/sprite_ai/bow_balloon.o(.text);
         obj/sprite_ai/chance_wheel.o(.text);
         obj/sprite_ai/marumen.o(.text);
-        obj/sprite_ai/disasm_spoiled_rotten.o(.text);
+        obj/sprite_ai/spoiled_rotten.o(.text);
         obj/sprite_ai/disasm_dominoes.o(.text);
         obj/sprite_ai/mayubird.o(.text);
         obj/sprite_ai/rock.o(.text);

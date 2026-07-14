@@ -286,6 +286,7 @@ extern u8 gUnk_3000044;
 extern u8 gUnk_3000045;
 extern u8 gUnk_3000046;
 extern u8 gTimerState;
+extern u8 gUnk_3000A62;
 extern u8 gStageExitType;
 extern struct DebugInfo gUnk_300004C;
 extern struct BackgroundInfo gBackgroundInfo;
