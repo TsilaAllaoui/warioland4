@@ -686,7 +686,7 @@ SECTIONS {
         obj/sprite_ai/aerodent.o(.text);
         obj/sprite_ai/boss_treasure.o(.text);
         obj/sprite_ai/hoggus.o(.text);
-        obj/sprite_ai/disasm_denden.o(.text);
+        obj/sprite_ai/denden.o(.text);
         obj/sprite_ai/butatabi.o(.text);
         obj/sprite_ai/disasm_deburina.o(.text);
         obj/sprite_ai/pencil.o(.text);

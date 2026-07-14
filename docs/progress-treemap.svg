@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████░░░░░░░░░░░░░░  54.4%   2,214 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ████████████░░░░░░░░░░░░░░░░░░  40.6%   247,606 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████░░░░░░░░░░░░░  55.6%   2,263 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ████████████░░░░░░░░░░░░░░░░░░  41.3%   251,874 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2391,61 +2391,61 @@
 <rect x="1031.57" y="285.85" width="4.56" height="4.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_denden: 0.0% matched, 4,268 bytes</title>
+<title>denden: 100.0% matched, 4,268 bytes</title>
 <rect x="1037.48" y="209.01" width="78.68" height="82.10" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip40"><rect x="1039.48" y="210.01" width="75.28" height="14.89"/></clipPath>
 <rect x="1038.48" y="210.01" width="77.28" height="14.89" fill="#05080d"/>
-<text x="1039.98" y="220.01" clip-path="url(#moduleLabelClip40)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_denden</text>
-<text x="1113.75" y="219.01" text-anchor="end" clip-path="url(#moduleLabelClip40)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="1038.48" y="224.89" width="31.66" height="32.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/SpriteUnknownD1: 892 bytes, not matched, size=symbol</title></rect>
-<rect x="1038.48" y="258.10" width="31.66" height="32.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/SpriteDenden: 876 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.49" y="224.89" width="22.70" height="16.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80573B8: 332 bytes, not matched, size=symbol</title></rect>
-<rect x="1093.54" y="224.89" width="12.15" height="16.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_805764C: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="1106.03" y="224.89" width="9.37" height="16.82" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057524: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.49" y="242.06" width="13.67" height="11.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057A3C: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="1084.51" y="242.06" width="12.07" height="11.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057B4C: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="1096.93" y="242.06" width="9.66" height="11.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057AE8: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1106.94" y="242.06" width="8.46" height="11.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057334: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.49" y="253.96" width="8.73" height="10.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_805793C: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.49" y="264.46" width="8.73" height="9.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057728: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.49" y="274.44" width="8.73" height="8.58" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057C5C: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="1070.49" y="283.36" width="8.73" height="7.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_805779C: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1079.57" y="253.96" width="7.57" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057904: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1087.48" y="253.96" width="7.57" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80579B4: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1095.40" y="253.96" width="6.43" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057304: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1102.18" y="253.96" width="6.43" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80575B0: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1108.97" y="253.96" width="6.43" height="8.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80577FC: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1079.57" y="262.39" width="7.39" height="7.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057854: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1079.57" y="269.78" width="7.39" height="7.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80578AC: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1079.57" y="277.17" width="7.39" height="6.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_805738C: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1079.57" y="283.94" width="7.39" height="6.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057C30: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1087.31" y="262.39" width="6.21" height="6.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057624: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1087.31" y="269.65" width="6.21" height="6.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057700: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1087.31" y="276.91" width="6.21" height="6.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057A14: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1087.31" y="284.18" width="6.21" height="6.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80575E0: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1093.87" y="262.39" width="5.12" height="6.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057504: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.34" y="262.39" width="5.12" height="6.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057604: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.81" y="262.39" width="5.12" height="6.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057AC8: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.28" y="262.39" width="5.12" height="6.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057BC8: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1093.87" y="269.36" width="5.23" height="6.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057C04: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="1093.87" y="276.19" width="5.23" height="5.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057BE8: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1093.87" y="282.17" width="5.23" height="3.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057774: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1093.87" y="286.44" width="5.23" height="3.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057788: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.45" y="269.36" width="5.08" height="4.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80577D4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.89" y="269.36" width="5.08" height="4.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80577E8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.32" y="269.36" width="5.08" height="4.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_805782C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.45" y="273.75" width="5.08" height="4.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057840: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.89" y="273.75" width="5.08" height="4.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057884: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.32" y="273.75" width="5.08" height="4.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057898: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.45" y="278.14" width="5.34" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80578DC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.45" y="282.33" width="5.34" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80578F0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1099.45" y="286.52" width="5.34" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_805798C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1105.14" y="278.14" width="4.96" height="4.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80579A0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.45" y="278.14" width="4.96" height="4.14" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_80579EC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1105.14" y="282.63" width="5.55" height="3.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057A00: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1105.14" y="286.67" width="5.55" height="3.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057CA0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1111.04" y="282.63" width="4.37" height="4.70" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057CB4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1111.04" y="287.68" width="4.37" height="2.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_denden/func_8057C24: 12 bytes, not matched, size=symbol</title></rect>
+<text x="1039.98" y="220.01" clip-path="url(#moduleLabelClip40)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">denden</text>
+<text x="1113.75" y="219.01" text-anchor="end" clip-path="url(#moduleLabelClip40)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="1038.48" y="224.89" width="31.66" height="32.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/SpriteDendenShell: 892 bytes, matched, size=symbol</title></rect>
+<rect x="1038.48" y="258.10" width="31.66" height="32.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/SpriteDenden: 876 bytes, matched, size=symbol</title></rect>
+<rect x="1070.49" y="224.89" width="22.70" height="16.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenIdle: 332 bytes, matched, size=symbol</title></rect>
+<rect x="1093.54" y="224.89" width="12.15" height="16.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenFall: 180 bytes, matched, size=symbol</title></rect>
+<rect x="1106.03" y="224.89" width="9.37" height="16.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenLifted: 140 bytes, matched, size=symbol</title></rect>
+<rect x="1070.49" y="242.06" width="13.67" height="11.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenTurnAround: 140 bytes, matched, size=symbol</title></rect>
+<rect x="1084.51" y="242.06" width="12.07" height="11.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellInit: 124 bytes, matched, size=symbol</title></rect>
+<rect x="1096.93" y="242.06" width="9.66" height="11.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenSpawnShell: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1106.94" y="242.06" width="8.46" height="11.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenInit: 88 bytes, matched, size=symbol</title></rect>
+<rect x="1070.49" y="253.96" width="8.73" height="10.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenThrownCommon: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1070.49" y="264.46" width="8.73" height="9.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/ConfigureDendenFallOffscreen: 76 bytes, matched, size=symbol</title></rect>
+<rect x="1070.49" y="274.44" width="8.73" height="8.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellFallCommon: 68 bytes, matched, size=symbol</title></rect>
+<rect x="1070.49" y="283.36" width="8.73" height="7.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/ConfigureDendenFallOffscreenWithoutStatusChange: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1079.57" y="253.96" width="7.57" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenDeathDelayInit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1087.48" y="253.96" width="7.57" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenThrownUpCommon: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1095.40" y="253.96" width="6.43" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenBumpedCommon: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1102.18" y="253.96" width="6.43" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenImpactCommon: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1108.97" y="253.96" width="6.43" height="8.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenPushedCommon: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1079.57" y="262.39" width="7.39" height="7.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenRetreatInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1079.57" y="269.78" width="7.39" height="7.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenUpdateHitboxExtents: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1079.57" y="277.17" width="7.39" height="6.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenIdleInit: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1079.57" y="283.94" width="7.39" height="6.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellDisappear: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1087.31" y="262.39" width="6.21" height="6.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenLandingInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1087.31" y="269.65" width="6.21" height="6.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenLiftedInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1087.31" y="276.91" width="6.21" height="6.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenUnderwaterFallInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1087.31" y="284.18" width="6.21" height="6.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenRetreat: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1093.87" y="262.39" width="5.12" height="6.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenFallInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1099.34" y="262.39" width="5.12" height="6.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellBumpedCommon: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1104.81" y="262.39" width="5.12" height="6.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellBumpedLeftInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1110.28" y="262.39" width="5.12" height="6.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenSpawnShellInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1093.87" y="269.36" width="5.23" height="6.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenTurnAroundInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="1093.87" y="276.19" width="5.23" height="5.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellBumpedRightInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1093.87" y="282.17" width="5.23" height="3.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/BeginDendenFallOffscreenLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1093.87" y="286.44" width="5.23" height="3.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/BeginDendenFallOffscreenLeftWithoutStatusChange: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1099.45" y="269.36" width="5.08" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/BeginDendenFallOffscreenRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1104.89" y="269.36" width="5.08" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/BeginDendenFallOffscreenRightWithoutStatusChange: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1110.32" y="269.36" width="5.08" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenBumpedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1099.45" y="273.75" width="5.08" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenBumpedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1104.89" y="273.75" width="5.08" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenImpactLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1110.32" y="273.75" width="5.08" height="4.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenImpactRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1099.45" y="278.14" width="5.34" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1099.45" y="282.33" width="5.34" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1099.45" y="286.52" width="5.34" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellFallLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1105.14" y="278.14" width="4.96" height="4.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellFallRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1110.45" y="278.14" width="4.96" height="4.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenThrownLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1105.14" y="282.63" width="5.55" height="3.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenThrownRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1105.14" y="286.67" width="5.55" height="3.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenThrownUpLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1111.04" y="282.63" width="4.37" height="4.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenThrownUpRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1111.04" y="287.68" width="4.37" height="2.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>denden/DendenShellDie: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_moguramen: 0.0% matched, 4,208 bytes</title>
