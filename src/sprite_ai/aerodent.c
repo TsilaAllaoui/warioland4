@@ -1,0 +1,3447 @@
+#include "sprite_ai/aerodent.h"
+
+#include "background_registers.h"
+#include "color_effects.h"
+#include "fixed_point.h"
+#include "global_data.h"
+#include "gba/m4a.h"
+#include "gba/macro.h"
+#include "hud.h"
+#include "main.h"
+#include "score.h"
+#include "sound.h"
+#include "sprite.h"
+#include "sprite_util.h"
+#include "voice_set.h"
+#include "wario.h"
+
+s32 SpriteCollisionCheckObjectsTouching();
+void SpriteUtilCheckCollisionAtPositionOld(u32, u32) asm("func_8023BFC");
+
+void AerodentThrowablePrepareFallWithEffect(void);
+void AerodentThrowablePrepareFall(void);
+void AerodentThrowablePrepareKnockback(void);
+void AerodentThrowablePrepareThrow(void);
+void AerodentEmitterStartBurst(void);
+
+int AerodentWeakPointCheckThrowableCollision(void)
+{
+    register u32 thisBottom asm("r10");
+    register u32 thisLeft asm("r9");
+    register u32 thisRight asm("r8");
+    register int slot asm("r6");
+    register struct PrimarySpriteData *sprite asm("r5");
+    register u32 requiredStatus;
+    register struct PrimarySpriteData *current asm("r3");
+    register u32 center asm("r2");
+    register u32 yCenter asm("r1");
+    volatile u32 thisTop;
+
+    current = &gCurrentSprite;
+    {
+        register u32 offset asm("r0");
+
+        offset = 0x80;
+        offset <<= 5;
+        /* Prevent agbcc from folding this materialized shift into the following copy. */
+        asm("" : "+r"(offset));
+        center = offset;
+    }
+    {
+        register u32 temp asm("r0");
+
+        temp = current->yPosition;
+        yCenter = center + temp;
+        yCenter <<= 16;
+        yCenter >>= 16;
+        temp = current->xPosition;
+        center += temp;
+        center <<= 16;
+        temp = current->hitboxExtentUp;
+        temp = yCenter - temp;
+        temp <<= 16;
+        temp >>= 16;
+        /* Preserve the explicit 16-bit normalization before assigning the top bound. */
+        asm("" : "+r"(temp));
+        thisTop = temp;
+    }
+    current = (struct PrimarySpriteData *)((u8 *)current + 36);
+    yCenter += 34;
+    current = (struct PrimarySpriteData *)(u32)*(u8 *)current;
+    yCenter += (u32)current;
+    yCenter <<= 16;
+    yCenter >>= 16;
+    thisBottom = yCenter;
+    thisLeft = (center + 0xFFBA0000) >> 16;
+    thisRight = (center + (240 << 13)) >> 16;
+
+    slot = 0;
+    /* Materialize the combined status mask at this exact point. */
+    asm("" : "=r"(requiredStatus) : "0"(SPRITE_STATUS_EXISTS | SPRITE_STATUS_CAN_HIT_OTHER_SPRITES));
+    do {
+        {
+            register u32 temp0 asm("r0");
+            register u32 temp1 asm("r1");
+
+            temp1 = (u32)gSpriteData;
+            temp0 = sizeof(struct PrimarySpriteData);
+            temp0 *= slot;
+            sprite = (struct PrimarySpriteData *)(temp0 + temp1);
+            temp1 = sprite->status;
+            temp0 = requiredStatus;
+            temp0 &= temp1;
+            if (temp0 != requiredStatus)
+                goto nextSlot;
+        }
+        if (sprite->globalID == PSPRITE_AERODENT_THROWABLE && sprite->work0 == 0) {
+            register u32 v1 asm("r1");
+            register u32 v2 asm("r2");
+            register u32 v3 asm("r3");
+            register u32 v4 asm("r4");
+
+            v1 = 0x80;
+            v1 <<= 5;
+            /* Keep the shifted screen-center constant separate from its later copy. */
+            asm("" : "+r"(v1));
+            v2 = v1;
+            {
+                register u32 temp asm("r0");
+
+                temp = sprite->yPosition;
+                v3 = v2 + temp;
+                v3 <<= 16;
+                v3 >>= 16;
+            }
+            v1 = sprite->xPosition;
+            v2 += v1;
+            v2 <<= 16;
+            v2 >>= 16;
+            {
+                register u8 *extent asm("r0");
+
+                extent = &sprite->hitboxExtentUp;
+                v4 = v3 - *extent;
+                v4 <<= 16;
+                v4 >>= 16;
+                /* Preserve the explicit 16-bit normalization before the next extent load. */
+                asm("" : "+r"(v4));
+                extent++;
+                /* Preserve the explicit pointer increment instead of folding +1 into the load. */
+                asm("" : "+r"(extent));
+                v3 += *extent;
+                v3 <<= 16;
+                v3 >>= 16;
+                /* Preserve the explicit 16-bit normalization before switching hitbox axes. */
+                asm("" : "+r"(v3));
+                extent = &sprite->hitboxExtentLeft;
+                v1 = v2 - *extent;
+                v1 <<= 16;
+                v1 >>= 16;
+                /* Preserve the explicit 16-bit normalization before the pointer increment. */
+                asm("" : "+r"(v1));
+                extent++;
+                /* Preserve the explicit pointer increment instead of folding +1 into the load. */
+                asm("" : "+r"(extent));
+                v2 += *extent;
+                v2 <<= 16;
+                v2 >>= 16;
+                /* Preserve the explicit 16-bit normalization before the collision call. */
+                asm("" : "+r"(v2));
+            }
+            if (SpriteCollisionCheckObjectsTouching(
+                    thisTop, thisBottom, thisLeft, thisRight,
+                    v4, v3, v1, v2)) {
+                sprite->pose = 110;
+                sprite->status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
+                return TRUE;
+            }
+        }
+nextSlot:
+        slot++;
+    } while (slot < MAX_SPRITE_COUNT);
+
+    return FALSE;
+}
+int AerodentMoveUpWithinCamera(void)
+{
+    register u16 *bg asm("r0");
+    register u32 offset asm("r2");
+    register u32 value asm("r1");
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u32 adjust asm("r4");
+    u32 bgLimit;
+    u32 spritePosition;
+    register u16 nextY asm("r0");
+
+    bg = &gBg1YPosition;
+    offset = 128;
+    offset <<= 1;
+    /* agbcc otherwise coalesces the two live 0x100 values and removes the required register copy. */
+    asm("" : "+r"(offset));
+    value = offset;
+    bgLimit = (value + *bg) << 16;
+    sprite = &gCurrentSprite;
+    offset = sprite->yPosition;
+    value = offset + value;
+    spritePosition = value << 16;
+    adjust = 0xFF200000;
+    bgLimit += adjust;
+    if (spritePosition > bgLimit) {
+        nextY = offset - 1;
+        sprite->yPosition = nextY;
+        return FALSE;
+    }
+    return TRUE;
+}
+void AerodentWeakPointUpdateHitbox(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register unsigned int state asm("r0");
+    u8 *hitbox;
+
+    gCurrentSprite.warioCollision = 0;
+    state = gCurrentSprite.work1;
+    sprite = &gCurrentSprite;
+    switch (state) {
+    case 0:
+    case 1:
+    case 2:
+        hitbox = &sprite->hitboxExtentUp;
+        *hitbox = 128;
+        hitbox++;
+        *hitbox = 8;
+        hitbox++;
+        *hitbox = 96;
+        hitbox++;
+        /* Keep the pointer increment as its own operation before the final store. */
+        asm("" : "+r"(hitbox));
+        *hitbox = 92;
+        break;
+    case 3:
+    case 4:
+        hitbox = &sprite->hitboxExtentUp;
+        *hitbox = 128;
+        hitbox++;
+        *hitbox = 16;
+        hitbox++;
+        *hitbox = 112;
+        hitbox++;
+        /* Keep the pointer increment as its own operation before the final store. */
+        asm("" : "+r"(hitbox));
+        *hitbox = 108;
+        break;
+    case 5:
+    case 6:
+        {
+            register u8 *up asm("r0");
+            register u8 *down asm("r1");
+            register int wide asm("r2");
+
+            up = &sprite->hitboxExtentUp;
+            wide = 128;
+            *up = wide;
+            down = &sprite->hitboxExtentDown;
+            *down = 20;
+            up = &sprite->hitboxExtentLeft;
+            *up = wide;
+            down += 2;
+            /* Prevent agbcc from folding this pointer increment into the byte store. */
+            asm("" : "+r"(down));
+            *down = 124;
+        }
+        break;
+    case 8:
+        {
+            register struct PrimarySpriteData *sprites asm("r1");
+            register struct PrimarySpriteData *parent asm("r2");
+            register int index asm("r0");
+            register int stride asm("r4");
+
+            sprites = gSpriteData;
+            index = sprite->work3;
+            stride = sizeof(struct PrimarySpriteData);
+            index *= stride;
+            parent = (struct PrimarySpriteData *)(index + (u32)sprites);
+            if (parent->status & 0x20) {
+                register int zero asm("r1");
+                register u8 *upper asm("r2");
+                register u8 *lower asm("r0");
+
+                zero = 0;
+                sprite->warioCollision = stride;
+                upper = &sprite->hitboxExtentUp;
+                *upper = 128;
+                lower = &sprite->hitboxExtentDown;
+                *lower = zero;
+                {
+                    register u8 *left asm("r1");
+
+                    left = &sprite->hitboxExtentLeft;
+                    *left = 144;
+                    left++;
+                    /* Prevent agbcc from folding this pointer increment into the byte store. */
+                    asm("" : "+r"(left));
+                    *left = 140;
+                }
+                break;
+            }
+            {
+                register u8 *parentWork2 asm("r0");
+
+                parentWork2 = (u8 *)parent;
+                parentWork2 += 41;
+                if (*parentWork2 != 0)
+                    sprite->warioCollision = stride;
+                else
+                    sprite->warioCollision = 45;
+            }
+        }
+        /* fallthrough */
+    case 7:
+        hitbox = &sprite->hitboxExtentUp;
+        *hitbox = 128;
+        hitbox++;
+        *hitbox = 24;
+        hitbox++;
+        *hitbox = 144;
+        hitbox++;
+        /* Keep the pointer increment as its own operation before the final store. */
+        asm("" : "+r"(hitbox));
+        *hitbox = 140;
+        break;
+    case 9:
+    case 10:
+        sprite->warioCollision = 44;
+        hitbox = &sprite->hitboxExtentUp;
+        *hitbox = 128;
+        hitbox++;
+        *hitbox = 32;
+        hitbox++;
+        *hitbox = 160;
+        hitbox++;
+        /* Keep the pointer increment as its own operation before the final store. */
+        asm("" : "+r"(hitbox));
+        *hitbox = 156;
+        break;
+    case 11:
+    case 12:
+    case 13:
+        sprite->warioCollision = 44;
+        hitbox = &sprite->hitboxExtentUp;
+        *hitbox = 128;
+        hitbox++;
+        *hitbox = 40;
+        hitbox++;
+        *hitbox = 176;
+        hitbox++;
+        /* Keep the pointer increment as its own operation before the final store. */
+        asm("" : "+r"(hitbox));
+        *hitbox = 172;
+        break;
+    default:
+        gCurrentSprite.warioCollision = 44;
+        hitbox = &gCurrentSprite.hitboxExtentUp;
+        *hitbox = 128;
+        hitbox++;
+        *hitbox = 16;
+        hitbox++;
+        *hitbox = 192;
+        hitbox++;
+        *hitbox = 188;
+        break;
+    }
+}
+void AerodentLoadNormalGraphics(void)
+{
+    DmaCopy16(3, sUnk_83DB610, (void *)0x06015800, 0x100);
+    DmaCopy16(3, sUnk_83DB610 + 128, (void *)0x06015C00, 0x100);
+}
+void AerodentLoadFlashGraphics(void)
+{
+    DmaCopy16(3, sUnk_83DB810, (void *)0x06015800, 0x100);
+    DmaCopy16(3, sUnk_83DB810 + 128, (void *)0x06015C00, 0x100);
+}
+void AerodentUpdateDamageGraphics(void)
+{
+    if (gCurrentSprite.pOamData == sUnk_83DABB0 && gCurrentSprite.currentAnimationFrame == 1) {
+        if (gCurrentSprite.animationTimer == 0)
+            AerodentLoadFlashGraphics();
+        else
+            AerodentLoadNormalGraphics();
+    }
+}
+void AerodentUpdateInflation(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *work2 asm("r5");
+    register unsigned int value asm("r1");
+    register int bit asm("r0");
+
+    AerodentUpdateDamageGraphics();
+    sprite = &gCurrentSprite;
+    work2 = &sprite->work2;
+    value = *work2;
+    if (value == 0)
+        return;
+
+    bit = 0x80;
+    bit &= value;
+    if (bit != 0) {
+        register int zero asm("r6");
+        register int next asm("r0");
+        register int masked asm("r2");
+
+        next = sprite->yPosition + 2;
+        zero = 0;
+        sprite->yPosition = next;
+        next = value - 1;
+        *work2 = next;
+        masked = 0x7F;
+        masked &= next;
+        if (masked != 0)
+            return;
+
+        {
+            register u8 *work1 asm("r3");
+
+            work1 = &sprite->work1;
+            value = *work1;
+            if (value <= 8) {
+                *work2 = zero;
+                return;
+            }
+            *work2 = 148;
+            next = value - 1;
+            *work1 = next;
+            next <<= 24;
+            next = (u32)next >> 24;
+            if (next == 8) {
+                *work2 = zero;
+                sprite->pOamData = sUnk_83DABB0;
+                sprite->currentAnimationFrame = zero;
+                sprite->animationTimer = masked;
+            }
+        }
+    } else {
+        register int collision asm("r3");
+        register int next asm("r0");
+        register int normalized asm("r1");
+
+        collision = AerodentMoveUpWithinCamera();
+        next = *work2 - 1;
+        *work2 = next;
+        next <<= 24;
+        normalized = (u32)next >> 24;
+        if (normalized == 0) {
+            register u8 *work1 asm("r2");
+            register unsigned int frame asm("r0");
+
+            *work2 = 20;
+            work1 = &sprite->work1;
+            frame = *work1;
+            if (frame > 15)
+                goto check_collision;
+            frame++;
+            *work1 = frame;
+            frame <<= 24;
+            frame = (u32)frame >> 24;
+            if (frame == 16) {
+                sprite->pOamData = sAerodentBalloonInflatingOam;
+                sprite->currentAnimationFrame = normalized;
+                sprite->animationTimer = normalized;
+            }
+        }
+        if (gCurrentSprite.work1 <= 15)
+            return;
+check_collision:
+        if (collision == 0)
+            return;
+        gCurrentSprite.work2 = 0;
+    }
+}
+void AerodentInit(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register int zeroHalf asm("r3");
+
+    sprite = &gCurrentSprite;
+    {
+        register int priority asm("r1");
+        register int mask asm("r0");
+
+        priority = sprite->drawPriority;
+        mask = 0x80;
+        zeroHalf = 0;
+        mask |= priority;
+        sprite->drawPriority = mask;
+    }
+    {
+        register int status asm("r1");
+        register int bits asm("r2");
+        register int value asm("r0");
+
+        status = sprite->status;
+        bits = 0xC488;
+        /* Preserve the literal in r2 before copying it to the status accumulator. */
+        asm("" : "+r"(bits));
+        value = bits;
+        bits = 0;
+        value |= status;
+        sprite->status = value;
+
+        {
+            register u8 *draw asm("r1");
+            register int distance asm("r0");
+
+            draw = &sprite->drawDistanceDown;
+            distance = 64;
+            *draw = distance;
+            draw++;
+            /* Preserve the first explicit pointer increment between repeated stores. */
+            asm("" : "+r"(draw));
+            *draw = distance;
+            draw++;
+            /* Preserve the second explicit pointer increment between repeated stores. */
+            asm("" : "+r"(draw));
+            *draw = distance;
+        }
+        {
+            register u8 *hitbox asm("r0");
+            register int extent asm("r1");
+
+            hitbox = &sprite->hitboxExtentUp;
+            extent = 4;
+            *hitbox = extent;
+            hitbox++;
+            /* Preserve the first explicit hitbox pointer increment. */
+            asm("" : "+r"(hitbox));
+            *hitbox = extent;
+            hitbox++;
+            /* Preserve the second explicit hitbox pointer increment. */
+            asm("" : "+r"(hitbox));
+            *hitbox = extent;
+            hitbox++;
+            /* Preserve the third explicit hitbox pointer increment. */
+            asm("" : "+r"(hitbox));
+            *hitbox = extent;
+        }
+
+        sprite->pOamData = sAerodentBalloonInflatingOam;
+        /* agbcc otherwise copies the zero to r1 before this byte store. */
+        asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(bits));
+        sprite->animationTimer = zeroHalf;
+        {
+            register u8 *work asm("r0");
+
+            work = &sprite->work0;
+            *work = bits;
+            work++;
+            /* Preserve the first explicit work-variable pointer increment. */
+            asm("" : "+r"(work));
+            *work = bits;
+            work++;
+            /* Preserve the second explicit work-variable pointer increment. */
+            asm("" : "+r"(work));
+            *work = bits;
+            work++;
+            /* Preserve the third explicit work-variable pointer increment. */
+            asm("" : "+r"(work));
+            *work = bits;
+        }
+        sprite->warioCollision = bits;
+    }
+    sprite->pose = 1;
+    {
+        register int offset asm("r1");
+        register int nextY asm("r0");
+        register int oldY asm("r2");
+
+        /* Keep -0x100 as the original literal-pool load rather than synthesized shifts. */
+        asm("" : "=r"(offset) : "0"(-256));
+        nextY = offset;
+        /* Prevent the copy from folding into the following three-operand add. */
+        asm("" : "+r"(nextY));
+        oldY = sprite->yPosition;
+        nextY += oldY;
+        sprite->yPosition = nextY;
+    }
+    sprite->xPosition -= 96;
+    SpriteUtilTurnTowardWario();
+    sprite->health = 16;
+    func_80747D8();
+    func_801E430(203, sprite->roomSlot, sprite->gfxSlot,
+        sprite->yPosition - 64, sprite->xPosition + 224);
+    func_801E430(204, sprite->roomSlot, sprite->gfxSlot,
+        sprite->yPosition + 240, sprite->xPosition + 128);
+    func_8070964(131, 8, 4);
+}
+void AerodentEnterArena(void)
+{
+    s16 velocity;
+    u8 index;
+
+    index = gCurrentSprite.work3;
+    velocity = sUnk_83DBA70[index];
+    if (velocity == 0x7FFF) {
+        velocity = sUnk_83DBA70[0];
+        index = 0;
+    }
+    gCurrentSprite.work3 = index + 1;
+    gCurrentSprite.yPosition += velocity;
+}
+void AerodentIdle(void)
+{
+    s16 velocity;
+    u8 index;
+
+    if (gCurrentSprite.work2 != 0)
+        return;
+
+    gCurrentSprite.drawPriority &= 0x7F;
+    index = gCurrentSprite.work3;
+    velocity = sUnk_83DBA70[index];
+    if (velocity == 0x7FFF) {
+        velocity = sUnk_83DBA70[0];
+        index = 0;
+    }
+    gCurrentSprite.work3 = index + 1;
+    gCurrentSprite.yPosition += velocity;
+    if (gCurrentSprite.status & SPRITE_STATUS_WARIO_STANDING_ON)
+        gCurrentSprite.xPosition++;
+    else
+        gCurrentSprite.xPosition--;
+}
+void AerodentStartMoveRight(void)
+{
+    gCurrentSprite.pose = 36;
+    gCurrentSprite.work0 = 60;
+    gCurrentSprite.status |= SPRITE_STATUS_WARIO_STANDING_ON;
+    m4aSongNumStart(SOUND_92);
+}
+void AerodentMoveRight(void)
+{
+    if (!(gCurrentSprite.status & SPRITE_STATUS_WARIO_STANDING_ON)) {
+        gCurrentSprite.pose = 37;
+        return;
+    }
+
+    gCurrentSprite.xPosition += 2;
+    AerodentMoveUpWithinCamera();
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0)
+        gCurrentSprite.pose = 16;
+}
+void AerodentStartMoveLeft(void)
+{
+    gCurrentSprite.pose = 38;
+    gCurrentSprite.work0 = 60;
+    gCurrentSprite.status &= ~SPRITE_STATUS_WARIO_STANDING_ON;
+    m4aSongNumStart(SOUND_92);
+}
+void AerodentMoveLeft(void)
+{
+    if (gCurrentSprite.status & SPRITE_STATUS_WARIO_STANDING_ON) {
+        gCurrentSprite.pose = 35;
+        return;
+    }
+
+    gCurrentSprite.xPosition -= 2;
+    AerodentMoveUpWithinCamera();
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0)
+        gCurrentSprite.pose = 16;
+}
+void AerodentStartDeflate(void)
+{
+    gCurrentSprite.pose = 32;
+    gCurrentSprite.work0 = 255;
+    gCurrentSprite.status |= SPRITE_STATUS_WARIO_STANDING_ON;
+    m4aSongNumStart(SOUND_91);
+    gCurrentSprite.pOamData = sAerodentBalloonInflatingOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    AerodentLoadNormalGraphics();
+}
+void AerodentDeflate(void)
+{
+    if (gCurrentSprite.status & SPRITE_STATUS_WARIO_STANDING_ON)
+        gCurrentSprite.xPosition += 2;
+    else
+        gCurrentSprite.xPosition -= 2;
+
+    if (gCurrentSprite.work0 <= 128) {
+        gCurrentSprite.status |= SPRITE_STATUS_HEAVY;
+        gCurrentSprite.pose = 16;
+    } else {
+        gCurrentSprite.work0 -= 2;
+    }
+}
+void AerodentStartInflate(void)
+{
+    gCurrentSprite.pose = 34;
+    gCurrentSprite.work0 = 1;
+    gCurrentSprite.status &= ~SPRITE_STATUS_WARIO_STANDING_ON;
+    m4aSongNumStart(SOUND_91);
+    gCurrentSprite.pOamData = sAerodentBalloonInflatingOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    AerodentLoadNormalGraphics();
+}
+void AerodentInflate(void)
+{
+    if (gCurrentSprite.status & SPRITE_STATUS_WARIO_STANDING_ON)
+        gCurrentSprite.xPosition += 2;
+    else
+        gCurrentSprite.xPosition -= 2;
+
+    if ((s8)gCurrentSprite.work0 < 0) {
+        gCurrentSprite.status |= SPRITE_STATUS_HEAVY;
+        gCurrentSprite.pose = 16;
+    } else {
+        gCurrentSprite.work0 += 2;
+    }
+}
+void AerodentUpdateRotation(void)
+{
+    struct PrimarySpriteData *sprite;
+    register u16 status asm("r1");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    if (status & 0x1000) {
+        u8 *timer;
+        int value;
+
+        timer = &sprite->work0;
+        value = *timer - 2;
+        *timer = value;
+        if ((u8)value <= 2) {
+            sprite->status = status & ~0x20;
+            sprite->pose = 16;
+            *timer = 0;
+            sprite->work2 = 16;
+        }
+    } else {
+        u8 *timer;
+        int value;
+
+        timer = &sprite->work0;
+        value = *timer + 2;
+        *timer = value;
+        if ((u8)value > 253) {
+            sprite->status = status & ~0x20;
+            sprite->pose = 16;
+            *timer = 0;
+            sprite->work1 = 9;
+            sprite->work2 = 16;
+        }
+    }
+}
+void AerodentStartDefeat(void)
+{
+    gCurrentSprite.pose = 48;
+    gCurrentSprite.pOamData = sUnk_83DABC8;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 100;
+    gCurrentSprite.work2 = 0;
+}
+void AerodentDefeat(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register struct PrimarySpriteData *current asm("r5");
+    register u8 *timerPtr asm("r2");
+    int timer;
+    u8 timer8;
+
+    sprite = &gCurrentSprite;
+    timerPtr = &sprite->work0;
+    timer = *timerPtr - 1;
+    *timerPtr = timer;
+    timer8 = (u8)timer;
+    current = sprite;
+    if (timer8 != 0) {
+        register u8 *counter asm("r1");
+        register int counterValue asm("r0");
+        register struct PrimarySpriteData *base asm("r2");
+        register int value asm("r0");
+
+        /* Keep the second byte cast distinct from the zero test above. */
+        asm("" : "+r"(timer));
+        if ((u8)timer > 49)
+            return;
+        if (timer & 4) {
+            counter = &sprite->work1;
+            counterValue = *counter;
+            if (counterValue != 0) {
+                counterValue--;
+                *counter = counterValue;
+            }
+        }
+
+        base = current;
+        value = base->work0;
+        if (value == 20)
+            func_801E430(10, base->roomSlot, 0, base->yPosition + 160, base->xPosition + 120);
+        else if (value == 15)
+            func_801E430(10, base->roomSlot, 0, base->yPosition + 200, base->xPosition + 80);
+        else if (value == 10)
+            func_801E430(10, base->roomSlot, 0, base->yPosition + 130, base->xPosition + 120);
+        else if (value == 5)
+            func_801E430(10, current->roomSlot, 0, current->yPosition + 170, current->xPosition + 90);
+    } else {
+        sprite->status = timer8;
+        func_801E430(10, sprite->roomSlot, 0, sprite->yPosition + 210, sprite->xPosition + 110);
+        func_801E430(207, sprite->roomSlot, 0, sprite->yPosition + 110, sprite->xPosition + 110);
+    }
+}
+void AerodentSpawnShot(void)
+{
+    u16 direction;
+
+    direction = gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT;
+    if (direction != 0) {
+        func_801E3A8(206, 0, gCurrentSprite.gfxSlot,
+            gCurrentSprite.yPosition, gCurrentSprite.xPosition + 56,
+            SPRITE_STATUS_FACING_RIGHT);
+    } else {
+        func_801E3A8(206, 0, gCurrentSprite.gfxSlot,
+            gCurrentSprite.yPosition, gCurrentSprite.xPosition - 56, direction);
+    }
+    m4aSongNumStart(SOUND_90);
+}
+void AerodentCompanionInit(void)
+{
+    gCurrentSprite.drawPriority |= 0x80;
+    gCurrentSprite.status = (gCurrentSprite.status & 0xFFFB) | 0x8408;
+    gCurrentSprite.drawDistanceDown = 16;
+    gCurrentSprite.drawDistanceUp = 16;
+    gCurrentSprite.drawDistanceLeftRight = 16;
+    gCurrentSprite.hitboxExtentUp = 32;
+    gCurrentSprite.hitboxExtentDown = 24;
+    gCurrentSprite.hitboxExtentLeft = 32;
+    gCurrentSprite.hitboxExtentRight = 28;
+    gCurrentSprite.warioCollision = 0;
+    SpriteUtilTurnTowardWario();
+    SpriteUtilFindSpriteSlotWork3(105);
+    gCurrentSprite.health = 16;
+    gCurrentSprite.pOamData = sUnk_83DB0B0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 15;
+    gCurrentSprite.work0 = 60;
+}
+void AerodentCompanionStartIdle(void)
+{
+    gCurrentSprite.pose = 16;
+    gCurrentSprite.work0 = 100;
+    gCurrentSprite.work1 = 0;
+    m4aSongNumStart(SOUND_CF);
+}
+void AerodentCompanionWaitForBattle(void)
+{
+    if (gCurrentSprite.work0 != 0) {
+        gCurrentSprite.work0--;
+        if (gCurrentSprite.work0 != 0)
+            return;
+
+        *(volatile u8 *)&gUnk_30000F4 = 7;
+    }
+    if (gUnk_30000F4[0] == 0 && gCurrentShopItem == 0)
+        AerodentCompanionStartIdle();
+}
+void AerodentCompanionDescend(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 <= 40) {
+        gCurrentSprite.xPosition -= 2;
+        gCurrentSprite.yPosition += 2;
+        if (gCurrentSprite.work0 == 0)
+            gCurrentSprite.pose = 17;
+    }
+}
+void AerodentCompanionStartAttach(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DADA8;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 18;
+    gCurrentSprite.status &= ~SPRITE_STATUS_BACKGROUND;
+    gCurrentSprite.work0 = 30;
+}
+void AerodentCompanionFollowParent(void)
+{
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u8 *slot;
+
+    current = &gCurrentSprite;
+    sprites = gSpriteData;
+    slot = &current->work3;
+    current->xPosition = sprites[*slot].xPosition + 140;
+    current->yPosition = sprites[*slot].yPosition;
+    current->work0--;
+    if (current->work0 == 0)
+        current->pose = 23;
+}
+void AerodentCompanionStartFightCountdown(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DACC0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 24;
+    gCurrentSprite.work0 = 60;
+}
+void AerodentCompanionBeginBossFight(void)
+{
+    u8 timer;
+
+    gCurrentSprite.xPosition = gSpriteData[gCurrentSprite.work3].xPosition + 140;
+    gCurrentSprite.yPosition = gSpriteData[gCurrentSprite.work3].yPosition;
+    timer = --gCurrentSprite.work0;
+    if (timer == 0) {
+        SpriteUtilStartBossTimer();
+        gCurrentSprite.pose = 19;
+        gSpriteData[gCurrentSprite.work3].pose = 16;
+        gSpriteData[gCurrentSprite.work3].pOamData = sUnk_83DAB28;
+        gSpriteData[gCurrentSprite.work3].currentAnimationFrame = 0;
+        gSpriteData[gCurrentSprite.work3].animationTimer = timer;
+        gSpriteData[gCurrentSprite.work3].work2 = 20;
+    }
+}
+void AerodentCompanionStartRise(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DAD28;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 20;
+    gCurrentSprite.work0 = 20;
+}
+void AerodentCompanionRise(void)
+{
+    {
+        register struct PrimarySpriteData *sprite asm("r4");
+        register u8 *timer asm("r2");
+        u8 *frame;
+        int value;
+
+        sprite = &gCurrentSprite;
+        if ((*(u32 *)&sprite->animationTimer & 0xFFFFFF) == 0x20000)
+            m4aSongNumStart(SOUND_8D);
+
+        timer = &sprite->work0;
+        value = *timer - 1;
+        *timer = value;
+        if ((value << 24) == 0) {
+            *timer = 20;
+            frame = &sprite->work1;
+            value = *frame + 1;
+            *frame = value;
+            if ((u8)value > 15) {
+                sprite->pose = 21;
+                *timer = 4;
+            }
+        }
+    }
+
+    {
+        register struct PrimarySpriteData *current asm("r3");
+        register struct PrimarySpriteData *sprites asm("r2");
+        register u8 *parentSlot asm("r4");
+        register int offset asm("r0");
+        register int stride asm("r1");
+        register const u16 *heights asm("r2");
+
+        current = &gCurrentSprite;
+        sprites = gSpriteData;
+        parentSlot = &current->work3;
+        offset = *parentSlot;
+        stride = sizeof(struct PrimarySpriteData);
+        offset *= stride;
+        offset += (u32)sprites;
+        current->xPosition = ((struct PrimarySpriteData *)offset)->xPosition + 140;
+        offset = *parentSlot;
+        stride *= offset;
+        stride += (u32)sprites;
+        heights = sUnk_83DBA34;
+        current->yPosition = ((struct PrimarySpriteData *)stride)->yPosition - heights[current->work1];
+    }
+}
+void AerodentCompanionEnterCombat(void)
+{
+    gCurrentSprite.drawPriority &= 0x7F;
+    gCurrentSprite.pOamData = sUnk_83DACC0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 22;
+}
+void AerodentCompanionUpdateCombat(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register struct PrimarySpriteData *sprites asm("r6");
+    register u8 *parentSlot asm("r12");
+    register int stride asm("r4");
+    int zero;
+
+    sprite = &gCurrentSprite;
+    sprites = gSpriteData;
+    parentSlot = &sprite->work3;
+    {
+        register int parentIndex asm("r0");
+
+        parentIndex = *parentSlot;
+        stride = sizeof(struct PrimarySpriteData);
+        parentIndex *= stride;
+        parentIndex += (u32)sprites;
+        sprite->xPosition = ((struct PrimarySpriteData *)parentIndex)->xPosition + 140;
+    }
+    zero = 0;
+    {
+        register u8 *work1 asm("r3");
+        register int pose asm("r0");
+        register u8 *slotCopy asm("r1");
+        register int parentIndex asm("r0");
+
+        slotCopy = parentSlot;
+        parentIndex = *slotCopy;
+        parentIndex *= stride;
+        parentIndex += (u32)sprites;
+        parentIndex = *(u8 *)(parentIndex + 40);
+        work1 = &sprite->work1;
+        *work1 = parentIndex;
+
+        parentIndex = *(volatile u8 *)slotCopy;
+        {
+            register int parentOffset asm("r1");
+
+            parentOffset = parentIndex;
+            parentOffset *= stride;
+            parentOffset += (u32)sprites;
+            sprite->yPosition = ((struct PrimarySpriteData *)parentOffset)->yPosition - sUnk_83DBA34[*work1];
+        }
+        slotCopy = parentSlot;
+        parentIndex = *slotCopy;
+        parentIndex *= stride;
+        parentIndex += (u32)sprites;
+        pose = ((struct PrimarySpriteData *)parentIndex)->pose;
+        if (pose == 32 || pose == 34) {
+            sprite->pOamData = sUnk_83DAD68;
+            sprite->currentAnimationFrame = zero;
+            sprite->animationTimer = 0;
+            sprite->work0 = 10;
+            sprite->work2 = zero;
+            sprite->pose = 115;
+        }
+    }
+
+    {
+        register struct PrimarySpriteData *current asm("r4");
+        register u8 *slot asm("r12");
+        register int parentStride asm("r3");
+
+        current = sprite;
+        slot = &current->work3;
+        {
+            register int parentIndex asm("r0");
+
+            parentIndex = *slot;
+            parentStride = sizeof(struct PrimarySpriteData);
+            parentIndex *= parentStride;
+            parentIndex += (u32)sprites;
+            if (((struct PrimarySpriteData *)parentIndex)->work2 != 0)
+                return;
+        }
+
+        if (current->work1 != 16) {
+            u8 *timer;
+            register int oldValue asm("r0");
+            register int value asm("r1");
+
+            timer = &current->work0;
+            oldValue = *timer;
+            value = oldValue - 1;
+            *timer = value;
+            oldValue = value << 24;
+            {
+                register int normalized asm("r2");
+
+                normalized = (u32)oldValue >> 24;
+                if (normalized != 0) {
+                    register int status asm("r0");
+                    register int facing asm("r1");
+
+                    if (current->health > 12)
+                        return;
+                    normalized = 63;
+                    normalized &= value;
+                    if (normalized != 0)
+                        return;
+                    status = current->status;
+                    facing = SPRITE_STATUS_FACING_RIGHT;
+                    status ^= facing;
+                    value = 0;
+                    current->status = status;
+                    current->pOamData = sUnk_83DAF00;
+                    current->currentAnimationFrame = value;
+                    current->animationTimer = normalized;
+                    AerodentSpawnShot();
+                    return;
+                } else {
+                    register u8 *slotCopy asm("r1");
+                    register int index asm("r0");
+
+                    slotCopy = slot;
+                    index = *slotCopy;
+                    index *= parentStride;
+                    {
+                        register int fieldBase asm("r1");
+
+                        fieldBase = (u32)sprites + 4;
+                        index += fieldBase;
+                        *(const struct AnimationFrame **)index = sUnk_83DAB28;
+                    }
+                    slotCopy = slot;
+                    index = *slotCopy;
+                    index *= parentStride;
+                    index += (u32)sprites;
+                    ((struct PrimarySpriteData *)index)->currentAnimationFrame = normalized;
+                    index = *slotCopy;
+                    index *= parentStride;
+                    index += (u32)sprites;
+                    ((struct PrimarySpriteData *)index)->animationTimer = normalized;
+                    index = *slotCopy;
+                    index *= parentStride;
+                    index += (u32)sprites;
+                    ((struct PrimarySpriteData *)index)->work2 = 20;
+                    current->pose = 19;
+                    AerodentLoadNormalGraphics();
+                    return;
+                }
+            }
+        }
+
+        {
+            register int count asm("r1");
+            u8 *timer;
+            register int value asm("r0");
+
+            count = SpriteUtilCountSpriteType(205);
+            timer = &current->work0;
+            value = *timer;
+            if (value != 0) {
+                value--;
+                *timer = value;
+                return;
+            }
+            if (count > 0) {
+                if (current->health <= 4 && (u8)gUnk_3000BEC == 0)
+                    AerodentSpawnShot();
+            } else {
+                sprite->pose = 112;
+            }
+        }
+    }
+}
+void AerodentCompanionFireProjectile(void)
+{
+    u16 direction;
+
+    gCurrentSprite.pOamData = sUnk_83DAD48;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 113;
+    gCurrentSprite.work0 = 60;
+    SpriteUtilTurnTowardWario();
+    direction = gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT;
+    if (direction != 0) {
+        func_801E3A8(205, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+            gCurrentSprite.yPosition - 40, gCurrentSprite.xPosition + 32,
+            SPRITE_STATUS_FACING_RIGHT);
+    } else {
+        func_801E3A8(205, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+            gCurrentSprite.yPosition - 40, gCurrentSprite.xPosition - 32, direction);
+    }
+    m4aSongNumStart(SOUND_8F);
+}
+void AerodentCompanionRecoverFromProjectile(void)
+{
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u8 *slot;
+
+    current = &gCurrentSprite;
+    sprites = gSpriteData;
+    slot = &current->work3;
+    current->xPosition = sprites[*slot].xPosition + 140;
+    current->yPosition = sprites[*slot].yPosition - sUnk_83DBA34[current->work1];
+    current->work0--;
+    if (current->work0 == 0) {
+        current->pose = 21;
+        current->work0 = 80;
+    }
+}
+void AerodentCompanionKnockback(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register s16 (*velocity)[2] asm("r5");
+    register u32 index asm("r2");
+    register u16 yVelocity asm("r4");
+    register int zero asm("r6");
+
+    {
+        register struct PrimarySpriteData *current asm("r1");
+        register u8 *work0 asm("r0");
+        register int value asm("r0");
+
+        current = &gCurrentSprite;
+        work0 = &current->work0;
+        value = *work0;
+        sprite = current;
+        if (value == 0) {
+            register struct PrimarySpriteData *sprites asm("r2");
+            register u8 *parentSlot asm("r0");
+            register int parentIndex asm("r1");
+            register int parentOffset asm("r0");
+            register u16 parentStatus asm("r1");
+            register int statusBit asm("r0");
+
+            sprites = gSpriteData;
+            parentSlot = &sprite->work3;
+            parentIndex = *parentSlot;
+            parentOffset = sizeof(struct PrimarySpriteData);
+            parentOffset *= parentIndex;
+            parentOffset += (u32)sprites;
+            parentStatus = ((struct PrimarySpriteData *)parentOffset)->status;
+            statusBit = SPRITE_STATUS_HEAVY;
+            statusBit &= parentStatus;
+            if (statusBit != 0)
+                sprite->pose = 116;
+            return;
+        }
+    }
+
+    {
+        register struct PrimarySpriteData *sprites asm("r2");
+        register u8 *parentSlot asm("r0");
+        register int parentIndex asm("r1");
+        register int parentOffset asm("r0");
+        register int parentPose asm("r0");
+
+        sprites = gSpriteData;
+        parentSlot = &sprite->work3;
+        parentIndex = *parentSlot;
+        parentOffset = sizeof(struct PrimarySpriteData);
+        parentOffset *= parentIndex;
+        parentOffset += (u32)sprites;
+        parentPose = ((struct PrimarySpriteData *)parentOffset)->pose;
+        if (parentPose == 32) {
+            sprite->xPosition++;
+            index = sprite->work2;
+            velocity = sUnk_83DBB62;
+        } else {
+            sprite->xPosition--;
+            index = sprite->work2;
+            velocity = sUnk_83DBAE2;
+        }
+    }
+
+    {
+        register const s16 *entry asm("r0");
+        register int signedVelocity asm("r1");
+        register int sentinel asm("r0");
+        register u16 xVelocity asm("r1");
+
+        entry = (const s16 *)((index << 2) + (u32)velocity);
+        yVelocity = *(const u16 *)entry;
+        zero = 0;
+        /* Preserve the original separate signed halfword read from the same entry. */
+        asm("ldrsh %0, [%1, %2]" : "=r"(signedVelocity) : "r"(entry), "r"(zero));
+        sentinel = 0x7FFF;
+        if (signedVelocity == sentinel) {
+            index = 0;
+            yVelocity = *(const u16 *)velocity;
+        }
+        {
+            register u32 xValue asm("r1");
+
+            entry = (const s16 *)(index << 2);
+            xValue = (u32)velocity + 2;
+            entry = (const s16 *)((u32)entry + xValue);
+            xValue = *(const u16 *)entry;
+            xVelocity = xValue;
+        }
+        {
+            register int nextIndex asm("r0");
+
+            nextIndex = index + 1;
+            index = (u32)sprite;
+            index += 41;
+            *(u8 *)index = nextIndex;
+        }
+        sprite->yPosition += yVelocity;
+        sprite->xPosition += xVelocity;
+    }
+
+    {
+        register u8 *timer asm("r1");
+        register int value asm("r0");
+
+        timer = &sprite->work0;
+        value = *timer;
+        value--;
+        *timer = value;
+        value <<= 24;
+        if (value == 0)
+            sprite->status |= SPRITE_STATUS_HIDDEN;
+    }
+}
+void AerodentCompanionStartDropAttack(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DADF0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 117;
+    gCurrentSprite.work0 = 30;
+    gCurrentSprite.status &= ~SPRITE_STATUS_HIDDEN;
+}
+void AerodentCompanionDropAttack(void)
+{
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u8 *slot;
+
+    current = &gCurrentSprite;
+    sprites = gSpriteData;
+    slot = &current->work3;
+    current->xPosition = sprites[*slot].xPosition + 112;
+    current->yPosition = sprites[*slot].yPosition + 312;
+    if (current->work0 == 14)
+        current->warioCollision = 45;
+    current->work0--;
+    if (current->work0 == 0) {
+        current->pose = 118;
+        current->work0 = current->health * 4 + 60;
+    }
+}
+void AerodentCompanionStartGroundAttack(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DAE78;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 119;
+    gCurrentSprite.warioCollision = 45;
+}
+void AerodentCompanionGroundAttack(void)
+{
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u8 *slot;
+    register u16 y asm("r1");
+    u16 distance;
+
+    current = &gCurrentSprite;
+    sprites = gSpriteData;
+    slot = &current->work3;
+    current->xPosition = sprites[*slot].xPosition + 112;
+    y = sprites[*slot].yPosition + 312;
+    current->yPosition = y;
+    distance = (y >> 2) - (gBg1YPosition >> 2);
+    current->work0--;
+    if (distance <= 64 || current->work0 == 0) {
+        current->pose = 120;
+        current->warioCollision = 0;
+    }
+}
+void AerodentCompanionStartReturn(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DAE50;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 121;
+    gCurrentSprite.work0 = 16;
+}
+void AerodentCompanionReturnToParent(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u8 *timer asm("r12");
+    register int value asm("r6");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    if (value == 0) {
+        register struct PrimarySpriteData *sprites asm("r5");
+        register int stride asm("r6");
+        register int zero asm("r2");
+        register u8 *parentSlot asm("r1");
+        register int index asm("r0");
+        register int offset asm("r4");
+        register u16 parentStatus asm("r1");
+        register int statusBit asm("r0");
+        register const struct AnimationFrame *animation asm("r1");
+        register u8 *slotCopy asm("r7");
+
+        sprites = gSpriteData;
+        parentSlot = (u8 *)42;
+        /* Materialize the parent-slot offset before adding the sprite base. */
+        asm("" : "+r"(parentSlot));
+        parentSlot += (u32)sprite;
+        timer = parentSlot;
+        index = *(volatile u8 *)parentSlot;
+        stride = sizeof(struct PrimarySpriteData);
+        offset = index;
+        offset *= stride;
+        index = offset + (u32)sprites;
+        parentStatus = ((struct PrimarySpriteData *)index)->status;
+        statusBit = SPRITE_STATUS_HEAVY;
+        statusBit &= parentStatus;
+        statusBit <<= 16;
+        zero = (u32)statusBit >> 16;
+        if (zero != 0)
+            return;
+
+        index = (u32)sprites + 4;
+        index = offset + index;
+        animation = sUnk_83DAB28;
+        *(const struct AnimationFrame **)index = animation;
+        slotCopy = timer;
+        /* Keep r0, r1, and r4 live through this copy so agbcc uses r7,
+         * matching the original register lifetime without emitting code. */
+        asm("" : "+r"(slotCopy) : "r"(index), "r"(animation), "r"(offset));
+
+        /* agbcc otherwise copies the preserved r7 pointer to a temporary and
+         * reuses r7 for the product. Keep each byte load in the target register. */
+        asm("ldrb %0, [%1]" : "=r"(index) : "r"(slotCopy));
+        index *= stride;
+        index += (u32)sprites;
+        ((struct PrimarySpriteData *)index)->currentAnimationFrame = zero;
+        /* Reload the slot byte into the target register for the next indexed store. */
+        asm("ldrb %0, [%1]" : "=r"(index) : "r"(slotCopy));
+        index *= stride;
+        index += (u32)sprites;
+        ((struct PrimarySpriteData *)index)->animationTimer = zero;
+        /* Reload the slot byte into the target register for the final indexed store. */
+        asm("ldrb %0, [%1]" : "=r"(index) : "r"(slotCopy));
+        index *= stride;
+        index += (u32)sprites;
+        index += 41;
+        parentStatus = 20;
+        *(u8 *)index = parentStatus;
+
+        sprite->pose = 19;
+        parentStatus = sprite->status;
+        statusBit = 0xFFFB;
+        statusBit &= parentStatus;
+        sprite->status = statusBit;
+        return;
+    }
+
+    {
+        register struct PrimarySpriteData *sprites asm("r5");
+        register u8 *parentSlot asm("r4");
+        register int stride asm("r2");
+        register int index asm("r0");
+        register int parentOffset asm("r1");
+        register int yOffset;
+
+        sprites = gSpriteData;
+        parentSlot = &sprite->work3;
+        index = *parentSlot;
+        stride = sizeof(struct PrimarySpriteData);
+        index *= stride;
+        index += (u32)sprites;
+        index = ((struct PrimarySpriteData *)index)->xPosition;
+        index += 112;
+        sprite->xPosition = index;
+
+        index = *(volatile u8 *)parentSlot;
+        parentOffset = index;
+        parentOffset *= stride;
+        parentOffset += (u32)sprites;
+        yOffset = 156;
+        /* r0 and r1 remain live here, so the original allocator uses r7.
+         * Keep the shift in that register before copying the result to r0. */
+        asm("lsl %0, %0, #1" : "+r"(yOffset)
+            : "r"(index), "r"(parentOffset));
+        index = yOffset;
+        parentOffset = ((struct PrimarySpriteData *)parentOffset)->yPosition;
+        index += parentOffset;
+        sprite->yPosition = index;
+
+        index = value - 1;
+        parentOffset = (u32)timer;
+        *(u8 *)parentOffset = index;
+        index <<= 24;
+        if (index != 0)
+            return;
+
+        sprite->status |= SPRITE_STATUS_HIDDEN;
+        index = *parentSlot;
+        index *= stride;
+        index += (u32)sprites;
+        parentOffset = 18;
+        ((struct PrimarySpriteData *)index)->pose = parentOffset;
+        index = *parentSlot;
+        index *= stride;
+        index += (u32)sprites;
+        index += 39;
+        parentOffset = 128;
+        *(u8 *)index = parentOffset;
+        index = *parentSlot;
+        index *= stride;
+        index += (u32)sprites;
+        parentOffset = 2;
+        ((struct PrimarySpriteData *)index)->disableWarioCollisionTimer = parentOffset;
+    }
+}
+void AerodentCompanionStartRecoil(void)
+{
+    gCurrentSprite.pose = 36;
+    gCurrentSprite.pOamData = sUnk_83DAE38;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 16;
+    gCurrentSprite.warioCollision = 0;
+    m4aSongNumStart(SOUND_92);
+}
+void AerodentCompanionRecoil(void)
+{
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u8 *slot;
+
+    current = &gCurrentSprite;
+    sprites = gSpriteData;
+    slot = &current->work3;
+    current->xPosition = sprites[*slot].xPosition + 112;
+    current->yPosition = sprites[*slot].yPosition + 312;
+    current->work0--;
+    if (current->work0 == 0) {
+        current->pose = 118;
+        current->work0 = current->health * 4 + 50;
+    }
+}
+void AerodentCompanionTakeDamage(void)
+{
+    register struct PrimarySpriteData *current asm("r0");
+    register struct PrimarySpriteData *sprite asm("r5");
+    register int pose asm("r1");
+    int health;
+    u8 remaining;
+
+    current = &gCurrentSprite;
+    pose = current->pose;
+    sprite = current;
+    if (pose == 31)
+        sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
+    else
+        sprite->status |= SPRITE_STATUS_FACING_RIGHT;
+
+    {
+        register int zero asm("r1");
+        register int poseValue asm("r2");
+        register int collisionZero asm("r0");
+
+        zero = 0;
+        poseValue = 32;
+        sprite->pose = poseValue;
+        sprite->pOamData = sUnk_83DB110;
+        /* agbcc otherwise copies the zero to r0 before this byte store. */
+        asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(zero));
+        collisionZero = 0;
+        sprite->animationTimer = zero;
+        {
+            register u8 *work0 asm("r1");
+
+            work0 = &sprite->work0;
+            *work0 = poseValue;
+            sprite->warioCollision = collisionZero;
+        }
+    }
+    SpriteSpawnSecondary(sprite->yPosition, sprite->xPosition, 6);
+
+    health = sprite->health;
+    if (health != 0) {
+        health--;
+        sprite->health = health;
+        remaining = health;
+        if (remaining == 0) {
+            register struct PrimarySpriteData *sprites asm("r6");
+            register u8 *parentSlot asm("r5");
+            register int stride asm("r4");
+            register int index asm("r0");
+            register int offset asm("r1");
+            register struct PrimarySpriteData *parent asm("r1");
+
+            sprite->drawPriority |= 0x80;
+            sprites = gSpriteData;
+            parentSlot = &sprite->work3;
+            index = *(volatile u8 *)parentSlot;
+            stride = sizeof(struct PrimarySpriteData);
+            offset = index;
+            offset *= stride;
+            offset += (u32)sprites;
+            parent = (struct PrimarySpriteData *)offset;
+            parent->drawPriority |= 0x80;
+            gSpriteData[*parentSlot].pose = 47;
+            SpriteUtilFindSpriteSlotWork3(204);
+            gSpriteData[*parentSlot].status = remaining;
+            gTimerState = 11;
+            SpriteUtilSetWarioBossVictoryPose();
+        }
+        func_80747D8();
+    }
+    VoiceSetPlay(12);
+}
+void AerodentCompanionDefeat(void)
+{
+    register struct PrimarySpriteData *sprite asm("r2");
+    u8 *timerPtr;
+    register int timer asm("r0");
+
+    sprite = &gCurrentSprite;
+    timerPtr = &sprite->work0;
+    timer = *timerPtr;
+    if (timer != 0) {
+        timer--;
+        *timerPtr = timer;
+        if ((u8)timer == 0) {
+            register int health asm("r1");
+            register u8 *work asm("r3");
+
+            health = sprite->health;
+            if (health == 0) {
+                work = &sprite->work2;
+                *work = 8;
+                sprite->work3 = health;
+                sprite->drawPriority = 0x80;
+                sprite->status &= 0x7FFF;
+                m4aSongNumStart(SOUND_8C);
+            }
+        }
+    } else {
+        if (sprite->health != 0)
+            sprite->pose = 47;
+        else if (sprite->status & SPRITE_STATUS_FACING_RIGHT)
+            SpriteUtilFallOffscreenLeft();
+        else
+            SpriteUtilFallOffscreenRight();
+    }
+
+    {
+        register struct PrimarySpriteData *current asm("r2");
+        register int value asm("r1");
+        u8 flash;
+        register int normalized asm("r0");
+
+        current = &gCurrentSprite;
+        value = current->work0;
+        if ((value & 7) == 0) {
+            flash = value & 8;
+            if (flash != 0) {
+                current->palette = 4;
+                /* Preserve the explicit byte normalization used by the original source. */
+                asm("" : "+r"(value));
+                normalized = (u8)value;
+                if (normalized == 24)
+                    VoiceSetPlay(1);
+            } else {
+                current->palette = flash;
+            }
+        }
+    }
+}
+void AerodentCompanionStartRecovery(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB0E8;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 40;
+    gCurrentSprite.pose = 48;
+}
+void AerodentCompanionRecover(void)
+{
+    register struct PrimarySpriteData *current asm("r3");
+    register struct PrimarySpriteData *spritesTemp asm("r2");
+    register struct PrimarySpriteData *sprites asm("r5");
+    register s32 xPosition asm("r4");
+    register s32 nextX asm("r0");
+    u8 *timer;
+    register u32 timerValue asm("r0");
+    s32 yPosition;
+    s32 target;
+
+    current = &gCurrentSprite;
+    xPosition = current->xPosition;
+    spritesTemp = gSpriteData;
+    target = spritesTemp[current->work3].xPosition + 112;
+    sprites = spritesTemp;
+    if (xPosition > target)
+        nextX = xPosition - 2;
+    else
+        nextX = xPosition + 2;
+    current->xPosition = nextX;
+
+    yPosition = current->yPosition;
+    target = sprites[current->work3].yPosition + 284;
+    if (yPosition > target)
+        current->yPosition = yPosition - 3;
+    else
+        current->yPosition = yPosition + 3;
+
+    timer = &current->work0;
+    timerValue = *timer;
+    timerValue--;
+    *timer = timerValue;
+    if ((timerValue << 24) == 0) {
+        current->pose = 118;
+        *timer = current->health * 4 + 30;
+    }
+}
+void AerodentCompanionApplyShopItemDamage(void)
+{
+    u8 item;
+
+    switch (gCurrentShopItem) {
+    case 2:
+        item = 14;
+        break;
+    case 3:
+        item = 13;
+        break;
+    case 4:
+        item = 12;
+        break;
+    case 5:
+        item = 8;
+        break;
+    case 6:
+        item = 2;
+        break;
+    case 7:
+        item = 9;
+        break;
+    case 8:
+        item = 7;
+        break;
+    default:
+        item = 15;
+        break;
+    }
+
+    gCurrentSprite.work2 = item;
+    gCurrentSprite.pOamData = sUnk_83DB110;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work1 = 0;
+    gCurrentSprite.pose = 123;
+    if (gCurrentSprite.health != 0) {
+        gCurrentSprite.health--;
+        func_80747D8();
+        m4aSongNumStart(SOUND_7A);
+    }
+    VoiceSetPlay(12);
+}
+void AerodentCompanionUpdateShopItemDamage(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *counter asm("r3");
+    register int oldValue asm("r0");
+    register int newValue asm("r1");
+    register int oldFrame asm("r5");
+
+    sprite = &gCurrentSprite;
+    counter = &sprite->work1;
+    oldValue = *counter;
+    newValue = oldValue + 1;
+    *counter = newValue;
+    oldValue <<= 24;
+    oldFrame = (u32)oldValue >> 24;
+    newValue <<= 24;
+    newValue = (u32)newValue >> 24;
+    if (newValue == 32) {
+        register u8 *work2 asm("r0");
+        register int health asm("r2");
+        register int healthCopy asm("r1");
+
+        work2 = &sprite->work2;
+        health = sprite->health;
+        healthCopy = health;
+        if (healthCopy == *work2) {
+            AerodentCompanionStartIdle();
+            sprite->pOamData = sUnk_83DB0E8;
+            sprite->currentAnimationFrame = 0;
+            sprite->animationTimer = 0;
+        } else {
+            *counter = 0;
+            if (healthCopy != 0) {
+                register int reducedHealth asm("r0");
+
+                reducedHealth = health - 1;
+                sprite->health = reducedHealth;
+                func_80747D8();
+                m4aSongNumStart(SOUND_7A);
+            }
+        }
+    }
+
+    {
+        register int mask asm("r1");
+
+        mask = 7;
+        mask &= oldFrame;
+        if (mask == 0) {
+            register int bit asm("r0");
+
+            bit = 8;
+            bit &= oldFrame;
+            if (bit != 0)
+                gCurrentSprite.palette = mask;
+            else
+                gCurrentSprite.palette = 4;
+        }
+    }
+}
+void AerodentThrowableInit(void)
+{
+    gCurrentSprite.status &= 0xFFFB;
+    gCurrentSprite.warioCollision = 46;
+    gCurrentSprite.drawDistanceDown = 32;
+    gCurrentSprite.drawDistanceUp = 16;
+    gCurrentSprite.drawDistanceLeftRight = 32;
+    gCurrentSprite.hitboxExtentUp = 48;
+    gCurrentSprite.hitboxExtentDown = 24;
+    gCurrentSprite.hitboxExtentLeft = 32;
+    gCurrentSprite.hitboxExtentRight = 28;
+    gCurrentSprite.pOamData = sUnk_83DB48C;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 18;
+    gCurrentSprite.work0 = 106;
+    gCurrentSprite.work3 = 0;
+}
+void AerodentThrowablePatrol(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+
+    sprite = &gCurrentSprite;
+    if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition + sprite->hitboxExtentRight));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition += 2;
+    } else {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status |= SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition -= 2;
+    }
+
+    {
+        register struct PrimarySpriteData *current asm("r2");
+        register u8 *indexPtr asm("r12");
+        register int index asm("r3");
+        register const s16 *table asm("r5");
+        register const s16 *entry asm("r0");
+        register int velocity asm("r4");
+        register int zero asm("r6");
+        register int signedVelocity asm("r1");
+
+        current = &gCurrentSprite;
+        indexPtr = &current->work3;
+        index = *indexPtr;
+        table = sUnk_83DBBE2;
+        entry = (const s16 *)index;
+        entry = (const s16 *)((u32)entry << 1);
+        entry = (const s16 *)((u32)entry + (u32)table);
+        velocity = *(volatile u16 *)entry;
+        zero = 0;
+        /* Preserve the original separate signed halfword read from the same entry. */
+        asm("ldrsh %0, [%1, %2]" : "=r"(signedVelocity) : "r"(entry), "r"(zero));
+        if (signedVelocity == 0x7FFF) {
+            register int previous asm("r1");
+            register int position asm("r0");
+
+            previous = index - 1;
+            previous <<= 1;
+            previous += (u32)table;
+            position = current->yPosition;
+            previous = *(u16 *)previous;
+            position += previous;
+            current->yPosition = position;
+        } else {
+            register int next asm("r0");
+            register int position asm("r0");
+
+            next = index + 1;
+            *indexPtr = next;
+            position = current->yPosition;
+            position += velocity;
+            current->yPosition = position;
+        }
+
+        {
+            register struct PrimarySpriteData *alias asm("r1");
+            u8 *timer;
+            register int value asm("r0");
+
+            alias = current;
+            timer = &alias->work0;
+            value = *timer;
+            if (value == 40) {
+                alias->pOamData = sUnk_83DB3FC;
+                alias->currentAnimationFrame = 0;
+                alias->animationTimer = 0;
+            }
+            value = *timer - 1;
+            *timer = value;
+            value <<= 24;
+            {
+                register int normalized asm("r3");
+
+                normalized = (u32)value >> 24;
+                if (normalized == 0) {
+                    register int clear asm("r1");
+                    register u8 *work3 asm("r0");
+
+                    current->pose = 20;
+                    current->pOamData = sUnk_83DB43C;
+                    current->currentAnimationFrame = normalized;
+                    clear = 0;
+                    current->animationTimer = normalized;
+                    work3 = &current->work3;
+                    *work3 = clear;
+                }
+            }
+        }
+    }
+}
+void AerodentThrowableBounce(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    int nextY;
+
+    sprite = &gCurrentSprite;
+    if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition + sprite->hitboxExtentRight));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition++;
+    } else {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status |= SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition--;
+    }
+
+    sprite = &gCurrentSprite;
+    nextY = func_8023A60((u16)(sprite->yPosition + 48), sprite->xPosition);
+    if (gUnk_30000A0.unk_02 == 1) {
+        sprite->status |= 0x800;
+        m4aSongNumStart(SE_ENTER_WATER);
+    }
+    if (gUnk_3000A50 != 0) {
+        register int frameZero asm("r1");
+        register int timerZero asm("r2");
+        register u8 *work asm("r1");
+
+        frameZero = 0;
+        timerZero = 0;
+        sprite->yPosition = nextY;
+        sprite->pOamData = sUnk_83DB4AC;
+        sprite->currentAnimationFrame = frameZero;
+        sprite->animationTimer = timerZero;
+        work = &sprite->work0;
+        *work = 30;
+        sprite->pose = 24;
+        work -= 4;
+        *work = 96;
+        work++;
+        /* Preserve the pointer increment instead of folding it into the byte store. */
+        asm("" : "+r"(work));
+        *work = 140;
+    } else {
+        register u8 *savedPtr asm("r12");
+        register int index asm("r2");
+        register const s16 *table asm("r5");
+        register const s16 *entry asm("r0");
+        register int velocity asm("r3");
+        register int signedVelocity asm("r1");
+        register int position asm("r0");
+
+        {
+            register int offset asm("r6");
+
+            offset = 42;
+            /* Keep the constant materialized before adding the sprite base. */
+            asm("" : "+r"(offset));
+            offset += (u32)sprite;
+            savedPtr = (u8 *)offset;
+            index = *(u8 *)offset;
+        }
+        table = sUnk_83DBC08;
+        entry = (const s16 *)index;
+        entry = (const s16 *)((u32)entry << 1);
+        entry = (const s16 *)((u32)entry + (u32)table);
+        velocity = *(volatile u16 *)entry;
+        {
+            register int zero asm("r6");
+
+            zero = 0;
+            /* Preserve the original separate signed halfword read from the same entry. */
+            asm("ldrsh %0, [%1, %2]" : "=r"(signedVelocity) : "r"(entry), "r"(zero));
+        }
+        if (signedVelocity == 0x7FFF) {
+            register int previous asm("r1");
+
+            previous = index - 1;
+            previous <<= 1;
+            previous += (u32)table;
+            position = sprite->yPosition;
+            previous = *(u16 *)previous;
+            position += previous;
+        } else {
+            register int next asm("r0");
+
+            next = index + 1;
+            *savedPtr = next;
+            position = sprite->yPosition;
+            position += velocity;
+        }
+        sprite->yPosition = position;
+    }
+}
+void AerodentThrowableStartCharge(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB4BC;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 16;
+    gCurrentSprite.work0 = 24;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.hitboxExtentUp = 96;
+    gCurrentSprite.hitboxExtentDown = 140;
+    gCurrentSprite.warioCollision = 1;
+    m4aSongNumStart(SE_BOUNCY_WARIO_BOUNCE);
+}
+void AerodentThrowableCharge(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+
+    sprite = &gCurrentSprite;
+    if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition + sprite->hitboxExtentRight));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition += 4;
+    } else {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status |= SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition -= 4;
+    }
+
+    {
+        register struct PrimarySpriteData *current asm("r2");
+        register u8 *indexPtr asm("r12");
+        register int index asm("r3");
+        register const s16 *table asm("r5");
+        register const s16 *entry asm("r0");
+        register int velocity asm("r4");
+        register int zero asm("r6");
+        register int signedVelocity asm("r1");
+
+        current = &gCurrentSprite;
+        indexPtr = (u8 *)42;
+        indexPtr = (u8 *)((u32)indexPtr + (u32)current);
+        index = *indexPtr;
+        table = sUnk_83DBC32;
+        entry = (const s16 *)index;
+        entry = (const s16 *)((u32)entry << 1);
+        entry = (const s16 *)((u32)entry + (u32)table);
+        velocity = *(volatile u16 *)entry;
+        zero = 0;
+        /* Preserve the original separate signed halfword read from the same entry. */
+        asm("ldrsh %0, [%1, %2]" : "=r"(signedVelocity) : "r"(entry), "r"(zero));
+        if (signedVelocity == 0x7FFF) {
+            register int previous asm("r1");
+            register int position asm("r0");
+
+            previous = index - 1;
+            previous <<= 1;
+            previous += (u32)table;
+            position = current->yPosition;
+            previous = *(u16 *)previous;
+            position += previous;
+            current->yPosition = position;
+        } else {
+            register int next asm("r0");
+            register int position asm("r0");
+
+            next = index + 1;
+            *indexPtr = next;
+            position = current->yPosition;
+            position += velocity;
+            current->yPosition = position;
+        }
+
+        {
+            register struct PrimarySpriteData *alias asm("r3");
+            register u8 *timer asm("r1");
+            register int value asm("r0");
+
+            alias = current;
+            timer = &alias->work0;
+            value = *timer;
+            if (value == 20)
+                alias->warioCollision = 46;
+            value = *timer - 1;
+            *timer = value;
+            value <<= 24;
+            {
+                register int normalized asm("r3");
+
+                normalized = (u32)value >> 24;
+                if (normalized == 0) {
+                    register int clear asm("r1");
+                    register u8 *work3 asm("r0");
+
+                    current->pose = 22;
+                    current->pOamData = sUnk_83DB3A4;
+                    current->currentAnimationFrame = normalized;
+                    clear = 0;
+                    current->animationTimer = normalized;
+                    work3 = &current->work3;
+                    *work3 = clear;
+                }
+            }
+        }
+    }
+}
+void AerodentThrowableBounceAfterCharge(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register int nextY asm("r5");
+
+    sprite = &gCurrentSprite;
+    if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition + sprite->hitboxExtentRight));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition += 2;
+    } else {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status |= SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition -= 2;
+    }
+
+    sprite = &gCurrentSprite;
+    nextY = func_8023A60(sprite->yPosition, sprite->xPosition);
+    if (gUnk_30000A0.unk_02 == 1) {
+        sprite->status |= 0x800;
+        m4aSongNumStart(SE_ENTER_WATER);
+    }
+    if (gUnk_3000A50 != 0) {
+        register int frameZero asm("r1");
+        register int timerZero asm("r2");
+        register u8 *work asm("r1");
+
+        frameZero = 0;
+        timerZero = 0;
+        sprite->yPosition = nextY;
+        sprite->pOamData = sUnk_83DB4AC;
+        sprite->currentAnimationFrame = frameZero;
+        sprite->animationTimer = timerZero;
+        work = &sprite->work0;
+        *work = 30;
+        sprite->pose = 24;
+        m4aSongNumStart(SOUND_5);
+    } else {
+        register u8 *savedPtr asm("r12");
+        register int index asm("r2");
+        register const s16 *table asm("r5");
+        register const s16 *entry asm("r0");
+        register int velocity asm("r3");
+        register int signedVelocity asm("r1");
+        register int position asm("r0");
+
+        {
+            register int offset asm("r6");
+
+            offset = 42;
+            /* Materialize the parent-slot offset before adding the sprite base. */
+            asm("" : "+r"(offset));
+            offset += (u32)sprite;
+            savedPtr = (u8 *)offset;
+            index = *(u8 *)offset;
+        }
+        table = sUnk_83DBC52;
+        entry = (const s16 *)index;
+        entry = (const s16 *)((u32)entry << 1);
+        entry = (const s16 *)((u32)entry + (u32)table);
+        velocity = *(volatile u16 *)entry;
+        {
+            register int zero asm("r6");
+
+            zero = 0;
+            /* Preserve the target signed halfword read instead of a widened C load. */
+            asm("ldrsh %0, [%1, %2]" : "=r"(signedVelocity) : "r"(entry), "r"(zero));
+        }
+        if (signedVelocity == 0x7FFF) {
+            register int previous asm("r1");
+
+            previous = index - 1;
+            previous <<= 1;
+            previous += (u32)table;
+            position = sprite->yPosition;
+            previous = *(u16 *)previous;
+            position += previous;
+        } else {
+            register int next asm("r0");
+
+            next = index + 1;
+            *savedPtr = next;
+            position = sprite->yPosition;
+            position += velocity;
+        }
+        sprite->yPosition = position;
+    }
+}
+void AerodentThrowableStartStun(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB4D4;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.hitboxExtentUp = 96;
+    gCurrentSprite.hitboxExtentDown = 140;
+    gCurrentSprite.pose = 40;
+    gCurrentSprite.work0 = 10;
+}
+void AerodentThrowableStun(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0)
+        gCurrentSprite.pose = 15;
+}
+void AerodentThrowableStartGrabbed(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB3A4;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 28;
+    gCurrentSprite.work3 = 0;
+}
+void AerodentThrowableUpdateGrabbed(void)
+{
+    register struct PrimarySpriteData *sprite asm("r2");
+    register u8 *work asm("r1");
+    register int zero asm("r3");
+
+    sprite = &gCurrentSprite;
+    work = &sprite->work0;
+    zero = 0;
+    *work = 4;
+    work += 2;
+    /* Preserve the pointer update instead of folding it into the byte store. */
+    asm("" : "+r"(work));
+    *work = 8;
+    {
+        register u8 *work3 asm("r0");
+
+        work3 = &sprite->work3;
+        *work3 = zero;
+    }
+    if (sprite->warioCollision != 59) {
+        register int frameZero asm("r1");
+
+        sprite->warioCollision = 59;
+        sprite->pOamData = sUnk_83DB3B4;
+        frameZero = 0;
+        sprite->animationTimer = zero;
+        /* agbcc otherwise copies the zero to r0 before this byte store. */
+        asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(frameZero));
+        {
+            register u8 *hitboxUp asm("r3");
+            register u8 *hitboxDown asm("r0");
+
+            hitboxUp = &sprite->hitboxExtentUp;
+            *hitboxUp = 64;
+            hitboxDown = &sprite->hitboxExtentDown;
+            *hitboxDown = frameZero;
+        }
+    }
+}
+
+void AerodentThrowableGrabbedRight(void)
+{
+    gCurrentSprite.pose = 52;
+    AerodentThrowableUpdateGrabbed();
+}
+void AerodentThrowableGrabbedLeft(void)
+{
+    gCurrentSprite.pose = 54;
+    AerodentThrowableUpdateGrabbed();
+}
+void AerodentThrowableStartLanding(void)
+{
+    struct PrimarySpriteData *sprite;
+
+    sprite = &gCurrentSprite;
+    sprite->pOamData = sUnk_83DB4AC;
+    sprite->currentAnimationFrame = 0;
+    sprite->animationTimer = 0;
+    sprite->pose = 24;
+    sprite->work0 = 15;
+}
+void AerodentThrowableLand(void)
+{
+    func_80238A4();
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0)
+        gCurrentSprite.pose = 15;
+}
+void AerodentThrowableStartBreak(void)
+{
+    gCurrentSprite.status |= SPRITE_STATUS_BACKGROUND;
+    gCurrentSprite.pOamData = sUnk_83DB4E4;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 111;
+    gCurrentSprite.work0 = 40;
+    SpriteUtilFindSpriteSlotWork3(105);
+    func_801E430(11, gCurrentSprite.roomSlot, 0,
+        gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition);
+    m4aSongNumStart(SOUND_8E);
+    VoiceSetPlay(0);
+}
+void AerodentThrowableBreak(void)
+{
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u8 *timer;
+    register u32 next asm("r1");
+    register u32 timerValue asm("r0");
+
+    current = &gCurrentSprite;
+    current->disableWarioCollisionTimer = 1;
+    sprites = gSpriteData;
+    if (sprites[current->work3].work2 != 0)
+        current->yPosition += 2;
+
+    timer = &current->work0;
+    timerValue = *timer;
+    next = timerValue - 1;
+    *timer = next;
+    timerValue = (u8)next;
+    if (timerValue != 0) {
+        next &= 7;
+        if (next == 0) {
+            func_801E430(12, current->roomSlot, 0,
+                current->yPosition - 64, current->xPosition);
+        }
+    } else {
+        current->status = timerValue;
+        func_801E430(10, current->roomSlot, 0,
+            current->yPosition, current->xPosition);
+    }
+}
+void AerodentThrowableStartBounce(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 30;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.warioCollision = 59;
+    gCurrentSprite.hitboxExtentUp = 64;
+    gCurrentSprite.hitboxExtentDown = 0;
+}
+void AerodentThrowableStartFall(void)
+{
+    struct PrimarySpriteData *sprite;
+
+    sprite = &gCurrentSprite;
+    sprite->pose = 48;
+    sprite->status &= ~0x100;
+}
+void AerodentThrowableFall(void)
+{
+    func_80238E8();
+    func_8023B88();
+    if (gUnk_3000A50 == 0)
+        gCurrentSprite.pose = 29;
+}
+void AerodentThrowablePrepareFallWithEffect(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register int zero asm("r4");
+
+    sprite = &gCurrentSprite;
+    sprite->pOamData = sUnk_83DB3EC;
+    sprite->currentAnimationFrame = 0;
+    zero = 0;
+    sprite->animationTimer = 0;
+    sprite->health = zero;
+    sprite->work2 = 8;
+    sprite->work3 = zero;
+    sprite->drawPriority = zero;
+    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    sprite->status = (sprite->status & ~0x100) | 0x200;
+}
+void AerodentThrowableFallRightWithEffect(void)
+{
+    gCurrentSprite.pose = 32;
+    gCurrentSprite.status &= ~SPRITE_STATUS_FACING_RIGHT;
+    AerodentThrowablePrepareFallWithEffect();
+}
+void AerodentThrowableFallLeftWithEffect(void)
+{
+    gCurrentSprite.pose = 34;
+    gCurrentSprite.status |= SPRITE_STATUS_FACING_RIGHT;
+    AerodentThrowablePrepareFallWithEffect();
+}
+
+void AerodentThrowablePrepareFall(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB3EC;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.health = 0;
+    gCurrentSprite.work2 = 7;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.drawPriority = 0;
+    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+}
+void AerodentThrowableFallRight(void)
+{
+    gCurrentSprite.pose = 32;
+    gCurrentSprite.status &= ~SPRITE_STATUS_FACING_RIGHT;
+    AerodentThrowablePrepareFall();
+}
+void AerodentThrowableFallLeft(void)
+{
+    gCurrentSprite.pose = 34;
+    gCurrentSprite.status |= SPRITE_STATUS_FACING_RIGHT;
+    AerodentThrowablePrepareFall();
+}
+
+void AerodentThrowablePrepareKnockback(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work1 = 0;
+    gCurrentSprite.warioCollision = 59;
+    gCurrentSprite.hitboxExtentUp = 64;
+    gCurrentSprite.hitboxExtentDown = 0;
+}
+void AerodentThrowableKnockbackRight(void)
+{
+    gCurrentSprite.pose = 44;
+    AerodentThrowablePrepareKnockback();
+}
+void AerodentThrowableKnockbackLeft(void)
+{
+    gCurrentSprite.pose = 46;
+    AerodentThrowablePrepareKnockback();
+}
+void AerodentThrowableDie(void)
+{
+    SpriteUtilDie();
+}
+
+void AerodentThrowablePrepareThrow(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.warioCollision = 59;
+    gCurrentSprite.hitboxExtentUp = 64;
+    gCurrentSprite.hitboxExtentDown = 0;
+}
+void AerodentThrowableThrowRight(void)
+{
+    gCurrentSprite.pose = 72;
+    AerodentThrowablePrepareThrow();
+}
+void AerodentThrowableThrowLeft(void)
+{
+    gCurrentSprite.pose = 74;
+    AerodentThrowablePrepareThrow();
+}
+void AerodentThrowableStartLiftRight(void)
+{
+    gCurrentSprite.pose = 82;
+}
+void AerodentThrowableStartLiftLeft(void)
+{
+    gCurrentSprite.pose = 84;
+}
+void AerodentThrowableStartCarryRight(void)
+{
+    gCurrentSprite.pose = 88;
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+}
+void AerodentThrowableStartCarryLeft(void)
+{
+    gCurrentSprite.pose = 86;
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+}
+void AerodentThrowableSetThrownAnimation(void)
+{
+    gCurrentSprite.pOamData = sUnk_83DB49C;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+}
+void AerodentEmitterInit(void)
+{
+    u16 status;
+    u8 frame;
+
+    gCurrentSprite.drawPriority |= 0x80;
+    status = gCurrentSprite.status & 0xFFFB;
+    frame = 0;
+    /* agbcc otherwise delays this live zero until after the status OR. */
+    asm("" : "+r"(frame));
+    status |= 0x400;
+    gCurrentSprite.status = status;
+    gCurrentSprite.drawDistanceDown = 16;
+    gCurrentSprite.drawDistanceUp = 16;
+    gCurrentSprite.drawDistanceLeftRight = 16;
+    gCurrentSprite.hitboxExtentUp = 32;
+    gCurrentSprite.hitboxExtentDown = 28;
+    gCurrentSprite.hitboxExtentLeft = 32;
+    gCurrentSprite.hitboxExtentRight = 28;
+    gCurrentSprite.work0 = 16;
+    gCurrentSprite.pOamData = sUnk_83DB5C8;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = frame;
+    gCurrentSprite.warioCollision = 14;
+    gCurrentSprite.pose = 15;
+    SpriteUtilFindSpriteSlotWork3(203);
+    if (gCurrentSprite.roomSlot != 0)
+        AerodentEmitterStartBurst();
+}
+void AerodentEmitterAttachToParent(void)
+{
+    if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
+        gCurrentSprite.xPosition = gSpriteData[gCurrentSprite.work3].xPosition + 56;
+    else
+        gCurrentSprite.xPosition = gSpriteData[gCurrentSprite.work3].xPosition - 56;
+
+    gCurrentSprite.yPosition = gSpriteData[gCurrentSprite.work3].yPosition;
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pose = 16;
+        gCurrentSprite.work3 = 0;
+        gCurrentSprite.pOamData = sUnk_83DB5E8;
+        gCurrentSprite.animationTimer = 0;
+        gCurrentSprite.currentAnimationFrame = 0;
+    }
+}
+void AerodentEmitterPatrol(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register int nextY asm("r1");
+
+    sprite = &gCurrentSprite;
+    if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition + sprite->hitboxExtentRight));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition++;
+    } else {
+        func_8023BFC((u16)(sprite->yPosition - 32),
+            (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
+        if (gUnk_3000A51 & 0xF)
+            sprite->status |= SPRITE_STATUS_FACING_RIGHT;
+        else
+            sprite->xPosition--;
+    }
+
+    sprite = &gCurrentSprite;
+    nextY = func_8023A60(sprite->yPosition, sprite->xPosition);
+    if (gUnk_30000A0.unk_02 == 1)
+        sprite->pose = 107;
+    if (gUnk_3000A50 != 0) {
+        sprite->yPosition = nextY;
+        sprite->pose = 23;
+    } else {
+        register u8 *savedPtr asm("r12");
+        register int index asm("r2");
+        register const s16 *table asm("r5");
+        register const s16 *entry asm("r0");
+        register int velocity asm("r3");
+        register int signedVelocity asm("r1");
+        register int position asm("r0");
+
+        {
+            register int offset asm("r0");
+
+            offset = 42;
+            /* Keep the constant materialized before adding the sprite base. */
+            asm("" : "+r"(offset));
+            offset += (u32)sprite;
+            savedPtr = (u8 *)offset;
+            index = *(u8 *)offset;
+        }
+        table = sUnk_83DBC68;
+        entry = (const s16 *)index;
+        entry = (const s16 *)((u32)entry << 1);
+        entry = (const s16 *)((u32)entry + (u32)table);
+        velocity = *(volatile u16 *)entry;
+        {
+            register int zero asm("r6");
+
+            zero = 0;
+            /* Preserve the target signed halfword read instead of a widened C load. */
+            asm("ldrsh %0, [%1, %2]" : "=r"(signedVelocity) : "r"(entry), "r"(zero));
+        }
+        if (signedVelocity == 0x7FFF) {
+            register int previous asm("r1");
+
+            previous = index - 1;
+            previous <<= 1;
+            previous += (u32)table;
+            position = sprite->yPosition;
+            previous = *(u16 *)previous;
+            position += previous;
+        } else {
+            register int next asm("r0");
+
+            next = index + 1;
+            *savedPtr = next;
+            position = sprite->yPosition;
+            position += velocity;
+        }
+        sprite->yPosition = position;
+    }
+}
+void AerodentEmitterStartBurst(void)
+{
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 25;
+    gCurrentSprite.hitboxExtentUp = 64;
+    gCurrentSprite.hitboxExtentDown = 0;
+
+    if (gCurrentSprite.roomSlot == 2) {
+        gCurrentSprite.pOamData = sUnk_83DB588;
+        gCurrentSprite.pose = 48;
+    } else if (gCurrentSprite.roomSlot == 1) {
+        gCurrentSprite.pOamData = sUnk_83DB5A8;
+        gCurrentSprite.pose = 48;
+    } else {
+        gCurrentSprite.pOamData = sUnk_83DB5A8;
+        gCurrentSprite.pose = 24;
+    }
+}
+void AerodentEmitterBurst(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    u8 *timer;
+    u8 value;
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    if (value > 10) {
+        if (value == 25) {
+            func_801E3A8(206, 1, sprite->gfxSlot,
+                sprite->yPosition, sprite->xPosition - 28, 0);
+            func_801E3A8(206, 1, sprite->gfxSlot,
+                sprite->yPosition, sprite->xPosition + 28, 0);
+        }
+        if (value == 20) {
+            func_801E3A8(206, 2, sprite->gfxSlot,
+                sprite->yPosition, sprite->xPosition - 56, 0);
+            func_801E3A8(206, 2, sprite->gfxSlot,
+                sprite->yPosition, sprite->xPosition + 56, 0);
+        }
+        if (value == 15) {
+            func_801E3A8(206, 2, sprite->gfxSlot,
+                sprite->yPosition, sprite->xPosition - 84, 0);
+            func_801E3A8(206, 2, sprite->gfxSlot,
+                sprite->yPosition, sprite->xPosition + 84, 0);
+        }
+        {
+            int next;
+
+            next = *timer - 1;
+            *timer = next;
+        }
+    } else {
+        int next;
+
+        sprite->disableWarioCollisionTimer = 1;
+        if ((value & 1) == 0)
+            sprite->status ^= 4;
+        next = *timer - 1;
+        *timer = next;
+        next = (u8)next;
+        if (next == 0)
+            sprite->status = next;
+    }
+}
+void AerodentEmitterFadeOut(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u8 *timer asm("r2");
+    u8 value;
+    register u32 next asm("r0");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    if (value > 10) {
+        *timer = value - 1;
+        return;
+    }
+
+    sprite->disableWarioCollisionTimer = 1;
+    if (!(value & 1))
+        sprite->status ^= SPRITE_STATUS_HIDDEN;
+
+    next = *timer;
+    next--;
+    *timer = next;
+    next = (u8)next;
+    if (next == 0)
+        sprite->status = next;
+}
+void SpriteAerodentWeakPoint(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u16 pause asm("r0");
+
+    pause = gWarioPauseTimer;
+    sprite = &gCurrentSprite;
+    if (pause != 0)
+        sprite->disableWarioCollisionTimer = 1;
+
+    switch (sprite->pose) {
+        case 0: {
+            register struct PrimarySpriteData *current asm("r4");
+            register int priority asm("r1");
+            register int value asm("r0");
+            register int status asm("r1");
+            register int highStatus asm("r2");
+            register int timerZero asm("r3");
+            register int frameZero asm("r2");
+            register u8 *distance asm("r0");
+            register int distanceValue asm("r1");
+            register int clearMask asm("r1");
+
+            current = &gCurrentSprite;
+            priority = current->drawPriority;
+            value = 128;
+            timerZero = 0;
+            value |= priority;
+            current->drawPriority = value;
+            status = current->status;
+            highStatus = 128;
+            highStatus <<= 8;
+            /* Keep the high status bit in r2 before copying it to the r0 accumulator. */
+            asm("" : "+r"(highStatus));
+            value = highStatus;
+            frameZero = 0;
+            value |= status;
+            /* Keep the 0xFFFB status mask as the target literal load. */
+            asm("" : "=r"(clearMask) : "0"(0xFFFB));
+            value &= clearMask;
+            current->status = value;
+            current->pOamData = sUnk_83DBA60;
+            current->currentAnimationFrame = frameZero;
+            current->animationTimer = timerZero;
+            current->pose = 16;
+            distance = &current->drawDistanceDown;
+            distanceValue = 64;
+            *distance = distanceValue;
+            distance++;
+            *distance = distanceValue;
+            distance++;
+            /* Preserve the second pointer increment instead of folding it into [r0, #1]. */
+            asm("" : "+r"(distance));
+            *distance = distanceValue;
+            SpriteUtilFindSpriteSlotWork3(105);
+            break;
+        }
+        case 31:
+        case 33:
+        case 35:
+        case 37: {
+            register struct PrimarySpriteData *sprites asm("r2");
+            register int parentSlot asm("r1");
+            register int offset asm("r0");
+            register struct PrimarySpriteData *parent asm("r1");
+            register int parentPose asm("r0");
+
+            sprites = gSpriteData;
+            offset = (u32)sprite;
+            offset += 42;
+            parentSlot = *(u8 *)offset;
+            offset = sizeof(struct PrimarySpriteData);
+            offset *= parentSlot;
+            offset += (u32)sprites;
+            parent = (struct PrimarySpriteData *)offset;
+            parentPose = parent->pose;
+            if (parentPose != 18 && parentPose != 32 && parentPose != 34)
+                parent->pose = sprite->pose;
+        }
+        default: {
+            register struct PrimarySpriteData *current asm("r1");
+            register int pose asm("r0");
+            register int status asm("r2");
+            register int mask asm("r0");
+
+            current = &gCurrentSprite;
+            pose = 16;
+            current->pose = pose;
+            status = current->status;
+            mask = 0xFDFF;
+            mask &= status;
+            current->status = mask;
+            break;
+        }
+    }
+
+    if (AerodentWeakPointCheckThrowableCollision() != 0) {
+        register struct PrimarySpriteData *sprites asm("r6");
+        register u8 *parentSlot asm("r4");
+        register int stride asm("r5");
+        register int slot asm("r0");
+        register int value asm("r1");
+
+        sprites = gSpriteData;
+        parentSlot = (u8 *)&gCurrentSprite;
+        parentSlot += 42;
+        slot = *parentSlot;
+        stride = sizeof(struct PrimarySpriteData);
+        slot *= stride;
+        slot += (u32)sprites;
+        slot += 41;
+        value = 129;
+        *(u8 *)slot = value;
+        SpriteUtilFindSpriteSlotWork3(203);
+        {
+            register struct PrimarySpriteData *parent asm("r1");
+            register u32 health asm("r0");
+
+            slot = *parentSlot;
+            slot *= stride;
+            parent = (struct PrimarySpriteData *)(slot + (u32)sprites);
+            health = parent->health;
+            if (health <= 8) {
+                parent = (struct PrimarySpriteData *)((u8 *)parent + 39);
+                health = 160;
+            } else {
+                parent = (struct PrimarySpriteData *)((u8 *)parent + 39);
+                health = 190;
+            }
+            *(u8 *)parent = health;
+        }
+        SpriteUtilFindSpriteSlotWork3(105);
+    }
+
+    {
+        register struct PrimarySpriteData *current asm("r5");
+        register struct PrimarySpriteData *sprites asm("r8");
+        register struct PrimarySpriteData *spritesLoad asm("r3");
+        register u8 *parentSlot asm("r6");
+        int stride;
+        register u8 *work1 asm("r4");
+        register int offset asm("r0");
+        register u32 value asm("r0");
+        register u32 x asm("r1");
+        register int yOffset asm("r2");
+        register int collisionMask asm("r9");
+        register u8 *collisionFlags asm("r4");
+        register int collisionValue asm("r1");
+        register int maskValue asm("r0");
+
+        current = &gCurrentSprite;
+        spritesLoad = gSpriteData;
+        /* Preserve the target's r3 load before copying the array base to r8. */
+        asm("" : "+r"(spritesLoad));
+        sprites = spritesLoad;
+        parentSlot = (u8 *)current;
+        parentSlot += 42;
+        offset = *parentSlot;
+        stride = sizeof(struct PrimarySpriteData);
+        offset *= stride;
+        offset += (u32)sprites;
+        offset += 40;
+        value = *(u8 *)offset;
+        work1 = (u8 *)current;
+        work1 += 40;
+        *work1 = value;
+        AerodentWeakPointUpdateHitbox();
+
+        offset = *parentSlot;
+        offset *= stride;
+        offset += (u32)sprites;
+        x = *(u16 *)(offset + 10);
+        x += 128;
+        current->xPosition = x;
+
+        offset = *parentSlot;
+        /* Keep the slot in r0 before copying it to the r2 multiplication offset. */
+        asm("" : "+r"(offset));
+        yOffset = offset;
+        yOffset *= stride;
+        yOffset += (u32)sprites;
+        value = *work1;
+        value <<= 2;
+        value += 240;
+        yOffset = *(u16 *)(yOffset + 8);
+        value += yOffset;
+        current->yPosition = value;
+        {
+            register u32 yArg asm("r0");
+
+            /* agbcc otherwise delays this required u16 normalization past the hitbox load. */
+            asm("lsl %0, %0, #16\n\tlsr %0, %0, #16"
+                : "=r"(yArg) : "0"(value - 32));
+            yOffset = current->hitboxExtentRight;
+            x += yOffset;
+            x <<= 16;
+            x >>= 16;
+            SpriteUtilCheckCollisionAtPositionOld(yArg, x);
+        }
+
+        collisionFlags = &gUnk_3000A51;
+        collisionValue = *collisionFlags;
+        maskValue = 15;
+        collisionMask = maskValue;
+        maskValue &= collisionValue;
+        if (maskValue != 0) {
+            register struct PrimarySpriteData *parent asm("r1");
+            register int status asm("r2");
+            register int statusMask asm("r0");
+
+            offset = *parentSlot;
+            /* Keep the parent slot in r0 before copying it to the r1 address accumulator. */
+            asm("" : "+r"(offset));
+            parent = (struct PrimarySpriteData *)offset;
+            parent = (struct PrimarySpriteData *)((u32)parent * stride);
+            parent = (struct PrimarySpriteData *)((u32)parent + (u32)sprites);
+            status = parent->status;
+            statusMask = 0xEFFF;
+            statusMask &= status;
+            parent->status = statusMask;
+        } else {
+            {
+                register u32 yArg asm("r0");
+
+                /* agbcc otherwise delays this required u16 normalization past the hitbox load. */
+                asm("lsl %0, %0, #16\n\tlsr %0, %0, #16"
+                    : "=r"(yArg) : "0"(current->yPosition - 32));
+                {
+                    register u8 *extent asm("r1");
+                register int extentValue asm("r2");
+
+                extent = (u8 *)current;
+                extent += 37;
+                    extentValue = *extent;
+                    x = current->xPosition;
+                    x -= extentValue;
+                }
+                x <<= 16;
+                x >>= 16;
+                SpriteUtilCheckCollisionAtPositionOld(yArg, x);
+            }
+            collisionValue = *collisionFlags;
+            maskValue = collisionMask;
+            maskValue &= collisionValue;
+            if (maskValue != 0) {
+                register struct PrimarySpriteData *parent asm("r1");
+                register int status asm("r0");
+                register int high asm("r3");
+                register int statusBit asm("r2");
+
+                offset = *parentSlot;
+                /* Keep the parent slot in r0 before copying it to the r1 address accumulator. */
+                asm("" : "+r"(offset));
+                parent = (struct PrimarySpriteData *)offset;
+                parent = (struct PrimarySpriteData *)((u32)parent * stride);
+                parent = (struct PrimarySpriteData *)((u32)parent + (u32)sprites);
+                status = parent->status;
+                high = 128;
+                high <<= 5;
+                /* Preserve the separate r3-to-r2 copy required by the target. */
+                asm("" : "+r"(high));
+                statusBit = high;
+                /* Keep the status-bit copy separate from the subsequent OR. */
+                asm("" : "+r"(statusBit));
+                status |= statusBit;
+                parent->status = status;
+            }
+        }
+    }
+}
+void SpriteAerodent(void)
+{
+    register int angle;
+    register int value asm("r0");
+    register u16 status asm("r1");
+    register struct PrimarySpriteData *current asm("r2");
+
+    current = &gCurrentSprite;
+    status = current->status;
+    value = SPRITE_STATUS_HEAVY;
+    value &= status;
+    value = (u16)value;
+    value = -value;
+    angle = value >> 31;
+    angle &= 128;
+    value = 1;
+    current->disableWarioCollisionTimer = value;
+
+    switch (current->pose) {
+        case 0:
+            AerodentInit();
+            break;
+        case 1:
+            AerodentEnterArena();
+            break;
+        case 16:
+            AerodentIdle();
+            break;
+        case 35:
+            AerodentStartMoveRight();
+        case 36:
+            AerodentMoveRight();
+            break;
+        case 37:
+            AerodentStartMoveLeft();
+        case 38:
+            AerodentMoveLeft();
+            break;
+        case 31:
+            AerodentStartDeflate();
+        case 32:
+            AerodentDeflate();
+            angle = gCurrentSprite.work0;
+            break;
+        case 33:
+            AerodentStartInflate();
+        case 34:
+            AerodentInflate();
+            angle = gCurrentSprite.work0;
+            break;
+        case 18:
+            AerodentUpdateRotation();
+            angle = gCurrentSprite.work0;
+            break;
+        case 47:
+            AerodentStartDefeat();
+        case 48:
+            AerodentDefeat();
+            break;
+    }
+
+    AerodentUpdateInflation();
+    {
+        register const s16 *scaleTable asm("r2");
+        register const s16 *scaleEntry asm("r1");
+        register struct PrimarySpriteData *sprite asm("r6");
+        register int trigOrSine asm("r4");
+        register int scale asm("r5");
+        register int cosine asm("r8");
+        register int cosineLoad asm("r2");
+        register int address asm("r0");
+        register int zero asm("r1");
+
+        scaleTable = sUnk_83DBA10;
+        sprite = &gCurrentSprite;
+        scaleEntry = (const s16 *)(((u32)sprite->work1 << 1) + (u32)scaleTable);
+        trigOrSine = (u32)sSinCosTable;
+        address = (angle + 64) << 1;
+        address += trigOrSine;
+        cosineLoad = *(s16 *)address;
+        cosine = cosineLoad;
+        scale = *scaleEntry;
+        sprite->affinePA = FixedMul(cosine, FixedInverse(scale));
+
+        address = angle << 1;
+        address += trigOrSine;
+        zero = 0;
+        /* Preserve the target signed table read at the computed byte address. */
+        asm("ldrsh %0, [%1, %2]" : "=r"(trigOrSine)
+            : "r"(address), "r"(zero));
+        sprite->affinePB = FixedMul(trigOrSine, FixedInverse(scale));
+        sprite->affinePC = FixedMul(-trigOrSine, FixedInverse(scale));
+        sprite->affinePD = FixedMul(cosine, FixedInverse(scale));
+    }
+}
+void SpriteAerodentCompanion(void)
+{
+    switch (gCurrentSprite.pose) {
+        case 0:
+            AerodentCompanionInit();
+        case 15:
+            AerodentCompanionWaitForBattle();
+            break;
+        case 16:
+            AerodentCompanionDescend();
+            break;
+        case 17:
+            AerodentCompanionStartAttach();
+        case 18:
+            AerodentCompanionFollowParent();
+            break;
+        case 23:
+            AerodentCompanionStartFightCountdown();
+        case 24:
+            AerodentCompanionBeginBossFight();
+            break;
+        case 19:
+            AerodentCompanionStartRise();
+        case 20:
+            AerodentCompanionRise();
+            break;
+        case 21:
+            AerodentCompanionEnterCombat();
+        case 22:
+            AerodentCompanionUpdateCombat();
+            break;
+        case 112:
+            AerodentCompanionFireProjectile();
+        case 113:
+            AerodentCompanionRecoverFromProjectile();
+            break;
+        case 115:
+            AerodentCompanionKnockback();
+            break;
+        case 116:
+            AerodentCompanionStartDropAttack();
+        case 117:
+            AerodentCompanionDropAttack();
+            break;
+        case 118:
+            AerodentCompanionStartGroundAttack();
+        case 119:
+            AerodentCompanionGroundAttack();
+            break;
+        case 120:
+            AerodentCompanionStartReturn();
+        case 121:
+            AerodentCompanionReturnToParent();
+            break;
+        case 35:
+        case 37:
+            AerodentCompanionStartRecoil();
+        case 36:
+            AerodentCompanionRecoil();
+            break;
+        case 31:
+        case 33:
+            AerodentCompanionTakeDamage();
+        case 32:
+            AerodentCompanionDefeat();
+            break;
+        case 47:
+            AerodentCompanionStartRecovery();
+        case 48:
+            AerodentCompanionRecover();
+            break;
+        case 122:
+            AerodentCompanionApplyShopItemDamage();
+        case 123:
+            AerodentCompanionUpdateShopItemDamage();
+            break;
+    }
+}
+void SpriteAerodentThrowable(void)
+{
+    register struct PrimarySpriteData *sprite asm("r2");
+    register u16 status asm("r1");
+    register int mask asm("r0");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    mask = 128;
+    mask <<= 4;
+    mask &= status;
+    if (mask != 0)
+        sprite->pose = 107;
+
+    switch (sprite->pose) {
+        case 0:
+            AerodentThrowableInit();
+            goto end;
+        case 18:
+            AerodentThrowablePatrol();
+            goto end;
+        case 20:
+            AerodentThrowableBounce();
+            goto end;
+        case 41:
+            if (sprite->warioCollision != 59)
+                goto state_55E0;
+            goto state_56A4;
+        case 37:
+            if (sprite->warioCollision != 59)
+                goto state_5358;
+state_56A4:
+        case 53:
+            AerodentThrowableGrabbedLeft();
+state_2476:
+        case 54:
+        case 58:
+            func_802476C();
+            goto end;
+        case 39:
+            if (sprite->warioCollision == 59)
+                goto state_5690;
+state_55E0:
+            AerodentThrowableStartStun();
+            goto end;
+        case 40:
+            AerodentThrowableStun();
+            goto end;
+        case 35:
+            if (sprite->warioCollision == 59)
+                goto state_5690;
+state_5358:
+            AerodentThrowableStartCharge();
+state_53A0:
+        case 16:
+            AerodentThrowableCharge();
+            goto end;
+state_5690:
+        case 51:
+            AerodentThrowableGrabbedRight();
+state_24988:
+        case 52:
+        case 64:
+            func_8024988();
+            goto end;
+        case 15:
+            AerodentThrowableStartCharge();
+            goto state_53A0;
+        case 22:
+            AerodentThrowableBounceAfterCharge();
+            goto end;
+        case 23:
+            AerodentThrowableStartLanding();
+        case 24:
+            AerodentThrowableLand();
+            goto end;
+        case 110:
+            AerodentThrowableStartBreak();
+        case 111:
+            AerodentThrowableBreak();
+            goto end;
+        case 27:
+            AerodentThrowableStartGrabbed();
+        case 28:
+            func_8023D48();
+            goto end;
+        case 29:
+            AerodentThrowableStartBounce();
+        case 30:
+            func_8023EE0();
+            goto end;
+        case 31:
+        case 79:
+            AerodentThrowableFallRightWithEffect();
+        case 32:
+            SpriteUtilFallOffscreenRight();
+            goto end;
+        case 33:
+        case 80:
+            AerodentThrowableFallLeftWithEffect();
+        case 34:
+            SpriteUtilFallOffscreenLeft();
+            goto end;
+        case 43:
+            AerodentThrowableKnockbackRight();
+        case 44:
+            func_8024478();
+            goto end;
+        case 45:
+            AerodentThrowableKnockbackLeft();
+        case 46:
+            func_802449C();
+            goto end;
+        case 47:
+            AerodentThrowableStartFall();
+        case 48:
+            AerodentThrowableFall();
+            goto end;
+        case 55:
+            func_8024688();
+        case 56:
+            func_80246B8();
+            goto end;
+        case 57:
+            func_802473C();
+            goto state_2476;
+        case 59:
+            func_80247F0();
+        case 60:
+            func_8024820();
+            goto end;
+        case 61:
+            func_80248A4();
+        case 62:
+            func_80248D4();
+            goto end;
+        case 63:
+            func_8024958();
+            goto state_24988;
+        case 65:
+            func_8024A0C();
+        case 66:
+            func_8024A3C();
+            goto end;
+        case 67:
+            func_8024AC0();
+            goto state_24AD4;
+        case 69:
+            func_8024BEC();
+            goto state_24C00;
+        case 71:
+            AerodentThrowableThrowRight();
+state_24AD4:
+        case 68:
+        case 72:
+            func_8024AD4();
+            goto end;
+        case 73:
+            AerodentThrowableThrowLeft();
+state_24C00:
+        case 70:
+        case 74:
+            func_8024C00();
+            goto end;
+        case 81:
+            AerodentThrowableStartLiftRight();
+            goto end;
+        case 82:
+            SpriteUtilLiftingSpriteRight();
+            goto end;
+        case 83:
+            AerodentThrowableStartLiftLeft();
+            goto end;
+        case 84:
+            SpriteUtilLiftingSpriteLeft();
+            goto end;
+        case 87:
+            AerodentThrowableStartCarryRight();
+            goto end;
+        case 88:
+            SpriteUtilCarryingSpriteRight();
+            goto end;
+        case 85:
+            AerodentThrowableStartCarryLeft();
+            goto end;
+        case 86:
+            SpriteUtilCarryingSpriteLeft();
+            goto end;
+        case 89:
+            sprite->pose = 90;
+            AerodentThrowableSetThrownAnimation();
+        case 90:
+            SpriteUtilThrownLeftSoft();
+            goto end;
+        case 93:
+            sprite->pose = 94;
+            AerodentThrowableSetThrownAnimation();
+        case 94:
+            SpriteUtilThrownLeftHard();
+            goto end;
+        case 97:
+            sprite->pose = 98;
+            AerodentThrowableSetThrownAnimation();
+        case 98:
+            SpriteUtilThrownUpLeftSoft();
+            goto end;
+        case 101:
+            sprite->pose = 102;
+            AerodentThrowableSetThrownAnimation();
+        case 102:
+            SpriteUtilThrownUpLeftHard();
+            goto end;
+        case 91:
+            sprite->pose = 92;
+            AerodentThrowableSetThrownAnimation();
+        case 92:
+            SpriteUtilThrownRightSoft();
+            goto end;
+        case 95:
+            sprite->pose = 96;
+            AerodentThrowableSetThrownAnimation();
+        case 96:
+            SpriteUtilThrownRightHard();
+            goto end;
+        case 99:
+            sprite->pose = 100;
+            AerodentThrowableSetThrownAnimation();
+        case 100:
+            SpriteUtilThrownUpRightSoft();
+            goto end;
+        case 103:
+            sprite->pose = 104;
+            AerodentThrowableSetThrownAnimation();
+        case 104:
+            SpriteUtilThrownUpRightHard();
+            goto end;
+        case 105:
+            AerodentThrowableFallLeft();
+            goto end;
+        case 106:
+            AerodentThrowableFallRight();
+            goto end;
+        default:
+            AerodentThrowableDie();
+    }
+end:
+    return;
+}
+void SpriteAerodentEmitter(void)
+{
+    switch (gCurrentSprite.pose) {
+        case 0:
+            AerodentEmitterInit();
+            break;
+        case 15:
+            AerodentEmitterAttachToParent();
+            break;
+        case 16:
+            AerodentEmitterPatrol();
+            break;
+        case 23:
+            AerodentEmitterStartBurst();
+        case 24:
+            AerodentEmitterBurst();
+            break;
+        case 48:
+            AerodentEmitterFadeOut();
+            break;
+        default:
+            SpriteUtilDie();
+    }
+}

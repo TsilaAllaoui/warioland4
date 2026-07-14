@@ -2,6 +2,7 @@
 #define GLOBAL_DATA_H
 
 #include "gba.h"
+#include "oam.h"
 
 enum Passage {
     PASSAGE_ENTRY,
@@ -358,5 +359,6 @@ extern const struct WarioEffectFrame sWarioAfterimageFrames[];
 extern const struct WarioAnimationFrame *const sUnk_82DDB10[][2];
 extern const struct WarioPoseProperty sUnk_82DDB60[];
 extern const u16 sBouncyWarioPalette[];
+extern const struct AnimationFrame sAerodentBalloonInflatingOam[];
 
 #endif /* GLOBAL_DATA_H */

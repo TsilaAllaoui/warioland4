@@ -46,7 +46,7 @@ void BossTreasureInit(void)
             sprite->pOamData = sUnk_83CF72C;
             break;
         default:
-            sprite->pOamData = sUnk_83DABA0;
+            sprite->pOamData = sAerodentBalloonInflatingOam;
             break;
     }
 }

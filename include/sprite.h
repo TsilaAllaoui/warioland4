@@ -210,10 +210,10 @@ enum PrimarySpriteID {
     PSPRITE_C8,
     PSPRITE_C9,
     PSPRITE_CA,
-    PSPRITE_CB,
-    PSPRITE_CC,
-    PSPRITE_0xCD,  // LMAO
-    PSPRITE_CE,
+    PSPRITE_AERODENT_COMPANION,
+    PSPRITE_AERODENT_WEAK_POINT,
+    PSPRITE_AERODENT_THROWABLE,
+    PSPRITE_AERODENT_EMITTER,
     PSPRITE_BOSS_TREASURE,
     PSPRITE_D0,
     PSPRITE_D1,
@@ -489,5 +489,7 @@ void func_801D8C4(void);
 void func_801DE7C(void);
 void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 void func_801E430(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
+
+void func_801E3A8(u8, u8, u8, u32, u32, u32);
 
 #endif  // SPRITE_H

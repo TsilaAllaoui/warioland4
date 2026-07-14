@@ -2010,8 +2010,8 @@ sUnk_83DAB40:
 
 baserom_blob 0x3DAB40, 0x3DABA0
 
-.global sUnk_83DABA0
-sUnk_83DABA0:
+.global sAerodentBalloonInflatingOam
+sAerodentBalloonInflatingOam:
 
 baserom_blob 0x3DABA0, 0x3DABB0
 

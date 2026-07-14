@@ -10,4 +10,6 @@ void func_80747D8(void);
 void func_8074808(void);
 void func_8074988(void);
 
+void func_80747D8(void);
+
 #endif  // HUD_H
