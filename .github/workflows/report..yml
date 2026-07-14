@@ -122,6 +122,7 @@ jobs:
           fi
 
           test -s baserom.gba
+          mv baserom.gba baserom_us.gba
 
       - name: Verify baserom checksum
         run: |
