@@ -2761,7 +2761,7 @@ void func_8026E78(void)
             break;
 
         case PASSAGE_TOPAZ:
-            SpriteUtilFindSpriteSlotWork3(PSPRITE_CB);
+            SpriteUtilFindSpriteSlotWork3(PSPRITE_AERODENT_COMPANION);
             gSpriteData[gCurrentSprite.work3].pose = SPOSE_7A;
             break;
 

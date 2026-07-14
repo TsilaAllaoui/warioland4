@@ -21,4 +21,6 @@ void func_80711E8(void);
 s32 func_80712F8(void);
 s32 func_8071394(void);
 
+void func_8070964(u8, u8, u8);
+
 #endif  // COLOR_EFFECTS_H
