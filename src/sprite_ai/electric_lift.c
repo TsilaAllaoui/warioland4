@@ -7,6 +7,316 @@
 #include "wario.h"
 
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sElectricLiftStationaryTransitionOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryIdleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 530, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_8x8, 0, 547, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_8x8, 0, 547, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame3[] = {
+    3,
+    OAM_ENTRY(4, -4, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame4[] = {
+    3,
+    OAM_ENTRY(3, 2, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-8, 1, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 547, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame6[] = {
+    3,
+    OAM_ENTRY(-8, -3, SPRITE_SIZE_16x8, 0, 515, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame7[] = {
+    3,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-7, -3, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 515, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame8[] = {
+    3,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 515, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame9[] = {
+    3,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 515, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame10[] = {
+    3,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x8, 0, 517, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame11[] = {
+    3,
+    OAM_ENTRY(-19, -14, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame12[] = {
+    3,
+    OAM_ENTRY(-8, -13, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame13[] = {
+    3,
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame14[] = {
+    3,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-8, -13, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame16[] = {
+    3,
+    OAM_ENTRY(-8, -13, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 514, 8, 0),
+};
+
+const u16 sElectricLiftStationaryResetOam_Frame15[] = {
+    3,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x8, 0, 549, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 514, 8, 0),
+};
+
+const u16 sElectricLiftStationaryActiveOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_8x8, 0, 547, 8, 0),
+    OAM_ENTRY(-13, -12, SPRITE_SIZE_32x8, 0, 549, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryActiveOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_8x8, 0, 547, 8, 0),
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x8, 0, 549, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryActiveOam_Frame4[] = {
+    4,
+    OAM_ENTRY(4, -4, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_32x8, 0, 549, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u16 sElectricLiftStationaryActiveOam_Frame5[] = {
+    4,
+    OAM_ENTRY(3, 2, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x8, 0, 549, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u8 sElectricLiftRawData_83BDCDA[] = {
+    0x03, 0x00, 0xF6, 0x00, 0xF4, 0x41, 0x0E, 0x82, 0xF6, 0x80, 0x04, 0x00, 0x10, 0x82, 0x05, 0x40,
+    0xF8, 0x01, 0x0B, 0x82, 0x03, 0x00, 0xF6, 0x00, 0xF4, 0x41, 0x0E, 0x82, 0xF6, 0x80, 0x04, 0x00,
+    0x10, 0x82, 0x05, 0x40, 0xF8, 0x01, 0x2B, 0x82, 0x03, 0x00, 0xF6, 0x00, 0xF4, 0x41, 0x0E, 0x82,
+    0xF6, 0x80, 0x04, 0x00, 0x10, 0x82, 0x05, 0x00, 0xFC, 0x01, 0x0D, 0x82, 0x03, 0x00, 0xF6, 0x00,
+    0xF4, 0x41, 0x0E, 0x82, 0xF6, 0x80, 0x04, 0x00, 0x10, 0x82, 0x05, 0x00, 0xFC, 0x11, 0x0D, 0x82,
+    0x03, 0x00, 0xF6, 0x00, 0xF4, 0x41, 0x0E, 0x82, 0xF6, 0x80, 0x04, 0x00, 0x10, 0x82, 0x05, 0x40,
+    0xF8, 0x11, 0x2B, 0x82,
+};
+
+const u16 sElectricLiftStationaryActiveOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x8, 0, 549, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 513, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+};
+
+const u8 sElectricLiftRawData_83BDD52[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sElectricLiftStationaryIdleOam[] = {
+    {sElectricLiftStationaryIdleOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sElectricLiftStationaryTransitionOam[] = {
+    {sElectricLiftStationaryTransitionOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sElectricLiftStationaryResetOam[] = {
+    {sElectricLiftStationaryTransitionOam_Frame1, 4},
+    {sElectricLiftStationaryResetOam_Frame1, 4},
+    {sElectricLiftStationaryResetOam_Frame2, 4},
+    {sElectricLiftStationaryResetOam_Frame3, 4},
+    {sElectricLiftStationaryResetOam_Frame4, 4},
+    {sElectricLiftStationaryResetOam_Frame5, 4},
+    {sElectricLiftStationaryTransitionOam_Frame1, 3},
+    {sElectricLiftStationaryResetOam_Frame6, 4},
+    {sElectricLiftStationaryResetOam_Frame7, 4},
+    {sElectricLiftStationaryResetOam_Frame8, 4},
+    {sElectricLiftStationaryResetOam_Frame9, 4},
+    {sElectricLiftStationaryTransitionOam_Frame1, 2},
+    {sElectricLiftStationaryResetOam_Frame10, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame11, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame10, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame11, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame12, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame13, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame12, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame13, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame14, 1},
+    {sElectricLiftStationaryResetOam_Frame15, 1},
+    {sElectricLiftStationaryResetOam_Frame16, 1},
+    {sElectricLiftStationaryResetOam_Frame15, 1},
+    {sElectricLiftStationaryResetOam_Frame16, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryIdleOam_Frame1, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryIdleOam_Frame1, 40},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sElectricLiftStationaryActiveOam[] = {
+    {sElectricLiftStationaryActiveOam_Frame1, 8},
+    {sElectricLiftStationaryIdleOam_Frame1, 8},
+    {sElectricLiftStationaryActiveOam_Frame1, 8},
+    {sElectricLiftStationaryIdleOam_Frame1, 8},
+    {sElectricLiftStationaryActiveOam_Frame1, 8},
+    {sElectricLiftStationaryIdleOam_Frame1, 4},
+    {sElectricLiftStationaryActiveOam_Frame2, 4},
+    {sElectricLiftStationaryActiveOam_Frame3, 4},
+    {sElectricLiftStationaryActiveOam_Frame4, 4},
+    {sElectricLiftStationaryActiveOam_Frame5, 4},
+    {sElectricLiftStationaryIdleOam_Frame1, 4},
+    {sElectricLiftStationaryResetOam_Frame15, 4},
+    {sElectricLiftStationaryIdleOam_Frame1, 4},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryIdleOam_Frame1, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryIdleOam_Frame1, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame14, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 1},
+    {sElectricLiftStationaryResetOam_Frame14, 1},
+    {sElectricLiftStationaryTransitionOam_Frame1, 32},
+    ANIMATION_TERMINATOR
+};
+
+const u16 sElectricLiftMovingTurnOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-12, -10, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(4, -10, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-8, 5, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sElectricLiftMovingTurnOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-12, -10, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(4, -10, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-8, 5, SPRITE_SIZE_16x8, 0, 555, 8, 0),
+};
+
+const u16 sElectricLiftMovingTurnOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-12, -10, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(4, -10, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_8x8, 0, 525, 8, 0),
+};
+
+const u16 sElectricLiftMovingTurnOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-12, -10, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(4, -10, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 525, 8, 0),
+};
+
+const u16 sElectricLiftMovingTurnOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-12, -10, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(4, -10, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-8, 5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 555, 8, 0),
+};
+
+const struct AnimationFrame sElectricLiftMovingTurnOam[] = {
+    {sElectricLiftMovingTurnOam_Frame1, 3},
+    {sElectricLiftMovingTurnOam_Frame2, 3},
+    {sElectricLiftMovingTurnOam_Frame3, 3},
+    {sElectricLiftMovingTurnOam_Frame4, 3},
+    {sElectricLiftMovingTurnOam_Frame5, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sElectricLiftMovingOam[] = {
+    {sElectricLiftMovingTurnOam_Frame1, 5},
+    {sElectricLiftMovingTurnOam_Frame2, 5},
+    {sElectricLiftMovingTurnOam_Frame3, 5},
+    {sElectricLiftMovingTurnOam_Frame4, 5},
+    {sElectricLiftMovingTurnOam_Frame5, 5},
+    ANIMATION_TERMINATOR
+};
+
 void InitElectricLiftStationary(void)
 {
     struct PrimarySpriteData* sprite;
