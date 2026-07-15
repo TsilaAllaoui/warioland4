@@ -5,6 +5,7 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
 enum PencilPose {
     PENCIL_POSE_IDLE = SPOSE_IDLE,
     PENCIL_POSE_MOVE_RIGHT_INIT = SPOSE_TACKLED_RIGHT_INIT,
@@ -16,6 +17,44 @@ enum PencilPose {
 enum PencilCollision {
     PENCIL_COLLISION_MOVING = 25,
     PENCIL_COLLISION_IDLE = 26,
+};
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sPencilPurpleOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-24, -16, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(23, -16, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(8, -16, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sPencilBlueOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-24, -16, SPRITE_SIZE_32x16, 0, 576, 9, 0),
+    OAM_ENTRY(23, -16, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(8, -16, SPRITE_SIZE_16x16, 0, 580, 9, 0),
+};
+
+const u16 sPencilRedOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-24, -16, SPRITE_SIZE_32x16, 0, 522, 9, 0),
+    OAM_ENTRY(23, -16, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(8, -16, SPRITE_SIZE_16x16, 0, 526, 9, 0),
+};
+
+const struct AnimationFrame sPencilPurpleOam[] = {
+    {sPencilPurpleOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPencilBlueOam[] = {
+    {sPencilBlueOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPencilRedOam[] = {
+    {sPencilRedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
 };
 
 void InitPencil(void)
