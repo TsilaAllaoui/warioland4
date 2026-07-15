@@ -7,6 +7,197 @@
 #include "gba/m4a.h"
 
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sIcicleIdleOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x8, 0, 536, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x8, 0, 568, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame4[] = {
+    1,
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x16, 0, 538, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x16, 0, 538, 8, 0),
+    OAM_ENTRY(-4, -13, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x8, 0, 565, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x16, 0, 535, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-10, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+const u16 sIcicleIdleOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+};
+
+const u16 sIcicleImpactOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(-10, -8, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-2, -14, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(4, -7, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-3, -5, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+};
+
+const u16 sIcicleImpactOam_Frame2[] = {
+    9,
+    OAM_ENTRY(-24, -28, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(-19, -6, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(4, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+    OAM_ENTRY(10, -4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 572, 8, 0),
+    OAM_ENTRY(-15, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 573, 8, 0),
+    OAM_ENTRY(-10, -12, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(4, -28, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(11, -26, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 572, 8, 0),
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+};
+
+const u16 sIcicleImpactOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-30, 3, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 572, 8, 0),
+    OAM_ENTRY(-28, -23, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(7, -26, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(9, 5, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-19, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+    OAM_ENTRY(14, -8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sIcicleImpactOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-17, 0, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(13, -31, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 541, 8, 0),
+    OAM_ENTRY(-31, -22, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame2[] = {
+    1,
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame3[] = {
+    2,
+    OAM_ENTRY(1, 3, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(2, -6, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame4[] = {
+    3,
+    OAM_ENTRY(4, -2, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(2, 7, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-14, -7, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame5[] = {
+    4,
+    OAM_ENTRY(2, 10, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-16, 3, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-15, -6, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(4, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 541, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame6[] = {
+    3,
+    OAM_ENTRY(-14, 7, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(6, 14, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 541, 8, 0),
+    OAM_ENTRY(-12, -2, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-14, 17, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 541, 8, 0),
+};
+
+const u16 sIcicleWarningOam_Frame8[] = {
+    1,
+    OAM_ENTRY(-10, 16, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 541, 8, 0),
+};
+
+const u8 sIcicleRawData_83DE496[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sIcicleIdleOam[] = {
+    {sIcicleIdleOam_Frame1, 2},
+    {sIcicleIdleOam_Frame2, 2},
+    {sIcicleIdleOam_Frame1, 2},
+    {sIcicleIdleOam_Frame2, 2},
+    {sIcicleIdleOam_Frame1, 2},
+    {sIcicleIdleOam_Frame3, 3},
+    {sIcicleIdleOam_Frame4, 4},
+    {sIcicleIdleOam_Frame5, 7},
+    {sIcicleIdleOam_Frame6, 4},
+    {sIcicleIdleOam_Frame7, 20},
+    {sIcicleIdleOam_Frame8, 2},
+    {sIcicleIdleOam_Frame7, 2},
+    {sIcicleIdleOam_Frame8, 2},
+    {sIcicleIdleOam_Frame7, 2},
+    {sIcicleIdleOam_Frame8, 2},
+    {sIcicleIdleOam_Frame7, 2},
+    {sIcicleIdleOam_Frame8, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sIcicleWarningOam[] = {
+    {sIcicleWarningOam_Frame1, 4},
+    {sIcicleWarningOam_Frame2, 4},
+    {sIcicleWarningOam_Frame3, 4},
+    {sIcicleWarningOam_Frame4, 4},
+    {sIcicleWarningOam_Frame5, 4},
+    {sIcicleWarningOam_Frame6, 4},
+    {sIcicleWarningOam_Frame7, 4},
+    {sIcicleWarningOam_Frame8, 4},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sIcicleRawData_83DE570[] = {
+    0x30, 0xE3, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sIcicleFallingOam[] = {
+    {sIcicleIdleOam_Frame7, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sIcicleImpactOam[] = {
+    {sIcicleImpactOam_Frame1, 2},
+    {sIcicleImpactOam_Frame2, 2},
+    {sIcicleImpactOam_Frame3, 2},
+    {sIcicleImpactOam_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
 void InitIcicle(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
