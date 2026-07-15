@@ -9,6 +9,162 @@
 #include "wario.h"
 #include "gba/m4a.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sToyBlockTriangleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+};
+
+const u8 sToyBlockTriangleRawData_83C78AC[] = {
+    0x01, 0x00, 0xE0, 0x00, 0xF0, 0x81, 0x04, 0x82, 0x01, 0x00, 0xE0, 0x00, 0xF0, 0x81, 0x08, 0x82,
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame7[] = {
+    1,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 524, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 530, 9, 0),
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 530, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-12, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame5[] = {
+    2,
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame6[] = {
+    2,
+    OAM_ENTRY(4, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame7[] = {
+    2,
+    OAM_ENTRY(8, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u8 sToyBlockTriangleRawData_83C7934[] = {
+    0x01, 0x00, 0xF8, 0x00, 0xFC, 0x01, 0x11, 0x82,
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 532, 9, 0),
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 532, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 534, 9, 0),
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_8x32, 0, 536, 9, 0),
+    OAM_ENTRY(8, -40, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 536, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 537, 9, 0),
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 537, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpeningOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 539, 9, 0),
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 539, 9, 0),
+};
+
+const u16 sToyBlockTriangleDoorOpenOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+
+const u8 sToyBlockTriangleRawData_83C798A[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sToyBlockTriangleOam[] = {
+    {sToyBlockTriangleOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sUnk_83C799C[] = {
+    0xAC, 0x78, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const u8 sUnk_83C79AC[] = {
+    0xB4, 0x78, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sToyBlockTriangleDoorOpenIdleAnimationOam[] = {
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame1, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame2, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame3, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame4, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame5, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame6, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame7, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sToyBlockTriangleDoorOpeningOam[] = {
+    {sToyBlockTriangleDoorOpeningOam_Frame1, 4},
+    {sToyBlockTriangleDoorOpeningOam_Frame2, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame1, 3},
+    {sToyBlockTriangleDoorOpeningOam_Frame2, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame3, 6},
+    {sToyBlockTriangleDoorOpeningOam_Frame4, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame5, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame6, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame7, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sToyBlockTriangleDoorOpenOam[] = {
+    {sToyBlockTriangleDoorOpenOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sToyBlockTriangleDoorClosedOam[] = {
+    {sToyBlockTriangleDoorOpeningOam_Frame3, 255},
+    ANIMATION_TERMINATOR
+};
+
 s32 ToyBlockTriangleUnlockTouchedLock(void)
 {
     register u32 currentBottom asm("sl");
