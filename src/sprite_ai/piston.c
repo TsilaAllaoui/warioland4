@@ -7,14 +7,265 @@
 #include "wario.h"
 #include "gba/m4a.h"
 
-extern const struct AnimationFrame sPistonChildOam[];
-extern const struct AnimationFrame sPistonIdleOam[];
-extern const struct AnimationFrame sPistonPrepareOam[];
-extern const struct AnimationFrame sPistonPostImpactOam[];
-extern const struct AnimationFrame sPistonExtendOam[];
-extern const struct AnimationFrame sPistonImpactOam[];
+#include "oam.h"
 extern const s16 sPistonYMovement[];
 extern u8 gUnk_3000964[][3];
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sPistonPrepareOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonIdleOam_Frame1[] = {
+    7,
+    OAM_ENTRY(6, -18, SPRITE_SIZE_16x32, 0, 540, 8, 0),
+    OAM_ENTRY(16, -20, SPRITE_SIZE_8x32, 0, 542, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonIdleOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-8, 7, SPRITE_SIZE_16x8, 0, 622, 8, 0),
+    OAM_ENTRY(16, -20, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonIdleOam_Frame3[] = {
+    7,
+    OAM_ENTRY(6, -18, SPRITE_SIZE_16x32, 0, 540, 8, 0),
+    OAM_ENTRY(16, -10, SPRITE_SIZE_8x32, 0, 542, 8, 0),
+    OAM_ENTRY(-24, -20, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonIdleOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-8, 7, SPRITE_SIZE_16x8, 0, 622, 8, 0),
+    OAM_ENTRY(16, -10, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(-24, -20, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u8 sPistonRawData_83CA57A[] = {
+    0x08, 0x00, 0xEC, 0x80, 0x10, 0x40, 0x1E, 0x82, 0xF6, 0x80, 0x10, 0x40, 0x1E, 0x82, 0xEC, 0x80,
+    0xE8, 0x51, 0x1E, 0x82, 0xF6, 0x80, 0xE8, 0x51, 0x1E, 0x82, 0xE0, 0x00, 0xE8, 0x81, 0x00, 0x82,
+    0xE0, 0x80, 0x08, 0x80, 0x04, 0x82, 0x00, 0x00, 0xE8, 0x81, 0x06, 0x82, 0x00, 0x80, 0x08, 0x80,
+    0x0A, 0x82, 0x0A, 0x00, 0x07, 0x40, 0xF8, 0x01, 0x6E, 0x82, 0xEE, 0x80, 0x06, 0x80, 0x1C, 0x82,
+    0xF6, 0x80, 0x10, 0x40, 0x1F, 0x82, 0xEC, 0x80, 0x10, 0x40, 0x1F, 0x82, 0xEC, 0x80, 0xE8, 0x51,
+    0x1F, 0x82, 0xF6, 0x80, 0xE8, 0x51, 0x1F, 0x82, 0xE0, 0x00, 0xE8, 0x81, 0x00, 0x82, 0xE0, 0x80,
+    0x08, 0x80, 0x04, 0x82, 0x00, 0x00, 0xE8, 0x81, 0x06, 0x82, 0x00, 0x80, 0x08, 0x80, 0x0A, 0x82,
+};
+
+const u16 sPistonPostImpactOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 596, 9, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonPrepareOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 594, 9, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-6, -64, SPRITE_SIZE_16x32, 0, 524, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -56, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 590, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-16, -48, SPRITE_SIZE_32x16, 0, 529, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame4[] = {
+    1,
+    OAM_ENTRY(-6, -48, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame5[] = {
+    1,
+    OAM_ENTRY(-10, -48, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 533, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame6[] = {
+    1,
+    OAM_ENTRY(-16, -48, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 529, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-16, -56, SPRITE_SIZE_32x16, 0, 526, 8, 0),
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_32x8, 0, 590, 8, 0),
+};
+
+const u16 sPistonChildOam_Frame8[] = {
+    1,
+    OAM_ENTRY(-10, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 524, 8, 0),
+};
+
+const u16 sPistonImpactOam_Frame1[] = {
+    11,
+    OAM_ENTRY(6, -18, SPRITE_SIZE_16x32, 0, 540, 8, 0),
+    OAM_ENTRY(-6, 4, SPRITE_SIZE_16x16, 0, 535, 9, 0),
+    OAM_ENTRY(10, 4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 9, 0),
+    OAM_ENTRY(16, -10, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(16, -20, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(-24, -20, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonImpactOam_Frame2[] = {
+    11,
+    OAM_ENTRY(6, -18, SPRITE_SIZE_16x32, 0, 540, 8, 0),
+    OAM_ENTRY(-6, 4, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(10, 4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+    OAM_ENTRY(16, -10, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(16, -20, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(-24, -20, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonImpactOam_Frame3[] = {
+    11,
+    OAM_ENTRY(6, -18, SPRITE_SIZE_16x32, 0, 540, 8, 0),
+    OAM_ENTRY(-6, 4, SPRITE_SIZE_16x16, 0, 537, 9, 0),
+    OAM_ENTRY(10, 4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 9, 0),
+    OAM_ENTRY(16, -10, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(16, -20, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(-24, -20, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u16 sPistonImpactOam_Frame4[] = {
+    11,
+    OAM_ENTRY(6, -18, SPRITE_SIZE_16x32, 0, 540, 8, 0),
+    OAM_ENTRY(-6, 4, SPRITE_SIZE_16x16, 0, 601, 9, 0),
+    OAM_ENTRY(10, 4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 601, 9, 0),
+    OAM_ENTRY(16, -10, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(16, -20, SPRITE_SIZE_8x32, 0, 543, 8, 0),
+    OAM_ENTRY(-24, -20, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x32, 0, 518, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x32, 0, 522, 8, 0),
+};
+
+const u8 sPistonRawData_83CA786[] = {
+    0x08, 0x00, 0xE8, 0x00, 0xF8, 0x41, 0x54, 0x92, 0xEE, 0x80, 0x06, 0x80, 0x1C, 0x82, 0xEC, 0x80,
+    0x10, 0x40, 0x1E, 0x82, 0xF6, 0x80, 0xE8, 0x51, 0x1E, 0x82, 0xE0, 0x00, 0xE8, 0x81, 0x00, 0x82,
+    0xE0, 0x80, 0x08, 0x80, 0x04, 0x82, 0x00, 0x00, 0xE8, 0x81, 0x06, 0x82, 0x00, 0x80, 0x08, 0x80,
+    0x0A, 0x82, 0x08, 0x00, 0xE8, 0x00, 0xF8, 0x41, 0x54, 0x92, 0x07, 0x40, 0xF8, 0x01, 0x6E, 0x82,
+    0xEC, 0x80, 0x10, 0x40, 0x1F, 0x82, 0xF6, 0x80, 0xE8, 0x51, 0x1F, 0x82, 0xE0, 0x00, 0xE8, 0x81,
+    0x00, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x04, 0x82, 0x00, 0x00, 0xE8, 0x81, 0x06, 0x82, 0x00, 0x80,
+    0x08, 0x80, 0x0A, 0x82, 0x08, 0x00, 0xE8, 0x00, 0xF8, 0x41, 0x54, 0x92, 0xEE, 0x80, 0x06, 0x80,
+    0x1C, 0x82, 0xF6, 0x80, 0x10, 0x40, 0x1E, 0x82, 0xEC, 0x80, 0xE8, 0x51, 0x1E, 0x82, 0xE0, 0x00,
+    0xE8, 0x81, 0x00, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x04, 0x82, 0x00, 0x00, 0xE8, 0x81, 0x06, 0x82,
+    0x00, 0x80, 0x08, 0x80, 0x0A, 0x82, 0x08, 0x00, 0xE8, 0x00, 0xF8, 0x41, 0x54, 0x92, 0x07, 0x40,
+    0xF8, 0x01, 0x6E, 0x82, 0xF6, 0x80, 0x10, 0x40, 0x1F, 0x82, 0xEC, 0x80, 0xE8, 0x51, 0x1F, 0x82,
+    0xE0, 0x00, 0xE8, 0x81, 0x00, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x04, 0x82, 0x00, 0x00, 0xE8, 0x81,
+    0x06, 0x82, 0x00, 0x80, 0x08, 0x80, 0x0A, 0x82, 0x00, 0x00,
+};
+
+const struct AnimationFrame sPistonChildOam[] = {
+    {sPistonChildOam_Frame1, 7},
+    {sPistonChildOam_Frame2, 7},
+    {sPistonChildOam_Frame3, 7},
+    {sPistonChildOam_Frame4, 7},
+    {sPistonChildOam_Frame5, 7},
+    {sPistonChildOam_Frame6, 7},
+    {sPistonChildOam_Frame7, 7},
+    {sPistonChildOam_Frame8, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPistonIdleOam[] = {
+    {sPistonIdleOam_Frame1, 7},
+    {sPistonIdleOam_Frame2, 7},
+    {sPistonIdleOam_Frame3, 7},
+    {sPistonIdleOam_Frame4, 7},
+    {sPistonIdleOam_Frame1, 7},
+    {sPistonIdleOam_Frame2, 7},
+    {sPistonIdleOam_Frame3, 7},
+    {sPistonIdleOam_Frame4, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPistonPrepareOam[] = {
+    {sPistonPrepareOam_Frame1, 7},
+    {sPistonPrepareOam_Frame2, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPistonPostImpactOam[] = {
+    {sPistonPostImpactOam_Frame1, 7},
+    {sPistonPrepareOam_Frame2, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPistonExtendOam[] = {
+    {sPistonPrepareOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPistonImpactOam[] = {
+    {sPistonPrepareOam_Frame2, 6},
+    {sPistonImpactOam_Frame1, 6},
+    {sPistonImpactOam_Frame2, 6},
+    {sPistonImpactOam_Frame3, 6},
+    {sPistonImpactOam_Frame4, 6},
+    {sPistonImpactOam_Frame4, 1},
+    {sPistonPrepareOam_Frame2, 1},
+    {sPistonImpactOam_Frame4, 1},
+    {sPistonPrepareOam_Frame2, 1},
+    {sPistonImpactOam_Frame4, 1},
+    {sPistonPrepareOam_Frame2, 5},
+    ANIMATION_TERMINATOR
+};
 
 void InitPiston(void)
 {
