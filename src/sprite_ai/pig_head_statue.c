@@ -6,6 +6,231 @@
 #include "sprite_util.h"
 #include "gba/m4a.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sPigHeadStatueIdleOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(0, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-16, -5, SPRITE_SIZE_16x8, 0, 538, 8, 0),
+    OAM_ENTRY(0, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 538, 8, 0),
+};
+
+const u16 sPigHeadStatueFiringOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_16x16, 0, 540, 8, 0),
+    OAM_ENTRY(0, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -5, SPRITE_SIZE_16x8, 0, 536, 8, 0),
+    OAM_ENTRY(0, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+const u16 sPigHeadStatueOpeningOam_Frame1[] = {
+    6,
+    OAM_ENTRY(1, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(0, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-16, -5, SPRITE_SIZE_16x8, 0, 538, 8, 0),
+    OAM_ENTRY(0, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 538, 8, 0),
+};
+
+const u16 sPigHeadStatueOpeningOam_Frame2[] = {
+    6,
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_8x8, 0, 521, 8, 0),
+    OAM_ENTRY(1, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(0, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-16, -5, SPRITE_SIZE_16x8, 0, 538, 8, 0),
+    OAM_ENTRY(0, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 538, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-10, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-9, -9, SPRITE_SIZE_8x8, 0, 532, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 564, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-6, -15, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(0, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 532, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-10, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_8x8, 0, 564, 8, 0),
+};
+
+const u16 sPigHeadStatueChildFallingOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(0, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 565, 8, 0),
+};
+
+const u16 sPigHeadStatueChildLandedOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(1, -24, SPRITE_SIZE_8x8, 0, 532, 8, 0),
+    OAM_ENTRY(-11, -21, SPRITE_SIZE_8x8, 0, 534, 8, 0),
+};
+
+const u16 sPigHeadStatueChildLandedOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(4, -27, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-10, -25, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 566, 8, 0),
+};
+
+const u16 sPigHeadStatueChildLandedOam_Frame3[] = {
+    3,
+    OAM_ENTRY(2, -30, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    OAM_ENTRY(-15, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-4, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 516, 8, 0),
+};
+
+const u16 sPigHeadStatueChildLandedOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 522, 8, 0),
+};
+
+const u16 sPigHeadStatueChildLandedOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 552, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 522, 8, 0),
+};
+
+const u16 sPigHeadStatueChildDisappearingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-14, -16, SPRITE_SIZE_32x16, 0, 524, 8, 0),
+};
+
+const u16 sPigHeadStatueChildDisappearingOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-16, -15, SPRITE_SIZE_32x16, 0, 528, 8, 0),
+};
+
+const u16 sPigHeadStatueChildDisappearingOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_32x8, 0, 568, 8, 0),
+};
+
+const u16 sPigHeadStatueChildDisappearingOam_Frame4[] = {
+    1,
+    OAM_ENTRY(-15, -10, SPRITE_SIZE_32x8, 0, 532, 8, 0),
+};
+
+const u16 sPigHeadStatueChildDisappearingOam_Frame5[] = {
+    1,
+    OAM_ENTRY(-16, -11, SPRITE_SIZE_32x8, 0, 564, 8, 0),
+};
+
+const u16 sPigHeadStatueChildDisappearingOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-1, -14, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    OAM_ENTRY(-14, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 567, 8, 0),
+};
+
+const u8 sPigHeadStatueRawData_83BB63A[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sPigHeadStatueIdleOam[] = {
+    {sPigHeadStatueIdleOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPigHeadStatueOpeningOam[] = {
+    {sPigHeadStatueIdleOam_Frame1, 7},
+    {sPigHeadStatueOpeningOam_Frame1, 7},
+    {sPigHeadStatueOpeningOam_Frame2, 7},
+    {sPigHeadStatueIdleOam_Frame1, 7},
+    {sPigHeadStatueOpeningOam_Frame1, 7},
+    {sPigHeadStatueOpeningOam_Frame2, 7},
+    {sPigHeadStatueIdleOam_Frame1, 7},
+    {sPigHeadStatueOpeningOam_Frame1, 7},
+    {sPigHeadStatueOpeningOam_Frame2, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPigHeadStatueFiringOam[] = {
+    {sPigHeadStatueFiringOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPigHeadStatueChildFallingOam[] = {
+    {sPigHeadStatueChildFallingOam_Frame1, 8},
+    {sPigHeadStatueChildFallingOam_Frame2, 8},
+    {sPigHeadStatueChildFallingOam_Frame3, 8},
+    {sPigHeadStatueChildFallingOam_Frame4, 8},
+    {sPigHeadStatueChildFallingOam_Frame5, 8},
+    {sPigHeadStatueChildFallingOam_Frame1, 8},
+    {sPigHeadStatueChildFallingOam_Frame2, 8},
+    {sPigHeadStatueChildFallingOam_Frame6, 8},
+    {sPigHeadStatueChildFallingOam_Frame7, 8},
+    {sPigHeadStatueChildFallingOam_Frame8, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPigHeadStatueChildLandedOam[] = {
+    {sPigHeadStatueChildLandedOam_Frame1, 7},
+    {sPigHeadStatueChildLandedOam_Frame2, 7},
+    {sPigHeadStatueChildLandedOam_Frame3, 7},
+    {sPigHeadStatueChildLandedOam_Frame4, 7},
+    {sPigHeadStatueChildLandedOam_Frame5, 7},
+    {sPigHeadStatueChildLandedOam_Frame1, 7},
+    {sPigHeadStatueChildLandedOam_Frame2, 7},
+    {sPigHeadStatueChildLandedOam_Frame3, 7},
+    {sPigHeadStatueChildLandedOam_Frame4, 7},
+    {sPigHeadStatueChildLandedOam_Frame5, 7},
+    {sPigHeadStatueChildLandedOam_Frame1, 7},
+    {sPigHeadStatueChildLandedOam_Frame2, 7},
+    {sPigHeadStatueChildLandedOam_Frame3, 7},
+    {sPigHeadStatueChildLandedOam_Frame4, 7},
+    {sPigHeadStatueChildLandedOam_Frame5, 7},
+    {sPigHeadStatueChildLandedOam_Frame1, 7},
+    {sPigHeadStatueChildLandedOam_Frame2, 7},
+    {sPigHeadStatueChildLandedOam_Frame3, 7},
+    {sPigHeadStatueChildLandedOam_Frame4, 7},
+    {sPigHeadStatueChildLandedOam_Frame5, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPigHeadStatueChildDisappearingOam[] = {
+    {sPigHeadStatueChildDisappearingOam_Frame1, 6},
+    {sPigHeadStatueChildDisappearingOam_Frame2, 6},
+    {sPigHeadStatueChildDisappearingOam_Frame3, 6},
+    {sPigHeadStatueChildDisappearingOam_Frame4, 5},
+    {sPigHeadStatueChildDisappearingOam_Frame5, 5},
+    {sPigHeadStatueChildDisappearingOam_Frame6, 5},
+    ANIMATION_TERMINATOR
+};
+
 void InitPigHeadStatue(void)
 {
     struct PrimarySpriteData* sprite;
