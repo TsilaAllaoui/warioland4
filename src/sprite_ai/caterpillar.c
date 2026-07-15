@@ -4,6 +4,320 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sCaterpillarCrawlingOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, 0, 524, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 538, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+};
+
+const u16 sCaterpillarCrawlingOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-15, -14, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+};
+
+const u16 sCaterpillarCrawlingOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_16x16, 0, 528, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 541, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+};
+
+const u16 sCaterpillarCrawlingOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 573, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+const u16 sCaterpillarTurningOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-11, -15, SPRITE_SIZE_16x16, 0, 536, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 630, 8, 0),
+};
+
+const u16 sCaterpillarTurningOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-7, -16, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+};
+
+const u16 sCaterpillarTurningAroundOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-9, -16, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+};
+
+const u16 sCaterpillarTurningAroundOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-12, -15, SPRITE_SIZE_16x16, 0, 524, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 562, 8, 0),
+};
+
+const u16 sCaterpillarTurningAroundOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 573, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+const u16 sCaterpillarPushedBackwardOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, 0, 524, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 538, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+};
+
+const u16 sCaterpillarPushedBackwardOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-15, -17, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 523, 8, 0),
+    OAM_ENTRY(-2, -15, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sCaterpillarPushedBackwardOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-14, -16, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+};
+
+const u16 sCaterpillarPushedForwardOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+};
+
+const u16 sCaterpillarPushedForwardOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-14, -20, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x8, 0, 538, 8, 0),
+    OAM_ENTRY(9, -8, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+};
+
+const u16 sCaterpillarPushedForwardOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-10, -21, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 562, 8, 0),
+};
+
+const u16 sCaterpillarCrushedOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+};
+
+const u16 sCaterpillarCrushedOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_16x16, 0, 524, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+};
+
+const u16 sCaterpillarCrushedOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-16, -12, SPRITE_SIZE_8x8, 0, 544, 8, 0),
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 544, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 530, 8, 0),
+};
+
+const u16 sCaterpillarCrushedOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-16, -11, SPRITE_SIZE_8x8, 0, 544, 8, 0),
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 544, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 530, 8, 0),
+};
+
+const u16 sCaterpillarCrushedOam_Frame5[] = {
+    6,
+    OAM_ENTRY(-16, -10, SPRITE_SIZE_8x16, 0, 513, 8, 0),
+    OAM_ENTRY(-24, -10, SPRITE_SIZE_8x8, 0, 512, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 513, 8, 0),
+    OAM_ENTRY(0, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_16x8, 0, 564, 8, 0),
+    OAM_ENTRY(-13, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 564, 8, 0),
+};
+
+const u16 sCaterpillarTackledOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-12, -14, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_16x8, 0, 573, 8, 0),
+    OAM_ENTRY(11, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+const u16 sCaterpillarTackledOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-11, -20, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, 0, 523, 8, 0),
+};
+
+const u16 sCaterpillarTackledOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-7, -21, SPRITE_SIZE_16x16, 0, 518, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, 0, 562, 8, 0),
+};
+
+const u16 sCaterpillarCarriedOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, 0, 594, 8, 0),
+};
+
+const u16 sCaterpillarCarriedOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_16x16, 0, 524, 8, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+};
+
+const u16 sCaterpillarStunnedOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-15, -17, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_32x8, 0, 583, 8, 0),
+    OAM_ENTRY(7, -15, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sCaterpillarStunnedOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_32x8, 0, 615, 8, 0),
+    OAM_ENTRY(-18, -13, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+};
+
+const u16 sCaterpillarStunnedOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-15, -16, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x8, 0, 586, 8, 0),
+    OAM_ENTRY(5, -15, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sCaterpillarStunnedOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 526, 8, 0),
+    OAM_ENTRY(-17, -8, SPRITE_SIZE_32x8, 0, 618, 8, 0),
+    OAM_ENTRY(-1, -16, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sCaterpillarGettingUpOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-17, -13, SPRITE_SIZE_16x16, 0, 592, 8, 0),
+    OAM_ENTRY(-17, -8, SPRITE_SIZE_32x8, 0, 579, 8, 0),
+    OAM_ENTRY(7, -15, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sCaterpillarGettingUpOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-17, -14, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 592, 8, 0),
+    OAM_ENTRY(-17, -8, SPRITE_SIZE_32x8, 0, 611, 8, 0),
+};
+
+const u16 sCaterpillarGettingUpOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_16x16, 0, 528, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_32x8, 0, 598, 8, 0),
+};
+
+const u16 sCaterpillarGettingUpOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-13, -13, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+};
+
+const u8 sCaterpillarRawData_83C770A[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sCaterpillarCrawlingOam[] = {
+    {sCaterpillarCrawlingOam_Frame1, 8},
+    {sCaterpillarCrawlingOam_Frame2, 8},
+    {sCaterpillarCrawlingOam_Frame3, 8},
+    {sCaterpillarCrawlingOam_Frame4, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarFallingOam[] = {
+    {sCaterpillarCrawlingOam_Frame1, 6},
+    {sCaterpillarCrawlingOam_Frame2, 6},
+    {sCaterpillarCrawlingOam_Frame3, 6},
+    {sCaterpillarCrawlingOam_Frame4, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarTurningOam[] = {
+    {sCaterpillarCrawlingOam_Frame1, 7},
+    {sCaterpillarTurningOam_Frame1, 7},
+    {sCaterpillarTurningOam_Frame2, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarTurningAroundOam[] = {
+    {sCaterpillarTurningAroundOam_Frame1, 7},
+    {sCaterpillarTurningAroundOam_Frame2, 7},
+    {sCaterpillarTurningAroundOam_Frame3, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarPushedBackwardOam[] = {
+    {sCaterpillarPushedBackwardOam_Frame1, 2},
+    {sCaterpillarPushedBackwardOam_Frame2, 3},
+    {sCaterpillarPushedBackwardOam_Frame3, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarPushedForwardOam[] = {
+    {sCaterpillarPushedForwardOam_Frame1, 2},
+    {sCaterpillarPushedForwardOam_Frame2, 2},
+    {sCaterpillarPushedForwardOam_Frame3, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarCrushedOam[] = {
+    {sCaterpillarCrushedOam_Frame1, 2},
+    {sCaterpillarCrushedOam_Frame2, 2},
+    {sCaterpillarCrushedOam_Frame3, 2},
+    {sCaterpillarCrushedOam_Frame4, 2},
+    {sCaterpillarCrushedOam_Frame5, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarTackledOam[] = {
+    {sCaterpillarCrushedOam_Frame1, 1},
+    {sCaterpillarTackledOam_Frame1, 2},
+    {sCaterpillarTackledOam_Frame2, 3},
+    {sCaterpillarTackledOam_Frame3, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarStunnedOam[] = {
+    {sCaterpillarStunnedOam_Frame1, 8},
+    {sCaterpillarStunnedOam_Frame2, 8},
+    {sCaterpillarStunnedOam_Frame3, 8},
+    {sCaterpillarStunnedOam_Frame4, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarGettingUpOam[] = {
+    {sCaterpillarStunnedOam_Frame1, 4},
+    {sCaterpillarGettingUpOam_Frame1, 7},
+    {sCaterpillarGettingUpOam_Frame2, 7},
+    {sCaterpillarGettingUpOam_Frame3, 7},
+    {sCaterpillarGettingUpOam_Frame4, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCaterpillarCarriedOam[] = {
+    {sCaterpillarCarriedOam_Frame1, 10},
+    {sCaterpillarCarriedOam_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
 void CaterpillarInit(void)
 {
     gCurrentSprite.warioCollision = 1;
