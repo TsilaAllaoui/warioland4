@@ -607,11 +607,11 @@ func_802EBB8:
 .L_2ed50:
 	.4byte	gUnk_3000A5B
 .L_2ed54:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_2ed58:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_2ed5c:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_2ed60:
 	.4byte	gCurrentSprite
 .L_2ed64:
@@ -1436,7 +1436,7 @@ func_802F218:
 .L_2f370:
 	.4byte	gCurrentSprite
 .L_2f374:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_2f378:
 	.4byte	gSpriteData
 .L_2f37c:
@@ -2371,9 +2371,9 @@ func_802FA6C:
 .L_2fb08:
 	.4byte	sUnk_83B9AB8
 .L_2fb0c:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_2fb10:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 
 
 thumb_func_start func_802FB14
@@ -2403,7 +2403,7 @@ func_802FB14:
 	strb	r0, [r1, #27]
 	b	.L_2fbaa
 .L_2fb44:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_2fb48:
 	.4byte	gCurrentSprite
 .L_2fb4c:
@@ -2437,7 +2437,7 @@ func_802FB14:
 .L_2fb84:
 	.4byte	gCurrentSprite
 .L_2fb88:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_2fb8c:
 	.4byte	sUnk_83B9B40
 .L_2fb90:
@@ -2457,7 +2457,7 @@ func_802FB14:
 	pop	{r0}
 	bx	r0
 .L_2fbb0:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 
 
 thumb_func_start func_802FBB4
@@ -3288,7 +3288,7 @@ func_8030184:
 .L_301a4:
 	.4byte	gCurrentSprite
 .L_301a8:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 
 
 thumb_func_start func_80301AC
@@ -3764,7 +3764,7 @@ func_80304E0:
 	b	.L_30536
 	.align	2, 0
 .L_3050c:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_30510:
 	.4byte	gCurrentSprite
 .L_30514:
@@ -3860,7 +3860,7 @@ func_80304E0:
 .L_305b8:
 	.4byte	gSpriteData
 .L_305bc:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_305c0:
 	.4byte	0xFBFF
 
@@ -5908,7 +5908,7 @@ SpriteCuckooCondor:
 .L_31508:
 	.4byte	gCurrentSprite
 .L_3150c:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_31510:
 	.4byte	gUnk_3000A58
 
@@ -6605,7 +6605,7 @@ SpriteUnknownE6:
 .L_31b84:
 	.4byte	gSpriteData
 .L_31b88:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 
 
 thumb_func_start SpriteUnknownBD

@@ -71,7 +71,7 @@ func_8062B04:
 	strb	r0, [r6, #0]
 	b	.L_62b5e
 .L_62b44:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_62b48:
 	.4byte	gUnk_3000A60
 .L_62b4c:
@@ -79,7 +79,7 @@ func_8062B04:
 .L_62b50:
 	.4byte	sUnk_83F03E0
 .L_62b54:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_62b58:
 	ldr	r0, .L_62b70
 	strb	r1, [r0, #0]
@@ -95,7 +95,7 @@ func_8062B04:
 	mov	r0, #0
 	b	.L_62be4
 .L_62b70:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_62b74:
 	ldr	r2, .L_62bec
 	ldrb	r0, [r2, #0]
@@ -160,7 +160,7 @@ func_8062B04:
 	bx	r1
 	.align	2, 0
 .L_62bec:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_62bf0:
 	.4byte	0x40000D4
 .L_62bf4:
@@ -1285,15 +1285,15 @@ func_8063384:
 .L_63494:
 	.4byte	gUnk_3000A5B
 .L_63498:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_6349c:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_634a0:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_634a4:
 	.4byte	gUnk_3000A61
 .L_634a8:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_634ac:
 	.4byte	gUnk_3000A60
 .L_634b0:
@@ -1470,7 +1470,7 @@ func_8063570:
 .L_635fc:
 	.4byte	gUnk_3000A61
 .L_63600:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_63604:
 	.4byte	gCurrentSprite
 .L_63608:
@@ -1513,7 +1513,7 @@ func_806360C:
 	b	.L_63728
 	.align	2, 0
 .L_6364c:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_63650:
 	.4byte	gSpriteData
 .L_63654:
@@ -2761,7 +2761,7 @@ func_8063EAC:
 .L_63f98:
 	.4byte	gUnk_3000A5A
 .L_63f9c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_63fa0:
 	.4byte	gUnk_3000A60
 .L_63fa4:
@@ -3004,7 +3004,7 @@ func_80640CC:
 .L_64158:
 	.4byte	sUnk_83EF374
 .L_6415c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_64160:
 	.4byte	gUnk_3000A60
 .L_64164:
@@ -3175,9 +3175,9 @@ func_8064168:
 .L_642a0:
 	.4byte	gWarioData
 .L_642a4:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_642a8:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_642ac:
 	.4byte	gUnk_3000A60
 .L_642b0:
@@ -3372,9 +3372,9 @@ func_80643B8:
 .L_64414:
 	.4byte	gCurrentSprite
 .L_64418:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_6441c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_64420:
 	.4byte	gUnk_3000A60
 .L_64424:
@@ -3424,9 +3424,9 @@ func_8064438:
 .L_64474:
 	.4byte	gCurrentSprite
 .L_64478:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_6447c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_64480:
 	.4byte	gUnk_3000A60
 .L_64484:
@@ -3546,7 +3546,7 @@ func_80644EC:
 .L_64558:
 	.4byte	gCurrentSprite
 .L_6455c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_64560:
 	.4byte	gUnk_3000A60
 .L_64564:
@@ -3808,9 +3808,9 @@ func_80645CC:
 .L_64750:
 	.4byte	0xFFFB
 .L_64754:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_64758:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_6475c:
 	.4byte	gUnk_3000A60
 .L_64760:
@@ -3860,7 +3860,7 @@ func_8064778:
 .L_647b0:
 	.4byte	gCurrentSprite
 .L_647b4:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_647b8:
 	.4byte	gUnk_3000A60
 .L_647bc:
@@ -3899,7 +3899,7 @@ func_80647C0:
 .L_647f8:
 	.4byte	gCurrentSprite
 .L_647fc:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_64800:
 	.4byte	gUnk_3000A60
 .L_64804:
@@ -4371,7 +4371,7 @@ func_8064BC0:
 .L_64be4:
 	.4byte	gCurrentSprite
 .L_64be8:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_64bec:
 	.4byte	.L_64bf0
 .L_64bf0:
@@ -4796,7 +4796,7 @@ func_8064BC0:
 .L_64f0c:
 	.4byte	gCurrentSprite
 .L_64f10:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_64f14:
 	add	r0, #1
 	b	.L_65282
@@ -4847,7 +4847,7 @@ func_8064BC0:
 .L_64f6c:
 	.4byte	gWarioData
 .L_64f70:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_64f74:
 	add	r4, r2, #0
 	add	r4, #39	@ 0x27
@@ -4927,7 +4927,7 @@ func_8064BC0:
 .L_65010:
 	.4byte	gWarioData
 .L_65014:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_65018:
 	.4byte	0x1A7
 .L_6501c:
@@ -5177,7 +5177,7 @@ func_8064BC0:
 .L_65290:
 	.4byte	gUnk_30000F4
 .L_65294:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_65298:
 	.4byte	gSubGameMode
 .L_6529c:
@@ -11200,7 +11200,7 @@ SpriteUnknownEC:
 	pop	{r0}
 	bx	r0
 .L_67d8c:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_67d90:
 	.4byte	gWarioData
 .L_67d94:

@@ -12,12 +12,6 @@
 #include "voice_set.h"
 #include "wario.h"
 
-extern u8 gUnk_30000F4;
-extern u8 gUnk_3000A5C;
-extern u8 gUnk_3000A5D;
-extern u8 gUnk_3000A5E;
-extern u8 gUnk_3000A5F;
-
 extern const struct AnimationFrame sUnk_83CBE54[];
 extern const struct AnimationFrame sUnk_83CD334[];
 extern const struct AnimationFrame sUnk_83CD35C[];
@@ -53,78 +47,10 @@ extern const s16 sUnk_83CFACE[];
 extern const void *const sUnk_878F0E4[];
 extern const void *const sUnk_878F0F8[];
 
-extern int SpriteUtilCountSpriteTypeSigned(u8 id) asm("SpriteUtilCountSpriteType");
-extern int SpriteUtilFindSpriteSlotInt(u8 id) asm("SpriteUtilFindSpriteSlot");
-extern void func_8023BFCInt(int y, int x) asm("func_8023BFC");
 void func_801E3A8(u8, u8, u8, u32, u32, u32);
 void func_80747D8(void);
 void func_8070964(u8, u8, u8);
-void func_8026838(void);
-void func_8047EE8(void);
-int func_8047F1C(const u8 *);
-void func_8047FB4(const u8 *);
-void func_8048024(void);
-void func_8048088(void);
-void func_8048104(void);
-void func_8048134(void);
-void func_804824C(void);
-void func_80482D0(void);
-void func_8048348(void);
-void func_80483BC(void);
-void func_8048420(void);
-void func_804849C(void);
-void func_8048528(void);
-void func_80487E0(void);
-void func_8048808(void);
-void func_8048934(void);
-void func_8048980(void);
-void func_80489FC(void);
-void func_8048ACC(void);
-void func_8048B58(void);
-void func_8048CBC(void);
-void func_8048D0C(void);
-void func_8048D38(void);
-void func_8048D78(void);
-void func_8048E14(void);
-void func_8048E40(void);
-void func_8048ECC(void);
-void func_8048EF8(void);
-void func_8048F84(void);
-void func_8048FBC(void);
-void func_8049028(void);
-void func_8049054(void);
-void func_80493B8(void);
-void func_8049458(void);
-void func_8049548(void);
-void func_80495A8(void);
-void func_80495FC(void);
-void func_8049624(void);
-void func_804964C(void);
-void func_80496B8(void);
-void func_80496E0(void);
-void func_8049738(void);
-void func_8049758(void);
-void func_8049774(void);
-void func_8049850(void);
-void func_8049A7C(void);
-void func_8049ADC(void);
-void func_8049B1C(void);
-void func_8049BD0(void);
-void func_8049BEC(void);
-void func_8049C64(void);
-void func_8049D94(void);
-void func_8049E2C(void);
-void func_8049EB0(void);
-void func_8049EFC(void);
-void SpriteUnknownFB(void);
-void SpriteCatbat(void);
-void SpriteUnknownE0(void);
-void SpriteUnknownE1(void);
-void SpriteUnknownE2(void);
-void SpriteUnknownE3(void);
-void SpriteUnknownE4(void);
-
-void func_8047EE8(void)
+void DespawnActiveCatbatProjectile(void)
 {
     register u8 *cursor asm("r2");
     register u8 *end asm("r5");
@@ -142,7 +68,7 @@ void func_8047EE8(void)
         register u16 status asm("r1");
         register int active asm("r0");
 
-        if (((struct PrimarySpriteData *)cursor)->globalID == PSPRITE_E3) {
+        if (((struct PrimarySpriteData *)cursor)->globalID == PSPRITE_CATBAT_PROJECTILE) {
             status = ((struct PrimarySpriteData *)cursor)->status;
             active = one;
             active &= status;
@@ -154,7 +80,7 @@ void func_8047EE8(void)
         cursor += sizeof(struct PrimarySpriteData);
     } while ((s32)cursor <= (s32)end);
 }
-int func_8047F1C(const u8 *table)
+int UpdateCatbatGraphicsAnimation(const u8 *table)
 {
     register const u8 *sequence asm("r2");
     register int wrapped asm("r6");
@@ -219,7 +145,7 @@ int func_8047F1C(const u8 *table)
     (void)dma[2];
     return wrapped;
 }
-void func_8047FB4(const u8 *sequence)
+void UpdateCatbatBackgroundAnimation(const u8 *sequence)
 {
     register const u8 *table asm("r2");
     register u8 *delay asm("r5");
@@ -233,7 +159,7 @@ void func_8047FB4(const u8 *sequence)
     register const u8 *src asm("r0");
 
     table = sequence;
-    delay = &gUnk_3000A5F;
+    delay = &gBgAnimationTimer;
     value = *delay;
     if (value != 0) {
         value--;
@@ -241,7 +167,7 @@ void func_8047FB4(const u8 *sequence)
         return;
     }
 
-    indexPtr = &gUnk_3000A5E;
+    indexPtr = &gBgAnimationFrame;
     value = *indexPtr;
     index = value + 1;
     *indexPtr = index;
@@ -271,7 +197,7 @@ void func_8047FB4(const u8 *sequence)
     dma[2] = 0x80000200;
     (void)dma[2];
 }
-void func_8048024(void)
+void InitCatbatMineSpawner(void)
 {
     register struct PrimarySpriteData *sprite asm("r12");
     register u16 oldStatus asm("r1");
@@ -324,7 +250,7 @@ void func_8048024(void)
     base->pose = sixteen;
     SpriteUtilFindSpriteSlotWork3(81);
 }
-void func_8048088(void)
+void UpdateCatbatMineSpawnerPosition(void)
 {
     register struct PrimarySpriteData *sprite asm("r3");
     register struct PrimarySpriteData *sprites asm("r2");
@@ -367,7 +293,7 @@ void func_8048088(void)
         sprite->yPosition = value;
     }
 }
-void func_8048104(void)
+void UpdateCatbatHitboxFacing(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u16 status asm("r1");
@@ -392,7 +318,7 @@ void func_8048104(void)
     }
     *extent = value;
 }
-void func_8048134(void)
+void InitCatbat(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register int zeroByte asm("r2");
@@ -403,10 +329,10 @@ void func_8048134(void)
     gUnk_3000A59 = 0;
     gUnk_3000A5A = 0;
     gUnk_3000A5B = 0;
-    gUnk_3000A5C = 12;
-    gUnk_3000A5D = 0;
-    gUnk_3000A5E = 0;
-    gUnk_3000A5F = 0;
+    gInitialHealth = 12;
+    gPaletteFlashTimer = 0;
+    gBgAnimationFrame = 0;
+    gBgAnimationTimer = 0;
     gUnk_3000A60 = 0;
 
     sprite = &gCurrentSprite;
@@ -453,9 +379,9 @@ void func_8048134(void)
     sprite->work3 = zeroByte;
     sprite->work0 = zeroByte;
     sprite->work1 = zeroByte;
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     SpriteUtilTurnTowardWario();
-    func_8048104();
+    UpdateCatbatHitboxFacing();
     func_80747D8();
     sprite->work2 = 60;
     func_8070964(131, 8, 4);
@@ -463,7 +389,7 @@ void func_8048134(void)
     func_801E430(251, 0, 0, sprite->yPosition - 216, sprite->xPosition - 16);
     sprite->yPosition += 64;
 }
-void func_804824C(void)
+void UpdateCatbatIntroWaitForShop(void)
 {
     register struct PrimarySpriteData *sprite asm("r3");
     register u8 *indexPtr asm("r12");
@@ -479,7 +405,7 @@ void func_804824C(void)
     register u8 *timer asm("r2");
     register int timerValue asm("r0");
 
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     sprite = &gCurrentSprite;
     indexPtr = &sprite->work3;
     index = *indexPtr;
@@ -527,7 +453,7 @@ void func_804824C(void)
         }
     }
 }
-void func_80482D0(void)
+void UpdateCatbatIntroDelay(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *indexPtr asm("r12");
@@ -545,7 +471,7 @@ void func_80482D0(void)
     register int normalizedTimer asm("r3");
     register int frameZero asm("r0");
 
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     sprite = &gCurrentSprite;
     indexPtr = &sprite->work3;
     index = *indexPtr;
@@ -579,7 +505,7 @@ void func_80482D0(void)
         m4aSongNumStart(SOUND_D4);
     }
 }
-void func_8048348(void)
+void UpdateCatbatIntroRoar(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *indexPtr asm("r12");
@@ -597,7 +523,7 @@ void func_8048348(void)
     int normalizedTimer;
     register int frameZero asm("r0");
 
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     sprite = &gCurrentSprite;
     indexPtr = &sprite->work3;
     index = *indexPtr;
@@ -630,7 +556,7 @@ void func_8048348(void)
         *timer = 60;
     }
 }
-void func_80483BC(void)
+void UpdateCatbatIntroBossTimer(void)
 {
     register struct PrimarySpriteData *sprite asm("r3");
     register u8 *indexPtr asm("r12");
@@ -646,7 +572,7 @@ void func_80483BC(void)
     register u8 *timer asm("r1");
     register int timerValue asm("r0");
 
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     sprite = &gCurrentSprite;
     indexPtr = &sprite->work3;
     index = *indexPtr;
@@ -674,7 +600,7 @@ void func_80483BC(void)
         SpriteUtilStartBossTimer();
     }
 }
-void func_8048420(void)
+void UpdateCatbatIntroWaitForTimer(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register u8 *indexPtr asm("r12");
@@ -688,7 +614,7 @@ void func_8048420(void)
     register int nextIndex asm("r0");
     register u8 *storePtr asm("r1");
 
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     sprite = &gCurrentSprite;
     indexPtr = &sprite->work3;
     index = *indexPtr;
@@ -715,7 +641,7 @@ void func_8048420(void)
         sprite->pose = 16;
     }
 }
-void func_804849C(void)
+void InitCatbatPatrol(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
     register struct PrimarySpriteData *current asm("r2");
@@ -765,9 +691,9 @@ void func_804849C(void)
         work++;
         *work = zeroWork;
     }
-    func_8047F1C(sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
 }
-void func_8048528(void)
+void UpdateCatbatPatrol(void)
 {
     register struct WarioData *wario asm("r8");
     register struct PrimarySpriteData *sprite asm("r4");
@@ -786,7 +712,7 @@ void func_8048528(void)
     oldX = sprite->xPosition;
     oldXLeft = oldX;
 
-    func_8047F1C((const u8 *)sUnk_83CF8FC);
+    UpdateCatbatGraphicsAnimation((const u8 *)sUnk_83CF8FC);
     {
         register u8 *indexPtr asm("r7");
         register u8 *storePtr asm("r12");
@@ -854,7 +780,7 @@ void func_8048528(void)
                 gUnk_3000A59 = 1;
                 one = 1;
                 sprite->disableWarioCollisionTimer = one;
-                slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_FB);
+                slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_CATBAT_MINE_SPAWNER);
                 slot = (u8)slot;
                 if (slot != 0xFF)
                     gSpriteData[slot].disableWarioCollisionTimer = one;
@@ -870,7 +796,7 @@ void func_8048528(void)
                         : "=r"(toggledStatus) : "r"(oldStatus) : "cc");
                     sprite->status = toggledStatus;
                 }
-                func_8048104();
+                UpdateCatbatHitboxFacing();
                 sprite->xPosition -= 32;
                 goto finalCheck;
             }
@@ -894,8 +820,8 @@ void func_8048528(void)
 
                 sprite = &gCurrentSprite;
                 if (sprite->health <= 1 && sprite->work2 == 25) {
-                    func_8047EE8();
-                    func_801E3A8(PSPRITE_E3, 1, 0, sprite->yPosition,
+                    DespawnActiveCatbatProjectile();
+                    func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 1, 0, sprite->yPosition,
                         sprite->xPosition, SPRITE_STATUS_FACING_RIGHT);
                 }
                         goto finalCheck;
@@ -926,7 +852,7 @@ void func_8048528(void)
             gUnk_3000A59 = 1;
             one = 1;
             sprite->disableWarioCollisionTimer = one;
-            slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_FB);
+            slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_CATBAT_MINE_SPAWNER);
             slot = (u8)slot;
             if (slot != 0xFF)
                 gSpriteData[slot].disableWarioCollisionTimer = one;
@@ -942,7 +868,7 @@ void func_8048528(void)
                     : "=r"(toggledStatus) : "r"(oldStatus) : "cc");
                 sprite->status = toggledStatus;
             }
-            func_8048104();
+            UpdateCatbatHitboxFacing();
             sprite->xPosition += 32;
             goto finalCheck;
         }
@@ -974,8 +900,8 @@ void func_8048528(void)
 
             sprite = &gCurrentSprite;
             if (sprite->health <= 1 && sprite->work2 == 25) {
-                func_8047EE8();
-                func_801E3A8(PSPRITE_E3, 1, 0, sprite->yPosition,
+                DespawnActiveCatbatProjectile();
+                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 1, 0, sprite->yPosition,
                     sprite->xPosition, 0);
             }
                 goto finalCheck;
@@ -1016,7 +942,7 @@ finalCheck:
 callFinalCollision:
         collisionX <<= 16;
         collisionX = (u32)collisionX >> 16;
-        func_8023BFCInt(collisionY, collisionX);
+        ((void (*)(int, int))func_8023BFC)(collisionY, collisionX);
         if (gUnk_3000A51 != 17)
             sprite->pose = 17;
     }
@@ -1024,7 +950,7 @@ callFinalCollision:
 end:
     ;
 }
-void func_80487E0(void)
+void InitCatbatLandingAttack(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register int zero asm("r0");
@@ -1043,9 +969,9 @@ void func_80487E0(void)
     }
     m4aSongNumStart(SOUND_AF);
 }
-void func_8048808(void)
+void UpdateCatbatLandingAttack(void)
 {
-    func_8047F1C(sUnk_83CF920);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF920);
     {
         register struct PrimarySpriteData *sprite asm("r3");
         register u8 *indexPtr asm("r12");
@@ -1127,26 +1053,26 @@ void func_8048808(void)
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 60, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 4, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 116, 7);
-            func_801E3A8(PSPRITE_E1, gUnk_3000A58, 0, sprite->yPosition + 128,
+            func_801E3A8(PSPRITE_CATBAT_LANDING_DEBRIS, gUnk_3000A58, 0, sprite->yPosition + 128,
                 sprite->xPosition - 128, facingMask);
         } else {
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 4, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 60, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 116, 7);
-            func_801E3A8(PSPRITE_E1, gUnk_3000A58, 0, sprite->yPosition + 128,
+            func_801E3A8(PSPRITE_CATBAT_LANDING_DEBRIS, gUnk_3000A58, 0, sprite->yPosition + 128,
                 sprite->xPosition + 128, facing);
         }
         gUnk_3000A58++;
     }
 }
-void func_8048934(void)
+void UpdateCatbatLandingRecovery(void)
 {
     register struct PrimarySpriteData *sprite asm("r3");
     register u16 position asm("r2");
     register u16 difference asm("r1");
     register u16 background asm("r0");
 
-    func_8047F1C(sUnk_83CF920);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF920);
     sprite = &gCurrentSprite;
     position = sprite->yPosition;
     difference = position >> 2;
@@ -1172,7 +1098,7 @@ void func_8048934(void)
             sprite->pose = 15;
     }
 }
-void func_8048980(void)
+void InitCatbatDefeat(void)
 {
     register struct PrimarySpriteData *timerSprite asm("r1");
     register int timerValue asm("r0");
@@ -1209,10 +1135,10 @@ void func_8048980(void)
     wario = &gWarioData;
     SpriteSpawnSecondary(wario->yPosition, wario->xPosition, 5);
     SpriteUtilTurnTowardWario();
-    func_8048104();
+    UpdateCatbatHitboxFacing();
     VoiceSetPlay(14);
 }
-void func_80489FC(void)
+void UpdateCatbatDefeat(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register u16 position asm("r2");
@@ -1264,7 +1190,7 @@ void func_80489FC(void)
             sprite->pose = 110;
     }
 }
-void func_8048ACC(void)
+void InitCatbatDamaged(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register int zero asm("r5");
@@ -1286,9 +1212,9 @@ void func_8048ACC(void)
     /* agbcc otherwise copies the already-zero r5 through r0 before this byte store. */
     asm("strb r5, [r4, #22]");
     sprite->animationTimer = zero;
-    if (sprite->health < ((gUnk_3000A5C >> 1) + 1)) {
+    if (sprite->health < ((gInitialHealth >> 1) + 1)) {
         gUnk_3000A60 = 1;
-        slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_FB);
+        slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_CATBAT_MINE_SPAWNER);
         if (slot != 0xFF)
             gSpriteData[slot].status = zero;
         {
@@ -1302,10 +1228,10 @@ void func_8048ACC(void)
         *timer = 64;
     }
     SpriteUtilTurnTowardWario();
-    func_8048104();
+    UpdateCatbatHitboxFacing();
     VoiceSetPlay(14);
 }
-void func_8048B58(void)
+void UpdateCatbatDamaged(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register struct PrimarySpriteData *savedSprite asm("r6");
@@ -1396,7 +1322,7 @@ setPose:
 end:
     ;
 }
-void func_8048CBC(void)
+void InitCatbatProjectileAttack(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
     register struct PrimarySpriteData *current asm("r2");
@@ -1436,13 +1362,13 @@ void func_8048CBC(void)
     }
     m4aSongNumStart(SOUND_B2);
 }
-void func_8048D0C(void)
+void UpdateCatbatProjectileAttackCharge(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r1");
     register int value asm("r0");
 
-    func_8047F1C(sUnk_83CF968);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF968);
     sprite = &gCurrentSprite;
     timer = &sprite->work2;
     value = *timer - 1;
@@ -1451,7 +1377,7 @@ void func_8048D0C(void)
     if (value == 0)
         sprite->pose = 112;
 }
-void func_8048D38(void)
+void InitCatbatProjectileAttackRelease(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
     register const struct AnimationFrame *animation asm("r0");
@@ -1467,9 +1393,9 @@ void func_8048D38(void)
     sprite->animationTimer = 0;
     sprite->work2 = 64;
     SpriteUtilTurnTowardWario();
-    func_8048104();
+    UpdateCatbatHitboxFacing();
 }
-void func_8048D78(void)
+void UpdateCatbatProjectileAttackRelease(void)
 {
     register struct PrimarySpriteData *sprite asm("r5");
     register u8 *timerPtr asm("r3");
@@ -1480,7 +1406,7 @@ void func_8048D78(void)
     register int statusBit asm("r1");
     register int facing asm("r4");
 
-    func_8047F1C(sUnk_83CF968);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF968);
     sprite = &gCurrentSprite;
     timerPtr = &sprite->work2;
     timerValue = *timerPtr;
@@ -1500,16 +1426,16 @@ void func_8048D78(void)
 
         switch (*timerPtr) {
             case 60:
-                func_8047EE8();
-                func_801E3A8(PSPRITE_E3, 0, 0, sprite->yPosition, sprite->xPosition, facing);
+                DespawnActiveCatbatProjectile();
+                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facing);
                 break;
             case 40:
-                func_8047EE8();
-                func_801E3A8(PSPRITE_E3, 3, 0, sprite->yPosition, sprite->xPosition, facing);
+                DespawnActiveCatbatProjectile();
+                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 3, 0, sprite->yPosition, sprite->xPosition, facing);
                 break;
             case 20:
-                func_8047EE8();
-                func_801E3A8(PSPRITE_E3, 4, 0, sprite->yPosition, sprite->xPosition, facing);
+                DespawnActiveCatbatProjectile();
+                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 4, 0, sprite->yPosition, sprite->xPosition, facing);
                 break;
         }
     } else {
@@ -1517,7 +1443,7 @@ void func_8048D78(void)
         gUnk_3000A5A = normalizedTimer;
     }
 }
-void func_8048E14(void)
+void InitCatbatMoveRight(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r3");
@@ -1537,12 +1463,12 @@ void func_8048E14(void)
     }
     m4aSongNumStart(SOUND_B2);
 }
-void func_8048E40(void)
+void UpdateCatbatMoveRight(void)
 {
     struct PrimarySpriteData *sprite;
     u16 position;
 
-    func_8047F1C(sUnk_83CF930);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF930);
     sprite = &gCurrentSprite;
     if (sprite->work2 != 0) {
         sprite->work2--;
@@ -1560,7 +1486,7 @@ void func_8048E40(void)
             sprite->pose = 21;
     }
 }
-void func_8048ECC(void)
+void InitCatbatMoveLeft(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r3");
@@ -1580,12 +1506,12 @@ void func_8048ECC(void)
     }
     m4aSongNumStart(SOUND_B2);
 }
-void func_8048EF8(void)
+void UpdateCatbatMoveLeft(void)
 {
     struct PrimarySpriteData *sprite;
     u16 position;
 
-    func_8047F1C(sUnk_83CF930);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF930);
     sprite = &gCurrentSprite;
     if (sprite->work2 != 0) {
         sprite->work2--;
@@ -1603,7 +1529,7 @@ void func_8048EF8(void)
             sprite->pose = 21;
     }
 }
-void func_8048F84(void)
+void InitCatbatIdleAttack(void)
 {
     struct PrimarySpriteData *sprite;
 
@@ -1617,7 +1543,7 @@ void func_8048F84(void)
     sprite->animationTimer = 0;
     sprite->work2 = 60;
 }
-void func_8048FBC(void)
+void UpdateCatbatIdleAttack(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register u8 *timer asm("r2");
@@ -1629,7 +1555,7 @@ void func_8048FBC(void)
     register int facingTemp asm("r0");
     register int facing asm("r5");
 
-    func_8047F1C(sUnk_83CF930);
+    UpdateCatbatGraphicsAnimation(sUnk_83CF930);
     sprite = &gCurrentSprite;
     timer = &sprite->work2;
     oldTimer = *timer;
@@ -1645,18 +1571,18 @@ void func_8048FBC(void)
             facingTemp &= status;
             facing = ((u32)facingTemp << 16) >> 16;
             if (facing != 0) {
-                func_8047EE8();
-                func_801E3A8(PSPRITE_E3, 0, 0, sprite->yPosition, sprite->xPosition, facingMask);
+                DespawnActiveCatbatProjectile();
+                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facingMask);
             } else {
-                func_8047EE8();
-                func_801E3A8(PSPRITE_E3, 0, 0, sprite->yPosition, sprite->xPosition, facing);
+                DespawnActiveCatbatProjectile();
+                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facing);
             }
         }
     } else {
         sprite->pose = 15;
     }
 }
-void func_8049028(void)
+void InitCatbatDeathExplosion(void)
 {
     register struct PrimarySpriteData *sprite asm("r0");
     register int zero asm("r2");
@@ -1671,7 +1597,7 @@ void func_8049028(void)
     sprite->work2 = 120;
     m4aSongNumStart(SOUND_AD);
 }
-void func_8049054(void)
+void UpdateCatbatDeathExplosion(void)
 {
     register struct PrimarySpriteData *base asm("r1");
     register u8 *timerPtr asm("r2");
@@ -1765,7 +1691,7 @@ void func_8049054(void)
             break;
     }
 }
-void func_80493B8(void)
+void InitCatbatShopItemHit(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *work asm("r3");
@@ -1791,7 +1717,7 @@ void func_80493B8(void)
     /* agbcc otherwise copies the existing r1 zero before this byte store. */
     asm("strb r1, [r2, #22]");
     sprite->animationTimer = zero;
-    gUnk_3000A5D = 32;
+    gPaletteFlashTimer = 32;
     sprite->pose = 123;
     {
         register int health asm("r0");
@@ -1805,12 +1731,12 @@ void func_80493B8(void)
     }
     VoiceSetPlay(14);
 }
-void func_8049458(void)
+void UpdateCatbatShopItemHit(void)
 {
     register u8 *globalTimer asm("r5");
     register int timerValue asm("r0");
 
-    globalTimer = &gUnk_3000A5D;
+    globalTimer = &gPaletteFlashTimer;
     timerValue = *globalTimer;
     if (timerValue != 0) {
         register int timer asm("r1");
@@ -1873,7 +1799,7 @@ void func_8049458(void)
                 timerPtr = &sprite->work2;
                 zeroByte = 0;
                 *timerPtr = delay;
-                gUnk_3000A5C = sprite->health;
+                gInitialHealth = sprite->health;
                 sprite->pose = 2;
                 sprite->pOamData = sUnk_83CE468;
                 /* agbcc otherwise copies the existing r2 zero before this byte store. */
@@ -1889,7 +1815,7 @@ void func_8049458(void)
                     *work = zeroWork;
                 }
             }
-            func_8047F1C(sUnk_83CF8FC);
+            UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
         } else {
             globalTimer[0] = 32;
             if (healthCopy != 0) {
@@ -1901,7 +1827,7 @@ void func_8049458(void)
         }
     }
 }
-void func_8049548(void)
+void InitCatbatGroundWave(void)
 {
     register struct PrimarySpriteData *sprite asm("r12");
     register u16 oldStatus asm("r1");
@@ -1959,7 +1885,7 @@ void func_8049548(void)
     base->animationTimer = zeroHalf;
     base->pose = 1;
 }
-void func_80495A8(void)
+void UpdateCatbatGroundWave(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register int one asm("r5");
@@ -1980,7 +1906,7 @@ void func_80495A8(void)
         }
     }
 }
-void func_80495FC(void)
+void UpdateCatbatGroundWaveTurn(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
     register int zero asm("r0");
@@ -1997,7 +1923,7 @@ void func_80495FC(void)
     *timer = 8;
     sprite->warioCollision = 83;
 }
-void func_8049624(void)
+void InitCatbatGroundWaveReturn(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
     register int zero asm("r0");
@@ -2014,7 +1940,7 @@ void func_8049624(void)
     *timer = 1;
     sprite->warioCollision = 83;
 }
-void func_804964C(void)
+void UpdateCatbatGroundWaveReturn(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register int position asm("r0");
@@ -2048,7 +1974,7 @@ void func_804964C(void)
     }
     sprite->xPosition = position;
 }
-void func_80496B8(void)
+void InitCatbatGroundWaveDisappear(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
     register int zero asm("r0");
@@ -2065,7 +1991,7 @@ void func_80496B8(void)
     *timer = 9;
     sprite->warioCollision = 84;
 }
-void func_80496E0(void)
+void UpdateCatbatGroundWaveDisappear(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r12");
@@ -2104,7 +2030,7 @@ void func_80496E0(void)
         break;
     }
 }
-void func_8049738(void)
+void InitCatbatGroundWaveDelay(void)
 {
     register struct PrimarySpriteData *sprite asm("r0");
     register int zero asm("r1");
@@ -2118,7 +2044,7 @@ void func_8049738(void)
     sprite->pose = 40;
     sprite->work0 = 30;
 }
-void func_8049758(void)
+void UpdateCatbatGroundWaveDelay(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r1");
@@ -2132,7 +2058,7 @@ void func_8049758(void)
     if (value == 0)
         sprite->pose = 17;
 }
-void func_8049774(void)
+void InitCatbatLandingDebris(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register u16 oldStatus asm("r1");
@@ -2234,10 +2160,10 @@ void func_8049774(void)
         }
         /* End the initializer zero lifetime before preparing call arguments. */
         asm("" ::: "r2");
-        SpriteSpawnAsChild(PSPRITE_E2, sprite->roomSlot, 0,
+        SpriteSpawnAsChild(PSPRITE_CATBAT_DEBRIS_PARTICLE, sprite->roomSlot, 0,
             sprite->yPosition, sprite->xPosition);
 
-        slot = SpriteUtilFindSpriteSlotInt(PSPRITE_CATBAT);
+        slot = SpriteUtilFindSpriteSlot(PSPRITE_CATBAT);
         {
             register struct PrimarySpriteData *sprites asm("r2");
             register int offset asm("r0");
@@ -2276,7 +2202,7 @@ setCatbatHealthBit:
     /* Preserve r7 across both calls, matching the target prologue. */
     asm("" : : "l"(preservedZero));
 }
-void func_8049850(void)
+void UpdateCatbatLandingDebris(void)
 {
     register struct PrimarySpriteData *initialSprite asm("r1");
     register u8 *timerPtr asm("r2");
@@ -2383,7 +2309,7 @@ void func_8049850(void)
             collisionX <<= 16;
             asm("" : "+r"(collisionX));
             collisionX >>= 16;
-            func_8023BFCInt(collisionY, collisionX);
+            ((void (*)(int, int))func_8023BFC)(collisionY, collisionX);
         }
 
         if (gUnk_3000A51 == 17) {
@@ -2451,7 +2377,7 @@ void func_8049850(void)
         }
     }
 }
-void func_8049A7C(void)
+void InitCatbatDebrisParticle(void)
 {
     register struct PrimarySpriteData *sprite asm("r12");
     register u16 oldStatus asm("r1");
@@ -2506,7 +2432,7 @@ void func_8049A7C(void)
     base->pose = 16;
     base->drawPriority = 1;
 }
-void func_8049ADC(void)
+void UpdateCatbatDebrisParticle(void)
 {
     register int slot asm("r2");
     register struct PrimarySpriteData *base asm("r1");
@@ -2517,7 +2443,7 @@ void func_8049ADC(void)
     register int exists asm("r0");
     register int value asm("r0");
 
-    slot = SpriteUtilFindParentSlotOrU8Max(PSPRITE_E1);
+    slot = SpriteUtilFindParentSlotOrU8Max(PSPRITE_CATBAT_LANDING_DEBRIS);
     if (slot == 0xFF)
         goto clear;
 
@@ -2544,7 +2470,7 @@ copy_position:
     value = parent->xPosition;
     sprite->xPosition = value;
 }
-void func_8049B1C(void)
+void InitCatbatProjectile(void)
 {
     register struct PrimarySpriteData *sprite asm("r4");
     register u16 oldStatus asm("r1");
@@ -2602,7 +2528,7 @@ void func_8049B1C(void)
     sprite->work0 = 54;
     sprite->drawPriority = 1;
 
-    if (SpriteUtilCountSpriteTypeSigned(PSPRITE_E4) <= 5) {
+    if ((s32)SpriteUtilCountSpriteType(PSPRITE_CATBAT_ATTACK_EFFECT) <= 5) {
         register u16 spriteStatus asm("r1");
         register int facingMask asm("r5");
         register int facingTemp asm("r0");
@@ -2616,15 +2542,15 @@ void func_8049B1C(void)
         facingTemp <<= 16;
         facing = (u32)facingTemp >> 16;
         if (facing != 0) {
-            func_801E3A8(PSPRITE_E4, sprite->roomSlot, 0,
+            func_801E3A8(PSPRITE_CATBAT_ATTACK_EFFECT, sprite->roomSlot, 0,
                 sprite->yPosition, sprite->xPosition, facingMask);
         } else {
-            func_801E3A8(PSPRITE_E4, sprite->roomSlot, 0,
+            func_801E3A8(PSPRITE_CATBAT_ATTACK_EFFECT, sprite->roomSlot, 0,
                 sprite->yPosition, sprite->xPosition, facing);
         }
     }
 }
-void func_8049BD0(void)
+void UpdateCatbatProjectile(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r1");
@@ -2638,7 +2564,7 @@ void func_8049BD0(void)
     if (value == 0)
         sprite->status = value;
 }
-void func_8049BEC(void)
+void InitCatbatAttackEffect(void)
 {
     register struct PrimarySpriteData *sprite asm("r12");
     register struct PrimarySpriteData *base asm("r4");
@@ -2688,15 +2614,11 @@ void func_8049BEC(void)
     if (gUnk_3000A60 != 0)
         base->palette = 2;
 }
-void func_8049C64(void)
+void UpdateCatbatAttackEffect(void)
 {
     register struct PrimarySpriteData *base asm("r0");
     register int roomSlot asm("r2");
     register struct PrimarySpriteData *sprite asm("r4");
-    const s16 *table;
-    u8 index;
-    s16 velocity;
-
     if (gTimerState == 11) {
         gCurrentSprite.pose = 108;
         gCurrentSprite.disableWarioCollisionTimer = 1;
@@ -2795,7 +2717,7 @@ void func_8049C64(void)
         }
     }
 }
-void func_8049D94(void)
+void UpdateCatbatAttackEffectDefault(void)
 {
     register struct PrimarySpriteData *sprite asm("r5");
     register const s16 *table asm("r4");
@@ -2830,7 +2752,7 @@ void func_8049D94(void)
     sprite->affinePC = FixedMul(-sine, FixedInverse(scale));
     sprite->affinePD = FixedMul(cosine, FixedInverse(scale));
 }
-void func_8049E2C(void)
+void UpdateCatbatAttackEffectHit(void)
 {
     struct PrimarySpriteData *sprite;
     register int scale asm("r5");
@@ -2860,7 +2782,7 @@ void func_8049E2C(void)
     sprite->affinePC = FixedMul(-sine, FixedInverse(scale));
     sprite->affinePD = FixedMul(cosine, FixedInverse(scale));
 }
-void func_8049EB0(void)
+void InitCatbatAttackEffectDespawn(void)
 {
     register int value asm("r3");
     register struct PrimarySpriteData *sprite asm("r1");
@@ -2884,7 +2806,7 @@ void func_8049EB0(void)
         sprite->palette = zeroPalette;
     }
 }
-void func_8049EFC(void)
+void UpdateCatbatAttackEffectDespawn(void)
 {
     register struct PrimarySpriteData *sprite asm("r2");
     register u8 *timer asm("r1");
@@ -2899,17 +2821,17 @@ void func_8049EFC(void)
     if (value == 0)
         sprite->status = value;
 }
-void SpriteUnknownFB(void)
+void SpriteCatbatMineSpawner(void)
 {
     u8 pose;
 
     pose = gCurrentSprite.pose;
     switch (pose) {
     case 0:
-        func_8048024();
+        InitCatbatMineSpawner();
         /* Fall through. */
     case 16:
-        func_8048088();
+        UpdateCatbatMineSpawnerPosition();
         break;
     }
 }
@@ -2932,39 +2854,39 @@ void SpriteCatbat(void)
     }
 
     switch (gCurrentSprite.pose) {
-        case 0: func_8048134(); break;
-        case 1: func_804824C(); break;
-        case 2: func_80482D0(); break;
-        case 3: func_8048348(); break;
-        case 4: func_80483BC(); break;
-        case 5: func_8048420(); break;
-        case 15: func_804849C(); break;
-        case 16: func_8048528(); break;
-        case 17: func_80487E0();
-        case 18: func_8048808(); break;
-        case 20: func_8048934(); break;
-        case 21: func_8048F84();
-        case 22: func_8048FBC(); break;
-        case 31: func_8048E14();
-        case 32: func_8048E40(); break;
-        case 33: func_8048ECC();
-        case 34: func_8048EF8(); break;
-        case 49: func_8048980();
-        case 50: func_80489FC(); break;
-        case 108: func_8048ACC();
-        case 109: func_8048B58(); break;
-        case 120: func_8049028();
-        case 121: func_8049054(); break;
-        case 110: func_8048CBC();
-        case 111: func_8048D0C(); break;
-        case 112: func_8048D38();
-        case 113: func_8048D78(); break;
-        case 122: func_80493B8();
-        case 123: func_8049458(); break;
+        case 0: InitCatbat(); break;
+        case 1: UpdateCatbatIntroWaitForShop(); break;
+        case 2: UpdateCatbatIntroDelay(); break;
+        case 3: UpdateCatbatIntroRoar(); break;
+        case 4: UpdateCatbatIntroBossTimer(); break;
+        case 5: UpdateCatbatIntroWaitForTimer(); break;
+        case 15: InitCatbatPatrol(); break;
+        case 16: UpdateCatbatPatrol(); break;
+        case 17: InitCatbatLandingAttack();
+        case 18: UpdateCatbatLandingAttack(); break;
+        case 20: UpdateCatbatLandingRecovery(); break;
+        case 21: InitCatbatIdleAttack();
+        case 22: UpdateCatbatIdleAttack(); break;
+        case 31: InitCatbatMoveRight();
+        case 32: UpdateCatbatMoveRight(); break;
+        case 33: InitCatbatMoveLeft();
+        case 34: UpdateCatbatMoveLeft(); break;
+        case 49: InitCatbatDefeat();
+        case 50: UpdateCatbatDefeat(); break;
+        case 108: InitCatbatDamaged();
+        case 109: UpdateCatbatDamaged(); break;
+        case 120: InitCatbatDeathExplosion();
+        case 121: UpdateCatbatDeathExplosion(); break;
+        case 110: InitCatbatProjectileAttack();
+        case 111: UpdateCatbatProjectileAttackCharge(); break;
+        case 112: InitCatbatProjectileAttackRelease();
+        case 113: UpdateCatbatProjectileAttackRelease(); break;
+        case 122: InitCatbatShopItemHit();
+        case 123: UpdateCatbatShopItemHit(); break;
     }
-    func_8047FB4(sUnk_83CF970);
+    UpdateCatbatBackgroundAnimation(sUnk_83CF970);
 }
-void SpriteUnknownE0(void)
+void SpriteCatbatGroundWave(void)
 {
     if (gTimerState == 11) {
         SpriteUtilDie();
@@ -2972,60 +2894,60 @@ void SpriteUnknownE0(void)
     }
 
     switch (gCurrentSprite.pose) {
-        case 0: func_8049548(); break;
-        case 1: func_80495A8(); break;
-        case 15: func_8049624();
-        case 16: func_804964C(); break;
-        case 17: func_80496B8();
+        case 0: InitCatbatGroundWave(); break;
+        case 1: UpdateCatbatGroundWave(); break;
+        case 15: InitCatbatGroundWaveReturn();
+        case 16: UpdateCatbatGroundWaveReturn(); break;
+        case 17: InitCatbatGroundWaveDisappear();
         case 18:
-        case 20: func_80496E0(); break;
+        case 20: UpdateCatbatGroundWaveDisappear(); break;
         case 35:
-        case 37: func_80495FC(); break;
+        case 37: UpdateCatbatGroundWaveTurn(); break;
         case 39:
-        case 41: func_8049738();
-        case 40: func_8049758(); break;
+        case 41: InitCatbatGroundWaveDelay();
+        case 40: UpdateCatbatGroundWaveDelay(); break;
         default: SpriteUtilDie(); break;
     }
 }
-void SpriteUnknownE1(void)
+void SpriteCatbatLandingDebris(void)
 {
     if (gCurrentSprite.pose == 0)
-        func_8049774();
-    func_8049850();
+        InitCatbatLandingDebris();
+    UpdateCatbatLandingDebris();
     func_8026838();
 }
-void SpriteUnknownE2(void)
+void SpriteCatbatDebrisParticle(void)
 {
     gCurrentSprite.disableWarioCollisionTimer = 1;
     if (gCurrentSprite.pose == 0)
-        func_8049A7C();
-    func_8049ADC();
+        InitCatbatDebrisParticle();
+    UpdateCatbatDebrisParticle();
 }
-void SpriteUnknownE3(void)
+void SpriteCatbatProjectile(void)
 {
     gCurrentSprite.disableWarioCollisionTimer = 1;
     if (gCurrentSprite.pose == 0)
-        func_8049B1C();
-    func_8049BD0();
+        InitCatbatProjectile();
+    UpdateCatbatProjectile();
 }
-void SpriteUnknownE4(void)
+void SpriteCatbatAttackEffect(void)
 {
     switch (gCurrentSprite.pose) {
         case 0:
-            func_8049BEC();
+            InitCatbatAttackEffect();
         case 16:
-            func_8049C64();
+            UpdateCatbatAttackEffect();
             break;
         case 49:
-            func_8049EB0();
+            InitCatbatAttackEffectDespawn();
         case 50:
-            func_8049EFC();
+            UpdateCatbatAttackEffectDespawn();
             break;
         case 109:
-            func_8049E2C();
+            UpdateCatbatAttackEffectHit();
             break;
         default:
-            func_8049D94();
+            UpdateCatbatAttackEffectDefault();
             break;
     }
 }

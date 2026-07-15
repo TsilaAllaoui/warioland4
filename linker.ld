@@ -91,10 +91,10 @@ SECTIONS {
         . = 0x0a59; gUnk_3000A59 = .;
         . = 0x0a5a; gUnk_3000A5A = .;
         . = 0x0a5b; gUnk_3000A5B = .;
-        . = 0x0a5c; gUnk_3000A5C = .;
-        . = 0x0a5d; gUnk_3000A5D = .;
-        . = 0x0a5e; gUnk_3000A5E = .;
-        . = 0x0a5f; gUnk_3000A5F = .;
+        . = 0x0a5c; gInitialHealth = .;
+        . = 0x0a5d; gPaletteFlashTimer = .;
+        . = 0x0a5e; gBgAnimationFrame = .;
+        . = 0x0a5f; gBgAnimationTimer = .;
         . = 0x0a60; gUnk_3000A60 = .;
 
         . = 0x0a61; gUnk_3000A61 = .;

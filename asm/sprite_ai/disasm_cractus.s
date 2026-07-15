@@ -677,7 +677,7 @@ func_805B13C:
 	strb	r1, [r0, #0]
 	b	.L_5b1d4
 .L_5b150:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5b154:
 	.4byte	gCurrentSprite
 .L_5b158:
@@ -1067,13 +1067,13 @@ func_805B24C:
 .L_5b454:
 	.4byte	gUnk_3000A5B
 .L_5b458:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5b45c:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_5b460:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_5b464:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5b468:
 	.4byte	gUnk_3000A60
 .L_5b46c:
@@ -3680,7 +3680,7 @@ func_805C758:
 .L_5c80c:
 	.4byte	sUnk_83DFDA4
 .L_5c810:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5c814:
 	.4byte	gWarioData
 .L_5c818:
@@ -3767,7 +3767,7 @@ func_805C888:
 .L_5c8b4:
 	.4byte	sUnk_83DFDA4
 .L_5c8b8:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5c8bc:
 	cmp	r0, #5
 	bhi	.L_5c8d0
@@ -3818,13 +3818,13 @@ func_805C888:
 	bx	r0
 	.align	2, 0
 .L_5c918:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_5c91c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5c920:
 	.4byte	gUnk_3000A60
 .L_5c924:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5c928:
 	.4byte	gUnk_3000A5B
 .L_5c92c:
@@ -4356,7 +4356,7 @@ func_805CCDC:
 .L_5cd34:
 	.4byte	sUnk_83DFDA4
 .L_5cd38:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5cd3c:
 	cmp	r0, #239	@ 0xef
 	bls	.L_5cd44
@@ -4458,7 +4458,7 @@ func_805CD4C:
 .L_5cdf0:
 	.4byte	sUnk_83DF754
 .L_5cdf4:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 
 
 thumb_func_start func_805CDF8
@@ -4493,7 +4493,7 @@ func_805CDF8:
 .L_5ce30:
 	.4byte	sUnk_83DFDA4
 .L_5ce34:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_5ce38:
 	.4byte	gCurrentSprite
 .L_5ce3c:
@@ -4547,9 +4547,9 @@ func_805CDF8:
 .L_5ce9c:
 	.4byte	sUnk_83DFD28
 .L_5cea0:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_5cea4:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5cea8:
 	.4byte	gUnk_3000A60
 .L_5ceac:
@@ -4692,7 +4692,7 @@ func_805CF80:
 	b	.L_5d008
 	.align	2, 0
 .L_5cfa4:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5cfa8:
 	.4byte	gCurrentSprite
 .L_5cfac:
@@ -5498,9 +5498,9 @@ func_805D38C:
 	bl	m4aSongNumStart
 	b	.L_5d5a8
 .L_5d56c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5d570:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_5d574:
 	sub	r0, r4, r5
 	lsl	r0, r0, #16
@@ -5537,9 +5537,9 @@ func_805D38C:
 	bx	r0
 	.align	2, 0
 .L_5d5b4:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5d5b8:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 
 
 thumb_func_start func_805D5BC
@@ -5578,9 +5578,9 @@ func_805D5BC:
 .L_5d5fc:
 	.4byte	gCurrentSprite
 .L_5d600:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5d604:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_5d608:
 	mov	r0, #13
 	strb	r0, [r4, #30]
@@ -5611,7 +5611,7 @@ func_805D5BC:
 	bx	r0
 	.align	2, 0
 .L_5d63c:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 
 
 thumb_func_start func_805D640
@@ -5737,9 +5737,9 @@ func_805D6E4:
 .L_5d724:
 	.4byte	gCurrentSprite
 .L_5d728:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_5d72c:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_5d730:
 	mov	r0, #13
 	strb	r0, [r4, #30]
@@ -5770,7 +5770,7 @@ func_805D6E4:
 	bx	r0
 	.align	2, 0
 .L_5d764:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 
 
 thumb_func_start func_805D768
@@ -5932,7 +5932,7 @@ func_805D878:
 	b	.L_5d8bc
 	.align	2, 0
 .L_5d890:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5d894:
 	.4byte	gCurrentSprite
 .L_5d898:
@@ -6926,7 +6926,7 @@ func_805E0B8:
 	b	.L_5e12e
 	.align	2, 0
 .L_5e0dc:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5e0e0:
 	.4byte	gCurrentSprite
 .L_5e0e4:
@@ -7067,7 +7067,7 @@ SpriteUnknownDB:
 	b	.L_5e270
 	.align	2, 0
 .L_5e1d8:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_5e1dc:
 	.4byte	gCurrentSprite
 .L_5e1e0:

@@ -3452,7 +3452,7 @@ func_805037C:
 	bx	lr
 	.align	2, 0
 .L_50398:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_5039c:
 	.4byte	gCurrentSprite
 .L_503a0:
@@ -3479,7 +3479,7 @@ func_80503A4:
 .L_503c2:
 	bx	lr
 .L_503c4:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_503c8:
 	.4byte	gCurrentSprite
 .L_503cc:

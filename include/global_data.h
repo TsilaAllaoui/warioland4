@@ -194,4 +194,10 @@ extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
 
+extern u8 gUnk_30000F4;
+extern u8 gInitialHealth;
+extern u8 gPaletteFlashTimer;
+extern u8 gBgAnimationFrame;
+extern u8 gBgAnimationTimer;
+
 #endif  // GLOBAL_DATA_H
