@@ -8,30 +8,14 @@
 #include "types.h"
 #include "wario.h"
 
-const u16 sRockOam_Frame1[] = {
-    2,
-    OAM_ENTRY(-10, -16, SPRITE_SIZE_16x16, 0, 512, 8, 0),
-    OAM_ENTRY(6, -16, SPRITE_SIZE_8x16, 0, 514, 8, 0),
-};
+extern const u16 sRockOam_Frame1[];
 
-const u16 sRockOam_UnusedFrame1[] = {
-    1,
-    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 515, 8, 0),
-};
-const u16 sRockOam_UnusedFrame2[] = {
-    1,
-    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 547, 8, 0),
-};
-const u16 sRockOam_UnusedFrame3[] = {
-    1,
-    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 516, 8, 0),
-};
-const u16 sRockOam_UnusedFrame4[] = {
-    1,
-    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 548, 8, 0),
-};
+extern const u16 sRockOam_UnusedFrame1[];
+extern const u16 sRockOam_UnusedFrame2[];
+extern const u16 sRockOam_UnusedFrame3[];
+extern const u16 sRockOam_UnusedFrame4[];
 
-const struct AnimationFrame sRockOamData[] = {{sRockOam_Frame1, 0xC8}, ANIMATION_TERMINATOR};
+extern const struct AnimationFrame sRockOamData[];
 
 void RockInit(void)
 {
