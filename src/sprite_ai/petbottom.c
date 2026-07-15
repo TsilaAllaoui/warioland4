@@ -4,6 +4,958 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sPetbottomIdleOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-7, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-5, -14, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-23, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame3[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame5[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-7, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame6[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame7[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+    OAM_ENTRY(-5, -14, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame8[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-23, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame9[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-7, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(10, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame10[] = {
+    7,
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame11[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomIdleOam_Frame12[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomFallingOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-23, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomFallingOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomFallingOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomFallingOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-23, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomFallingOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomFallingOam_Frame6[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomTurningOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-7, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(-5, -14, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(5, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomTurningOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-19, -16, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+    OAM_ENTRY(-17, -16, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 530, 8, 0),
+    OAM_ENTRY(3, -20, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(2, -8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomTurningOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-11, -16, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-9, -20, SPRITE_SIZE_16x16, 0, 528, 8, 0),
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomTurningOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomTurningAroundOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-11, -14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-9, -19, SPRITE_SIZE_16x16, 0, 528, 8, 0),
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+};
+
+const u16 sPetbottomTurningAroundOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-19, -15, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+    OAM_ENTRY(-17, -15, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+    OAM_ENTRY(-13, -19, SPRITE_SIZE_16x16, 0, 530, 8, 0),
+    OAM_ENTRY(3, -19, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+};
+
+const u16 sPetbottomTurningAroundOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-19, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-4, -14, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -14, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-4, -10, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(5, -10, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 533, 8, 0),
+    OAM_ENTRY(-17, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-14, -16, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 520, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-4, -22, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(5, -22, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 533, 8, 0),
+    OAM_ENTRY(-15, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-14, -16, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 520, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-15, -15, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -21, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -21, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -11, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -10, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame6[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame7[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame8[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame9[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame10[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+};
+
+const u16 sPetbottomGettingUpOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-5, -12, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-20, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomGettingUpOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-20, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomGettingUpOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+};
+
+const u16 sPetbottomGettingUpOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-22, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame2[] = {
+    6,
+    OAM_ENTRY(-15, -14, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(1, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-11, -10, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame4[] = {
+    6,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(0, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame6[] = {
+    6,
+    OAM_ENTRY(-15, -14, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(1, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-3, -9, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-11, -10, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame7[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame8[] = {
+    6,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(0, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(8, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame9[] = {
+    7,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame10[] = {
+    6,
+    OAM_ENTRY(-15, -14, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(1, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-3, -9, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-11, -10, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame11[] = {
+    7,
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u16 sPetbottomStunnedOam_Frame12[] = {
+    6,
+    OAM_ENTRY(-15, -13, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(0, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+};
+
+const u8 sPetbottomRawData_83E3406[] = {
+    0x07, 0x00, 0xED, 0x40, 0xF1, 0x81, 0x00, 0x82, 0xF9, 0x00, 0xFC, 0x01, 0x3E, 0x82, 0xF9, 0x00,
+    0x05, 0x00, 0x3E, 0x82, 0xF2, 0x40, 0xF2, 0x41, 0x08, 0x82, 0xF9, 0x00, 0xFA, 0x01, 0x1E, 0x82,
+    0xF9, 0x00, 0x03, 0x00, 0x1E, 0x82, 0xF1, 0x40, 0xEC, 0x01, 0x2C, 0x82,
+};
+
+const u16 sPetbottomAlternatePushedOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-3, -13, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-20, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomAlternatePushedOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-3, -13, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-20, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomAlternatePushedOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-20, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomPushedOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+};
+
+const u16 sPetbottomPushedOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+};
+
+const u16 sPetbottomPushedOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+};
+
+const u16 sPetbottomPushedOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -15, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+};
+
+const u16 sPetbottomCrushedOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 537, 8, 0),
+    OAM_ENTRY(-10, -4, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(10, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-10, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(12, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-24, -12, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomCrushedOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-16, -13, SPRITE_SIZE_32x8, 0, 537, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_32x8, 0, 569, 8, 0),
+    OAM_ENTRY(-11, -2, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(13, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-11, -16, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(13, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 543, 8, 0),
+    OAM_ENTRY(-26, -10, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomTackledOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -4, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(3, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-7, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+};
+
+const u16 sPetbottomTackledOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-5, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(6, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-22, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(8, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(-9, -6, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+const u16 sPetbottomTackledOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -4, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-2, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(9, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+};
+
+const u16 sPetbottomTackledOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-5, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(6, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-2, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    OAM_ENTRY(8, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u16 sPetbottomTackledOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(5, -4, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-22, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-7, -24, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 575, 8, 0),
+    OAM_ENTRY(-5, -4, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+};
+
+const u16 sPetbottomTackledOam_Frame6[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(2, -4, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    OAM_ENTRY(-5, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+    OAM_ENTRY(7, -24, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 574, 8, 0),
+};
+
+const u16 sPetbottomRecoveringOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomRecoveringOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-21, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomRecoveringOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomRecoveringOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-3, -13, SPRITE_SIZE_16x8, 0, 524, 8, 0),
+    OAM_ENTRY(-21, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomRecoveringOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+};
+
+const u16 sPetbottomRecoveringOam_Frame6[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-21, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const u16 sPetbottomAlternateStunnedOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_16x8, 0, 552, 8, 0),
+};
+
+const u16 sPetbottomTurningAroundOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, 0, 554, 8, 0),
+};
+
+const u16 sPetbottomTurningAroundOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-15, -19, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -15, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+};
+
+const u16 sPetbottomGettingUpOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(5, -7, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-21, -14, SPRITE_SIZE_16x8, 0, 556, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+};
+
+const struct AnimationFrame sPetbottomIdleOam[] = {
+    {sPetbottomIdleOam_Frame1, 10},
+    {sPetbottomIdleOam_Frame2, 10},
+    {sPetbottomIdleOam_Frame3, 10},
+    {sPetbottomIdleOam_Frame4, 10},
+    {sPetbottomIdleOam_Frame5, 10},
+    {sPetbottomIdleOam_Frame6, 10},
+    {sPetbottomIdleOam_Frame7, 10},
+    {sPetbottomIdleOam_Frame8, 10},
+    {sPetbottomIdleOam_Frame9, 10},
+    {sPetbottomIdleOam_Frame10, 10},
+    {sPetbottomIdleOam_Frame11, 10},
+    {sPetbottomIdleOam_Frame12, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomFallingOam[] = {
+    {sPetbottomIdleOam_Frame1, 5},
+    {sPetbottomFallingOam_Frame1, 5},
+    {sPetbottomIdleOam_Frame3, 5},
+    {sPetbottomFallingOam_Frame2, 5},
+    {sPetbottomIdleOam_Frame5, 5},
+    {sPetbottomFallingOam_Frame3, 5},
+    {sPetbottomIdleOam_Frame7, 5},
+    {sPetbottomFallingOam_Frame4, 5},
+    {sPetbottomIdleOam_Frame9, 5},
+    {sPetbottomFallingOam_Frame5, 5},
+    {sPetbottomIdleOam_Frame11, 5},
+    {sPetbottomFallingOam_Frame6, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomTurningOam[] = {
+    {sPetbottomTurningOam_Frame1, 4},
+    {sPetbottomTurningOam_Frame2, 4},
+    {sPetbottomTurningOam_Frame3, 4},
+    {sPetbottomTurningOam_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomTurningAroundOam[] = {
+    {sPetbottomTurningAroundOam_Frame1, 4},
+    {sPetbottomTurningAroundOam_Frame2, 4},
+    {sPetbottomTurningAroundOam_Frame3, 4},
+    {sPetbottomTurningAroundOam_Frame4, 4},
+    {sPetbottomTurningAroundOam_Frame5, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomAlternateStunnedOam[] = {
+    {sPetbottomAlternateStunnedOam_Frame1, 2},
+    {sPetbottomAlternateStunnedOam_Frame2, 3},
+    {sPetbottomAlternateStunnedOam_Frame3, 3},
+    {sPetbottomAlternateStunnedOam_Frame4, 3},
+    {sPetbottomAlternateStunnedOam_Frame5, 3},
+    {sPetbottomAlternateStunnedOam_Frame6, 3},
+    {sPetbottomAlternateStunnedOam_Frame7, 3},
+    {sPetbottomAlternateStunnedOam_Frame8, 3},
+    {sPetbottomAlternateStunnedOam_Frame9, 3},
+    {sPetbottomAlternateStunnedOam_Frame10, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomGettingUpOam[] = {
+    {sPetbottomAlternateStunnedOam_Frame6, 3},
+    {sPetbottomAlternateStunnedOam_Frame5, 3},
+    {sPetbottomAlternateStunnedOam_Frame4, 3},
+    {sPetbottomAlternateStunnedOam_Frame3, 3},
+    {sPetbottomIdleOam_Frame12, 3},
+    {sPetbottomGettingUpOam_Frame1, 3},
+    {sPetbottomGettingUpOam_Frame2, 3},
+    {sPetbottomGettingUpOam_Frame3, 3},
+    {sPetbottomGettingUpOam_Frame4, 3},
+    {sPetbottomGettingUpOam_Frame3, 3},
+    {sPetbottomGettingUpOam_Frame5, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomStunnedOam[] = {
+    {sPetbottomStunnedOam_Frame1, 7},
+    {sPetbottomStunnedOam_Frame2, 7},
+    {sPetbottomStunnedOam_Frame3, 7},
+    {sPetbottomStunnedOam_Frame4, 7},
+    {sPetbottomStunnedOam_Frame5, 7},
+    {sPetbottomStunnedOam_Frame6, 7},
+    {sPetbottomStunnedOam_Frame7, 7},
+    {sPetbottomStunnedOam_Frame8, 7},
+    {sPetbottomStunnedOam_Frame9, 7},
+    {sPetbottomStunnedOam_Frame10, 7},
+    {sPetbottomStunnedOam_Frame11, 7},
+    {sPetbottomStunnedOam_Frame12, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomAlternatePushedOam[] = {
+    {sPetbottomAlternateStunnedOam_Frame1, 2},
+    {sPetbottomAlternatePushedOam_Frame1, 3},
+    {sPetbottomAlternatePushedOam_Frame2, 3},
+    {sPetbottomAlternatePushedOam_Frame3, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomPushedOam[] = {
+    {sPetbottomAlternateStunnedOam_Frame1, 3},
+    {sPetbottomPushedOam_Frame1, 2},
+    {sPetbottomPushedOam_Frame2, 3},
+    {sPetbottomPushedOam_Frame3, 3},
+    {sPetbottomPushedOam_Frame4, 2},
+    {sPetbottomPushedOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomCrushedOam[] = {
+    {sPetbottomAlternateStunnedOam_Frame1, 2},
+    {sPetbottomCrushedOam_Frame1, 4},
+    {sPetbottomCrushedOam_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomTackledOam[] = {
+    {sPetbottomTackledOam_Frame1, 4},
+    {sPetbottomTackledOam_Frame2, 4},
+    {sPetbottomTackledOam_Frame3, 4},
+    {sPetbottomTackledOam_Frame4, 4},
+    {sPetbottomTackledOam_Frame5, 4},
+    {sPetbottomTackledOam_Frame6, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sPetbottomRecoveringOam[] = {
+    {sPetbottomRecoveringOam_Frame1, 8},
+    {sPetbottomRecoveringOam_Frame2, 8},
+    {sPetbottomRecoveringOam_Frame3, 8},
+    {sPetbottomRecoveringOam_Frame4, 8},
+    {sPetbottomRecoveringOam_Frame5, 8},
+    {sPetbottomRecoveringOam_Frame6, 8},
+    ANIMATION_TERMINATOR
+};
+
 void UpdatePetbottomHorizontalHitbox(void)
 {
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
