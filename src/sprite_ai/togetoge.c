@@ -6,6 +6,67 @@
 #include "sprite_util.h"
 #include "gba/m4a.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sTogetogeFallingOam_Frame6[] = {
+    1,
+    OAM_ENTRY(-16, -31, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame7[] = {
+    1,
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 516, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame8[] = {
+    1,
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_32x32, 0, 520, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-16, -31, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 532, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame4[] = {
+    1,
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+};
+
+const u16 sTogetogeFallingOam_Frame5[] = {
+    1,
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const struct AnimationFrame sTogetogeFallingOam[] = {
+    {sTogetogeFallingOam_Frame1, 3},
+    {sTogetogeFallingOam_Frame2, 3},
+    {sTogetogeFallingOam_Frame3, 3},
+    {sTogetogeFallingOam_Frame4, 3},
+    {sTogetogeFallingOam_Frame5, 3},
+    {sTogetogeFallingOam_Frame6, 3},
+    {sTogetogeFallingOam_Frame7, 3},
+    {sTogetogeFallingOam_Frame8, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogetogeIdleOam[] = {
+    {sTogetogeFallingOam_Frame8, 200},
+    ANIMATION_TERMINATOR
+};
+
 void InitTogetoge(void)
 {
     struct PrimarySpriteData* sprite;
