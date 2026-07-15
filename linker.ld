@@ -754,6 +754,14 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83C5364 = sGhostOam_83C5364;
+        sUnk_83C538C = sGhostOam_83C538C;
+        sUnk_83C53B4 = sGhostOam_83C53B4;
+        sUnk_83C53C4 = sGhostOam_83C53C4;
+        sUnk_83C53FC = sGhostOam_83C53FC;
+        sUnk_83C5528 = sGhostOam_83C5528;
+        sUnk_83C5568 = sGhostOam_83C5568;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -772,7 +780,9 @@ SECTIONS {
         obj/sprite_ai/coins.o(.rodata);
         obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
-        obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
+        obj/blob_0x3C4B28-0x3C4F78.o(.rodata);
+        obj/sprite_ai/ghost.o(.rodata);
+        obj/blob_0x3C5580-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
