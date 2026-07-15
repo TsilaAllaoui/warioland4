@@ -772,7 +772,9 @@ SECTIONS {
         obj/sprite_ai/coins.o(.rodata);
         obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
-        obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
+        obj/blob_0x3C4B28-0x3D1748.o(.rodata);
+        obj/sprite_ai/bowler.o(.rodata);
+        obj/blob_0x3D23A4-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
