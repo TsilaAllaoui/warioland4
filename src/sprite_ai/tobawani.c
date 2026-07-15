@@ -8,6 +8,250 @@
 #include "wario.h"
 
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sTobawaniTurnOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-15, -23, SPRITE_SIZE_16x16, 0, 552, 8, 0),
+    OAM_ENTRY(1, -23, SPRITE_SIZE_8x16, 0, 554, 8, 0),
+    OAM_ENTRY(-15, -7, SPRITE_SIZE_32x8, 0, 616, 8, 0),
+};
+
+const u8 sTobawaniRawData_83C972C[] = {
+    0x03, 0x00, 0xE9, 0x00, 0xF7, 0x41, 0x0B, 0x82, 0xF9, 0x40, 0xF7, 0x01, 0x4B, 0x82, 0xF6, 0x00,
+    0x07, 0x00, 0x6C, 0x82, 0x03, 0x00, 0xE9, 0x00, 0xF9, 0x51, 0x0B, 0x82, 0xF9, 0x40, 0xF9, 0x11,
+    0x4B, 0x82, 0xF6, 0x00, 0xF1, 0x11, 0x6C, 0x82, 0x03, 0x00, 0xE9, 0x00, 0xFF, 0x51, 0x28, 0x82,
+    0xE9, 0x80, 0xF7, 0x11, 0x2A, 0x82, 0xF9, 0x40, 0xEF, 0x51, 0x68, 0x82,
+};
+
+const u16 sTobawaniChargeOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x8, 0, 580, 8, 0),
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sTobawaniChargeOam_Frame2[] = {
+    6,
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_16x8, 0, 582, 8, 0),
+    OAM_ENTRY(-16, -12, SPRITE_SIZE_16x16, 0, 589, 8, 0),
+    OAM_ENTRY(-15, -20, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+    OAM_ENTRY(-23, -20, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+    OAM_ENTRY(-7, -26, SPRITE_SIZE_8x8, 0, 522, 8, 0),
+    OAM_ENTRY(-1, -19, SPRITE_SIZE_16x16, 0, 578, 8, 0),
+};
+
+const u16 sTobawaniChargeOam_Frame3[] = {
+    5,
+    OAM_ENTRY(-6, -6, SPRITE_SIZE_16x8, 0, 612, 8, 0),
+    OAM_ENTRY(-15, -17, SPRITE_SIZE_16x16, 0, 555, 8, 0),
+    OAM_ENTRY(1, -17, SPRITE_SIZE_16x16, 0, 518, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_8x8, 0, 522, 8, 0),
+    OAM_ENTRY(-21, -17, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sTobawaniChargeOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-4, -5, SPRITE_SIZE_16x8, 0, 614, 8, 0),
+    OAM_ENTRY(-17, -16, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(-1, -17, SPRITE_SIZE_16x16, 0, 576, 8, 0),
+    OAM_ENTRY(-10, -22, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sTobawaniTurnOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_32x16, 0, 527, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_32x8, 0, 591, 8, 0),
+};
+
+const u8 sTobawaniRawData_83C97F0[] = {
+    0x02, 0x00, 0xE9, 0x40, 0xF0, 0x91, 0x0F, 0x82, 0xF9, 0x40, 0xF0, 0x51, 0x4F, 0x82, 0x03, 0x00,
+    0xF9, 0x40, 0xF5, 0x11, 0x44, 0x82, 0xEE, 0x40, 0xF0, 0x91, 0x00, 0x82, 0xE8, 0x00, 0x04, 0x00,
+    0x0A, 0x82, 0x04, 0x00, 0xF9, 0x40, 0xFA, 0x01, 0x46, 0x82, 0xED, 0x00, 0xEF, 0x41, 0x00, 0x82,
+    0xEE, 0x00, 0xFF, 0x41, 0x40, 0x82, 0xE7, 0x00, 0xF6, 0x01, 0x0A, 0x82, 0x04, 0x00, 0xF9, 0x40,
+    0xFB, 0x01, 0x66, 0x82, 0xEF, 0x00, 0xF1, 0x41, 0x04, 0x82, 0xEE, 0x00, 0x00, 0x40, 0x40, 0x82,
+    0xE9, 0x00, 0xF8, 0x01, 0x08, 0x82, 0x04, 0x00, 0xF9, 0x40, 0xFB, 0x01, 0x66, 0x82, 0xEF, 0x00,
+    0xF1, 0x41, 0x04, 0x82, 0xEE, 0x00, 0x00, 0x40, 0x40, 0x82, 0xE9, 0x00, 0xF8, 0x01, 0x0A, 0x82,
+};
+
+const u16 sTobawaniChargeOam_Frame5[] = {
+    4,
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x8, 0, 580, 8, 0),
+    OAM_ENTRY(-16, -18, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_16x16, 0, 518, 8, 0),
+    OAM_ENTRY(-9, -24, SPRITE_SIZE_8x8, 0, 522, 8, 0),
+};
+
+const u8 sTobawaniRawData_83C987A[] = {
+    0x04, 0x00, 0xFA, 0x40, 0xFB, 0x01, 0x66, 0x82, 0xF0, 0x00, 0xF1, 0x41, 0x19, 0x82, 0xEF, 0x00,
+    0x00, 0x40, 0x40, 0x82, 0xEA, 0x00, 0xF6, 0x01, 0x0A, 0x82,
+};
+
+const u16 sTobawaniRecoveryOam_Frame1[] = {
+    4,
+    OAM_ENTRY(0, -17, SPRITE_SIZE_16x16, 0, 595, 8, 0),
+    OAM_ENTRY(2, -1, SPRITE_SIZE_8x8, 0, 623, 8, 0),
+    OAM_ENTRY(-15, -16, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    OAM_ENTRY(-7, -22, SPRITE_SIZE_8x8, 0, 522, 8, 0),
+};
+
+const u16 sTobawaniRecoveryOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-16, -17, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_16x16, 0, 597, 8, 0),
+    OAM_ENTRY(-7, -23, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sTobawaniRecoveryOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_16x16, 0, 535, 8, 0),
+    OAM_ENTRY(0, -15, SPRITE_SIZE_16x16, 0, 599, 8, 0),
+    OAM_ENTRY(8, 1, SPRITE_SIZE_8x8, 0, 624, 0, 0),
+    OAM_ENTRY(-7, -22, SPRITE_SIZE_8x8, 0, 521, 8, 0),
+};
+
+const u16 sTobawaniKnockbackOam_Frame3[] = {
+    5,
+    OAM_ENTRY(-11, -30, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(5, -30, SPRITE_SIZE_8x16, 0, 543, 8, 0),
+    OAM_ENTRY(8, -19, SPRITE_SIZE_8x8, 0, 625, 8, 0),
+    OAM_ENTRY(-19, -29, SPRITE_SIZE_8x8, 0, 626, 8, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, 0, 537, 8, 0),
+};
+
+const u16 sTobawaniKnockbackOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-7, -31, SPRITE_SIZE_16x16, 0, 604, 8, 0),
+    OAM_ENTRY(-15, -31, SPRITE_SIZE_8x16, 0, 603, 8, 0),
+    OAM_ENTRY(7, -20, SPRITE_SIZE_8x8, 0, 625, 8, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, 0, 606, 8, 0),
+};
+
+const u16 sTobawaniKnockbackOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-8, -32, SPRITE_SIZE_16x16, 0, 539, 8, 0),
+    OAM_ENTRY(6, -22, SPRITE_SIZE_8x8, 0, 625, 8, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, 0, 606, 8, 0),
+};
+
+const u16 sTobawaniDefeatedOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-6, -32, SPRITE_SIZE_8x16, 0, 539, 8, 0),
+    OAM_ENTRY(2, -31, SPRITE_SIZE_8x16, 0, 605, 8, 0),
+    OAM_ENTRY(-7, -16, SPRITE_SIZE_16x8, 0, 601, 8, 0),
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_16x8, 0, 633, 8, 0),
+    OAM_ENTRY(8, -21, SPRITE_SIZE_8x8, 0, 625, 8, 0),
+};
+
+const u16 sTobawaniDefeatedOam_Frame2[] = {
+    4,
+    OAM_ENTRY(1, -31, SPRITE_SIZE_8x16, 0, 540, 8, 0),
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x16, 0, 601, 8, 0),
+    OAM_ENTRY(-7, -32, SPRITE_SIZE_8x16, 0, 539, 8, 0),
+    OAM_ENTRY(8, -22, SPRITE_SIZE_8x8, 0, 625, 8, 0),
+};
+
+const u16 sTobawaniDefeatedOam_Frame3[] = {
+    5,
+    OAM_ENTRY(-14, -31, SPRITE_SIZE_16x16, 0, 603, 8, 0),
+    OAM_ENTRY(1, -32, SPRITE_SIZE_8x16, 0, 540, 8, 0),
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x8, 0, 601, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x8, 0, 633, 8, 0),
+    OAM_ENTRY(7, -24, SPRITE_SIZE_8x8, 0, 625, 8, 0),
+};
+
+const u16 sTobawaniPatrolOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_16x8, 0, 614, 8, 0),
+    OAM_ENTRY(-16, -18, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-9, -24, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const u16 sTobawaniPatrolOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x8, 0, 614, 8, 0),
+    OAM_ENTRY(-1, -18, SPRITE_SIZE_16x16, 0, 578, 8, 0),
+    OAM_ENTRY(-17, -18, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(-10, -24, SPRITE_SIZE_8x8, 0, 521, 8, 0),
+};
+
+const u16 sTobawaniPatrolOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_16x8, 0, 614, 8, 0),
+    OAM_ENTRY(-16, -18, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-9, -24, SPRITE_SIZE_8x8, 0, 522, 8, 0),
+};
+
+const u16 sTobawaniPatrolOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x8, 0, 614, 8, 0),
+    OAM_ENTRY(-15, -18, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_16x16, 0, 578, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+};
+
+const struct AnimationFrame sTobawaniPatrolOam[] = {
+    {sTobawaniPatrolOam_Frame1, 5},
+    {sTobawaniPatrolOam_Frame2, 5},
+    {sTobawaniPatrolOam_Frame3, 5},
+    {sTobawaniPatrolOam_Frame4, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTobawaniTurnOam[] = {
+    {sTobawaniTurnOam_Frame1, 2},
+    {sTobawaniTurnOam_Frame2, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTobawaniChargeOam[] = {
+    {sTobawaniChargeOam_Frame1, 2},
+    {sTobawaniChargeOam_Frame2, 3},
+    {sTobawaniChargeOam_Frame3, 2},
+    {sTobawaniChargeOam_Frame4, 2},
+    {sTobawaniChargeOam_Frame5, 1},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTobawaniRecoveryOam[] = {
+    {sTobawaniRecoveryOam_Frame1, 3},
+    {sTobawaniRecoveryOam_Frame2, 3},
+    {sTobawaniRecoveryOam_Frame3, 3},
+    {sTobawaniRecoveryOam_Frame2, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTobawaniKnockbackOam[] = {
+    {sTobawaniKnockbackOam_Frame1, 2},
+    {sTobawaniKnockbackOam_Frame2, 1},
+    {sTobawaniKnockbackOam_Frame3, 3},
+    {sTobawaniKnockbackOam_Frame2, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTobawaniFallingOam[] = {
+    {sTobawaniKnockbackOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sTobawaniRawData_83C9AB0[] = {
+    0xE2, 0x97, 0x3C, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x46, 0x98, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00, 0x7A, 0x98, 0x3C, 0x08, 0xC8, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x97, 0x3C, 0x08, 0x07, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sTobawaniDefeatedOam[] = {
+    {sTobawaniDefeatedOam_Frame1, 3},
+    {sTobawaniDefeatedOam_Frame2, 2},
+    {sTobawaniDefeatedOam_Frame3, 4},
+    {sTobawaniDefeatedOam_Frame2, 2},
+    ANIMATION_TERMINATOR
+};
+
 void TobawaniEnterWater(void)
 {
     gCurrentSprite.yPosition = gUnk_3000964[gCurrentSprite.roomSlot][0] * 64 + 64;
