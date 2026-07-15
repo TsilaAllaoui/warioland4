@@ -754,6 +754,29 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83BCEB4 = sTogeroboOam_83BCEB4;
+        sUnk_83BCEFC = sTogeroboOam_83BCEFC;
+        sUnk_83BCF24 = sTogeroboOam_83BCF24;
+        sUnk_83BCF4C = sTogeroboOam_83BCF4C;
+        sUnk_83BCF94 = sTogeroboOam_83BCF94;
+        sUnk_83BCFAC = sTogeroboOam_83BCFAC;
+        sUnk_83BCFBC = sTogeroboOam_83BCFBC;
+        sUnk_83BCFD4 = sTogeroboOam_83BCFD4;
+        sUnk_83BD00C = sTogeroboOam_83BD00C;
+        sUnk_83BD01C = sTogeroboOam_83BD01C;
+        sUnk_83BD04C = sTogeroboOam_83BD04C;
+        sUnk_83BD074 = sTogeroboOam_83BD074;
+        sUnk_83BD09C = sTogeroboOam_83BD09C;
+        sUnk_83BD0CC = sTogeroboOam_83BD0CC;
+        sUnk_83BD0EC = sTogeroboOam_83BD0EC;
+        sUnk_83BD10C = sTogeroboOam_83BD10C;
+        sUnk_83BD134 = sTogeroboOam_83BD134;
+        sUnk_83BD14C = sTogeroboOam_83BD14C;
+        sUnk_83BD164 = sTogeroboOam_83BD164;
+        sUnk_83BD18C = sTogeroboOam_83BD18C;
+        sUnk_83BD19C = sTogeroboOam_83BD19C;
+        sUnk_83BD1AC = sTogeroboOam_83BD1AC;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -770,7 +793,9 @@ SECTIONS {
         obj/sprite_ai/vortex.o(.rodata);
         obj/blob_0x3B548C-0x3B5C5C.o(.rodata);
         obj/sprite_ai/coins.o(.rodata);
-        obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
+        obj/blob_0x3B6450-0x3BC8F4.o(.rodata);
+        obj/sprite_ai/togerobo.o(.rodata);
+        obj/blob_0x3BD1D4-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
         obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);

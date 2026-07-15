@@ -9,6 +9,575 @@
 #include "types.h"
 #include "wario.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sTogeroboOam_83BD01C_Frame2[] = {
+    3,
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 516, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD1AC_Frame1[] = {
+    4,
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 580, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 518, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD1AC_Frame2[] = {
+    3,
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -7, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 548, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD1AC_Frame3[] = {
+    4,
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 580, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 550, 8, 0),
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame1[] = {
+    3,
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-22, -24, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 512, 8, 0),
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame2[] = {
+    4,
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(-22, -24, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 544, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD01C_Frame1[] = {
+    3,
+    OAM_ENTRY(-23, -24, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 514, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD164_Frame1[] = {
+    4,
+    OAM_ENTRY(-7, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-23, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 546, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD0CC_Frame1[] = {
+    6,
+    OAM_ENTRY(-14, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 527, 8, 0),
+    OAM_ENTRY(-22, -20, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(-2, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-2, -21, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 546, 8, 0),
+    OAM_ENTRY(-14, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 544, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD0CC_Frame2[] = {
+    5,
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 546, 8, 0),
+    OAM_ENTRY(-14, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 544, 8, 0),
+    OAM_ENTRY(-1, -15, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-23, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-7, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 527, 8, 0),
+};
+
+const u8 sTogeroboRawData_83BC9F2[] = {
+    0x03, 0x00, 0xEA, 0x40, 0xF6, 0x81, 0x40, 0x82, 0xFA, 0x40, 0xF6, 0x41, 0x46, 0x82, 0xF8, 0x40,
+    0xF8, 0x01, 0x04, 0x82, 0x01, 0x00, 0xF7, 0x00, 0xF8, 0x41, 0x4F, 0x92,
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame3[] = {
+    4,
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 591, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame4[] = {
+    5,
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 580, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-8, -34, SPRITE_SIZE_16x16, 0, 591, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame5[] = {
+    5,
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-8, -29, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-22, -7, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-8, -30, SPRITE_SIZE_16x16, 0, 591, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame6[] = {
+    6,
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 580, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(-8, -29, SPRITE_SIZE_16x16, 0, 591, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame7[] = {
+    5,
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(-8, -29, SPRITE_SIZE_16x16, 0, 589, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEFC_Frame1[] = {
+    7,
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 580, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-16, -37, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEFC_Frame2[] = {
+    6,
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-8, -29, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-22, -7, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-16, -38, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCEFC_Frame3[] = {
+    7,
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 580, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(-16, -37, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCF94_Frame1[] = {
+    3,
+    OAM_ENTRY(-13, -24, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 585, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 614, 8, 0),
+    OAM_ENTRY(-16, -36, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 595, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCFAC_Frame1[] = {
+    4,
+    OAM_ENTRY(-4, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 8, 0),
+    OAM_ENTRY(-12, -23, SPRITE_SIZE_16x16, 0, 599, 8, 0),
+    OAM_ENTRY(-8, -36, SPRITE_SIZE_16x16, 0, 593, 9, 0),
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_16x8, 0, 536, 8, 0),
+};
+
+const u8 sTogeroboRawData_83BCB5A[] = {
+    0x06, 0x00, 0xEA, 0x40, 0xEB, 0x91, 0x40, 0x82, 0xE4, 0x00, 0xF8, 0x11, 0x38, 0x92, 0xFA, 0x40,
+    0xEB, 0x51, 0x46, 0x82, 0xF8, 0x40, 0xF9, 0x11, 0x04, 0x82, 0xDA, 0x40, 0xF0, 0x91, 0x1C, 0x92,
+    0xEA, 0x40, 0xF0, 0x51, 0x5C, 0x92,
+};
+
+const u16 sTogeroboOam_83BD0EC_Frame1[] = {
+    3,
+    OAM_ENTRY(-22, -15, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -21, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 516, 8, 0),
+};
+
+const u8 sTogeroboRawData_83BCB94[] = {
+    0x04, 0x00, 0xF1, 0x00, 0xFA, 0x71, 0x40, 0x82, 0xF1, 0x00, 0xEA, 0x71, 0x44, 0x82, 0xE9, 0x40,
+    0xEA, 0x71, 0x46, 0x82, 0xEB, 0x40, 0xF8, 0x31, 0x06, 0x82, 0x03, 0x00, 0xF0, 0x40, 0xEA, 0xB1,
+    0x40, 0x82, 0xE8, 0x40, 0xEA, 0x71, 0x46, 0x82, 0xE9, 0x40, 0xF8, 0x31, 0x24, 0x82, 0x04, 0x00,
+    0xF1, 0x00, 0xFA, 0x71, 0x40, 0x82, 0xF1, 0x00, 0xEA, 0x71, 0x44, 0x82, 0xE9, 0x40, 0xEA, 0x71,
+    0x46, 0x82, 0xEB, 0x40, 0xF8, 0x31, 0x26, 0x82,
+};
+
+const u16 sTogeroboOam_83BCFD4_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_32x32, 0, 540, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCFD4_Frame2[] = {
+    3,
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_16x8, 0, 538, 9, 0),
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 538, 9, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_32x32, 0, 540, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCFD4_Frame3[] = {
+    6,
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_8x32, 0, 540, 9, 0),
+    OAM_ENTRY(8, -28, SPRITE_SIZE_8x32, 0, 543, 9, 0),
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x8, 0, 637, 9, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_16x8, 0, 541, 9, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_16x8, 0, 538, 9, 0),
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 538, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCFD4_Frame4[] = {
+    4,
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_16x8, 0, 570, 9, 0),
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 9, 0),
+    OAM_ENTRY(-19, -28, SPRITE_SIZE_8x32, 0, 540, 9, 0),
+    OAM_ENTRY(11, -28, SPRITE_SIZE_8x32, 0, 543, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCFD4_Frame5[] = {
+    2,
+    OAM_ENTRY(0, -20, SPRITE_SIZE_8x16, 0, 603, 9, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 603, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCFD4_Frame6[] = {
+    3,
+    OAM_ENTRY(1, -21, SPRITE_SIZE_8x8, 0, 603, 9, 0),
+    OAM_ENTRY(1, -11, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 603, 9, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 635, 9, 0),
+};
+
+const u8 sTogeroboRawData_83BCC5A[] = {
+    0x04, 0x00, 0xEC, 0x00, 0xFA, 0x71, 0x08, 0x82, 0xEC, 0x00, 0xEA, 0x71, 0x0C, 0x82, 0xFC, 0x40,
+    0xEA, 0x71, 0x14, 0x82, 0xEC, 0x40, 0xFA, 0x31, 0x20, 0x82, 0x03, 0x00, 0xF4, 0x40, 0xEA, 0xB1,
+    0x0E, 0x82, 0xEC, 0x40, 0xEA, 0x71, 0x34, 0x82, 0xEC, 0x40, 0xF5, 0x31, 0x02, 0x82, 0x01, 0x00,
+    0xF8, 0x00, 0xF8, 0x41, 0x4D, 0x92,
+};
+
+const u16 sTogeroboOam_83BCEB4_Frame8[] = {
+    6,
+    OAM_ENTRY(-22, -22, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-16, -37, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-16, -21, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCF4C_Frame1[] = {
+    6,
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-22, -24, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-11, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-19, -37, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-19, -21, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCF4C_Frame2[] = {
+    7,
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-22, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(-22, -24, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 544, 8, 0),
+    OAM_ENTRY(-11, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-19, -37, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-19, -21, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCF4C_Frame3[] = {
+    6,
+    OAM_ENTRY(-23, -24, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-9, -30, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-17, -39, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-17, -23, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BCF4C_Frame4[] = {
+    7,
+    OAM_ENTRY(-7, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-23, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 546, 8, 0),
+    OAM_ENTRY(-9, -30, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-17, -39, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-17, -23, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BD09C_Frame2[] = {
+    3,
+    OAM_ENTRY(-22, -20, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -4, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 516, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD14C_Frame1[] = {
+    6,
+    OAM_ENTRY(-22, -20, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -4, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(-8, -25, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 9, 0),
+    OAM_ENTRY(-16, -34, SPRITE_SIZE_32x16, 0, 540, 9, 0),
+    OAM_ENTRY(-16, -18, SPRITE_SIZE_32x8, 0, 604, 9, 0),
+};
+
+const u16 sTogeroboOam_83BD0EC_Frame2[] = {
+    6,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 527, 8, 0),
+    OAM_ENTRY(-22, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(-2, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 520, 8, 0),
+    OAM_ENTRY(-2, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 546, 8, 0),
+    OAM_ENTRY(-14, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 544, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD0EC_Frame3[] = {
+    6,
+    OAM_ENTRY(-3, -14, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 546, 8, 0),
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 544, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 527, 8, 0),
+    OAM_ENTRY(-22, -10, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 560, 8, 0),
+    OAM_ENTRY(-22, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 528, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD04C_Frame1[] = {
+    4,
+    OAM_ENTRY(-12, -15, SPRITE_SIZE_8x16, 0, 601, 8, 0),
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -21, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 516, 8, 0),
+    OAM_ENTRY(-6, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 576, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD04C_Frame2[] = {
+    4,
+    OAM_ENTRY(-12, -15, SPRITE_SIZE_8x16, 0, 601, 8, 0),
+    OAM_ENTRY(-6, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -21, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD04C_Frame3[] = {
+    4,
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_8x16, 0, 601, 8, 0),
+    OAM_ENTRY(-22, -24, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -23, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 548, 8, 0),
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 576, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD04C_Frame4[] = {
+    4,
+    OAM_ENTRY(-12, -15, SPRITE_SIZE_8x16, 0, 601, 8, 0),
+    OAM_ENTRY(-6, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 576, 8, 0),
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 582, 8, 0),
+    OAM_ENTRY(-8, -21, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 550, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD074_Frame2[] = {
+    5,
+    OAM_ENTRY(-6, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 520, 8, 0),
+    OAM_ENTRY(-6, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-14, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 534, 8, 0),
+    OAM_ENTRY(-14, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-6, -20, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 544, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD074_Frame1[] = {
+    6,
+    OAM_ENTRY(-6, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 526, 8, 0),
+    OAM_ENTRY(-6, -20, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 564, 8, 0),
+    OAM_ENTRY(-14, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 566, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 602, 8, 0),
+    OAM_ENTRY(-22, -20, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 564, 8, 0),
+    OAM_ENTRY(-11, -20, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 514, 8, 0),
+};
+
+const u16 sTogeroboOam_83BD09C_Frame1[] = {
+    6,
+    OAM_ENTRY(-7, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 566, 8, 0),
+    OAM_ENTRY(-15, -23, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 564, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 514, 8, 0),
+};
+
+const struct AnimationFrame sTogeroboOam_83BCEB4[] = {
+    {sTogeroboOam_83BCEB4_Frame1, 4},
+    {sTogeroboOam_83BCEB4_Frame2, 4},
+    {sTogeroboOam_83BCEB4_Frame3, 5},
+    {sTogeroboOam_83BCEB4_Frame4, 5},
+    {sTogeroboOam_83BCEB4_Frame5, 5},
+    {sTogeroboOam_83BCEB4_Frame6, 5},
+    {sTogeroboOam_83BCEB4_Frame7, 10},
+    {sTogeroboOam_83BCEB4_Frame8, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCEFC[] = {
+    {sTogeroboOam_83BCEB4_Frame8, 7},
+    {sTogeroboOam_83BCEFC_Frame1, 7},
+    {sTogeroboOam_83BCEFC_Frame2, 7},
+    {sTogeroboOam_83BCEFC_Frame3, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCF24[] = {
+    {sTogeroboOam_83BCEB4_Frame8, 4},
+    {sTogeroboOam_83BCEFC_Frame1, 4},
+    {sTogeroboOam_83BCEFC_Frame2, 4},
+    {sTogeroboOam_83BCEFC_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCF4C[] = {
+    {sTogeroboOam_83BCEB4_Frame8, 12},
+    {sTogeroboOam_83BCF4C_Frame1, 7},
+    {sTogeroboOam_83BCF4C_Frame2, 7},
+    {sTogeroboOam_83BCEB4_Frame8, 7},
+    {sTogeroboOam_83BCF4C_Frame3, 7},
+    {sTogeroboOam_83BCF4C_Frame4, 7},
+    {sTogeroboOam_83BCF4C_Frame3, 7},
+    {sTogeroboOam_83BCF4C_Frame4, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCF94[] = {
+    {sTogeroboOam_83BCEB4_Frame8, 5},
+    {sTogeroboOam_83BCF94_Frame1, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCFAC[] = {
+    {sTogeroboOam_83BCFAC_Frame1, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCFBC[] = {
+    {sTogeroboOam_83BCF94_Frame1, 5},
+    {sTogeroboOam_83BCEB4_Frame8, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BCFD4[] = {
+    {sTogeroboOam_83BCFD4_Frame1, 2},
+    {sTogeroboOam_83BCFD4_Frame2, 3},
+    {sTogeroboOam_83BCFD4_Frame3, 2},
+    {sTogeroboOam_83BCFD4_Frame4, 3},
+    {sTogeroboOam_83BCFD4_Frame5, 3},
+    {sTogeroboOam_83BCFD4_Frame6, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD00C[] = {
+    {sTogeroboOam_83BCFD4_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD01C[] = {
+    {sTogeroboOam_83BCEB4_Frame8, 4},
+    {sTogeroboOam_83BCF4C_Frame1, 5},
+    {sTogeroboOam_83BCF4C_Frame2, 5},
+    {sTogeroboOam_83BD01C_Frame1, 12},
+    {sTogeroboOam_83BD01C_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD04C[] = {
+    {sTogeroboOam_83BD04C_Frame1, 7},
+    {sTogeroboOam_83BD04C_Frame2, 7},
+    {sTogeroboOam_83BD04C_Frame3, 7},
+    {sTogeroboOam_83BD04C_Frame4, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD074[] = {
+    {sTogeroboOam_83BD074_Frame1, 5},
+    {sTogeroboOam_83BD074_Frame2, 5},
+    {sTogeroboOam_83BD074_Frame1, 5},
+    {sTogeroboOam_83BD074_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD09C[] = {
+    {sTogeroboOam_83BD09C_Frame1, 2},
+    {sTogeroboOam_83BD01C_Frame1, 5},
+    {sTogeroboOam_83BCEB4_Frame2, 5},
+    {sTogeroboOam_83BD01C_Frame2, 5},
+    {sTogeroboOam_83BD09C_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD0CC[] = {
+    {sTogeroboOam_83BD01C_Frame2, 2},
+    {sTogeroboOam_83BD0CC_Frame1, 3},
+    {sTogeroboOam_83BD0CC_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD0EC[] = {
+    {sTogeroboOam_83BD0EC_Frame1, 2},
+    {sTogeroboOam_83BD0EC_Frame2, 3},
+    {sTogeroboOam_83BD0EC_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD10C[] = {
+    {sTogeroboOam_83BCEB4_Frame1, 5},
+    {sTogeroboOam_83BCEB4_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sTogeroboRawData_83BD124[] = {
+    0x06, 0xCA, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sTogeroboOam_83BD134[] = {
+    {sTogeroboOam_83BD01C_Frame2, 4},
+    {sTogeroboOam_83BD09C_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD14C[] = {
+    {sTogeroboOam_83BCEB4_Frame8, 4},
+    {sTogeroboOam_83BD14C_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD164[] = {
+    {sTogeroboOam_83BCEB4_Frame1, 6},
+    {sTogeroboOam_83BCEB4_Frame2, 6},
+    {sTogeroboOam_83BD01C_Frame1, 6},
+    {sTogeroboOam_83BD164_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD18C[] = {
+    {sTogeroboOam_83BD09C_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD19C[] = {
+    {sTogeroboOam_83BD14C_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogeroboOam_83BD1AC[] = {
+    {sTogeroboOam_83BD01C_Frame2, 4},
+    {sTogeroboOam_83BD1AC_Frame1, 4},
+    {sTogeroboOam_83BD1AC_Frame2, 4},
+    {sTogeroboOam_83BD1AC_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
 void func_8035668(void)
 {
     u32 facing;
@@ -37,7 +606,7 @@ void func_80356BC(void)
 
 void func_80356EC(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BD04C;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD04C;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.warioCollision = 5;
@@ -69,7 +638,7 @@ void func_803572C(void)
 
 void func_8035790(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BCF4C;
+    gCurrentSprite.pOamData = sTogeroboOam_83BCF4C;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
@@ -159,7 +728,7 @@ void func_80357B8(void)
             next <<= 24;
             timer = next >> 24;
             if (timer == 0) {
-                sprite->pOamData = sUnk_83BCEFC;
+                sprite->pOamData = sTogeroboOam_83BCEFC;
                 sprite->currentAnimationFrame = timer;
                 sprite->animationTimer = timer;
             } else {
@@ -194,7 +763,7 @@ void func_80357B8(void)
 
 void func_8035978(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BCF94;
+    gCurrentSprite.pOamData = sTogeroboOam_83BCF94;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
@@ -223,7 +792,7 @@ void func_8035998(void)
         if (timer == 0) {
             switch (sprite->pose) {
                 case 18:
-                    sprite->pOamData = sUnk_83BCFAC;
+                    sprite->pOamData = sTogeroboOam_83BCFAC;
                     sprite->currentAnimationFrame = timer;
                     sprite->animationTimer = timer;
                     sprite->pose = 20;
@@ -239,7 +808,7 @@ void func_8035998(void)
                     }
                     break;
                 case 20:
-                    sprite->pOamData = sUnk_83BCFBC;
+                    sprite->pOamData = sTogeroboOam_83BCFBC;
                     sprite->currentAnimationFrame = timer;
                     sprite->animationTimer = timer;
                     sprite->pose = 22;
@@ -263,9 +832,9 @@ void func_8035A34(void)
     gCurrentSprite.pose = 24;
     gCurrentSprite.work0 = 24;
     if (gCurrentSprite.health == 2)
-        gCurrentSprite.pOamData = sUnk_83BD19C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD19C;
     else
-        gCurrentSprite.pOamData = sUnk_83BD18C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD18C;
 }
 
 void func_8035A64(void)
@@ -298,7 +867,7 @@ void func_8035A64(void)
 
 void func_8035AE0(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BCEB4;
+    gCurrentSprite.pOamData = sTogeroboOam_83BCEB4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 111;
@@ -339,7 +908,7 @@ void func_8035B00(void)
 
 void func_8035B5C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BD01C;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD01C;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 113;
@@ -382,7 +951,7 @@ void func_8035B88(void)
 
 void func_8035BE8(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BD074;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD074;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 26;
@@ -421,7 +990,7 @@ void func_8035C0C(void)
         if (timer == 25) {
             sprite->yPosition -= 24;
         } else if (timer == 20) {
-            sprite->pOamData = sUnk_83BD09C;
+            sprite->pOamData = sTogeroboOam_83BD09C;
             sprite->animationTimer = 0;
             sprite->currentAnimationFrame = 0;
             sprite->yPosition -= 24;
@@ -444,10 +1013,10 @@ void func_8035CD0(void)
     gCurrentSprite.pose = 28;
     gCurrentSprite.work3 = 0;
     if (gCurrentSprite.health == 2) {
-        gCurrentSprite.pOamData = sUnk_83BCF24;
+        gCurrentSprite.pOamData = sTogeroboOam_83BCF24;
         gCurrentSprite.warioCollision = 37;
     } else {
-        gCurrentSprite.pOamData = sUnk_83BD1AC;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD1AC;
         gCurrentSprite.warioCollision = 3;
     }
     func_80356BC();
@@ -464,7 +1033,7 @@ void func_8035D2C(void)
 {
     if (gCurrentSprite.health == 2)
         func_8035668();
-    gCurrentSprite.pOamData = sUnk_83BD164;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD164;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -496,7 +1065,7 @@ void func_8035DD4(void)
 {
     if (gCurrentSprite.health == 2)
         func_8035668();
-    gCurrentSprite.pOamData = sUnk_83BD164;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD164;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -534,7 +1103,7 @@ void func_8035E68(void)
 void func_8035E90(void)
 {
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
-        gCurrentSprite.pOamData = sUnk_83BD10C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD10C;
         if (gCurrentSprite.health == 2) {
             gCurrentSprite.health = 1;
             gCurrentSprite.hitboxExtentUp = 80;
@@ -542,9 +1111,9 @@ void func_8035E90(void)
             func_8035668();
         }
     } else if (gCurrentSprite.health == 2) {
-        gCurrentSprite.pOamData = sUnk_83BD14C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD14C;
     } else {
-        gCurrentSprite.pOamData = sUnk_83BD134;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD134;
     }
     gCurrentSprite.pose = 36;
     func_8035E68();
@@ -566,11 +1135,11 @@ void func_8035F28(void)
 {
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
         if (gCurrentSprite.health == 2)
-            gCurrentSprite.pOamData = sUnk_83BD14C;
+            gCurrentSprite.pOamData = sTogeroboOam_83BD14C;
         else
-            gCurrentSprite.pOamData = sUnk_83BD134;
+            gCurrentSprite.pOamData = sTogeroboOam_83BD134;
     } else {
-        gCurrentSprite.pOamData = sUnk_83BD10C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD10C;
         if (gCurrentSprite.health == 2) {
             gCurrentSprite.health = 1;
             gCurrentSprite.hitboxExtentUp = 80;
@@ -602,9 +1171,9 @@ void func_8035FC0(void)
     gCurrentSprite.work1 = 0;
     gCurrentSprite.work2 = 6;
     if (gCurrentSprite.health == 2)
-        gCurrentSprite.pOamData = sUnk_83BD14C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD14C;
     else
-        gCurrentSprite.pOamData = sUnk_83BD134;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD134;
 }
 
 void func_8036000(void)
@@ -681,9 +1250,9 @@ void func_80360E8(void)
         gCurrentSprite.xPosition, 20);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
     if (gCurrentSprite.warioCollision != 5)
-        gCurrentSprite.pOamData = sUnk_83BD0CC;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD0CC;
     else
-        gCurrentSprite.pOamData = sUnk_83BD0EC;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD0EC;
 }
 
 void func_803615C(void)
@@ -741,10 +1310,10 @@ void func_803622C(void)
     gCurrentSprite.work0 = 20;
     gCurrentSprite.work3 = 0;
     if (gCurrentSprite.health == 2) {
-        gCurrentSprite.pOamData = sUnk_83BD19C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD19C;
         gCurrentSprite.warioCollision = 37;
     } else {
-        gCurrentSprite.pOamData = sUnk_83BD18C;
+        gCurrentSprite.pOamData = sTogeroboOam_83BD18C;
         gCurrentSprite.warioCollision = 3;
     }
     func_80356BC();
@@ -811,7 +1380,7 @@ void func_8036274(void)
 
 void func_8036300(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BD04C;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD04C;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
@@ -831,7 +1400,7 @@ void func_803632C(void)
 void func_8036340(void)
 {
     gCurrentSprite.disableWarioCollisionTimer = 1;
-    gCurrentSprite.pOamData = sUnk_83BD04C;
+    gCurrentSprite.pOamData = sTogeroboOam_83BD04C;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
@@ -883,7 +1452,7 @@ void func_8036384(void)
     {
         register const struct AnimationFrame *oam asm("r0");
         register u8 *fields asm("r1");
-        oam = sUnk_83BD00C;
+        oam = sTogeroboOam_83BD00C;
         fields = (u8 *)sprite;
         *(const struct AnimationFrame **)(fields + 4) = oam;
         fields[22] = zeroByte;
@@ -923,7 +1492,7 @@ void func_803643C(void)
 
 void func_803645C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BCFD4;
+    gCurrentSprite.pOamData = sTogeroboOam_83BCFD4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 50;
