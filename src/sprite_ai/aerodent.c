@@ -15,6 +15,7 @@
 #include "voice_set.h"
 #include "wario.h"
 
+#include "oam.h"
 /* Old-style declarations preserve the original agbcc argument lowering. */
 s32 SpriteCollisionCheckObjectsTouching();
 void SpriteUtilCheckCollisionAtPositionOld(u32, u32) asm("func_8023BFC");
@@ -24,6 +25,847 @@ void AerodentThrowablePrepareFall(void);
 void AerodentThrowablePrepareKnockback(void);
 void AerodentThrowablePrepareThrow(void);
 void AerodentEmitterStartBurst(void);
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sAerodentOam_83DAB28_Frame1[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 512, 11, 0),
+};
+
+const u16 sAerodentOam_83DAB28_Frame2[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 520, 11, 0),
+};
+
+const u8 sAerodentRawData_83DAA28[] = {
+    0x04, 0x00, 0xF2, 0x00, 0xEC, 0x01, 0x38, 0xE1, 0xFB, 0x00, 0x0D, 0x00, 0x3A, 0xE1, 0xF4, 0x40,
+    0xF0, 0x81, 0xF6, 0xB2, 0x04, 0x40, 0xF0, 0x41, 0x36, 0xB3, 0x05, 0x00, 0xFB, 0x00, 0x0D, 0x00,
+    0x58, 0xE1, 0xF2, 0x00, 0xEC, 0x01, 0x39, 0xE1, 0x08, 0x00, 0xF8, 0x01, 0x38, 0xE1, 0xF4, 0x40,
+    0xF0, 0x81, 0xF6, 0xB2, 0x04, 0x40, 0xF0, 0x41, 0x36, 0xB3, 0x05, 0x00, 0xF2, 0x00, 0xEC, 0x01,
+    0x3A, 0xE1, 0xFB, 0x00, 0x0D, 0x00, 0x59, 0xE1, 0x08, 0x00, 0xF8, 0x01, 0x39, 0xE1, 0xF4, 0x40,
+    0xF0, 0x81, 0xF6, 0xB2, 0x04, 0x40, 0xF0, 0x41, 0x36, 0xB3, 0x05, 0x00, 0xF2, 0x00, 0xEC, 0x01,
+    0x58, 0xE1, 0xFB, 0x00, 0x0D, 0x00, 0x38, 0xE1, 0x08, 0x00, 0xF8, 0x01, 0x3A, 0xE1, 0xF4, 0x40,
+    0xF0, 0x81, 0xF6, 0xB2, 0x04, 0x40, 0xF0, 0x41, 0x36, 0xB3, 0x05, 0x00, 0xFB, 0x00, 0x0D, 0x00,
+    0x39, 0xE1, 0xF2, 0x00, 0xEC, 0x01, 0x59, 0xE1, 0x08, 0x00, 0xF8, 0x01, 0x58, 0xE1, 0xF4, 0x40,
+    0xF0, 0x81, 0xF6, 0xB2, 0x04, 0x40, 0xF0, 0x41, 0x36, 0xB3, 0x03, 0x00, 0xFC, 0x00, 0xF6, 0x01,
+    0x38, 0xE1, 0xF8, 0x00, 0x02, 0x00, 0x58, 0xE1, 0x04, 0x00, 0xFD, 0x01, 0x3A, 0xE1, 0x03, 0x00,
+    0xFC, 0x00, 0xF6, 0x01, 0x39, 0xE1, 0xF8, 0x00, 0x02, 0x00, 0x59, 0xE1, 0x04, 0x00, 0xFD, 0x01,
+    0x58, 0xE1, 0x03, 0x00, 0xFC, 0x00, 0xF6, 0x01, 0x3A, 0xE1, 0xF8, 0x00, 0x02, 0x00, 0x38, 0xE1,
+    0x04, 0x00, 0xFD, 0x01, 0x59, 0xE1, 0x03, 0x00, 0xFC, 0x00, 0xF6, 0x01, 0x58, 0xE1, 0xF8, 0x00,
+    0x02, 0x00, 0x39, 0xE1, 0x04, 0x00, 0xFD, 0x01, 0x38, 0xE1, 0x03, 0x00, 0xFC, 0x00, 0xF6, 0x01,
+    0x59, 0xE1, 0xF8, 0x00, 0x02, 0x00, 0x3A, 0xE1, 0x04, 0x00, 0xFD, 0x01, 0x39, 0xE1, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DAB28[] = {
+    {sAerodentOam_83DAB28_Frame1, 20},
+    {sAerodentOam_83DAB28_Frame2, 20},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sUnk_83DAB40[] = {
+    0x28, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x42, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
+    0x62, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x82, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
+    0xA2, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0xC2, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0xD6, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
+    0xEA, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0xFE, 0xAA, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
+    0x12, 0xAB, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DABA0[] = {
+    {sAerodentOam_83DAB28_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DABB0[] = {
+    {sAerodentOam_83DAB28_Frame1, 10},
+    {sAerodentOam_83DAB28_Frame1, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DABC8[] = {
+    {sAerodentOam_83DAB28_Frame1, 5},
+    {sAerodentOam_83DAB28_Frame2, 5},
+    ANIMATION_TERMINATOR
+};
+
+const u16 sAerodentOam_83DACC0_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 908, 8, 0),
+};
+
+const u16 sAerodentOam_83DACC0_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 910, 8, 0),
+};
+
+const u16 sAerodentOam_83DACC0_Frame3[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 912, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD28_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 914, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD28_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 916, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD48_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 920, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD48_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 922, 8, 0),
+};
+
+const u16 sAerodentOam_83DADA8_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 850, 8, 0),
+    OAM_ENTRY(8, -8, SPRITE_SIZE_8x16, 0, 852, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD68_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 702, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD68_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 659, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD68_Frame3[] = {
+    1,
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_16x8, 0, 723, 8, 0),
+};
+
+const u16 sAerodentOam_83DAD68_Frame4[] = {
+    1,
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_16x8, 0, 755, 8, 0),
+};
+
+const u16 sAerodentOam_83DAF00_Frame1[] = {
+    1,
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x16, 0, 918, 8, 0),
+};
+
+const u8 sAerodentRawData_83DAC4E[] = {
+    0x01, 0x00, 0xF8, 0x00, 0xF7, 0x41, 0x14, 0x83,
+};
+
+const u16 sAerodentOam_83DADA8_Frame1[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 850, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 852, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame4[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 702, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame3[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 659, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 723, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 755, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame6[] = {
+    1,
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 918, 8, 0),
+};
+
+const u16 sAerodentOam_83DAE38_Frame1[] = {
+    1,
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 788, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame5[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 850, 8, 0),
+    OAM_ENTRY(8, -8, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 852, 8, 0),
+};
+
+const u16 sAerodentOam_83DADF0_Frame7[] = {
+    2,
+    OAM_ENTRY(0, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 850, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 852, 8, 0),
+};
+
+const u16 sAerodentOam_83DAE78_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 910, 8, 0),
+};
+
+const u16 sAerodentOam_83DAE78_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 912, 8, 0),
+};
+
+const struct AnimationFrame sAerodentOam_83DACC0[] = {
+    {sAerodentOam_83DACC0_Frame1, 80},
+    {sAerodentOam_83DACC0_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame3, 4},
+    {sAerodentOam_83DACC0_Frame1, 10},
+    {sAerodentOam_83DACC0_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame3, 4},
+    {sAerodentOam_83DACC0_Frame1, 100},
+    {sAerodentOam_83DACC0_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame3, 4},
+    {sAerodentOam_83DACC0_Frame1, 60},
+    {sAerodentOam_83DACC0_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DAD28[] = {
+    {sAerodentOam_83DAD28_Frame1, 10},
+    {sAerodentOam_83DAD28_Frame2, 16},
+    {sAerodentOam_83DACC0_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DAD48[] = {
+    {sAerodentOam_83DAD48_Frame1, 50},
+    {sAerodentOam_83DAD48_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame1, 50},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DAD68[] = {
+    {sAerodentOam_83DAD68_Frame1, 4},
+    {sAerodentOam_83DAD68_Frame2, 4},
+    {sAerodentOam_83DAD68_Frame3, 4},
+    {sAerodentOam_83DAD68_Frame4, 50},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sAerodentRawData_83DAD90[] = {
+    0x46, 0xAC, 0x3D, 0x08, 0x08, 0x00, 0x00, 0x00, 0x4E, 0xAC, 0x3D, 0x08, 0x08, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DADA8[] = {
+    {sAerodentOam_83DAD68_Frame4, 4},
+    {sAerodentOam_83DAD68_Frame3, 4},
+    {sAerodentOam_83DAD68_Frame2, 4},
+    {sAerodentOam_83DAD68_Frame1, 4},
+    {sAerodentOam_83DADA8_Frame1, 4},
+    {sAerodentOam_83DACC0_Frame1, 2},
+    {sAerodentOam_83DADA8_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame1, 50},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DADF0[] = {
+    {sAerodentOam_83DADF0_Frame1, 4},
+    {sAerodentOam_83DADF0_Frame2, 4},
+    {sAerodentOam_83DADF0_Frame3, 4},
+    {sAerodentOam_83DADF0_Frame4, 4},
+    {sAerodentOam_83DADF0_Frame5, 4},
+    {sAerodentOam_83DADF0_Frame6, 2},
+    {sAerodentOam_83DADF0_Frame7, 4},
+    {sAerodentOam_83DADF0_Frame6, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DAE38[] = {
+    {sAerodentOam_83DADF0_Frame6, 8},
+    {sAerodentOam_83DAE38_Frame1, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DAE50[] = {
+    {sAerodentOam_83DADF0_Frame4, 4},
+    {sAerodentOam_83DADF0_Frame3, 4},
+    {sAerodentOam_83DADF0_Frame2, 4},
+    {sAerodentOam_83DADF0_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DAE78[] = {
+    {sAerodentOam_83DADF0_Frame6, 80},
+    {sAerodentOam_83DAE78_Frame1, 4},
+    {sAerodentOam_83DAE78_Frame2, 4},
+    {sAerodentOam_83DADF0_Frame6, 10},
+    {sAerodentOam_83DAE78_Frame1, 4},
+    {sAerodentOam_83DAE78_Frame2, 4},
+    {sAerodentOam_83DADF0_Frame6, 100},
+    {sAerodentOam_83DAE78_Frame1, 4},
+    {sAerodentOam_83DAE78_Frame2, 4},
+    {sAerodentOam_83DADF0_Frame6, 60},
+    {sAerodentOam_83DAE78_Frame1, 4},
+    {sAerodentOam_83DAE78_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sAerodentRawData_83DAEE0[] = {
+    0xA2, 0xAC, 0x3D, 0x08, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x94, 0xAC, 0x3D, 0x08, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DAF00[] = {
+    {sAerodentOam_83DACC0_Frame1, 8},
+    {sAerodentOam_83DAF00_Frame1, 8},
+    {sAerodentOam_83DAD48_Frame1, 32},
+    {sAerodentOam_83DAD48_Frame2, 4},
+    {sAerodentOam_83DACC0_Frame1, 50},
+    ANIMATION_TERMINATOR
+};
+
+const u16 sAerodentOam_83DB0B0_Frame1[] = {
+    4,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x16, 0, 764, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_16x16, 0, 798, 8, 0),
+    OAM_ENTRY(-16, 8, SPRITE_SIZE_16x8, 0, 828, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, 0, 766, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0B0_Frame2[] = {
+    4,
+    OAM_ENTRY(-16, -9, SPRITE_SIZE_16x16, 0, 860, 8, 0),
+    OAM_ENTRY(0, -1, SPRITE_SIZE_16x16, 0, 894, 8, 0),
+    OAM_ENTRY(0, -9, SPRITE_SIZE_8x8, 0, 862, 8, 0),
+    OAM_ENTRY(-16, 7, SPRITE_SIZE_16x8, 0, 924, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0B0_Frame3[] = {
+    4,
+    OAM_ENTRY(-16, -10, SPRITE_SIZE_16x16, 0, 956, 8, 0),
+    OAM_ENTRY(0, -2, SPRITE_SIZE_16x16, 0, 990, 8, 0),
+    OAM_ENTRY(-16, 6, SPRITE_SIZE_16x8, 0, 1020, 8, 0),
+    OAM_ENTRY(0, -10, SPRITE_SIZE_8x8, 0, 958, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0B0_Frame4[] = {
+    4,
+    OAM_ENTRY(-16, -10, SPRITE_SIZE_16x16, 0, 764, 8, 0),
+    OAM_ENTRY(0, -2, SPRITE_SIZE_16x16, 0, 798, 8, 0),
+    OAM_ENTRY(-16, 6, SPRITE_SIZE_16x8, 0, 828, 8, 0),
+    OAM_ENTRY(0, -10, SPRITE_SIZE_8x8, 0, 766, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0B0_Frame5[] = {
+    4,
+    OAM_ENTRY(-16, -9, SPRITE_SIZE_16x16, 0, 860, 8, 0),
+    OAM_ENTRY(0, -1, SPRITE_SIZE_16x16, 0, 894, 8, 0),
+    OAM_ENTRY(0, -9, SPRITE_SIZE_8x8, 0, 862, 8, 0),
+    OAM_ENTRY(-16, 7, SPRITE_SIZE_16x8, 0, 924, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0B0_Frame6[] = {
+    4,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x16, 0, 956, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_16x16, 0, 990, 8, 0),
+    OAM_ENTRY(-16, 8, SPRITE_SIZE_16x8, 0, 1020, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, 0, 958, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0E8_Frame1[] = {
+    4,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 560, 8, 0),
+    OAM_ENTRY(-16, 8, SPRITE_SIZE_32x8, 0, 624, 8, 0),
+    OAM_ENTRY(5, -15, SPRITE_SIZE_8x8, 0, 767, 8, 0),
+    OAM_ENTRY(18, -2, SPRITE_SIZE_8x8, 0, 853, 9, 0),
+};
+
+const u16 sAerodentOam_83DB0E8_Frame2[] = {
+    4,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 564, 8, 0),
+    OAM_ENTRY(-16, 8, SPRITE_SIZE_32x8, 0, 628, 8, 0),
+    OAM_ENTRY(8, -16, SPRITE_SIZE_8x8, 0, 863, 9, 0),
+    OAM_ENTRY(11, -8, SPRITE_SIZE_8x8, 0, 767, 8, 0),
+};
+
+const u16 sAerodentOam_83DB0E8_Frame3[] = {
+    4,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 560, 8, 0),
+    OAM_ENTRY(-16, 8, SPRITE_SIZE_32x8, 0, 624, 8, 0),
+    OAM_ENTRY(11, -15, SPRITE_SIZE_8x8, 0, 959, 9, 0),
+    OAM_ENTRY(13, -6, SPRITE_SIZE_8x8, 0, 863, 9, 0),
+};
+
+const u16 sAerodentOam_83DB0E8_Frame4[] = {
+    4,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 564, 8, 0),
+    OAM_ENTRY(-16, 8, SPRITE_SIZE_32x8, 0, 628, 8, 0),
+    OAM_ENTRY(15, -4, SPRITE_SIZE_8x8, 0, 959, 9, 0),
+    OAM_ENTRY(15, -13, SPRITE_SIZE_8x8, 0, 853, 9, 0),
+};
+
+const u8 sAerodentRawData_83DB034[] = {
+    0x04, 0x00, 0xEE, 0x00, 0xF0, 0x81, 0x38, 0x82, 0xE9, 0x00, 0xFE, 0x01, 0xFF, 0x82, 0xF3, 0x00,
+    0x08, 0x00, 0x5F, 0x93, 0xEA, 0x00, 0xF4, 0x01, 0xBF, 0x93, 0x07, 0x00, 0xF0, 0x80, 0xF0, 0x81,
+    0x3C, 0x82, 0xF0, 0x80, 0x00, 0x40, 0x3E, 0x82, 0x00, 0x80, 0x08, 0x00, 0x7F, 0x82, 0xF8, 0x80,
+    0xE8, 0x01, 0x3F, 0x82, 0xF4, 0x00, 0x0B, 0x00, 0x5F, 0x93, 0xE7, 0x00, 0xF4, 0x01, 0xBF, 0x93,
+    0xE8, 0x00, 0x01, 0x00, 0x5F, 0x93, 0x04, 0x00, 0xEF, 0x00, 0xF0, 0x81, 0x38, 0x82, 0xE9, 0x00,
+    0x05, 0x00, 0xBF, 0x93, 0xE3, 0x00, 0xF6, 0x01, 0x55, 0x93, 0xF4, 0x00, 0x0F, 0x00, 0x55, 0x93,
+    0x04, 0x00, 0xF0, 0x80, 0xF0, 0x81, 0x3C, 0x82, 0xF0, 0x80, 0x00, 0x40, 0x3E, 0x82, 0x00, 0x80,
+    0x08, 0x00, 0x7F, 0x82, 0xF8, 0x80, 0xE8, 0x01, 0x3F, 0x82, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DB0B0[] = {
+    {sAerodentOam_83DB0B0_Frame1, 6},
+    {sAerodentOam_83DB0B0_Frame2, 6},
+    {sAerodentOam_83DB0B0_Frame3, 6},
+    {sAerodentOam_83DB0B0_Frame4, 6},
+    {sAerodentOam_83DB0B0_Frame5, 6},
+    {sAerodentOam_83DB0B0_Frame6, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB0E8[] = {
+    {sAerodentOam_83DB0E8_Frame1, 4},
+    {sAerodentOam_83DB0E8_Frame2, 4},
+    {sAerodentOam_83DB0E8_Frame3, 4},
+    {sAerodentOam_83DB0E8_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB110[] = {
+    {sAerodentOam_83DB0E8_Frame1, 4},
+    {sAerodentOam_83DB0E8_Frame2, 4},
+    {sAerodentOam_83DB0E8_Frame3, 4},
+    {sAerodentOam_83DB0E8_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sAerodentRawData_83DB138[] = {
+    0x34, 0xB0, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x4E, 0xB0, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
+    0x7A, 0xB0, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x94, 0xB0, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const u16 sAerodentOam_83DB3A4_Frame1[] = {
+    3,
+    OAM_ENTRY(-8, -30, SPRITE_SIZE_16x32, 0, 768, 9, 0),
+    OAM_ENTRY(-19, -14, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+};
+
+const u16 sAerodentOam_83DB4AC_Frame1[] = {
+    3,
+    OAM_ENTRY(-8, -30, SPRITE_SIZE_16x32, 0, 770, 9, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_8x8, 0, 658, 9, 0),
+    OAM_ENTRY(6, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 658, 9, 0),
+};
+
+const u16 sAerodentOam_83DB4BC_Frame1[] = {
+    2,
+    OAM_ENTRY(-8, -40, SPRITE_SIZE_16x32, 0, 774, 9, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 656, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3B4_Frame1[] = {
+    1,
+    OAM_ENTRY(-10, -30, SPRITE_SIZE_16x32, 0, 776, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3B4_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -30, SPRITE_SIZE_16x32, 0, 778, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3B4_Frame3[] = {
+    1,
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x32, 0, 780, 9, 0),
+};
+
+const u8 sAerodentRawData_83DB1AE[] = {
+    0x04, 0x00, 0xE8, 0x00, 0xF4, 0x41, 0xB0, 0x92, 0xE8, 0x80, 0x04, 0x00, 0xB2, 0x92, 0xF8, 0x40,
+    0xF4, 0x01, 0xF0, 0x92, 0xF8, 0x00, 0x04, 0x00, 0xF2, 0x92,
+};
+
+const u16 sAerodentOam_83DB3EC_Frame1[] = {
+    4,
+    OAM_ENTRY(-4, -24, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 688, 9, 0),
+    OAM_ENTRY(-12, -24, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 690, 9, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 752, 9, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 754, 9, 0),
+};
+
+const u16 sAerodentOam_83DB48C_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 698, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 762, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame2[] = {
+    4,
+    OAM_ENTRY(-9, 1, SPRITE_SIZE_8x8, 0, 902, 9, 0),
+    OAM_ENTRY(1, 1, SPRITE_SIZE_8x8, 0, 903, 9, 0),
+    OAM_ENTRY(-8, -13, SPRITE_SIZE_16x16, 0, 700, 9, 0),
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_16x16, 0, 784, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame3[] = {
+    5,
+    OAM_ENTRY(-19, 0, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, 0, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(0, -20, SPRITE_SIZE_16x16, 0, 316, 14, 0),
+    OAM_ENTRY(-16, -20, SPRITE_SIZE_16x16, 0, 316, 14, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame4[] = {
+    7,
+    OAM_ENTRY(-19, 0, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, 0, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(2, -22, SPRITE_SIZE_16x16, 0, 318, 14, 0),
+    OAM_ENTRY(-18, -22, SPRITE_SIZE_16x16, 0, 318, 14, 0),
+    OAM_ENTRY(-8, -22, SPRITE_SIZE_16x16, 0, 826, 9, 0),
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_16x8, 0, 890, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame5[] = {
+    7,
+    OAM_ENTRY(-19, -4, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, -4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_16x32, 0, 768, 9, 0),
+    OAM_ENTRY(-20, -26, SPRITE_SIZE_16x16, 0, 346, 14, 0),
+    OAM_ENTRY(4, -26, SPRITE_SIZE_16x16, 0, 346, 14, 0),
+    OAM_ENTRY(-8, -40, SPRITE_SIZE_16x16, 0, 826, 9, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x8, 0, 890, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame6[] = {
+    8,
+    OAM_ENTRY(-19, -2, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, -2, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(-24, -30, SPRITE_SIZE_16x8, 0, 380, 14, 0),
+    OAM_ENTRY(-24, -22, SPRITE_SIZE_16x8, 0, 382, 14, 0),
+    OAM_ENTRY(8, -30, SPRITE_SIZE_16x8, 0, 380, 14, 0),
+    OAM_ENTRY(8, -22, SPRITE_SIZE_16x8, 0, 382, 14, 0),
+    OAM_ENTRY(-16, -31, SPRITE_SIZE_32x16, 0, 854, 9, 0),
+};
+
+const u16 sAerodentOam_83DB3FC_Frame7[] = {
+    4,
+    OAM_ENTRY(-19, 0, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, 0, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_32x16, 0, 854, 9, 0),
+};
+
+const u16 sAerodentOam_83DB43C_Frame3[] = {
+    7,
+    OAM_ENTRY(-21, -1, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(1, 1, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-9, -16, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_8x16, 0, 854, 9, 0),
+    OAM_ENTRY(-8, -29, SPRITE_SIZE_8x16, 0, 855, 9, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_8x16, 0, 856, 9, 0),
+    OAM_ENTRY(8, -27, SPRITE_SIZE_8x16, 0, 857, 9, 0),
+};
+
+const u16 sAerodentOam_83DB43C_Frame1[] = {
+    7,
+    OAM_ENTRY(-18, 1, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(4, -1, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-7, -16, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_8x16, 0, 854, 9, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_8x16, 0, 855, 9, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_8x16, 0, 856, 9, 0),
+    OAM_ENTRY(8, -30, SPRITE_SIZE_8x16, 0, 857, 9, 0),
+};
+
+const u16 sAerodentOam_83DB43C_Frame2[] = {
+    7,
+    OAM_ENTRY(-19, 0, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(3, 0, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_8x16, 0, 854, 9, 0),
+    OAM_ENTRY(-8, -29, SPRITE_SIZE_8x16, 0, 855, 9, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_8x16, 0, 856, 9, 0),
+    OAM_ENTRY(8, -29, SPRITE_SIZE_8x16, 0, 857, 9, 0),
+};
+
+const u8 sAerodentRawData_83DB354[] = {
+    0x01, 0x00, 0xE3, 0x40, 0xF0, 0x81, 0x56, 0x93, 0x04, 0x00, 0xE2, 0x80, 0xF0, 0x01, 0x56, 0x93,
+    0xE3, 0x80, 0xF8, 0x01, 0x57, 0x93, 0xE4, 0x80, 0x00, 0x00, 0x58, 0x93, 0xE5, 0x80, 0x08, 0x00,
+    0x59, 0x93, 0x04, 0x00, 0xE5, 0x80, 0xF0, 0x01, 0x56, 0x93, 0xE4, 0x80, 0xF8, 0x01, 0x57, 0x93,
+    0xE3, 0x80, 0x00, 0x00, 0x58, 0x93, 0xE2, 0x80, 0x08, 0x00, 0x59, 0x93,
+};
+
+const u16 sAerodentOam_83DB4D4_Frame1[] = {
+    3,
+    OAM_ENTRY(-20, -12, SPRITE_SIZE_16x16, 0, 786, 9, 0),
+    OAM_ENTRY(4, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 786, 9, 0),
+    OAM_ENTRY(-8, -28, SPRITE_SIZE_16x32, 0, 782, 9, 0),
+};
+
+const struct AnimationFrame sAerodentOam_83DB3A4[] = {
+    {sAerodentOam_83DB3A4_Frame1, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB3B4[] = {
+    {sAerodentOam_83DB3B4_Frame1, 12},
+    {sAerodentOam_83DB3B4_Frame2, 8},
+    {sAerodentOam_83DB3B4_Frame3, 12},
+    {sAerodentOam_83DB3B4_Frame2, 8},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sAerodentRawData_83DB3DC[] = {
+    0xAE, 0xB1, 0x3D, 0x08, 0x64, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DB3EC[] = {
+    {sAerodentOam_83DB3EC_Frame1, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB3FC[] = {
+    {sAerodentOam_83DB3FC_Frame1, 10},
+    {sAerodentOam_83DB3FC_Frame2, 6},
+    {sAerodentOam_83DB3FC_Frame3, 6},
+    {sAerodentOam_83DB3FC_Frame4, 6},
+    {sAerodentOam_83DB3FC_Frame5, 6},
+    {sAerodentOam_83DB3FC_Frame6, 6},
+    {sAerodentOam_83DB3FC_Frame7, 50},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB43C[] = {
+    {sAerodentOam_83DB43C_Frame1, 10},
+    {sAerodentOam_83DB43C_Frame2, 10},
+    {sAerodentOam_83DB43C_Frame3, 10},
+    {sAerodentOam_83DB43C_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sAerodentRawData_83DB464[] = {
+    0x54, 0xB3, 0x3D, 0x08, 0x0A, 0x00, 0x00, 0x00, 0x5C, 0xB3, 0x3D, 0x08, 0x0A, 0x00, 0x00, 0x00,
+    0x54, 0xB3, 0x3D, 0x08, 0x0A, 0x00, 0x00, 0x00, 0x76, 0xB3, 0x3D, 0x08, 0x0A, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DB48C[] = {
+    {sAerodentOam_83DB48C_Frame1, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB49C[] = {
+    {sAerodentOam_83DB3B4_Frame2, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB4AC[] = {
+    {sAerodentOam_83DB4AC_Frame1, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB4BC[] = {
+    {sAerodentOam_83DB4BC_Frame1, 100},
+    {sAerodentOam_83DB3A4_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB4D4[] = {
+    {sAerodentOam_83DB4D4_Frame1, 100},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB4E4[] = {
+    {sAerodentOam_83DB3B4_Frame1, 2},
+    {sAerodentOam_83DB3B4_Frame2, 2},
+    {sAerodentOam_83DB3B4_Frame3, 2},
+    {sAerodentOam_83DB3B4_Frame2, 2},
+    ANIMATION_TERMINATOR
+};
+
+const u16 sAerodentOam_83DB588_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -32, SPRITE_SIZE_16x32, 0, 896, 10, 0),
+};
+
+const u16 sAerodentOam_83DB588_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -32, SPRITE_SIZE_16x32, 0, 898, 10, 0),
+};
+
+const u16 sAerodentOam_83DB588_Frame3[] = {
+    1,
+    OAM_ENTRY(-8, -32, SPRITE_SIZE_16x32, 0, 900, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5A8_Frame1[] = {
+    2,
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 934, 10, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 998, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5A8_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 936, 10, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 1000, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5A8_Frame3[] = {
+    2,
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 938, 10, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 1002, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5C8_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 972, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5C8_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 974, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5C8_Frame3[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 976, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5E8_Frame1[] = {
+    1,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, 0, 978, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5E8_Frame2[] = {
+    1,
+    OAM_ENTRY(-11, -6, SPRITE_SIZE_16x16, 0, 980, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5E8_Frame3[] = {
+    1,
+    OAM_ENTRY(-6, -5, SPRITE_SIZE_16x16, 0, 982, 10, 0),
+};
+
+const u16 sAerodentOam_83DB5E8_Frame4[] = {
+    1,
+    OAM_ENTRY(-4, -11, SPRITE_SIZE_16x16, 0, 984, 10, 0),
+};
+
+const u8 sAerodentRawData_83DB586[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sAerodentOam_83DB588[] = {
+    {sAerodentOam_83DB588_Frame1, 4},
+    {sAerodentOam_83DB588_Frame2, 4},
+    {sAerodentOam_83DB588_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB5A8[] = {
+    {sAerodentOam_83DB5A8_Frame1, 4},
+    {sAerodentOam_83DB5A8_Frame2, 4},
+    {sAerodentOam_83DB5A8_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB5C8[] = {
+    {sAerodentOam_83DB5C8_Frame1, 6},
+    {sAerodentOam_83DB5C8_Frame2, 6},
+    {sAerodentOam_83DB5C8_Frame3, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sAerodentOam_83DB5E8[] = {
+    {sAerodentOam_83DB5E8_Frame1, 4},
+    {sAerodentOam_83DB5E8_Frame2, 4},
+    {sAerodentOam_83DB5E8_Frame3, 4},
+    {sAerodentOam_83DB5E8_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const u16 sUnk_83DB610[] = {
+    5104, 21013, 5104, 13106, 8688, 13107, 12784, 26211, 13040, 26214, 13552, 26214,
+    13552, 26214, 13552, 13878, 13073, 4370, 8978, 21795, 4643, 21794, 4918, 4385,
+    9062, 12833, 13158, 5425, 13926, 8497, 13878, 12833, 4369, 4369, 4371, 4369,
+    4386, 4369, 4643, 4369, 8501, 28961, 4673, 16914, 9282, 9074, 20468, 21060,
+    45585, 47497, 16913, 19387, 8465, 9284, 4369, 4642, 13106, 4375, 24087, 5937,
+    21822, 12629, 4434, 12561, 4370, 4369, 4370, 4369, 4369, 4369, 4369, 4369,
+    4641, 4369, 4466, 8465, 28967, 12818, 10098, 12834, 4369, 8977, 4369, 4642,
+    8721, 4369, 20785, 8469, 20771, 4645, 4946, 4386, 13585, 4371, 12563, 12818,
+    242, 0, 3889, 0, 62531, 255, 21795, 65316, 4370, 62802, 4369, 12561,
+    17474, 12851, 26211, 9014, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 15, 0, 15, 0, 15, 0, 20224, 25443, 20224, 13876,
+    61440, 13124, 0, 20479, 0, 61440, 0, 0, 0, 0, 0, 0,
+    13155, 17202, 13110, 62515, 17203, 3908, 17476, 255, 65535, 0, 0, 0,
+    0, 0, 0, 0, 61455, 18431, 0, 65280, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 13108, 4387, 65535, 30591,
+    0, 65520, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    29473, 13111, 30583, 65535, 65535, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 12591, 25378, 8767, 26178, 9200, 13876, 13552, 25444,
+    20224, 13875, 20224, 25412, 61440, 13135, 0, 65520, 26214, 9318, 26214, 9318,
+    26166, 62566, 25443, 62563, 13878, 3894, 25443, 243, 62515, 15, 4095, 0,
+    15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,
+};
+
+const u16 sUnk_83DB810[] = {
+    5104, 21013, 5104, 13106, 8688, 26211, 12784, 34950, 25328, 34952, 25840, 34952,
+    25840, 34952, 25840, 39064, 13073, 4370, 8978, 21795, 4646, 21794, 4968, 4385,
+    9864, 12833, 13960, 5425, 26760, 8497, 26776, 12833, 4369, 4369, 4371, 4369,
+    4386, 4369, 4643, 4369, 8501, 28961, 4673, 16914, 9282, 9074, 20468, 21060,
+    45585, 47497, 16913, 19387, 8465, 9284, 4369, 4642, 13106, 4375, 24087, 5937,
+    21822, 12629, 4434, 12561, 4370, 4369, 4370, 4369, 4369, 4369, 4369, 4369,
+    4641, 4369, 4466, 8465, 28967, 12818, 10098, 12834, 4369, 8977, 4369, 4642,
+    8721, 4369, 20785, 8469, 20771, 4645, 4946, 4386, 13585, 4371, 12563, 12818,
+    242, 0, 3889, 0, 62531, 255, 21795, 65316, 4370, 62802, 4369, 12561,
+    17474, 12851, 34950, 9064, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 15, 0, 15, 0, 15, 0, 20224, 35209, 20224, 39062,
+    61440, 39268, 0, 20479, 0, 61440, 0, 0, 0, 0, 0, 0,
+    27017, 17202, 13976, 62515, 17257, 3908, 17476, 255, 65535, 0, 0, 0,
+    0, 0, 0, 0, 61455, 18431, 0, 65280, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 13108, 4387, 65535, 30591,
+    0, 65520, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    29473, 13111, 30583, 65535, 65535, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 12591, 33570, 8767, 34882, 9200, 39060, 13552, 35204,
+    20224, 39059, 20224, 35172, 61440, 25423, 0, 65520, 34952, 9352, 34952, 9352,
+    34968, 62600, 35209, 62601, 39064, 3896, 35209, 243, 62518, 15, 4095, 0,
+    15, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,
+};
+
+const s16 sUnk_83DBA10[] = {
+    256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432,
+    448, 464, 480, 496, 512, 32767,
+};
+
+const u16 sUnk_83DBA34[] = {
+    0, 8, 12, 20, 28, 36, 40, 48, 56, 64, 68, 76,
+    84, 88, 92, 104, 108, 32767,
+};
+
+const u16 sAerodentOam_83DBA60_Frame1[] = {
+    1,
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 512, 13, 0),
+};
+
+const struct AnimationFrame sAerodentOam_83DBA60[] = {
+    {sAerodentOam_83DBA60_Frame1, 192},
+    ANIMATION_TERMINATOR
+};
 
 int AerodentWeakPointCheckThrowableCollision(void)
 {
@@ -364,7 +1206,7 @@ void AerodentLoadFlashGraphics(void)
 }
 void AerodentUpdateDamageGraphics(void)
 {
-    if (gCurrentSprite.pOamData == sUnk_83DABB0 && gCurrentSprite.currentAnimationFrame == 1) {
+    if (gCurrentSprite.pOamData == sAerodentOam_83DABB0 && gCurrentSprite.currentAnimationFrame == 1) {
         if (gCurrentSprite.animationTimer == 0)
             AerodentLoadFlashGraphics();
         else
@@ -418,7 +1260,7 @@ void AerodentUpdateInflation(void)
             next = (u32)next >> 24;
             if (next == 8) {
                 *work2 = zero;
-                sprite->pOamData = sUnk_83DABB0;
+                sprite->pOamData = sAerodentOam_83DABB0;
                 sprite->currentAnimationFrame = zero;
                 sprite->animationTimer = masked;
             }
@@ -447,7 +1289,7 @@ void AerodentUpdateInflation(void)
             frame <<= 24;
             frame = (u32)frame >> 24;
             if (frame == 16) {
-                sprite->pOamData = sUnk_83DABA0;
+                sprite->pOamData = sAerodentOam_83DABA0;
                 sprite->currentAnimationFrame = normalized;
                 sprite->animationTimer = normalized;
             }
@@ -527,7 +1369,7 @@ void AerodentInit(void)
             *hitbox = extent;
         }
 
-        sprite->pOamData = sUnk_83DABA0;
+        sprite->pOamData = sAerodentOam_83DABA0;
         /* agbcc otherwise copies the zero to r1 before this byte store. */
         asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(bits));
         sprite->animationTimer = zeroHalf;
@@ -658,7 +1500,7 @@ void AerodentStartDeflate(void)
     gCurrentSprite.work0 = 255;
     gCurrentSprite.status |= SPRITE_STATUS_WARIO_STANDING_ON;
     m4aSongNumStart(SOUND_91);
-    gCurrentSprite.pOamData = sUnk_83DABA0;
+    gCurrentSprite.pOamData = sAerodentOam_83DABA0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     AerodentLoadNormalGraphics();
@@ -683,7 +1525,7 @@ void AerodentStartInflate(void)
     gCurrentSprite.work0 = 1;
     gCurrentSprite.status &= ~SPRITE_STATUS_WARIO_STANDING_ON;
     m4aSongNumStart(SOUND_91);
-    gCurrentSprite.pOamData = sUnk_83DABA0;
+    gCurrentSprite.pOamData = sAerodentOam_83DABA0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     AerodentLoadNormalGraphics();
@@ -741,7 +1583,7 @@ void AerodentUpdateRotation(void)
 void AerodentStartDefeat(void)
 {
     gCurrentSprite.pose = 48;
-    gCurrentSprite.pOamData = sUnk_83DABC8;
+    gCurrentSprite.pOamData = sAerodentOam_83DABC8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 100;
@@ -826,7 +1668,7 @@ void AerodentCompanionInit(void)
     SpriteUtilTurnTowardWario();
     SpriteUtilFindSpriteSlotWork3(105);
     gCurrentSprite.health = 16;
-    gCurrentSprite.pOamData = sUnk_83DB0B0;
+    gCurrentSprite.pOamData = sAerodentOam_83DB0B0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 15;
@@ -863,7 +1705,7 @@ void AerodentCompanionDescend(void)
 }
 void AerodentCompanionStartAttach(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DADA8;
+    gCurrentSprite.pOamData = sAerodentOam_83DADA8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
@@ -887,7 +1729,7 @@ void AerodentCompanionFollowParent(void)
 }
 void AerodentCompanionStartFightCountdown(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DACC0;
+    gCurrentSprite.pOamData = sAerodentOam_83DACC0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 24;
@@ -904,7 +1746,7 @@ void AerodentCompanionBeginBossFight(void)
         SpriteUtilStartBossTimer();
         gCurrentSprite.pose = 19;
         gSpriteData[gCurrentSprite.work3].pose = 16;
-        gSpriteData[gCurrentSprite.work3].pOamData = sUnk_83DAB28;
+        gSpriteData[gCurrentSprite.work3].pOamData = sAerodentOam_83DAB28;
         gSpriteData[gCurrentSprite.work3].currentAnimationFrame = 0;
         gSpriteData[gCurrentSprite.work3].animationTimer = timer;
         gSpriteData[gCurrentSprite.work3].work2 = 20;
@@ -912,7 +1754,7 @@ void AerodentCompanionBeginBossFight(void)
 }
 void AerodentCompanionStartRise(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DAD28;
+    gCurrentSprite.pOamData = sAerodentOam_83DAD28;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 20;
@@ -971,7 +1813,7 @@ void AerodentCompanionRise(void)
 void AerodentCompanionEnterCombat(void)
 {
     gCurrentSprite.drawPriority &= 0x7F;
-    gCurrentSprite.pOamData = sUnk_83DACC0;
+    gCurrentSprite.pOamData = sAerodentOam_83DACC0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 22;
@@ -1026,7 +1868,7 @@ void AerodentCompanionUpdateCombat(void)
         parentIndex += (u32)sprites;
         pose = ((struct PrimarySpriteData *)parentIndex)->pose;
         if (pose == 32 || pose == 34) {
-            sprite->pOamData = sUnk_83DAD68;
+            sprite->pOamData = sAerodentOam_83DAD68;
             sprite->currentAnimationFrame = zero;
             sprite->animationTimer = 0;
             sprite->work0 = 10;
@@ -1082,7 +1924,7 @@ void AerodentCompanionUpdateCombat(void)
                     status ^= facing;
                     value = 0;
                     current->status = status;
-                    current->pOamData = sUnk_83DAF00;
+                    current->pOamData = sAerodentOam_83DAF00;
                     current->currentAnimationFrame = value;
                     current->animationTimer = normalized;
                     AerodentSpawnShot();
@@ -1099,7 +1941,7 @@ void AerodentCompanionUpdateCombat(void)
 
                         fieldBase = (u32)sprites + 4;
                         index += fieldBase;
-                        *(const struct AnimationFrame **)index = sUnk_83DAB28;
+                        *(const struct AnimationFrame **)index = sAerodentOam_83DAB28;
                     }
                     slotCopy = slot;
                     index = *slotCopy;
@@ -1147,7 +1989,7 @@ void AerodentCompanionFireProjectile(void)
 {
     u16 direction;
 
-    gCurrentSprite.pOamData = sUnk_83DAD48;
+    gCurrentSprite.pOamData = sAerodentOam_83DAD48;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 113;
@@ -1298,7 +2140,7 @@ void AerodentCompanionKnockback(void)
 }
 void AerodentCompanionStartDropAttack(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DADF0;
+    gCurrentSprite.pOamData = sAerodentOam_83DADF0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 117;
@@ -1326,7 +2168,7 @@ void AerodentCompanionDropAttack(void)
 }
 void AerodentCompanionStartGroundAttack(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DAE78;
+    gCurrentSprite.pOamData = sAerodentOam_83DAE78;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 119;
@@ -1355,7 +2197,7 @@ void AerodentCompanionGroundAttack(void)
 }
 void AerodentCompanionStartReturn(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DAE50;
+    gCurrentSprite.pOamData = sAerodentOam_83DAE50;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 121;
@@ -1403,7 +2245,7 @@ void AerodentCompanionReturnToParent(void)
 
         index = (u32)sprites + 4;
         index = offset + index;
-        animation = sUnk_83DAB28;
+        animation = sAerodentOam_83DAB28;
         *(const struct AnimationFrame **)index = animation;
         slotCopy = timer;
         /* Keep r0, r1, and r4 live through this copy so agbcc uses r7,
@@ -1498,7 +2340,7 @@ void AerodentCompanionReturnToParent(void)
 void AerodentCompanionStartRecoil(void)
 {
     gCurrentSprite.pose = 36;
-    gCurrentSprite.pOamData = sUnk_83DAE38;
+    gCurrentSprite.pOamData = sAerodentOam_83DAE38;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 16;
@@ -1546,7 +2388,7 @@ void AerodentCompanionTakeDamage(void)
         zero = 0;
         poseValue = 32;
         sprite->pose = poseValue;
-        sprite->pOamData = sUnk_83DB110;
+        sprite->pOamData = sAerodentOam_83DB110;
         /* agbcc otherwise copies the zero to r0 before this byte store. */
         asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(zero));
         collisionZero = 0;
@@ -1654,7 +2496,7 @@ void AerodentCompanionDefeat(void)
 }
 void AerodentCompanionStartRecovery(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB0E8;
+    gCurrentSprite.pOamData = sAerodentOam_83DB0E8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 40;
@@ -1731,7 +2573,7 @@ void AerodentCompanionApplyShopItemDamage(void)
     }
 
     gCurrentSprite.work2 = item;
-    gCurrentSprite.pOamData = sUnk_83DB110;
+    gCurrentSprite.pOamData = sAerodentOam_83DB110;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work1 = 0;
@@ -1770,7 +2612,7 @@ void AerodentCompanionUpdateShopItemDamage(void)
         healthCopy = health;
         if (healthCopy == *work2) {
             AerodentCompanionStartIdle();
-            sprite->pOamData = sUnk_83DB0E8;
+            sprite->pOamData = sAerodentOam_83DB0E8;
             sprite->currentAnimationFrame = 0;
             sprite->animationTimer = 0;
         } else {
@@ -1814,7 +2656,7 @@ void AerodentThrowableInit(void)
     gCurrentSprite.hitboxExtentDown = 24;
     gCurrentSprite.hitboxExtentLeft = 32;
     gCurrentSprite.hitboxExtentRight = 28;
-    gCurrentSprite.pOamData = sUnk_83DB48C;
+    gCurrentSprite.pOamData = sAerodentOam_83DB48C;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
@@ -1894,7 +2736,7 @@ void AerodentThrowablePatrol(void)
             timer = &alias->work0;
             value = *timer;
             if (value == 40) {
-                alias->pOamData = sUnk_83DB3FC;
+                alias->pOamData = sAerodentOam_83DB3FC;
                 alias->currentAnimationFrame = 0;
                 alias->animationTimer = 0;
             }
@@ -1910,7 +2752,7 @@ void AerodentThrowablePatrol(void)
                     register u8 *work3 asm("r0");
 
                     current->pose = 20;
-                    current->pOamData = sUnk_83DB43C;
+                    current->pOamData = sAerodentOam_83DB43C;
                     current->currentAnimationFrame = normalized;
                     clear = 0;
                     current->animationTimer = normalized;
@@ -1957,7 +2799,7 @@ void AerodentThrowableBounce(void)
         frameZero = 0;
         timerZero = 0;
         sprite->yPosition = nextY;
-        sprite->pOamData = sUnk_83DB4AC;
+        sprite->pOamData = sAerodentOam_83DB4AC;
         sprite->currentAnimationFrame = frameZero;
         sprite->animationTimer = timerZero;
         work = &sprite->work0;
@@ -2022,7 +2864,7 @@ void AerodentThrowableBounce(void)
 }
 void AerodentThrowableStartCharge(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB4BC;
+    gCurrentSprite.pOamData = sAerodentOam_83DB4BC;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
@@ -2120,7 +2962,7 @@ void AerodentThrowableCharge(void)
                     register u8 *work3 asm("r0");
 
                     current->pose = 22;
-                    current->pOamData = sUnk_83DB3A4;
+                    current->pOamData = sAerodentOam_83DB3A4;
                     current->currentAnimationFrame = normalized;
                     clear = 0;
                     current->animationTimer = normalized;
@@ -2167,7 +3009,7 @@ void AerodentThrowableBounceAfterCharge(void)
         frameZero = 0;
         timerZero = 0;
         sprite->yPosition = nextY;
-        sprite->pOamData = sUnk_83DB4AC;
+        sprite->pOamData = sAerodentOam_83DB4AC;
         sprite->currentAnimationFrame = frameZero;
         sprite->animationTimer = timerZero;
         work = &sprite->work0;
@@ -2227,7 +3069,7 @@ void AerodentThrowableBounceAfterCharge(void)
 }
 void AerodentThrowableStartStun(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB4D4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB4D4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.hitboxExtentUp = 96;
@@ -2243,7 +3085,7 @@ void AerodentThrowableStun(void)
 }
 void AerodentThrowableStartGrabbed(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3A4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3A4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 28;
@@ -2273,7 +3115,7 @@ void AerodentThrowableUpdateGrabbed(void)
         register int frameZero asm("r1");
 
         sprite->warioCollision = 59;
-        sprite->pOamData = sUnk_83DB3B4;
+        sprite->pOamData = sAerodentOam_83DB3B4;
         frameZero = 0;
         sprite->animationTimer = zero;
         /* agbcc otherwise copies the zero to r0 before this byte store. */
@@ -2305,7 +3147,7 @@ void AerodentThrowableStartLanding(void)
     struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sUnk_83DB4AC;
+    sprite->pOamData = sAerodentOam_83DB4AC;
     sprite->currentAnimationFrame = 0;
     sprite->animationTimer = 0;
     sprite->pose = 24;
@@ -2321,7 +3163,7 @@ void AerodentThrowableLand(void)
 void AerodentThrowableStartBreak(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_BACKGROUND;
-    gCurrentSprite.pOamData = sUnk_83DB4E4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB4E4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 111;
@@ -2365,7 +3207,7 @@ void AerodentThrowableBreak(void)
 }
 void AerodentThrowableStartBounce(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3B4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 30;
@@ -2395,7 +3237,7 @@ void AerodentThrowablePrepareFallWithEffect(void)
     register int zero asm("r4");
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sUnk_83DB3EC;
+    sprite->pOamData = sAerodentOam_83DB3EC;
     sprite->currentAnimationFrame = 0;
     zero = 0;
     sprite->animationTimer = 0;
@@ -2421,7 +3263,7 @@ void AerodentThrowableFallLeftWithEffect(void)
 
 void AerodentThrowablePrepareFall(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3EC;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3EC;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -2445,7 +3287,7 @@ void AerodentThrowableFallLeft(void)
 
 void AerodentThrowablePrepareKnockback(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3B4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work1 = 0;
@@ -2470,7 +3312,7 @@ void AerodentThrowableDie(void)
 
 void AerodentThrowablePrepareThrow(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3B4;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work2 = 8;
@@ -2509,7 +3351,7 @@ void AerodentThrowableStartCarryLeft(void)
 }
 void AerodentThrowableSetThrownAnimation(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB49C;
+    gCurrentSprite.pOamData = sAerodentOam_83DB49C;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
@@ -2533,7 +3375,7 @@ void AerodentEmitterInit(void)
     gCurrentSprite.hitboxExtentLeft = 32;
     gCurrentSprite.hitboxExtentRight = 28;
     gCurrentSprite.work0 = 16;
-    gCurrentSprite.pOamData = sUnk_83DB5C8;
+    gCurrentSprite.pOamData = sAerodentOam_83DB5C8;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = frame;
     gCurrentSprite.warioCollision = 14;
@@ -2554,7 +3396,7 @@ void AerodentEmitterAttachToParent(void)
     if (gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 16;
         gCurrentSprite.work3 = 0;
-        gCurrentSprite.pOamData = sUnk_83DB5E8;
+        gCurrentSprite.pOamData = sAerodentOam_83DB5E8;
         gCurrentSprite.animationTimer = 0;
         gCurrentSprite.currentAnimationFrame = 0;
     }
@@ -2648,13 +3490,13 @@ void AerodentEmitterStartBurst(void)
     gCurrentSprite.hitboxExtentDown = 0;
 
     if (gCurrentSprite.roomSlot == 2) {
-        gCurrentSprite.pOamData = sUnk_83DB588;
+        gCurrentSprite.pOamData = sAerodentOam_83DB588;
         gCurrentSprite.pose = 48;
     } else if (gCurrentSprite.roomSlot == 1) {
-        gCurrentSprite.pOamData = sUnk_83DB5A8;
+        gCurrentSprite.pOamData = sAerodentOam_83DB5A8;
         gCurrentSprite.pose = 48;
     } else {
-        gCurrentSprite.pOamData = sUnk_83DB5A8;
+        gCurrentSprite.pOamData = sAerodentOam_83DB5A8;
         gCurrentSprite.pose = 24;
     }
 }
@@ -2772,7 +3614,7 @@ void SpriteAerodentWeakPoint(void)
             asm("" : "=r"(clearMask) : "0"(0xFFFB));
             value &= clearMask;
             current->status = value;
-            current->pOamData = sUnk_83DBA60;
+            current->pOamData = sAerodentOam_83DBA60;
             current->currentAnimationFrame = frameZero;
             current->animationTimer = timerZero;
             current->pose = 16;

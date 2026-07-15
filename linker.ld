@@ -754,6 +754,40 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83DAB28 = sAerodentOam_83DAB28;
+        sUnk_83DABA0 = sAerodentOam_83DABA0;
+        sUnk_83DABB0 = sAerodentOam_83DABB0;
+        sUnk_83DABC8 = sAerodentOam_83DABC8;
+        sUnk_83DACC0 = sAerodentOam_83DACC0;
+        sUnk_83DAD28 = sAerodentOam_83DAD28;
+        sUnk_83DAD48 = sAerodentOam_83DAD48;
+        sUnk_83DAD68 = sAerodentOam_83DAD68;
+        sUnk_83DADA8 = sAerodentOam_83DADA8;
+        sUnk_83DADF0 = sAerodentOam_83DADF0;
+        sUnk_83DAE38 = sAerodentOam_83DAE38;
+        sUnk_83DAE50 = sAerodentOam_83DAE50;
+        sUnk_83DAE78 = sAerodentOam_83DAE78;
+        sUnk_83DAF00 = sAerodentOam_83DAF00;
+        sUnk_83DB0B0 = sAerodentOam_83DB0B0;
+        sUnk_83DB0E8 = sAerodentOam_83DB0E8;
+        sUnk_83DB110 = sAerodentOam_83DB110;
+        sUnk_83DB3A4 = sAerodentOam_83DB3A4;
+        sUnk_83DB3B4 = sAerodentOam_83DB3B4;
+        sUnk_83DB3EC = sAerodentOam_83DB3EC;
+        sUnk_83DB3FC = sAerodentOam_83DB3FC;
+        sUnk_83DB43C = sAerodentOam_83DB43C;
+        sUnk_83DB48C = sAerodentOam_83DB48C;
+        sUnk_83DB49C = sAerodentOam_83DB49C;
+        sUnk_83DB4AC = sAerodentOam_83DB4AC;
+        sUnk_83DB4BC = sAerodentOam_83DB4BC;
+        sUnk_83DB4D4 = sAerodentOam_83DB4D4;
+        sUnk_83DB4E4 = sAerodentOam_83DB4E4;
+        sUnk_83DB588 = sAerodentOam_83DB588;
+        sUnk_83DB5A8 = sAerodentOam_83DB5A8;
+        sUnk_83DB5C8 = sAerodentOam_83DB5C8;
+        sUnk_83DB5E8 = sAerodentOam_83DB5E8;
+        sUnk_83DBA60 = sAerodentOam_83DBA60;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -772,7 +806,9 @@ SECTIONS {
         obj/sprite_ai/coins.o(.rodata);
         obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
-        obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
+        obj/blob_0x3C4B28-0x3DAA18.o(.rodata);
+        obj/sprite_ai/aerodent.o(.rodata);
+        obj/blob_0x3DBA70-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
