@@ -5,9 +5,290 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
 enum UtsuboankoCollision {
     UTSUBOANKO_COLLISION_IDLE = 81,
     UTSUBOANKO_COLLISION_EMERGING = 82,
+};
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sUtsuboankoEmergingOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 541, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 595, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 595, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 596, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 596, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 597, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 597, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 598, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 598, 8, 0),
+};
+
+const u8 sUtsuboankoRawData_83DDCAE[] = {
+    0x02, 0x00, 0xF8, 0x00, 0xF0, 0x41, 0x1E, 0x82, 0xF8, 0x00, 0x00, 0x50, 0x1E, 0x82,
+};
+
+const u16 sUtsuboankoEmergingOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 542, 8, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame9[] = {
+    7,
+    OAM_ENTRY(7, 2, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 606, 9, 0),
+    OAM_ENTRY(-23, 1, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 606, 9, 0),
+    OAM_ENTRY(-16, -13, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    OAM_ENTRY(-16, 3, SPRITE_SIZE_16x8, 0, 593, 8, 0),
+    OAM_ENTRY(0, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(0, 3, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 593, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame10[] = {
+    7,
+    OAM_ENTRY(9, 2, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 606, 9, 0),
+    OAM_ENTRY(-25, 1, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 606, 9, 0),
+    OAM_ENTRY(-16, -13, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    OAM_ENTRY(-16, 3, SPRITE_SIZE_16x8, 0, 593, 8, 0),
+    OAM_ENTRY(0, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(0, 3, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 593, 8, 0),
+    OAM_ENTRY(-4, -20, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame11[] = {
+    7,
+    OAM_ENTRY(-16, -14, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    OAM_ENTRY(-16, 2, SPRITE_SIZE_16x8, 0, 593, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(0, 2, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 593, 8, 0),
+    OAM_ENTRY(-4, -22, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_16x16, 0, 535, 9, 0),
+    OAM_ENTRY(7, 1, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame12[] = {
+    9,
+    OAM_ENTRY(-16, -14, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    OAM_ENTRY(-16, 2, SPRITE_SIZE_16x8, 0, 593, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(0, 2, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 593, 8, 0),
+    OAM_ENTRY(-22, 7, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(6, 7, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+    OAM_ENTRY(-16, 1, SPRITE_SIZE_8x8, 0, 637, 9, 0),
+    OAM_ENTRY(10, 0, SPRITE_SIZE_8x8, 0, 637, 9, 0),
+    OAM_ENTRY(-4, -23, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame13[] = {
+    9,
+    OAM_ENTRY(-3, -30, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+    OAM_ENTRY(-24, -18, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_8x32, 0, 514, 8, 0),
+    OAM_ENTRY(8, -18, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-24, 14, SPRITE_SIZE_32x8, 0, 603, 8, 0),
+    OAM_ENTRY(-8, 14, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 603, 8, 0),
+    OAM_ENTRY(-23, 11, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(7, 11, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame14[] = {
+    9,
+    OAM_ENTRY(-3, -31, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+    OAM_ENTRY(-24, -19, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_8x32, 0, 514, 8, 0),
+    OAM_ENTRY(8, -19, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(0, -19, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_32x8, 0, 603, 8, 0),
+    OAM_ENTRY(-8, 13, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 603, 8, 0),
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(8, 13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame15[] = {
+    7,
+    OAM_ENTRY(-3, -35, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+    OAM_ENTRY(-24, -25, SPRITE_SIZE_32x32, 0, 515, 8, 0),
+    OAM_ENTRY(8, -25, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 515, 8, 0),
+    OAM_ENTRY(-24, 7, SPRITE_SIZE_32x16, 0, 531, 8, 0),
+    OAM_ENTRY(8, 7, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(8, 13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame16[] = {
+    7,
+    OAM_ENTRY(-3, -36, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+    OAM_ENTRY(-24, -26, SPRITE_SIZE_32x32, 0, 515, 8, 0),
+    OAM_ENTRY(8, -26, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 515, 8, 0),
+    OAM_ENTRY(-24, 6, SPRITE_SIZE_32x16, 0, 531, 8, 0),
+    OAM_ENTRY(8, 6, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(8, 13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+};
+
+const u16 sUtsuboankoEmergingOam_Frame17[] = {
+    9,
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(8, 13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+    OAM_ENTRY(-3, -37, SPRITE_SIZE_8x16, 0, 537, 9, 0),
+    OAM_ENTRY(-8, -26, SPRITE_SIZE_32x32, 0, 519, 8, 0),
+    OAM_ENTRY(-24, -26, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(0, 6, SPRITE_SIZE_32x8, 0, 571, 8, 0),
+    OAM_ENTRY(-32, 6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 571, 8, 0),
+    OAM_ENTRY(-18, 5, SPRITE_SIZE_8x8, 0, 637, 9, 0),
+    OAM_ENTRY(12, 5, SPRITE_SIZE_8x8, 0, 637, 9, 0),
+};
+
+const u16 sUtsuboankoRetreatingOam_Frame1[] = {
+    9,
+    OAM_ENTRY(9, 9, SPRITE_SIZE_8x8, 0, 636, 9, 0),
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(8, 13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+    OAM_ENTRY(-5, -37, SPRITE_SIZE_16x16, 0, 601, 9, 0),
+    OAM_ENTRY(-24, -26, SPRITE_SIZE_32x32, 0, 523, 8, 0),
+    OAM_ENTRY(8, -26, SPRITE_SIZE_16x32, 0, 527, 8, 0),
+    OAM_ENTRY(-24, 6, SPRITE_SIZE_32x8, 0, 625, 8, 0),
+    OAM_ENTRY(8, 6, SPRITE_SIZE_16x8, 0, 629, 8, 0),
+    OAM_ENTRY(-20, 5, SPRITE_SIZE_8x8, 0, 637, 9, 0),
+};
+
+const u16 sUtsuboankoRetreatingOam_Frame2[] = {
+    9,
+    OAM_ENTRY(-17, 9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 636, 9, 0),
+    OAM_ENTRY(8, 13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 599, 9, 0),
+    OAM_ENTRY(-24, 13, SPRITE_SIZE_16x16, 0, 599, 9, 0),
+    OAM_ENTRY(-11, -37, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 601, 9, 0),
+    OAM_ENTRY(-8, -26, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-24, -26, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 527, 8, 0),
+    OAM_ENTRY(-8, 6, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 625, 8, 0),
+    OAM_ENTRY(-24, 6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 629, 8, 0),
+    OAM_ENTRY(12, 5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 637, 9, 0),
+};
+
+const u16 sUtsuboankoHidingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 635, 8, 0),
+};
+
+const u8 sUtsuboankoRawData_83DDEFE[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sUtsuboankoEmergingOam[] = {
+    {sUtsuboankoEmergingOam_Frame1, 2},
+    {sUtsuboankoEmergingOam_Frame2, 2},
+    {sUtsuboankoEmergingOam_Frame3, 2},
+    {sUtsuboankoEmergingOam_Frame4, 2},
+    {sUtsuboankoEmergingOam_Frame5, 2},
+    {sUtsuboankoEmergingOam_Frame6, 2},
+    {sUtsuboankoEmergingOam_Frame7, 2},
+    {sUtsuboankoEmergingOam_Frame8, 3},
+    {sUtsuboankoEmergingOam_Frame9, 1},
+    {sUtsuboankoEmergingOam_Frame10, 1},
+    {sUtsuboankoEmergingOam_Frame11, 2},
+    {sUtsuboankoEmergingOam_Frame12, 2},
+    {sUtsuboankoEmergingOam_Frame13, 2},
+    {sUtsuboankoEmergingOam_Frame14, 2},
+    {sUtsuboankoEmergingOam_Frame15, 4},
+    {sUtsuboankoEmergingOam_Frame16, 4},
+    {sUtsuboankoEmergingOam_Frame17, 8},
+    {sUtsuboankoEmergingOam_Frame16, 8},
+    {sUtsuboankoEmergingOam_Frame17, 8},
+    {sUtsuboankoEmergingOam_Frame16, 8},
+    {sUtsuboankoEmergingOam_Frame17, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sUtsuboankoHidingOam[] = {
+    {sUtsuboankoEmergingOam_Frame13, 2},
+    {sUtsuboankoEmergingOam_Frame12, 2},
+    {sUtsuboankoEmergingOam_Frame11, 2},
+    {sUtsuboankoEmergingOam_Frame10, 1},
+    {sUtsuboankoEmergingOam_Frame9, 1},
+    {sUtsuboankoEmergingOam_Frame8, 4},
+    {sUtsuboankoEmergingOam_Frame7, 4},
+    {sUtsuboankoEmergingOam_Frame6, 4},
+    {sUtsuboankoEmergingOam_Frame5, 4},
+    {sUtsuboankoEmergingOam_Frame4, 4},
+    {sUtsuboankoEmergingOam_Frame3, 4},
+    {sUtsuboankoEmergingOam_Frame2, 4},
+    {sUtsuboankoEmergingOam_Frame1, 4},
+    {sUtsuboankoHidingOam_Frame1, 30},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sUtsuboankoRetreatingOam[] = {
+    {sUtsuboankoRetreatingOam_Frame1, 6},
+    {sUtsuboankoEmergingOam_Frame17, 6},
+    {sUtsuboankoRetreatingOam_Frame2, 6},
+    {sUtsuboankoEmergingOam_Frame17, 6},
+    {sUtsuboankoRetreatingOam_Frame1, 6},
+    {sUtsuboankoEmergingOam_Frame17, 6},
+    {sUtsuboankoRetreatingOam_Frame2, 6},
+    {sUtsuboankoEmergingOam_Frame17, 6},
+    {sUtsuboankoEmergingOam_Frame13, 2},
+    {sUtsuboankoEmergingOam_Frame12, 2},
+    {sUtsuboankoEmergingOam_Frame11, 2},
+    {sUtsuboankoEmergingOam_Frame10, 1},
+    {sUtsuboankoEmergingOam_Frame9, 1},
+    {sUtsuboankoEmergingOam_Frame8, 4},
+    {sUtsuboankoEmergingOam_Frame7, 4},
+    {sUtsuboankoEmergingOam_Frame6, 4},
+    {sUtsuboankoEmergingOam_Frame5, 4},
+    {sUtsuboankoEmergingOam_Frame4, 4},
+    {sUtsuboankoEmergingOam_Frame3, 4},
+    {sUtsuboankoEmergingOam_Frame2, 4},
+    {sUtsuboankoEmergingOam_Frame1, 4},
+    {sUtsuboankoHidingOam_Frame1, 30},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sUtsuboankoIdleOam[] = {
+    {sUtsuboankoEmergingOam_Frame1, 10},
+    {sUtsuboankoEmergingOam_Frame2, 10},
+    {sUtsuboankoEmergingOam_Frame3, 10},
+    {sUtsuboankoEmergingOam_Frame4, 7},
+    {sUtsuboankoEmergingOam_Frame5, 6},
+    {sUtsuboankoEmergingOam_Frame5, 5},
+    {sUtsuboankoEmergingOam_Frame4, 6},
+    {sUtsuboankoEmergingOam_Frame3, 6},
+    {sUtsuboankoEmergingOam_Frame2, 6},
+    {sUtsuboankoEmergingOam_Frame1, 6},
+    {sUtsuboankoHidingOam_Frame1, 30},
+    ANIMATION_TERMINATOR
 };
 
 void InitUtsuboanko(void)
