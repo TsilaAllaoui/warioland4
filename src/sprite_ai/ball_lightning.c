@@ -8,6 +8,175 @@
 #include "wario.h"
 #include "gba/m4a.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sBallLightningBoltFallingLeftOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -4, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-19, -12, SPRITE_SIZE_32x8, 0, 515, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-21, -9, SPRITE_SIZE_32x8, 0, 547, 8, 0),
+    OAM_ENTRY(-12, -1, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-19, 4, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 515, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-21, 1, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 547, 8, 0),
+    OAM_ENTRY(-12, -15, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 519, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-20, -12, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-13, 4, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 515, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-11, 1, SPRITE_SIZE_32x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 547, 8, 0),
+    OAM_ENTRY(-20, -15, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 519, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-20, -4, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-13, -12, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 515, 8, 0),
+};
+
+const u16 sBallLightningBoltFallingLeftOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 547, 8, 0),
+    OAM_ENTRY(-20, -1, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 519, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame4[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 535, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame5[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 535, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame6[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 535, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame7[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 537, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 569, 8, 0),
+};
+
+const u16 sBallLightningBoltIdleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 538, 8, 0),
+};
+
+const u16 sBallLightningBoltDisappearingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 540, 8, 0),
+};
+
+const u16 sBallLightningBoltDisappearingOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+};
+
+const u8 sBallLightningRawData_83BD978[] = {
+    0x01, 0x00, 0xF8, 0x80, 0xFE, 0x01, 0x0B, 0x82, 0x01, 0x00, 0xF8, 0x80, 0xFE, 0x01, 0x0C, 0x82,
+    0x01, 0x00, 0xF8, 0x80, 0xFE, 0x01, 0x0D, 0x82, 0x01, 0x00, 0xF8, 0x80, 0xFD, 0x01, 0x0E, 0x82,
+};
+
+const u16 sBallLightningTrailOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-4, -3, SPRITE_SIZE_8x8, 0, 558, 8, 0),
+};
+
+const struct AnimationFrame sBallLightningBoltFallingLeftOam[] = {
+    {sBallLightningBoltFallingLeftOam_Frame1, 3},
+    {sBallLightningBoltFallingLeftOam_Frame2, 3},
+    {sBallLightningBoltFallingLeftOam_Frame3, 3},
+    {sBallLightningBoltFallingLeftOam_Frame4, 3},
+    {sBallLightningBoltFallingLeftOam_Frame5, 3},
+    {sBallLightningBoltFallingLeftOam_Frame6, 3},
+    {sBallLightningBoltFallingLeftOam_Frame7, 3},
+    {sBallLightningBoltFallingLeftOam_Frame8, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBallLightningBoltFallingRightOam[] = {
+    {sBallLightningBoltFallingLeftOam_Frame1, 3},
+    {sBallLightningBoltFallingLeftOam_Frame2, 3},
+    {sBallLightningBoltFallingLeftOam_Frame7, 3},
+    {sBallLightningBoltFallingLeftOam_Frame8, 3},
+    {sBallLightningBoltFallingLeftOam_Frame5, 3},
+    {sBallLightningBoltFallingLeftOam_Frame6, 3},
+    {sBallLightningBoltFallingLeftOam_Frame3, 3},
+    {sBallLightningBoltFallingLeftOam_Frame4, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBallLightningBoltIdleOam[] = {
+    {sBallLightningBoltIdleOam_Frame1, 2},
+    {sBallLightningBoltIdleOam_Frame2, 2},
+    {sBallLightningBoltIdleOam_Frame3, 2},
+    {sBallLightningBoltIdleOam_Frame4, 3},
+    {sBallLightningBoltFallingLeftOam_Frame2, 3},
+    {sBallLightningBoltIdleOam_Frame5, 3},
+    {sBallLightningBoltFallingLeftOam_Frame4, 3},
+    {sBallLightningBoltIdleOam_Frame6, 3},
+    {sBallLightningBoltFallingLeftOam_Frame6, 3},
+    {sBallLightningBoltIdleOam_Frame7, 3},
+    {sBallLightningBoltFallingLeftOam_Frame8, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBallLightningTrailOam[] = {
+    {sBallLightningBoltIdleOam_Frame6, 2},
+    {sBallLightningBoltIdleOam_Frame3, 3},
+    {sBallLightningBoltIdleOam_Frame2, 4},
+    {sBallLightningTrailOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBallLightningBoltDisappearingOam[] = {
+    {sBallLightningBoltIdleOam_Frame7, 3},
+    {sBallLightningBoltIdleOam_Frame3, 3},
+    {sBallLightningBoltIdleOam_Frame2, 3},
+    {sBallLightningBoltIdleOam_Frame1, 3},
+    {sBallLightningBoltDisappearingOam_Frame1, 3},
+    {sBallLightningBoltDisappearingOam_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBallLightningSpawnerOam[] = {
+    {sBallLightningBoltIdleOam_Frame2, 254},
+    ANIMATION_TERMINATOR
+};
+
 void InitBallLightningSpawner(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
