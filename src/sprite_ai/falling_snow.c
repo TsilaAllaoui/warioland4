@@ -5,16 +5,320 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-extern const struct AnimationFrame sFallingSnowIdleOam[];
-extern const struct AnimationFrame sFallingSnowFallingOam[];
-extern const struct AnimationFrame sFallingSnowMeltingOam[];
-extern const struct AnimationFrame sFallingSnowChildOam[];
-extern const struct AnimationFrame sFallingSnowDropOam[];
-extern const struct AnimationFrame sFallingSnowResetOam[];
-extern const struct AnimationFrame sFallingSnowFragmentRightOam[];
-extern const struct AnimationFrame sFallingSnowFragmentLeftOam[];
+#include "oam.h"
 extern u8 gUnk_3000964[][3];
 extern void func_801E3A8(u8, u8, u8, u32, u32, u32);
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sFallingSnowIdleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x8, 0, 512, 8, 0),
+};
+
+const u16 sFallingSnowIdleOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-9, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 544, 8, 0),
+};
+
+const u16 sFallingSnowIdleOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x8, 0, 544, 8, 0),
+};
+
+const u16 sFallingSnowIdleOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x8, 0, 514, 8, 0),
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 515, 8, 0),
+};
+
+const u16 sFallingSnowIdleOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_16x8, 0, 546, 8, 0),
+    OAM_ENTRY(4, -17, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-8, -13, SPRITE_SIZE_16x8, 0, 544, 8, 0),
+};
+
+const u16 sFallingSnowIdleOam_Frame6[] = {
+    3,
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 546, 8, 0),
+    OAM_ENTRY(-13, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-9, -12, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 544, 8, 0),
+};
+
+const u16 sFallingSnowIdleOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_16x16, 0, 517, 8, 0),
+    OAM_ENTRY(4, -17, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+};
+
+const u8 sFallingSnowRawData_83BD230[] = {
+    0x02, 0x00, 0xF0, 0x00, 0xF4, 0x41, 0x05, 0x82, 0xF0, 0x80, 0x04, 0x00, 0x07, 0x82,
+};
+
+const u16 sFallingSnowFallingOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-12, -20, SPRITE_SIZE_16x16, 0, 520, 8, 0),
+    OAM_ENTRY(4, -20, SPRITE_SIZE_8x16, 0, 522, 8, 0),
+    OAM_ENTRY(-12, -4, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+    OAM_ENTRY(4, -4, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, 0, 555, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x8, 0, 557, 8, 0),
+    OAM_ENTRY(-9, -16, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_16x16, 0, 526, 8, 0),
+    OAM_ENTRY(4, -16, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-4, -16, SPRITE_SIZE_8x16, 0, 529, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x8, 0, 525, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 530, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_16x16, 0, 530, 8, 0),
+    OAM_ENTRY(4, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 530, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-12, -23, SPRITE_SIZE_16x16, 0, 532, 8, 0),
+    OAM_ENTRY(4, -23, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 534, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame6[] = {
+    3,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 566, 8, 0),
+    OAM_ENTRY(3, -19, SPRITE_SIZE_16x8, 0, 536, 8, 0),
+    OAM_ENTRY(-18, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame7[] = {
+    4,
+    OAM_ENTRY(12, -14, SPRITE_SIZE_8x8, 0, 569, 8, 0),
+    OAM_ENTRY(3, -20, SPRITE_SIZE_8x8, 0, 568, 8, 0),
+    OAM_ENTRY(-20, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 569, 8, 0),
+    OAM_ENTRY(-11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 568, 8, 0),
+};
+
+const u16 sFallingSnowMeltingOam_Frame8[] = {
+    3,
+    OAM_ENTRY(10, -13, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+    OAM_ENTRY(2, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 538, 8, 0),
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 538, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame8[] = {
+    1,
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, 0, 570, 8, 0),
+};
+
+const u16 sFallingSnowDropOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_16x16, 0, 517, 8, 0),
+    OAM_ENTRY(5, -17, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+};
+
+const u16 sFallingSnowDropOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-13, -17, SPRITE_SIZE_16x16, 0, 517, 8, 0),
+    OAM_ENTRY(3, -17, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame1[] = {
+    1,
+    OAM_ENTRY(1, -7, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame2[] = {
+    2,
+    OAM_ENTRY(1, 3, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+    OAM_ENTRY(2, -6, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame3[] = {
+    3,
+    OAM_ENTRY(1, 7, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+    OAM_ENTRY(4, -2, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(-15, -7, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame4[] = {
+    4,
+    OAM_ENTRY(2, 9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(4, -4, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(-16, 3, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+    OAM_ENTRY(-15, -6, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame5[] = {
+    3,
+    OAM_ENTRY(6, 14, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(-15, 7, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+    OAM_ENTRY(-12, -2, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-14, 17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame7[] = {
+    1,
+    OAM_ENTRY(-10, 16, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame9[] = {
+    2,
+    OAM_ENTRY(1, 7, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+    OAM_ENTRY(4, -2, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame10[] = {
+    2,
+    OAM_ENTRY(2, 9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(4, -4, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sFallingSnowChildOam_Frame11[] = {
+    1,
+    OAM_ENTRY(6, 14, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sFallingSnowResetOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -23, SPRITE_SIZE_16x16, 0, 532, 8, 0),
+    OAM_ENTRY(4, -23, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 532, 8, 0),
+};
+
+const u16 sFallingSnowResetOam_Frame2[] = {
+    2,
+    OAM_ENTRY(3, -19, SPRITE_SIZE_16x8, 0, 536, 8, 0),
+    OAM_ENTRY(-18, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+const u16 sFallingSnowResetOam_Frame3[] = {
+    4,
+    OAM_ENTRY(4, -22, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(-13, -22, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+};
+
+const u16 sFallingSnowResetOam_Frame4[] = {
+    6,
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    OAM_ENTRY(8, -27, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+    OAM_ENTRY(17, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+    OAM_ENTRY(-25, -17, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    OAM_ENTRY(-12, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 541, 8, 0),
+    OAM_ENTRY(4, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 541, 8, 0),
+};
+
+const u16 sFallingSnowFragmentRightOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-9, -21, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+    OAM_ENTRY(-17, -24, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+};
+
+const u16 sFallingSnowFragmentLeftOam_Frame1[] = {
+    3,
+    OAM_ENTRY(1, -21, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+    OAM_ENTRY(4, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 571, 8, 0),
+};
+
+const struct AnimationFrame sFallingSnowIdleOam[] = {
+    {sFallingSnowIdleOam_Frame1, 2},
+    {sFallingSnowIdleOam_Frame2, 2},
+    {sFallingSnowIdleOam_Frame3, 2},
+    {sFallingSnowIdleOam_Frame1, 2},
+    {sFallingSnowIdleOam_Frame2, 2},
+    {sFallingSnowIdleOam_Frame3, 2},
+    {sFallingSnowIdleOam_Frame1, 2},
+    {sFallingSnowIdleOam_Frame2, 2},
+    {sFallingSnowIdleOam_Frame3, 2},
+    {sFallingSnowIdleOam_Frame4, 2},
+    {sFallingSnowIdleOam_Frame3, 2},
+    {sFallingSnowIdleOam_Frame4, 2},
+    {sFallingSnowIdleOam_Frame5, 2},
+    {sFallingSnowIdleOam_Frame6, 2},
+    {sFallingSnowIdleOam_Frame7, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowFallingOam[] = {
+    {sFallingSnowFallingOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowMeltingOam[] = {
+    {sFallingSnowMeltingOam_Frame1, 2},
+    {sFallingSnowMeltingOam_Frame2, 2},
+    {sFallingSnowMeltingOam_Frame3, 2},
+    {sFallingSnowMeltingOam_Frame4, 3},
+    {sFallingSnowMeltingOam_Frame5, 2},
+    {sFallingSnowMeltingOam_Frame6, 2},
+    {sFallingSnowMeltingOam_Frame7, 2},
+    {sFallingSnowMeltingOam_Frame8, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowChildOam[] = {
+    {sFallingSnowChildOam_Frame1, 4},
+    {sFallingSnowChildOam_Frame2, 4},
+    {sFallingSnowChildOam_Frame3, 4},
+    {sFallingSnowChildOam_Frame4, 4},
+    {sFallingSnowChildOam_Frame5, 4},
+    {sFallingSnowChildOam_Frame6, 4},
+    {sFallingSnowChildOam_Frame7, 4},
+    {sFallingSnowChildOam_Frame8, 20},
+    {sFallingSnowChildOam_Frame1, 4},
+    {sFallingSnowChildOam_Frame2, 4},
+    {sFallingSnowChildOam_Frame9, 4},
+    {sFallingSnowChildOam_Frame10, 4},
+    {sFallingSnowChildOam_Frame11, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowDropOam[] = {
+    {sFallingSnowDropOam_Frame1, 2},
+    {sFallingSnowDropOam_Frame2, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowResetOam[] = {
+    {sFallingSnowMeltingOam_Frame2, 2},
+    {sFallingSnowMeltingOam_Frame4, 3},
+    {sFallingSnowResetOam_Frame1, 2},
+    {sFallingSnowResetOam_Frame2, 2},
+    {sFallingSnowResetOam_Frame3, 2},
+    {sFallingSnowResetOam_Frame4, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowFragmentRightOam[] = {
+    {sFallingSnowFragmentRightOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFallingSnowFragmentLeftOam[] = {
+    {sFallingSnowFragmentLeftOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
 
 void InitFallingSnow(void)
 {
