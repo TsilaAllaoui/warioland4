@@ -7,6 +7,248 @@
 #include "sprite_util.h"
 #include "gba/m4a.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sButatabiMovingOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 516, 8, 0),
+    OAM_ENTRY(1, -4, SPRITE_SIZE_8x8, 0, 531, 8, 0),
+    OAM_ENTRY(-1, -6, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 516, 8, 0),
+    OAM_ENTRY(-1, -5, SPRITE_SIZE_8x8, 0, 531, 8, 0),
+    OAM_ENTRY(-1, -6, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame7[] = {
+    5,
+    OAM_ENTRY(-3, -9, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame2[] = {
+    5,
+    OAM_ENTRY(-3, -10, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x16, 0, 517, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame3[] = {
+    5,
+    OAM_ENTRY(-3, -10, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-1, -6, SPRITE_SIZE_16x16, 0, 519, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame4[] = {
+    5,
+    OAM_ENTRY(-1, -8, SPRITE_SIZE_16x16, 0, 519, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(-29, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+    OAM_ENTRY(-3, -12, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame5[] = {
+    5,
+    OAM_ENTRY(0, -8, SPRITE_SIZE_16x16, 0, 519, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(-29, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+    OAM_ENTRY(-3, -13, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame6[] = {
+    6,
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x16, 0, 521, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-1, -10, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame5[] = {
+    6,
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(-1, -8, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-3, -12, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame4[] = {
+    5,
+    OAM_ENTRY(-1, -8, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x16, 0, 527, 8, 0),
+    OAM_ENTRY(-28, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+    OAM_ENTRY(-3, -13, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-3, 5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame6[] = {
+    6,
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(-24, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+    OAM_ENTRY(-4, -12, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame7[] = {
+    6,
+    OAM_ENTRY(2, -8, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+    OAM_ENTRY(-10, -8, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+    OAM_ENTRY(-6, -12, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-6, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiTurningOam_Frame8[] = {
+    6,
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+    OAM_ENTRY(-5, -12, SPRITE_SIZE_8x8, 0, 529, 8, 0),
+    OAM_ENTRY(0, -12, SPRITE_SIZE_8x8, 0, 530, 8, 0),
+    OAM_ENTRY(-5, 4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(0, 4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 530, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame1[] = {
+    8,
+    OAM_ENTRY(-2, -12, SPRITE_SIZE_8x8, 0, 529, 8, 0),
+    OAM_ENTRY(3, -12, SPRITE_SIZE_8x8, 0, 530, 8, 0),
+    OAM_ENTRY(-2, 4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(3, 4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 530, 8, 0),
+    OAM_ENTRY(-2, -8, SPRITE_SIZE_8x16, 0, 523, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x16, 0, 524, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_8x16, 0, 527, 8, 0),
+    OAM_ENTRY(-19, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame2[] = {
+    9,
+    OAM_ENTRY(-3, -12, SPRITE_SIZE_8x8, 0, 529, 8, 0),
+    OAM_ENTRY(4, -12, SPRITE_SIZE_8x8, 0, 530, 8, 0),
+    OAM_ENTRY(-3, 4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(4, 4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 530, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x16, 0, 523, 8, 0),
+    OAM_ENTRY(5, -8, SPRITE_SIZE_8x16, 0, 524, 8, 0),
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_8x16, 0, 527, 8, 0),
+    OAM_ENTRY(-23, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiTurnAroundOam_Frame3[] = {
+    5,
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_16x16, 0, 527, 8, 0),
+    OAM_ENTRY(-27, -5, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+    OAM_ENTRY(-2, -8, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(-4, -13, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiFallingOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-26, -10, SPRITE_SIZE_32x16, 0, 532, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_16x16, 0, 519, 8, 0),
+    OAM_ENTRY(-3, -13, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const u16 sButatabiMovingOam_Frame2[] = {
+    5,
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 531, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x16, 0, 517, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiMovingOam_Frame3[] = {
+    5,
+    OAM_ENTRY(1, 2, SPRITE_SIZE_8x8, 0, 531, 8, 0),
+    OAM_ENTRY(-9, -11, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x16, 0, 521, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-29, -6, SPRITE_SIZE_16x8, 0, 561, 8, 0),
+};
+
+const u16 sButatabiFallingOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-26, -10, SPRITE_SIZE_32x16, 0, 532, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_16x16, 0, 519, 8, 0),
+    OAM_ENTRY(0, -12, SPRITE_SIZE_16x8, 0, 529, 8, 0),
+    OAM_ENTRY(0, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 529, 8, 0),
+};
+
+const struct AnimationFrame sButatabiMovingOam[] = {
+    {sButatabiMovingOam_Frame1, 10},
+    {sButatabiMovingOam_Frame2, 30},
+    {sButatabiMovingOam_Frame1, 10},
+    {sButatabiMovingOam_Frame3, 30},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sButatabiTurningOam[] = {
+    {sButatabiTurningOam_Frame1, 1},
+    {sButatabiTurningOam_Frame2, 1},
+    {sButatabiTurningOam_Frame3, 1},
+    {sButatabiTurningOam_Frame4, 1},
+    {sButatabiTurningOam_Frame5, 1},
+    {sButatabiTurningOam_Frame6, 1},
+    {sButatabiTurningOam_Frame7, 1},
+    {sButatabiTurningOam_Frame8, 1},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sButatabiTurnAroundOam[] = {
+    {sButatabiTurnAroundOam_Frame1, 1},
+    {sButatabiTurnAroundOam_Frame2, 1},
+    {sButatabiTurnAroundOam_Frame3, 1},
+    {sButatabiTurnAroundOam_Frame4, 1},
+    {sButatabiTurnAroundOam_Frame5, 1},
+    {sButatabiTurnAroundOam_Frame6, 1},
+    {sButatabiTurnAroundOam_Frame7, 1},
+    {sButatabiTurningOam_Frame1, 1},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sButatabiFallingOam[] = {
+    {sButatabiTurningOam_Frame1, 1},
+    {sButatabiTurnAroundOam_Frame7, 1},
+    {sButatabiTurningOam_Frame2, 2},
+    {sButatabiFallingOam_Frame1, 5},
+    {sButatabiFallingOam_Frame2, 5},
+    {sButatabiFallingOam_Frame1, 5},
+    {sButatabiFallingOam_Frame2, 5},
+    {sButatabiFallingOam_Frame1, 5},
+    {sButatabiFallingOam_Frame2, 5},
+    {sButatabiFallingOam_Frame1, 5},
+    {sButatabiFallingOam_Frame2, 5},
+    {sButatabiFallingOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
 void SetButatabiHitbox(void)
 {
     struct PrimarySpriteData* sprite;
