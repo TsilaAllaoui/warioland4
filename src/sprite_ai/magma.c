@@ -4,6 +4,106 @@
 #include "sound.h"
 #include "sprite.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMagmaOam_83D2570_Frame1[] = {
+    8,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 516, 8, 0),
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, 0, 516, 8, 0),
+    OAM_ENTRY(-32, 32, SPRITE_SIZE_32x32, 0, 516, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(0, 32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 520, 8, 0),
+};
+
+const u16 sMagmaOam_83D2570_Frame2[] = {
+    8,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 520, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+    OAM_ENTRY(-32, 32, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(0, 32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 528, 8, 0),
+};
+
+const u16 sMagmaOam_83D2570_Frame3[] = {
+    8,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 532, 8, 0),
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, 0, 532, 8, 0),
+    OAM_ENTRY(-32, 32, SPRITE_SIZE_32x32, 0, 532, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(0, 32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+const u16 sMagmaOam_83D2570_Frame4[] = {
+    8,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(-32, 32, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(0, 32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+};
+
+const u16 sMagmaOam_83D2598_Frame1[] = {
+    4,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 516, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 520, 8, 0),
+};
+
+const u16 sMagmaOam_83D2598_Frame2[] = {
+    4,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 520, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 524, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 528, 8, 0),
+};
+
+const u16 sMagmaOam_83D2598_Frame3[] = {
+    4,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 532, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+const u16 sMagmaOam_83D2598_Frame4[] = {
+    4,
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+};
+
+const struct AnimationFrame sMagmaOam_83D2570[] = {
+    {sMagmaOam_83D2570_Frame1, 4},
+    {sMagmaOam_83D2570_Frame2, 4},
+    {sMagmaOam_83D2570_Frame3, 4},
+    {sMagmaOam_83D2570_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMagmaOam_83D2598[] = {
+    {sMagmaOam_83D2598_Frame1, 4},
+    {sMagmaOam_83D2598_Frame2, 4},
+    {sMagmaOam_83D2598_Frame3, 4},
+    {sMagmaOam_83D2598_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
 void InitMagma(void)
 {
     if (gSwitchPressed) {
