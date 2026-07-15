@@ -754,6 +754,24 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83E1F30 = sSpriteA9Oam_83E1F30;
+        sUnk_83E1F68 = sSpriteA9Oam_83E1F68;
+        sUnk_83E1FA0 = sSpriteA9Oam_83E1FA0;
+        sUnk_83E1FE8 = sSpriteA9Oam_83E1FE8;
+        sUnk_83E2020 = sSpriteA9Oam_83E2020;
+        sUnk_83E2068 = sSpriteA9Oam_83E2068;
+        sUnk_83E2088 = sSpriteA9Oam_83E2088;
+        sUnk_83E20C0 = sSpriteA9Oam_83E20C0;
+        sUnk_83E20F8 = sSpriteA9Oam_83E20F8;
+        sUnk_83E2130 = sSpriteA9Oam_83E2130;
+        sUnk_83E2150 = sSpriteA9Oam_83E2150;
+        sUnk_83E21A8 = sSpriteA9Oam_83E21A8;
+        sUnk_83E21C0 = sSpriteA9Oam_83E21C0;
+        sUnk_83E21D0 = sSpriteA9Oam_83E21D0;
+        sUnk_83E21F0 = sSpriteA9Oam_83E21F0;
+        sUnk_83E2208 = sSpriteA9Oam_83E2208;
+        sUnk_83E2238 = sSpriteA9Oam_83E2238;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -772,7 +790,9 @@ SECTIONS {
         obj/sprite_ai/coins.o(.rodata);
         obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
-        obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
+        obj/blob_0x3C4B28-0x3E1928.o(.rodata);
+        obj/sprite_ai/sprite_a9.o(.rodata);
+        obj/blob_0x3E22C8-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
