@@ -754,6 +754,24 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83BB0E8 = sTotsumenOam_83BB0E8;
+        sUnk_83BB120 = sTotsumenOam_83BB120;
+        sUnk_83BB158 = sTotsumenOam_83BB158;
+        sUnk_83BB1A0 = sTotsumenOam_83BB1A0;
+        sUnk_83BB1D8 = sTotsumenOam_83BB1D8;
+        sUnk_83BB220 = sTotsumenOam_83BB220;
+        sUnk_83BB240 = sTotsumenOam_83BB240;
+        sUnk_83BB278 = sTotsumenOam_83BB278;
+        sUnk_83BB2B0 = sTotsumenOam_83BB2B0;
+        sUnk_83BB2E8 = sTotsumenOam_83BB2E8;
+        sUnk_83BB308 = sTotsumenOam_83BB308;
+        sUnk_83BB360 = sTotsumenOam_83BB360;
+        sUnk_83BB378 = sTotsumenOam_83BB378;
+        sUnk_83BB388 = sTotsumenOam_83BB388;
+        sUnk_83BB3A8 = sTotsumenOam_83BB3A8;
+        sUnk_83BB3C0 = sTotsumenOam_83BB3C0;
+        sUnk_83BB3F0 = sTotsumenOam_83BB3F0;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -770,7 +788,9 @@ SECTIONS {
         obj/sprite_ai/vortex.o(.rodata);
         obj/blob_0x3B548C-0x3B5C5C.o(.rodata);
         obj/sprite_ai/coins.o(.rodata);
-        obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
+        obj/blob_0x3B6450-0x3BAAE0.o(.rodata);
+        obj/sprite_ai/totsumen.o(.rodata);
+        obj/blob_0x3BB480-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
         obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
