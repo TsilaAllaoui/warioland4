@@ -6,7 +6,500 @@
 #include "wario.h"
 #include "sprite_ai/hoggus.h"
 
+#include "oam.h"
 void SpriteSpawnAsChildWide(u32 id, u32 roomSlot, u32 gfxSlot, u32 yPosition, u32 xPosition) asm("SpriteSpawnAsChild");
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sHoggusIdleOam_Frame1[] = {
+    6,
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, 0, 530, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-6, -32, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(8, -25, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusIdleOam_Frame2[] = {
+    6,
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, 0, 530, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-6, -29, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(8, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusIdleOam_Frame3[] = {
+    6,
+    OAM_ENTRY(0, -27, SPRITE_SIZE_16x32, 0, 530, 8, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+    OAM_ENTRY(-31, -5, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -23, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusIdleOam_Frame4[] = {
+    6,
+    OAM_ENTRY(0, -29, SPRITE_SIZE_16x32, 0, 530, 8, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 580, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame1[] = {
+    6,
+    OAM_ENTRY(8, -25, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -31, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-6, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-14, -25, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 522, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -31, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame3[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -29, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame4[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -27, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+    OAM_ENTRY(-31, -5, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame5[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 580, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame14[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -31, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame6[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -31, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame7[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-6, -20, SPRITE_SIZE_8x16, 0, 642, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -31, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame8[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(2, -22, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -29, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame9[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(9, -22, SPRITE_SIZE_8x16, 0, 642, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -29, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame10[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-1, -16, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -27, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame11[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(4, -15, SPRITE_SIZE_8x16, 0, 642, 8, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -27, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame12[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-15, -15, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 580, 8, 0),
+};
+
+const u16 sHoggusChargeOam_Frame13[] = {
+    6,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-9, -16, SPRITE_SIZE_8x16, 0, 642, 8, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 580, 8, 0),
+};
+
+const u16 sHoggusAttackVariant1Oam_Frame1[] = {
+    6,
+    OAM_ENTRY(-1, -14, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 532, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusAttackVariant1Oam_Frame2[] = {
+    7,
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 526, 8, 0),
+    OAM_ENTRY(-12, -25, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 522, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, 0, 532, 8, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusAttackVariant1Oam_Frame3[] = {
+    7,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x16, 0, 656, 9, 0),
+    OAM_ENTRY(8, -25, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, 0, 532, 8, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -27, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusAttackVariant1Oam_Frame4[] = {
+    7,
+    OAM_ENTRY(18, -17, SPRITE_SIZE_16x16, 0, 656, 9, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -27, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusAttackVariant1Oam_Frame5[] = {
+    7,
+    OAM_ENTRY(18, -16, SPRITE_SIZE_16x16, 0, 656, 9, 0),
+    OAM_ENTRY(0, -27, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -26, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+    OAM_ENTRY(-31, -5, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -23, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusAttackVariant1Oam_Frame6[] = {
+    7,
+    OAM_ENTRY(18, -17, SPRITE_SIZE_16x16, 0, 656, 9, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 580, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusSpawnVariant1Oam_Frame1[] = {
+    7,
+    OAM_ENTRY(18, -18, SPRITE_SIZE_16x16, 0, 656, 9, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -29, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -25, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusSpawnVariant1Oam_Frame2[] = {
+    7,
+    OAM_ENTRY(18, -17, SPRITE_SIZE_16x16, 0, 656, 9, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -27, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusAttackVariant0Oam_Frame1[] = {
+    7,
+    OAM_ENTRY(10, -16, SPRITE_SIZE_8x16, 0, 654, 10, 0),
+    OAM_ENTRY(8, -25, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, 0, 532, 8, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(-6, -27, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+
+const u16 sHoggusAttackVariant0Oam_Frame2[] = {
+    8,
+    OAM_ENTRY(18, -16, SPRITE_SIZE_16x16, 0, 654, 10, 0),
+    OAM_ENTRY(18, -24, SPRITE_SIZE_8x8, 0, 672, 10, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -27, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusAttackVariant0Oam_Frame3[] = {
+    8,
+    OAM_ENTRY(18, -15, SPRITE_SIZE_16x16, 0, 654, 10, 0),
+    OAM_ENTRY(18, -23, SPRITE_SIZE_8x8, 0, 672, 10, 0),
+    OAM_ENTRY(0, -27, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -27, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -26, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+    OAM_ENTRY(-31, -5, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -23, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusAttackVariant0Oam_Frame4[] = {
+    8,
+    OAM_ENTRY(18, -16, SPRITE_SIZE_16x16, 0, 654, 10, 0),
+    OAM_ENTRY(18, -24, SPRITE_SIZE_8x8, 0, 672, 10, 0),
+    OAM_ENTRY(0, -29, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 580, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusSpawnVariant0Oam_Frame1[] = {
+    8,
+    OAM_ENTRY(18, -17, SPRITE_SIZE_16x16, 0, 654, 10, 0),
+    OAM_ENTRY(18, -25, SPRITE_SIZE_8x8, 0, 672, 10, 0),
+    OAM_ENTRY(0, -30, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -29, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-31, -7, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -25, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusSpawnVariant0Oam_Frame2[] = {
+    8,
+    OAM_ENTRY(18, -16, SPRITE_SIZE_16x16, 0, 654, 10, 0),
+    OAM_ENTRY(18, -24, SPRITE_SIZE_8x8, 0, 672, 10, 0),
+    OAM_ENTRY(0, -28, SPRITE_SIZE_16x32, 0, 534, 8, 0),
+    OAM_ENTRY(-16, -28, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-6, -27, SPRITE_SIZE_16x8, 0, 640, 8, 0),
+    OAM_ENTRY(-12, 0, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-31, -6, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+    OAM_ENTRY(9, -24, SPRITE_SIZE_32x32, 0, 522, 8, 0),
+};
+
+const u16 sHoggusEggOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 658, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-12, -14, SPRITE_SIZE_16x16, 0, 649, 9, 0),
+    OAM_ENTRY(-1, -6, SPRITE_SIZE_8x8, 0, 658, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_16x16, 0, 649, 9, 0),
+    OAM_ENTRY(-6, -13, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 649, 9, 0),
+    OAM_ENTRY(-17, -11, SPRITE_SIZE_16x16, 0, 649, 9, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_8x8, 0, 658, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_16x16, 0, 643, 9, 0),
+    OAM_ENTRY(2, -13, SPRITE_SIZE_8x16, 0, 645, 9, 0),
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_16x16, 0, 649, 9, 0),
+    OAM_ENTRY(7, 2, SPRITE_SIZE_8x8, 0, 658, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame5[] = {
+    4,
+    OAM_ENTRY(-14, -12, SPRITE_SIZE_16x16, 0, 646, 9, 0),
+    OAM_ENTRY(2, -12, SPRITE_SIZE_8x16, 0, 648, 9, 0),
+    OAM_ENTRY(2, -5, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 649, 9, 0),
+    OAM_ENTRY(-9, -3, SPRITE_SIZE_16x16, 0, 649, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame6[] = {
+    4,
+    OAM_ENTRY(-15, -12, SPRITE_SIZE_16x16, 0, 651, 9, 0),
+    OAM_ENTRY(1, -12, SPRITE_SIZE_8x16, 0, 653, 9, 0),
+    OAM_ENTRY(-6, -5, SPRITE_SIZE_16x16, 0, 643, 9, 0),
+    OAM_ENTRY(10, -5, SPRITE_SIZE_8x16, 0, 645, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame7[] = {
+    3,
+    OAM_ENTRY(-6, -4, SPRITE_SIZE_16x16, 0, 646, 9, 0),
+    OAM_ENTRY(10, -4, SPRITE_SIZE_8x16, 0, 648, 9, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_8x8, 0, 652, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-7, -4, SPRITE_SIZE_16x16, 0, 651, 9, 0),
+    OAM_ENTRY(9, -4, SPRITE_SIZE_8x16, 0, 653, 9, 0),
+};
+
+const u16 sHoggusEggOam_Frame9[] = {
+    1,
+    OAM_ENTRY(-6, 9, SPRITE_SIZE_8x8, 0, 652, 9, 0),
+};
+
+const u8 sHoggusRawData_83DC262[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sHoggusIdleOam[] = {
+    {sHoggusIdleOam_Frame1, 10},
+    {sHoggusIdleOam_Frame2, 10},
+    {sHoggusIdleOam_Frame3, 10},
+    {sHoggusIdleOam_Frame4, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sHoggusChargeOam[] = {
+    {sHoggusChargeOam_Frame1, 5},
+    {sHoggusChargeOam_Frame2, 5},
+    {sHoggusChargeOam_Frame3, 10},
+    {sHoggusChargeOam_Frame4, 10},
+    {sHoggusChargeOam_Frame5, 10},
+    {sHoggusChargeOam_Frame6, 4},
+    {sHoggusChargeOam_Frame7, 6},
+    {sHoggusChargeOam_Frame8, 4},
+    {sHoggusChargeOam_Frame9, 6},
+    {sHoggusChargeOam_Frame10, 4},
+    {sHoggusChargeOam_Frame11, 6},
+    {sHoggusChargeOam_Frame12, 4},
+    {sHoggusChargeOam_Frame13, 6},
+    {sHoggusChargeOam_Frame6, 4},
+    {sHoggusChargeOam_Frame7, 6},
+    {sHoggusChargeOam_Frame8, 4},
+    {sHoggusChargeOam_Frame9, 6},
+    {sHoggusChargeOam_Frame10, 4},
+    {sHoggusChargeOam_Frame11, 6},
+    {sHoggusChargeOam_Frame12, 4},
+    {sHoggusChargeOam_Frame13, 6},
+    {sHoggusChargeOam_Frame14, 10},
+    {sHoggusChargeOam_Frame3, 10},
+    {sHoggusChargeOam_Frame4, 10},
+    {sHoggusChargeOam_Frame5, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sHoggusAttackVariant1Oam[] = {
+    {sHoggusAttackVariant1Oam_Frame1, 5},
+    {sHoggusAttackVariant1Oam_Frame2, 5},
+    {sHoggusAttackVariant1Oam_Frame3, 5},
+    {sHoggusAttackVariant1Oam_Frame4, 5},
+    {sHoggusAttackVariant1Oam_Frame5, 10},
+    {sHoggusAttackVariant1Oam_Frame6, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sHoggusAttackVariant0Oam[] = {
+    {sHoggusAttackVariant1Oam_Frame1, 5},
+    {sHoggusAttackVariant1Oam_Frame2, 5},
+    {sHoggusAttackVariant0Oam_Frame1, 5},
+    {sHoggusAttackVariant0Oam_Frame2, 5},
+    {sHoggusAttackVariant0Oam_Frame3, 10},
+    {sHoggusAttackVariant0Oam_Frame4, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sHoggusEggOam[] = {
+    {sHoggusEggOam_Frame1, 4},
+    {sHoggusEggOam_Frame2, 4},
+    {sHoggusEggOam_Frame3, 4},
+    {sHoggusEggOam_Frame4, 4},
+    {sHoggusEggOam_Frame5, 4},
+    {sHoggusEggOam_Frame6, 4},
+    {sHoggusEggOam_Frame7, 4},
+    {sHoggusEggOam_Frame8, 4},
+    {sHoggusEggOam_Frame9, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sHoggusSpawnVariant1Oam[] = {
+    {sHoggusSpawnVariant1Oam_Frame1, 10},
+    {sHoggusSpawnVariant1Oam_Frame2, 10},
+    {sHoggusAttackVariant1Oam_Frame5, 10},
+    {sHoggusAttackVariant1Oam_Frame6, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sHoggusSpawnVariant0Oam[] = {
+    {sHoggusSpawnVariant0Oam_Frame1, 10},
+    {sHoggusSpawnVariant0Oam_Frame2, 10},
+    {sHoggusAttackVariant0Oam_Frame3, 10},
+    {sHoggusAttackVariant0Oam_Frame4, 10},
+    ANIMATION_TERMINATOR
+};
 
 void UpdateHoggusPosition(void)
 {
