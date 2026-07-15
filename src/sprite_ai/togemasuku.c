@@ -4,6 +4,99 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sTogemasukuIdleOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-19, 3, SPRITE_SIZE_32x8, 0, 515, 8, 0),
+};
+
+const u16 sTogemasukuDefeatedOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-19, -12, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-19, 4, SPRITE_SIZE_32x8, 0, 547, 8, 0),
+};
+
+const u16 sTogemasukuRespawningOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-11, -5, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_32x8, 0, 512, 8, 0),
+};
+
+const u16 sTogemasukuRespawningOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_32x8, 0, 512, 8, 0),
+    OAM_ENTRY(-20, -5, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 519, 8, 0),
+};
+
+const u16 sTogemasukuIdleOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-7, 2, SPRITE_SIZE_16x8, 0, 542, 8, 0),
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-19, 3, SPRITE_SIZE_32x8, 0, 515, 8, 0),
+};
+
+const u16 sTogemasukuIdleOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-7, -9, SPRITE_SIZE_16x8, 0, 572, 8, 0),
+    OAM_ENTRY(-19, -12, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-19, 4, SPRITE_SIZE_32x8, 0, 547, 8, 0),
+};
+
+const u8 sTogemasukuRawData_83BD644[] = {
+    0x04, 0x00, 0x02, 0x40, 0xF9, 0x01, 0x1E, 0x82, 0xF7, 0x40, 0xF9, 0x01, 0x3C, 0x82, 0xF4, 0x40,
+    0xED, 0x81, 0x0A, 0x82, 0x04, 0x40, 0xED, 0x41, 0x23, 0x82, 0x00, 0x00,
+};
+
+const struct AnimationFrame sTogemasukuIdleOam[] = {
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuIdleOam_Frame2, 8},
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuIdleOam_Frame2, 8},
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuIdleOam_Frame2, 8},
+    {sTogemasukuIdleOam_Frame1, 1},
+    {sTogemasukuIdleOam_Frame3, 7},
+    {sTogemasukuIdleOam_Frame1, 1},
+    {sTogemasukuIdleOam_Frame2, 8},
+    {sTogemasukuIdleOam_Frame1, 1},
+    {sTogemasukuIdleOam_Frame3, 7},
+    {sTogemasukuIdleOam_Frame1, 1},
+    {sTogemasukuIdleOam_Frame2, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogemasukuDefeatedOam[] = {
+    {sTogemasukuIdleOam_Frame1, 2},
+    {sTogemasukuDefeatedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogemasukuRespawningOam[] = {
+    {sTogemasukuIdleOam_Frame1, 6},
+    {sTogemasukuRespawningOam_Frame1, 6},
+    {sTogemasukuIdleOam_Frame1, 6},
+    {sTogemasukuRespawningOam_Frame2, 6},
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuRespawningOam_Frame1, 8},
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuRespawningOam_Frame2, 8},
+    {sTogemasukuIdleOam_Frame1, 10},
+    {sTogemasukuRespawningOam_Frame1, 10},
+    {sTogemasukuIdleOam_Frame1, 10},
+    {sTogemasukuRespawningOam_Frame2, 10},
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuIdleOam_Frame1, 1},
+    {sTogemasukuIdleOam_Frame3, 7},
+    {sTogemasukuIdleOam_Frame1, 8},
+    {sTogemasukuIdleOam_Frame1, 1},
+    {sTogemasukuIdleOam_Frame3, 7},
+    ANIMATION_TERMINATOR
+};
+
 void InitTogemasuku(void)
 {
     gCurrentSprite.drawDistanceDown = 16;
