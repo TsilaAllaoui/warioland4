@@ -12,8 +12,8 @@ extern const s16 sUnk_83B33F0[];
 extern const s16 sUnk_83B3472[];
 extern const s16 sUnk_83B34F4[];
 extern const s16 sUnk_83B3576[];
-extern const struct AnimationFrame sUnk_83B4534[];
-extern const struct AnimationFrame sUnk_83B4544[];
+extern const struct AnimationFrame sRotatingPlatformOam_83B4534[];
+extern const struct AnimationFrame sRotatingPlatformOam_83B4544[];
 
 void SpriteRotatingPlatform(void);
 void SpriteUnknown94(void);

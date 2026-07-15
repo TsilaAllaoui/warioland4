@@ -754,6 +754,9 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83B4534 = sRotatingPlatformOam_83B4534;
+        sUnk_83B4544 = sRotatingPlatformOam_83B4544;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -764,7 +767,7 @@ SECTIONS {
         obj/sprite_util.o(.rodata);
         obj/blob_0x352CF0-0x3B3A00.o(.rodata);
         obj/sprite_ai/spear_mask.o(.rodata);
-        obj/blob_0x3B451C-0x3B4554.o(.rodata);
+        obj/sprite_ai/rotating_platform.o(.rodata);
         obj/sprite_ai/keyzer.o(.rodata);
         obj/sprite_ai/treasure.o(.rodata);
         obj/sprite_ai/vortex.o(.rodata);

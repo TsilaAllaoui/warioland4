@@ -10,6 +10,33 @@
 #include "types.h"
 #include "wario.h"
 
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sRotatingPlatformOam_83B4534_Frame1[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 512, 8, 0),
+};
+
+const u16 sRotatingPlatformOam_83B4544_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_32x8, 0, 585, 8, 0),
+    OAM_ENTRY(-8, 2, SPRITE_SIZE_16x8, 0, 618, 8, 0),
+};
+
+const u8 sRotatingPlatformRawData_83B4532[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sRotatingPlatformOam_83B4534[] = {
+    {sRotatingPlatformOam_83B4534_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sRotatingPlatformOam_83B4544[] = {
+    {sRotatingPlatformOam_83B4544_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
 void func_8028148(void)
 {
     switch (gCurrentSprite.work2) {
@@ -147,7 +174,7 @@ void func_8028400(void)
     gCurrentSprite.hitboxExtentDown = 0;
     gCurrentSprite.hitboxExtentLeft = 36;
     gCurrentSprite.hitboxExtentRight = 32;
-    gCurrentSprite.pOamData = sUnk_83B4534;
+    gCurrentSprite.pOamData = sRotatingPlatformOam_83B4534;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 16;
     gCurrentSprite.work0 = 0;
@@ -456,7 +483,7 @@ void func_8028758(void)
     gCurrentSprite.hitboxExtentRight = 52;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
-    gCurrentSprite.pOamData = sUnk_83B4544;
+    gCurrentSprite.pOamData = sRotatingPlatformOam_83B4544;
     gCurrentSprite.pose = 16;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.work1 = 0;
@@ -962,7 +989,7 @@ void func_8028D2C(void)
     gCurrentSprite.hitboxExtentDown = 1;
     gCurrentSprite.hitboxExtentLeft = 1;
     gCurrentSprite.hitboxExtentRight = 1;
-    gCurrentSprite.pOamData = sUnk_83B4534;
+    gCurrentSprite.pOamData = sRotatingPlatformOam_83B4534;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.warioCollision = 0;
