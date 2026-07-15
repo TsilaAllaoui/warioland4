@@ -4,6 +4,89 @@
 #include "sprite_ai/mayubird.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMayubirdIdleOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+};
+
+const u16 sMayubirdIdleOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_16x8, 0, 548, 8, 0),
+};
+
+const u16 sMayubirdIdleOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_16x8, 0, 548, 8, 0),
+};
+
+const u16 sMayubirdIdleOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 526, 8, 0),
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+};
+
+const u16 sMayubirdFlightEndOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 530, 8, 0),
+};
+
+const u16 sMayubirdFallOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 534, 8, 0),
+};
+
+const u16 sMayubirdWaitOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, 0, 538, 8, 0),
+    OAM_ENTRY(-8, -1, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+};
+
+const u8 sMayubirdRawData_83C4982[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sMayubirdIdleOam[] = {
+    {sMayubirdIdleOam_Frame1, 7},
+    {sMayubirdIdleOam_Frame2, 7},
+    {sMayubirdIdleOam_Frame3, 7},
+    {sMayubirdIdleOam_Frame4, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMayubirdFlightEndOam[] = {
+    {sMayubirdIdleOam_Frame1, 5},
+    {sMayubirdIdleOam_Frame3, 5},
+    {sMayubirdIdleOam_Frame4, 5},
+    {sMayubirdFlightEndOam_Frame1, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMayubirdWaitOam[] = {
+    {sMayubirdIdleOam_Frame1, 4},
+    {sMayubirdWaitOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMayubirdFlightOam[] = {
+    {sMayubirdIdleOam_Frame1, 2},
+    {sMayubirdFlightEndOam_Frame1, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMayubirdFallOam[] = {
+    {sMayubirdIdleOam_Frame1, 2},
+    {sMayubirdFlightEndOam_Frame1, 4},
+    {sMayubirdFallOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
 void InitMayubird(void)
 {
     register struct PrimarySpriteData *sprite asm("ip");
