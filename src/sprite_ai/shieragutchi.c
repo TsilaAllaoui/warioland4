@@ -7,12 +7,90 @@
 #include "types.h"
 #include "wario.h"
 
-extern const struct AnimationFrame sShieragutchiIdleOam[];
-extern const struct AnimationFrame sShieragutchiRiseOam[];
-extern const struct AnimationFrame sShieragutchiGrabbedOam[];
-extern const struct AnimationFrame sShieragutchiDefeatOam[];
+#include "oam.h"
 extern const s16 sShieragutchiRiseYVelocity[];
 extern const s16 sShieragutchiFallYVelocity[];
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sShieragutchiIdleOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_32x8, 0, 526, 8, 0),
+};
+
+const u16 sShieragutchiIdleOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-20, -9, SPRITE_SIZE_32x16, 0, 515, 8, 0),
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_32x8, 0, 558, 8, 0),
+};
+
+const u16 sShieragutchiRiseOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+    OAM_ENTRY(-20, -21, SPRITE_SIZE_32x8, 0, 529, 8, 0),
+};
+
+const u16 sShieragutchiRiseOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-20, -17, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-20, -25, SPRITE_SIZE_32x8, 0, 561, 8, 0),
+};
+
+const u16 sShieragutchiRiseOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-20, -16, SPRITE_SIZE_32x8, 0, 533, 8, 0),
+};
+
+const u16 sShieragutchiGrabbedOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-20, -9, SPRITE_SIZE_32x16, 0, 515, 8, 0),
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_16x8, 0, 539, 8, 0),
+};
+
+const u16 sShieragutchiDefeatOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-16, -9, SPRITE_SIZE_16x16, 0, 537, 8, 0),
+    OAM_ENTRY(0, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_32x8, 0, 558, 8, 0),
+};
+
+const struct AnimationFrame sShieragutchiIdleOam[] = {
+    {sShieragutchiIdleOam_Frame1, 10},
+    {sShieragutchiIdleOam_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sShieragutchiRiseOam[] = {
+    {sShieragutchiIdleOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame1, 6},
+    {sShieragutchiRiseOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame1, 6},
+    {sShieragutchiIdleOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame1, 6},
+    {sShieragutchiRiseOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame1, 6},
+    {sShieragutchiIdleOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame1, 6},
+    {sShieragutchiRiseOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame1, 6},
+    {sShieragutchiIdleOam_Frame2, 6},
+    {sShieragutchiRiseOam_Frame3, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sShieragutchiGrabbedOam[] = {
+    {sShieragutchiRiseOam_Frame3, 10},
+    {sShieragutchiGrabbedOam_Frame1, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sShieragutchiDefeatOam[] = {
+    {sShieragutchiIdleOam_Frame1, 4},
+    {sShieragutchiDefeatOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
 
 void InitShieragutchi(void)
 {
