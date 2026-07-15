@@ -7,6 +7,329 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMenhammerPushedOam_Frame1[] = {
+    5,
+    OAM_ENTRY(5, -21, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-17, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_16x8, 0, 626, 8, 0),
+    OAM_ENTRY(-17, -41, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -33, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerWalkingOam_Frame1[] = {
+    6,
+    OAM_ENTRY(5, -21, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-10, -10, SPRITE_SIZE_8x8, 0, 594, 8, 0),
+    OAM_ENTRY(-17, -42, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -34, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+    OAM_ENTRY(1, -8, SPRITE_SIZE_8x8, 0, 595, 8, 0),
+    OAM_ENTRY(-18, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+};
+
+const u16 sMenhammerWalkingOam_Frame2[] = {
+    6,
+    OAM_ENTRY(6, -22, SPRITE_SIZE_8x16, 0, 534, 8, 0),
+    OAM_ENTRY(-13, -10, SPRITE_SIZE_8x8, 0, 594, 8, 0),
+    OAM_ENTRY(2, -8, SPRITE_SIZE_8x8, 0, 595, 8, 0),
+    OAM_ENTRY(-19, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-18, -43, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-22, -35, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerWalkingOam_Frame3[] = {
+    6,
+    OAM_ENTRY(5, -21, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_8x8, 0, 626, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 624, 8, 0),
+    OAM_ENTRY(-19, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-18, -42, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-22, -34, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerWalkingOam_Frame4[] = {
+    6,
+    OAM_ENTRY(5, -22, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-2, -12, SPRITE_SIZE_8x8, 0, 627, 8, 0),
+    OAM_ENTRY(-18, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_8x8, 0, 624, 8, 0),
+    OAM_ENTRY(-17, -42, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -34, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerWalkingOam_Frame5[] = {
+    6,
+    OAM_ENTRY(3, -22, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+    OAM_ENTRY(-5, -12, SPRITE_SIZE_8x8, 0, 594, 8, 0),
+    OAM_ENTRY(-19, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-2, -8, SPRITE_SIZE_8x8, 0, 624, 8, 0),
+    OAM_ENTRY(-18, -43, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-22, -35, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerWalkingOam_Frame6[] = {
+    5,
+    OAM_ENTRY(4, -21, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, 0, 626, 8, 0),
+    OAM_ENTRY(-19, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-18, -41, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-22, -33, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u8 sMenhammerRawData_83C7B82[] = {
+    0x06, 0x00, 0xEA, 0x80, 0x07, 0x00, 0x16, 0x82, 0xDC, 0x00, 0xED, 0x91, 0x02, 0x82, 0xD6, 0x80,
+    0xEE, 0x81, 0x00, 0x82, 0xDE, 0x80, 0xEA, 0x11, 0x21, 0x82, 0xF8, 0x00, 0x00, 0x00, 0x70, 0x82,
+    0xF6, 0x00, 0xF3, 0x01, 0x52, 0x82,
+};
+
+const u16 sMenhammerFallingOam_Frame1[] = {
+    6,
+    OAM_ENTRY(7, -23, SPRITE_SIZE_8x16, 0, 534, 8, 0),
+    OAM_ENTRY(-10, -10, SPRITE_SIZE_8x8, 0, 594, 8, 0),
+    OAM_ENTRY(-18, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-17, -43, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -35, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+    OAM_ENTRY(2, -8, SPRITE_SIZE_8x8, 0, 595, 8, 0),
+};
+
+const u16 sMenhammerFallingOam_Frame3[] = {
+    6,
+    OAM_ENTRY(2, -23, SPRITE_SIZE_8x16, 0, 532, 8, 0),
+    OAM_ENTRY(-2, -12, SPRITE_SIZE_8x8, 0, 627, 8, 0),
+    OAM_ENTRY(-18, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_8x8, 0, 624, 8, 0),
+    OAM_ENTRY(-17, -43, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -35, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerFallingOam_Frame2[] = {
+    5,
+    OAM_ENTRY(6, -23, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-18, -37, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-17, -44, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-21, -36, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_16x8, 0, 624, 8, 0),
+};
+
+const u16 sMenhammerTurningOam_Frame1[] = {
+    6,
+    OAM_ENTRY(7, -21, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 627, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 627, 8, 0),
+    OAM_ENTRY(-19, -35, SPRITE_SIZE_32x32, 0, 517, 8, 0),
+    OAM_ENTRY(-18, -41, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-22, -33, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerGettingUpOam_Frame2[] = {
+    5,
+    OAM_ENTRY(-1, -24, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-18, -37, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-14, -48, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-18, -40, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x8, 0, 624, 8, 0),
+};
+
+const u16 sMenhammerJumpingAttackOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-27, -24, SPRITE_SIZE_32x16, 0, 524, 8, 0),
+    OAM_ENTRY(-19, -32, SPRITE_SIZE_16x8, 0, 592, 8, 0),
+    OAM_ENTRY(-18, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sMenhammerJumpingAttackOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-22, -19, SPRITE_SIZE_32x16, 0, 528, 8, 0),
+    OAM_ENTRY(-19, -33, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(-19, -27, SPRITE_SIZE_8x8, 0, 530, 8, 0),
+};
+
+const u16 sMenhammerLandingAttackOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-27, -16, SPRITE_SIZE_32x16, 0, 588, 8, 0),
+    OAM_ENTRY(-20, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sMenhammerStunnedOam_Frame1[] = {
+    5,
+    OAM_ENTRY(7, -13, SPRITE_SIZE_8x16, 0, 534, 8, 0),
+    OAM_ENTRY(-11, -22, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 594, 8, 0),
+    OAM_ENTRY(-18, -18, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 514, 8, 0),
+    OAM_ENTRY(3, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 595, 8, 0),
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 533, 8, 0),
+};
+
+const u16 sMenhammerStunnedOam_Frame3[] = {
+    5,
+    OAM_ENTRY(5, -13, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 533, 8, 0),
+    OAM_ENTRY(1, -21, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 594, 8, 0),
+    OAM_ENTRY(-18, -18, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 514, 8, 0),
+    OAM_ENTRY(-13, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-11, -22, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 626, 8, 0),
+};
+
+const u16 sMenhammerStunnedOam_Frame2[] = {
+    4,
+    OAM_ENTRY(6, -17, SPRITE_SIZE_8x16, 0, 533, 8, 0),
+    OAM_ENTRY(-18, -19, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 514, 8, 0),
+    OAM_ENTRY(-13, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-6, -22, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 626, 8, 0),
+};
+
+const u16 sMenhammerCrushedOam_Frame1[] = {
+    5,
+    OAM_ENTRY(8, -22, SPRITE_SIZE_8x16, 0, 534, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 626, 8, 0),
+    OAM_ENTRY(-19, -32, SPRITE_SIZE_32x32, 0, 517, 8, 0),
+    OAM_ENTRY(-11, -7, SPRITE_SIZE_8x8, 0, 626, 8, 0),
+    OAM_ENTRY(-14, -22, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 534, 8, 0),
+};
+
+const u16 sMenhammerCrushedOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-15, -16, SPRITE_SIZE_32x16, 0, 596, 8, 0),
+};
+
+const u16 sMenhammerTackledOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-10, -28, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+};
+
+const u8 sMenhammerRawData_83C7D1A[] = {
+    0x03, 0x00, 0xE8, 0x00, 0xFA, 0x41, 0x20, 0x82, 0xE8, 0x80, 0xF6, 0x11, 0x21, 0x82, 0xF8, 0x00,
+    0xFA, 0x01, 0x17, 0x82,
+};
+
+const u16 sMenhammerCrushedWhileStunnedOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-13, -16, SPRITE_SIZE_32x16, 0, 540, 8, 0),
+};
+
+const u16 sMenhammerCrushedWhileStunnedOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_32x16, 0, 604, 8, 0),
+};
+
+const u16 sMenhammerJumpingAttackOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-1, -24, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-18, -37, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-14, -48, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-18, -40, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_8x8, 0, 595, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 595, 8, 0),
+};
+
+const u16 sMenhammerJumpingAttackOam_Frame2[] = {
+    4,
+    OAM_ENTRY(0, -24, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-19, -36, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(-12, -48, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+};
+
+const u16 sMenhammerGettingUpOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-4, -17, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 532, 8, 0),
+    OAM_ENTRY(-19, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-18, -40, SPRITE_SIZE_16x32, 0, 512, 8, 0),
+    OAM_ENTRY(-22, -32, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 545, 8, 0),
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_16x8, 0, 624, 8, 0),
+};
+
+const u8 sMenhammerRawData_83C7D9E[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sMenhammerPushedOam[] = {
+    {sMenhammerPushedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerWalkingOam[] = {
+    {sMenhammerWalkingOam_Frame1, 6},
+    {sMenhammerWalkingOam_Frame2, 6},
+    {sMenhammerWalkingOam_Frame3, 6},
+    {sMenhammerWalkingOam_Frame4, 6},
+    {sMenhammerWalkingOam_Frame5, 6},
+    {sMenhammerWalkingOam_Frame6, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerFallingOam[] = {
+    {sMenhammerFallingOam_Frame1, 3},
+    {sMenhammerFallingOam_Frame2, 3},
+    {sMenhammerFallingOam_Frame3, 3},
+    {sMenhammerFallingOam_Frame2, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerTurningOam[] = {
+    {sMenhammerPushedOam_Frame1, 4},
+    {sMenhammerTurningOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerGettingUpOam[] = {
+    {sMenhammerGettingUpOam_Frame1, 4},
+    {sMenhammerGettingUpOam_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerJumpingAttackOam[] = {
+    {sMenhammerGettingUpOam_Frame1, 4},
+    {sMenhammerGettingUpOam_Frame2, 2},
+    {sMenhammerJumpingAttackOam_Frame1, 2},
+    {sMenhammerJumpingAttackOam_Frame2, 2},
+    {sMenhammerJumpingAttackOam_Frame3, 2},
+    {sMenhammerJumpingAttackOam_Frame4, 240},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerStunnedOam[] = {
+    {sMenhammerStunnedOam_Frame1, 3},
+    {sMenhammerStunnedOam_Frame2, 3},
+    {sMenhammerStunnedOam_Frame3, 3},
+    {sMenhammerStunnedOam_Frame2, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerCrushedOam[] = {
+    {sMenhammerCrushedOam_Frame1, 3},
+    {sMenhammerCrushedOam_Frame2, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerTackledOam[] = {
+    {sMenhammerTackledOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const u8 sMenhammerRawData_83C7EC8[] = {
+    0x1A, 0x7D, 0x3C, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sMenhammerCrushedWhileStunnedOam[] = {
+    {sMenhammerCrushedWhileStunnedOam_Frame1, 3},
+    {sMenhammerCrushedWhileStunnedOam_Frame2, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerTurningAroundOam[] = {
+    {sMenhammerTurningOam_Frame1, 4},
+    {sMenhammerPushedOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenhammerLandingAttackOam[] = {
+    {sMenhammerLandingAttackOam_Frame1, 21},
+    {sMenhammerJumpingAttackOam_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
 void MenhammerSetWalkingHitbox(void)
 {
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
