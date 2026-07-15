@@ -5,6 +5,210 @@
 #include "sprite.h"
 #include "sprite_ai/crumbling_block.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sCrumblingBlockIdleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_8x16, 0, 518, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-8, -2, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-8, 4, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame5[] = {
+    6,
+    OAM_ENTRY(-8, 10, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_8x16, 0, 522, 8, 0),
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_8x16, 0, 523, 8, 0),
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_8x16, 0, 524, 8, 0),
+    OAM_ENTRY(-3, -7, SPRITE_SIZE_8x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x16, 0, 526, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame6[] = {
+    5,
+    OAM_ENTRY(-13, -6, SPRITE_SIZE_8x16, 0, 527, 8, 0),
+    OAM_ENTRY(-5, -4, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-5, -1, SPRITE_SIZE_8x16, 0, 529, 8, 0),
+    OAM_ENTRY(-3, -6, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(0, -4, SPRITE_SIZE_8x16, 0, 531, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(0, 1, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 520, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-1, 9, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+    OAM_ENTRY(-7, 7, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame9[] = {
+    1,
+    OAM_ENTRY(-4, 16, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockCrackingOam_Frame10[] = {
+    1,
+    OAM_ENTRY(-4, 26, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-4, -33, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-4, -21, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-1, -17, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+    OAM_ENTRY(-7, -19, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(0, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 520, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame5[] = {
+    6,
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_8x16, 0, 529, 8, 0),
+    OAM_ENTRY(-3, -9, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(-9, -10, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(1, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-4, -25, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame6[] = {
+    5,
+    OAM_ENTRY(-13, -9, SPRITE_SIZE_8x16, 0, 527, 8, 0),
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_8x16, 0, 528, 8, 0),
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_8x16, 0, 529, 8, 0),
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x16, 0, 531, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame7[] = {
+    6,
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_8x16, 0, 522, 8, 0),
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_8x16, 0, 523, 8, 0),
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_8x16, 0, 524, 8, 0),
+    OAM_ENTRY(-3, -7, SPRITE_SIZE_8x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x16, 0, 526, 8, 0),
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_8x16, 0, 521, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame9[] = {
+    2,
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_8x16, 0, 520, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame10[] = {
+    2,
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_8x16, 0, 519, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame11[] = {
+    2,
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_8x16, 0, 518, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sCrumblingBlockReformingOam_Frame12[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sCrumblingBlockCollapsedOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-4, -5, SPRITE_SIZE_8x8, 0, 532, 8, 0),
+};
+
+const struct AnimationFrame sCrumblingBlockIdleOam[] = {
+    {sCrumblingBlockIdleOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCrumblingBlockCrackingOam[] = {
+    {sCrumblingBlockIdleOam_Frame1, 1},
+    {sCrumblingBlockCrackingOam_Frame1, 5},
+    {sCrumblingBlockIdleOam_Frame1, 5},
+    {sCrumblingBlockCrackingOam_Frame1, 5},
+    {sCrumblingBlockIdleOam_Frame1, 5},
+    {sCrumblingBlockCrackingOam_Frame1, 5},
+    {sCrumblingBlockCrackingOam_Frame2, 8},
+    {sCrumblingBlockCrackingOam_Frame3, 8},
+    {sCrumblingBlockCrackingOam_Frame4, 8},
+    {sCrumblingBlockCrackingOam_Frame5, 8},
+    {sCrumblingBlockCrackingOam_Frame6, 2},
+    {sCrumblingBlockCrackingOam_Frame7, 6},
+    {sCrumblingBlockCrackingOam_Frame8, 6},
+    {sCrumblingBlockCrackingOam_Frame9, 8},
+    {sCrumblingBlockCrackingOam_Frame10, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCrumblingBlockReformingOam[] = {
+    {sCrumblingBlockReformingOam_Frame1, 3},
+    {sCrumblingBlockReformingOam_Frame2, 3},
+    {sCrumblingBlockReformingOam_Frame3, 3},
+    {sCrumblingBlockReformingOam_Frame4, 3},
+    {sCrumblingBlockReformingOam_Frame5, 3},
+    {sCrumblingBlockReformingOam_Frame6, 3},
+    {sCrumblingBlockReformingOam_Frame7, 3},
+    {sCrumblingBlockReformingOam_Frame8, 3},
+    {sCrumblingBlockReformingOam_Frame9, 3},
+    {sCrumblingBlockReformingOam_Frame10, 3},
+    {sCrumblingBlockReformingOam_Frame11, 3},
+    {sCrumblingBlockReformingOam_Frame12, 5},
+    {sCrumblingBlockIdleOam_Frame1, 1},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sCrumblingBlockCollapsedOam[] = {
+    {sCrumblingBlockCollapsedOam_Frame1, 255},
+    ANIMATION_TERMINATOR
+};
+
 void SetCrumblingBlockCollision(void)
 {
     register int yPosition asm("r6");
