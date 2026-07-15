@@ -5,6 +5,130 @@
 #include "sprite_ai/spike_cannon.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sSpikeCannonProjectileFlyingOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_32x8, 0, 526, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileFlyingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-20, -12, SPRITE_SIZE_32x16, 0, 515, 8, 0),
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_32x8, 0, 558, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileFlyingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+    OAM_ENTRY(-12, 4, SPRITE_SIZE_16x8, 0, 530, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileFlyingOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-20, -12, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, 0, 562, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 532, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 535, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame4[] = {
+    2,
+    OAM_ENTRY(0, -5, SPRITE_SIZE_8x8, 0, 532, 8, 0),
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 537, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-8, 2, SPRITE_SIZE_8x8, 0, 532, 8, 0),
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_16x16, 0, 539, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-11, -2, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 535, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame7[] = {
+    2,
+    OAM_ENTRY(-11, -2, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 537, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame8[] = {
+    2,
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 539, 8, 0),
+    OAM_ENTRY(-11, -2, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+};
+
+const u16 sSpikeCannonProjectileDespawnOam_Frame9[] = {
+    1,
+    OAM_ENTRY(-12, -2, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 539, 8, 0),
+};
+
+const u16 sSpikeCannonOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_8x8, 0, 515, 8, 0),
+};
+
+const u16 sSpikeCannonOam_Frame1[] = {
+    1,
+    OAM_ENTRY(0, -13, SPRITE_SIZE_16x8, 0, 541, 8, 0),
+};
+
+const u8 sSpikeCannonRawData_83D0D14[] = {
+    0x60, 0x0C, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0x6E, 0x0C, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
+    0x7C, 0x0C, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0x8A, 0x0C, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+const struct AnimationFrame sSpikeCannonProjectileFlyingOam[] = {
+    {sSpikeCannonProjectileFlyingOam_Frame1, 5},
+    {sSpikeCannonProjectileFlyingOam_Frame2, 5},
+    {sSpikeCannonProjectileFlyingOam_Frame3, 5},
+    {sSpikeCannonProjectileFlyingOam_Frame4, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sSpikeCannonProjectileDespawnOam[] = {
+    {sSpikeCannonProjectileDespawnOam_Frame1, 2},
+    {sSpikeCannonProjectileDespawnOam_Frame2, 2},
+    {sSpikeCannonProjectileDespawnOam_Frame3, 3},
+    {sSpikeCannonProjectileDespawnOam_Frame4, 3},
+    {sSpikeCannonProjectileDespawnOam_Frame5, 3},
+    {sSpikeCannonProjectileDespawnOam_Frame6, 3},
+    {sSpikeCannonProjectileDespawnOam_Frame7, 3},
+    {sSpikeCannonProjectileDespawnOam_Frame8, 3},
+    {sSpikeCannonProjectileDespawnOam_Frame9, 5},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sSpikeCannonOam[] = {
+    {sSpikeCannonOam_Frame1, 24},
+    {sSpikeCannonOam_Frame2, 24},
+    {sSpikeCannonOam_Frame1, 24},
+    {sSpikeCannonOam_Frame2, 24},
+    ANIMATION_TERMINATOR
+};
+
 void InitSpikeCannon(void)
 {
     register struct PrimarySpriteData *current asm("ip");
