@@ -5,6 +5,7 @@
 #include "sprite_util.h"
 #include "wario.h"
 
+#include "oam.h"
 volatile long UpdateMagicCarpetCollisionTimer(void)
 {
   register struct PrimarySpriteData *currentLoad asm("r1");
@@ -36,6 +37,163 @@ volatile long UpdateMagicCarpetCollisionTimer(void)
   }
 
 }
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMagicCarpetFlyingOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(11, -5, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+};
+
+const u16 sMagicCarpetFlyingOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(11, -5, SPRITE_SIZE_16x16, 0, 522, 8, 0),
+};
+
+const u16 sMagicCarpetFlyingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x16, 0, 524, 8, 0),
+    OAM_ENTRY(11, -5, SPRITE_SIZE_16x16, 0, 528, 8, 0),
+};
+
+const u16 sMagicCarpetFlyingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x16, 0, 576, 8, 0),
+    OAM_ENTRY(11, -5, SPRITE_SIZE_16x16, 0, 580, 8, 0),
+};
+
+const u16 sMagicCarpetFlyingOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x16, 0, 582, 8, 0),
+    OAM_ENTRY(11, -5, SPRITE_SIZE_16x16, 0, 586, 8, 0),
+};
+
+const u16 sMagicCarpetFlyingOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x16, 0, 588, 8, 0),
+    OAM_ENTRY(11, -5, SPRITE_SIZE_16x16, 0, 592, 8, 0),
+};
+
+const u16 sMagicCarpetRiddenOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_32x8, 0, 546, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_32x8, 0, 514, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_16x16, 0, 530, 8, 0),
+};
+
+const u16 sMagicCarpetRiddenOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_32x8, 0, 552, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_32x8, 0, 520, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_16x16, 0, 532, 8, 0),
+};
+
+const u16 sMagicCarpetRiddenOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_32x8, 0, 558, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_32x8, 0, 526, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+};
+
+const u16 sMagicCarpetRiddenOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_32x8, 0, 610, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_32x8, 0, 578, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_16x16, 0, 594, 8, 0),
+};
+
+const u16 sMagicCarpetRiddenOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_32x8, 0, 616, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_32x8, 0, 584, 8, 0),
+    OAM_ENTRY(-21, -6, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+};
+
+const u16 sMagicCarpetRiddenOam_Frame6[] = {
+    3,
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_32x8, 0, 622, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_32x8, 0, 590, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_16x16, 0, 598, 8, 0),
+};
+
+const u16 sMagicCarpetIdleOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_32x16, 0, 538, 8, 0),
+    OAM_ENTRY(-24, -9, SPRITE_SIZE_16x16, 0, 536, 8, 0),
+};
+
+const u16 sMagicCarpetIdleOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-15, -9, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_32x16, 0, 538, 8, 0),
+    OAM_ENTRY(-22, -1, SPRITE_SIZE_16x8, 0, 632, 8, 0),
+};
+
+const u16 sMagicCarpetIdleOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_32x16, 0, 538, 8, 0),
+    OAM_ENTRY(-24, -1, SPRITE_SIZE_16x8, 0, 632, 8, 0),
+};
+
+const u16 sMagicCarpetIdleOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-1, -9, SPRITE_SIZE_16x16, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_32x16, 0, 538, 8, 0),
+    OAM_ENTRY(-24, -1, SPRITE_SIZE_16x8, 0, 632, 8, 0),
+};
+
+const u16 sMagicCarpetIdleOam_Frame6[] = {
+    3,
+    OAM_ENTRY(5, -9, SPRITE_SIZE_16x16, 0, 604, 8, 0),
+    OAM_ENTRY(-24, -1, SPRITE_SIZE_16x8, 0, 632, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_16x16, 0, 538, 8, 0),
+};
+
+const u16 sMagicCarpetIdleOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-24, -1, SPRITE_SIZE_16x8, 0, 632, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_16x16, 0, 538, 8, 0),
+    OAM_ENTRY(16, -1, SPRITE_SIZE_16x8, 0, 634, 8, 0),
+    OAM_ENTRY(8, -9, SPRITE_SIZE_8x16, 0, 539, 8, 0),
+};
+
+const struct AnimationFrame sMagicCarpetRiddenOam[] = {
+    {sMagicCarpetRiddenOam_Frame1, 7},
+    {sMagicCarpetRiddenOam_Frame2, 7},
+    {sMagicCarpetRiddenOam_Frame3, 7},
+    {sMagicCarpetRiddenOam_Frame4, 7},
+    {sMagicCarpetRiddenOam_Frame5, 7},
+    {sMagicCarpetRiddenOam_Frame6, 7},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMagicCarpetFlyingOam[] = {
+    {sMagicCarpetFlyingOam_Frame1, 10},
+    {sMagicCarpetFlyingOam_Frame2, 10},
+    {sMagicCarpetFlyingOam_Frame3, 10},
+    {sMagicCarpetFlyingOam_Frame4, 10},
+    {sMagicCarpetFlyingOam_Frame5, 10},
+    {sMagicCarpetFlyingOam_Frame6, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMagicCarpetIdleOam[] = {
+    {sMagicCarpetIdleOam_Frame1, 8},
+    {sMagicCarpetIdleOam_Frame2, 8},
+    {sMagicCarpetIdleOam_Frame1, 8},
+    {sMagicCarpetIdleOam_Frame2, 8},
+    {sMagicCarpetIdleOam_Frame1, 4},
+    {sMagicCarpetIdleOam_Frame2, 8},
+    {sMagicCarpetIdleOam_Frame3, 8},
+    {sMagicCarpetIdleOam_Frame4, 8},
+    {sMagicCarpetIdleOam_Frame5, 8},
+    {sMagicCarpetIdleOam_Frame6, 10},
+    {sMagicCarpetIdleOam_Frame1, 30},
+    ANIMATION_TERMINATOR
+};
 
 void InitMagicCarpet(void)
 {
