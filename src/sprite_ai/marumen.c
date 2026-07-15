@@ -6,6 +6,564 @@
 #include "sprite_util.h"
 #include "wario.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMarumenIdleOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_32x8, 0, 526, 8, 0),
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+};
+
+const u16 sMarumenIdleOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x8, 0, 558, 8, 0),
+    OAM_ENTRY(-10, -24, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+};
+
+const u16 sMarumenIdleOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-17, -8, SPRITE_SIZE_32x8, 0, 529, 8, 0),
+    OAM_ENTRY(-10, -23, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+};
+
+const u16 sMarumenIdleOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-19, -8, SPRITE_SIZE_32x8, 0, 561, 8, 0),
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+};
+
+const u16 sMarumenIdleOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x8, 0, 533, 8, 0),
+    OAM_ENTRY(-18, -24, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+};
+
+const u16 sMarumenIdleOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_32x8, 0, 565, 8, 0),
+    OAM_ENTRY(-18, -23, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+};
+
+const u16 sMarumenTurningOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -7, SPRITE_SIZE_32x8, 0, 576, 8, 0),
+};
+
+const u16 sMarumenTurningOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_32x8, 0, 526, 8, 0),
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(2, -23, SPRITE_SIZE_8x16, 0, 514, 8, 0),
+};
+
+const u16 sMarumenTurningOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-22, -8, SPRITE_SIZE_32x8, 0, 536, 8, 0),
+    OAM_ENTRY(-18, -24, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+};
+
+const u16 sMarumenTurningOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_32x8, 0, 568, 8, 0),
+};
+
+const u16 sMarumenTurningAroundOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-18, -24, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-22, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 583, 8, 0),
+};
+
+const u16 sMarumenTurningAroundOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -7, SPRITE_SIZE_32x8, 0, 576, 8, 0),
+};
+
+const u16 sMarumenTurningAroundOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-21, -24, SPRITE_SIZE_32x16, 0, 515, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_32x8, 0, 579, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_32x8, 0, 586, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_16x8, 0, 600, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 600, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame3[] = {
+    5,
+    OAM_ENTRY(6, -2, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_16x8, 0, 600, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 600, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame4[] = {
+    5,
+    OAM_ENTRY(7, -2, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_16x8, 0, 600, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 600, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame5[] = {
+    4,
+    OAM_ENTRY(-7, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 633, 8, 0),
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 522, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 608, 8, 0),
+    OAM_ENTRY(6, -4, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame6[] = {
+    5,
+    OAM_ENTRY(8, -9, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+    OAM_ENTRY(-5, -5, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+    OAM_ENTRY(-23, -8, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 608, 8, 0),
+    OAM_ENTRY(-22, -23, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 519, 8, 0),
+    OAM_ENTRY(11, 1, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame7[] = {
+    5,
+    OAM_ENTRY(9, -12, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+    OAM_ENTRY(-1, -5, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+    OAM_ENTRY(-21, -21, SPRITE_SIZE_32x16, 0, 540, 8, 0),
+    OAM_ENTRY(-21, -5, SPRITE_SIZE_32x8, 0, 604, 8, 0),
+    OAM_ENTRY(14, -1, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame8[] = {
+    8,
+    OAM_ENTRY(9, -17, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+    OAM_ENTRY(-13, -21, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-13, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+    OAM_ENTRY(-3, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 600, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 600, 8, 0),
+    OAM_ENTRY(15, -5, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame9[] = {
+    5,
+    OAM_ENTRY(8, -20, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+    OAM_ENTRY(-7, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 633, 8, 0),
+    OAM_ENTRY(-11, -21, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-11, -5, SPRITE_SIZE_32x8, ST_OAM_HFLIP, 604, 8, 0),
+    OAM_ENTRY(15, -7, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame10[] = {
+    5,
+    OAM_ENTRY(6, -24, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+    OAM_ENTRY(-4, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 633, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_32x8, 0, 608, 8, 0),
+    OAM_ENTRY(-10, -23, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+    OAM_ENTRY(14, -9, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame11[] = {
+    5,
+    OAM_ENTRY(4, -25, SPRITE_SIZE_8x8, 0, 621, 8, 0),
+    OAM_ENTRY(0, -5, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+    OAM_ENTRY(-18, -23, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_32x8, 0, 608, 8, 0),
+    OAM_ENTRY(12, -9, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame12[] = {
+    5,
+    OAM_ENTRY(3, -26, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_16x8, 0, 600, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 600, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame13[] = {
+    5,
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_16x8, 0, 600, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 600, 8, 0),
+    OAM_ENTRY(2, -28, SPRITE_SIZE_8x8, 0, 620, 8, 0),
+};
+
+const u16 sMarumenAirborneOam_Frame14[] = {
+    3,
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 602, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 602, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_32x8, 0, 586, 8, 0),
+};
+
+const u16 sMarumenStunnedOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-15, -21, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 526, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 512, 8, 0),
+};
+
+const u16 sMarumenStunnedOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 558, 8, 0),
+    OAM_ENTRY(-10, -15, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 519, 8, 0),
+};
+
+const u16 sMarumenStunnedOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-17, -21, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 529, 8, 0),
+    OAM_ENTRY(-10, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 519, 8, 0),
+};
+
+const u16 sMarumenStunnedOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-19, -21, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 561, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 512, 8, 0),
+};
+
+const u16 sMarumenStunnedOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 533, 8, 0),
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 522, 8, 0),
+};
+
+const u16 sMarumenStunnedOam_Frame6[] = {
+    2,
+    OAM_ENTRY(-15, -21, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 565, 8, 0),
+    OAM_ENTRY(-18, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 522, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-14, -22, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 576, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-21, -12, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 515, 8, 0),
+    OAM_ENTRY(-21, -20, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 579, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-14, -22, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 576, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame4[] = {
+    6,
+    OAM_ENTRY(-13, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 633, 8, 0),
+    OAM_ENTRY(-1, -16, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 633, 8, 0),
+    OAM_ENTRY(-13, -11, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 594, 8, 0),
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-11, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 633, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 594, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame6[] = {
+    5,
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+    OAM_ENTRY(2, -5, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame7[] = {
+    5,
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+    OAM_ENTRY(5, -8, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame8[] = {
+    5,
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 633, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame9[] = {
+    7,
+    OAM_ENTRY(-12, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 633, 8, 0),
+    OAM_ENTRY(1, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 633, 8, 0),
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+    OAM_ENTRY(-8, -27, SPRITE_SIZE_16x16, 0, 594, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame10[] = {
+    7,
+    OAM_ENTRY(-12, -27, SPRITE_SIZE_16x16, 0, 594, 8, 0),
+    OAM_ENTRY(-14, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 633, 8, 0),
+    OAM_ENTRY(-1, -16, SPRITE_SIZE_8x8, 0, 633, 8, 0),
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_16x16, 0, 541, 8, 0),
+    OAM_ENTRY(-3, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 605, 8, 0),
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_16x8, 0, 605, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame11[] = {
+    2,
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-14, -7, SPRITE_SIZE_32x8, 0, 576, 8, 0),
+};
+
+const u16 sMarumenGettingUpOam_Frame12[] = {
+    2,
+    OAM_ENTRY(-21, -24, SPRITE_SIZE_32x16, 0, 515, 8, 0),
+    OAM_ENTRY(-21, -8, SPRITE_SIZE_32x8, 0, 579, 8, 0),
+};
+
+const u16 sMarumenDefeatedOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-13, -23, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_32x8, 0, 526, 8, 0),
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+};
+
+const u16 sMarumenDefeatedOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-14, -24, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x8, 0, 558, 8, 0),
+    OAM_ENTRY(-10, -24, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+};
+
+const u16 sMarumenDefeatedOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+    OAM_ENTRY(-17, -8, SPRITE_SIZE_32x8, 0, 529, 8, 0),
+    OAM_ENTRY(-10, -23, SPRITE_SIZE_32x16, 0, 519, 8, 0),
+};
+
+const u16 sMarumenDefeatedOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-13, -23, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+    OAM_ENTRY(-19, -8, SPRITE_SIZE_32x8, 0, 561, 8, 0),
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+};
+
+const u16 sMarumenDefeatedOam_Frame5[] = {
+    3,
+    OAM_ENTRY(-12, -24, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x8, 0, 533, 8, 0),
+    OAM_ENTRY(-18, -24, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+};
+
+const u16 sMarumenDefeatedOam_Frame6[] = {
+    3,
+    OAM_ENTRY(-12, -23, SPRITE_SIZE_16x16, 0, 596, 8, 0),
+    OAM_ENTRY(-15, -8, SPRITE_SIZE_32x8, 0, 565, 8, 0),
+    OAM_ENTRY(-18, -23, SPRITE_SIZE_32x16, 0, 522, 8, 0),
+};
+
+const u16 sMarumenAlternateCrushedOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_16x16, 0, 590, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 590, 8, 0),
+};
+
+const u16 sMarumenAlternateCrushedOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_16x16, 0, 592, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 592, 8, 0),
+};
+
+const u16 sMarumenAlternateCrushedOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-16, -12, SPRITE_SIZE_16x8, 0, 592, 8, 0),
+    OAM_ENTRY(0, -12, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 592, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 624, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 624, 8, 0),
+};
+
+const u16 sMarumenCrushedOam_Frame1[] = {
+    3,
+    OAM_ENTRY(-20, -20, SPRITE_SIZE_32x8, ST_OAM_VFLIP, 586, 8, 0),
+    OAM_ENTRY(-16, -15, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 602, 8, 0),
+    OAM_ENTRY(0, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 602, 8, 0),
+};
+
+const u16 sMarumenCrushedOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 590, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 590, 8, 0),
+};
+
+const u16 sMarumenCrushedOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_16x16, 0, 598, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 598, 8, 0),
+};
+
+const u16 sMarumenCrushedOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 630, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 630, 8, 0),
+    OAM_ENTRY(-16, -12, SPRITE_SIZE_16x8, 0, 598, 8, 0),
+    OAM_ENTRY(0, -12, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 598, 8, 0),
+};
+
+const struct AnimationFrame sMarumenIdleOam[] = {
+    {sMarumenIdleOam_Frame1, 6},
+    {sMarumenIdleOam_Frame2, 6},
+    {sMarumenIdleOam_Frame3, 6},
+    {sMarumenIdleOam_Frame4, 6},
+    {sMarumenIdleOam_Frame5, 6},
+    {sMarumenIdleOam_Frame6, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenFallingOam[] = {
+    {sMarumenIdleOam_Frame1, 3},
+    {sMarumenIdleOam_Frame2, 3},
+    {sMarumenIdleOam_Frame3, 3},
+    {sMarumenIdleOam_Frame4, 3},
+    {sMarumenIdleOam_Frame5, 3},
+    {sMarumenIdleOam_Frame6, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenTurningOam[] = {
+    {sMarumenTurningOam_Frame1, 4},
+    {sMarumenTurningOam_Frame2, 4},
+    {sMarumenTurningOam_Frame3, 4},
+    {sMarumenTurningOam_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenTurningAroundOam[] = {
+    {sMarumenTurningAroundOam_Frame1, 4},
+    {sMarumenTurningAroundOam_Frame2, 4},
+    {sMarumenTurningAroundOam_Frame3, 20},
+    {sMarumenTurningAroundOam_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenAirborneOam[] = {
+    {sMarumenAirborneOam_Frame1, 4},
+    {sMarumenAirborneOam_Frame2, 4},
+    {sMarumenAirborneOam_Frame2, 2},
+    {sMarumenAirborneOam_Frame3, 2},
+    {sMarumenAirborneOam_Frame4, 2},
+    {sMarumenAirborneOam_Frame5, 2},
+    {sMarumenAirborneOam_Frame6, 3},
+    {sMarumenAirborneOam_Frame7, 3},
+    {sMarumenAirborneOam_Frame8, 3},
+    {sMarumenAirborneOam_Frame9, 3},
+    {sMarumenAirborneOam_Frame10, 3},
+    {sMarumenAirborneOam_Frame11, 2},
+    {sMarumenAirborneOam_Frame12, 2},
+    {sMarumenAirborneOam_Frame13, 2},
+    {sMarumenAirborneOam_Frame2, 2},
+    {sMarumenAirborneOam_Frame2, 4},
+    {sMarumenAirborneOam_Frame14, 2},
+    {sMarumenTurningAroundOam_Frame2, 2},
+    {sMarumenTurningAroundOam_Frame3, 20},
+    {sMarumenTurningAroundOam_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenStunnedOam[] = {
+    {sMarumenStunnedOam_Frame1, 4},
+    {sMarumenStunnedOam_Frame2, 4},
+    {sMarumenStunnedOam_Frame3, 4},
+    {sMarumenStunnedOam_Frame4, 4},
+    {sMarumenStunnedOam_Frame5, 4},
+    {sMarumenStunnedOam_Frame6, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenGettingUpOam[] = {
+    {sMarumenStunnedOam_Frame6, 4},
+    {sMarumenGettingUpOam_Frame1, 4},
+    {sMarumenGettingUpOam_Frame2, 4},
+    {sMarumenGettingUpOam_Frame3, 4},
+    {sMarumenGettingUpOam_Frame4, 3},
+    {sMarumenGettingUpOam_Frame5, 3},
+    {sMarumenGettingUpOam_Frame6, 3},
+    {sMarumenGettingUpOam_Frame7, 3},
+    {sMarumenGettingUpOam_Frame8, 3},
+    {sMarumenGettingUpOam_Frame9, 3},
+    {sMarumenGettingUpOam_Frame10, 3},
+    {sMarumenGettingUpOam_Frame11, 4},
+    {sMarumenGettingUpOam_Frame11, 4},
+    {sMarumenGettingUpOam_Frame12, 20},
+    {sMarumenGettingUpOam_Frame11, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenDefeatedOam[] = {
+    {sMarumenDefeatedOam_Frame1, 4},
+    {sMarumenDefeatedOam_Frame2, 4},
+    {sMarumenDefeatedOam_Frame3, 4},
+    {sMarumenDefeatedOam_Frame4, 4},
+    {sMarumenDefeatedOam_Frame5, 4},
+    {sMarumenDefeatedOam_Frame6, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenAlternateCrushedOam[] = {
+    {sMarumenAirborneOam_Frame1, 2},
+    {sMarumenAlternateCrushedOam_Frame1, 2},
+    {sMarumenAlternateCrushedOam_Frame2, 3},
+    {sMarumenAlternateCrushedOam_Frame3, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenCrushedOam[] = {
+    {sMarumenCrushedOam_Frame1, 2},
+    {sMarumenCrushedOam_Frame2, 2},
+    {sMarumenCrushedOam_Frame3, 3},
+    {sMarumenCrushedOam_Frame4, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenRecoveringOam[] = {
+    {sMarumenTurningAroundOam_Frame2, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMarumenPushedOam[] = {
+    {sMarumenTurningAroundOam_Frame2, 2},
+    {sMarumenTurningAroundOam_Frame3, 200},
+    ANIMATION_TERMINATOR
+};
+
 void MarumenInit(void)
 {
     gCurrentSprite.drawDistanceDown = 24;
