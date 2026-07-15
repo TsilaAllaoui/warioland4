@@ -6,6 +6,338 @@
 #include "sprite.h"
 #include "sprite_util.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMenonoPushedOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-17, -36, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-21, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoTurningOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-15, -36, SPRITE_SIZE_16x32, 0, 521, 8, 0),
+    OAM_ENTRY(-21, -34, SPRITE_SIZE_32x32, 0, 515, 8, 0),
+    OAM_ENTRY(2, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 555, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+};
+
+const u8 sMenonoRawData_83C7F84[] = {
+    0x04, 0x00, 0xE5, 0x00, 0xF3, 0x41, 0x4B, 0x82, 0xDE, 0x00, 0xEB, 0x91, 0x00, 0x82, 0xF8, 0x00,
+    0x03, 0x00, 0x2B, 0x82, 0xF8, 0x40, 0xF0, 0x01, 0x0B, 0x82,
+};
+
+const u16 sMenonoAttackingOam_Frame2[] = {
+    3,
+    OAM_ENTRY(-17, -32, SPRITE_SIZE_16x32, 0, 532, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 589, 8, 0),
+    OAM_ENTRY(-9, -24, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 557, 8, 0),
+};
+
+const u16 sMenonoAttackingOam_Frame3[] = {
+    3,
+    OAM_ENTRY(-17, -15, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 589, 8, 0),
+    OAM_ENTRY(-9, -24, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 557, 8, 0),
+};
+
+const u16 sMenonoAttackingOam_Frame4[] = {
+    3,
+    OAM_ENTRY(-17, -16, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+    OAM_ENTRY(-21, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 589, 8, 0),
+    OAM_ENTRY(-9, -24, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 557, 8, 0),
+};
+
+const u16 sMenonoAttackingOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-12, -28, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-20, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+    OAM_ENTRY(-16, -10, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoPreparingAttackOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-14, -28, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-22, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-18, -11, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+};
+
+const u16 sMenonoPreparingAttackOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-14, -28, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-23, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-16, -9, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+    OAM_ENTRY(4, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+};
+
+const u16 sMenonoPreparingAttackOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-14, -27, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-23, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(1, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoPreparingAttackOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-13, -27, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-22, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+    OAM_ENTRY(-9, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoWalkingOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-17, -38, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-22, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-17, -10, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+};
+
+const u16 sMenonoWalkingOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-18, -36, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-23, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+    OAM_ENTRY(4, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+};
+
+const u16 sMenonoWalkingOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-17, -36, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-23, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(1, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoWalkingOam_Frame4[] = {
+    4,
+    OAM_ENTRY(-17, -37, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-22, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+    OAM_ENTRY(-10, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u8 sMenonoRawData_83C80C4[] = {
+    0x04, 0x00, 0xF2, 0x00, 0xF3, 0x61, 0x4B, 0x82, 0xE9, 0x00, 0xEB, 0xB1, 0x00, 0x82, 0xE7, 0x00,
+    0x03, 0x20, 0x2B, 0x82, 0xE7, 0x40, 0xF0, 0x21, 0x0B, 0x82,
+};
+
+const u16 sMenonoStunnedOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 587, 8, 0),
+    OAM_ENTRY(-21, -31, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(-4, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 555, 8, 0),
+    OAM_ENTRY(5, -20, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 556, 8, 0),
+    OAM_ENTRY(-18, -21, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 523, 8, 0),
+};
+
+const u16 sMenonoStunnedOam_Frame2[] = {
+    5,
+    OAM_ENTRY(-14, -15, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 587, 8, 0),
+    OAM_ENTRY(-22, -32, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 555, 8, 0),
+    OAM_ENTRY(2, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 556, 8, 0),
+    OAM_ENTRY(-20, -20, SPRITE_SIZE_16x8, 0, 598, 8, 0),
+};
+
+const u16 sMenonoStunnedOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-15, -15, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 587, 8, 0),
+    OAM_ENTRY(-21, -32, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(-8, -25, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 556, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 556, 8, 0),
+};
+
+const u16 sMenonoFallingOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-14, -23, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-21, -22, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+    OAM_ENTRY(5, -9, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+    OAM_ENTRY(-18, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoFallingOam_Frame2[] = {
+    5,
+    OAM_ENTRY(-14, -22, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-21, -21, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+    OAM_ENTRY(2, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+    OAM_ENTRY(-20, -9, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 598, 8, 0),
+};
+
+const u16 sMenonoFallingOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-14, -22, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-21, -21, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_8x8, 0, 556, 8, 0),
+};
+
+const u16 sMenonoTackledOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-8, -32, SPRITE_SIZE_16x32, 0, 536, 8, 0),
+};
+
+const u16 sMenonoTackledOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-9, -32, SPRITE_SIZE_16x32, 0, 538, 8, 0),
+};
+
+const u16 sMenonoCrushedOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-14, -21, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-21, -20, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x8, 0, 555, 8, 0),
+    OAM_ENTRY(-19, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoCrushedOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-17, -16, SPRITE_SIZE_32x16, 0, 540, 8, 0),
+};
+
+const u16 sMenonoCrushedOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-16, -15, SPRITE_SIZE_32x16, 0, 604, 8, 0),
+};
+
+const u16 sMenonoWalkingOam_Frame5[] = {
+    5,
+    OAM_ENTRY(-17, -32, SPRITE_SIZE_8x8, 0, 630, 8, 0),
+    OAM_ENTRY(-18, -36, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-23, -35, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+    OAM_ENTRY(4, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+};
+
+const u16 sMenonoWalkingOam_Frame6[] = {
+    5,
+    OAM_ENTRY(-16, -33, SPRITE_SIZE_8x8, 0, 631, 8, 0),
+    OAM_ENTRY(-17, -36, SPRITE_SIZE_16x32, 0, 519, 8, 0),
+    OAM_ENTRY(-23, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(1, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_16x8, 0, 523, 8, 0),
+};
+
+const u16 sMenonoGettingUpOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-14, -27, SPRITE_SIZE_16x16, 0, 587, 8, 0),
+    OAM_ENTRY(-22, -34, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 556, 8, 0),
+};
+
+const u16 sMenonoCrushedWhileStunnedOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 587, 8, 0),
+    OAM_ENTRY(-21, -31, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 555, 8, 0),
+    OAM_ENTRY(-19, -19, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 523, 8, 0),
+};
+
+const u16 sMenonoCrushedWhileStunnedOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-17, -14, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 540, 8, 0),
+};
+
+const u16 sMenonoCrushedWhileStunnedOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-16, -13, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 604, 8, 0),
+};
+
+const struct AnimationFrame sMenonoPushedOam[] = {
+    {sMenonoPushedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoTurningOam[] = {
+    {sMenonoPushedOam_Frame1, 4},
+    {sMenonoTurningOam_Frame1, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoPreparingAttackOam[] = {
+    {sMenonoPreparingAttackOam_Frame1, 2},
+    {sMenonoPreparingAttackOam_Frame2, 2},
+    {sMenonoPreparingAttackOam_Frame3, 2},
+    {sMenonoPreparingAttackOam_Frame4, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoWalkingOam[] = {
+    {sMenonoWalkingOam_Frame1, 4},
+    {sMenonoWalkingOam_Frame2, 4},
+    {sMenonoWalkingOam_Frame3, 4},
+    {sMenonoWalkingOam_Frame4, 4},
+    {sMenonoWalkingOam_Frame1, 4},
+    {sMenonoWalkingOam_Frame5, 4},
+    {sMenonoWalkingOam_Frame6, 4},
+    {sMenonoWalkingOam_Frame4, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoAttackingOam[] = {
+    {sMenonoPushedOam_Frame1, 1},
+    {sMenonoAttackingOam_Frame1, 2},
+    {sMenonoAttackingOam_Frame2, 5},
+    {sMenonoAttackingOam_Frame3, 2},
+    {sMenonoAttackingOam_Frame4, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoStunnedOam[] = {
+    {sMenonoStunnedOam_Frame1, 2},
+    {sMenonoStunnedOam_Frame2, 2},
+    {sMenonoStunnedOam_Frame3, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoFallingOam[] = {
+    {sMenonoFallingOam_Frame1, 2},
+    {sMenonoFallingOam_Frame2, 2},
+    {sMenonoFallingOam_Frame3, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoTackledOam[] = {
+    {sMenonoTackledOam_Frame1, 4},
+    {sMenonoTackledOam_Frame2, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoCrushedOam[] = {
+    {sMenonoCrushedOam_Frame1, 2},
+    {sMenonoCrushedOam_Frame2, 3},
+    {sMenonoCrushedOam_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoGettingUpOam[] = {
+    {sMenonoGettingUpOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoTurningAroundOam[] = {
+    {sMenonoTurningOam_Frame1, 4},
+    {sMenonoPushedOam_Frame1, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMenonoCrushedWhileStunnedOam[] = {
+    {sMenonoCrushedWhileStunnedOam_Frame1, 2},
+    {sMenonoCrushedWhileStunnedOam_Frame2, 3},
+    {sMenonoCrushedWhileStunnedOam_Frame3, 4},
+    ANIMATION_TERMINATOR
+};
+
 void MenonoSetWalkingHitbox(void)
 {
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
