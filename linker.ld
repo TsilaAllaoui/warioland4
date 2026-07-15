@@ -770,7 +770,9 @@ SECTIONS {
         obj/sprite_ai/vortex.o(.rodata);
         obj/blob_0x3B548C-0x3B5C5C.o(.rodata);
         obj/sprite_ai/coins.o(.rodata);
-        obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
+        obj/blob_0x3B6450-0x3BC0CC.o(.rodata);
+        obj/sprite_ai/spiky.o(.rodata);
+        obj/blob_0x3BC750-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
         obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
