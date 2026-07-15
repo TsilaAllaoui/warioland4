@@ -6,11 +6,779 @@
 #include "sprite_util.h"
 #include "types.h"
 
-extern const struct AnimationFrame sGlassBirdOam[];
-extern const struct AnimationFrame sGlassBirdFragmentOam[];
-extern const struct AnimationFrame sGlassBirdFragmentBrokenOam[];
-extern const struct AnimationFrame sGlassBirdFragmentDyingOam[];
-extern const struct AnimationFrame sGlassBirdFragmentCarriedOam[];
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sGlassBirdOam_Frame1[] = {
+    7,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame3[] = {
+    7,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-15, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -22, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame5[] = {
+    8,
+    OAM_ENTRY(-7, -14, SPRITE_SIZE_16x16, 0, 527, 8, 0),
+    OAM_ENTRY(9, -14, SPRITE_SIZE_8x16, 0, 529, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame6[] = {
+    8,
+    OAM_ENTRY(-7, -14, SPRITE_SIZE_16x16, 0, 527, 8, 0),
+    OAM_ENTRY(9, -14, SPRITE_SIZE_8x16, 0, 529, 8, 0),
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame7[] = {
+    8,
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame8[] = {
+    8,
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame9[] = {
+    8,
+    OAM_ENTRY(-9, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 527, 8, 0),
+    OAM_ENTRY(-17, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame10[] = {
+    8,
+    OAM_ENTRY(-9, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 527, 8, 0),
+    OAM_ENTRY(-17, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame11[] = {
+    8,
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame12[] = {
+    8,
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_8x16, 0, 530, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 530, 8, 0),
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame13[] = {
+    8,
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame14[] = {
+    8,
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame15[] = {
+    10,
+    OAM_ENTRY(-4, -20, SPRITE_SIZE_8x8, 0, 541, 8, 0),
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    OAM_ENTRY(-9, -22, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -22, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame16[] = {
+    10,
+    OAM_ENTRY(-16, -18, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-9, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame17[] = {
+    10,
+    OAM_ENTRY(-16, -18, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-9, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(12, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame18[] = {
+    8,
+    OAM_ENTRY(-16, -20, SPRITE_SIZE_16x16, 0, 535, 8, 0),
+    OAM_ENTRY(0, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 8, 0),
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame19[] = {
+    8,
+    OAM_ENTRY(-16, -20, SPRITE_SIZE_16x16, 0, 535, 8, 0),
+    OAM_ENTRY(0, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(12, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame20[] = {
+    9,
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 539, 8, 0),
+    OAM_ENTRY(0, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 539, 8, 0),
+    OAM_ENTRY(-8, -20, SPRITE_SIZE_16x8, 0, 512, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame21[] = {
+    9,
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_8x16, ST_OAM_VFLIP, 539, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 539, 8, 0),
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x8, 0, 512, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(12, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame22[] = {
+    11,
+    OAM_ENTRY(-11, -20, SPRITE_SIZE_16x16, 0, 537, 8, 0),
+    OAM_ENTRY(-5, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(-11, -14, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 537, 8, 0),
+    OAM_ENTRY(-5, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 537, 8, 0),
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame23[] = {
+    11,
+    OAM_ENTRY(-11, -15, SPRITE_SIZE_16x16, 0, 537, 8, 0),
+    OAM_ENTRY(-5, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-9, -22, SPRITE_SIZE_8x8, 0, 549, 8, 0),
+    OAM_ENTRY(2, -22, SPRITE_SIZE_8x8, 0, 549, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(12, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 523, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame24[] = {
+    10,
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_8x16, 0, 539, 8, 0),
+    OAM_ENTRY(0, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 539, 8, 0),
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame25[] = {
+    10,
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_8x16, 0, 539, 8, 0),
+    OAM_ENTRY(0, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 539, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_16x8, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame26[] = {
+    8,
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame27[] = {
+    8,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_8x8, 0, 520, 8, 0),
+    OAM_ENTRY(0, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame28[] = {
+    7,
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 552, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame29[] = {
+    7,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 552, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame30[] = {
+    8,
+    OAM_ENTRY(-18, -15, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(10, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame31[] = {
+    8,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame32[] = {
+    8,
+    OAM_ENTRY(-19, -18, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdOam_Frame33[] = {
+    8,
+    OAM_ENTRY(10, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 572, 8, 0),
+    OAM_ENTRY(-18, -17, SPRITE_SIZE_8x8, 0, 572, 8, 0),
+    OAM_ENTRY(-8, -13, SPRITE_SIZE_8x8, 0, 548, 8, 0),
+    OAM_ENTRY(0, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 548, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_16x16, 0, 525, 8, 0),
+    OAM_ENTRY(0, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+const u16 sGlassBirdFragmentOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-5, -14, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+};
+
+const u16 sGlassBirdFragmentOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-4, -14, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_16x16, 0, 512, 8, 0),
+};
+
+const u16 sGlassBirdFragmentCarriedOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-5, -14, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sGlassBirdFragmentCarriedOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-4, -14, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-4, -11, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(0, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame2[] = {
+    6,
+    OAM_ENTRY(-4, -11, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+    OAM_ENTRY(-9, -16, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(-10, -12, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(2, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-9, -7, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame3[] = {
+    7,
+    OAM_ENTRY(-4, -16, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-11, -19, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(4, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(-11, -8, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(6, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-4, -12, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-4, -18, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-14, -21, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(7, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-19, -17, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(9, -9, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(-4, -13, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame5[] = {
+    8,
+    OAM_ENTRY(-4, -22, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-16, -23, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(10, -25, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-22, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(-15, -7, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(11, -8, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-4, -11, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+    OAM_ENTRY(3, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame6[] = {
+    8,
+    OAM_ENTRY(-4, -24, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-18, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(13, -26, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(-24, -16, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(-17, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(13, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+    OAM_ENTRY(3, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame7[] = {
+    8,
+    OAM_ENTRY(-4, -25, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-20, -22, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(15, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-27, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(-18, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(15, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, 0, 551, 8, 0),
+    OAM_ENTRY(5, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame8[] = {
+    6,
+    OAM_ENTRY(-4, -25, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-21, -19, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(17, -21, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-31, -8, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(17, 0, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(5, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame9[] = {
+    5,
+    OAM_ENTRY(-4, -23, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-22, -15, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(19, -16, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(18, 5, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(5, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame10[] = {
+    3,
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(20, -12, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(6, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame11[] = {
+    1,
+    OAM_ENTRY(-4, -14, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame12[] = {
+    1,
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentBrokenOam_Frame13[] = {
+    1,
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-4, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 551, 8, 0),
+    OAM_ENTRY(0, -15, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(0, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame2[] = {
+    6,
+    OAM_ENTRY(-1, -16, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(2, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(4, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(1, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame3[] = {
+    6,
+    OAM_ENTRY(-8, -21, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(4, -22, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(9, -12, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(2, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-1, -19, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame4[] = {
+    7,
+    OAM_ENTRY(1, -22, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-7, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-7, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(6, -26, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(14, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(3, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(3, -12, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-6, -26, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(9, -29, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(19, -11, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(4, 4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(3, -25, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(4, -11, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame6[] = {
+    7,
+    OAM_ENTRY(5, -27, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(-5, -27, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(-5, -4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(11, -31, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(23, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(5, 14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(6, -9, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame7[] = {
+    7,
+    OAM_ENTRY(-3, -23, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-4, 3, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(13, -32, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(26, -5, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(6, 25, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(6, -28, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(9, -7, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame8[] = {
+    6,
+    OAM_ENTRY(-2, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(-3, 14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(16, -33, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(29, 1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 550, 8, 0),
+    OAM_ENTRY(7, -29, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(11, -3, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame9[] = {
+    5,
+    OAM_ENTRY(0, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(18, -32, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(30, 10, SPRITE_SIZE_8x8, 0, 550, 8, 0),
+    OAM_ENTRY(9, -27, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+    OAM_ENTRY(12, 2, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame10[] = {
+    2,
+    OAM_ENTRY(20, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 518, 8, 0),
+    OAM_ENTRY(10, -24, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame11[] = {
+    2,
+    OAM_ENTRY(22, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(11, -19, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame12[] = {
+    2,
+    OAM_ENTRY(23, -15, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 518, 8, 0),
+    OAM_ENTRY(11, -11, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u16 sGlassBirdFragmentDyingOam_Frame13[] = {
+    2,
+    OAM_ENTRY(24, -4, SPRITE_SIZE_8x8, 0, 518, 8, 0),
+    OAM_ENTRY(11, -1, SPRITE_SIZE_8x8, 0, 573, 8, 0),
+};
+
+const u8 sGlassBirdRawData_83E45EE[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sGlassBirdOam[] = {
+    {sGlassBirdOam_Frame1, 8},
+    {sGlassBirdOam_Frame2, 8},
+    {sGlassBirdOam_Frame3, 8},
+    {sGlassBirdOam_Frame4, 8},
+    {sGlassBirdOam_Frame5, 5},
+    {sGlassBirdOam_Frame6, 5},
+    {sGlassBirdOam_Frame7, 5},
+    {sGlassBirdOam_Frame8, 5},
+    {sGlassBirdOam_Frame9, 5},
+    {sGlassBirdOam_Frame10, 5},
+    {sGlassBirdOam_Frame11, 5},
+    {sGlassBirdOam_Frame12, 5},
+    {sGlassBirdOam_Frame5, 5},
+    {sGlassBirdOam_Frame6, 5},
+    {sGlassBirdOam_Frame7, 5},
+    {sGlassBirdOam_Frame8, 5},
+    {sGlassBirdOam_Frame9, 5},
+    {sGlassBirdOam_Frame10, 5},
+    {sGlassBirdOam_Frame11, 5},
+    {sGlassBirdOam_Frame12, 4},
+    {sGlassBirdOam_Frame13, 4},
+    {sGlassBirdOam_Frame14, 4},
+    {sGlassBirdOam_Frame15, 4},
+    {sGlassBirdOam_Frame16, 4},
+    {sGlassBirdOam_Frame17, 4},
+    {sGlassBirdOam_Frame18, 4},
+    {sGlassBirdOam_Frame19, 4},
+    {sGlassBirdOam_Frame20, 4},
+    {sGlassBirdOam_Frame21, 4},
+    {sGlassBirdOam_Frame22, 4},
+    {sGlassBirdOam_Frame23, 4},
+    {sGlassBirdOam_Frame24, 4},
+    {sGlassBirdOam_Frame25, 4},
+    {sGlassBirdOam_Frame26, 3},
+    {sGlassBirdOam_Frame27, 3},
+    {sGlassBirdOam_Frame28, 3},
+    {sGlassBirdOam_Frame29, 3},
+    {sGlassBirdOam_Frame30, 3},
+    {sGlassBirdOam_Frame31, 3},
+    {sGlassBirdOam_Frame32, 3},
+    {sGlassBirdOam_Frame33, 4},
+    {sGlassBirdOam_Frame2, 8},
+    {sGlassBirdOam_Frame3, 8},
+    {sGlassBirdOam_Frame4, 8},
+    {sGlassBirdOam_Frame1, 8},
+    {sGlassBirdOam_Frame2, 8},
+    {sGlassBirdOam_Frame3, 8},
+    {sGlassBirdOam_Frame4, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sGlassBirdFragmentOam[] = {
+    {sGlassBirdFragmentOam_Frame1, 10},
+    {sGlassBirdFragmentOam_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sGlassBirdFragmentCarriedOam[] = {
+    {sGlassBirdFragmentCarriedOam_Frame1, 10},
+    {sGlassBirdFragmentCarriedOam_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sGlassBirdFragmentBrokenOam[] = {
+    {sGlassBirdFragmentBrokenOam_Frame1, 3},
+    {sGlassBirdFragmentBrokenOam_Frame2, 3},
+    {sGlassBirdFragmentBrokenOam_Frame3, 2},
+    {sGlassBirdFragmentBrokenOam_Frame4, 2},
+    {sGlassBirdFragmentBrokenOam_Frame5, 2},
+    {sGlassBirdFragmentBrokenOam_Frame6, 2},
+    {sGlassBirdFragmentBrokenOam_Frame7, 2},
+    {sGlassBirdFragmentBrokenOam_Frame8, 2},
+    {sGlassBirdFragmentBrokenOam_Frame9, 2},
+    {sGlassBirdFragmentBrokenOam_Frame10, 2},
+    {sGlassBirdFragmentBrokenOam_Frame11, 2},
+    {sGlassBirdFragmentBrokenOam_Frame12, 2},
+    {sGlassBirdFragmentBrokenOam_Frame13, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sGlassBirdFragmentDyingOam[] = {
+    {sGlassBirdFragmentDyingOam_Frame1, 3},
+    {sGlassBirdFragmentDyingOam_Frame2, 3},
+    {sGlassBirdFragmentDyingOam_Frame3, 2},
+    {sGlassBirdFragmentDyingOam_Frame4, 2},
+    {sGlassBirdFragmentDyingOam_Frame5, 2},
+    {sGlassBirdFragmentDyingOam_Frame6, 2},
+    {sGlassBirdFragmentDyingOam_Frame7, 2},
+    {sGlassBirdFragmentDyingOam_Frame8, 2},
+    {sGlassBirdFragmentDyingOam_Frame9, 2},
+    {sGlassBirdFragmentDyingOam_Frame10, 2},
+    {sGlassBirdFragmentDyingOam_Frame11, 2},
+    {sGlassBirdFragmentDyingOam_Frame12, 2},
+    {sGlassBirdFragmentDyingOam_Frame13, 2},
+    ANIMATION_TERMINATOR
+};
 
 void InitGlassBird(void)
 {
