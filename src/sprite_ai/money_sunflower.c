@@ -4,6 +4,79 @@
 #include "sprite.h"
 
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sMoneySunflowerFullOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 512, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 512, 8, 0),
+};
+
+const u16 sMoneySunflowerLargeOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 516, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 516, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 516, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 516, 8, 0),
+};
+
+const u16 sMoneySunflowerMediumOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 520, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 520, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 520, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 520, 8, 0),
+};
+
+const u16 sMoneySunflowerSmallOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 524, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 524, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 524, 8, 0),
+};
+
+const u16 sMoneySunflowerDepletedOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-32, 0, SPRITE_SIZE_32x32, ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(0, 0, SPRITE_SIZE_32x32, ST_OAM_HFLIP | ST_OAM_VFLIP, 528, 8, 0),
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_32x32, ST_OAM_HFLIP, 528, 8, 0),
+};
+
+const u8 sMoneySunflowerRawData_83D0E92[] = {
+    0x00, 0x00,
+};
+
+const struct AnimationFrame sMoneySunflowerFullOam[] = {
+    {sMoneySunflowerFullOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMoneySunflowerLargeOam[] = {
+    {sMoneySunflowerLargeOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMoneySunflowerMediumOam[] = {
+    {sMoneySunflowerMediumOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMoneySunflowerSmallOam[] = {
+    {sMoneySunflowerSmallOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sMoneySunflowerDepletedOam[] = {
+    {sMoneySunflowerDepletedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
 void InitMoneySunflower(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_BACKGROUND;
