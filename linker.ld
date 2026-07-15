@@ -754,6 +754,28 @@ SECTIONS {
     } > ROM
 
     .rodata : ALIGN(2) {
+        /* Aliases preserved from the replaced contiguous ROM region. */
+        sUnk_83CD334 = sCatbatOam_83CD334;
+        sUnk_83CD35C = sCatbatOam_83CD35C;
+        sUnk_83CD374 = sCatbatOam_83CD374;
+        sUnk_83CD39C = sCatbatOam_83CD39C;
+        sUnk_83CD3EC = sCatbatOam_83CD3EC;
+        sUnk_83CE468 = sCatbatOam_83CE468;
+        sUnk_83CE490 = sCatbatOam_83CE490;
+        sUnk_83CE4A8 = sCatbatOam_83CE4A8;
+        sUnk_83CE4D0 = sCatbatOam_83CE4D0;
+        sUnk_83CE4F8 = sCatbatOam_83CE4F8;
+        sUnk_83CF164 = sCatbatOam_83CF164;
+        sUnk_83CF370 = sCatbatOam_83CF370;
+        sUnk_83CF3F0 = sCatbatOam_83CF3F0;
+        sUnk_83CF400 = sCatbatOam_83CF400;
+        sUnk_83CF478 = sCatbatOam_83CF478;
+        sUnk_83CF4B8 = sCatbatOam_83CF4B8;
+        sUnk_83CF594 = sCatbatOam_83CF594;
+        sUnk_83CF5BC = sCatbatOam_83CF5BC;
+        sUnk_83CF5D4 = sCatbatOam_83CF5D4;
+        sUnk_83CF5EC = sCatbatOam_83CF5EC;
+        sUnk_83CF8BC = sCatbatOam_83CF8BC;
         obj/data/sin_cos_table.o(.rodata);
         obj/crt0.o(.rodata);
         obj/sram_misc.o(.rodata);
@@ -772,7 +794,9 @@ SECTIONS {
         obj/sprite_ai/coins.o(.rodata);
         obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
-        obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
+        obj/blob_0x3C4B28-0x3CBF34.o(.rodata);
+        obj/sprite_ai/catbat.o(.rodata);
+        obj/blob_0x3CF8FC-0x3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
