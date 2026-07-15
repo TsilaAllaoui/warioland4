@@ -5,6 +5,68 @@
 #include "wario.h"
 #include "sprite_ai/folding_door.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sFoldingDoorClosedOam_Frame1[] = {
+    8,
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 16, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(8, 16, SPRITE_SIZE_16x16, 0, 522, 8, 0),
+    OAM_ENTRY(-24, 32, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(8, 32, SPRITE_SIZE_16x16, 0, 516, 8, 0),
+    OAM_ENTRY(-24, 48, SPRITE_SIZE_32x16, 0, 518, 8, 0),
+    OAM_ENTRY(8, 48, SPRITE_SIZE_16x16, 0, 522, 8, 0),
+};
+
+const u16 sFoldingDoorOpeningOam_Frame1[] = {
+    8,
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x8, 0, 556, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x8, 0, 560, 8, 0),
+    OAM_ENTRY(-24, 8, SPRITE_SIZE_32x16, 0, 530, 8, 0),
+    OAM_ENTRY(8, 8, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+    OAM_ENTRY(-24, 24, SPRITE_SIZE_32x8, 0, 556, 8, 0),
+    OAM_ENTRY(8, 24, SPRITE_SIZE_16x8, 0, 560, 8, 0),
+    OAM_ENTRY(-24, 32, SPRITE_SIZE_32x16, 0, 530, 8, 0),
+    OAM_ENTRY(8, 32, SPRITE_SIZE_16x16, 0, 534, 8, 0),
+};
+
+const u16 sFoldingDoorOpeningOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x16, 0, 536, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x16, 0, 540, 8, 0),
+    OAM_ENTRY(-24, 16, SPRITE_SIZE_32x16, 0, 536, 8, 0),
+    OAM_ENTRY(8, 16, SPRITE_SIZE_16x16, 0, 540, 8, 0),
+};
+
+const u16 sFoldingDoorOpeningOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-24, 0, SPRITE_SIZE_32x8, 0, 524, 8, 0),
+    OAM_ENTRY(8, 0, SPRITE_SIZE_16x8, 0, 528, 8, 0),
+    OAM_ENTRY(-24, 8, SPRITE_SIZE_32x8, 0, 524, 8, 0),
+    OAM_ENTRY(8, 8, SPRITE_SIZE_16x8, 0, 528, 8, 0),
+};
+
+const struct AnimationFrame sFoldingDoorClosedOam[] = {
+    {sFoldingDoorClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFoldingDoorOpeningOam[] = {
+    {sFoldingDoorClosedOam_Frame1, 6},
+    {sFoldingDoorOpeningOam_Frame1, 6},
+    {sFoldingDoorOpeningOam_Frame2, 6},
+    {sFoldingDoorOpeningOam_Frame3, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sFoldingDoorOpenOam[] = {
+    {sFoldingDoorOpeningOam_Frame3, 200},
+    ANIMATION_TERMINATOR
+};
+
 void SetFoldingDoorCollision(void)
 {
     register int yPosition asm("r5");
