@@ -6,9 +6,130 @@
 #include "wario.h"
 
 
+#include "oam.h"
 /* Untyped alias prevents agbcc from re-normalizing an already-clean r5 argument. */
 void BubbleCollisionCheck() asm("func_8023BFC");
 
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sBubbleMovingOam_Frame1[] = {
+    2,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x16, 0, 512, 8, 0),
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 512, 8, 0),
+};
+
+const u16 sBubbleMovingOam_Frame2[] = {
+    2,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x16, 0, 516, 8, 0),
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 516, 8, 0),
+};
+
+const u16 sBubbleMovingOam_Frame3[] = {
+    2,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x16, 0, 520, 8, 0),
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 520, 8, 0),
+};
+
+const u16 sBubbleMovingOam_Frame4[] = {
+    2,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x16, 0, 524, 8, 0),
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 524, 8, 0),
+};
+
+const u16 sBubbleMovingOam_Frame5[] = {
+    2,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x16, ST_OAM_VFLIP, 512, 8, 0),
+};
+
+const u16 sBubbleIdleOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-4, -20, SPRITE_SIZE_8x8, 0, 528, 8, 0),
+};
+
+const u16 sBubbleIdleOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-8, -24, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+};
+
+const u16 sBubbleIdleOam_Frame3[] = {
+    4,
+    OAM_ENTRY(-12, -28, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    OAM_ENTRY(-4, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 531, 8, 0),
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_8x8, 0, 560, 8, 0),
+    OAM_ENTRY(4, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 560, 8, 0),
+};
+
+const u16 sBubblePopOam_Frame1[] = {
+    4,
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x16, 0, 533, 8, 0),
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 533, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 533, 8, 0),
+};
+
+const u16 sBubblePopOam_Frame2[] = {
+    4,
+    OAM_ENTRY(-18, -34, SPRITE_SIZE_16x16, 0, 535, 8, 0),
+    OAM_ENTRY(-18, -14, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 535, 8, 0),
+    OAM_ENTRY(2, -34, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 535, 8, 0),
+    OAM_ENTRY(2, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 535, 8, 0),
+};
+
+const u16 sBubblePopOam_Frame3[] = {
+    8,
+    OAM_ENTRY(-20, -36, SPRITE_SIZE_16x16, 0, 537, 8, 0),
+    OAM_ENTRY(4, -36, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(-4, -36, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    OAM_ENTRY(-20, -20, SPRITE_SIZE_8x8, 0, 571, 8, 0),
+    OAM_ENTRY(12, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 571, 8, 0),
+    OAM_ENTRY(-20, -12, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 537, 8, 0),
+    OAM_ENTRY(4, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 537, 8, 0),
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_8x8, ST_OAM_VFLIP, 539, 8, 0),
+};
+
+const u16 sBubblePopOam_Frame4[] = {
+    6,
+    OAM_ENTRY(-20, -40, SPRITE_SIZE_16x16, 0, 540, 8, 0),
+    OAM_ENTRY(4, -40, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(20, -24, SPRITE_SIZE_8x16, 0, 542, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(4, -8, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 540, 8, 0),
+    OAM_ENTRY(-28, -24, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 542, 8, 0),
+};
+
+const struct AnimationFrame sBubbleMovingOam[] = {
+    {sBubbleMovingOam_Frame1, 11},
+    {sBubbleMovingOam_Frame2, 10},
+    {sBubbleMovingOam_Frame3, 9},
+    {sBubbleMovingOam_Frame4, 10},
+    {sBubbleMovingOam_Frame5, 11},
+    {sBubbleMovingOam_Frame4, 10},
+    {sBubbleMovingOam_Frame3, 9},
+    {sBubbleMovingOam_Frame2, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBubbleIdleOam[] = {
+    {sBubbleIdleOam_Frame1, 4},
+    {sBubbleIdleOam_Frame2, 10},
+    {sBubbleIdleOam_Frame3, 12},
+    {sBubbleMovingOam_Frame1, 60},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBubblePopOam[] = {
+    {sBubblePopOam_Frame1, 3},
+    {sBubblePopOam_Frame2, 3},
+    {sBubblePopOam_Frame3, 4},
+    {sBubblePopOam_Frame4, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sBubbleSpawnerOam[] = {
+    {sBubbleIdleOam_Frame1, 254},
+    ANIMATION_TERMINATOR
+};
 
 void InitBubbleSpawner(void)
 {
