@@ -6,6 +6,40 @@
 #include "sprite_util.h"
 #include "wario.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sSwingingPlatformOam_83CFB48_Frame1[] = {
+    1,
+    OAM_ENTRY(0, 0, SPRITE_SIZE_64x64, 0, 512, 8, 0),
+};
+
+const u16 sSwingingPlatformOam_83CFB58_Frame1[] = {
+    1,
+    OAM_ENTRY(0, 0, SPRITE_SIZE_64x64, 0, 520, 8, 0),
+};
+
+const u16 sSwingingPlatformOam_83CFB68_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -4, SPRITE_SIZE_32x8, 0, 528, 8, 0),
+};
+
+const struct AnimationFrame sSwingingPlatformOam_83CFB48[] = {
+    {sSwingingPlatformOam_83CFB48_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sSwingingPlatformOam_83CFB58[] = {
+    {sSwingingPlatformOam_83CFB58_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sSwingingPlatformOam_83CFB68[] = {
+    {sSwingingPlatformOam_83CFB68_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
 void func_804A3FC(void)
 {
     register s32 scale asm("r6");
@@ -44,11 +78,11 @@ void func_804A3FC(void)
         sprite->work2 = 0;
 
         if (sprite->globalID == PSPRITE_SWINGING_PLATFORM) {
-            sprite->pOamData = sUnk_83CFB58;
+            sprite->pOamData = sSwingingPlatformOam_83CFB58;
             SpriteSpawnAsChild(PSPRITE_AC, sprite->roomSlot, sprite->gfxSlot,
                 sprite->yPosition + 256, sprite->xPosition + 128);
         } else {
-            sprite->pOamData = sUnk_83CFB48;
+            sprite->pOamData = sSwingingPlatformOam_83CFB48;
             SpriteSpawnAsChild(PSPRITE_AD, sprite->roomSlot, sprite->gfxSlot,
                 sprite->yPosition + 192, sprite->xPosition + 128);
         }
@@ -1123,7 +1157,7 @@ void func_804AB90(void)
         register const struct AnimationFrame *oam asm("r0");
         register struct PrimarySpriteData *storeSprite asm("r1");
 
-        oam = sUnk_83CFB68;
+        oam = sSwingingPlatformOam_83CFB68;
         storeSprite = sprite;
         storeSprite->pOamData = oam;
         storeSprite->currentAnimationFrame = zero;

@@ -5,9 +5,9 @@
 
 struct AnimationFrame;
 
-extern const struct AnimationFrame sUnk_83CFB48[];
-extern const struct AnimationFrame sUnk_83CFB58[];
-extern const struct AnimationFrame sUnk_83CFB68[];
+extern const struct AnimationFrame sSwingingPlatformOam_83CFB48[];
+extern const struct AnimationFrame sSwingingPlatformOam_83CFB58[];
+extern const struct AnimationFrame sSwingingPlatformOam_83CFB68[];
 
 extern u8 gUnk_3000A4B;
 extern u8 gUnk_3000A4D;
