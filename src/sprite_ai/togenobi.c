@@ -9,6 +9,140 @@
 
 
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sTogenobiOuterPartVerticalOam_Frame6[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 512, 8, 0),
+};
+
+const u16 sTogenobiOuterPartVerticalOam_Frame5[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 513, 8, 0),
+};
+
+const u16 sTogenobiOuterPartVerticalOam_Frame4[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 514, 8, 0),
+};
+
+const u16 sTogenobiOuterPartVerticalOam_Frame3[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 515, 8, 0),
+};
+
+const u16 sTogenobiOuterPartVerticalOam_Frame2[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 516, 8, 0),
+};
+
+const u16 sTogenobiOuterPartVerticalOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 517, 8, 0),
+};
+
+const u16 sTogenobiInnerPartOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x32, 0, 657, 10, 0),
+};
+
+const u16 sTogenobiOam_Frame1[] = {
+    1,
+    OAM_ENTRY(-16, -16, SPRITE_SIZE_32x32, 0, 529, 8, 0),
+};
+
+const u16 sTogenobiCenterPartOam_Frame1[] = {
+    6,
+    OAM_ENTRY(-1, -32, SPRITE_SIZE_32x32, 0, 533, 8, 0),
+    OAM_ENTRY(19, -7, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(5, 5, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 606, 8, 0),
+    OAM_ENTRY(-21, -20, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 670, 8, 0),
+    OAM_ENTRY(-21, 5, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 734, 8, 0),
+    OAM_ENTRY(-18, -37, SPRITE_SIZE_32x32, 0, 661, 11, 0),
+};
+
+const u16 sTogenobiCenterPartOam_Frame2[] = {
+    6,
+    OAM_ENTRY(-1, -33, SPRITE_SIZE_32x32, 0, 533, 8, 0),
+    OAM_ENTRY(19, -7, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 606, 8, 0),
+    OAM_ENTRY(5, 3, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 670, 8, 0),
+    OAM_ENTRY(-21, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 734, 8, 0),
+    OAM_ENTRY(-21, 5, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-18, -39, SPRITE_SIZE_32x32, 0, 661, 11, 0),
+};
+
+const u16 sTogenobiCenterPartOam_Frame3[] = {
+    6,
+    OAM_ENTRY(1, -29, SPRITE_SIZE_32x32, 0, 537, 8, 0),
+    OAM_ENTRY(19, -7, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 670, 8, 0),
+    OAM_ENTRY(5, 5, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 734, 8, 0),
+    OAM_ENTRY(-21, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-21, 5, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 606, 8, 0),
+    OAM_ENTRY(-16, -37, SPRITE_SIZE_32x32, 0, 661, 11, 0),
+};
+
+const u16 sTogenobiCenterPartOam_Frame4[] = {
+    6,
+    OAM_ENTRY(1, -30, SPRITE_SIZE_32x32, 0, 537, 8, 0),
+    OAM_ENTRY(19, -7, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 734, 8, 0),
+    OAM_ENTRY(5, 5, SPRITE_SIZE_16x16, ST_OAM_VFLIP, 542, 8, 0),
+    OAM_ENTRY(-21, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 606, 8, 0),
+    OAM_ENTRY(-21, 4, SPRITE_SIZE_16x16, ST_OAM_HFLIP | ST_OAM_VFLIP, 670, 8, 0),
+    OAM_ENTRY(-16, -39, SPRITE_SIZE_32x32, 0, 661, 11, 0),
+};
+
+const struct AnimationFrame sTogenobiCenterPartOam[] = {
+    {sTogenobiCenterPartOam_Frame1, 10},
+    {sTogenobiCenterPartOam_Frame2, 10},
+    {sTogenobiCenterPartOam_Frame3, 10},
+    {sTogenobiCenterPartOam_Frame4, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogenobiOuterPartVerticalOam[] = {
+    {sTogenobiOuterPartVerticalOam_Frame1, 10},
+    {sTogenobiOuterPartVerticalOam_Frame2, 10},
+    {sTogenobiOuterPartVerticalOam_Frame3, 10},
+    {sTogenobiOuterPartVerticalOam_Frame4, 10},
+    {sTogenobiOuterPartVerticalOam_Frame5, 10},
+    {sTogenobiOuterPartVerticalOam_Frame6, 10},
+    {sTogenobiOuterPartVerticalOam_Frame6, 10},
+    {sTogenobiOuterPartVerticalOam_Frame5, 10},
+    {sTogenobiOuterPartVerticalOam_Frame4, 10},
+    {sTogenobiOuterPartVerticalOam_Frame3, 10},
+    {sTogenobiOuterPartVerticalOam_Frame2, 10},
+    {sTogenobiOuterPartVerticalOam_Frame1, 10},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogenobiOuterPartHorizontalOam[] = {
+    {sTogenobiOuterPartVerticalOam_Frame1, 6},
+    {sTogenobiOuterPartVerticalOam_Frame2, 6},
+    {sTogenobiOuterPartVerticalOam_Frame3, 6},
+    {sTogenobiOuterPartVerticalOam_Frame4, 6},
+    {sTogenobiOuterPartVerticalOam_Frame5, 6},
+    {sTogenobiOuterPartVerticalOam_Frame6, 6},
+    {sTogenobiOuterPartVerticalOam_Frame6, 6},
+    {sTogenobiOuterPartVerticalOam_Frame5, 6},
+    {sTogenobiOuterPartVerticalOam_Frame4, 6},
+    {sTogenobiOuterPartVerticalOam_Frame3, 6},
+    {sTogenobiOuterPartVerticalOam_Frame2, 6},
+    {sTogenobiOuterPartVerticalOam_Frame1, 6},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogenobiInnerPartOam[] = {
+    {sTogenobiInnerPartOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sTogenobiOam[] = {
+    {sTogenobiOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+
 void InitTogenobi(void)
 {
     gCurrentSprite.status |= 0x8480;
