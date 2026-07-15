@@ -768,7 +768,7 @@ SECTIONS {
         obj/sprite_ai/keyzer.o(.rodata);
         obj/sprite_ai/treasure.o(.rodata);
         obj/sprite_ai/vortex.o(.rodata);
-        obj/blob_0x3B548C-0x3B5C5C.o(.rodata);
+        obj/sprite_ai/switch.o(.rodata);
         obj/sprite_ai/coins.o(.rodata);
         obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
