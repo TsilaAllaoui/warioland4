@@ -7,6 +7,312 @@
 #include "sprite_util.h"
 #include "wario.h"
 
+#include "oam.h"
+
+/* Sprite data reconstructed from the original contiguous ROM region. */
+
+const u16 sRobobirdIdleOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(1, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-10, -5, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame2[] = {
+    5,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 523, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame3[] = {
+    5,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -16, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame4[] = {
+    5,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_8x16, 0, 516, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame5[] = {
+    5,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -16, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame6[] = {
+    5,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(-8, -3, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame7[] = {
+    5,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(1, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-10, -5, SPRITE_SIZE_8x8, 0, 543, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame8[] = {
+    5,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame9[] = {
+    5,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-8, -3, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -16, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame10[] = {
+    5,
+    OAM_ENTRY(-11, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 516, 8, 0),
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    OAM_ENTRY(2, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_8x16, 0, 516, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame11[] = {
+    5,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(3, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 514, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -16, SPRITE_SIZE_16x16, 0, 514, 8, 0),
+};
+
+const u16 sRobobirdIdleOam_Frame12[] = {
+    5,
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(2, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 525, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-20, -8, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+};
+
+const u16 sRobobirdAttackStartupOam_Frame1[] = {
+    5,
+    OAM_ENTRY(-10, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-1, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-6, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(6, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-25, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+};
+
+const u16 sRobobirdAttackStartupOam_Frame2[] = {
+    5,
+    OAM_ENTRY(-11, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-2, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    OAM_ENTRY(-7, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(5, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-26, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+};
+
+const u16 sRobobirdAttackStartupOam_Frame3[] = {
+    5,
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 542, 8, 0),
+    OAM_ENTRY(-7, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 537, 8, 0),
+    OAM_ENTRY(6, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-11, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-26, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+};
+
+const u16 sRobobirdAttackStartupOam_Frame4[] = {
+    6,
+    OAM_ENTRY(-13, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(0, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 541, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(10, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(6, 0, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+    OAM_ENTRY(-28, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+};
+
+const u16 sRobobirdAttackStartupOam_Frame5[] = {
+    7,
+    OAM_ENTRY(1, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(-5, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 532, 8, 0),
+    OAM_ENTRY(11, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(7, 0, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 574, 8, 0),
+    OAM_ENTRY(-12, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-27, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(14, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u16 sRobobirdAttackStartupOam_Frame6[] = {
+    6,
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-13, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-28, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(15, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u16 sRobobirdAttackOam_Frame3[] = {
+    6,
+    OAM_ENTRY(-13, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-28, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(19, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u8 sRobobirdRawData_83DD9E6[] = {
+    0x06, 0x00, 0xF4, 0x00, 0xF3, 0x51, 0x16, 0x82, 0xFB, 0x40, 0xE4, 0x11, 0x05, 0x82, 0xF9, 0x40,
+    0x00, 0x10, 0x25, 0x82, 0xF6, 0x00, 0x02, 0x50, 0x13, 0x82, 0xF6, 0x80, 0xFA, 0x11, 0x15, 0x82,
+    0xF6, 0x00, 0x12, 0x10, 0x3F, 0x82,
+};
+
+const u16 sRobobirdFallingOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-6, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-11, -11, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(-10, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(4, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 549, 8, 0),
+    OAM_ENTRY(-6, -4, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(5, -11, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-23, -15, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+};
+
+const u16 sRobobirdFallingOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-6, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 540, 8, 0),
+    OAM_ENTRY(-13, -11, SPRITE_SIZE_8x8, 0, 540, 8, 0),
+    OAM_ENTRY(-10, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 512, 8, 0),
+    OAM_ENTRY(5, -9, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(-8, -3, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 521, 8, 0),
+    OAM_ENTRY(3, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+    OAM_ENTRY(-23, -6, SPRITE_SIZE_16x8, 0, 549, 8, 0),
+};
+
+const u16 sRobobirdAttackOam_Frame1[] = {
+    7,
+    OAM_ENTRY(-24, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-13, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-28, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(15, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u16 sRobobirdAttackOam_Frame2[] = {
+    7,
+    OAM_ENTRY(-27, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(-13, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-28, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(15, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u16 sRobobirdAttackOam_Frame4[] = {
+    7,
+    OAM_ENTRY(-24, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(-13, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-28, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(19, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const u16 sRobobirdAttackOam_Frame5[] = {
+    7,
+    OAM_ENTRY(-27, -9, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    OAM_ENTRY(-13, -12, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 534, 8, 0),
+    OAM_ENTRY(-28, -5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 517, 8, 0),
+    OAM_ENTRY(0, -7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 549, 8, 0),
+    OAM_ENTRY(2, -10, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 531, 8, 0),
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 533, 8, 0),
+    OAM_ENTRY(19, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+};
+
+const struct AnimationFrame sRobobirdIdleOam[] = {
+    {sRobobirdIdleOam_Frame1, 3},
+    {sRobobirdIdleOam_Frame2, 3},
+    {sRobobirdIdleOam_Frame3, 3},
+    {sRobobirdIdleOam_Frame4, 3},
+    {sRobobirdIdleOam_Frame5, 3},
+    {sRobobirdIdleOam_Frame6, 3},
+    {sRobobirdIdleOam_Frame7, 3},
+    {sRobobirdIdleOam_Frame8, 3},
+    {sRobobirdIdleOam_Frame9, 3},
+    {sRobobirdIdleOam_Frame10, 3},
+    {sRobobirdIdleOam_Frame11, 3},
+    {sRobobirdIdleOam_Frame12, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sRobobirdAttackStartupOam[] = {
+    {sRobobirdAttackStartupOam_Frame1, 3},
+    {sRobobirdAttackStartupOam_Frame2, 3},
+    {sRobobirdAttackStartupOam_Frame3, 3},
+    {sRobobirdAttackStartupOam_Frame4, 3},
+    {sRobobirdAttackStartupOam_Frame5, 3},
+    {sRobobirdAttackStartupOam_Frame6, 3},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sRobobirdAttackOam[] = {
+    {sRobobirdAttackOam_Frame1, 2},
+    {sRobobirdAttackStartupOam_Frame6, 2},
+    {sRobobirdAttackOam_Frame2, 2},
+    {sRobobirdAttackOam_Frame3, 2},
+    {sRobobirdAttackOam_Frame4, 2},
+    {sRobobirdAttackOam_Frame3, 2},
+    {sRobobirdAttackOam_Frame2, 2},
+    {sRobobirdAttackStartupOam_Frame6, 2},
+    {sRobobirdAttackOam_Frame1, 2},
+    {sRobobirdAttackOam_Frame3, 2},
+    {sRobobirdAttackOam_Frame5, 2},
+    {sRobobirdAttackOam_Frame3, 2},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sRobobirdFallingOam[] = {
+    {sRobobirdFallingOam_Frame1, 8},
+    {sRobobirdFallingOam_Frame2, 8},
+    ANIMATION_TERMINATOR
+};
+
+const struct AnimationFrame sRobobirdFastAttackOam[] = {
+    {sRobobirdAttackStartupOam_Frame6, 6},
+    {sRobobirdAttackOam_Frame3, 6},
+    ANIMATION_TERMINATOR
+};
+
 void InitRobobird(void)
 {
     register struct PrimarySpriteData *sprite asm("ip");
