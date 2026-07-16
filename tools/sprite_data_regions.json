@@ -2519,63 +2519,405 @@
         },
         {
           "address": "0x083C56E0",
-          "end": "0x083C62FC",
+          "end": "0x083C57C4",
           "symbol": "sUnk_83C56E0",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C57C4",
+          "end": "0x083C57E4",
+          "symbol": "sBeezleyOam_83C62FC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C57E4",
+          "end": "0x083C5804",
+          "symbol": "sBeezleyOam_83C62FC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5804",
+          "end": "0x083C5824",
+          "symbol": "sBeezleyOam_83C62FC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5824",
+          "end": "0x083C5844",
+          "symbol": "sBeezleyOam_83C62FC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5844",
+          "end": "0x083C5864",
+          "symbol": "sBeezleyOam_83C62FC_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5864",
+          "end": "0x083C5884",
+          "symbol": "sBeezleyOam_83C62FC_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5884",
+          "end": "0x083C58A4",
+          "symbol": "sBeezleyOam_83C62FC_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C58A4",
+          "end": "0x083C58C4",
+          "symbol": "sBeezleyOam_83C62FC_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C58C4",
+          "end": "0x083C58E4",
+          "symbol": "sBeezleyOam_83C62FC_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C58E4",
+          "end": "0x083C5904",
+          "symbol": "sBeezleyOam_83C62FC_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5904",
+          "end": "0x083C5924",
+          "symbol": "sBeezleyOam_83C62FC_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5924",
+          "end": "0x083C5944",
+          "symbol": "sBeezleyOam_83C62FC_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5944",
+          "end": "0x083C5964",
+          "symbol": "sBeezleyOam_83C6384_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5964",
+          "end": "0x083C5984",
+          "symbol": "sBeezleyOam_83C6384_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5984",
+          "end": "0x083C59A4",
+          "symbol": "sBeezleyOam_83C6384_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C59A4",
+          "end": "0x083C59C4",
+          "symbol": "sBeezleyOam_83C6384_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C59C4",
+          "end": "0x083C59E4",
+          "symbol": "sBeezleyOam_83C6384_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C59E4",
+          "end": "0x083C5A04",
+          "symbol": "sBeezleyOam_83C6384_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5A04",
+          "end": "0x083C5A24",
+          "symbol": "sBeezleyOam_83C6384_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5A24",
+          "end": "0x083C5A44",
+          "symbol": "sBeezleyOam_83C6384_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5A44",
+          "end": "0x083C5A64",
+          "symbol": "sBeezleyOam_83C6384_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5A64",
+          "end": "0x083C5A90",
+          "symbol": "sBeezleyOam_83C6384_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5A90",
+          "end": "0x083C5ABC",
+          "symbol": "sBeezleyOam_83C6384_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5ABC",
+          "end": "0x083C5AE8",
+          "symbol": "sBeezleyOam_83C6384_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5AE8",
+          "end": "0x083C5B08",
+          "symbol": "sBeezleyOam_83C63EC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5B08",
+          "end": "0x083C5B28",
+          "symbol": "sBeezleyOam_83C63EC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5B28",
+          "end": "0x083C5B48",
+          "symbol": "sBeezleyOam_83C63EC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5B48",
+          "end": "0x083C5B68",
+          "symbol": "sBeezleyOam_83C63EC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5B68",
+          "end": "0x083C5B88",
+          "symbol": "sBeezleyOam_83C63EC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5B88",
+          "end": "0x083C5BA8",
+          "symbol": "sBeezleyOam_83C63EC_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5BA8",
+          "end": "0x083C5BD4",
+          "symbol": "sBeezleyOam_83C6424_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5BD4",
+          "end": "0x083C5C00",
+          "symbol": "sBeezleyOam_83C6424_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5C00",
+          "end": "0x083C5C2C",
+          "symbol": "sBeezleyOam_83C6424_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5C2C",
+          "end": "0x083C5C58",
+          "symbol": "sBeezleyOam_83C6424_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5C58",
+          "end": "0x083C5C84",
+          "symbol": "sBeezleyOam_83C6424_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5C84",
+          "end": "0x083C5CB0",
+          "symbol": "sBeezleyOam_83C6424_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5CB0",
+          "end": "0x083C5CDC",
+          "symbol": "sBeezleyOam_83C646C_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5CDC",
+          "end": "0x083C5D08",
+          "symbol": "sBeezleyOam_83C646C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5D08",
+          "end": "0x083C5D34",
+          "symbol": "sBeezleyOam_83C646C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5D34",
+          "end": "0x083C5D54",
+          "symbol": "sBeezleyOam_83C6494_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5D54",
+          "end": "0x083C5D74",
+          "symbol": "sBeezleyOam_83C6494_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5D74",
+          "end": "0x083C5D94",
+          "symbol": "sBeezleyOam_83C6494_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5D94",
+          "end": "0x083C5DB4",
+          "symbol": "sBeezleyOam_83C64BC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5DB4",
+          "end": "0x083C5DD4",
+          "symbol": "sBeezleyOam_83C64BC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5DD4",
+          "end": "0x083C5DEE",
+          "symbol": "sBeezleyOam_83C64BC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5DEE",
+          "end": "0x083C5E08",
+          "symbol": "sBeezleyOam_83C64BC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5E08",
+          "end": "0x083C5E1C",
+          "symbol": "sBeezleyOam_83C64BC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5E1C",
+          "end": "0x083C5E3C",
+          "symbol": "sBeezleyOam_83C64EC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5E3C",
+          "end": "0x083C5E5C",
+          "symbol": "sBeezleyOam_83C64EC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5E5C",
+          "end": "0x083C5E88",
+          "symbol": "sBeezleyOam_83C64EC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5E88",
+          "end": "0x083C5EB4",
+          "symbol": "sBeezleyOam_83C64EC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5EB4",
+          "end": "0x083C5EDA",
+          "symbol": "sBeezleyOam_83C64EC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5EDA",
+          "end": "0x083C5EEE",
+          "symbol": "sBeezleyOam_83C651C_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5EEE",
+          "end": "0x083C5EFC",
+          "symbol": "sBeezleyOam_83C651C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5EFC",
+          "end": "0x083C5F04",
+          "symbol": "sBeezleyOam_83C651C_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5F04",
+          "end": "0x083C5F18",
+          "symbol": "sBeezleyOam_83C651C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5F18",
+          "end": "0x083C62FC",
+          "symbol": "sSpriteDataRaw_083C5F18",
           "type": "raw"
         },
         {
           "address": "0x083C62FC",
           "end": "0x083C6384",
-          "symbol": "sUnk_83C62FC",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C62FC",
+          "type": "anim"
         },
         {
           "address": "0x083C6384",
           "end": "0x083C63EC",
-          "symbol": "sUnk_83C6384",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C6384",
+          "type": "anim"
         },
         {
           "address": "0x083C63EC",
           "end": "0x083C6424",
-          "symbol": "sUnk_83C63EC",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C63EC",
+          "type": "anim"
         },
         {
           "address": "0x083C6424",
           "end": "0x083C646C",
-          "symbol": "sUnk_83C6424",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C6424",
+          "type": "anim"
         },
         {
           "address": "0x083C646C",
           "end": "0x083C6494",
-          "symbol": "sUnk_83C646C",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C646C",
+          "type": "anim"
         },
         {
           "address": "0x083C6494",
           "end": "0x083C64BC",
-          "symbol": "sUnk_83C6494",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C6494",
+          "type": "anim"
         },
         {
           "address": "0x083C64BC",
           "end": "0x083C64EC",
-          "symbol": "sUnk_83C64BC",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C64BC",
+          "type": "anim"
         },
         {
           "address": "0x083C64EC",
           "end": "0x083C651C",
-          "symbol": "sUnk_83C64EC",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C64EC",
+          "type": "anim"
         },
         {
           "address": "0x083C651C",
           "end": "0x083C6594",
-          "symbol": "sUnk_83C651C",
-          "type": "raw"
+          "symbol": "sBeezleyOam_83C651C",
+          "type": "anim"
         },
         {
           "address": "0x083C6594",
@@ -7880,6 +8222,15 @@
   ],
   "aliases": {
     "sAerodentBalloonInflatingOam": "sAerodentOam_83DABA0",
+    "sUnk_83C62FC": "sBeezleyOam_83C62FC",
+    "sUnk_83C6384": "sBeezleyOam_83C6384",
+    "sUnk_83C63EC": "sBeezleyOam_83C63EC",
+    "sUnk_83C6424": "sBeezleyOam_83C6424",
+    "sUnk_83C646C": "sBeezleyOam_83C646C",
+    "sUnk_83C6494": "sBeezleyOam_83C6494",
+    "sUnk_83C64BC": "sBeezleyOam_83C64BC",
+    "sUnk_83C64EC": "sBeezleyOam_83C64EC",
+    "sUnk_83C651C": "sBeezleyOam_83C651C",
     "sUnk_83CD334": "sCatbatOam_83CD334",
     "sUnk_83CD35C": "sCatbatOam_83CD35C",
     "sUnk_83CD374": "sCatbatOam_83CD374",
