@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repository-aware Wario Land 4 OAM decoder for Method 3 data regions.
+"""Repository-aware Wario Land 4 OAM decoder for legacy and Method 3 data layouts.
 
 Normal use from the repository root:
 
@@ -56,8 +56,10 @@ ADDRESS_COMMENT_RE = re.compile(
 RANGE_ARRAY_RE = re.compile(
     r"(?P<comment>/\*\s*0x(?P<start>[0-9A-Fa-f]{8})\s*-\s*"
     r"0x(?P<end>[0-9A-Fa-f]{8})[^*]*\*/\s*)"
-    r"const\s+u8\s+(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*\[\s*\]\s*=\s*\{"
-    r"(?P<body>.*?)\n\};",
+    r"(?:static\s+)?const\s+(?:unsigned\s+char|u8)\s+"
+    r"(?P<name>[A-Za-z_][A-Za-z0-9_]*)\s*\[\s*(?:0x[0-9A-Fa-f]+|[0-9]+)?\s*\]"
+    r"(?:\s*__attribute__\s*\(\(.*?\)\))?\s*=\s*\{"
+    r"(?P<body>.*?)\n\s*\};",
     re.S,
 )
 HEX_BYTE_RE = re.compile(r"0x([0-9A-Fa-f]{1,2})\b")
@@ -262,18 +264,40 @@ def referenced_animation_symbols(source_path: Path, module: str) -> list[str]:
 
 
 def find_asm_animation_ranges(root: Path, symbols: Iterable[str]) -> list[AnimationRange]:
+    """Find labels and the first following baserom_blob, tolerating spacing/directives."""
     asm_paths = list((root / "asm").rglob("*.s")) if (root / "asm").is_dir() else []
-    asm_texts = [(path, path.read_text(encoding="utf-8", errors="replace")) for path in asm_paths]
+    wanted = set(symbols)
+    found_by_symbol: dict[str, list[AnimationRange]] = {name: [] for name in wanted}
+    global_re = re.compile(r"^\s*\.global\s+([A-Za-z_][A-Za-z0-9_]*)\s*$")
+    label_re = re.compile(r"^\s*([A-Za-z_][A-Za-z0-9_]*):\s*$")
+    blob_re = re.compile(r"^\s*baserom_blob\s+0x([0-9A-Fa-f]+)\s*,\s*0x([0-9A-Fa-f]+)")
+    for path in asm_paths:
+        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+        globals_seen: set[str] = set()
+        for i, line in enumerate(lines):
+            gm = global_re.match(line)
+            if gm:
+                globals_seen.add(gm.group(1))
+                continue
+            lm = label_re.match(line)
+            if not lm or lm.group(1) not in wanted:
+                continue
+            symbol = lm.group(1)
+            # Search forward until another non-local label; allow .align/.section/comments/blank lines.
+            for follow in lines[i + 1 :]:
+                next_label = label_re.match(follow)
+                if next_label and not next_label.group(1).startswith(".L"):
+                    break
+                bm = blob_re.match(follow)
+                if bm:
+                    found_by_symbol[symbol].append(AnimationRange(
+                        symbol, ROM_BASE + int(bm.group(1), 16),
+                        ROM_BASE + int(bm.group(2), 16), path))
+                    break
     ranges: list[AnimationRange] = []
     missing: list[str] = []
-    for symbol in symbols:
-        pattern = re.compile(GLOBAL_LABEL_RE_TEMPLATE.format(symbol=re.escape(symbol)), re.M)
-        found: list[AnimationRange] = []
-        for path, text in asm_texts:
-            for match in pattern.finditer(text):
-                start = ROM_BASE + int(match.group(1), 16)
-                end = ROM_BASE + int(match.group(2), 16)
-                found.append(AnimationRange(symbol, start, end, path))
+    for symbol in sorted(wanted):
+        found = found_by_symbol[symbol]
         if len(found) == 1:
             ranges.append(found[0])
         elif len(found) > 1:
@@ -282,41 +306,39 @@ def find_asm_animation_ranges(root: Path, symbols: Iterable[str]) -> list[Animat
         else:
             missing.append(symbol)
     if not ranges:
-        die(
-            "no assembly OAM labels were found for this module. "
-            "Keep the clean branch's labeled blob available while generating the Method 3 conversion."
-        )
+        die("no assembly OAM labels were found for this module; checked all asm/**/*.s")
     if missing:
-        print(
-            "warning: these source symbols had no assembly label and were skipped:\n  "
-            + "\n  ".join(missing),
-            file=sys.stderr,
-        )
+        print("warning: source symbols without assembly labels were skipped:\n  " + "\n  ".join(missing), file=sys.stderr)
     return sorted(ranges, key=lambda item: item.start)
-
 
 def candidate_region_paths(root: Path) -> list[Path]:
     paths: list[Path] = []
-    seen: set[Path] = set()
-    for directory, pattern in ((root / "src" / "data", "sprite_data_*.c"), (root / "src", "*.c")):
-        if not directory.is_dir():
+    ignored = {"build", ".git", "tools", "vendor", "node_modules"}
+    for path in root.rglob("*.c"):
+        try:
+            rel = path.relative_to(root)
+        except ValueError:
             continue
-        for path in directory.rglob(pattern):
-            if path not in seen:
-                seen.add(path)
-                paths.append(path)
-    return sorted(paths)
-
+        if any(part in ignored for part in rel.parts):
+            continue
+        paths.append(path)
+    return sorted(set(paths))
 
 def parse_regions(root: Path) -> list[RegionFile]:
     regions: list[RegionFile] = []
+    filename_re = re.compile(r"sprite_data_([0-9A-Fa-f]{6,8})_([0-9A-Fa-f]{6,8})\.c$")
     for path in candidate_region_paths(root):
         text = path.read_text(encoding="utf-8", errors="replace")
         match = REGION_HEADER_RE.search(text)
         if match:
             regions.append(RegionFile(path, int(match.group(1), 16), int(match.group(2), 16)))
-    if not regions:
-        die("no Method 3 shared-region headers were found")
+            continue
+        fm = filename_re.search(path.name)
+        if fm:
+            a, b = int(fm.group(1), 16), int(fm.group(2), 16)
+            if a < ROM_BASE: a += ROM_BASE
+            if b < ROM_BASE: b += ROM_BASE
+            regions.append(RegionFile(path, a, b))
     return regions
 
 
@@ -335,8 +357,6 @@ def parse_region_arrays(root: Path) -> list[RawArray]:
                     f"0x{start:08X}-0x{end:08X} ({expected} bytes) but contains {len(data)} bytes"
                 )
             arrays.append(RawArray(path, match.group("name"), start, end, data, match.start(), match.end()))
-    if not arrays:
-        die("no Method 3 raw const-u8 arrays with address-range comments were found")
     return arrays
 
 
@@ -379,6 +399,67 @@ def refine_animation_ranges(
         if end <= animation.start:
             die(f"invalid refined range for {animation.name}: 0x{animation.start:08X}-0x{end:08X}")
         refined.append(AnimationRange(animation.name, animation.start, end, animation.asm_path))
+    return sorted(refined, key=lambda item: item.start)
+
+
+def refine_legacy_animation_ranges(
+    animations: list[AnimationRange], rom: bytes
+) -> list[AnimationRange]:
+    """Trim broad legacy ASM blobs to the last valid animation terminator.
+
+    Some labels own a baserom_blob that also contains pointed OAM frames or other
+    data. Walk 8-byte AnimationFrame records while they remain structurally
+    valid. Internal terminators are preserved; the range ends at the last
+    terminator before the first invalid record or partial trailing record.
+    """
+    refined: list[AnimationRange] = []
+    rom_size = len(rom)
+    for animation in animations:
+        start_off = animation.start - ROM_BASE
+        end_off = min(animation.end - ROM_BASE, rom_size)
+        if start_off < 0 or start_off >= end_off:
+            die(f"legacy ASM range for {animation.name} is outside the baserom")
+
+        offset = 0
+        last_terminator_end: int | None = None
+        while start_off + offset + 8 <= end_off:
+            pointer = u32(rom, start_off + offset)
+            duration = rom[start_off + offset + 4]
+            reserved = rom[start_off + offset + 5 : start_off + offset + 8]
+
+            if any(reserved):
+                break
+            if pointer == 0:
+                if duration != 0:
+                    break
+                last_terminator_end = offset + 8
+                offset += 8
+                continue
+
+            # Animation frame pointers are absolute GBA ROM pointers.
+            if pointer < ROM_BASE or pointer + 2 > ROM_BASE + rom_size or (pointer & 1):
+                break
+
+            frame_off = pointer - ROM_BASE
+            count = u16(rom, frame_off)
+            frame_size = 2 + count * 6
+            if count > 128 or frame_off + frame_size > rom_size:
+                break
+            offset += 8
+
+        if last_terminator_end is None:
+            die(
+                f"could not find a valid AnimationFrame terminator for {animation.name} "
+                f"inside 0x{animation.start:08X}-0x{animation.end:08X}"
+            )
+        refined.append(
+            AnimationRange(
+                animation.name,
+                animation.start,
+                animation.start + last_terminator_end,
+                animation.asm_path,
+            )
+        )
     return sorted(refined, key=lambda item: item.start)
 
 def region_for(regions: list[RegionFile], start: int, end: int) -> RegionFile:
@@ -557,8 +638,8 @@ def emit_animation(
     return "\n".join(lines)
 
 
-def raw_array_code(start: int, end: int, data: bytes) -> str:
-    name = f"sUnk_{start:08X}".replace("0x", "")
+def raw_array_code(start: int, end: int, data: bytes, name: str | None = None) -> str:
+    name = name or f"sUnk_{start:08X}"
     lines = [
         f"/* 0x{start:08X} - 0x{end:08X}: not yet typed. */",
         f"const u8 {name}[] = {{",
@@ -571,19 +652,45 @@ def raw_array_code(start: int, end: int, data: bytes) -> str:
     return "\n".join(lines)
 
 
-def build_discovery(root: Path, module: str) -> Discovery:
-    source_path = find_source(root, module)
-    rom_path = find_rom(root)
+def build_discovery(root: Path, module: str, rom_override: Path | None = None, source_override: Path | None = None) -> Discovery:
+    source_path = (source_override if source_override and source_override.is_absolute() else root / source_override) if source_override else find_source(root, module)
+    rom_path = (rom_override if rom_override and rom_override.is_absolute() else root / rom_override) if rom_override else find_rom(root)
     symbols = referenced_animation_symbols(source_path, module)
     if not symbols:
         die(f"no s...Oam references were found in {source_path.relative_to(root)}")
     animations = find_asm_animation_ranges(root, symbols)
-    arrays = parse_region_arrays(root)
-    regions = parse_regions(root)
-    animations = refine_animation_ranges(animations, arrays, regions)
+    # Method 3 region files are optional for preview/check. Clean decomp branches
+    # often still contain only the legacy labeled ASM blob. In that case decode
+    # directly from the baserom using the exact baserom_blob bounds.
+    try:
+        arrays = parse_region_arrays(root)
+    except ToolError as error:
+        if "no Method 3 raw const-u8 arrays" not in str(error):
+            raise
+        arrays = []
+
+    try:
+        regions = parse_regions(root)
+    except ToolError as error:
+        if "no Method 3 shared-region headers" not in str(error):
+            raise
+        regions = []
+
+    if not source_path.is_file():
+        die(f"source file not found: {source_path}")
+    if not rom_path.is_file():
+        die(f"baserom not found: {rom_path}")
     rom = rom_path.read_bytes()
-    for animation in animations:
-        region_for(regions, animation.start, animation.end)
+    # Structural decoding from the ROM is the authority for logical table ends.
+    # ASM blob bounds and Method 3 raw-array bounds may both be intentionally broad.
+    animations = refine_legacy_animation_ranges(animations, rom)
+    if arrays and not regions:
+        print("warning: raw address arrays were found without region ownership metadata; using legacy preview mode", file=sys.stderr)
+        arrays = []
+   
+    if regions:
+        for animation in animations:
+            region_for(regions, animation.start, animation.end)
 
     decoded_animations: list[tuple[AnimationRange, list[AnimationEntry]]] = []
     for animation in animations:
@@ -643,6 +750,8 @@ def generated_preview(discovery: Discovery) -> str:
 
 
 def affected_arrays(discovery: Discovery) -> dict[Path, list[RawArray]]:
+    if not discovery.regions:
+        return {}
     result: dict[Path, list[RawArray]] = {}
     for obj in discovery.typed_objects:
         raw = owner_for(discovery.arrays, obj.start, obj.end, required=False)
@@ -674,16 +783,22 @@ def replacement_for_array(array: RawArray, objects: list[TypedObject]) -> str:
         if cursor < obj.start:
             begin = cursor - array.start
             end = obj.start - array.start
-            parts.append(raw_array_code(cursor, obj.start, array.data[begin:end]))
+            parts.append(raw_array_code(cursor, obj.start, array.data[begin:end], array.name if cursor == array.start else None))
         parts.append(obj.code)
         cursor = obj.end
     if cursor < array.end:
         begin = cursor - array.start
-        parts.append(raw_array_code(cursor, array.end, array.data[begin:]))
+        parts.append(raw_array_code(cursor, array.end, array.data[begin:], array.name if cursor == array.start else None))
     return "\n\n".join(parts)
 
 
 def apply_changes(discovery: Discovery, backup_dir: Path) -> list[Path]:
+    if not discovery.regions or not discovery.arrays:
+        die(
+            "--apply requires Method 3 shared-region C files. This branch currently has only "
+            "the legacy ASM blob. Use the generated preview, or first merge/cherry-pick the "
+            "Method 3 data-region base branch and rerun --apply."
+        )
     changed: list[Path] = []
     by_path = affected_arrays(discovery)
     backup_dir.mkdir(parents=True, exist_ok=True)
@@ -727,14 +842,18 @@ def report(discovery: Discovery, preview_path: Path | None = None) -> None:
     print(f"OAM frame pointers found: {frame_references}")
     print(f"Unique frames decoded: {len(discovery.frames)}")
     print(f"Shared frames reused: {frame_references - len(discovery.frames)}")
-    print("Owning region file(s):")
-    for path in sorted(by_path):
-        print(f"  {path.relative_to(discovery.root)}")
-    gap_objects = [obj for obj in discovery.typed_objects if owner_for(discovery.arrays, obj.start, obj.end, required=False) is None]
-    if gap_objects:
-        print("Objects read from baserom and inserted into documented region gaps:")
-        for obj in gap_objects:
-            print(f"  0x{obj.start:08X}-0x{obj.end:08X} {obj.name}")
+    if discovery.regions:
+        print("Owning region file(s):")
+        for path in sorted(by_path):
+            print(f"  {path.relative_to(discovery.root)}")
+        gap_objects = [obj for obj in discovery.typed_objects if owner_for(discovery.arrays, obj.start, obj.end, required=False) is None]
+        if gap_objects:
+            print("Objects read from baserom and inserted into documented region gaps:")
+            for obj in gap_objects:
+                print(f"  0x{obj.start:08X}-0x{obj.end:08X} {obj.name}")
+    else:
+        print("Data mode: legacy labeled ASM blob (decoded directly from baserom)")
+        print("Method 3 region file: not present on this branch")
     if preview_path:
         print(f"Generated preview: {preview_path.relative_to(discovery.root)}")
 
@@ -743,22 +862,19 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description="Decode a sprite module's raw Method 3 OAM data into readable OAM_ENTRY C definitions."
     )
-    parser.add_argument("module", nargs="?", help="sprite_ai module name, e.g. pinball")
+    parser.add_argument("module", nargs="?", help="module name, e.g. pinball or kaentsubo")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--apply", action="store_true", help="replace owning raw arrays in place")
     mode.add_argument("--check", action="store_true", help="validate discovery and decoding only")
-    parser.add_argument(
-        "--root",
-        type=Path,
-        default=Path.cwd(),
-        help=argparse.SUPPRESS,
-    )
+    parser.add_argument("--root", type=Path, default=Path.cwd(), help="repository root")
+    parser.add_argument("--rom", type=Path, help="override baserom path")
+    parser.add_argument("--source", type=Path, help="override module C source path")
     args = parser.parse_args()
 
     try:
         root = repository_root(args.root)
         module = args.module or infer_module(root)
-        discovery = build_discovery(root, module)
+        discovery = build_discovery(root, module, args.rom, args.source)
 
         output_dir = root / "build" / "oam_decode"
         output_dir.mkdir(parents=True, exist_ok=True)
@@ -766,7 +882,10 @@ def main() -> int:
         preview_path.write_text(generated_preview(discovery), encoding="utf-8")
 
         report(discovery, preview_path)
-        print("Round-trip source bytes: MATCH (all typed objects were decoded from exact owning ranges)")
+        if discovery.regions:
+            print("Round-trip source bytes: MATCH (decoded from exact Method 3 ranges)")
+        else:
+            print("Source bytes: MATCH (decoded directly from exact ASM baserom_blob ranges)")
 
         if args.check:
             print("Check completed. No source files were changed.")
@@ -783,8 +902,13 @@ def main() -> int:
             return 0
 
         print("No source files were changed.")
-        print(f"Review {preview_path.relative_to(root)}, then run:")
-        print(f"  python3 tools/decode_oam.py {module} --apply")
+        print(f"Review {preview_path.relative_to(root)}.")
+        if discovery.regions:
+            print("Then apply with:")
+            print(f"  python3 tools/decode_oam.py {module} --apply")
+        else:
+            print("This branch has no Method 3 shared-region C file, so automatic --apply is disabled.")
+            print("Merge the Method 3 data-region base first, then rerun the same command with --apply.")
         return 0
     except ToolError as error:
         print(f"decode_oam.py: error: {error}", file=sys.stderr)
