@@ -1,0 +1,1105 @@
+#include "sprite_ai/kaentsubo.h"
+
+#include "global_data.h"
+#include "score.h"
+#include "sound.h"
+#include "sprite.h"
+#include "sprite_util.h"
+#include "types.h"
+#include "wario.h"
+
+extern const struct AnimationFrame sKaentsuboIdleOam[] asm("sUnk_83B8118");
+extern const struct AnimationFrame sKaentsuboPushedFacingRightOam[] asm("sUnk_83B8150");
+extern const struct AnimationFrame sKaentsuboPushedFacingLeftOam[] asm("sUnk_83B8160");
+extern const struct AnimationFrame sKaentsuboSpitWindupOam[] asm("sUnk_83B8170");
+extern const struct AnimationFrame sKaentsuboStunnedOam[] asm("sUnk_83B81C8");
+extern const struct AnimationFrame sKaentsuboRecoverOam[] asm("sUnk_83B81E0");
+extern const struct AnimationFrame sKaentsuboHitReactOam[] asm("sUnk_83B8248");
+extern const struct AnimationFrame sKaentsuboTurnAroundOam[] asm("sUnk_83B8298");
+extern const struct AnimationFrame sKaentsuboAirborneOam[] asm("sUnk_83B82B8");
+extern const struct AnimationFrame sKaentsuboDefeatedOam[] asm("sUnk_83B82F0");
+extern const struct AnimationFrame sKaentsuboFlameIdleOam[] asm("sUnk_83B8734");
+extern const struct AnimationFrame sKaentsuboFlamePushedRightOam[] asm("sUnk_83B876C");
+extern const struct AnimationFrame sKaentsuboFlamePushedLeftOam[] asm("sUnk_83B8784");
+extern const struct AnimationFrame sKaentsuboFlameAlertOam[] asm("sUnk_83B879C");
+extern const struct AnimationFrame sKaentsuboFireballLaunchOam[] asm("sUnk_83B87C4");
+extern const struct AnimationFrame sKaentsuboFireballTravelOam[] asm("sUnk_83B882C");
+extern const struct AnimationFrame sKaentsuboDefeatSmokeOam[] asm("sUnk_83B8854");
+extern const struct AnimationFrame sKaentsuboFireballSpawnOam[] asm("sUnk_83B8884");
+
+void func_801E3A8();
+void func_8023FA8(void);
+
+void InitKaentsubo(void)
+{
+    gCurrentSprite.warioCollision = 1;
+    gCurrentSprite.drawDistanceDown = 24;
+    gCurrentSprite.drawDistanceUp = 0;
+    gCurrentSprite.drawDistanceLeftRight = 16;
+    gCurrentSprite.hitboxExtentUp = 64;
+    gCurrentSprite.hitboxExtentDown = 0;
+    gCurrentSprite.hitboxExtentLeft = 32;
+    gCurrentSprite.hitboxExtentRight = 28;
+    gCurrentSprite.pOamData = sKaentsuboIdleOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 16;
+    SpriteUtilTurnTowardWario();
+    SpriteSpawnAsChild(PSPRITE_92, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+                       gCurrentSprite.yPosition, gCurrentSprite.xPosition);
+}
+
+void InitKaentsuboIdle(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboIdleOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 16;
+    gCurrentSprite.warioCollision = 1;
+    gCurrentSprite.work1 = 50;
+}
+
+void UpdateKaentsuboIdle(void)
+{
+    u32 warioSide;
+    register u8 terrainCollision asm("r2");
+    struct PrimarySpriteData *currentSprite;
+
+    warioSide = SpriteUtilWaitCheckWarioNearbyLeftRight(0x7F, 0xC0);
+    func_80238A4();
+    func_8023B88();
+    terrainCollision = gUnk_3000A50;
+
+    if (terrainCollision == 0) {
+        if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
+            func_8023BFC(gCurrentSprite.yPosition,
+                         gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
+        } else {
+            func_8023BFC(gCurrentSprite.yPosition,
+                         gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
+        }
+        if (gUnk_3000A51 == 0) {
+            gCurrentSprite.pose = 27;
+            goto done;
+        }
+        goto fallback;
+    }
+
+    currentSprite = &gCurrentSprite;
+    if (currentSprite->status & SPRITE_STATUS_FACING_RIGHT) {
+        if (warioSide == NS_RIGHT) {
+            currentSprite->pose = 19;
+            goto done;
+        }
+        if (warioSide == NS_LEFT) {
+            currentSprite->pose = 17;
+            currentSprite->work1 = 7;
+            goto done;
+        }
+        if ((terrainCollision & 0xF0) &&
+            ((currentSprite->xPosition & 0x3F) + currentSprite->hitboxExtentRight > 0x3F)) {
+            func_8023BFC(currentSprite->yPosition,
+                         currentSprite->xPosition + currentSprite->hitboxExtentRight);
+            if ((gUnk_3000A51 & 0xF0) == 0) {
+                currentSprite->pose = 17;
+                goto done;
+            }
+            func_8023BFC(currentSprite->yPosition - 32,
+                         currentSprite->xPosition + currentSprite->hitboxExtentRight);
+            if (gUnk_3000A51 & 0xF) {
+                currentSprite->pose = 17;
+                goto done;
+            }
+        }
+    } else {
+        if (warioSide == NS_LEFT) {
+            currentSprite->pose = 19;
+            goto done;
+        }
+        if (warioSide == NS_RIGHT) {
+            currentSprite->pose = 17;
+            currentSprite->work1 = 7;
+            goto done;
+        }
+        if ((terrainCollision & 0xF0) &&
+            ((currentSprite->xPosition & 0x3F) < currentSprite->hitboxExtentLeft)) {
+            func_8023BFC(currentSprite->yPosition,
+                         currentSprite->xPosition - currentSprite->hitboxExtentLeft);
+            if ((gUnk_3000A51 & 0xF0) == 0) {
+                currentSprite->pose = 17;
+                goto done;
+            }
+            func_8023BFC(currentSprite->yPosition - 32,
+                         currentSprite->xPosition - currentSprite->hitboxExtentLeft);
+            if (gUnk_3000A51 & 0xF) {
+                currentSprite->pose = 17;
+                goto done;
+            }
+        }
+    }
+
+fallback:
+    func_8026374();
+done:
+    return;
+}
+
+void InitKaentsuboSpitWindup(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboSpitWindupOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 20;
+    gCurrentSprite.work0 = 52;
+}
+
+void UpdateKaentsuboSpitWindup(void)
+{
+    u16 isFacingRight;
+
+    if (gCurrentSprite.work0 == 30) {
+        gCurrentSprite.warioCollision = 5;
+        isFacingRight = gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT;
+        if (isFacingRight) {
+            func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+                         gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition + 64, 64);
+        } else {
+            func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+                         gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition - 63, 0);
+        }
+    }
+
+    func_80238E8();
+    func_8023B88();
+    if (gUnk_3000A50 == 0) {
+        gCurrentSprite.pose = 29;
+    } else if (--gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pose = 48;
+        gCurrentSprite.work0 = 80;
+        gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.animationTimer = 0;
+    }
+}
+
+void InitKaentsuboTurnAround(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboTurnAroundOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 18;
+    gCurrentSprite.work0 = 22;
+    gCurrentSprite.warioCollision = 1;
+}
+
+void UpdateKaentsuboTurnAround(void)
+{
+    func_80238A4();
+    func_8023B88();
+    if (gUnk_3000A50 == 0) {
+        gCurrentSprite.pose = 27;
+    } else if (--gCurrentSprite.work0 == 0) {
+        gCurrentSprite.currentAnimationFrame = 0;
+        gCurrentSprite.animationTimer = 0;
+        gCurrentSprite.warioCollision = 1;
+        gCurrentSprite.pOamData = sKaentsuboIdleOam;
+        gCurrentSprite.pose = 16;
+        gCurrentSprite.status ^= SPRITE_STATUS_FACING_RIGHT;
+    }
+}
+
+void InitKaentsuboHitReact(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboHitReactOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 24;
+    gCurrentSprite.work0 = 15;
+}
+
+void InitKaentsuboRecover(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboRecoverOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.pose = 26;
+    gCurrentSprite.work0 = 62;
+}
+
+void UpdateKaentsuboRecover(void)
+{
+    if (gCurrentSprite.work0 == 15) {
+        gCurrentSprite.warioCollision = 1;
+        SpriteSpawnAsChild(PSPRITE_92, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+                           gCurrentSprite.yPosition, gCurrentSprite.xPosition);
+    }
+    func_80238E8();
+    func_8023B88();
+    if (gUnk_3000A50 == 0) {
+        gCurrentSprite.pose = 29;
+    } else if (--gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pose = 17;
+        gCurrentSprite.work1 = 100;
+    }
+}
+
+void InitKaentsuboAirborne(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboAirborneOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 28;
+    gCurrentSprite.work3 = 0;
+}
+
+void InitKaentsuboStunned(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 30;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.warioCollision = 5;
+}
+
+void InitKaentsuboDefeatedCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboDefeatedOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.health = 0;
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.drawPriority = 0;
+    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    gCurrentSprite.status = (gCurrentSprite.status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES) |
+                            SPRITE_STATUS_MAYBE_DEAD;
+}
+
+void InitKaentsuboDefeatedRight(void)
+{
+    gCurrentSprite.pose = 32;
+    InitKaentsuboDefeatedCommon();
+}
+
+void InitKaentsuboDefeatedLeft(void)
+{
+    gCurrentSprite.pose = 34;
+    InitKaentsuboDefeatedCommon();
+}
+
+void InitKaentsuboThrownDefeatedCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboDefeatedOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.health = 0;
+    gCurrentSprite.work2 = 7;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.drawPriority = 0;
+    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+}
+
+void InitKaentsuboThrownDefeatedRight(void)
+{
+    gCurrentSprite.pose = 32;
+    InitKaentsuboThrownDefeatedCommon();
+}
+
+void InitKaentsuboThrownDefeatedLeft(void)
+{
+    gCurrentSprite.pose = 34;
+    InitKaentsuboThrownDefeatedCommon();
+}
+
+void InitKaentsuboPushedCommon(void)
+{
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 12;
+    gCurrentSprite.work1 = 0;
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.warioCollision = 1;
+}
+
+void InitKaentsuboPushedRight(void)
+{
+    if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
+        gCurrentSprite.pOamData = sKaentsuboPushedFacingRightOam;
+    } else {
+        gCurrentSprite.pOamData = sKaentsuboPushedFacingLeftOam;
+    }
+    gCurrentSprite.pose = 36;
+    InitKaentsuboPushedCommon();
+}
+
+void InitKaentsuboPushedLeft(void)
+{
+    if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
+        gCurrentSprite.pOamData = sKaentsuboPushedFacingLeftOam;
+    } else {
+        gCurrentSprite.pOamData = sKaentsuboPushedFacingRightOam;
+    }
+    gCurrentSprite.pose = 38;
+    InitKaentsuboPushedCommon();
+}
+
+void InitKaentsuboBumpedCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work1 = 0;
+    gCurrentSprite.warioCollision = 5;
+}
+
+void InitKaentsuboBumpedRight(void)
+{
+    gCurrentSprite.pose = 44;
+    InitKaentsuboBumpedCommon();
+}
+
+void InitKaentsuboBumpedLeft(void)
+{
+    gCurrentSprite.pose = 46;
+    InitKaentsuboBumpedCommon();
+}
+
+void InitKaentsuboDefeatSmoke(void)
+{
+    if (gCurrentSprite.xPosition < gWarioData.xPosition) {
+        func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+                     gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 64);
+    } else {
+        func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+                     gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 0);
+    }
+    gCurrentSprite.pOamData = sKaentsuboDefeatSmokeOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 21;
+    gCurrentSprite.drawPriority = 0;
+    gCurrentSprite.status = (gCurrentSprite.status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES) |
+                            SPRITE_STATUS_MAYBE_DEAD;
+    if (gCurrentSprite.pose == 49) {
+        gCurrentSprite.pose = 50;
+    } else {
+        gCurrentSprite.pose = 109;
+    }
+}
+
+void KillKaentsubo(void)
+{
+    SpriteUtilDie();
+}
+
+void InitKaentsuboGroundBounceCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.work0 = 4;
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+    if (gCurrentSprite.warioCollision != 5) {
+        gCurrentSprite.warioCollision = 5;
+    }
+}
+
+void InitKaentsuboGroundBounceRight(void)
+{
+    gCurrentSprite.pose = 52;
+    InitKaentsuboGroundBounceCommon();
+}
+
+void InitKaentsuboGroundBounceLeft(void)
+{
+    gCurrentSprite.pose = 54;
+    InitKaentsuboGroundBounceCommon();
+}
+
+void InitKaentsuboAirBounceCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.warioCollision = 5;
+}
+
+void InitKaentsuboAirBounceRight(void)
+{
+    gCurrentSprite.pose = 72;
+    InitKaentsuboAirBounceCommon();
+}
+
+void InitKaentsuboAirBounceLeft(void)
+{
+    gCurrentSprite.pose = 74;
+    InitKaentsuboAirBounceCommon();
+}
+
+void InitKaentsuboDropped(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboIdleOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.pose = 76;
+    gCurrentSprite.work0 = 20;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.warioCollision = 1;
+}
+
+void UpdateKaentsuboDropped(void)
+{
+    u8 dropTimer;
+
+    dropTimer = --gCurrentSprite.work0;
+    if (dropTimer != 0) {
+        func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
+                      gCurrentSprite.xPosition);
+        if (gUnk_3000A51 & 0xF) {
+            gCurrentSprite.pose = 29;
+        } else {
+            SpriteUtilLookupGravity(sUnk_8352B18);
+        }
+    } else {
+        gCurrentSprite.pOamData = sKaentsuboAirborneOam;
+        gCurrentSprite.currentAnimationFrame = dropTimer;
+        gCurrentSprite.animationTimer = dropTimer;
+        gCurrentSprite.pose = 77;
+        gCurrentSprite.work3 = 0;
+    }
+}
+
+void UpdateKaentsuboLandAfterDrop(void)
+{
+    u32 groundY;
+
+    groundY = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
+    if (gUnk_30000A0.unk_02 == 1) {
+        gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
+    }
+    if (gUnk_3000A50 != 0) {
+        gCurrentSprite.yPosition = groundY;
+        gCurrentSprite.pose = 17;
+        gCurrentSprite.work1 = 7;
+    } else {
+        SpriteUtilLookupGravity(sUnk_8352A28);
+    }
+}
+
+void InitKaentsuboLiftedCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+}
+
+void InitKaentsuboLiftedRight(void)
+{
+    gCurrentSprite.pose = 82;
+    InitKaentsuboLiftedCommon();
+}
+
+void InitKaentsuboLiftedLeft(void)
+{
+    gCurrentSprite.pose = 84;
+    InitKaentsuboLiftedCommon();
+}
+
+void InitKaentsuboCarriedCommon(void)
+{
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+    gCurrentSprite.pOamData = sKaentsuboStunnedOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+}
+
+void InitKaentsuboCarriedRight(void)
+{
+    gCurrentSprite.pose = 88;
+    InitKaentsuboCarriedCommon();
+}
+
+void InitKaentsuboCarriedLeft(void)
+{
+    gCurrentSprite.pose = 86;
+    InitKaentsuboCarriedCommon();
+}
+
+void InitKaentsuboThrownCommon(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboDefeatedOam;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.currentAnimationFrame = 0;
+}
+
+void InitKaentsuboFlame(void)
+{
+    register struct PrimarySpriteData *currentSprite asm("ip");
+    register u16 currentStatus asm("r1");
+    register u16 tmpStatus asm("r2");
+    register u16 newStatus asm("r0");
+    register u8 zero asm("r3");
+    register u16 zero16 asm("r4");
+    register u8 *drawDistancePtr asm("r0");
+    register struct PrimarySpriteData *writeSprite asm("r1");
+    register u8 terrainCollision asm("r0");
+
+    currentSprite = &gCurrentSprite;
+    currentStatus = currentSprite->status;
+    tmpStatus = SPRITE_STATUS_IGNORE_SPRITE_COLLISION;
+    newStatus = tmpStatus;
+    zero = 0;
+    zero16 = 0;
+    /* agbcc otherwise delays materializing the zero until the halfword store. */
+    asm("" : "+r"(zero16));
+    newStatus |= currentStatus;
+    newStatus &= 0xFFFB;
+    currentSprite->status = newStatus;
+    currentSprite->drawDistanceDown = 48;
+    drawDistancePtr = &currentSprite->drawDistanceUp;
+    *drawDistancePtr = zero;
+    drawDistancePtr++;
+    /* Keep the increment separate from the byte store, matching the original pointer walk. */
+    asm("" : "+r"(drawDistancePtr));
+    tmpStatus = 16;
+    *drawDistancePtr = tmpStatus;
+    currentSprite->hitboxExtentUp = 120;
+    currentSprite->hitboxExtentDown = 208;
+    currentSprite->hitboxExtentLeft = 24;
+    currentSprite->hitboxExtentRight = 20;
+    /* agbcc otherwise schedules the currentSprite-spriteData copy before this constant load. */
+    asm("mov %0, #14" : "=r"(terrainCollision));
+    writeSprite = currentSprite;
+    writeSprite->warioCollision = terrainCollision;
+    writeSprite->pOamData = sKaentsuboFlameIdleOam;
+    writeSprite->currentAnimationFrame = zero;
+    writeSprite->animationTimer = zero16;
+    writeSprite->pose = tmpStatus;
+}
+
+void InitKaentsuboFlameIdle(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboFlameIdleOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 16;
+}
+
+void UpdateKaentsuboFlameFollowParent(u32 slot)
+{
+    switch (gSpriteData[slot].pose) {
+        case 35:
+        case 36:
+            goto pose35;
+        case 37:
+        case 38:
+            goto pose37;
+        case 19:
+        case 20:
+            goto pose20;
+        default:
+            return;
+    }
+
+pose35:
+    gCurrentSprite.pose = 35;
+    return;
+pose37:
+    gCurrentSprite.pose = 37;
+    return;
+pose20:
+    gCurrentSprite.pose = 20;
+    gCurrentSprite.pOamData = sKaentsuboFlameAlertOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+}
+
+void SyncKaentsuboFlamePushState(u32 slot)
+{
+    switch (gSpriteData[slot].pose) {
+        case 35:
+        case 36:
+            gCurrentSprite.pose = 35;
+            break;
+        case 37:
+        case 38:
+            gCurrentSprite.pose = 37;
+            break;
+    }
+}
+
+void InitKaentsuboFlamePushedRight(u32 slot)
+{
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 36;
+    if (gSpriteData[slot].status & SPRITE_STATUS_FACING_RIGHT) {
+        gCurrentSprite.pOamData = sKaentsuboFlamePushedRightOam;
+    } else {
+        gCurrentSprite.pOamData = sKaentsuboFlamePushedLeftOam;
+    }
+}
+
+void UpdateKaentsuboFlamePushedRight(u32 slot)
+{
+    switch (gSpriteData[slot].pose) {
+        case 17:
+        case 18:
+            gCurrentSprite.pose = 15;
+            break;
+        case 37:
+        case 38:
+            gCurrentSprite.pose = 37;
+            break;
+    }
+}
+
+void InitKaentsuboFlamePushedLeft(u32 slot)
+{
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 38;
+    if (gSpriteData[slot].status & SPRITE_STATUS_FACING_RIGHT) {
+        gCurrentSprite.pOamData = sKaentsuboFlamePushedLeftOam;
+    } else {
+        gCurrentSprite.pOamData = sKaentsuboFlamePushedRightOam;
+    }
+}
+
+void UpdateKaentsuboFlamePushedLeft(u32 slot)
+{
+    switch (gSpriteData[slot].pose) {
+        case 17:
+        case 18:
+            gCurrentSprite.pose = 15;
+            break;
+        case 35:
+        case 36:
+            gCurrentSprite.pose = 35;
+            break;
+    }
+}
+
+void InitKaentsuboFireball(void)
+{
+    register struct PrimarySpriteData *currentSprite asm("ip");
+    register struct PrimarySpriteData *writeSprite asm("r4");
+    register u16 currentStatus asm("r1");
+    register u16 tmpStatus asm("r2");
+    register u16 newStatus asm("r0");
+    register u16 zero16 asm("r3");
+
+    currentSprite = &gCurrentSprite;
+    currentStatus = currentSprite->status;
+    tmpStatus = SPRITE_STATUS_IGNORE_SPRITE_COLLISION;
+    newStatus = tmpStatus;
+    tmpStatus = 0;
+    zero16 = 0;
+    /* agbcc otherwise delays materializing the zero until the halfword store. */
+    asm("" : "+r"(zero16));
+    newStatus |= currentStatus;
+    newStatus &= 0xFFFB;
+    writeSprite = currentSprite;
+    writeSprite->status = newStatus;
+    currentSprite->drawDistanceDown = 32;
+    currentSprite->drawDistanceUp = tmpStatus;
+    currentSprite->drawDistanceLeftRight = 16;
+    currentSprite->hitboxExtentUp = 40;
+    currentSprite->hitboxExtentDown = tmpStatus;
+    currentSprite->hitboxExtentLeft = 24;
+    currentSprite->hitboxExtentRight = 20;
+    writeSprite->warioCollision = 14;
+    writeSprite->pOamData = sKaentsuboFireballSpawnOam;
+    writeSprite->currentAnimationFrame = tmpStatus;
+    writeSprite->animationTimer = zero16;
+    writeSprite->pose = 28;
+    currentSprite->work3 = 20;
+    writeSprite->drawPriority = tmpStatus;
+    m4aSongNumStart(SOUND_54);
+}
+
+void InitKaentsuboFireballLaunch(void)
+{
+    gCurrentSprite.pOamData = sKaentsuboFireballLaunchOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 16;
+    gCurrentSprite.work0 = 84;
+    gCurrentSprite.work1 = 100;
+    if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
+        gCurrentSprite.hitboxExtentRight = 28;
+    } else {
+        gCurrentSprite.hitboxExtentLeft = 32;
+    }
+}
+
+void UpdateKaentsuboFireballLaunch(void)
+{
+    if (gCurrentSprite.work0 != 0) {
+        if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
+            if (gCurrentSprite.animationTimer > 4) {
+                gCurrentSprite.hitboxExtentRight = 56;
+                gCurrentSprite.hitboxExtentUp = 56;
+            } else if (gCurrentSprite.animationTimer > 7) {
+                gCurrentSprite.hitboxExtentRight = 88;
+                gCurrentSprite.hitboxExtentUp = 56;
+            }
+        } else {
+            if (gCurrentSprite.animationTimer > 4) {
+                gCurrentSprite.hitboxExtentLeft = 60;
+                gCurrentSprite.hitboxExtentUp = 56;
+            } else if (gCurrentSprite.animationTimer > 7) {
+                gCurrentSprite.hitboxExtentLeft = 92;
+                gCurrentSprite.hitboxExtentUp = 56;
+            }
+        }
+
+        if (--gCurrentSprite.work0 == 0) {
+            gCurrentSprite.pOamData = sKaentsuboFireballTravelOam;
+            gCurrentSprite.currentAnimationFrame = 0;
+            gCurrentSprite.animationTimer = 0;
+            gCurrentSprite.hitboxExtentLeft = 60;
+            gCurrentSprite.hitboxExtentRight = 56;
+            if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
+                gCurrentSprite.xPosition += 44;
+            } else {
+                gCurrentSprite.xPosition -= 44;
+            }
+        }
+    } else if (gCurrentSprite.work1 != 0) {
+        gCurrentSprite.work1--;
+    } else {
+        gCurrentSprite.status = 0;
+    }
+}
+
+void SpriteKaentsubo(void)
+{
+    if (gCurrentSprite.status & 0x800) {
+        gCurrentSprite.pose = 107;
+    }
+
+    switch (gCurrentSprite.pose) {
+        case 0:
+            InitKaentsubo();
+            break;
+        case 15:
+            InitKaentsuboIdle();
+            /* fallthrough */
+        case 16:
+            UpdateKaentsuboIdle();
+            break;
+        case 17:
+            InitKaentsuboTurnAround();
+            /* fallthrough */
+        case 18:
+            UpdateKaentsuboTurnAround();
+            break;
+        case 19:
+            InitKaentsuboSpitWindup();
+            /* fallthrough */
+        case 20:
+            UpdateKaentsuboSpitWindup();
+            break;
+        case 23:
+            InitKaentsuboHitReact();
+            /* fallthrough */
+        case 24:
+            func_8023C94();
+            break;
+        case 25:
+            InitKaentsuboRecover();
+            /* fallthrough */
+        case 26:
+            UpdateKaentsuboRecover();
+            break;
+        case 27:
+            InitKaentsuboAirborne();
+            /* fallthrough */
+        case 28:
+            func_8023D48();
+            break;
+        case 29:
+            InitKaentsuboStunned();
+            /* fallthrough */
+        case 30:
+            func_8023FA8();
+            break;
+        case 31:
+        case 79:
+            InitKaentsuboDefeatedRight();
+            /* fallthrough */
+        case 32:
+            SpriteUtilFallOffscreenRight();
+            break;
+        case 33:
+        case 80:
+            InitKaentsuboDefeatedLeft();
+            /* fallthrough */
+        case 34:
+            SpriteUtilFallOffscreenLeft();
+            break;
+        case 35:
+            InitKaentsuboPushedRight();
+            /* fallthrough */
+        case 36:
+            SpriteUtilPushedRight();
+            break;
+        case 37:
+            InitKaentsuboPushedLeft();
+            /* fallthrough */
+        case 38:
+            SpriteUtilPushedLeft();
+            break;
+        case 43:
+            InitKaentsuboBumpedRight();
+            /* fallthrough */
+        case 44:
+            func_8024478();
+            break;
+        case 45:
+            InitKaentsuboBumpedLeft();
+            /* fallthrough */
+        case 46:
+            func_802449C();
+            break;
+        case 47:
+            func_80244C0();
+            /* fallthrough */
+        case 48:
+            func_80244E0();
+            break;
+        case 50:
+        case 109:
+            SpriteUtilDieAfterDelay();
+            break;
+        case 51:
+            InitKaentsuboGroundBounceRight();
+            /* fallthrough */
+        case 52:
+            func_8024988();
+            break;
+        case 53:
+            InitKaentsuboGroundBounceLeft();
+            /* fallthrough */
+        case 54:
+            func_802476C();
+            break;
+        case 67:
+            func_8024AC0();
+            goto call_8024AD4;
+        case 69:
+            func_8024BEC();
+            goto call_8024C00;
+        case 71:
+            InitKaentsuboAirBounceRight();
+            /* fallthrough */
+        case 68:
+        case 72:
+call_8024AD4:
+            func_8024AD4();
+            break;
+        case 73:
+            InitKaentsuboAirBounceLeft();
+            /* fallthrough */
+        case 70:
+        case 74:
+call_8024C00:
+            func_8024C00();
+            break;
+        case 75:
+            InitKaentsuboDropped();
+            /* fallthrough */
+        case 76:
+            UpdateKaentsuboDropped();
+            break;
+        case 77:
+            UpdateKaentsuboLandAfterDrop();
+            break;
+        case 81:
+            InitKaentsuboLiftedRight();
+            break;
+        case 82:
+            SpriteUtilLiftingSpriteRight();
+            break;
+        case 83:
+            InitKaentsuboLiftedLeft();
+            break;
+        case 84:
+            SpriteUtilLiftingSpriteLeft();
+            break;
+        case 87:
+            InitKaentsuboCarriedRight();
+            break;
+        case 88:
+            SpriteUtilCarryingSpriteRight();
+            break;
+        case 85:
+            InitKaentsuboCarriedLeft();
+            break;
+        case 86:
+            SpriteUtilCarryingSpriteLeft();
+            break;
+        case 89:
+            InitKaentsuboThrownCommon();
+            gCurrentSprite.pose = 90;
+            /* fallthrough */
+        case 90:
+            SpriteUtilThrownLeftSoft();
+            break;
+        case 93:
+            gCurrentSprite.pose = 94;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 94:
+            SpriteUtilThrownLeftHard();
+            break;
+        case 97:
+            gCurrentSprite.pose = 98;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 98:
+            SpriteUtilThrownUpLeftSoft();
+            break;
+        case 101:
+            gCurrentSprite.pose = 102;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 102:
+            SpriteUtilThrownUpLeftHard();
+            break;
+        case 91:
+            gCurrentSprite.pose = 92;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 92:
+            SpriteUtilThrownRightSoft();
+            break;
+        case 95:
+            gCurrentSprite.pose = 96;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 96:
+            SpriteUtilThrownRightHard();
+            break;
+        case 99:
+            gCurrentSprite.pose = 100;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 100:
+            SpriteUtilThrownUpRightSoft();
+            break;
+        case 103:
+            gCurrentSprite.pose = 104;
+            InitKaentsuboThrownCommon();
+            /* fallthrough */
+        case 104:
+            SpriteUtilThrownUpRightHard();
+            break;
+        case 105:
+            InitKaentsuboThrownDefeatedLeft();
+            break;
+        case 106:
+            InitKaentsuboThrownDefeatedRight();
+            break;
+        case 107:
+            KillKaentsubo();
+            break;
+        default:
+            InitKaentsuboDefeatSmoke();
+            SpriteUtilDieAfterDelay();
+            break;
+    }
+}
+
+void SpriteKaentsuboFlame(void)
+{
+    register u32 parentSlot asm("r4");
+    register u32 parentOffset asm("r0");
+    register struct PrimarySpriteData *spriteData asm("r1");
+    register struct PrimarySpriteData *parentSprite asm("r2");
+    register u8 parentHealth asm("r1");
+
+    parentSlot = SpriteUtilFindParentSlot(PSPRITE_KAENTSUBO);
+    if (parentSlot == 24) {
+        goto clear;
+    }
+
+    spriteData = gSpriteData;
+    parentOffset = sizeof(struct PrimarySpriteData);
+    parentOffset *= parentSlot;
+    /* agbcc reverses this commutative add, changing the Thumb encoding. */
+    asm("add %0, %1, %2" : "=r"(parentSprite) : "r"(parentOffset), "r"(spriteData));
+    if (parentSprite->warioCollision != 5) {
+        goto check_health;
+    }
+
+clear:
+    gCurrentSprite.status = 0;
+    goto done;
+
+check_health:
+    parentHealth = parentSprite->health;
+    if (parentHealth == 0) {
+        gCurrentSprite.status = parentHealth;
+        goto done;
+    }
+
+    gCurrentSprite.yPosition = parentSprite->yPosition;
+    gCurrentSprite.xPosition = parentSprite->xPosition;
+    switch (gCurrentSprite.pose) {
+        case 0:
+            InitKaentsuboFlame();
+            break;
+        case 15:
+            InitKaentsuboFlameIdle();
+            /* fallthrough */
+        case 16:
+            UpdateKaentsuboFlameFollowParent(parentSlot);
+            break;
+        case 20:
+            SyncKaentsuboFlamePushState(parentSlot);
+            break;
+        case 35:
+            InitKaentsuboFlamePushedRight(parentSlot);
+            /* fallthrough */
+        case 36:
+            UpdateKaentsuboFlamePushedRight(parentSlot);
+            break;
+        case 37:
+            InitKaentsuboFlamePushedLeft(parentSlot);
+            /* fallthrough */
+        case 38:
+            UpdateKaentsuboFlamePushedLeft(parentSlot);
+            break;
+    }
+
+done:
+    return;
+}
+
+void SpriteKaentsuboFireball(void)
+{
+    if (gCurrentSprite.status & 0x800) {
+        gCurrentSprite.status = 0;
+    }
+
+    switch (gCurrentSprite.pose) {
+        case 0:
+            InitKaentsuboFireball();
+            break;
+        case 28:
+            func_8023D48();
+            break;
+        case 23:
+            InitKaentsuboFireballLaunch();
+            break;
+        case 16:
+            UpdateKaentsuboFireballLaunch();
+            break;
+    }
+}

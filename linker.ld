@@ -636,7 +636,7 @@ SECTIONS {
         obj/sprite_ai/disasm_switch.o(.text);
         obj/sprite_ai/coins.o(.text);
         obj/sprite_ai/disasm_skeleton_bird.o(.text);
-        obj/sprite_ai/disasm_kaentsubo.o(.text);
+        obj/sprite_ai/kaentsubo.o(.text);
         obj/sprite_ai/disasm_cuckoo_condor.o(.text);
         obj/sprite_ai/disasm_totsumen.o(.text);
         obj/sprite_ai/disasm_pig_head_statue.o(.text);
