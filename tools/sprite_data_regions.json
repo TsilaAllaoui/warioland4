@@ -12149,27 +12149,45 @@
         },
         {
           "address": "0x083DD5F4",
-          "end": "0x083DD658",
+          "end": "0x083DD61C",
           "symbol": "sUnk_83DD5F4",
           "type": "raw"
+        },
+        {
+          "address": "0x083DD61C",
+          "end": "0x083DD630",
+          "symbol": "sPencilPurpleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD630",
+          "end": "0x083DD644",
+          "symbol": "sPencilBlueOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD644",
+          "end": "0x083DD658",
+          "symbol": "sPencilRedOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083DD658",
           "end": "0x083DD668",
           "symbol": "sPencilPurpleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DD668",
           "end": "0x083DD678",
           "symbol": "sPencilBlueOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DD678",
           "end": "0x083DD688",
           "symbol": "sPencilRedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DD688",
