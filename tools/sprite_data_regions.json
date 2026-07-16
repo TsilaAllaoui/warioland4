@@ -14069,39 +14069,111 @@
         },
         {
           "address": "0x083DE0E0",
-          "end": "0x083DE218",
+          "end": "0x083DE140",
           "symbol": "sUtsuboankoIdleOam",
           "type": "raw"
+        },
+        {
+          "address": "0x083DE140",
+          "end": "0x083DE148",
+          "symbol": "sTogenobiOuterPartVerticalOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE148",
+          "end": "0x083DE150",
+          "symbol": "sTogenobiOuterPartVerticalOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE150",
+          "end": "0x083DE158",
+          "symbol": "sTogenobiOuterPartVerticalOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE158",
+          "end": "0x083DE160",
+          "symbol": "sTogenobiOuterPartVerticalOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE160",
+          "end": "0x083DE168",
+          "symbol": "sTogenobiOuterPartVerticalOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE168",
+          "end": "0x083DE170",
+          "symbol": "sTogenobiOuterPartVerticalOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE170",
+          "end": "0x083DE178",
+          "symbol": "sTogenobiInnerPartOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE178",
+          "end": "0x083DE180",
+          "symbol": "sTogenobiOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE180",
+          "end": "0x083DE1A6",
+          "symbol": "sTogenobiCenterPartOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE1A6",
+          "end": "0x083DE1CC",
+          "symbol": "sTogenobiCenterPartOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE1CC",
+          "end": "0x083DE1F2",
+          "symbol": "sTogenobiCenterPartOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE1F2",
+          "end": "0x083DE218",
+          "symbol": "sTogenobiCenterPartOam_Frame4",
+          "type": "frame"
         },
         {
           "address": "0x083DE218",
           "end": "0x083DE240",
           "symbol": "sTogenobiCenterPartOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE240",
           "end": "0x083DE2A8",
           "symbol": "sTogenobiOuterPartVerticalOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE2A8",
           "end": "0x083DE310",
           "symbol": "sTogenobiOuterPartHorizontalOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE310",
           "end": "0x083DE320",
           "symbol": "sTogenobiInnerPartOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE320",
           "end": "0x083DE330",
           "symbol": "sTogenobiOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE330",
