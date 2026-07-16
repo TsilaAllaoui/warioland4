@@ -10139,50 +10139,308 @@
         },
         {
           "address": "0x083DBC68",
-          "end": "0x083DC264",
+          "end": "0x083DBC88",
           "symbol": "sUnk_83DBC68",
+          "type": "raw"
+        },
+        {
+          "address": "0x083DBC88",
+          "end": "0x083DBCAE",
+          "symbol": "sHoggusIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBCAE",
+          "end": "0x083DBCD4",
+          "symbol": "sHoggusIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBCD4",
+          "end": "0x083DBCFA",
+          "symbol": "sHoggusIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBCFA",
+          "end": "0x083DBD20",
+          "symbol": "sHoggusIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBD20",
+          "end": "0x083DBD46",
+          "symbol": "sHoggusChargeOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBD46",
+          "end": "0x083DBD72",
+          "symbol": "sHoggusChargeOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBD72",
+          "end": "0x083DBD98",
+          "symbol": "sHoggusChargeOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBD98",
+          "end": "0x083DBDBE",
+          "symbol": "sHoggusChargeOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBDBE",
+          "end": "0x083DBDE4",
+          "symbol": "sHoggusChargeOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBDE4",
+          "end": "0x083DBE0A",
+          "symbol": "sHoggusChargeOam_Frame22",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBE0A",
+          "end": "0x083DBE30",
+          "symbol": "sHoggusChargeOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBE30",
+          "end": "0x083DBE56",
+          "symbol": "sHoggusChargeOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBE56",
+          "end": "0x083DBE7C",
+          "symbol": "sHoggusChargeOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBE7C",
+          "end": "0x083DBEA2",
+          "symbol": "sHoggusChargeOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBEA2",
+          "end": "0x083DBEC8",
+          "symbol": "sHoggusChargeOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBEC8",
+          "end": "0x083DBEEE",
+          "symbol": "sHoggusChargeOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBEEE",
+          "end": "0x083DBF14",
+          "symbol": "sHoggusChargeOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBF14",
+          "end": "0x083DBF3A",
+          "symbol": "sHoggusChargeOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBF3A",
+          "end": "0x083DBF60",
+          "symbol": "sHoggusAttackVariant1Oam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBF60",
+          "end": "0x083DBF8C",
+          "symbol": "sHoggusAttackVariant1Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBF8C",
+          "end": "0x083DBFB8",
+          "symbol": "sHoggusAttackVariant1Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBFB8",
+          "end": "0x083DBFE4",
+          "symbol": "sHoggusAttackVariant1Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DBFE4",
+          "end": "0x083DC010",
+          "symbol": "sHoggusAttackVariant1Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC010",
+          "end": "0x083DC03C",
+          "symbol": "sHoggusAttackVariant1Oam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC03C",
+          "end": "0x083DC068",
+          "symbol": "sHoggusSpawnVariant1Oam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC068",
+          "end": "0x083DC094",
+          "symbol": "sHoggusSpawnVariant1Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC094",
+          "end": "0x083DC0C0",
+          "symbol": "sHoggusAttackVariant0Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC0C0",
+          "end": "0x083DC0F2",
+          "symbol": "sHoggusAttackVariant0Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC0F2",
+          "end": "0x083DC124",
+          "symbol": "sHoggusAttackVariant0Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC124",
+          "end": "0x083DC156",
+          "symbol": "sHoggusAttackVariant0Oam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC156",
+          "end": "0x083DC188",
+          "symbol": "sHoggusSpawnVariant0Oam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC188",
+          "end": "0x083DC1BA",
+          "symbol": "sHoggusSpawnVariant0Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC1BA",
+          "end": "0x083DC1C2",
+          "symbol": "sHoggusEggOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC1C2",
+          "end": "0x083DC1D0",
+          "symbol": "sHoggusEggOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC1D0",
+          "end": "0x083DC1EA",
+          "symbol": "sHoggusEggOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC1EA",
+          "end": "0x083DC204",
+          "symbol": "sHoggusEggOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC204",
+          "end": "0x083DC21E",
+          "symbol": "sHoggusEggOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC21E",
+          "end": "0x083DC238",
+          "symbol": "sHoggusEggOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC238",
+          "end": "0x083DC24C",
+          "symbol": "sHoggusEggOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC24C",
+          "end": "0x083DC25A",
+          "symbol": "sHoggusEggOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC25A",
+          "end": "0x083DC262",
+          "symbol": "sHoggusEggOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DC262",
+          "end": "0x083DC264",
+          "symbol": "sSpriteDataRaw_083DC262",
           "type": "raw"
         },
         {
           "address": "0x083DC264",
           "end": "0x083DC28C",
           "symbol": "sHoggusIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DC28C",
           "end": "0x083DC35C",
           "symbol": "sHoggusChargeOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DC35C",
           "end": "0x083DC394",
           "symbol": "sHoggusAttackVariant1Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DC394",
           "end": "0x083DC3CC",
           "symbol": "sHoggusAttackVariant0Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DC3CC",
           "end": "0x083DC41C",
           "symbol": "sHoggusEggOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DC41C",
           "end": "0x083DC444",
           "symbol": "sHoggusSpawnVariant1Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DC444",
-          "end": "0x083DC770",
+          "end": "0x083DC46C",
           "symbol": "sHoggusSpawnVariant0Oam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DC46C",
+          "end": "0x083DC770",
+          "symbol": "sSpriteDataRaw_083DC46C",
           "type": "raw"
         },
         {
