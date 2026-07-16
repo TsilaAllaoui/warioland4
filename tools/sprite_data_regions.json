@@ -8243,8 +8243,20 @@
         },
         {
           "address": "0x083C78A4",
-          "end": "0x083C798C",
+          "end": "0x083C78B4",
           "symbol": "sSpriteDataRaw_083C78A4",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C78B4",
+          "end": "0x083C78BC",
+          "symbol": "sToyBlockRoundOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C78BC",
+          "end": "0x083C798C",
+          "symbol": "sSpriteDataRaw_083C78BC",
           "type": "raw"
         },
         {
@@ -8263,7 +8275,7 @@
           "address": "0x083C79AC",
           "end": "0x083C79BC",
           "symbol": "sToyBlockRoundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C79BC",
