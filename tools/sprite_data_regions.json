@@ -5843,81 +5843,261 @@
         },
         {
           "address": "0x083C7A6C",
-          "end": "0x083C7DA0",
+          "end": "0x083C7A84",
           "symbol": "sToyBlockSquareYMovement",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C7A84",
+          "end": "0x083C7AA4",
+          "symbol": "sMenhammerPushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7AA4",
+          "end": "0x083C7ACA",
+          "symbol": "sMenhammerWalkingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7ACA",
+          "end": "0x083C7AF0",
+          "symbol": "sMenhammerWalkingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7AF0",
+          "end": "0x083C7B16",
+          "symbol": "sMenhammerWalkingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7B16",
+          "end": "0x083C7B3C",
+          "symbol": "sMenhammerWalkingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7B3C",
+          "end": "0x083C7B62",
+          "symbol": "sMenhammerWalkingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7B62",
+          "end": "0x083C7B82",
+          "symbol": "sMenhammerWalkingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7B82",
+          "end": "0x083C7BA8",
+          "symbol": "sSpriteDataRaw_083C7B82",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C7BA8",
+          "end": "0x083C7BCE",
+          "symbol": "sMenhammerFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7BCE",
+          "end": "0x083C7BF4",
+          "symbol": "sMenhammerFallingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7BF4",
+          "end": "0x083C7C14",
+          "symbol": "sMenhammerFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7C14",
+          "end": "0x083C7C3A",
+          "symbol": "sMenhammerTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7C3A",
+          "end": "0x083C7C5A",
+          "symbol": "sMenhammerGettingUpOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7C5A",
+          "end": "0x083C7C6E",
+          "symbol": "sMenhammerJumpingAttackOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7C6E",
+          "end": "0x083C7C82",
+          "symbol": "sMenhammerJumpingAttackOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7C82",
+          "end": "0x083C7C90",
+          "symbol": "sMenhammerLandingAttackOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7C90",
+          "end": "0x083C7CB0",
+          "symbol": "sMenhammerStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7CB0",
+          "end": "0x083C7CD0",
+          "symbol": "sMenhammerStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7CD0",
+          "end": "0x083C7CEA",
+          "symbol": "sMenhammerStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7CEA",
+          "end": "0x083C7D0A",
+          "symbol": "sMenhammerCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D0A",
+          "end": "0x083C7D12",
+          "symbol": "sMenhammerCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D12",
+          "end": "0x083C7D1A",
+          "symbol": "sMenhammerTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D1A",
+          "end": "0x083C7D2E",
+          "symbol": "sSpriteDataRaw_083C7D1A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C7D2E",
+          "end": "0x083C7D36",
+          "symbol": "sMenhammerCrushedWhileStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D36",
+          "end": "0x083C7D3E",
+          "symbol": "sMenhammerCrushedWhileStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D3E",
+          "end": "0x083C7D64",
+          "symbol": "sMenhammerJumpingAttackOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D64",
+          "end": "0x083C7D7E",
+          "symbol": "sMenhammerJumpingAttackOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D7E",
+          "end": "0x083C7D9E",
+          "symbol": "sMenhammerGettingUpOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7D9E",
+          "end": "0x083C7DA0",
+          "symbol": "sSpriteDataRaw_083C7D9E",
           "type": "raw"
         },
         {
           "address": "0x083C7DA0",
           "end": "0x083C7DB0",
           "symbol": "sMenhammerPushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7DB0",
           "end": "0x083C7DE8",
           "symbol": "sMenhammerWalkingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7DE8",
           "end": "0x083C7E10",
           "symbol": "sMenhammerFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7E10",
           "end": "0x083C7E28",
           "symbol": "sMenhammerTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7E28",
           "end": "0x083C7E40",
           "symbol": "sMenhammerGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7E40",
           "end": "0x083C7E78",
           "symbol": "sMenhammerJumpingAttackOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7E78",
           "end": "0x083C7EA0",
           "symbol": "sMenhammerStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7EA0",
           "end": "0x083C7EB8",
           "symbol": "sMenhammerCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7EB8",
-          "end": "0x083C7ED8",
+          "end": "0x083C7EC8",
           "symbol": "sMenhammerTackledOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C7EC8",
+          "end": "0x083C7ED8",
+          "symbol": "sSpriteDataRaw_083C7EC8",
           "type": "raw"
         },
         {
           "address": "0x083C7ED8",
           "end": "0x083C7EF0",
           "symbol": "sMenhammerCrushedWhileStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7EF0",
           "end": "0x083C7F08",
           "symbol": "sMenhammerTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7F08",
           "end": "0x083C7F20",
           "symbol": "sMenhammerLandingAttackOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7F20",
