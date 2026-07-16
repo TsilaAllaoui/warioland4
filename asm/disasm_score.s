@@ -1947,13 +1947,13 @@ func_8075F44:
 .L_760d0:
 	.4byte	gUnk_3000A5B
 .L_760d4:
-	.4byte	gUnk_3000A5C
+	.4byte	gInitialHealth
 .L_760d8:
-	.4byte	gUnk_3000A5D
+	.4byte	gPaletteFlashTimer
 .L_760dc:
-	.4byte	gUnk_3000A5E
+	.4byte	gBgAnimationFrame
 .L_760e0:
-	.4byte	gUnk_3000A5F
+	.4byte	gBgAnimationTimer
 .L_760e4:
 	.4byte	gUnk_3000A60
 .L_760e8:

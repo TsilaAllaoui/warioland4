@@ -3,10 +3,10 @@
 
 #include "sprite.h"
 
-extern const struct AnimationFrame sButatabiIdleOam[];
-extern const struct AnimationFrame sButatabiTurnStartOam[];
-extern const struct AnimationFrame sButatabiTurnEndOam[];
-extern const struct AnimationFrame sButatabiTackledOam[];
+extern const struct AnimationFrame sButatabiMovingOam[];
+extern const struct AnimationFrame sButatabiTurningOam[];
+extern const struct AnimationFrame sButatabiTurnAroundOam[];
+extern const struct AnimationFrame sButatabiFallingOam[];
 extern const s16 sButatabiXVelocity[];
 extern const s16 sButatabiYVelocity[];
 

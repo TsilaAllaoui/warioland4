@@ -34,19 +34,19 @@ void BossTreasureInit(void)
     sprite = &gCurrentSprite;
     switch (treasureType) {
         case 1:
-            sprite->pOamData = sUnk_83DF9E8;
+            sprite->pOamData = sBossTreasureOam_83DF9E8;
             break;
         case 2:
-            sprite->pOamData = sUnk_83BA7BC;
+            sprite->pOamData = sBossTreasureOam_83BA7BC;
             break;
         case 3:
-            sprite->pOamData = sUnk_83DAB40;
+            sprite->pOamData = sBossTreasureOam_83DAB40;
             break;
         case 4:
-            sprite->pOamData = sUnk_83CF72C;
+            sprite->pOamData = sBossTreasureOam_83CF72C;
             break;
         default:
-            sprite->pOamData = sAerodentBalloonInflatingOam;
+            sprite->pOamData = sAerodentOam_83DABA0;
             break;
     }
 }

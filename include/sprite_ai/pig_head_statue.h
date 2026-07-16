@@ -5,10 +5,10 @@
 
 extern const struct AnimationFrame sPigHeadStatueIdleOam[];
 extern const struct AnimationFrame sPigHeadStatueOpeningOam[];
-extern const struct AnimationFrame sPigHeadStatueFireOam[];
-extern const struct AnimationFrame sPigHeadProjectileFallOam[];
-extern const struct AnimationFrame sPigHeadProjectileLandedOam[];
-extern const struct AnimationFrame sPigHeadProjectileDespawnOam[];
+extern const struct AnimationFrame sPigHeadStatueFiringOam[];
+extern const struct AnimationFrame sPigHeadStatueChildFallingOam[];
+extern const struct AnimationFrame sPigHeadStatueChildLandedOam[];
+extern const struct AnimationFrame sPigHeadStatueChildDisappearingOam[];
 
 void InitPigHeadStatue(void);
 void PigHeadStatueWaitToOpen(void);

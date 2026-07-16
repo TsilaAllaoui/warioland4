@@ -359,6 +359,11 @@ extern const struct WarioEffectFrame sWarioAfterimageFrames[];
 extern const struct WarioAnimationFrame *const sUnk_82DDB10[][2];
 extern const struct WarioPoseProperty sUnk_82DDB60[];
 extern const u16 sBouncyWarioPalette[];
-extern const struct AnimationFrame sAerodentBalloonInflatingOam[];
+extern const struct AnimationFrame sAerodentOam_83DABA0[];
+
+extern u8 gInitialHealth;
+extern u8 gPaletteFlashTimer;
+extern u8 gBgAnimationFrame;
+extern u8 gBgAnimationTimer;
 
 #endif /* GLOBAL_DATA_H */

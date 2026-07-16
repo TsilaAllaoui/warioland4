@@ -9,10 +9,10 @@
 #include "types.h"
 
 extern const struct AnimationFrame sRobobirdIdleOam[];
-extern const struct AnimationFrame sRobobirdAttackStartOam[];
+extern const struct AnimationFrame sRobobirdAttackStartupOam[];
 extern const struct AnimationFrame sRobobirdAttackOam[];
-extern const struct AnimationFrame sRobobirdDefeatedOam[];
-extern const struct AnimationFrame sRobobirdStunnedOam[];
+extern const struct AnimationFrame sRobobirdFallingOam[];
+extern const struct AnimationFrame sRobobirdFastAttackOam[];
 
 void InitRobobird(void)
 {
@@ -85,7 +85,7 @@ void StartRobobirdAttack(void)
     struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sRobobirdAttackStartOam;
+    sprite->pOamData = sRobobirdAttackStartupOam;
     sprite->currentAnimationFrame = 0;
     sprite->animationTimer = 0;
     sprite->pose = SPOSE_6F;
@@ -149,7 +149,7 @@ void StartRobobirdStunned(void)
     struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sRobobirdStunnedOam;
+    sprite->pOamData = sRobobirdFastAttackOam;
     sprite->currentAnimationFrame = 0;
     sprite->animationTimer = 0;
     sprite->pose = SPOSE_28;
@@ -174,7 +174,7 @@ void SetRobobirdDefeated(void)
     register u8 zero2 asm("r0");
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sRobobirdDefeatedOam;
+    sprite->pOamData = sRobobirdFallingOam;
     zero1 = 0;
     /* Keep the first zero in r1 for the byte store. */
     asm("strb %0, [%1, #22]" : : "r"(zero1), "r"(sprite));

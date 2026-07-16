@@ -6,7 +6,7 @@
 extern const struct AnimationFrame sIcicleIdleOam[];
 extern const struct AnimationFrame sIcicleWarningOam[];
 extern const struct AnimationFrame sIcicleFallingOam[];
-extern const struct AnimationFrame sIcicleLandingOam[];
+extern const struct AnimationFrame sIcicleImpactOam[];
 
 void SpriteIcicle(void);
 void SpriteIcicleWarning(void);

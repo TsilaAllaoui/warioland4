@@ -150,7 +150,7 @@ void IcicleFall(void)
 
 void IcicleLandInit(void)
 {
-    gCurrentSprite.pOamData = sIcicleLandingOam;
+    gCurrentSprite.pOamData = sIcicleImpactOam;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 10;

@@ -91,10 +91,10 @@ SECTIONS {
         . = 0x0a59; gUnk_3000A59 = .;
         . = 0x0a5a; gUnk_3000A5A = .;
         . = 0x0a5b; gUnk_3000A5B = .;
-        . = 0x0a5c; gUnk_3000A5C = .;
-        . = 0x0a5d; gUnk_3000A5D = .;
-        . = 0x0a5e; gUnk_3000A5E = .;
-        . = 0x0a5f; gUnk_3000A5F = .;
+        . = 0x0a5c; gInitialHealth = .;
+        . = 0x0a5d; gPaletteFlashTimer = .;
+        . = 0x0a5e; gBgAnimationFrame = .;
+        . = 0x0a5f; gBgAnimationTimer = .;
         . = 0x0a60; gUnk_3000A60 = .;
 
         . = 0x0a61; gUnk_3000A61 = .;
@@ -673,7 +673,7 @@ SECTIONS {
         obj/sprite_ai/shieragutchi.o(.text);
         obj/sprite_ai/ringosuki.o(.text);
         obj/sprite_ai/piston.o(.text);
-        obj/sprite_ai/disasm_catbat.o(.text);
+        obj/sprite_ai/catbat.o(.text);
         obj/sprite_ai/swinging_platform.o(.text);
         obj/sprite_ai/disasm_pinball.o(.text);
         obj/sprite_ai/spike_cannon.o(.text);
@@ -764,15 +764,15 @@ SECTIONS {
         obj/sprite_util.o(.rodata);
         obj/blob_0x352CF0-0x3B3A00.o(.rodata);
         obj/sprite_ai/spear_mask.o(.rodata);
-        obj/blob_0x3B451C-0x3B4554.o(.rodata);
+        obj/data/sprite_data_3B451C_3B4554.o(.rodata);
         obj/sprite_ai/keyzer.o(.rodata);
         obj/sprite_ai/treasure.o(.rodata);
         obj/sprite_ai/vortex.o(.rodata);
-        obj/blob_0x3B548C-0x3B5C5C.o(.rodata);
+        obj/data/sprite_data_3B548C_3B5C5C.o(.rodata);
         obj/sprite_ai/coins.o(.rodata);
-        obj/blob_0x3B6450-0x3C4AE8.o(.rodata);
+        obj/data/sprite_data_3B6450_3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
-        obj/blob_0x3C4B28-0x3F9D64.o(.rodata);
+        obj/data/sprite_data_3C4B28_3F9D64.o(.rodata);
         obj/disasm_0x06EC50.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);

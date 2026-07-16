@@ -59,7 +59,7 @@ void InitButatabi(void)
     SetButatabiHitbox();
     sprite->hitboxExtentUp = sixteen;
     sprite->hitboxExtentDown = thirtyTwo;
-    sprite->pOamData = sButatabiIdleOam;
+    sprite->pOamData = sButatabiMovingOam;
     asm("" : "+r"(zero));
     sprite->currentAnimationFrame = zero;
     sprite->animationTimer = zero16;
@@ -79,7 +79,7 @@ void StartButatabiTackled(void)
     register u8* work3Pointer asm("r1");
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sButatabiTackledOam;
+    sprite->pOamData = sButatabiFallingOam;
     frameZero = 0;
     sprite->currentAnimationFrame = frameZero;
     zero = 0;
@@ -115,7 +115,7 @@ void StartButatabiBumped(void)
     register u8* work3Pointer asm("r1");
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sButatabiTackledOam;
+    sprite->pOamData = sButatabiFallingOam;
     frameZero = 0;
     sprite->currentAnimationFrame = frameZero;
     zero = 0;
@@ -203,7 +203,7 @@ void ButatabiHop(void)
         if (gravityTimer == 80) {
             register u32 animationZero asm("r0");
 
-            current->pOamData = sButatabiTurnStartOam;
+            current->pOamData = sButatabiTurningOam;
             animationZero = 0;
             /* Avoid agbcc copying the zero through r1 before this byte store. */
             asm("strb %0, [%1, #22]" : : "r"(animationZero), "r"(current));
@@ -211,7 +211,7 @@ void ButatabiHop(void)
         } else if (gravityTimer == 88) {
             register u32 animationZero asm("r0");
 
-            current->pOamData = sButatabiTurnEndOam;
+            current->pOamData = sButatabiTurnAroundOam;
             animationZero = 0;
             /* Avoid agbcc copying the zero through r1 before this byte store. */
             asm("strb %0, [%1, #22]" : : "r"(animationZero), "r"(current));
@@ -248,7 +248,7 @@ void ButatabiHop(void)
             *timerPointer = oneOrNext;
             gravityTimer = 0;
             rawVelocity = *(const u16*)xTable;
-            current->pOamData = sButatabiIdleOam;
+            current->pOamData = sButatabiMovingOam;
             asm("" : "+r"(gravityTimer));
             current->currentAnimationFrame = gravityTimer;
             current->animationTimer = gravityTimer;

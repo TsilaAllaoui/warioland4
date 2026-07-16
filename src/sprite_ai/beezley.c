@@ -170,7 +170,7 @@ void func_8040338(void)
 
 void func_8040398(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C62FC;
+    gCurrentSprite.pOamData = sBeezleyOam_83C62FC;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 16;
     gCurrentSprite.status &= ~SPRITE_STATUS_MAYBE_DEAD;
@@ -263,7 +263,7 @@ void func_80403C0(void)
 
 void func_8040538(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C6384;
+    gCurrentSprite.pOamData = sBeezleyOam_83C6384;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 18;
     gCurrentSprite.work0 = 24;
@@ -291,7 +291,7 @@ void func_8040564(void)
 
 void func_80405B8(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C63EC;
+    gCurrentSprite.pOamData = sBeezleyOam_83C63EC;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 20;
     gCurrentSprite.work0 = 12;
@@ -320,7 +320,7 @@ void func_80405E4(void)
 
 void func_8040640(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C651C;
+    gCurrentSprite.pOamData = sBeezleyOam_83C651C;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 24;
     gCurrentSprite.work0 = 180;
@@ -342,7 +342,7 @@ void func_8040668(void)
 
 void func_80406A0(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C6424;
+    gCurrentSprite.pOamData = sBeezleyOam_83C6424;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 111;
     gCurrentSprite.work0 = 16;
@@ -518,7 +518,7 @@ void func_80408D0(void)
 
 void func_8040954(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C646C;
+    gCurrentSprite.pOamData = sBeezleyOam_83C646C;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work0 = 8;
 }
@@ -553,7 +553,7 @@ void func_80409B4(void)
 
 void func_80409D0(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C6494;
+    gCurrentSprite.pOamData = sBeezleyOam_83C6494;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work0 = 24;
     gCurrentSprite.work2 = 8;
@@ -663,7 +663,7 @@ void func_8040ADC(void)
 
 void func_8040B90(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C64EC;
+    gCurrentSprite.pOamData = sBeezleyOam_83C64EC;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.health = 0;
     gCurrentSprite.work2 = 8;
@@ -688,7 +688,7 @@ void func_8040BF4(void)
 
 void func_8040C08(void)
 {
-    gCurrentSprite.pOamData = sUnk_83C64EC;
+    gCurrentSprite.pOamData = sBeezleyOam_83C64EC;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.health = 0;
     gCurrentSprite.work2 = 7;
@@ -712,7 +712,7 @@ void func_8040C54(void)
 void func_8040C68(void)
 {
     gCurrentSprite.pose = 50;
-    gCurrentSprite.pOamData = sUnk_83C64BC;
+    gCurrentSprite.pOamData = sBeezleyOam_83C64BC;
     gCurrentSprite.animationTimer = gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work0 = 10;
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;

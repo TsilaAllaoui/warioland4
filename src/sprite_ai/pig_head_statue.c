@@ -60,7 +60,7 @@ void PigHeadStatueWaitToFire(void)
     timer = &sprite->work0;
     zero = --*timer;
     if (zero == 0) {
-        sprite->pOamData = sPigHeadStatueFireOam;
+        sprite->pOamData = sPigHeadStatueFiringOam;
         sprite->currentAnimationFrame = zero;
         sprite->animationTimer = zero;
         *timer = 8;
@@ -141,7 +141,7 @@ void InitPigHeadProjectile(void)
     sprite->hitboxExtentDown = 16;
     sprite->hitboxExtentLeft = 48;
     sprite->hitboxExtentRight = 44;
-    sprite->pOamData = sPigHeadProjectileFallOam;
+    sprite->pOamData = sPigHeadStatueChildFallingOam;
     sprite->currentAnimationFrame = zero;
     sprite->animationTimer = zero16;
     sprite->warioCollision = 14;
@@ -176,7 +176,7 @@ void PigHeadProjectileFall(void)
         sprite->yPosition = yPosition;
         sprite->hitboxExtentUp = 96;
         sprite->hitboxExtentDown = zero;
-        sprite->pOamData = sPigHeadProjectileLandedOam;
+        sprite->pOamData = sPigHeadStatueChildLandedOam;
         sprite->currentAnimationFrame = zero;
         sprite->animationTimer = zero16;
         timerPointer = &sprite->work0;
@@ -228,7 +228,7 @@ void PigHeadProjectileStartDespawn(void)
     timer = &sprite->work0;
     zero = --*timer;
     if (zero == 0) {
-        sprite->pOamData = sPigHeadProjectileDespawnOam;
+        sprite->pOamData = sPigHeadStatueChildDisappearingOam;
         sprite->currentAnimationFrame = zero;
         sprite->animationTimer = zero;
         *timer = 33;

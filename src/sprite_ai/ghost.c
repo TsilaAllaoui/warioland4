@@ -338,8 +338,8 @@ void func_803F414(void)
 
         sprite->status = 0;
         m4aSongNumStart(SOUND_5E);
-        if (gCurrentSprite.pOamData != sUnk_83C53C4) {
-            gCurrentSprite.pOamData = sUnk_83C53C4;
+        if (gCurrentSprite.pOamData != sGhostOam_83C53C4) {
+            gCurrentSprite.pOamData = sGhostOam_83C53C4;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.animationTimer = 0;
         }
@@ -410,8 +410,8 @@ void func_803F528(void)
         gCollectedKeyzer = 0;
         func_803F214();
         gSwitchStates[3] |= 2;
-        if (gCurrentSprite.pOamData != sUnk_83C53C4) {
-            gCurrentSprite.pOamData = sUnk_83C53C4;
+        if (gCurrentSprite.pOamData != sGhostOam_83C53C4) {
+            gCurrentSprite.pOamData = sGhostOam_83C53C4;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.animationTimer = 0;
         }
@@ -488,7 +488,7 @@ void func_803F66C(void)
                            sprite->yPosition, sprite->xPosition);
     }
 
-    sprite->pOamData = sUnk_83C5364;
+    sprite->pOamData = sGhostOam_83C5364;
     sprite->currentAnimationFrame = zero;
     sprite->animationTimer = despawned;
     sprite->pose = 16;
@@ -569,7 +569,7 @@ finishSearch:
         if (*(u8 *)persistentIndex != 17) {
             goto useDefaultOam;
         }
-        selectedOam = sUnk_83C53C4;
+        selectedOam = sGhostOam_83C53C4;
         goto applyOam;
     }
 
@@ -582,7 +582,7 @@ matched:
         oamAddress = (u32)sprites;
         oamAddress += 4;
         oamAddress = (u32)offset + oamAddress;
-        oam = sUnk_83C5528;
+        oam = sGhostOam_83C5528;
         *(const struct AnimationFrame **)oamAddress = oam;
         zero = 0;
         *(u8 *)((u8 *)mirror + 22) = zero;
@@ -591,7 +591,7 @@ matched:
     }
 
 useDefaultOam:
-    selectedOam = sUnk_83C5364;
+    selectedOam = sGhostOam_83C5364;
 
 applyOam:
     current->pOamData = selectedOam;
@@ -865,7 +865,7 @@ void func_803F958(void)
                     sprite->xPosition = newX;
                 }
                 if (index == 32) {
-                    sprite->pOamData = sUnk_83C53FC;
+                    sprite->pOamData = sGhostOam_83C53FC;
                     sprite->currentAnimationFrame = 0;
                     sprite->animationTimer = 0;
                 } else if (index == 42) {
@@ -900,7 +900,7 @@ void func_803F958(void)
                 }
                 if (index == 32) {
                     register u32 zero asm("r0");
-                    sprite->pOamData = sUnk_83C53FC;
+                    sprite->pOamData = sGhostOam_83C53FC;
                     zero = 0;
                     asm("" : : "r"(zero));
                     sprite->currentAnimationFrame = zero;
@@ -943,7 +943,7 @@ void func_803F958(void)
                     sprite->xPosition = newX;
                 }
                 if (index == 32) {
-                    sprite->pOamData = sUnk_83C53B4;
+                    sprite->pOamData = sGhostOam_83C53B4;
                     sprite->currentAnimationFrame = 0;
                     sprite->animationTimer = 0;
                 } else if (index == 42 && spriteX > warioX) {
@@ -984,7 +984,7 @@ void func_803F958(void)
                 }
                 if (index == 32) {
                     register u32 zero asm("r0");
-                    sprite->pOamData = sUnk_83C53B4;
+                    sprite->pOamData = sGhostOam_83C53B4;
                     zero = 0;
                     asm("" : : "r"(zero));
                     sprite->currentAnimationFrame = zero;
@@ -1085,9 +1085,9 @@ void func_803FB28(void)
             }
             if (index == 4) {
                 if (gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] == 17) {
-                    sprite->pOamData = sUnk_83C53FC;
+                    sprite->pOamData = sGhostOam_83C53FC;
                 } else {
-                    sprite->pOamData = sUnk_83C53B4;
+                    sprite->pOamData = sGhostOam_83C53B4;
                 }
                 {
                     register u32 zero asm("r0");
@@ -1128,9 +1128,9 @@ void func_803FB28(void)
             }
             if (index == 4) {
                 if (gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] == 17) {
-                    sprite->pOamData = sUnk_83C53FC;
+                    sprite->pOamData = sGhostOam_83C53FC;
                 } else {
-                    sprite->pOamData = sUnk_83C53B4;
+                    sprite->pOamData = sGhostOam_83C53B4;
                 }
                 {
                     register u32 zero asm("r0");
@@ -1176,7 +1176,7 @@ void func_803FC70(void)
     sprites = gSpriteData;
     oamBase = (u32)sprites + 4;
     zero = 0;
-    childOam = sUnk_83C5568;
+    childOam = sGhostOam_83C5568;
 
 loop:
     {
@@ -1233,7 +1233,7 @@ found:
         current->pose = pose;
         work3 = (u8 *)current + 42;
         *work3 = zeroTail;
-        oam = sUnk_83C538C;
+        oam = sGhostOam_83C538C;
         current->pOamData = oam;
         /* agbcc otherwise copies the zero from r1 to r0 before these stores. */
         asm("strb %1, [%0, #22]\n"
@@ -1446,7 +1446,7 @@ void func_803FDEC(void)
     asm("" : "+r"(fieldPtr));
     *fieldPtr = 160;
 
-    oam = sUnk_83C5528;
+    oam = sGhostOam_83C5528;
     fieldPtr = (u8 *)sprite;
     *(const struct AnimationFrame **)(fieldPtr + 4) = oam;
     *(fieldPtr + 22) = zeroByte;

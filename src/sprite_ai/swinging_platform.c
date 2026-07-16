@@ -44,11 +44,11 @@ void func_804A3FC(void)
         sprite->work2 = 0;
 
         if (sprite->globalID == PSPRITE_SWINGING_PLATFORM) {
-            sprite->pOamData = sUnk_83CFB58;
+            sprite->pOamData = sSwingingPlatformOam_83CFB58;
             SpriteSpawnAsChild(PSPRITE_AC, sprite->roomSlot, sprite->gfxSlot,
                 sprite->yPosition + 256, sprite->xPosition + 128);
         } else {
-            sprite->pOamData = sUnk_83CFB48;
+            sprite->pOamData = sSwingingPlatformOam_83CFB48;
             SpriteSpawnAsChild(PSPRITE_AD, sprite->roomSlot, sprite->gfxSlot,
                 sprite->yPosition + 192, sprite->xPosition + 128);
         }
@@ -1123,7 +1123,7 @@ void func_804AB90(void)
         register const struct AnimationFrame *oam asm("r0");
         register struct PrimarySpriteData *storeSprite asm("r1");
 
-        oam = sUnk_83CFB68;
+        oam = sSwingingPlatformOam_83CFB68;
         storeSprite = sprite;
         storeSprite->pOamData = oam;
         storeSprite->currentAnimationFrame = zero;

@@ -3,12 +3,12 @@
 
 #include "sprite.h"
 
-extern const struct AnimationFrame sBossCorridorCatDashOam[];
-extern const struct AnimationFrame sBossCorridorCatSlowLeftOam[];
+extern const struct AnimationFrame sBossCorridorCatRunOam[];
+extern const struct AnimationFrame sBossCorridorCatWalkLeftOam[];
 extern const struct AnimationFrame sBossCorridorCatTurnOam[];
-extern const struct AnimationFrame sBossCorridorCatWaitOam[];
-extern const struct AnimationFrame sBossCorridorCatShortWaitOam[];
-extern const struct AnimationFrame sBossCorridorCatLongWaitOam[];
+extern const struct AnimationFrame sBossCorridorCatWaitToTurnOam[];
+extern const struct AnimationFrame sBossCorridorCatWaitLeftOam[];
+extern const struct AnimationFrame sBossCorridorCatWaitRightOam[];
 
 void SpriteBossCorridorCat(void);
 

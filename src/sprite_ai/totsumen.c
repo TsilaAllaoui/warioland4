@@ -17,7 +17,7 @@ void func_8032320(void)
     gCurrentSprite.hitboxExtentDown = 0;
     gCurrentSprite.hitboxExtentLeft = 32;
     gCurrentSprite.hitboxExtentRight = 28;
-    gCurrentSprite.pOamData = sUnk_83BB0E8;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB0E8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
@@ -27,7 +27,7 @@ void func_8032320(void)
 
 void func_803238C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB0E8;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB0E8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
@@ -113,7 +113,7 @@ void func_80323B0(void)
 
 void func_80324FC(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB2E8;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB2E8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
@@ -132,13 +132,13 @@ void func_8032524(void)
         if (gCurrentSprite.work0 == 0) {
             if (gCurrentSprite.pose == 18) {
                 gCurrentSprite.status ^= SPRITE_STATUS_FACING_RIGHT;
-                gCurrentSprite.pOamData = sUnk_83BB308;
+                gCurrentSprite.pOamData = sTotsumenOam_83BB308;
                 gCurrentSprite.currentAnimationFrame = 0;
                 gCurrentSprite.animationTimer = 0;
                 gCurrentSprite.pose = 20;
                 gCurrentSprite.work0 = 16;
             } else {
-                gCurrentSprite.pOamData = sUnk_83BB0E8;
+                gCurrentSprite.pOamData = sTotsumenOam_83BB0E8;
                 gCurrentSprite.currentAnimationFrame = 0;
                 gCurrentSprite.animationTimer = 0;
                 gCurrentSprite.pose = 16;
@@ -150,7 +150,7 @@ void func_8032524(void)
 
 void func_80325A4(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB240;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB240;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work0 = 4;
@@ -174,7 +174,7 @@ void func_80325F0(void)
 
 void func_8032604(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB158;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB158;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 111;
@@ -211,7 +211,7 @@ void func_803262C(void)
         if (gUnk_3000A50 == 0)
             sprite->pose = 27;
     } else {
-        sprite->pOamData = sUnk_83BB1A0;
+        sprite->pOamData = sTotsumenOam_83BB1A0;
         sprite->currentAnimationFrame = timer;
         sprite->animationTimer = timer;
         sprite->pose = 113;
@@ -279,7 +279,7 @@ void func_8032688(void)
 void func_80327CC(void)
 {
     if (gCurrentSprite.warioCollision == 3) {
-        gCurrentSprite.pOamData = sUnk_83BB240;
+        gCurrentSprite.pOamData = sTotsumenOam_83BB240;
         gCurrentSprite.currentAnimationFrame = 0;
         gCurrentSprite.animationTimer = 0;
         gCurrentSprite.warioCollision = 5;
@@ -289,7 +289,7 @@ void func_80327CC(void)
 
 void func_80327F8(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB1D8;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB1D8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 115;
@@ -316,7 +316,7 @@ void func_8032824(void)
             else
                 gCurrentSprite.pose = 52;
 
-            gCurrentSprite.pOamData = sUnk_83BB240;
+            gCurrentSprite.pOamData = sTotsumenOam_83BB240;
             gCurrentSprite.animationTimer = 0;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.work0 = 4;
@@ -345,7 +345,7 @@ void func_8032824(void)
 
 void func_8032960(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB378;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB378;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 24;
@@ -355,7 +355,7 @@ void func_8032960(void)
 
 void func_8032988(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB278;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB278;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 26;
@@ -376,7 +376,7 @@ void func_80329AC(void)
             gCurrentSprite.yPosition -= 32;
         } else if (timer == 42) {
             gCurrentSprite.status ^= SPRITE_STATUS_FACING_RIGHT;
-            gCurrentSprite.pOamData = sUnk_83BB2B0;
+            gCurrentSprite.pOamData = sTotsumenOam_83BB2B0;
             gCurrentSprite.animationTimer = 0;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.yPosition += 32;
@@ -391,7 +391,7 @@ void func_80329AC(void)
 
 void func_8032A24(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB120;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB120;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 28;
@@ -400,7 +400,7 @@ void func_8032A24(void)
 
 void func_8032A44(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB240;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB240;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 30;
@@ -410,7 +410,7 @@ void func_8032A44(void)
 
 void func_8032A6C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB3F0;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB3F0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -437,7 +437,7 @@ void func_8032AF8(void)
 
 void func_8032B0C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB3F0;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB3F0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -463,7 +463,7 @@ void func_8032B84(void)
 
 void func_8032B98(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB360;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB360;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 12;
@@ -486,7 +486,7 @@ void func_8032BE0(void)
 
 void func_8032BF4(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB3C0;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB3C0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 12;
@@ -508,7 +508,7 @@ void func_8032C38(void)
 
 void func_8032C4C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB240;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB240;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work1 = 0;
@@ -530,10 +530,10 @@ void func_8032C84(void)
 void func_8032C98(void)
 {
     if (gCurrentSprite.warioCollision == 5) {
-        gCurrentSprite.pOamData = sUnk_83BB3A8;
+        gCurrentSprite.pOamData = sTotsumenOam_83BB3A8;
         gCurrentSprite.work0 = 7;
     } else {
-        gCurrentSprite.pOamData = sUnk_83BB388;
+        gCurrentSprite.pOamData = sTotsumenOam_83BB388;
         gCurrentSprite.work0 = 8;
     }
     gCurrentSprite.currentAnimationFrame = 0;
@@ -552,7 +552,7 @@ void func_8032D14(void)
 
 void func_8032D4C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB240;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB240;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work2 = 8;
@@ -574,7 +574,7 @@ void func_8032D8C(void)
 
 void func_8032DA0(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB220;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB220;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.pose = 76;
@@ -600,7 +600,7 @@ void func_8032DD0(void)
 
 void func_8032E5C(void)
 {
-    gCurrentSprite.pOamData = sUnk_83BB240;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB240;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
@@ -620,7 +620,7 @@ void func_8032E88(void)
 void func_8032E9C(void)
 {
     gCurrentSprite.disableWarioCollisionTimer = 1;
-    gCurrentSprite.pOamData = sUnk_83BB240;
+    gCurrentSprite.pOamData = sTotsumenOam_83BB240;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }

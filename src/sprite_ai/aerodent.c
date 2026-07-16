@@ -363,7 +363,7 @@ void AerodentLoadFlashGraphics(void)
 }
 void AerodentUpdateDamageGraphics(void)
 {
-    if (gCurrentSprite.pOamData == sUnk_83DABB0 && gCurrentSprite.currentAnimationFrame == 1) {
+    if (gCurrentSprite.pOamData == sAerodentOam_83DABB0 && gCurrentSprite.currentAnimationFrame == 1) {
         if (gCurrentSprite.animationTimer == 0)
             AerodentLoadFlashGraphics();
         else
@@ -417,7 +417,7 @@ void AerodentUpdateInflation(void)
             next = (u32)next >> 24;
             if (next == 8) {
                 *work2 = zero;
-                sprite->pOamData = sUnk_83DABB0;
+                sprite->pOamData = sAerodentOam_83DABB0;
                 sprite->currentAnimationFrame = zero;
                 sprite->animationTimer = masked;
             }
@@ -446,7 +446,7 @@ void AerodentUpdateInflation(void)
             frame <<= 24;
             frame = (u32)frame >> 24;
             if (frame == 16) {
-                sprite->pOamData = sAerodentBalloonInflatingOam;
+                sprite->pOamData = sAerodentOam_83DABA0;
                 sprite->currentAnimationFrame = normalized;
                 sprite->animationTimer = normalized;
             }
@@ -526,7 +526,7 @@ void AerodentInit(void)
             *hitbox = extent;
         }
 
-        sprite->pOamData = sAerodentBalloonInflatingOam;
+        sprite->pOamData = sAerodentOam_83DABA0;
         /* agbcc otherwise copies the zero to r1 before this byte store. */
         asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(bits));
         sprite->animationTimer = zeroHalf;
@@ -657,7 +657,7 @@ void AerodentStartDeflate(void)
     gCurrentSprite.work0 = 255;
     gCurrentSprite.status |= SPRITE_STATUS_WARIO_STANDING_ON;
     m4aSongNumStart(SOUND_91);
-    gCurrentSprite.pOamData = sAerodentBalloonInflatingOam;
+    gCurrentSprite.pOamData = sAerodentOam_83DABA0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     AerodentLoadNormalGraphics();
@@ -682,7 +682,7 @@ void AerodentStartInflate(void)
     gCurrentSprite.work0 = 1;
     gCurrentSprite.status &= ~SPRITE_STATUS_WARIO_STANDING_ON;
     m4aSongNumStart(SOUND_91);
-    gCurrentSprite.pOamData = sAerodentBalloonInflatingOam;
+    gCurrentSprite.pOamData = sAerodentOam_83DABA0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     AerodentLoadNormalGraphics();
@@ -740,7 +740,7 @@ void AerodentUpdateRotation(void)
 void AerodentStartDefeat(void)
 {
     gCurrentSprite.pose = 48;
-    gCurrentSprite.pOamData = sUnk_83DABC8;
+    gCurrentSprite.pOamData = sAerodentOam_83DABC8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 100;
@@ -825,7 +825,7 @@ void AerodentCompanionInit(void)
     SpriteUtilTurnTowardWario();
     SpriteUtilFindSpriteSlotWork3(105);
     gCurrentSprite.health = 16;
-    gCurrentSprite.pOamData = sUnk_83DB0B0;
+    gCurrentSprite.pOamData = sAerodentOam_83DB0B0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 15;
@@ -862,7 +862,7 @@ void AerodentCompanionDescend(void)
 }
 void AerodentCompanionStartAttach(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DADA8;
+    gCurrentSprite.pOamData = sAerodentOam_83DADA8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
@@ -886,7 +886,7 @@ void AerodentCompanionFollowParent(void)
 }
 void AerodentCompanionStartFightCountdown(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DACC0;
+    gCurrentSprite.pOamData = sAerodentOam_83DACC0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 24;
@@ -903,7 +903,7 @@ void AerodentCompanionBeginBossFight(void)
         SpriteUtilStartBossTimer();
         gCurrentSprite.pose = 19;
         gSpriteData[gCurrentSprite.work3].pose = 16;
-        gSpriteData[gCurrentSprite.work3].pOamData = sUnk_83DAB28;
+        gSpriteData[gCurrentSprite.work3].pOamData = sAerodentOam_83DAB28;
         gSpriteData[gCurrentSprite.work3].currentAnimationFrame = 0;
         gSpriteData[gCurrentSprite.work3].animationTimer = timer;
         gSpriteData[gCurrentSprite.work3].work2 = 20;
@@ -911,7 +911,7 @@ void AerodentCompanionBeginBossFight(void)
 }
 void AerodentCompanionStartRise(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DAD28;
+    gCurrentSprite.pOamData = sAerodentOam_83DAD28;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 20;
@@ -970,7 +970,7 @@ void AerodentCompanionRise(void)
 void AerodentCompanionEnterCombat(void)
 {
     gCurrentSprite.drawPriority &= 0x7F;
-    gCurrentSprite.pOamData = sUnk_83DACC0;
+    gCurrentSprite.pOamData = sAerodentOam_83DACC0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 22;
@@ -1025,7 +1025,7 @@ void AerodentCompanionUpdateCombat(void)
         parentIndex += (u32)sprites;
         pose = ((struct PrimarySpriteData *)parentIndex)->pose;
         if (pose == 32 || pose == 34) {
-            sprite->pOamData = sUnk_83DAD68;
+            sprite->pOamData = sAerodentOam_83DAD68;
             sprite->currentAnimationFrame = zero;
             sprite->animationTimer = 0;
             sprite->work0 = 10;
@@ -1081,7 +1081,7 @@ void AerodentCompanionUpdateCombat(void)
                     status ^= facing;
                     value = 0;
                     current->status = status;
-                    current->pOamData = sUnk_83DAF00;
+                    current->pOamData = sAerodentOam_83DAF00;
                     current->currentAnimationFrame = value;
                     current->animationTimer = normalized;
                     AerodentSpawnShot();
@@ -1098,7 +1098,7 @@ void AerodentCompanionUpdateCombat(void)
 
                         fieldBase = (u32)sprites + 4;
                         index += fieldBase;
-                        *(const struct AnimationFrame **)index = sUnk_83DAB28;
+                        *(const struct AnimationFrame **)index = sAerodentOam_83DAB28;
                     }
                     slotCopy = slot;
                     index = *slotCopy;
@@ -1146,7 +1146,7 @@ void AerodentCompanionFireProjectile(void)
 {
     u16 direction;
 
-    gCurrentSprite.pOamData = sUnk_83DAD48;
+    gCurrentSprite.pOamData = sAerodentOam_83DAD48;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 113;
@@ -1297,7 +1297,7 @@ void AerodentCompanionKnockback(void)
 }
 void AerodentCompanionStartDropAttack(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DADF0;
+    gCurrentSprite.pOamData = sAerodentOam_83DADF0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 117;
@@ -1325,7 +1325,7 @@ void AerodentCompanionDropAttack(void)
 }
 void AerodentCompanionStartGroundAttack(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DAE78;
+    gCurrentSprite.pOamData = sAerodentOam_83DAE78;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 119;
@@ -1354,7 +1354,7 @@ void AerodentCompanionGroundAttack(void)
 }
 void AerodentCompanionStartReturn(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DAE50;
+    gCurrentSprite.pOamData = sAerodentOam_83DAE50;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 121;
@@ -1402,7 +1402,7 @@ void AerodentCompanionReturnToParent(void)
 
         index = (u32)sprites + 4;
         index = offset + index;
-        animation = sUnk_83DAB28;
+        animation = sAerodentOam_83DAB28;
         *(const struct AnimationFrame **)index = animation;
         slotCopy = timer;
         /* Keep r0, r1, and r4 live through this copy so agbcc uses r7,
@@ -1497,7 +1497,7 @@ void AerodentCompanionReturnToParent(void)
 void AerodentCompanionStartRecoil(void)
 {
     gCurrentSprite.pose = 36;
-    gCurrentSprite.pOamData = sUnk_83DAE38;
+    gCurrentSprite.pOamData = sAerodentOam_83DAE38;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 16;
@@ -1545,7 +1545,7 @@ void AerodentCompanionTakeDamage(void)
         zero = 0;
         poseValue = 32;
         sprite->pose = poseValue;
-        sprite->pOamData = sUnk_83DB110;
+        sprite->pOamData = sAerodentOam_83DB110;
         /* agbcc otherwise copies the zero to r0 before this byte store. */
         asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(zero));
         collisionZero = 0;
@@ -1653,7 +1653,7 @@ void AerodentCompanionDefeat(void)
 }
 void AerodentCompanionStartRecovery(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB0E8;
+    gCurrentSprite.pOamData = sAerodentOam_83DB0E8;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work0 = 40;
@@ -1730,7 +1730,7 @@ void AerodentCompanionApplyShopItemDamage(void)
     }
 
     gCurrentSprite.work2 = item;
-    gCurrentSprite.pOamData = sUnk_83DB110;
+    gCurrentSprite.pOamData = sAerodentOam_83DB110;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work1 = 0;
@@ -1769,7 +1769,7 @@ void AerodentCompanionUpdateShopItemDamage(void)
         healthCopy = health;
         if (healthCopy == *work2) {
             AerodentCompanionStartIdle();
-            sprite->pOamData = sUnk_83DB0E8;
+            sprite->pOamData = sAerodentOam_83DB0E8;
             sprite->currentAnimationFrame = 0;
             sprite->animationTimer = 0;
         } else {
@@ -1813,7 +1813,7 @@ void AerodentThrowableInit(void)
     gCurrentSprite.hitboxExtentDown = 24;
     gCurrentSprite.hitboxExtentLeft = 32;
     gCurrentSprite.hitboxExtentRight = 28;
-    gCurrentSprite.pOamData = sUnk_83DB48C;
+    gCurrentSprite.pOamData = sAerodentOam_83DB48C;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 18;
@@ -1893,7 +1893,7 @@ void AerodentThrowablePatrol(void)
             timer = &alias->work0;
             value = *timer;
             if (value == 40) {
-                alias->pOamData = sUnk_83DB3FC;
+                alias->pOamData = sAerodentOam_83DB3FC;
                 alias->currentAnimationFrame = 0;
                 alias->animationTimer = 0;
             }
@@ -1909,7 +1909,7 @@ void AerodentThrowablePatrol(void)
                     register u8 *work3 asm("r0");
 
                     current->pose = 20;
-                    current->pOamData = sUnk_83DB43C;
+                    current->pOamData = sAerodentOam_83DB43C;
                     current->currentAnimationFrame = normalized;
                     clear = 0;
                     current->animationTimer = normalized;
@@ -1956,7 +1956,7 @@ void AerodentThrowableBounce(void)
         frameZero = 0;
         timerZero = 0;
         sprite->yPosition = nextY;
-        sprite->pOamData = sUnk_83DB4AC;
+        sprite->pOamData = sAerodentOam_83DB4AC;
         sprite->currentAnimationFrame = frameZero;
         sprite->animationTimer = timerZero;
         work = &sprite->work0;
@@ -2021,7 +2021,7 @@ void AerodentThrowableBounce(void)
 }
 void AerodentThrowableStartCharge(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB4BC;
+    gCurrentSprite.pOamData = sAerodentOam_83DB4BC;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 16;
@@ -2119,7 +2119,7 @@ void AerodentThrowableCharge(void)
                     register u8 *work3 asm("r0");
 
                     current->pose = 22;
-                    current->pOamData = sUnk_83DB3A4;
+                    current->pOamData = sAerodentOam_83DB3A4;
                     current->currentAnimationFrame = normalized;
                     clear = 0;
                     current->animationTimer = normalized;
@@ -2166,7 +2166,7 @@ void AerodentThrowableBounceAfterCharge(void)
         frameZero = 0;
         timerZero = 0;
         sprite->yPosition = nextY;
-        sprite->pOamData = sUnk_83DB4AC;
+        sprite->pOamData = sAerodentOam_83DB4AC;
         sprite->currentAnimationFrame = frameZero;
         sprite->animationTimer = timerZero;
         work = &sprite->work0;
@@ -2226,7 +2226,7 @@ void AerodentThrowableBounceAfterCharge(void)
 }
 void AerodentThrowableStartStun(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB4D4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB4D4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.hitboxExtentUp = 96;
@@ -2242,7 +2242,7 @@ void AerodentThrowableStun(void)
 }
 void AerodentThrowableStartGrabbed(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3A4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3A4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 28;
@@ -2272,7 +2272,7 @@ void AerodentThrowableUpdateGrabbed(void)
         register int frameZero asm("r1");
 
         sprite->warioCollision = 59;
-        sprite->pOamData = sUnk_83DB3B4;
+        sprite->pOamData = sAerodentOam_83DB3B4;
         frameZero = 0;
         sprite->animationTimer = zero;
         /* agbcc otherwise copies the zero to r0 before this byte store. */
@@ -2304,7 +2304,7 @@ void AerodentThrowableStartLanding(void)
     struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sUnk_83DB4AC;
+    sprite->pOamData = sAerodentOam_83DB4AC;
     sprite->currentAnimationFrame = 0;
     sprite->animationTimer = 0;
     sprite->pose = 24;
@@ -2320,7 +2320,7 @@ void AerodentThrowableLand(void)
 void AerodentThrowableStartBreak(void)
 {
     gCurrentSprite.status |= SPRITE_STATUS_BACKGROUND;
-    gCurrentSprite.pOamData = sUnk_83DB4E4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB4E4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 111;
@@ -2364,7 +2364,7 @@ void AerodentThrowableBreak(void)
 }
 void AerodentThrowableStartBounce(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3B4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = 30;
@@ -2394,7 +2394,7 @@ void AerodentThrowablePrepareFallWithEffect(void)
     register int zero asm("r4");
 
     sprite = &gCurrentSprite;
-    sprite->pOamData = sUnk_83DB3EC;
+    sprite->pOamData = sAerodentOam_83DB3EC;
     sprite->currentAnimationFrame = 0;
     zero = 0;
     sprite->animationTimer = 0;
@@ -2420,7 +2420,7 @@ void AerodentThrowableFallLeftWithEffect(void)
 
 void AerodentThrowablePrepareFall(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3EC;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3EC;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.health = 0;
@@ -2444,7 +2444,7 @@ void AerodentThrowableFallLeft(void)
 
 void AerodentThrowablePrepareKnockback(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3B4;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.work1 = 0;
@@ -2469,7 +2469,7 @@ void AerodentThrowableDie(void)
 
 void AerodentThrowablePrepareThrow(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB3B4;
+    gCurrentSprite.pOamData = sAerodentOam_83DB3B4;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
     gCurrentSprite.work2 = 8;
@@ -2508,7 +2508,7 @@ void AerodentThrowableStartCarryLeft(void)
 }
 void AerodentThrowableSetThrownAnimation(void)
 {
-    gCurrentSprite.pOamData = sUnk_83DB49C;
+    gCurrentSprite.pOamData = sAerodentOam_83DB49C;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = 0;
 }
@@ -2532,7 +2532,7 @@ void AerodentEmitterInit(void)
     gCurrentSprite.hitboxExtentLeft = 32;
     gCurrentSprite.hitboxExtentRight = 28;
     gCurrentSprite.work0 = 16;
-    gCurrentSprite.pOamData = sUnk_83DB5C8;
+    gCurrentSprite.pOamData = sAerodentOam_83DB5C8;
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.currentAnimationFrame = frame;
     gCurrentSprite.warioCollision = 14;
@@ -2553,7 +2553,7 @@ void AerodentEmitterAttachToParent(void)
     if (gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 16;
         gCurrentSprite.work3 = 0;
-        gCurrentSprite.pOamData = sUnk_83DB5E8;
+        gCurrentSprite.pOamData = sAerodentOam_83DB5E8;
         gCurrentSprite.animationTimer = 0;
         gCurrentSprite.currentAnimationFrame = 0;
     }
@@ -2647,13 +2647,13 @@ void AerodentEmitterStartBurst(void)
     gCurrentSprite.hitboxExtentDown = 0;
 
     if (gCurrentSprite.roomSlot == 2) {
-        gCurrentSprite.pOamData = sUnk_83DB588;
+        gCurrentSprite.pOamData = sAerodentOam_83DB588;
         gCurrentSprite.pose = 48;
     } else if (gCurrentSprite.roomSlot == 1) {
-        gCurrentSprite.pOamData = sUnk_83DB5A8;
+        gCurrentSprite.pOamData = sAerodentOam_83DB5A8;
         gCurrentSprite.pose = 48;
     } else {
-        gCurrentSprite.pOamData = sUnk_83DB5A8;
+        gCurrentSprite.pOamData = sAerodentOam_83DB5A8;
         gCurrentSprite.pose = 24;
     }
 }
@@ -2771,7 +2771,7 @@ void SpriteAerodentWeakPoint(void)
             asm("" : "=r"(clearMask) : "0"(0xFFFB));
             value &= clearMask;
             current->status = value;
-            current->pOamData = sUnk_83DBA60;
+            current->pOamData = sAerodentOam_83DBA60;
             current->currentAnimationFrame = frameZero;
             current->animationTimer = timerZero;
             current->pose = 16;

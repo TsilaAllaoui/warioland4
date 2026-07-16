@@ -2,7 +2,7 @@
 
 #include "sprite.h"
 
-extern const struct AnimationFrame sUnk_83C4CD8[];
+extern const struct AnimationFrame sMiniculaOam_83C4CD8[];
 void func_8026450(void);
 
 void InitMinicula(void)
@@ -29,7 +29,7 @@ void InitMinicula(void)
     sprite->hitboxExtentDown = 136;
     sprite->hitboxExtentLeft = 16;
     sprite->hitboxExtentRight = 12;
-    sprite->pOamData = sUnk_83C4CD8;
+    sprite->pOamData = sMiniculaOam_83C4CD8;
     sprite->currentAnimationFrame = zero;
     sprite->animationTimer = zeroHalfword;
     sprite->pose = 16;
