@@ -4775,14 +4775,158 @@
       "entries": [
         {
           "address": "0x083C4B28",
+          "end": "0x083C4B36",
+          "symbol": "sMiniculaOam_83C4CD8_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B36",
+          "end": "0x083C4B44",
+          "symbol": "sMiniculaOam_83C4CD8_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B44",
+          "end": "0x083C4B52",
+          "symbol": "sMiniculaOam_83C4CD8_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B52",
+          "end": "0x083C4B60",
+          "symbol": "sMiniculaOam_83C4CD8_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B60",
+          "end": "0x083C4B74",
+          "symbol": "sMiniculaOam_83C4CD8_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B74",
+          "end": "0x083C4B88",
+          "symbol": "sMiniculaOam_83C4CD8_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B88",
+          "end": "0x083C4B9C",
+          "symbol": "sMiniculaOam_83C4CD8_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4B9C",
+          "end": "0x083C4BB0",
+          "symbol": "sMiniculaOam_83C4CD8_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4BB0",
+          "end": "0x083C4BC4",
+          "symbol": "sMiniculaOam_83C4CD8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4BC4",
+          "end": "0x083C4BD8",
+          "symbol": "sMiniculaOam_83C4CD8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4BD8",
+          "end": "0x083C4BEC",
+          "symbol": "sMiniculaOam_83C4CD8_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4BEC",
+          "end": "0x083C4C00",
+          "symbol": "sMiniculaOam_83C4CD8_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C00",
+          "end": "0x083C4C14",
+          "symbol": "sMiniculaOam_83C4CD8_Frame33",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C14",
+          "end": "0x083C4C28",
+          "symbol": "sMiniculaOam_83C4CD8_Frame34",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C28",
+          "end": "0x083C4C3C",
+          "symbol": "sMiniculaOam_83C4CD8_Frame35",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C3C",
+          "end": "0x083C4C50",
+          "symbol": "sMiniculaOam_83C4CD8_Frame36",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C50",
+          "end": "0x083C4C64",
+          "symbol": "sMiniculaOam_83C4CD8_Frame37",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C64",
+          "end": "0x083C4C78",
+          "symbol": "sMiniculaOam_83C4CD8_Frame38",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C78",
+          "end": "0x083C4C8C",
+          "symbol": "sMiniculaOam_83C4CD8_Frame39",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4C8C",
+          "end": "0x083C4CA0",
+          "symbol": "sMiniculaOam_83C4CD8_Frame40",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4CA0",
+          "end": "0x083C4CAE",
+          "symbol": "sMiniculaOam_83C4CD8_Frame45",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4CAE",
+          "end": "0x083C4CBC",
+          "symbol": "sMiniculaOam_83C4CD8_Frame46",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4CBC",
+          "end": "0x083C4CCA",
+          "symbol": "sMiniculaOam_83C4CD8_Frame43",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4CCA",
           "end": "0x083C4CD8",
-          "symbol": "sSpriteDataRaw_083C4B28",
-          "type": "raw"
+          "symbol": "sMiniculaOam_83C4CD8_Frame44",
+          "type": "frame"
         },
         {
           "address": "0x083C4CD8",
+          "end": "0x083C4EE0",
+          "symbol": "sMiniculaOam_83C4CD8",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C4EE0",
           "end": "0x083C4F20",
-          "symbol": "sUnk_83C4CD8",
+          "symbol": "sSpriteDataRaw_083C4EE0",
           "type": "raw"
         },
         {
@@ -14480,6 +14624,7 @@
     "sButatabiTurnStartOam": "sButatabiTurningOam",
     "sIcicleLandingOam": "sIcicleImpactOam",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
+    "sUnk_83C4CD8": "sMiniculaOam_83C4CD8",
     "sUnk_83C5364": "sGhostOam_83C5364",
     "sUnk_83C538C": "sGhostOam_83C538C",
     "sUnk_83C53B4": "sGhostOam_83C53B4",
