@@ -3594,9 +3594,15 @@ const struct AnimationFrame sCaterpillarCarriedOam[] = {
     {sCaterpillarCarriedOam_Frame2, 10},
     ANIMATION_TERMINATOR
 };
-/* 0x083C78A4 - 0x083C78B4: not yet typed. */
+/* 0x083C78A4 - 0x083C78AC: not yet typed. */
 const u8 sSpriteDataRaw_083C78A4[] = {
-    0x01, 0x00, 0xE0, 0x00, 0xF0, 0x81, 0x00, 0x82, 0x01, 0x00, 0xE0, 0x00, 0xF0, 0x81, 0x04, 0x82,
+    0x01, 0x00, 0xE0, 0x00, 0xF0, 0x81, 0x00, 0x82,
+};
+/* 0x083C78AC: decoded OAM frame. */
+const u16 sToyBlockSquareOam_Frame1[] = {
+    1,
+    /* 00E0 81F0 8204 */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x32, 0, 516, 8, 0),
 };
 /* 0x083C78B4: decoded OAM frame. */
 const u16 sToyBlockRoundOam_Frame1[] = {
@@ -3624,9 +3630,10 @@ const u8 sSpriteDataRaw_083C78BC[] = {
 const u8 sToyBlockTriangleOam[] = {
     0xA4, 0x78, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-/* 0x083C799C - 0x083C79AC: not yet typed. */
-const u8 sToyBlockSquareOam[] = {
-    0xAC, 0x78, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C799C: Match_disasm_toy_block_square. */
+const struct AnimationFrame sToyBlockSquareOam[] = {
+    {sToyBlockSquareOam_Frame1, U8_MAX},
+    ANIMATION_TERMINATOR
 };
 /* 0x083C79AC: Match_disasm_toy_block_round. */
 const struct AnimationFrame sToyBlockRoundOam[] = {
