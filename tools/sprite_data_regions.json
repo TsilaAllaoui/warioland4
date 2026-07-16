@@ -15923,99 +15923,399 @@
         },
         {
           "address": "0x083E1038",
+          "end": "0x083E1052",
+          "symbol": "sToyCarIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1052",
+          "end": "0x083E1072",
+          "symbol": "sToyCarIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1072",
+          "end": "0x083E108C",
+          "symbol": "sToyCarIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E108C",
+          "end": "0x083E10A6",
+          "symbol": "sToyCarIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E10A6",
+          "end": "0x083E10C0",
+          "symbol": "sToyCarIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E10C0",
+          "end": "0x083E10DA",
+          "symbol": "sToyCarIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E10DA",
+          "end": "0x083E10FA",
+          "symbol": "sToyCarIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E10FA",
+          "end": "0x083E1114",
+          "symbol": "sToyCarIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1114",
+          "end": "0x083E112E",
+          "symbol": "sToyCarIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E112E",
+          "end": "0x083E1148",
+          "symbol": "sToyCarIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1148",
+          "end": "0x083E1162",
+          "symbol": "sToyCarTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1162",
+          "end": "0x083E1182",
+          "symbol": "sToyCarTurningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1182",
+          "end": "0x083E119C",
+          "symbol": "sToyCarTurningOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E119C",
+          "end": "0x083E11B0",
+          "symbol": "sToyCarTurningOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E11B0",
+          "end": "0x083E11CA",
+          "symbol": "sToyCarTurningAroundOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E11CA",
+          "end": "0x083E11EA",
+          "symbol": "sToyCarTurningAroundOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E11EA",
+          "end": "0x083E1204",
+          "symbol": "sToyCarTurningAroundOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1204",
+          "end": "0x083E1224",
+          "symbol": "sToyCarAlternateStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1224",
+          "end": "0x083E123E",
+          "symbol": "sToyCarAlternateStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E123E",
+          "end": "0x083E1258",
+          "symbol": "sToyCarAlternateStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1258",
+          "end": "0x083E127E",
+          "symbol": "sToyCarAlternateStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E127E",
+          "end": "0x083E129E",
+          "symbol": "sToyCarAlternateStunnedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E129E",
+          "end": "0x083E12B8",
+          "symbol": "sToyCarAlternateStunnedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E12B8",
+          "end": "0x083E12D8",
+          "symbol": "sToyCarAlternateStunnedOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E12D8",
+          "end": "0x083E12FE",
+          "symbol": "sToyCarAlternateStunnedOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E12FE",
+          "end": "0x083E1312",
+          "symbol": "sToyCarAlternateStunnedOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1312",
+          "end": "0x083E132C",
+          "symbol": "sToyCarStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E132C",
+          "end": "0x083E134C",
+          "symbol": "sToyCarStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E134C",
+          "end": "0x083E136C",
+          "symbol": "sToyCarHeldOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E136C",
+          "end": "0x083E138C",
+          "symbol": "sToyCarHeldOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E138C",
+          "end": "0x083E13B2",
+          "symbol": "sToyCarAlternatePushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E13B2",
+          "end": "0x083E13D8",
+          "symbol": "sToyCarAlternatePushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E13D8",
+          "end": "0x083E13FE",
+          "symbol": "sToyCarPushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E13FE",
+          "end": "0x083E1424",
+          "symbol": "sToyCarPushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1424",
+          "end": "0x083E1444",
+          "symbol": "sToyCarAlternateCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1444",
+          "end": "0x083E1464",
+          "symbol": "sToyCarAlternateCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1464",
+          "end": "0x083E148A",
+          "symbol": "sToyCarAlternateCrushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E148A",
+          "end": "0x083E14AA",
+          "symbol": "sToyCarAlternateCrushedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E14AA",
+          "end": "0x083E14CA",
+          "symbol": "sToyCarCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E14CA",
+          "end": "0x083E14E4",
+          "symbol": "sToyCarCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E14E4",
+          "end": "0x083E14FE",
+          "symbol": "sToyCarCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E14FE",
+          "end": "0x083E1518",
+          "symbol": "sToyCarCrushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1518",
+          "end": "0x083E1532",
+          "symbol": "sToyCarCrushedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1532",
+          "end": "0x083E1552",
+          "symbol": "sToyCarAlternateTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1552",
+          "end": "0x083E1572",
+          "symbol": "sToyCarAlternateTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1572",
+          "end": "0x083E158C",
+          "symbol": "sToyCarTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E158C",
+          "end": "0x083E15A6",
+          "symbol": "sToyCarTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E15A6",
+          "end": "0x083E15D2",
+          "symbol": "sToyCarRecoveringOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E15D2",
+          "end": "0x083E15FE",
+          "symbol": "sToyCarRecoveringOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E15FE",
+          "end": "0x083E162A",
+          "symbol": "sToyCarRecoveringOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E162A",
           "end": "0x083E1650",
-          "symbol": "sSpriteDataRaw_083E1038",
-          "type": "raw"
+          "symbol": "sToyCarRecoveringOam_Frame4",
+          "type": "frame"
         },
         {
           "address": "0x083E1650",
           "end": "0x083E16A8",
           "symbol": "sToyCarIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E16A8",
           "end": "0x083E16D8",
           "symbol": "sToyCarFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E16D8",
           "end": "0x083E1708",
           "symbol": "sToyCarTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1708",
           "end": "0x083E1738",
           "symbol": "sToyCarTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1738",
           "end": "0x083E1790",
           "symbol": "sToyCarAlternateStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1790",
           "end": "0x083E17B0",
           "symbol": "sToyCarStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E17B0",
           "end": "0x083E1818",
           "symbol": "sToyCarGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1818",
           "end": "0x083E1830",
           "symbol": "sToyCarHeldOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1830",
           "end": "0x083E1850",
           "symbol": "sToyCarAlternatePushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1850",
           "end": "0x083E1870",
           "symbol": "sToyCarPushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1870",
           "end": "0x083E18A0",
           "symbol": "sToyCarAlternateCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E18A0",
           "end": "0x083E18D0",
           "symbol": "sToyCarCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E18D0",
           "end": "0x083E18E8",
           "symbol": "sToyCarAlternateTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E18E8",
           "end": "0x083E1900",
           "symbol": "sToyCarTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1900",
           "end": "0x083E1928",
           "symbol": "sToyCarRecoveringOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1928",
