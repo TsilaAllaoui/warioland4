@@ -447,8 +447,44 @@
         },
         {
           "address": "0x083BA5C0",
-          "end": "0x083BA7A4",
+          "end": "0x083BA61C",
           "symbol": "sUnk_83BA5C0",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BA61C",
+          "end": "0x083BA648",
+          "symbol": "sBossTreasureOam_83BA7BC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BA648",
+          "end": "0x083BA674",
+          "symbol": "sBossTreasureOam_83BA7BC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BA674",
+          "end": "0x083BA6A0",
+          "symbol": "sBossTreasureOam_83BA7BC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BA6A0",
+          "end": "0x083BA6CC",
+          "symbol": "sBossTreasureOam_83BA7BC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BA6CC",
+          "end": "0x083BA6F8",
+          "symbol": "sBossTreasureOam_83BA7BC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BA6F8",
+          "end": "0x083BA7A4",
+          "symbol": "sSpriteDataRaw_083BA6F8",
           "type": "raw"
         },
         {
@@ -460,8 +496,8 @@
         {
           "address": "0x083BA7BC",
           "end": "0x083BA7EC",
-          "symbol": "sUnk_83BA7BC",
-          "type": "raw"
+          "symbol": "sBossTreasureOam_83BA7BC",
+          "type": "anim"
         },
         {
           "address": "0x083BA7EC",
@@ -4259,15 +4295,39 @@
         },
         {
           "address": "0x083CF614",
+          "end": "0x083CF64C",
+          "symbol": "sBossTreasureOam_83CF72C_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CF64C",
+          "end": "0x083CF684",
+          "symbol": "sBossTreasureOam_83CF72C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CF684",
+          "end": "0x083CF6BC",
+          "symbol": "sBossTreasureOam_83CF72C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CF6BC",
+          "end": "0x083CF6F4",
+          "symbol": "sBossTreasureOam_83CF72C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CF6F4",
           "end": "0x083CF72C",
-          "symbol": "sSpriteDataRaw_083CF614",
-          "type": "raw"
+          "symbol": "sBossTreasureOam_83CF72C_Frame5",
+          "type": "frame"
         },
         {
           "address": "0x083CF72C",
           "end": "0x083CF75C",
-          "symbol": "sUnk_83CF72C",
-          "type": "raw"
+          "symbol": "sBossTreasureOam_83CF72C",
+          "type": "anim"
         },
         {
           "address": "0x083CF75C",
@@ -6083,8 +6143,38 @@
         },
         {
           "address": "0x083DAA28",
+          "end": "0x083DAA42",
+          "symbol": "sBossTreasureOam_83DAB40_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DAA42",
+          "end": "0x083DAA62",
+          "symbol": "sBossTreasureOam_83DAB40_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DAA62",
+          "end": "0x083DAA82",
+          "symbol": "sBossTreasureOam_83DAB40_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DAA82",
+          "end": "0x083DAAA2",
+          "symbol": "sBossTreasureOam_83DAB40_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DAAA2",
+          "end": "0x083DAAC2",
+          "symbol": "sBossTreasureOam_83DAB40_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DAAC2",
           "end": "0x083DAB28",
-          "symbol": "sSpriteDataRaw_083DAA28",
+          "symbol": "sSpriteDataRaw_083DAAC2",
           "type": "raw"
         },
         {
@@ -6095,8 +6185,14 @@
         },
         {
           "address": "0x083DAB40",
+          "end": "0x083DAB70",
+          "symbol": "sBossTreasureOam_83DAB40",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DAB70",
           "end": "0x083DABA0",
-          "symbol": "sUnk_83DAB40",
+          "symbol": "sSpriteDataRaw_083DAB70",
           "type": "raw"
         },
         {
@@ -7277,8 +7373,20 @@
         },
         {
           "address": "0x083DF80C",
-          "end": "0x083DF948",
+          "end": "0x083DF8EC",
           "symbol": "sUnk_83DF80C",
+          "type": "raw"
+        },
+        {
+          "address": "0x083DF8EC",
+          "end": "0x083DF8F4",
+          "symbol": "sBossTreasureOam_83DF9E8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DF8F4",
+          "end": "0x083DF948",
+          "symbol": "sSpriteDataRaw_083DF8F4",
           "type": "raw"
         },
         {
@@ -7319,8 +7427,14 @@
         },
         {
           "address": "0x083DF9E8",
+          "end": "0x083DF9F8",
+          "symbol": "sBossTreasureOam_83DF9E8",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DF9F8",
           "end": "0x083DFA38",
-          "symbol": "sUnk_83DF9E8",
+          "symbol": "sSpriteDataRaw_083DF9F8",
           "type": "raw"
         },
         {
@@ -8588,6 +8702,8 @@
   ],
   "aliases": {
     "sAerodentBalloonInflatingOam": "sAerodentOam_83DABA0",
+    "sBossTreasureOam_83DABA0": "sAerodentOam_83DABA0",
+    "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
     "sUnk_83C62FC": "sBeezleyOam_83C62FC",
     "sUnk_83C6384": "sBeezleyOam_83C6384",
     "sUnk_83C63EC": "sBeezleyOam_83C63EC",
@@ -8617,8 +8733,10 @@
     "sUnk_83CF5BC": "sCatbatOam_83CF5BC",
     "sUnk_83CF5D4": "sCatbatOam_83CF5D4",
     "sUnk_83CF5EC": "sCatbatOam_83CF5EC",
+    "sUnk_83CF72C": "sBossTreasureOam_83CF72C",
     "sUnk_83CF8BC": "sCatbatOam_83CF8BC",
     "sUnk_83DAB28": "sAerodentOam_83DAB28",
+    "sUnk_83DAB40": "sBossTreasureOam_83DAB40",
     "sUnk_83DABA0": "sAerodentOam_83DABA0",
     "sUnk_83DABB0": "sAerodentOam_83DABB0",
     "sUnk_83DABC8": "sAerodentOam_83DABC8",
@@ -8650,6 +8768,7 @@
     "sUnk_83DB5A8": "sAerodentOam_83DB5A8",
     "sUnk_83DB5C8": "sAerodentOam_83DB5C8",
     "sUnk_83DB5E8": "sAerodentOam_83DB5E8",
-    "sUnk_83DBA60": "sAerodentOam_83DBA60"
+    "sUnk_83DBA60": "sAerodentOam_83DBA60",
+    "sUnk_83DF9E8": "sBossTreasureOam_83DF9E8"
   }
 }
