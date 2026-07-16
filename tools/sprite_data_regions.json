@@ -873,111 +873,525 @@
         },
         {
           "address": "0x083BAA3C",
-          "end": "0x083BB0E8",
+          "end": "0x083BAAE0",
           "symbol": "sUnk_83BAA3C",
           "type": "raw"
         },
         {
+          "address": "0x083BAAE0",
+          "end": "0x083BAAFA",
+          "symbol": "sTotsumenOam_83BB0E8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAAFA",
+          "end": "0x083BAB14",
+          "symbol": "sTotsumenOam_83BB0E8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAB14",
+          "end": "0x083BAB28",
+          "symbol": "sTotsumenOam_83BB0E8_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAB28",
+          "end": "0x083BAB42",
+          "symbol": "sTotsumenOam_83BB0E8_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAB42",
+          "end": "0x083BAB5C",
+          "symbol": "sTotsumenOam_83BB0E8_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAB5C",
+          "end": "0x083BAB76",
+          "symbol": "sTotsumenOam_83BB0E8_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAB76",
+          "end": "0x083BAB90",
+          "symbol": "sTotsumenOam_83BB158_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAB90",
+          "end": "0x083BABAA",
+          "symbol": "sTotsumenOam_83BB158_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BABAA",
+          "end": "0x083BABBE",
+          "symbol": "sTotsumenOam_83BB158_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BABBE",
+          "end": "0x083BABD2",
+          "symbol": "sTotsumenOam_83BB158_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BABD2",
+          "end": "0x083BABE6",
+          "symbol": "sTotsumenOam_83BB158_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BABE6",
+          "end": "0x083BAC00",
+          "symbol": "sTotsumenOam_83BB158_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC00",
+          "end": "0x083BAC1A",
+          "symbol": "sTotsumenOam_83BB158_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC1A",
+          "end": "0x083BAC34",
+          "symbol": "sTotsumenOam_83BB158_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC34",
+          "end": "0x083BAC48",
+          "symbol": "sTotsumenOam_83BB1A0_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC48",
+          "end": "0x083BAC56",
+          "symbol": "sTotsumenOam_83BB1A0_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC56",
+          "end": "0x083BAC64",
+          "symbol": "sTotsumenOam_83BB1A0_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC64",
+          "end": "0x083BAC78",
+          "symbol": "sTotsumenOam_83BB1A0_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC78",
+          "end": "0x083BAC8C",
+          "symbol": "sTotsumenOam_83BB1A0_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAC8C",
+          "end": "0x083BACA0",
+          "symbol": "sTotsumenOam_83BB1A0_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BACA0",
+          "end": "0x083BACA8",
+          "symbol": "sSpriteDataRaw_083BACA0",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BACA8",
+          "end": "0x083BACC2",
+          "symbol": "sTotsumenOam_83BB1D8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BACC2",
+          "end": "0x083BACD6",
+          "symbol": "sTotsumenOam_83BB1D8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BACD6",
+          "end": "0x083BACEA",
+          "symbol": "sTotsumenOam_83BB1D8_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BACEA",
+          "end": "0x083BACFE",
+          "symbol": "sTotsumenOam_83BB1D8_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BACFE",
+          "end": "0x083BAD12",
+          "symbol": "sTotsumenOam_83BB1D8_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAD12",
+          "end": "0x083BAD26",
+          "symbol": "sTotsumenOam_83BB1D8_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAD26",
+          "end": "0x083BAD3A",
+          "symbol": "sTotsumenOam_83BB1D8_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAD3A",
+          "end": "0x083BAD4E",
+          "symbol": "sTotsumenOam_83BB278_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAD4E",
+          "end": "0x083BAD62",
+          "symbol": "sTotsumenOam_83BB3F0_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAD62",
+          "end": "0x083BAD76",
+          "symbol": "sSpriteDataRaw_083BAD62",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BAD76",
+          "end": "0x083BAD90",
+          "symbol": "sTotsumenOam_83BB3F0_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAD90",
+          "end": "0x083BADAA",
+          "symbol": "sSpriteDataRaw_083BAD90",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BADAA",
+          "end": "0x083BADC4",
+          "symbol": "sTotsumenOam_83BB3F0_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BADC4",
+          "end": "0x083BADE6",
+          "symbol": "sSpriteDataRaw_083BADC4",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BADE6",
+          "end": "0x083BAE00",
+          "symbol": "sTotsumenOam_83BB240_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE00",
+          "end": "0x083BAE1A",
+          "symbol": "sTotsumenOam_83BB240_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE1A",
+          "end": "0x083BAE34",
+          "symbol": "sTotsumenOam_83BB240_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE34",
+          "end": "0x083BAE48",
+          "symbol": "sTotsumenOam_83BB240_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE48",
+          "end": "0x083BAE62",
+          "symbol": "sTotsumenOam_83BB240_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE62",
+          "end": "0x083BAE7C",
+          "symbol": "sTotsumenOam_83BB240_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE7C",
+          "end": "0x083BAE84",
+          "symbol": "sSpriteDataRaw_083BAE7C",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BAE84",
+          "end": "0x083BAE9E",
+          "symbol": "sTotsumenOam_83BB278_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAE9E",
+          "end": "0x083BAEB2",
+          "symbol": "sTotsumenOam_83BB278_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAEB2",
+          "end": "0x083BAEC6",
+          "symbol": "sTotsumenOam_83BB278_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAEC6",
+          "end": "0x083BAEDA",
+          "symbol": "sTotsumenOam_83BB278_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAEDA",
+          "end": "0x083BAEEE",
+          "symbol": "sTotsumenOam_83BB278_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAEEE",
+          "end": "0x083BAF02",
+          "symbol": "sTotsumenOam_83BB2B0_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF02",
+          "end": "0x083BAF16",
+          "symbol": "sTotsumenOam_83BB2B0_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF16",
+          "end": "0x083BAF30",
+          "symbol": "sTotsumenOam_83BB220_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF30",
+          "end": "0x083BAF4A",
+          "symbol": "sTotsumenOam_83BB220_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF4A",
+          "end": "0x083BAF64",
+          "symbol": "sTotsumenOam_83BB2B0_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF64",
+          "end": "0x083BAF7E",
+          "symbol": "sTotsumenOam_83BB2B0_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF7E",
+          "end": "0x083BAF98",
+          "symbol": "sTotsumenOam_83BB2E8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAF98",
+          "end": "0x083BAFB2",
+          "symbol": "sTotsumenOam_83BB2E8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAFB2",
+          "end": "0x083BAFCC",
+          "symbol": "sTotsumenOam_83BB2E8_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAFCC",
+          "end": "0x083BAFE6",
+          "symbol": "sTotsumenOam_83BB308_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BAFE6",
+          "end": "0x083BB000",
+          "symbol": "sTotsumenOam_83BB308_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB000",
+          "end": "0x083BB01A",
+          "symbol": "sTotsumenOam_83BB308_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB01A",
+          "end": "0x083BB034",
+          "symbol": "sTotsumenOam_83BB308_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB034",
+          "end": "0x083BB04E",
+          "symbol": "sTotsumenOam_83BB360_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB04E",
+          "end": "0x083BB068",
+          "symbol": "sTotsumenOam_83BB360_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB068",
+          "end": "0x083BB096",
+          "symbol": "sSpriteDataRaw_083BB068",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BB096",
+          "end": "0x083BB09E",
+          "symbol": "sTotsumenOam_83BB388_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB09E",
+          "end": "0x083BB0A6",
+          "symbol": "sTotsumenOam_83BB3A8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB0A6",
+          "end": "0x083BB0BA",
+          "symbol": "sTotsumenOam_83BB3F0_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB0BA",
+          "end": "0x083BB0CE",
+          "symbol": "sTotsumenOam_83BB3F0_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB0CE",
+          "end": "0x083BB0E8",
+          "symbol": "sTotsumenOam_83BB220_Frame3",
+          "type": "frame"
+        },
+        {
           "address": "0x083BB0E8",
           "end": "0x083BB120",
-          "symbol": "sUnk_83BB0E8",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB0E8",
+          "type": "anim"
         },
         {
           "address": "0x083BB120",
           "end": "0x083BB158",
-          "symbol": "sUnk_83BB120",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB120",
+          "type": "anim"
         },
         {
           "address": "0x083BB158",
           "end": "0x083BB1A0",
-          "symbol": "sUnk_83BB158",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB158",
+          "type": "anim"
         },
         {
           "address": "0x083BB1A0",
           "end": "0x083BB1D8",
-          "symbol": "sUnk_83BB1A0",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB1A0",
+          "type": "anim"
         },
         {
           "address": "0x083BB1D8",
           "end": "0x083BB220",
-          "symbol": "sUnk_83BB1D8",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB1D8",
+          "type": "anim"
         },
         {
           "address": "0x083BB220",
           "end": "0x083BB240",
-          "symbol": "sUnk_83BB220",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB220",
+          "type": "anim"
         },
         {
           "address": "0x083BB240",
           "end": "0x083BB278",
-          "symbol": "sUnk_83BB240",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB240",
+          "type": "anim"
         },
         {
           "address": "0x083BB278",
           "end": "0x083BB2B0",
-          "symbol": "sUnk_83BB278",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB278",
+          "type": "anim"
         },
         {
           "address": "0x083BB2B0",
           "end": "0x083BB2E8",
-          "symbol": "sUnk_83BB2B0",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB2B0",
+          "type": "anim"
         },
         {
           "address": "0x083BB2E8",
           "end": "0x083BB308",
-          "symbol": "sUnk_83BB2E8",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB2E8",
+          "type": "anim"
         },
         {
           "address": "0x083BB308",
+          "end": "0x083BB330",
+          "symbol": "sTotsumenOam_83BB308",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BB330",
           "end": "0x083BB360",
-          "symbol": "sUnk_83BB308",
+          "symbol": "sSpriteDataRaw_083BB330",
           "type": "raw"
         },
         {
           "address": "0x083BB360",
           "end": "0x083BB378",
-          "symbol": "sUnk_83BB360",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB360",
+          "type": "anim"
         },
         {
           "address": "0x083BB378",
           "end": "0x083BB388",
-          "symbol": "sUnk_83BB378",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB378",
+          "type": "anim"
         },
         {
           "address": "0x083BB388",
           "end": "0x083BB3A8",
-          "symbol": "sUnk_83BB388",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB388",
+          "type": "anim"
         },
         {
           "address": "0x083BB3A8",
           "end": "0x083BB3C0",
-          "symbol": "sUnk_83BB3A8",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB3A8",
+          "type": "anim"
         },
         {
           "address": "0x083BB3C0",
           "end": "0x083BB3F0",
-          "symbol": "sUnk_83BB3C0",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB3C0",
+          "type": "anim"
         },
         {
           "address": "0x083BB3F0",
           "end": "0x083BB480",
-          "symbol": "sUnk_83BB3F0",
-          "type": "raw"
+          "symbol": "sTotsumenOam_83BB3F0",
+          "type": "anim"
         },
         {
           "address": "0x083BB480",
@@ -18317,6 +18731,23 @@
     "sUnk_83B4534": "sRotatingPlatformOam_83B4534",
     "sUnk_83B4544": "sRotatingPlatformOam_83B4544",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
+    "sUnk_83BB0E8": "sTotsumenOam_83BB0E8",
+    "sUnk_83BB120": "sTotsumenOam_83BB120",
+    "sUnk_83BB158": "sTotsumenOam_83BB158",
+    "sUnk_83BB1A0": "sTotsumenOam_83BB1A0",
+    "sUnk_83BB1D8": "sTotsumenOam_83BB1D8",
+    "sUnk_83BB220": "sTotsumenOam_83BB220",
+    "sUnk_83BB240": "sTotsumenOam_83BB240",
+    "sUnk_83BB278": "sTotsumenOam_83BB278",
+    "sUnk_83BB2B0": "sTotsumenOam_83BB2B0",
+    "sUnk_83BB2E8": "sTotsumenOam_83BB2E8",
+    "sUnk_83BB308": "sTotsumenOam_83BB308",
+    "sUnk_83BB360": "sTotsumenOam_83BB360",
+    "sUnk_83BB378": "sTotsumenOam_83BB378",
+    "sUnk_83BB388": "sTotsumenOam_83BB388",
+    "sUnk_83BB3A8": "sTotsumenOam_83BB3A8",
+    "sUnk_83BB3C0": "sTotsumenOam_83BB3C0",
+    "sUnk_83BB3F0": "sTotsumenOam_83BB3F0",
     "sUnk_83BCEB4": "sTogeroboOam_83BCEB4",
     "sUnk_83BCEFC": "sTogeroboOam_83BCEFC",
     "sUnk_83BCF24": "sTogeroboOam_83BCF24",
