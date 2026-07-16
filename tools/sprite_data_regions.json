@@ -4659,39 +4659,87 @@
         },
         {
           "address": "0x083C491C",
-          "end": "0x083C4984",
+          "end": "0x083C492C",
           "symbol": "sUnk_83C491C",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C492C",
+          "end": "0x083C493A",
+          "symbol": "sMayubirdIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C493A",
+          "end": "0x083C4948",
+          "symbol": "sMayubirdIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4948",
+          "end": "0x083C4956",
+          "symbol": "sMayubirdIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4956",
+          "end": "0x083C4964",
+          "symbol": "sMayubirdIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4964",
+          "end": "0x083C496C",
+          "symbol": "sMayubirdFlightEndOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C496C",
+          "end": "0x083C4974",
+          "symbol": "sMayubirdFallOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4974",
+          "end": "0x083C4982",
+          "symbol": "sMayubirdWaitOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4982",
+          "end": "0x083C4984",
+          "symbol": "sSpriteDataRaw_083C4982",
           "type": "raw"
         },
         {
           "address": "0x083C4984",
           "end": "0x083C49AC",
           "symbol": "sMayubirdIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C49AC",
           "end": "0x083C49D4",
           "symbol": "sMayubirdFlightEndOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C49D4",
           "end": "0x083C49EC",
           "symbol": "sMayubirdWaitOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C49EC",
           "end": "0x083C4A04",
           "symbol": "sMayubirdFlightOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C4A04",
           "end": "0x083C4A24",
           "symbol": "sMayubirdFallOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C4A24",
