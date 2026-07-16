@@ -22,16 +22,31 @@
  * OAM_DATA_SECTION, per-address linker sections, or asm/generated_oam files.
  */
 
-/* 0x083B451C - 0x083B4534: not yet typed. */
-const u8 sSpriteDataRaw_083B451C[] = {
-    0x01, 0x00, 0xE0, 0x00, 0xE0, 0xC1, 0x00, 0x82, 0x02, 0x00, 0xFA, 0x40, 0xF0, 0x41, 0x49, 0x82,
-    0x02, 0x40, 0xF8, 0x01, 0x6A, 0x82, 0x00, 0x00,
+/* 0x083B451C: decoded OAM frame. */
+const u16 sRotatingPlatformOam_83B4534_Frame1[] = {
+    1,
+    /* 00E0 C1E0 8200 */
+    OAM_ENTRY(-32, -32, SPRITE_SIZE_64x64, 0, 512, 8, 0),
 };
-/* 0x083B4534 - 0x083B4544: not yet typed. */
-const u8 sUnk_83B4534[] = {
-    0x1C, 0x45, 0x3B, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083B4524: decoded OAM frame. */
+const u16 sRotatingPlatformOam_83B4544_Frame1[] = {
+    2,
+    /* 40FA 41F0 8249 */
+    OAM_ENTRY(-16, -6, SPRITE_SIZE_32x8, 0, 585, 8, 0),
+    /* 4002 01F8 826A */
+    OAM_ENTRY(-8, 2, SPRITE_SIZE_16x8, 0, 618, 8, 0),
 };
-/* 0x083B4544 - 0x083B4554: not yet typed. */
-const u8 sUnk_83B4544[] = {
-    0x24, 0x45, 0x3B, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083B4532 - 0x083B4534: not yet typed. */
+const u8 sSpriteDataRaw_083B4532[] = {
+    0x00, 0x00,
+};
+/* 0x083B4534: Match_disasm_rotating_platform. */
+const struct AnimationFrame sRotatingPlatformOam_83B4534[] = {
+    {sRotatingPlatformOam_83B4534_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083B4544: Match_disasm_rotating_platform. */
+const struct AnimationFrame sRotatingPlatformOam_83B4544[] = {
+    {sRotatingPlatformOam_83B4544_Frame1, 200},
+    ANIMATION_TERMINATOR
 };

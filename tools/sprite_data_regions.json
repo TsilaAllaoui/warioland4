@@ -17,21 +17,33 @@
       "entries": [
         {
           "address": "0x083B451C",
+          "end": "0x083B4524",
+          "symbol": "sRotatingPlatformOam_83B4534_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B4524",
+          "end": "0x083B4532",
+          "symbol": "sRotatingPlatformOam_83B4544_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B4532",
           "end": "0x083B4534",
-          "symbol": "sSpriteDataRaw_083B451C",
+          "symbol": "sSpriteDataRaw_083B4532",
           "type": "raw"
         },
         {
           "address": "0x083B4534",
           "end": "0x083B4544",
-          "symbol": "sUnk_83B4534",
-          "type": "raw"
+          "symbol": "sRotatingPlatformOam_83B4534",
+          "type": "anim"
         },
         {
           "address": "0x083B4544",
           "end": "0x083B4554",
-          "symbol": "sUnk_83B4544",
-          "type": "raw"
+          "symbol": "sRotatingPlatformOam_83B4544",
+          "type": "anim"
         }
       ]
     },
@@ -16154,6 +16166,8 @@
     "sRobobirdAttackStartOam": "sRobobirdAttackStartupOam",
     "sRobobirdDefeatedOam": "sRobobirdFallingOam",
     "sRobobirdStunnedOam": "sRobobirdFastAttackOam",
+    "sUnk_83B4534": "sRotatingPlatformOam_83B4534",
+    "sUnk_83B4544": "sRotatingPlatformOam_83B4544",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
     "sUnk_83C4CD8": "sMiniculaOam_83C4CD8",
     "sUnk_83C5364": "sGhostOam_83C5364",
