@@ -11033,32 +11033,182 @@
         },
         {
           "address": "0x083F1084",
-          "end": "0x083F122C",
+          "end": "0x083F10A0",
           "symbol": "sChandelierFallVelocity",
           "type": "raw"
+        },
+        {
+          "address": "0x083F10A0",
+          "end": "0x083F10A8",
+          "symbol": "sCrumblingBlockIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F10A8",
+          "end": "0x083F10B0",
+          "symbol": "sCrumblingBlockCrackingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F10B0",
+          "end": "0x083F10BE",
+          "symbol": "sCrumblingBlockCrackingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F10BE",
+          "end": "0x083F10CC",
+          "symbol": "sCrumblingBlockCrackingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F10CC",
+          "end": "0x083F10DA",
+          "symbol": "sCrumblingBlockCrackingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F10DA",
+          "end": "0x083F1100",
+          "symbol": "sCrumblingBlockCrackingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1100",
+          "end": "0x083F1120",
+          "symbol": "sCrumblingBlockCrackingOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1120",
+          "end": "0x083F112E",
+          "symbol": "sCrumblingBlockCrackingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F112E",
+          "end": "0x083F113C",
+          "symbol": "sCrumblingBlockCrackingOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F113C",
+          "end": "0x083F1144",
+          "symbol": "sCrumblingBlockCrackingOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1144",
+          "end": "0x083F114C",
+          "symbol": "sCrumblingBlockCrackingOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F114C",
+          "end": "0x083F1154",
+          "symbol": "sCrumblingBlockReformingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1154",
+          "end": "0x083F115C",
+          "symbol": "sCrumblingBlockReformingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F115C",
+          "end": "0x083F116A",
+          "symbol": "sCrumblingBlockReformingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F116A",
+          "end": "0x083F1178",
+          "symbol": "sCrumblingBlockReformingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1178",
+          "end": "0x083F119E",
+          "symbol": "sCrumblingBlockReformingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F119E",
+          "end": "0x083F11BE",
+          "symbol": "sCrumblingBlockReformingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F11BE",
+          "end": "0x083F11E4",
+          "symbol": "sCrumblingBlockReformingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F11E4",
+          "end": "0x083F11F2",
+          "symbol": "sCrumblingBlockReformingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F11F2",
+          "end": "0x083F1200",
+          "symbol": "sCrumblingBlockReformingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1200",
+          "end": "0x083F120E",
+          "symbol": "sCrumblingBlockReformingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F120E",
+          "end": "0x083F121C",
+          "symbol": "sCrumblingBlockReformingOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F121C",
+          "end": "0x083F1224",
+          "symbol": "sCrumblingBlockReformingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F1224",
+          "end": "0x083F122C",
+          "symbol": "sCrumblingBlockCollapsedOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083F122C",
           "end": "0x083F123C",
           "symbol": "sCrumblingBlockIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F123C",
           "end": "0x083F12BC",
           "symbol": "sCrumblingBlockCrackingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F12BC",
           "end": "0x083F132C",
           "symbol": "sCrumblingBlockReformingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F132C",
-          "end": "0x083F1AA0",
+          "end": "0x083F133C",
           "symbol": "sCrumblingBlockCollapsedOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083F133C",
+          "end": "0x083F1AA0",
+          "symbol": "sSpriteDataRaw_083F133C",
           "type": "raw"
         },
         {
