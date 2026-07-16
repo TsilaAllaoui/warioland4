@@ -32,7 +32,7 @@ struct DemoMusicState {
 extern u8 gUnk_3000023;
 extern u8 gUnk_3000BF0[];
 extern struct DemoMusicState gUnk_3003200;
-extern const u8 sStageRoomCounts[];
+extern const u8 sUnk_8639068[];
 extern const u32 sUnk_86391C4[][6];
 
 #define BGM_DEMO_BOSS_STAGE 0x1ED
@@ -86,7 +86,7 @@ void SetupDemo(void)
     *stageId = *(const u32 *)stageOffset;
 
     roomCount = &gUnk_3000023;
-    data = sStageRoomCounts;
+    data = sUnk_8639068;
     *roomCount = data[*stageId * 12];
 
     zero = 0;
