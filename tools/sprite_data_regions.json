@@ -663,44 +663,194 @@
         },
         {
           "address": "0x083BB480",
-          "end": "0x083BB63C",
+          "end": "0x083BB4C8",
           "symbol": "sUnk_83BB480",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BB4C8",
+          "end": "0x083BB4E2",
+          "symbol": "sPigHeadStatueIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB4E2",
+          "end": "0x083BB4FC",
+          "symbol": "sPigHeadStatueFiringOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB4FC",
+          "end": "0x083BB522",
+          "symbol": "sPigHeadStatueOpeningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB522",
+          "end": "0x083BB548",
+          "symbol": "sPigHeadStatueOpeningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB548",
+          "end": "0x083BB550",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB550",
+          "end": "0x083BB558",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB558",
+          "end": "0x083BB566",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB566",
+          "end": "0x083BB574",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB574",
+          "end": "0x083BB582",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB582",
+          "end": "0x083BB590",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB590",
+          "end": "0x083BB59E",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB59E",
+          "end": "0x083BB5AC",
+          "symbol": "sPigHeadStatueChildFallingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB5AC",
+          "end": "0x083BB5C0",
+          "symbol": "sPigHeadStatueChildLandedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB5C0",
+          "end": "0x083BB5D4",
+          "symbol": "sPigHeadStatueChildLandedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB5D4",
+          "end": "0x083BB5E8",
+          "symbol": "sPigHeadStatueChildLandedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB5E8",
+          "end": "0x083BB5F6",
+          "symbol": "sPigHeadStatueChildLandedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB5F6",
+          "end": "0x083BB604",
+          "symbol": "sPigHeadStatueChildLandedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB604",
+          "end": "0x083BB60C",
+          "symbol": "sPigHeadStatueChildDisappearingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB60C",
+          "end": "0x083BB614",
+          "symbol": "sPigHeadStatueChildDisappearingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB614",
+          "end": "0x083BB61C",
+          "symbol": "sPigHeadStatueChildDisappearingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB61C",
+          "end": "0x083BB624",
+          "symbol": "sPigHeadStatueChildDisappearingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB624",
+          "end": "0x083BB62C",
+          "symbol": "sPigHeadStatueChildDisappearingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB62C",
+          "end": "0x083BB63A",
+          "symbol": "sPigHeadStatueChildDisappearingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BB63A",
+          "end": "0x083BB63C",
+          "symbol": "sSpriteDataRaw_083BB63A",
           "type": "raw"
         },
         {
           "address": "0x083BB63C",
           "end": "0x083BB64C",
           "symbol": "sPigHeadStatueIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BB64C",
           "end": "0x083BB69C",
           "symbol": "sPigHeadStatueOpeningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BB69C",
           "end": "0x083BB6AC",
-          "symbol": "sPigHeadStatueFireOam",
-          "type": "raw"
+          "symbol": "sPigHeadStatueFiringOam",
+          "type": "anim"
         },
         {
           "address": "0x083BB6AC",
           "end": "0x083BB704",
-          "symbol": "sPigHeadProjectileFallOam",
-          "type": "raw"
+          "symbol": "sPigHeadStatueChildFallingOam",
+          "type": "anim"
         },
         {
           "address": "0x083BB704",
           "end": "0x083BB7AC",
-          "symbol": "sPigHeadProjectileLandedOam",
-          "type": "raw"
+          "symbol": "sPigHeadStatueChildLandedOam",
+          "type": "anim"
         },
         {
           "address": "0x083BB7AC",
+          "end": "0x083BB7E4",
+          "symbol": "sPigHeadStatueChildDisappearingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BB7E4",
           "end": "0x083BBD6C",
-          "symbol": "sPigHeadProjectileDespawnOam",
+          "symbol": "sSpriteDataRaw_083BB7E4",
           "type": "raw"
         },
         {
@@ -15715,6 +15865,10 @@
     "sButatabiTurnEndOam": "sButatabiTurnAroundOam",
     "sButatabiTurnStartOam": "sButatabiTurningOam",
     "sIcicleLandingOam": "sIcicleImpactOam",
+    "sPigHeadProjectileDespawnOam": "sPigHeadStatueChildDisappearingOam",
+    "sPigHeadProjectileFallOam": "sPigHeadStatueChildFallingOam",
+    "sPigHeadProjectileLandedOam": "sPigHeadStatueChildLandedOam",
+    "sPigHeadStatueFireOam": "sPigHeadStatueFiringOam",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
     "sUnk_83C4CD8": "sMiniculaOam_83C4CD8",
     "sUnk_83C5364": "sGhostOam_83C5364",
