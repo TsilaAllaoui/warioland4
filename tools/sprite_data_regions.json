@@ -1047,45 +1047,159 @@
         },
         {
           "address": "0x083BD6F0",
-          "end": "0x083BD9A0",
+          "end": "0x083BD8C0",
           "symbol": "sTogemasukuRespawningOam",
           "type": "raw"
+        },
+        {
+          "address": "0x083BD8C0",
+          "end": "0x083BD8CE",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD8CE",
+          "end": "0x083BD8DC",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD8DC",
+          "end": "0x083BD8EA",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD8EA",
+          "end": "0x083BD8F8",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD8F8",
+          "end": "0x083BD906",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD906",
+          "end": "0x083BD914",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD914",
+          "end": "0x083BD922",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD922",
+          "end": "0x083BD930",
+          "symbol": "sBallLightningBoltFallingLeftOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD930",
+          "end": "0x083BD938",
+          "symbol": "sBallLightningBoltIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD938",
+          "end": "0x083BD940",
+          "symbol": "sBallLightningBoltIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD940",
+          "end": "0x083BD948",
+          "symbol": "sBallLightningBoltIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD948",
+          "end": "0x083BD950",
+          "symbol": "sBallLightningBoltIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD950",
+          "end": "0x083BD958",
+          "symbol": "sBallLightningBoltIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD958",
+          "end": "0x083BD960",
+          "symbol": "sBallLightningBoltIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD960",
+          "end": "0x083BD968",
+          "symbol": "sBallLightningBoltIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD968",
+          "end": "0x083BD970",
+          "symbol": "sBallLightningBoltDisappearingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD970",
+          "end": "0x083BD978",
+          "symbol": "sBallLightningBoltDisappearingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD978",
+          "end": "0x083BD998",
+          "symbol": "sSpriteDataRaw_083BD978",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BD998",
+          "end": "0x083BD9A0",
+          "symbol": "sBallLightningTrailOam_Frame4",
+          "type": "frame"
         },
         {
           "address": "0x083BD9A0",
           "end": "0x083BD9E8",
           "symbol": "sBallLightningBoltFallingLeftOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD9E8",
           "end": "0x083BDA30",
           "symbol": "sBallLightningBoltFallingRightOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDA30",
           "end": "0x083BDA90",
           "symbol": "sBallLightningBoltIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDA90",
           "end": "0x083BDAB8",
           "symbol": "sBallLightningTrailOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDAB8",
           "end": "0x083BDAF0",
           "symbol": "sBallLightningBoltDisappearingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDAF0",
           "end": "0x083BDB00",
           "symbol": "sBallLightningSpawnerOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDB00",
