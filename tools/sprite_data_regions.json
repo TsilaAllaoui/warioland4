@@ -9209,27 +9209,123 @@
         },
         {
           "address": "0x083D0C48",
-          "end": "0x083D0D3C",
+          "end": "0x083D0C60",
           "symbol": "sUnk_83D0C48",
+          "type": "raw"
+        },
+        {
+          "address": "0x083D0C60",
+          "end": "0x083D0C6E",
+          "symbol": "sSpikeCannonProjectileFlyingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0C6E",
+          "end": "0x083D0C7C",
+          "symbol": "sSpikeCannonProjectileFlyingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0C7C",
+          "end": "0x083D0C8A",
+          "symbol": "sSpikeCannonProjectileFlyingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0C8A",
+          "end": "0x083D0C98",
+          "symbol": "sSpikeCannonProjectileFlyingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0C98",
+          "end": "0x083D0CA0",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CA0",
+          "end": "0x083D0CA8",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CA8",
+          "end": "0x083D0CB0",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CB0",
+          "end": "0x083D0CBE",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CBE",
+          "end": "0x083D0CD2",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CD2",
+          "end": "0x083D0CE0",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CE0",
+          "end": "0x083D0CEE",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CEE",
+          "end": "0x083D0CFC",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0CFC",
+          "end": "0x083D0D04",
+          "symbol": "sSpikeCannonProjectileDespawnOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0D04",
+          "end": "0x083D0D0C",
+          "symbol": "sSpikeCannonOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0D0C",
+          "end": "0x083D0D14",
+          "symbol": "sSpikeCannonOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0D14",
+          "end": "0x083D0D3C",
+          "symbol": "sSpriteDataRaw_083D0D14",
           "type": "raw"
         },
         {
           "address": "0x083D0D3C",
           "end": "0x083D0D64",
           "symbol": "sSpikeCannonProjectileFlyingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0D64",
           "end": "0x083D0DB4",
           "symbol": "sSpikeCannonProjectileDespawnOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0DB4",
           "end": "0x083D0DDC",
           "symbol": "sSpikeCannonOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0DDC",
