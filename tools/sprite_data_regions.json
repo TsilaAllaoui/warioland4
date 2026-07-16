@@ -14897,33 +14897,159 @@
         },
         {
           "address": "0x083DDC4C",
+          "end": "0x083DDC5A",
+          "symbol": "sUtsuboankoEmergingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDC5A",
+          "end": "0x083DDC68",
+          "symbol": "sUtsuboankoEmergingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDC68",
+          "end": "0x083DDC76",
+          "symbol": "sUtsuboankoEmergingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDC76",
+          "end": "0x083DDC84",
+          "symbol": "sUtsuboankoEmergingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDC84",
+          "end": "0x083DDC92",
+          "symbol": "sUtsuboankoEmergingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDC92",
+          "end": "0x083DDCA0",
+          "symbol": "sUtsuboankoEmergingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDCA0",
+          "end": "0x083DDCAE",
+          "symbol": "sUtsuboankoEmergingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDCAE",
+          "end": "0x083DDCBC",
+          "symbol": "sSpriteDataRaw_083DDCAE",
+          "type": "raw"
+        },
+        {
+          "address": "0x083DDCBC",
+          "end": "0x083DDCCA",
+          "symbol": "sUtsuboankoEmergingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDCCA",
+          "end": "0x083DDCF6",
+          "symbol": "sUtsuboankoEmergingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDCF6",
+          "end": "0x083DDD22",
+          "symbol": "sUtsuboankoEmergingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDD22",
+          "end": "0x083DDD4E",
+          "symbol": "sUtsuboankoEmergingOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDD4E",
+          "end": "0x083DDD86",
+          "symbol": "sUtsuboankoEmergingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDD86",
+          "end": "0x083DDDBE",
+          "symbol": "sUtsuboankoEmergingOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDDBE",
+          "end": "0x083DDDF6",
+          "symbol": "sUtsuboankoEmergingOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDDF6",
+          "end": "0x083DDE22",
+          "symbol": "sUtsuboankoEmergingOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDE22",
+          "end": "0x083DDE4E",
+          "symbol": "sUtsuboankoEmergingOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDE4E",
+          "end": "0x083DDE86",
+          "symbol": "sUtsuboankoEmergingOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDE86",
+          "end": "0x083DDEBE",
+          "symbol": "sUtsuboankoRetreatingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDEBE",
+          "end": "0x083DDEF6",
+          "symbol": "sUtsuboankoRetreatingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDEF6",
+          "end": "0x083DDEFE",
+          "symbol": "sUtsuboankoHidingOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDEFE",
           "end": "0x083DDF00",
-          "symbol": "sSpriteDataRaw_083DDC4C",
+          "symbol": "sSpriteDataRaw_083DDEFE",
           "type": "raw"
         },
         {
           "address": "0x083DDF00",
           "end": "0x083DDFB0",
           "symbol": "sUtsuboankoEmergingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DDFB0",
           "end": "0x083DE028",
           "symbol": "sUtsuboankoHidingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE028",
           "end": "0x083DE0E0",
           "symbol": "sUtsuboankoRetreatingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE0E0",
           "end": "0x083DE140",
           "symbol": "sUtsuboankoIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE140",
