@@ -8657,50 +8657,200 @@
         },
         {
           "address": "0x083C96BC",
-          "end": "0x083C99E0",
+          "end": "0x083C9718",
           "symbol": "sSpriteDataRaw_083C96BC",
           "type": "raw"
+        },
+        {
+          "address": "0x083C9718",
+          "end": "0x083C972C",
+          "symbol": "sTobawaniTurnOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C972C",
+          "end": "0x083C9768",
+          "symbol": "sSpriteDataRaw_083C972C",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C9768",
+          "end": "0x083C9782",
+          "symbol": "sTobawaniChargeOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9782",
+          "end": "0x083C97A8",
+          "symbol": "sTobawaniChargeOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C97A8",
+          "end": "0x083C97C8",
+          "symbol": "sTobawaniChargeOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C97C8",
+          "end": "0x083C97E2",
+          "symbol": "sTobawaniChargeOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C97E2",
+          "end": "0x083C97F0",
+          "symbol": "sTobawaniTurnOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C97F0",
+          "end": "0x083C9860",
+          "symbol": "sSpriteDataRaw_083C97F0",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C9860",
+          "end": "0x083C987A",
+          "symbol": "sTobawaniChargeOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C987A",
+          "end": "0x083C9894",
+          "symbol": "sSpriteDataRaw_083C987A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C9894",
+          "end": "0x083C98AE",
+          "symbol": "sTobawaniRecoveryOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C98AE",
+          "end": "0x083C98C2",
+          "symbol": "sTobawaniRecoveryOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C98C2",
+          "end": "0x083C98DC",
+          "symbol": "sTobawaniRecoveryOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C98DC",
+          "end": "0x083C98FC",
+          "symbol": "sTobawaniKnockbackOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C98FC",
+          "end": "0x083C9916",
+          "symbol": "sTobawaniKnockbackOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9916",
+          "end": "0x083C992A",
+          "symbol": "sTobawaniKnockbackOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C992A",
+          "end": "0x083C994A",
+          "symbol": "sTobawaniDefeatedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C994A",
+          "end": "0x083C9964",
+          "symbol": "sTobawaniDefeatedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9964",
+          "end": "0x083C9984",
+          "symbol": "sTobawaniDefeatedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9984",
+          "end": "0x083C9998",
+          "symbol": "sTobawaniPatrolOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9998",
+          "end": "0x083C99B2",
+          "symbol": "sTobawaniPatrolOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C99B2",
+          "end": "0x083C99C6",
+          "symbol": "sTobawaniPatrolOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C99C6",
+          "end": "0x083C99E0",
+          "symbol": "sTobawaniPatrolOam_Frame4",
+          "type": "frame"
         },
         {
           "address": "0x083C99E0",
           "end": "0x083C9A08",
           "symbol": "sTobawaniPatrolOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9A08",
           "end": "0x083C9A20",
           "symbol": "sTobawaniTurnOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9A20",
           "end": "0x083C9A50",
           "symbol": "sTobawaniChargeOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9A50",
           "end": "0x083C9A78",
           "symbol": "sTobawaniRecoveryOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9A78",
           "end": "0x083C9AA0",
           "symbol": "sTobawaniKnockbackOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9AA0",
-          "end": "0x083C9AE8",
+          "end": "0x083C9AB0",
           "symbol": "sTobawaniFallingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C9AB0",
+          "end": "0x083C9AE8",
+          "symbol": "sSpriteDataRaw_083C9AB0",
           "type": "raw"
         },
         {
           "address": "0x083C9AE8",
-          "end": "0x083C9B28",
+          "end": "0x083C9B10",
           "symbol": "sTobawaniDefeatedOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C9B10",
+          "end": "0x083C9B28",
+          "symbol": "sSpriteDataRaw_083C9B10",
           "type": "raw"
         },
         {
