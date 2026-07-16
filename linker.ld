@@ -675,7 +675,7 @@ SECTIONS {
         obj/sprite_ai/piston.o(.text);
         obj/sprite_ai/catbat.o(.text);
         obj/sprite_ai/swinging_platform.o(.text);
-        obj/sprite_ai/disasm_pinball.o(.text);
+        obj/sprite_ai/pinball.o(.text);
         obj/sprite_ai/spike_cannon.o(.text);
         obj/sprite_ai/money_sunflower.o(.text);
         obj/sprite_ai/yeti.o(.text);

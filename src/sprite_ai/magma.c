@@ -33,7 +33,7 @@ void MagmaWaitBeforeRising(void)
     if (gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = SPOSE_IDLE;
         gCurrentSprite.work3 = 0;
-        m4aSongNumStart(MAGMA_RISE_SOUND);
+        m4aSongNumStart(SE_MAGMA_RISE_SOUND);
     }
 }
 
@@ -47,7 +47,7 @@ void MagmaRise(void)
     if (velocity == 0x7FFF) {
         gCurrentSprite.work0 = 247;
         gCurrentSprite.pose = SPOSE_12;
-        m4aSongNumStart(MAGMA_SINK_SOUND);
+        m4aSongNumStart(SE_MAGMA_SINK_SOUND);
     } else {
         gCurrentSprite.work3 = index + 1;
         gCurrentSprite.yPosition += velocity;

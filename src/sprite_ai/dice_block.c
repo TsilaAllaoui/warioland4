@@ -162,7 +162,7 @@ void DiceBlockBreakInit(void)
     gCurrentSprite.animationTimer = 0;
     gCurrentSprite.pose = SPOSE_6D;
     gCurrentSprite.work0 = 43;
-    m4aSongNumStart(SOUND_DICE_BLOCK_BREAK);
+    m4aSongNumStart(SE_SOUND_DICE_BLOCK_BREAK);
 }
 
 void DiceBlockBreak(void)
