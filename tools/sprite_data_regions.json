@@ -12509,38 +12509,194 @@
         },
         {
           "address": "0x083DD768",
-          "end": "0x083DDB14",
-          "symbol": "sSpriteDataRaw_083DD768",
+          "end": "0x083DD788",
+          "symbol": "sRobobirdIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD788",
+          "end": "0x083DD7A8",
+          "symbol": "sRobobirdIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD7A8",
+          "end": "0x083DD7C8",
+          "symbol": "sRobobirdIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD7C8",
+          "end": "0x083DD7E8",
+          "symbol": "sRobobirdIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD7E8",
+          "end": "0x083DD808",
+          "symbol": "sRobobirdIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD808",
+          "end": "0x083DD828",
+          "symbol": "sRobobirdIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD828",
+          "end": "0x083DD848",
+          "symbol": "sRobobirdIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD848",
+          "end": "0x083DD868",
+          "symbol": "sRobobirdIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD868",
+          "end": "0x083DD888",
+          "symbol": "sRobobirdIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD888",
+          "end": "0x083DD8A8",
+          "symbol": "sRobobirdIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD8A8",
+          "end": "0x083DD8C8",
+          "symbol": "sRobobirdIdleOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD8C8",
+          "end": "0x083DD8E8",
+          "symbol": "sRobobirdIdleOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD8E8",
+          "end": "0x083DD908",
+          "symbol": "sRobobirdAttackStartupOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD908",
+          "end": "0x083DD928",
+          "symbol": "sRobobirdAttackStartupOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD928",
+          "end": "0x083DD948",
+          "symbol": "sRobobirdAttackStartupOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD948",
+          "end": "0x083DD96E",
+          "symbol": "sRobobirdAttackStartupOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD96E",
+          "end": "0x083DD99A",
+          "symbol": "sRobobirdAttackStartupOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD99A",
+          "end": "0x083DD9C0",
+          "symbol": "sRobobirdAttackStartupOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD9C0",
+          "end": "0x083DD9E6",
+          "symbol": "sRobobirdAttackOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD9E6",
+          "end": "0x083DDA0C",
+          "symbol": "sSpriteDataRaw_083DD9E6",
           "type": "raw"
+        },
+        {
+          "address": "0x083DDA0C",
+          "end": "0x083DDA38",
+          "symbol": "sRobobirdFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDA38",
+          "end": "0x083DDA64",
+          "symbol": "sRobobirdFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDA64",
+          "end": "0x083DDA90",
+          "symbol": "sRobobirdAttackOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDA90",
+          "end": "0x083DDABC",
+          "symbol": "sRobobirdAttackOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDABC",
+          "end": "0x083DDAE8",
+          "symbol": "sRobobirdAttackOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DDAE8",
+          "end": "0x083DDB14",
+          "symbol": "sRobobirdAttackOam_Frame11",
+          "type": "frame"
         },
         {
           "address": "0x083DDB14",
           "end": "0x083DDB7C",
           "symbol": "sRobobirdIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DDB7C",
           "end": "0x083DDBB4",
-          "symbol": "sRobobirdAttackStartOam",
-          "type": "raw"
+          "symbol": "sRobobirdAttackStartupOam",
+          "type": "anim"
         },
         {
           "address": "0x083DDBB4",
           "end": "0x083DDC1C",
           "symbol": "sRobobirdAttackOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DDC1C",
           "end": "0x083DDC34",
-          "symbol": "sRobobirdDefeatedOam",
-          "type": "raw"
+          "symbol": "sRobobirdFallingOam",
+          "type": "anim"
         },
         {
           "address": "0x083DDC34",
+          "end": "0x083DDC4C",
+          "symbol": "sRobobirdFastAttackOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DDC4C",
           "end": "0x083DDF00",
-          "symbol": "sRobobirdStunnedOam",
+          "symbol": "sSpriteDataRaw_083DDC4C",
           "type": "raw"
         },
         {
@@ -15995,6 +16151,9 @@
     "sPigHeadProjectileFallOam": "sPigHeadStatueChildFallingOam",
     "sPigHeadProjectileLandedOam": "sPigHeadStatueChildLandedOam",
     "sPigHeadStatueFireOam": "sPigHeadStatueFiringOam",
+    "sRobobirdAttackStartOam": "sRobobirdAttackStartupOam",
+    "sRobobirdDefeatedOam": "sRobobirdFallingOam",
+    "sRobobirdStunnedOam": "sRobobirdFastAttackOam",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
     "sUnk_83C4CD8": "sMiniculaOam_83C4CD8",
     "sUnk_83C5364": "sGhostOam_83C5364",
