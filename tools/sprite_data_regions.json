@@ -8057,33 +8057,153 @@
         },
         {
           "address": "0x083DC9E0",
-          "end": "0x083DCCBC",
+          "end": "0x083DCA00",
           "symbol": "sDendenFallingYVelocity",
           "type": "raw"
         },
         {
+          "address": "0x083DCA00",
+          "end": "0x083DCA20",
+          "symbol": "sButatabiMovingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCA20",
+          "end": "0x083DCA40",
+          "symbol": "sButatabiTurningOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCA40",
+          "end": "0x083DCA60",
+          "symbol": "sButatabiTurnAroundOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCA60",
+          "end": "0x083DCA80",
+          "symbol": "sButatabiTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCA80",
+          "end": "0x083DCAA0",
+          "symbol": "sButatabiTurningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCAA0",
+          "end": "0x083DCAC0",
+          "symbol": "sButatabiTurningOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCAC0",
+          "end": "0x083DCAE0",
+          "symbol": "sButatabiTurningOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCAE0",
+          "end": "0x083DCB06",
+          "symbol": "sButatabiTurnAroundOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCB06",
+          "end": "0x083DCB2C",
+          "symbol": "sButatabiTurnAroundOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCB2C",
+          "end": "0x083DCB4C",
+          "symbol": "sButatabiTurnAroundOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCB4C",
+          "end": "0x083DCB72",
+          "symbol": "sButatabiTurningOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCB72",
+          "end": "0x083DCB98",
+          "symbol": "sButatabiTurningOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCB98",
+          "end": "0x083DCBBE",
+          "symbol": "sButatabiTurningOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCBBE",
+          "end": "0x083DCBF0",
+          "symbol": "sButatabiTurnAroundOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCBF0",
+          "end": "0x083DCC28",
+          "symbol": "sButatabiTurnAroundOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCC28",
+          "end": "0x083DCC48",
+          "symbol": "sButatabiTurnAroundOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCC48",
+          "end": "0x083DCC62",
+          "symbol": "sButatabiFallingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCC62",
+          "end": "0x083DCC82",
+          "symbol": "sButatabiMovingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCC82",
+          "end": "0x083DCCA2",
+          "symbol": "sButatabiMovingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DCCA2",
+          "end": "0x083DCCBC",
+          "symbol": "sButatabiFallingOam_Frame5",
+          "type": "frame"
+        },
+        {
           "address": "0x083DCCBC",
           "end": "0x083DCCE4",
-          "symbol": "sButatabiIdleOam",
-          "type": "raw"
+          "symbol": "sButatabiMovingOam",
+          "type": "anim"
         },
         {
           "address": "0x083DCCE4",
           "end": "0x083DCD2C",
-          "symbol": "sButatabiTurnStartOam",
-          "type": "raw"
+          "symbol": "sButatabiTurningOam",
+          "type": "anim"
         },
         {
           "address": "0x083DCD2C",
           "end": "0x083DCD74",
-          "symbol": "sButatabiTurnEndOam",
-          "type": "raw"
+          "symbol": "sButatabiTurnAroundOam",
+          "type": "anim"
         },
         {
           "address": "0x083DCD74",
           "end": "0x083DCDDC",
-          "symbol": "sButatabiTackledOam",
-          "type": "raw"
+          "symbol": "sButatabiFallingOam",
+          "type": "anim"
         },
         {
           "address": "0x083DCDDC",
@@ -9711,6 +9831,10 @@
   "aliases": {
     "sAerodentBalloonInflatingOam": "sAerodentOam_83DABA0",
     "sBossTreasureOam_83DABA0": "sAerodentOam_83DABA0",
+    "sButatabiIdleOam": "sButatabiMovingOam",
+    "sButatabiTackledOam": "sButatabiFallingOam",
+    "sButatabiTurnEndOam": "sButatabiTurnAroundOam",
+    "sButatabiTurnStartOam": "sButatabiTurningOam",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
     "sUnk_83C62FC": "sBeezleyOam_83C62FC",
     "sUnk_83C6384": "sBeezleyOam_83C6384",
