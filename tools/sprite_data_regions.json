@@ -1095,56 +1095,278 @@
         },
         {
           "address": "0x083BD1AC",
-          "end": "0x083BD42C",
+          "end": "0x083BD1D4",
           "symbol": "sUnk_83BD1AC",
           "type": "raw"
+        },
+        {
+          "address": "0x083BD1D4",
+          "end": "0x083BD1DC",
+          "symbol": "sFallingSnowIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD1DC",
+          "end": "0x083BD1E4",
+          "symbol": "sFallingSnowIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD1E4",
+          "end": "0x083BD1EC",
+          "symbol": "sFallingSnowIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD1EC",
+          "end": "0x083BD1FA",
+          "symbol": "sFallingSnowIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD1FA",
+          "end": "0x083BD20E",
+          "symbol": "sFallingSnowIdleOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD20E",
+          "end": "0x083BD222",
+          "symbol": "sFallingSnowIdleOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD222",
+          "end": "0x083BD230",
+          "symbol": "sFallingSnowIdleOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD230",
+          "end": "0x083BD23E",
+          "symbol": "sSpriteDataRaw_083BD230",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BD23E",
+          "end": "0x083BD258",
+          "symbol": "sFallingSnowFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD258",
+          "end": "0x083BD26C",
+          "symbol": "sFallingSnowMeltingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD26C",
+          "end": "0x083BD27A",
+          "symbol": "sFallingSnowMeltingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD27A",
+          "end": "0x083BD28E",
+          "symbol": "sFallingSnowMeltingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD28E",
+          "end": "0x083BD29C",
+          "symbol": "sFallingSnowMeltingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD29C",
+          "end": "0x083BD2B0",
+          "symbol": "sFallingSnowMeltingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD2B0",
+          "end": "0x083BD2C4",
+          "symbol": "sFallingSnowMeltingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD2C4",
+          "end": "0x083BD2DE",
+          "symbol": "sFallingSnowMeltingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD2DE",
+          "end": "0x083BD2F2",
+          "symbol": "sFallingSnowMeltingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD2F2",
+          "end": "0x083BD2FA",
+          "symbol": "sFallingSnowChildOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD2FA",
+          "end": "0x083BD308",
+          "symbol": "sFallingSnowDropOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD308",
+          "end": "0x083BD316",
+          "symbol": "sFallingSnowDropOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD316",
+          "end": "0x083BD31E",
+          "symbol": "sFallingSnowChildOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD31E",
+          "end": "0x083BD32C",
+          "symbol": "sFallingSnowChildOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD32C",
+          "end": "0x083BD340",
+          "symbol": "sFallingSnowChildOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD340",
+          "end": "0x083BD35A",
+          "symbol": "sFallingSnowChildOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD35A",
+          "end": "0x083BD36E",
+          "symbol": "sFallingSnowChildOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD36E",
+          "end": "0x083BD37C",
+          "symbol": "sFallingSnowChildOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD37C",
+          "end": "0x083BD384",
+          "symbol": "sFallingSnowChildOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD384",
+          "end": "0x083BD392",
+          "symbol": "sFallingSnowChildOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD392",
+          "end": "0x083BD3A0",
+          "symbol": "sFallingSnowChildOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD3A0",
+          "end": "0x083BD3A8",
+          "symbol": "sFallingSnowChildOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD3A8",
+          "end": "0x083BD3B6",
+          "symbol": "sFallingSnowResetOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD3B6",
+          "end": "0x083BD3C4",
+          "symbol": "sFallingSnowResetOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD3C4",
+          "end": "0x083BD3DE",
+          "symbol": "sFallingSnowResetOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD3DE",
+          "end": "0x083BD404",
+          "symbol": "sFallingSnowResetOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD404",
+          "end": "0x083BD418",
+          "symbol": "sFallingSnowFragmentRightOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD418",
+          "end": "0x083BD42C",
+          "symbol": "sFallingSnowFragmentLeftOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083BD42C",
           "end": "0x083BD4AC",
           "symbol": "sFallingSnowIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD4AC",
           "end": "0x083BD4BC",
           "symbol": "sFallingSnowFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD4BC",
           "end": "0x083BD504",
           "symbol": "sFallingSnowMeltingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD504",
           "end": "0x083BD574",
           "symbol": "sFallingSnowChildOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD574",
           "end": "0x083BD58C",
           "symbol": "sFallingSnowDropOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD58C",
           "end": "0x083BD5C4",
           "symbol": "sFallingSnowResetOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD5C4",
           "end": "0x083BD5D4",
           "symbol": "sFallingSnowFragmentRightOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD5D4",
-          "end": "0x083BD660",
+          "end": "0x083BD5E4",
           "symbol": "sFallingSnowFragmentLeftOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BD5E4",
+          "end": "0x083BD660",
+          "symbol": "sSpriteDataRaw_083BD5E4",
           "type": "raw"
         },
         {
