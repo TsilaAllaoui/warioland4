@@ -1761,27 +1761,129 @@
         },
         {
           "address": "0x083BE020",
+          "end": "0x083BE02E",
+          "symbol": "sMagicCarpetFlyingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE02E",
+          "end": "0x083BE03C",
+          "symbol": "sMagicCarpetFlyingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE03C",
+          "end": "0x083BE04A",
+          "symbol": "sMagicCarpetFlyingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE04A",
+          "end": "0x083BE058",
+          "symbol": "sMagicCarpetFlyingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE058",
+          "end": "0x083BE066",
+          "symbol": "sMagicCarpetFlyingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE066",
+          "end": "0x083BE074",
+          "symbol": "sMagicCarpetFlyingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE074",
+          "end": "0x083BE088",
+          "symbol": "sMagicCarpetRiddenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE088",
+          "end": "0x083BE09C",
+          "symbol": "sMagicCarpetRiddenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE09C",
+          "end": "0x083BE0B0",
+          "symbol": "sMagicCarpetRiddenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE0B0",
+          "end": "0x083BE0C4",
+          "symbol": "sMagicCarpetRiddenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE0C4",
+          "end": "0x083BE0D8",
+          "symbol": "sMagicCarpetRiddenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE0D8",
+          "end": "0x083BE0EC",
+          "symbol": "sMagicCarpetRiddenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE0EC",
+          "end": "0x083BE0FA",
+          "symbol": "sMagicCarpetIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE0FA",
+          "end": "0x083BE10E",
+          "symbol": "sMagicCarpetIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE10E",
+          "end": "0x083BE122",
+          "symbol": "sMagicCarpetIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE122",
+          "end": "0x083BE136",
+          "symbol": "sMagicCarpetIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE136",
+          "end": "0x083BE14A",
+          "symbol": "sMagicCarpetIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE14A",
           "end": "0x083BE164",
-          "symbol": "sSpriteDataRaw_083BE020",
-          "type": "raw"
+          "symbol": "sMagicCarpetIdleOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083BE164",
           "end": "0x083BE19C",
           "symbol": "sMagicCarpetRiddenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BE19C",
           "end": "0x083BE1D4",
           "symbol": "sMagicCarpetFlyingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BE1D4",
           "end": "0x083BE234",
           "symbol": "sMagicCarpetIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BE234",
