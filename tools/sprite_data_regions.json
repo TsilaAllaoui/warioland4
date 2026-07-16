@@ -11591,38 +11591,428 @@
         },
         {
           "address": "0x083E3B78",
-          "end": "0x083E45F0",
+          "end": "0x083E3BB0",
           "symbol": "sPetbottomRecoveringOam",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E3BB0",
+          "end": "0x083E3BDC",
+          "symbol": "sGlassBirdOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3BDC",
+          "end": "0x083E3C08",
+          "symbol": "sGlassBirdOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3C08",
+          "end": "0x083E3C34",
+          "symbol": "sGlassBirdOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3C34",
+          "end": "0x083E3C60",
+          "symbol": "sGlassBirdOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3C60",
+          "end": "0x083E3C92",
+          "symbol": "sGlassBirdOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3C92",
+          "end": "0x083E3CC4",
+          "symbol": "sGlassBirdOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3CC4",
+          "end": "0x083E3CF6",
+          "symbol": "sGlassBirdOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3CF6",
+          "end": "0x083E3D28",
+          "symbol": "sGlassBirdOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3D28",
+          "end": "0x083E3D5A",
+          "symbol": "sGlassBirdOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3D5A",
+          "end": "0x083E3D8C",
+          "symbol": "sGlassBirdOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3D8C",
+          "end": "0x083E3DBE",
+          "symbol": "sGlassBirdOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3DBE",
+          "end": "0x083E3DF0",
+          "symbol": "sGlassBirdOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3DF0",
+          "end": "0x083E3E22",
+          "symbol": "sGlassBirdOam_Frame21",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3E22",
+          "end": "0x083E3E54",
+          "symbol": "sGlassBirdOam_Frame22",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3E54",
+          "end": "0x083E3E92",
+          "symbol": "sGlassBirdOam_Frame23",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3E92",
+          "end": "0x083E3ED0",
+          "symbol": "sGlassBirdOam_Frame24",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3ED0",
+          "end": "0x083E3F0E",
+          "symbol": "sGlassBirdOam_Frame25",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3F0E",
+          "end": "0x083E3F40",
+          "symbol": "sGlassBirdOam_Frame26",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3F40",
+          "end": "0x083E3F72",
+          "symbol": "sGlassBirdOam_Frame27",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3F72",
+          "end": "0x083E3FAA",
+          "symbol": "sGlassBirdOam_Frame28",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3FAA",
+          "end": "0x083E3FE2",
+          "symbol": "sGlassBirdOam_Frame29",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3FE2",
+          "end": "0x083E4026",
+          "symbol": "sGlassBirdOam_Frame30",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4026",
+          "end": "0x083E406A",
+          "symbol": "sGlassBirdOam_Frame31",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E406A",
+          "end": "0x083E40A8",
+          "symbol": "sGlassBirdOam_Frame32",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E40A8",
+          "end": "0x083E40E6",
+          "symbol": "sGlassBirdOam_Frame33",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E40E6",
+          "end": "0x083E4118",
+          "symbol": "sGlassBirdOam_Frame34",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4118",
+          "end": "0x083E414A",
+          "symbol": "sGlassBirdOam_Frame35",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E414A",
+          "end": "0x083E4176",
+          "symbol": "sGlassBirdOam_Frame36",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4176",
+          "end": "0x083E41A2",
+          "symbol": "sGlassBirdOam_Frame37",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E41A2",
+          "end": "0x083E41D4",
+          "symbol": "sGlassBirdOam_Frame38",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E41D4",
+          "end": "0x083E4206",
+          "symbol": "sGlassBirdOam_Frame39",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4206",
+          "end": "0x083E4238",
+          "symbol": "sGlassBirdOam_Frame40",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4238",
+          "end": "0x083E426A",
+          "symbol": "sGlassBirdOam_Frame41",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E426A",
+          "end": "0x083E4278",
+          "symbol": "sGlassBirdFragmentOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4278",
+          "end": "0x083E4286",
+          "symbol": "sGlassBirdFragmentOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4286",
+          "end": "0x083E4294",
+          "symbol": "sGlassBirdFragmentCarriedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4294",
+          "end": "0x083E42A2",
+          "symbol": "sGlassBirdFragmentCarriedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E42A2",
+          "end": "0x083E42C8",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E42C8",
+          "end": "0x083E42EE",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E42EE",
+          "end": "0x083E431A",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E431A",
+          "end": "0x083E4346",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4346",
+          "end": "0x083E4378",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4378",
+          "end": "0x083E43AA",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E43AA",
+          "end": "0x083E43DC",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E43DC",
+          "end": "0x083E4402",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4402",
+          "end": "0x083E4422",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4422",
+          "end": "0x083E4436",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4436",
+          "end": "0x083E443E",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E443E",
+          "end": "0x083E4446",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4446",
+          "end": "0x083E444E",
+          "symbol": "sGlassBirdFragmentBrokenOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E444E",
+          "end": "0x083E4474",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4474",
+          "end": "0x083E449A",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E449A",
+          "end": "0x083E44C0",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E44C0",
+          "end": "0x083E44EC",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E44EC",
+          "end": "0x083E4518",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4518",
+          "end": "0x083E4544",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4544",
+          "end": "0x083E4570",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4570",
+          "end": "0x083E4596",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E4596",
+          "end": "0x083E45B6",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E45B6",
+          "end": "0x083E45C4",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E45C4",
+          "end": "0x083E45D2",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E45D2",
+          "end": "0x083E45E0",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E45E0",
+          "end": "0x083E45EE",
+          "symbol": "sGlassBirdFragmentDyingOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E45EE",
+          "end": "0x083E45F0",
+          "symbol": "sSpriteDataRaw_083E45EE",
           "type": "raw"
         },
         {
           "address": "0x083E45F0",
           "end": "0x083E4778",
           "symbol": "sGlassBirdOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E4778",
           "end": "0x083E4790",
           "symbol": "sGlassBirdFragmentOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E4790",
           "end": "0x083E47A8",
           "symbol": "sGlassBirdFragmentCarriedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E47A8",
           "end": "0x083E4818",
           "symbol": "sGlassBirdFragmentBrokenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E4818",
-          "end": "0x083EDC88",
+          "end": "0x083E4888",
           "symbol": "sGlassBirdFragmentDyingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E4888",
+          "end": "0x083EDC88",
+          "symbol": "sSpriteDataRaw_083E4888",
           "type": "raw"
         },
         {
