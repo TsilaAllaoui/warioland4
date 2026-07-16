@@ -8201,21 +8201,69 @@
         },
         {
           "address": "0x083D23A4",
-          "end": "0x083D2570",
+          "end": "0x083D2440",
           "symbol": "sBowlerBallYMovement",
           "type": "raw"
+        },
+        {
+          "address": "0x083D2440",
+          "end": "0x083D2472",
+          "symbol": "sMagmaOam_83D2570_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2472",
+          "end": "0x083D24A4",
+          "symbol": "sMagmaOam_83D2570_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D24A4",
+          "end": "0x083D24D6",
+          "symbol": "sMagmaOam_83D2570_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D24D6",
+          "end": "0x083D2508",
+          "symbol": "sMagmaOam_83D2570_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2508",
+          "end": "0x083D2522",
+          "symbol": "sMagmaOam_83D2598_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2522",
+          "end": "0x083D253C",
+          "symbol": "sMagmaOam_83D2598_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D253C",
+          "end": "0x083D2556",
+          "symbol": "sMagmaOam_83D2598_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2556",
+          "end": "0x083D2570",
+          "symbol": "sMagmaOam_83D2598_Frame4",
+          "type": "frame"
         },
         {
           "address": "0x083D2570",
           "end": "0x083D2598",
           "symbol": "sMagmaOam_83D2570",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2598",
           "end": "0x083D25C0",
           "symbol": "sMagmaOam_83D2598",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D25C0",
