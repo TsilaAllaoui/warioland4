@@ -9965,38 +9965,80 @@
         },
         {
           "address": "0x083D0DDC",
-          "end": "0x083D0E94",
+          "end": "0x083D0E10",
           "symbol": "sSpikeCannonProjectileYVelocity",
+          "type": "raw"
+        },
+        {
+          "address": "0x083D0E10",
+          "end": "0x083D0E2A",
+          "symbol": "sMoneySunflowerFullOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0E2A",
+          "end": "0x083D0E44",
+          "symbol": "sMoneySunflowerLargeOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0E44",
+          "end": "0x083D0E5E",
+          "symbol": "sMoneySunflowerMediumOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0E5E",
+          "end": "0x083D0E78",
+          "symbol": "sMoneySunflowerSmallOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0E78",
+          "end": "0x083D0E92",
+          "symbol": "sMoneySunflowerDepletedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D0E92",
+          "end": "0x083D0E94",
+          "symbol": "sSpriteDataRaw_083D0E92",
           "type": "raw"
         },
         {
           "address": "0x083D0E94",
           "end": "0x083D0EA4",
           "symbol": "sMoneySunflowerFullOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0EA4",
           "end": "0x083D0EB4",
           "symbol": "sMoneySunflowerLargeOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0EB4",
           "end": "0x083D0EC4",
           "symbol": "sMoneySunflowerMediumOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0EC4",
           "end": "0x083D0ED4",
           "symbol": "sMoneySunflowerSmallOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D0ED4",
-          "end": "0x083D1404",
+          "end": "0x083D0EE4",
           "symbol": "sMoneySunflowerDepletedOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083D0EE4",
+          "end": "0x083D1404",
+          "symbol": "sSpriteDataRaw_083D0EE4",
           "type": "raw"
         },
         {
