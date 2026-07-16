@@ -1317,44 +1317,230 @@
         },
         {
           "address": "0x083BDB00",
-          "end": "0x083BDD54",
+          "end": "0x083BDB1C",
           "symbol": "sBallLightningTrailYVelocity",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BDB1C",
+          "end": "0x083BDB2A",
+          "symbol": "sElectricLiftStationaryTransitionOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB2A",
+          "end": "0x083BDB32",
+          "symbol": "sElectricLiftStationaryIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB32",
+          "end": "0x083BDB46",
+          "symbol": "sElectricLiftStationaryResetOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB46",
+          "end": "0x083BDB5A",
+          "symbol": "sElectricLiftStationaryResetOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB5A",
+          "end": "0x083BDB6E",
+          "symbol": "sElectricLiftStationaryResetOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB6E",
+          "end": "0x083BDB82",
+          "symbol": "sElectricLiftStationaryResetOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB82",
+          "end": "0x083BDB96",
+          "symbol": "sElectricLiftStationaryResetOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDB96",
+          "end": "0x083BDBAA",
+          "symbol": "sElectricLiftStationaryResetOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDBAA",
+          "end": "0x083BDBBE",
+          "symbol": "sElectricLiftStationaryResetOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDBBE",
+          "end": "0x083BDBD2",
+          "symbol": "sElectricLiftStationaryResetOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDBD2",
+          "end": "0x083BDBE6",
+          "symbol": "sElectricLiftStationaryResetOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDBE6",
+          "end": "0x083BDBFA",
+          "symbol": "sElectricLiftStationaryResetOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDBFA",
+          "end": "0x083BDC0E",
+          "symbol": "sElectricLiftStationaryResetOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC0E",
+          "end": "0x083BDC22",
+          "symbol": "sElectricLiftStationaryResetOam_Frame21",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC22",
+          "end": "0x083BDC36",
+          "symbol": "sElectricLiftStationaryResetOam_Frame23",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC36",
+          "end": "0x083BDC4A",
+          "symbol": "sElectricLiftStationaryResetOam_Frame29",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC4A",
+          "end": "0x083BDC5E",
+          "symbol": "sElectricLiftStationaryResetOam_Frame31",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC5E",
+          "end": "0x083BDC72",
+          "symbol": "sElectricLiftStationaryResetOam_Frame30",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC72",
+          "end": "0x083BDC8C",
+          "symbol": "sElectricLiftStationaryActiveOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDC8C",
+          "end": "0x083BDCA6",
+          "symbol": "sElectricLiftStationaryActiveOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDCA6",
+          "end": "0x083BDCC0",
+          "symbol": "sElectricLiftStationaryActiveOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDCC0",
+          "end": "0x083BDCDA",
+          "symbol": "sElectricLiftStationaryActiveOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDCDA",
+          "end": "0x083BDD3E",
+          "symbol": "sSpriteDataRaw_083BDCDA",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BDD3E",
+          "end": "0x083BDD52",
+          "symbol": "sElectricLiftStationaryActiveOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDD52",
+          "end": "0x083BDD54",
+          "symbol": "sSpriteDataRaw_083BDD52",
           "type": "raw"
         },
         {
           "address": "0x083BDD54",
           "end": "0x083BDD64",
           "symbol": "sElectricLiftStationaryIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDD64",
           "end": "0x083BDD74",
           "symbol": "sElectricLiftStationaryTransitionOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDD74",
           "end": "0x083BDEA4",
           "symbol": "sElectricLiftStationaryResetOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDEA4",
-          "end": "0x083BDFC0",
+          "end": "0x083BDF5C",
           "symbol": "sElectricLiftStationaryActiveOam",
-          "type": "raw"
+          "type": "anim"
+        },
+        {
+          "address": "0x083BDF5C",
+          "end": "0x083BDF70",
+          "symbol": "sElectricLiftMovingTurnOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDF70",
+          "end": "0x083BDF84",
+          "symbol": "sElectricLiftMovingTurnOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDF84",
+          "end": "0x083BDF98",
+          "symbol": "sElectricLiftMovingTurnOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDF98",
+          "end": "0x083BDFAC",
+          "symbol": "sElectricLiftMovingTurnOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BDFAC",
+          "end": "0x083BDFC0",
+          "symbol": "sElectricLiftMovingTurnOam_Frame5",
+          "type": "frame"
         },
         {
           "address": "0x083BDFC0",
           "end": "0x083BDFF0",
           "symbol": "sElectricLiftMovingTurnOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BDFF0",
-          "end": "0x083BE164",
+          "end": "0x083BE020",
           "symbol": "sElectricLiftMovingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BE020",
+          "end": "0x083BE164",
+          "symbol": "sSpriteDataRaw_083BE020",
           "type": "raw"
         },
         {
