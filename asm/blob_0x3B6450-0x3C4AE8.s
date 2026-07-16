@@ -467,88 +467,88 @@ sUnk_83BB7AC:
 
 baserom_blob 0x3BB7AC, 0x3BBD6C
 
-.global sUnk_83BBD6C
-sUnk_83BBD6C:
+.global sMoguramenBurrowedOam
+sMoguramenBurrowedOam:
 
 baserom_blob 0x3BBD6C, 0x3BBDF4
 
-.global sUnk_83BBDF4
-sUnk_83BBDF4:
+.global sMoguramenIdleOam
+sMoguramenIdleOam:
 
 baserom_blob 0x3BBDF4, 0x3BBE1C
 
-.global sUnk_83BBE1C
-sUnk_83BBE1C:
+.global sMoguramenAttackWindupOam
+sMoguramenAttackWindupOam:
 
 baserom_blob 0x3BBE1C, 0x3BBE64
 
-.global sUnk_83BBE64
-sUnk_83BBE64:
+.global sMoguramenFallingOam
+sMoguramenFallingOam:
 
 baserom_blob 0x3BBE64, 0x3BBE8C
 
-.global sUnk_83BBE8C
-sUnk_83BBE8C:
+.global sMoguramenCrashRecoverOam
+sMoguramenCrashRecoverOam:
 
 baserom_blob 0x3BBE8C, 0x3BBEDC
 
-.global sUnk_83BBEDC
-sUnk_83BBEDC:
+.global sMoguramenTurnStartOam
+sMoguramenTurnStartOam:
 
 baserom_blob 0x3BBEDC, 0x3BBF04
 
-.global sUnk_83BBF04
-sUnk_83BBF04:
+.global sMoguramenTurnMiddleOam
+sMoguramenTurnMiddleOam:
 
 baserom_blob 0x3BBF04, 0x3BBF2C
 
-.global sUnk_83BBF2C
-sUnk_83BBF2C:
+.global sMoguramenTurnFinishOam
+sMoguramenTurnFinishOam:
 
 baserom_blob 0x3BBF2C, 0x3BBF54
 
-.global sUnk_83BBF54
-sUnk_83BBF54:
+.global sMoguramenStunnedOam
+sMoguramenStunnedOam:
 
 baserom_blob 0x3BBF54, 0x3BBF7C
 
-.global sUnk_83BBF7C
-sUnk_83BBF7C:
+.global sMoguramenBurrowEmergeOam
+sMoguramenBurrowEmergeOam:
 
 baserom_blob 0x3BBF7C, 0x3BBFC4
 
-.global sUnk_83BBFC4
-sUnk_83BBFC4:
+.global sMoguramenPushedWindupOam
+sMoguramenPushedWindupOam:
 
 baserom_blob 0x3BBFC4, 0x3BBFD4
 
-.global sUnk_83BBFD4
-sUnk_83BBFD4:
+.global sMoguramenProjectileOam
+sMoguramenProjectileOam:
 
 baserom_blob 0x3BBFD4, 0x3BBFE4
 
-.global sUnk_83BBFE4
-sUnk_83BBFE4:
+.global sMoguramenTumbleOam
+sMoguramenTumbleOam:
 
 baserom_blob 0x3BBFE4, 0x3BC004
 
-.global sUnk_83BC004
-sUnk_83BC004:
+.global sMoguramenDefeatedOam
+sMoguramenDefeatedOam:
 
 baserom_blob 0x3BC004, 0x3BC024
 
-.global sUnk_83BC024
-sUnk_83BC024:
+.global sMoguramenPushedSlideOam
+sMoguramenPushedSlideOam:
 
 baserom_blob 0x3BC024, 0x3BC04C
 
-.global sUnk_83BC04C
-sUnk_83BC04C:
+.global sMoguramenProjectileXSpeed
+sMoguramenProjectileXSpeed:
 
 baserom_blob 0x3BC04C, 0x3BC0AE
 
-.global sUnk_83BC0AE
-sUnk_83BC0AE:
+.global sMoguramenProjectileYSpeed
+sMoguramenProjectileYSpeed:
 
 baserom_blob 0x3BC0AE, 0x3BC570
 

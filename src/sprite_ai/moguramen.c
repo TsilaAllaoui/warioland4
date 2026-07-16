@@ -10,24 +10,24 @@
 
 void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
-extern const struct AnimationFrame sMoguramenBurrowedOam[] asm("sUnk_83BBD6C");
-extern const struct AnimationFrame sMoguramenIdleOam[] asm("sUnk_83BBDF4");
-extern const struct AnimationFrame sMoguramenAttackWindupOam[] asm("sUnk_83BBE1C");
-extern const struct AnimationFrame sMoguramenFallingOam[] asm("sUnk_83BBE64");
-extern const struct AnimationFrame sMoguramenCrashRecoverOam[] asm("sUnk_83BBE8C");
-extern const struct AnimationFrame sMoguramenTurnStartOam[] asm("sUnk_83BBEDC");
-extern const struct AnimationFrame sMoguramenTurnMiddleOam[] asm("sUnk_83BBF04");
-extern const struct AnimationFrame sMoguramenTurnFinishOam[] asm("sUnk_83BBF2C");
-extern const struct AnimationFrame sMoguramenStunnedOam[] asm("sUnk_83BBF54");
-extern const struct AnimationFrame sMoguramenBurrowEmergeOam[] asm("sUnk_83BBF7C");
-extern const struct AnimationFrame sMoguramenPushedWindupOam[] asm("sUnk_83BBFC4");
-extern const struct AnimationFrame sMoguramenProjectileOam[] asm("sUnk_83BBFD4");
-extern const struct AnimationFrame sMoguramenTumbleOam[] asm("sUnk_83BBFE4");
-extern const struct AnimationFrame sMoguramenDefeatedOam[] asm("sUnk_83BC004");
-extern const struct AnimationFrame sMoguramenPushedSlideOam[] asm("sUnk_83BC024");
+extern const struct AnimationFrame sMoguramenBurrowedOam[];
+extern const struct AnimationFrame sMoguramenIdleOam[];
+extern const struct AnimationFrame sMoguramenAttackWindupOam[];
+extern const struct AnimationFrame sMoguramenFallingOam[];
+extern const struct AnimationFrame sMoguramenCrashRecoverOam[];
+extern const struct AnimationFrame sMoguramenTurnStartOam[];
+extern const struct AnimationFrame sMoguramenTurnMiddleOam[];
+extern const struct AnimationFrame sMoguramenTurnFinishOam[];
+extern const struct AnimationFrame sMoguramenStunnedOam[];
+extern const struct AnimationFrame sMoguramenBurrowEmergeOam[];
+extern const struct AnimationFrame sMoguramenPushedWindupOam[];
+extern const struct AnimationFrame sMoguramenProjectileOam[];
+extern const struct AnimationFrame sMoguramenTumbleOam[];
+extern const struct AnimationFrame sMoguramenDefeatedOam[];
+extern const struct AnimationFrame sMoguramenPushedSlideOam[];
 extern const s16 sUnk_8352B18[];
-extern const s16 sMoguramenProjectileYSpeed[] asm("sUnk_83BC0AE");
-extern const s16 sMoguramenProjectileXSpeed[] asm("sUnk_83BC04C");
+extern const s16 sMoguramenProjectileYSpeed[];
+extern const s16 sMoguramenProjectileXSpeed[];
 void func_8076998(u32 yPosition, u32 xPosition, u32 xVelocity, u32 yVelocity, u32 angleStep);
 extern u8 gUnk_3000964[];
 
