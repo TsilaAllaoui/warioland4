@@ -5033,26 +5033,236 @@
         },
         {
           "address": "0x083C8DAE",
-          "end": "0x083C959C",
+          "end": "0x083C8DD8",
           "symbol": "sGoggleyBladeTurnVelocity",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C8DD8",
+          "end": "0x083C8DE6",
+          "symbol": "sDiceBlockIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8DE6",
+          "end": "0x083C8E06",
+          "symbol": "sDiceBlockBreakingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8E06",
+          "end": "0x083C8E26",
+          "symbol": "sDiceBlockBreakingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8E26",
+          "end": "0x083C8E5E",
+          "symbol": "sDiceBlockBreakingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8E5E",
+          "end": "0x083C8EAE",
+          "symbol": "sDiceBlockBreakingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8EAE",
+          "end": "0x083C8F10",
+          "symbol": "sDiceBlockBreakingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8F10",
+          "end": "0x083C8F66",
+          "symbol": "sDiceBlockBreakingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8F66",
+          "end": "0x083C8FAA",
+          "symbol": "sDiceBlockBreakingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8FAA",
+          "end": "0x083C8FEE",
+          "symbol": "sDiceBlockBreakingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8FEE",
+          "end": "0x083C904A",
+          "symbol": "sDiceBlockBreakingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C904A",
+          "end": "0x083C90A6",
+          "symbol": "sDiceBlockBreakingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C90A6",
+          "end": "0x083C9102",
+          "symbol": "sDiceBlockBreakingOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9102",
+          "end": "0x083C915E",
+          "symbol": "sDiceBlockBreakingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C915E",
+          "end": "0x083C91A2",
+          "symbol": "sDiceBlockBreakingOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C91A2",
+          "end": "0x083C91E6",
+          "symbol": "sDiceBlockBreakingOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C91E6",
+          "end": "0x083C9242",
+          "symbol": "sDiceBlockBreakingOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9242",
+          "end": "0x083C9292",
+          "symbol": "sDiceBlockBreakingOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9292",
+          "end": "0x083C92E2",
+          "symbol": "sDiceBlockBreakingOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C92E2",
+          "end": "0x083C932C",
+          "symbol": "sDiceBlockBreakingOam_Frame18",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C932C",
+          "end": "0x083C935E",
+          "symbol": "sDiceBlockBreakingOam_Frame19",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C935E",
+          "end": "0x083C938A",
+          "symbol": "sDiceBlockBreakingOam_Frame20",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C938A",
+          "end": "0x083C93BC",
+          "symbol": "sDiceBlockCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C93BC",
+          "end": "0x083C93E8",
+          "symbol": "sDiceBlockCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C93E8",
+          "end": "0x083C941A",
+          "symbol": "sDiceBlockCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C941A",
+          "end": "0x083C9446",
+          "symbol": "sDiceBlockCrushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9446",
+          "end": "0x083C9472",
+          "symbol": "sDiceBlockCrushedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9472",
+          "end": "0x083C949E",
+          "symbol": "sDiceBlockCrushedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C949E",
+          "end": "0x083C94CA",
+          "symbol": "sDiceBlockCrushedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C94CA",
+          "end": "0x083C94F0",
+          "symbol": "sDiceBlockCrushedOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C94F0",
+          "end": "0x083C951C",
+          "symbol": "sDiceBlockCrushedOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C951C",
+          "end": "0x083C9542",
+          "symbol": "sDiceBlockCrushedOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9542",
+          "end": "0x083C956E",
+          "symbol": "sDiceBlockCrushedOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C956E",
+          "end": "0x083C959A",
+          "symbol": "sDiceBlockCrushedOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C959A",
+          "end": "0x083C959C",
+          "symbol": "sSpriteDataRaw_083C959A",
           "type": "raw"
         },
         {
           "address": "0x083C959C",
           "end": "0x083C95AC",
           "symbol": "sDiceBlockIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C95AC",
           "end": "0x083C9614",
           "symbol": "sDiceBlockCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9614",
-          "end": "0x083C99E0",
+          "end": "0x083C96BC",
           "symbol": "sDiceBlockBreakingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C96BC",
+          "end": "0x083C99E0",
+          "symbol": "sSpriteDataRaw_083C96BC",
           "type": "raw"
         },
         {
