@@ -4275,224 +4275,584 @@
         },
         {
           "address": "0x083C1596",
-          "end": "0x083C2C14",
+          "end": "0x083C15F0",
           "symbol": "sMarumenAirborneYVelocity",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C15F0",
+          "end": "0x083C1640",
+          "symbol": "sSpoiledRottenOam_83C2C14_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1640",
+          "end": "0x083C1690",
+          "symbol": "sSpoiledRottenOam_83C2C14_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1690",
+          "end": "0x083C16E0",
+          "symbol": "sSpoiledRottenOam_83C2C14_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C16E0",
+          "end": "0x083C1730",
+          "symbol": "sSpoiledRottenOam_83C2C14_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1730",
+          "end": "0x083C1786",
+          "symbol": "sSpoiledRottenOam_83C2C14_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1786",
+          "end": "0x083C17D6",
+          "symbol": "sSpoiledRottenOam_83C2C14_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C17D6",
+          "end": "0x083C182C",
+          "symbol": "sSpoiledRottenOam_83C2CEC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C182C",
+          "end": "0x083C1882",
+          "symbol": "sSpoiledRottenOam_83C2CEC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1882",
+          "end": "0x083C18D8",
+          "symbol": "sSpoiledRottenOam_83C2CEC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C18D8",
+          "end": "0x083C192E",
+          "symbol": "sSpoiledRottenOam_83C2CEC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C192E",
+          "end": "0x083C198A",
+          "symbol": "sSpoiledRottenOam_83C2CEC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C198A",
+          "end": "0x083C19E0",
+          "symbol": "sSpoiledRottenOam_83C2CEC_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C19E0",
+          "end": "0x083C1A36",
+          "symbol": "sSpoiledRottenOam_83C2DC4_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1A36",
+          "end": "0x083C1A8C",
+          "symbol": "sSpoiledRottenOam_83C2DC4_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1A8C",
+          "end": "0x083C1AE2",
+          "symbol": "sSpoiledRottenOam_83C2DC4_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1AE2",
+          "end": "0x083C1B38",
+          "symbol": "sSpoiledRottenOam_83C2DC4_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1B38",
+          "end": "0x083C1B94",
+          "symbol": "sSpoiledRottenOam_83C2DC4_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1B94",
+          "end": "0x083C1BEA",
+          "symbol": "sSpoiledRottenOam_83C2DC4_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1BEA",
+          "end": "0x083C1C40",
+          "symbol": "sSpoiledRottenOam_83C2E9C_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1C40",
+          "end": "0x083C1C96",
+          "symbol": "sSpoiledRottenOam_83C2E9C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1C96",
+          "end": "0x083C1CEC",
+          "symbol": "sSpoiledRottenOam_83C2E9C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1CEC",
+          "end": "0x083C1D42",
+          "symbol": "sSpoiledRottenOam_83C2E9C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1D42",
+          "end": "0x083C1D9E",
+          "symbol": "sSpoiledRottenOam_83C2E9C_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1D9E",
+          "end": "0x083C1DF4",
+          "symbol": "sSpoiledRottenOam_83C2E9C_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1DF4",
+          "end": "0x083C1E4A",
+          "symbol": "sSpoiledRottenOam_83C2F74_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1E4A",
+          "end": "0x083C1EAC",
+          "symbol": "sSpoiledRottenOam_83C2F74_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1EAC",
+          "end": "0x083C1F02",
+          "symbol": "sSpoiledRottenOam_83C2F74_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1F02",
+          "end": "0x083C1F64",
+          "symbol": "sSpoiledRottenOam_83C2F74_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1F64",
+          "end": "0x083C1FC0",
+          "symbol": "sSpoiledRottenOam_83C2F74_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C1FC0",
+          "end": "0x083C2022",
+          "symbol": "sSpoiledRottenOam_83C2F74_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2022",
+          "end": "0x083C2072",
+          "symbol": "sSpoiledRottenOam_83C2C84_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2072",
+          "end": "0x083C20C8",
+          "symbol": "sSpoiledRottenOam_83C2CBC_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C20C8",
+          "end": "0x083C211E",
+          "symbol": "sSpoiledRottenOam_83C2D94_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C211E",
+          "end": "0x083C2174",
+          "symbol": "sSpoiledRottenOam_83C2E6C_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2174",
+          "end": "0x083C21C4",
+          "symbol": "sSpoiledRottenOam_83C2F44_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C21C4",
+          "end": "0x083C2226",
+          "symbol": "sSpoiledRottenOam_83C2CBC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2226",
+          "end": "0x083C2288",
+          "symbol": "sSpoiledRottenOam_83C2CBC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2288",
+          "end": "0x083C22EA",
+          "symbol": "sSpoiledRottenOam_83C2D94_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C22EA",
+          "end": "0x083C234C",
+          "symbol": "sSpoiledRottenOam_83C2E6C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C234C",
+          "end": "0x083C239C",
+          "symbol": "sSpoiledRottenOam_83C2F44_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C239C",
+          "end": "0x083C23EC",
+          "symbol": "sSpoiledRottenOam_83C2CBC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C23EC",
+          "end": "0x083C244E",
+          "symbol": "sSpoiledRottenOam_83C2C84_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C244E",
+          "end": "0x083C24B0",
+          "symbol": "sSpoiledRottenOam_83C2D5C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C24B0",
+          "end": "0x083C2512",
+          "symbol": "sSpoiledRottenOam_83C2E34_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2512",
+          "end": "0x083C2574",
+          "symbol": "sSpoiledRottenOam_83C2F0C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2574",
+          "end": "0x083C25D0",
+          "symbol": "sSpoiledRottenOam_83C2FE4_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C25D0",
+          "end": "0x083C2674",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2674",
+          "end": "0x083C2730",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2730",
+          "end": "0x083C27EC",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C27EC",
+          "end": "0x083C28C0",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C28C0",
+          "end": "0x083C294C",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C294C",
+          "end": "0x083C29D8",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C29D8",
+          "end": "0x083C2A7C",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2A7C",
+          "end": "0x083C2B08",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2B08",
+          "end": "0x083C2B7C",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2B7C",
+          "end": "0x083C2BD8",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2BD8",
+          "end": "0x083C2C0A",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2C0A",
+          "end": "0x083C2C12",
+          "symbol": "sSpoiledRottenOam_83C30F4_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C2C12",
+          "end": "0x083C2C14",
+          "symbol": "sSpriteDataRaw_083C2C12",
           "type": "raw"
         },
         {
           "address": "0x083C2C14",
           "end": "0x083C2C4C",
-          "symbol": "sUnk_83C2C14",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2C14",
+          "type": "anim"
         },
         {
           "address": "0x083C2C4C",
           "end": "0x083C2C84",
-          "symbol": "sUnk_83C2C4C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2C4C",
+          "type": "anim"
         },
         {
           "address": "0x083C2C84",
           "end": "0x083C2CA4",
-          "symbol": "sUnk_83C2C84",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2C84",
+          "type": "anim"
         },
         {
           "address": "0x083C2CA4",
           "end": "0x083C2CBC",
-          "symbol": "sUnk_83C2CA4",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2CA4",
+          "type": "anim"
         },
         {
           "address": "0x083C2CBC",
           "end": "0x083C2CEC",
-          "symbol": "sUnk_83C2CBC",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2CBC",
+          "type": "anim"
         },
         {
           "address": "0x083C2CEC",
           "end": "0x083C2D24",
-          "symbol": "sUnk_83C2CEC",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2CEC",
+          "type": "anim"
         },
         {
           "address": "0x083C2D24",
           "end": "0x083C2D5C",
-          "symbol": "sUnk_83C2D24",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2D24",
+          "type": "anim"
         },
         {
           "address": "0x083C2D5C",
           "end": "0x083C2D7C",
-          "symbol": "sUnk_83C2D5C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2D5C",
+          "type": "anim"
         },
         {
           "address": "0x083C2D7C",
           "end": "0x083C2D94",
-          "symbol": "sUnk_83C2D7C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2D7C",
+          "type": "anim"
         },
         {
           "address": "0x083C2D94",
           "end": "0x083C2DC4",
-          "symbol": "sUnk_83C2D94",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2D94",
+          "type": "anim"
         },
         {
           "address": "0x083C2DC4",
           "end": "0x083C2DFC",
-          "symbol": "sUnk_83C2DC4",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2DC4",
+          "type": "anim"
         },
         {
           "address": "0x083C2DFC",
           "end": "0x083C2E34",
-          "symbol": "sUnk_83C2DFC",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2DFC",
+          "type": "anim"
         },
         {
           "address": "0x083C2E34",
           "end": "0x083C2E54",
-          "symbol": "sUnk_83C2E34",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2E34",
+          "type": "anim"
         },
         {
           "address": "0x083C2E54",
           "end": "0x083C2E6C",
-          "symbol": "sUnk_83C2E54",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2E54",
+          "type": "anim"
         },
         {
           "address": "0x083C2E6C",
           "end": "0x083C2E9C",
-          "symbol": "sUnk_83C2E6C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2E6C",
+          "type": "anim"
         },
         {
           "address": "0x083C2E9C",
           "end": "0x083C2ED4",
-          "symbol": "sUnk_83C2E9C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2E9C",
+          "type": "anim"
         },
         {
           "address": "0x083C2ED4",
           "end": "0x083C2F0C",
-          "symbol": "sUnk_83C2ED4",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2ED4",
+          "type": "anim"
         },
         {
           "address": "0x083C2F0C",
           "end": "0x083C2F2C",
-          "symbol": "sUnk_83C2F0C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2F0C",
+          "type": "anim"
         },
         {
           "address": "0x083C2F2C",
           "end": "0x083C2F44",
-          "symbol": "sUnk_83C2F2C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2F2C",
+          "type": "anim"
         },
         {
           "address": "0x083C2F44",
           "end": "0x083C2F74",
-          "symbol": "sUnk_83C2F44",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2F44",
+          "type": "anim"
         },
         {
           "address": "0x083C2F74",
           "end": "0x083C2FAC",
-          "symbol": "sUnk_83C2F74",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2F74",
+          "type": "anim"
         },
         {
           "address": "0x083C2FAC",
           "end": "0x083C2FE4",
-          "symbol": "sUnk_83C2FAC",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2FAC",
+          "type": "anim"
         },
         {
           "address": "0x083C2FE4",
           "end": "0x083C3004",
-          "symbol": "sUnk_83C2FE4",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C2FE4",
+          "type": "anim"
         },
         {
           "address": "0x083C3004",
           "end": "0x083C301C",
-          "symbol": "sUnk_83C3004",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C3004",
+          "type": "anim"
         },
         {
           "address": "0x083C301C",
           "end": "0x083C302C",
-          "symbol": "sUnk_83C301C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C301C",
+          "type": "anim"
         },
         {
           "address": "0x083C302C",
           "end": "0x083C303C",
-          "symbol": "sUnk_83C302C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C302C",
+          "type": "anim"
         },
         {
           "address": "0x083C303C",
           "end": "0x083C304C",
-          "symbol": "sUnk_83C303C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C303C",
+          "type": "anim"
         },
         {
           "address": "0x083C304C",
           "end": "0x083C305C",
-          "symbol": "sUnk_83C304C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C304C",
+          "type": "anim"
         },
         {
           "address": "0x083C305C",
           "end": "0x083C306C",
-          "symbol": "sUnk_83C305C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C305C",
+          "type": "anim"
         },
         {
           "address": "0x083C306C",
           "end": "0x083C307C",
-          "symbol": "sUnk_83C306C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C306C",
+          "type": "anim"
         },
         {
           "address": "0x083C307C",
           "end": "0x083C3094",
-          "symbol": "sUnk_83C307C",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C307C",
+          "type": "anim"
         },
         {
           "address": "0x083C3094",
           "end": "0x083C30AC",
-          "symbol": "sUnk_83C3094",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C3094",
+          "type": "anim"
         },
         {
           "address": "0x083C30AC",
           "end": "0x083C30C4",
-          "symbol": "sUnk_83C30AC",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C30AC",
+          "type": "anim"
         },
         {
           "address": "0x083C30C4",
           "end": "0x083C30DC",
-          "symbol": "sUnk_83C30C4",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C30C4",
+          "type": "anim"
         },
         {
           "address": "0x083C30DC",
           "end": "0x083C30F4",
-          "symbol": "sUnk_83C30DC",
-          "type": "raw"
+          "symbol": "sSpoiledRottenOam_83C30DC",
+          "type": "anim"
         },
         {
           "address": "0x083C30F4",
+          "end": "0x083C315C",
+          "symbol": "sSpoiledRottenOam_83C30F4",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C315C",
           "end": "0x083C4174",
-          "symbol": "sUnk_83C30F4",
+          "symbol": "sSpriteDataRaw_083C315C",
           "type": "raw"
         },
         {
@@ -16589,6 +16949,42 @@
     "sUnk_83B4534": "sRotatingPlatformOam_83B4534",
     "sUnk_83B4544": "sRotatingPlatformOam_83B4544",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
+    "sUnk_83C2C14": "sSpoiledRottenOam_83C2C14",
+    "sUnk_83C2C4C": "sSpoiledRottenOam_83C2C4C",
+    "sUnk_83C2C84": "sSpoiledRottenOam_83C2C84",
+    "sUnk_83C2CA4": "sSpoiledRottenOam_83C2CA4",
+    "sUnk_83C2CBC": "sSpoiledRottenOam_83C2CBC",
+    "sUnk_83C2CEC": "sSpoiledRottenOam_83C2CEC",
+    "sUnk_83C2D24": "sSpoiledRottenOam_83C2D24",
+    "sUnk_83C2D5C": "sSpoiledRottenOam_83C2D5C",
+    "sUnk_83C2D7C": "sSpoiledRottenOam_83C2D7C",
+    "sUnk_83C2D94": "sSpoiledRottenOam_83C2D94",
+    "sUnk_83C2DC4": "sSpoiledRottenOam_83C2DC4",
+    "sUnk_83C2DFC": "sSpoiledRottenOam_83C2DFC",
+    "sUnk_83C2E34": "sSpoiledRottenOam_83C2E34",
+    "sUnk_83C2E54": "sSpoiledRottenOam_83C2E54",
+    "sUnk_83C2E6C": "sSpoiledRottenOam_83C2E6C",
+    "sUnk_83C2E9C": "sSpoiledRottenOam_83C2E9C",
+    "sUnk_83C2ED4": "sSpoiledRottenOam_83C2ED4",
+    "sUnk_83C2F0C": "sSpoiledRottenOam_83C2F0C",
+    "sUnk_83C2F2C": "sSpoiledRottenOam_83C2F2C",
+    "sUnk_83C2F44": "sSpoiledRottenOam_83C2F44",
+    "sUnk_83C2F74": "sSpoiledRottenOam_83C2F74",
+    "sUnk_83C2FAC": "sSpoiledRottenOam_83C2FAC",
+    "sUnk_83C2FE4": "sSpoiledRottenOam_83C2FE4",
+    "sUnk_83C3004": "sSpoiledRottenOam_83C3004",
+    "sUnk_83C301C": "sSpoiledRottenOam_83C301C",
+    "sUnk_83C302C": "sSpoiledRottenOam_83C302C",
+    "sUnk_83C303C": "sSpoiledRottenOam_83C303C",
+    "sUnk_83C304C": "sSpoiledRottenOam_83C304C",
+    "sUnk_83C305C": "sSpoiledRottenOam_83C305C",
+    "sUnk_83C306C": "sSpoiledRottenOam_83C306C",
+    "sUnk_83C307C": "sSpoiledRottenOam_83C307C",
+    "sUnk_83C3094": "sSpoiledRottenOam_83C3094",
+    "sUnk_83C30AC": "sSpoiledRottenOam_83C30AC",
+    "sUnk_83C30C4": "sSpoiledRottenOam_83C30C4",
+    "sUnk_83C30DC": "sSpoiledRottenOam_83C30DC",
+    "sUnk_83C30F4": "sSpoiledRottenOam_83C30F4",
     "sUnk_83C4CD8": "sMiniculaOam_83C4CD8",
     "sUnk_83C5364": "sGhostOam_83C5364",
     "sUnk_83C538C": "sGhostOam_83C538C",
