@@ -1953,104 +1953,944 @@
         },
         {
           "address": "0x083BEF44",
-          "end": "0x083BF986",
+          "end": "0x083BEF84",
           "symbol": "sBowBalloonGettingUpYVelocity",
           "type": "raw"
         },
         {
+          "address": "0x083BEF84",
+          "end": "0x083BEFA4",
+          "symbol": "sChanceWheelIdleOam_Frame36",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEFA4",
+          "end": "0x083BEFC4",
+          "symbol": "sChanceWheelIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEFC4",
+          "end": "0x083BEFEA",
+          "symbol": "sChanceWheelIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEFEA",
+          "end": "0x083BF01C",
+          "symbol": "sChanceWheelIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF01C",
+          "end": "0x083BF042",
+          "symbol": "sChanceWheelIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF042",
+          "end": "0x083BF06E",
+          "symbol": "sChanceWheelIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF06E",
+          "end": "0x083BF08E",
+          "symbol": "sChanceWheelIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF08E",
+          "end": "0x083BF0AE",
+          "symbol": "sChanceWheelIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF0AE",
+          "end": "0x083BF0DA",
+          "symbol": "sChanceWheelIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF0DA",
+          "end": "0x083BF106",
+          "symbol": "sChanceWheelIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF106",
+          "end": "0x083BF132",
+          "symbol": "sChanceWheelIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF132",
+          "end": "0x083BF15E",
+          "symbol": "sChanceWheelIdleOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF15E",
+          "end": "0x083BF17E",
+          "symbol": "sChanceWheelIdleOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF17E",
+          "end": "0x083BF19E",
+          "symbol": "sChanceWheelIdleOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF19E",
+          "end": "0x083BF1C4",
+          "symbol": "sChanceWheelIdleOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF1C4",
+          "end": "0x083BF1F0",
+          "symbol": "sChanceWheelIdleOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF1F0",
+          "end": "0x083BF21C",
+          "symbol": "sChanceWheelIdleOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF21C",
+          "end": "0x083BF248",
+          "symbol": "sChanceWheelIdleOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF248",
+          "end": "0x083BF268",
+          "symbol": "sChanceWheelIdleOam_Frame18",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF268",
+          "end": "0x083BF288",
+          "symbol": "sChanceWheelIdleOam_Frame19",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF288",
+          "end": "0x083BF2B4",
+          "symbol": "sChanceWheelIdleOam_Frame20",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF2B4",
+          "end": "0x083BF2E0",
+          "symbol": "sChanceWheelIdleOam_Frame21",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF2E0",
+          "end": "0x083BF30C",
+          "symbol": "sChanceWheelIdleOam_Frame22",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF30C",
+          "end": "0x083BF338",
+          "symbol": "sChanceWheelIdleOam_Frame23",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF338",
+          "end": "0x083BF358",
+          "symbol": "sChanceWheelIdleOam_Frame24",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF358",
+          "end": "0x083BF378",
+          "symbol": "sChanceWheelIdleOam_Frame25",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF378",
+          "end": "0x083BF3A4",
+          "symbol": "sChanceWheelIdleOam_Frame26",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF3A4",
+          "end": "0x083BF3D0",
+          "symbol": "sChanceWheelIdleOam_Frame27",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF3D0",
+          "end": "0x083BF3FC",
+          "symbol": "sChanceWheelIdleOam_Frame28",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF3FC",
+          "end": "0x083BF428",
+          "symbol": "sChanceWheelIdleOam_Frame29",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF428",
+          "end": "0x083BF448",
+          "symbol": "sChanceWheelIdleOam_Frame30",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF448",
+          "end": "0x083BF468",
+          "symbol": "sChanceWheelIdleOam_Frame31",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF468",
+          "end": "0x083BF494",
+          "symbol": "sChanceWheelIdleOam_Frame32",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF494",
+          "end": "0x083BF4C0",
+          "symbol": "sChanceWheelIdleOam_Frame33",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF4C0",
+          "end": "0x083BF4EC",
+          "symbol": "sChanceWheelIdleOam_Frame34",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF4EC",
+          "end": "0x083BF518",
+          "symbol": "sChanceWheelIdleOam_Frame35",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF518",
+          "end": "0x083BF538",
+          "symbol": "sChanceWheelResult1Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF538",
+          "end": "0x083BF558",
+          "symbol": "sChanceWheelResult1Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF558",
+          "end": "0x083BF578",
+          "symbol": "sChanceWheelResult2Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF578",
+          "end": "0x083BF598",
+          "symbol": "sChanceWheelResult2Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF598",
+          "end": "0x083BF5B8",
+          "symbol": "sChanceWheelResult3Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF5B8",
+          "end": "0x083BF5D8",
+          "symbol": "sChanceWheelResult3Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF5D8",
+          "end": "0x083BF5F8",
+          "symbol": "sChanceWheelResult4Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF5F8",
+          "end": "0x083BF618",
+          "symbol": "sChanceWheelResult4Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF618",
+          "end": "0x083BF638",
+          "symbol": "sChanceWheelResult5Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF638",
+          "end": "0x083BF658",
+          "symbol": "sChanceWheelResult5Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF658",
+          "end": "0x083BF678",
+          "symbol": "sChanceWheelResult6Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF678",
+          "end": "0x083BF698",
+          "symbol": "sChanceWheelResult6Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF698",
+          "end": "0x083BF6CA",
+          "symbol": "sChanceWheelRewardEffectOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF6CA",
+          "end": "0x083BF6FC",
+          "symbol": "sChanceWheelRewardEffectOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF6FC",
+          "end": "0x083BF72E",
+          "symbol": "sChanceWheelRewardEffectOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF72E",
+          "end": "0x083BF760",
+          "symbol": "sChanceWheelRewardEffectOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF760",
+          "end": "0x083BF792",
+          "symbol": "sChanceWheelRewardEffectOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF792",
+          "end": "0x083BF7C4",
+          "symbol": "sChanceWheelRewardEffectOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF7C4",
+          "end": "0x083BF7F6",
+          "symbol": "sChanceWheelRewardEffectOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF7F6",
+          "end": "0x083BF828",
+          "symbol": "sChanceWheelRewardEffectOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF828",
+          "end": "0x083BF85A",
+          "symbol": "sChanceWheelRewardEffectOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF85A",
+          "end": "0x083BF88C",
+          "symbol": "sChanceWheelRewardEffectOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF88C",
+          "end": "0x083BF8BE",
+          "symbol": "sChanceWheelRewardEffectOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF8BE",
+          "end": "0x083BF8F0",
+          "symbol": "sChanceWheelRewardEffectOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF8F0",
+          "end": "0x083BF922",
+          "symbol": "sChanceWheelRewardEffectOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF922",
+          "end": "0x083BF954",
+          "symbol": "sChanceWheelRewardEffectOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF954",
+          "end": "0x083BF986",
+          "symbol": "sChanceWheelRewardEffectOam_Frame15",
+          "type": "frame"
+        },
+        {
           "address": "0x083BF986",
-          "end": "0x083BFB8C",
+          "end": "0x083BF98E",
           "symbol": "sUnk_83BF986",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BF98E",
+          "end": "0x083BF9A8",
+          "symbol": "sChanceWheelResult1Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF9A8",
+          "end": "0x083BF9BC",
+          "symbol": "sChanceWheelResult1Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF9BC",
+          "end": "0x083BF9D6",
+          "symbol": "sChanceWheelResult2Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF9D6",
+          "end": "0x083BF9EA",
+          "symbol": "sChanceWheelResult2Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BF9EA",
+          "end": "0x083BFA04",
+          "symbol": "sChanceWheelResult3Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA04",
+          "end": "0x083BFA18",
+          "symbol": "sChanceWheelResult3Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA18",
+          "end": "0x083BFA32",
+          "symbol": "sChanceWheelResult4Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA32",
+          "end": "0x083BFA46",
+          "symbol": "sChanceWheelResult4Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA46",
+          "end": "0x083BFA60",
+          "symbol": "sChanceWheelResult5Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA60",
+          "end": "0x083BFA74",
+          "symbol": "sChanceWheelResult5Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA74",
+          "end": "0x083BFA8E",
+          "symbol": "sChanceWheelResult6Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFA8E",
+          "end": "0x083BFAA2",
+          "symbol": "sChanceWheelResult6Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFAA2",
+          "end": "0x083BFB8C",
+          "symbol": "sSpriteDataRaw_083BFAA2",
           "type": "raw"
         },
         {
           "address": "0x083BFB8C",
           "end": "0x083BFCB4",
           "symbol": "sChanceWheelIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFCB4",
           "end": "0x083BFCE4",
           "symbol": "sChanceWheelResult1Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFCE4",
           "end": "0x083BFD14",
           "symbol": "sChanceWheelResult2Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFD14",
           "end": "0x083BFD44",
           "symbol": "sChanceWheelResult3Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFD44",
           "end": "0x083BFD74",
           "symbol": "sChanceWheelResult4Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFD74",
           "end": "0x083BFDA4",
           "symbol": "sChanceWheelResult5Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFDA4",
           "end": "0x083BFDD4",
           "symbol": "sChanceWheelResult6Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BFDD4",
-          "end": "0x083C0A28",
+          "end": "0x083BFE54",
           "symbol": "sChanceWheelRewardEffectOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BFE54",
+          "end": "0x083BFEB4",
+          "symbol": "sSpriteDataRaw_083BFE54",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BFEB4",
+          "end": "0x083BFED4",
+          "symbol": "sGoalBlockIdleOam_Frame36",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFED4",
+          "end": "0x083BFEF4",
+          "symbol": "sGoalBlockIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFEF4",
+          "end": "0x083BFF1A",
+          "symbol": "sGoalBlockIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFF1A",
+          "end": "0x083BFF4C",
+          "symbol": "sGoalBlockIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFF4C",
+          "end": "0x083BFF72",
+          "symbol": "sGoalBlockIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFF72",
+          "end": "0x083BFF9E",
+          "symbol": "sGoalBlockIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFF9E",
+          "end": "0x083BFFBE",
+          "symbol": "sGoalBlockIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFFBE",
+          "end": "0x083BFFDE",
+          "symbol": "sGoalBlockIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BFFDE",
+          "end": "0x083C000A",
+          "symbol": "sGoalBlockIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C000A",
+          "end": "0x083C0036",
+          "symbol": "sGoalBlockIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0036",
+          "end": "0x083C0062",
+          "symbol": "sGoalBlockIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0062",
+          "end": "0x083C008E",
+          "symbol": "sGoalBlockIdleOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C008E",
+          "end": "0x083C00AE",
+          "symbol": "sGoalBlockIdleOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C00AE",
+          "end": "0x083C00CE",
+          "symbol": "sGoalBlockIdleOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C00CE",
+          "end": "0x083C00F4",
+          "symbol": "sGoalBlockIdleOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C00F4",
+          "end": "0x083C0120",
+          "symbol": "sGoalBlockIdleOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0120",
+          "end": "0x083C014C",
+          "symbol": "sGoalBlockIdleOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C014C",
+          "end": "0x083C0178",
+          "symbol": "sGoalBlockIdleOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0178",
+          "end": "0x083C0198",
+          "symbol": "sGoalBlockIdleOam_Frame18",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0198",
+          "end": "0x083C01B8",
+          "symbol": "sGoalBlockIdleOam_Frame19",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C01B8",
+          "end": "0x083C01E4",
+          "symbol": "sGoalBlockIdleOam_Frame20",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C01E4",
+          "end": "0x083C0210",
+          "symbol": "sGoalBlockIdleOam_Frame21",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0210",
+          "end": "0x083C023C",
+          "symbol": "sGoalBlockIdleOam_Frame22",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C023C",
+          "end": "0x083C0268",
+          "symbol": "sGoalBlockIdleOam_Frame23",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0268",
+          "end": "0x083C0288",
+          "symbol": "sGoalBlockIdleOam_Frame24",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0288",
+          "end": "0x083C02A8",
+          "symbol": "sGoalBlockIdleOam_Frame25",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C02A8",
+          "end": "0x083C02D4",
+          "symbol": "sGoalBlockIdleOam_Frame26",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C02D4",
+          "end": "0x083C0300",
+          "symbol": "sGoalBlockIdleOam_Frame27",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0300",
+          "end": "0x083C032C",
+          "symbol": "sGoalBlockIdleOam_Frame28",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C032C",
+          "end": "0x083C0358",
+          "symbol": "sGoalBlockIdleOam_Frame29",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0358",
+          "end": "0x083C0378",
+          "symbol": "sGoalBlockIdleOam_Frame30",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0378",
+          "end": "0x083C0398",
+          "symbol": "sGoalBlockIdleOam_Frame31",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0398",
+          "end": "0x083C03C4",
+          "symbol": "sGoalBlockIdleOam_Frame32",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C03C4",
+          "end": "0x083C03F0",
+          "symbol": "sGoalBlockIdleOam_Frame33",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C03F0",
+          "end": "0x083C041C",
+          "symbol": "sGoalBlockIdleOam_Frame34",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C041C",
+          "end": "0x083C0448",
+          "symbol": "sGoalBlockIdleOam_Frame35",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0448",
+          "end": "0x083C0468",
+          "symbol": "sGoalBlockResult1Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0468",
+          "end": "0x083C0488",
+          "symbol": "sGoalBlockResult1Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0488",
+          "end": "0x083C04A8",
+          "symbol": "sGoalBlockResult2Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C04A8",
+          "end": "0x083C04C8",
+          "symbol": "sGoalBlockResult2Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C04C8",
+          "end": "0x083C04E8",
+          "symbol": "sGoalBlockResult3Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C04E8",
+          "end": "0x083C0508",
+          "symbol": "sGoalBlockResult3Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0508",
+          "end": "0x083C0528",
+          "symbol": "sGoalBlockResult4Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0528",
+          "end": "0x083C0548",
+          "symbol": "sGoalBlockResult4Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0548",
+          "end": "0x083C0568",
+          "symbol": "sGoalBlockResult5Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0568",
+          "end": "0x083C0588",
+          "symbol": "sGoalBlockResult5Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0588",
+          "end": "0x083C05A8",
+          "symbol": "sGoalBlockResult6Oam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C05A8",
+          "end": "0x083C05C8",
+          "symbol": "sGoalBlockResult6Oam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C05C8",
+          "end": "0x083C08BE",
+          "symbol": "sSpriteDataRaw_083C05C8",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C08BE",
+          "end": "0x083C08D8",
+          "symbol": "sGoalBlockResult1Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C08D8",
+          "end": "0x083C08EC",
+          "symbol": "sGoalBlockResult1Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C08EC",
+          "end": "0x083C0906",
+          "symbol": "sGoalBlockResult2Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0906",
+          "end": "0x083C091A",
+          "symbol": "sGoalBlockResult2Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C091A",
+          "end": "0x083C0934",
+          "symbol": "sGoalBlockResult3Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0934",
+          "end": "0x083C0948",
+          "symbol": "sGoalBlockResult3Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0948",
+          "end": "0x083C0962",
+          "symbol": "sGoalBlockResult4Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0962",
+          "end": "0x083C0976",
+          "symbol": "sGoalBlockResult4Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0976",
+          "end": "0x083C0990",
+          "symbol": "sGoalBlockResult5Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C0990",
+          "end": "0x083C09A4",
+          "symbol": "sGoalBlockResult5Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C09A4",
+          "end": "0x083C09BE",
+          "symbol": "sGoalBlockResult6Oam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C09BE",
+          "end": "0x083C09D2",
+          "symbol": "sGoalBlockResult6Oam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C09D2",
+          "end": "0x083C0A28",
+          "symbol": "sSpriteDataRaw_083C09D2",
           "type": "raw"
         },
         {
           "address": "0x083C0A28",
           "end": "0x083C0B50",
           "symbol": "sGoalBlockIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C0B50",
           "end": "0x083C0B80",
           "symbol": "sGoalBlockResult1Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C0B80",
           "end": "0x083C0BB0",
           "symbol": "sGoalBlockResult2Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C0BB0",
           "end": "0x083C0BE0",
           "symbol": "sGoalBlockResult3Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C0BE0",
           "end": "0x083C0C10",
           "symbol": "sGoalBlockResult4Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C0C10",
           "end": "0x083C0C40",
           "symbol": "sGoalBlockResult5Oam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C0C40",
-          "end": "0x083C0D50",
+          "end": "0x083C0C70",
           "symbol": "sGoalBlockResult6Oam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C0C70",
+          "end": "0x083C0D50",
+          "symbol": "sSpriteDataRaw_083C0C70",
           "type": "raw"
         },
         {
