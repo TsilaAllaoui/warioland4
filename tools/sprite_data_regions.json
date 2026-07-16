@@ -1299,93 +1299,579 @@
         },
         {
           "address": "0x083BE234",
-          "end": "0x083BEBF4",
+          "end": "0x083BE264",
           "symbol": "sMagicCarpetVerticalVelocity",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BE264",
+          "end": "0x083BE27E",
+          "symbol": "sBowBalloonIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE27E",
+          "end": "0x083BE29E",
+          "symbol": "sBowBalloonIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE29E",
+          "end": "0x083BE2B8",
+          "symbol": "sBowBalloonIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE2B8",
+          "end": "0x083BE2D2",
+          "symbol": "sBowBalloonIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE2D2",
+          "end": "0x083BE2F2",
+          "symbol": "sBowBalloonIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE2F2",
+          "end": "0x083BE312",
+          "symbol": "sBowBalloonIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE312",
+          "end": "0x083BE32C",
+          "symbol": "sBowBalloonTurningOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE32C",
+          "end": "0x083BE346",
+          "symbol": "sBowBalloonTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE346",
+          "end": "0x083BE36C",
+          "symbol": "sBowBalloonTurningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE36C",
+          "end": "0x083BE392",
+          "symbol": "sBowBalloonTurningAroundOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE392",
+          "end": "0x083BE3AC",
+          "symbol": "sBowBalloonTurningAroundOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE3AC",
+          "end": "0x083BE3C6",
+          "symbol": "sBowBalloonTurningAroundOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE3C6",
+          "end": "0x083BE3E0",
+          "symbol": "sBowBalloonRecoveringOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE3E0",
+          "end": "0x083BE3FA",
+          "symbol": "sBowBalloonRecoveringOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE3FA",
+          "end": "0x083BE40E",
+          "symbol": "sBowBalloonRecoveringOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE40E",
+          "end": "0x083BE428",
+          "symbol": "sBowBalloonRecoveringOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE428",
+          "end": "0x083BE442",
+          "symbol": "sBowBalloonRecoveringOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE442",
+          "end": "0x083BE45C",
+          "symbol": "sBowBalloonRecoveringOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE45C",
+          "end": "0x083BE476",
+          "symbol": "sBowBalloonRecoveringOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE476",
+          "end": "0x083BE490",
+          "symbol": "sBowBalloonRecoveringOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE490",
+          "end": "0x083BE4AA",
+          "symbol": "sBowBalloonRecoveringOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE4AA",
+          "end": "0x083BE4C4",
+          "symbol": "sBowBalloonRecoveringOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE4C4",
+          "end": "0x083BE4DE",
+          "symbol": "sBowBalloonRecoveringOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE4DE",
+          "end": "0x083BE4F8",
+          "symbol": "sBowBalloonRecoveringOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE4F8",
+          "end": "0x083BE512",
+          "symbol": "sBowBalloonAirborneOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE512",
+          "end": "0x083BE52C",
+          "symbol": "sBowBalloonAirborneOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE52C",
+          "end": "0x083BE546",
+          "symbol": "sBowBalloonAirborneOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE546",
+          "end": "0x083BE560",
+          "symbol": "sBowBalloonAirborneOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE560",
+          "end": "0x083BE57A",
+          "symbol": "sBowBalloonAirborneOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE57A",
+          "end": "0x083BE594",
+          "symbol": "sBowBalloonAirborneOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE594",
+          "end": "0x083BE5AE",
+          "symbol": "sBowBalloonAirborneOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE5AE",
+          "end": "0x083BE5C8",
+          "symbol": "sBowBalloonPushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE5C8",
+          "end": "0x083BE5E8",
+          "symbol": "sBowBalloonPushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE5E8",
+          "end": "0x083BE608",
+          "symbol": "sBowBalloonPushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE608",
+          "end": "0x083BE634",
+          "symbol": "sBowBalloonAttackingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE634",
+          "end": "0x083BE654",
+          "symbol": "sBowBalloonAttackingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE654",
+          "end": "0x083BE674",
+          "symbol": "sBowBalloonAttackingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE674",
+          "end": "0x083BE6A6",
+          "symbol": "sBowBalloonAttackingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE6A6",
+          "end": "0x083BE6D8",
+          "symbol": "sBowBalloonAttackingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE6D8",
+          "end": "0x083BE70A",
+          "symbol": "sBowBalloonAttackingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE70A",
+          "end": "0x083BE730",
+          "symbol": "sBowBalloonAttackingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE730",
+          "end": "0x083BE75C",
+          "symbol": "sBowBalloonAttackingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE75C",
+          "end": "0x083BE782",
+          "symbol": "sBowBalloonAttackingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE782",
+          "end": "0x083BE7A2",
+          "symbol": "sBowBalloonAttackingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE7A2",
+          "end": "0x083BE7BC",
+          "symbol": "sBowBalloonStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE7BC",
+          "end": "0x083BE7D6",
+          "symbol": "sBowBalloonStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE7D6",
+          "end": "0x083BE7EA",
+          "symbol": "sBowBalloonStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE7EA",
+          "end": "0x083BE804",
+          "symbol": "sBowBalloonStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE804",
+          "end": "0x083BE824",
+          "symbol": "sBowBalloonStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE824",
+          "end": "0x083BE844",
+          "symbol": "sBowBalloonStunnedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE844",
+          "end": "0x083BE864",
+          "symbol": "sBowBalloonGettingUpOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE864",
+          "end": "0x083BE87E",
+          "symbol": "sBowBalloonGettingUpOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE87E",
+          "end": "0x083BE898",
+          "symbol": "sBowBalloonGettingUpOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE898",
+          "end": "0x083BE8B2",
+          "symbol": "sBowBalloonGettingUpOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE8B2",
+          "end": "0x083BE8CC",
+          "symbol": "sBowBalloonGettingUpOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE8CC",
+          "end": "0x083BE8E6",
+          "symbol": "sBowBalloonGettingUpOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE8E6",
+          "end": "0x083BE90C",
+          "symbol": "sBowBalloonGettingUpOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE90C",
+          "end": "0x083BE932",
+          "symbol": "sBowBalloonGettingUpOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE932",
+          "end": "0x083BE958",
+          "symbol": "sBowBalloonGettingUpOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE958",
+          "end": "0x083BE97E",
+          "symbol": "sBowBalloonGettingUpOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE97E",
+          "end": "0x083BE998",
+          "symbol": "sBowBalloonGettingUpOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE998",
+          "end": "0x083BE9B2",
+          "symbol": "sBowBalloonGettingUpOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE9B2",
+          "end": "0x083BE9CC",
+          "symbol": "sBowBalloonGettingUpOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE9CC",
+          "end": "0x083BE9E6",
+          "symbol": "sBowBalloonGettingUpOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BE9E6",
+          "end": "0x083BEA00",
+          "symbol": "sBowBalloonGettingUpOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEA00",
+          "end": "0x083BEA1A",
+          "symbol": "sBowBalloonGettingUpOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEA1A",
+          "end": "0x083BEA34",
+          "symbol": "sBowBalloonGettingUpOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEA34",
+          "end": "0x083BEA54",
+          "symbol": "sBowBalloonCrushedWhileStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEA54",
+          "end": "0x083BEA74",
+          "symbol": "sBowBalloonCrushedWhileStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEA74",
+          "end": "0x083BEA9A",
+          "symbol": "sBowBalloonCrushedWhileStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEA9A",
+          "end": "0x083BEAC0",
+          "symbol": "sBowBalloonCrushedWhileStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEAC0",
+          "end": "0x083BEAE6",
+          "symbol": "sBowBalloonCrushedWhileStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEAE6",
+          "end": "0x083BEB06",
+          "symbol": "sBowBalloonCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEB06",
+          "end": "0x083BEB26",
+          "symbol": "sBowBalloonCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEB26",
+          "end": "0x083BEB4C",
+          "symbol": "sBowBalloonCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEB4C",
+          "end": "0x083BEB72",
+          "symbol": "sBowBalloonCrushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEB72",
+          "end": "0x083BEB98",
+          "symbol": "sBowBalloonCrushedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEB98",
+          "end": "0x083BEBBE",
+          "symbol": "sBowBalloonCrushedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEBBE",
+          "end": "0x083BEBE4",
+          "symbol": "sBowBalloonCrushedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEBE4",
+          "end": "0x083BEBF2",
+          "symbol": "sBowBalloonProjectileOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BEBF2",
+          "end": "0x083BEBF4",
+          "symbol": "sSpriteDataRaw_083BEBF2",
           "type": "raw"
         },
         {
           "address": "0x083BEBF4",
           "end": "0x083BEC2C",
           "symbol": "sBowBalloonIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEC2C",
           "end": "0x083BEC64",
           "symbol": "sBowBalloonFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEC64",
           "end": "0x083BEC84",
           "symbol": "sBowBalloonTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEC84",
           "end": "0x083BECA4",
           "symbol": "sBowBalloonTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BECA4",
           "end": "0x083BED0C",
           "symbol": "sBowBalloonRecoveringOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BED0C",
           "end": "0x083BED4C",
           "symbol": "sBowBalloonAirborneOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BED4C",
           "end": "0x083BED6C",
           "symbol": "sBowBalloonPushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BED6C",
           "end": "0x083BEDC4",
           "symbol": "sBowBalloonAttackingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEDC4",
           "end": "0x083BEDFC",
           "symbol": "sBowBalloonStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEDFC",
           "end": "0x083BEE8C",
           "symbol": "sBowBalloonGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEE8C",
           "end": "0x083BEEBC",
           "symbol": "sBowBalloonCrushedWhileStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEEBC",
           "end": "0x083BEEFC",
           "symbol": "sBowBalloonCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEEFC",
           "end": "0x083BEF34",
           "symbol": "sBowBalloonTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEF34",
           "end": "0x083BEF44",
           "symbol": "sBowBalloonProjectileOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BEF44",
