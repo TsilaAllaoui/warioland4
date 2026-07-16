@@ -2,6 +2,6 @@
 #define MOGURAMEN_H
 
 void SpriteMoguramen(void);
-void SpriteUnknown9A(void);
+void SpriteMoguramenProjectile(void);
 
 #endif  // MOGURAMEN_H
