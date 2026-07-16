@@ -4946,7 +4946,7 @@ func_8005F1C:
 	bl	func_800B84C
 	cmp	r0, #0
 	beq	.L_631e
-	bl	func_8072B74
+	bl	StartDemoPlayback
 	b	.L_631e
 	.align	2, 0
 .L_6264:

@@ -1389,7 +1389,7 @@ func_806B864:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_6ba68
-	bl	func_8072B24
+	bl	StopDemo
 .L_6ba68:
 	ldr	r0, .L_6baa8
 	ldrb	r0, [r0, #0]

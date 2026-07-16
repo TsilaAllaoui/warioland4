@@ -1,6 +1,6 @@
 #include "types.h"
 
-const u16* sUnk_878F5F4[] = {
+const u16* sDemoInputStreams[] = {
     (u16*)0x83FDA2C,
     (u16*)0x83FDE2C,
     (u16*)0x83FE14C,
@@ -19,7 +19,7 @@ const u16* sUnk_878F5F4[] = {
     (u16*)0x840050C,
 };
 
-const u16* sUnk_878F634[] = {
+const u16* sDemoInputLengthStreams[] = {
     (u16*)0x83FDC2C,
     (u16*)0x83FDFBC,
     (u16*)0x83FE31C,
