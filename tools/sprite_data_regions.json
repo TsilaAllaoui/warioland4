@@ -10781,33 +10781,255 @@
         },
         {
           "address": "0x083F096A",
-          "end": "0x083F0E4C",
+          "end": "0x083F0994",
           "symbol": "sUnk_83F096A",
           "type": "raw"
+        },
+        {
+          "address": "0x083F0994",
+          "end": "0x083F099C",
+          "symbol": "sChandelierIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F099C",
+          "end": "0x083F09A4",
+          "symbol": "sChandelierIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F09A4",
+          "end": "0x083F09C4",
+          "symbol": "sChandelierShakingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F09C4",
+          "end": "0x083F09E4",
+          "symbol": "sChandelierShakingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F09E4",
+          "end": "0x083F0A04",
+          "symbol": "sChandelierShakingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0A04",
+          "end": "0x083F0A24",
+          "symbol": "sChandelierShakingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0A24",
+          "end": "0x083F0A2C",
+          "symbol": "sSpriteDataRaw_083F0A24",
+          "type": "raw"
+        },
+        {
+          "address": "0x083F0A2C",
+          "end": "0x083F0A34",
+          "symbol": "sChandelierFallenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0A34",
+          "end": "0x083F0A5A",
+          "symbol": "sChandelierFallenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0A5A",
+          "end": "0x083F0A98",
+          "symbol": "sChandelierFallenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0A98",
+          "end": "0x083F0AD6",
+          "symbol": "sChandelierFallenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0AD6",
+          "end": "0x083F0B14",
+          "symbol": "sChandelierFallenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0B14",
+          "end": "0x083F0B52",
+          "symbol": "sChandelierFallenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0B52",
+          "end": "0x083F0B90",
+          "symbol": "sChandelierFallenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0B90",
+          "end": "0x083F0BCE",
+          "symbol": "sChandelierFallenOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0BCE",
+          "end": "0x083F0C06",
+          "symbol": "sChandelierFallenOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0C06",
+          "end": "0x083F0C38",
+          "symbol": "sChandelierFallenOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0C38",
+          "end": "0x083F0C6A",
+          "symbol": "sChandelierFallenOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0C6A",
+          "end": "0x083F0CA2",
+          "symbol": "sChandelierFallenOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0CA2",
+          "end": "0x083F0CD4",
+          "symbol": "sChandelierFallenOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0CD4",
+          "end": "0x083F0D00",
+          "symbol": "sChandelierFallenOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0D00",
+          "end": "0x083F0D26",
+          "symbol": "sChandelierFallenOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0D26",
+          "end": "0x083F0D40",
+          "symbol": "sChandelierFallenOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0D40",
+          "end": "0x083F0D54",
+          "symbol": "sChandelierFallenOam_Frame18",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0D54",
+          "end": "0x083F0D68",
+          "symbol": "sChandelierFallenOam_Frame19",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0D68",
+          "end": "0x083F0D82",
+          "symbol": "sChandelierFallenOam_Frame20",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0D82",
+          "end": "0x083F0DA2",
+          "symbol": "sChandelierFallenOam_Frame21",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0DA2",
+          "end": "0x083F0DBC",
+          "symbol": "sChandelierFallenOam_Frame22",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0DBC",
+          "end": "0x083F0DD6",
+          "symbol": "sChandelierFallenOam_Frame23",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0DD6",
+          "end": "0x083F0DF0",
+          "symbol": "sChandelierFallenOam_Frame24",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0DF0",
+          "end": "0x083F0E04",
+          "symbol": "sChandelierFallenOam_Frame41",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0E04",
+          "end": "0x083F0E18",
+          "symbol": "sChandelierFallenOam_Frame42",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0E18",
+          "end": "0x083F0E26",
+          "symbol": "sChandelierFallenOam_Frame43",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0E26",
+          "end": "0x083F0E34",
+          "symbol": "sChandelierFallenOam_Frame44",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0E34",
+          "end": "0x083F0E3C",
+          "symbol": "sChandelierFallenOam_Frame45",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0E3C",
+          "end": "0x083F0E44",
+          "symbol": "sChandelierFallenOam_Frame46",
+          "type": "frame"
+        },
+        {
+          "address": "0x083F0E44",
+          "end": "0x083F0E4C",
+          "symbol": "sChandelierFallenOam_Frame47",
+          "type": "frame"
         },
         {
           "address": "0x083F0E4C",
           "end": "0x083F0E64",
           "symbol": "sChandelierIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F0E64",
           "end": "0x083F0EEC",
           "symbol": "sChandelierShakingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F0EEC",
           "end": "0x083F0F04",
           "symbol": "sChandelierFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F0F04",
           "end": "0x083F1084",
           "symbol": "sChandelierFallenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083F1084",
