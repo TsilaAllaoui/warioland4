@@ -10913,32 +10913,170 @@
         },
         {
           "address": "0x083DE320",
-          "end": "0x083DE498",
+          "end": "0x083DE330",
           "symbol": "sTogenobiOam",
+          "type": "raw"
+        },
+        {
+          "address": "0x083DE330",
+          "end": "0x083DE338",
+          "symbol": "sIcicleIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE338",
+          "end": "0x083DE340",
+          "symbol": "sIcicleIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE340",
+          "end": "0x083DE348",
+          "symbol": "sIcicleIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE348",
+          "end": "0x083DE356",
+          "symbol": "sIcicleIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE356",
+          "end": "0x083DE364",
+          "symbol": "sIcicleIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE364",
+          "end": "0x083DE372",
+          "symbol": "sIcicleIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE372",
+          "end": "0x083DE37A",
+          "symbol": "sIcicleIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE37A",
+          "end": "0x083DE388",
+          "symbol": "sIcicleIdleOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE388",
+          "end": "0x083DE3A8",
+          "symbol": "sIcicleImpactOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE3A8",
+          "end": "0x083DE3E0",
+          "symbol": "sIcicleImpactOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE3E0",
+          "end": "0x083DE40C",
+          "symbol": "sIcicleImpactOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE40C",
+          "end": "0x083DE420",
+          "symbol": "sIcicleImpactOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE420",
+          "end": "0x083DE428",
+          "symbol": "sIcicleWarningOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE428",
+          "end": "0x083DE430",
+          "symbol": "sIcicleWarningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE430",
+          "end": "0x083DE43E",
+          "symbol": "sIcicleWarningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE43E",
+          "end": "0x083DE452",
+          "symbol": "sIcicleWarningOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE452",
+          "end": "0x083DE46C",
+          "symbol": "sIcicleWarningOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE46C",
+          "end": "0x083DE480",
+          "symbol": "sIcicleWarningOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE480",
+          "end": "0x083DE48E",
+          "symbol": "sIcicleWarningOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE48E",
+          "end": "0x083DE496",
+          "symbol": "sIcicleWarningOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DE496",
+          "end": "0x083DE498",
+          "symbol": "sSpriteDataRaw_083DE496",
           "type": "raw"
         },
         {
           "address": "0x083DE498",
           "end": "0x083DE528",
           "symbol": "sIcicleIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE528",
-          "end": "0x083DE580",
+          "end": "0x083DE570",
           "symbol": "sIcicleWarningOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DE570",
+          "end": "0x083DE580",
+          "symbol": "sSpriteDataRaw_083DE570",
           "type": "raw"
         },
         {
           "address": "0x083DE580",
           "end": "0x083DE590",
           "symbol": "sIcicleFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DE590",
+          "end": "0x083DE5B8",
+          "symbol": "sIcicleImpactOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DE5B8",
           "end": "0x083DF0B0",
-          "symbol": "sIcicleLandingOam",
+          "symbol": "sSpriteDataRaw_083DE5B8",
           "type": "raw"
         },
         {
@@ -13518,6 +13656,7 @@
     "sButatabiTackledOam": "sButatabiFallingOam",
     "sButatabiTurnEndOam": "sButatabiTurnAroundOam",
     "sButatabiTurnStartOam": "sButatabiTurningOam",
+    "sIcicleLandingOam": "sIcicleImpactOam",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
     "sUnk_83C5364": "sGhostOam_83C5364",
     "sUnk_83C538C": "sGhostOam_83C538C",
