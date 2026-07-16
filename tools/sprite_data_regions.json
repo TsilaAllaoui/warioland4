@@ -5567,105 +5567,525 @@
         },
         {
           "address": "0x083C6616",
-          "end": "0x083C6F9C",
+          "end": "0x083C6638",
           "symbol": "sUnk_83C6616",
           "type": "raw"
+        },
+        {
+          "address": "0x083C6638",
+          "end": "0x083C664C",
+          "symbol": "sMoneyFlowerSeedIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C664C",
+          "end": "0x083C666C",
+          "symbol": "sMoneyFlowerSeedOpeningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C666C",
+          "end": "0x083C668C",
+          "symbol": "sMoneyFlowerSeedOpeningOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C668C",
+          "end": "0x083C66A6",
+          "symbol": "sMoneyFlowerSeedOpeningOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C66A6",
+          "end": "0x083C66BA",
+          "symbol": "sMoneyFlowerSeedOpeningOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C66BA",
+          "end": "0x083C66CE",
+          "symbol": "sMoneyFlowerSeedOpeningOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C66CE",
+          "end": "0x083C6700",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6700",
+          "end": "0x083C6732",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6732",
+          "end": "0x083C6764",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6764",
+          "end": "0x083C6796",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6796",
+          "end": "0x083C67C2",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C67C2",
+          "end": "0x083C67E8",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C67E8",
+          "end": "0x083C6808",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6808",
+          "end": "0x083C6822",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6822",
+          "end": "0x083C6836",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6836",
+          "end": "0x083C6850",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6850",
+          "end": "0x083C686A",
+          "symbol": "sMoneyFlowerStage2GrowingOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C686A",
+          "end": "0x083C6884",
+          "symbol": "sMoneyFlowerStage3GrowingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6884",
+          "end": "0x083C68A4",
+          "symbol": "sMoneyFlowerStage4GrowingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C68A4",
+          "end": "0x083C68C4",
+          "symbol": "sMoneyFlowerStage5GrowingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C68C4",
+          "end": "0x083C68EA",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C68EA",
+          "end": "0x083C6910",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6910",
+          "end": "0x083C6936",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6936",
+          "end": "0x083C695C",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C695C",
+          "end": "0x083C6982",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6982",
+          "end": "0x083C69A8",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C69A8",
+          "end": "0x083C69CE",
+          "symbol": "sMoneyFlowerStage5IdleOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C69CE",
+          "end": "0x083C69E8",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C69E8",
+          "end": "0x083C6A02",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6A02",
+          "end": "0x083C6A1C",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6A1C",
+          "end": "0x083C6A48",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6A48",
+          "end": "0x083C6A74",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6A74",
+          "end": "0x083C6AA0",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6AA0",
+          "end": "0x083C6ACC",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6ACC",
+          "end": "0x083C6AF2",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6AF2",
+          "end": "0x083C6B12",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6B12",
+          "end": "0x083C6B2C",
+          "symbol": "sMoneyFlowerStage2CollectionOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6B2C",
+          "end": "0x083C6B46",
+          "symbol": "sMoneyFlowerStage3CollectionOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6B46",
+          "end": "0x083C6B60",
+          "symbol": "sMoneyFlowerStage3CollectionOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6B60",
+          "end": "0x083C6B74",
+          "symbol": "sSpriteDataRaw_083C6B60",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C6B74",
+          "end": "0x083C6B94",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6B94",
+          "end": "0x083C6BB4",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6BB4",
+          "end": "0x083C6BD4",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6BD4",
+          "end": "0x083C6C00",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6C00",
+          "end": "0x083C6C2C",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6C2C",
+          "end": "0x083C6C58",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6C58",
+          "end": "0x083C6C84",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6C84",
+          "end": "0x083C6CB0",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6CB0",
+          "end": "0x083C6CDC",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6CDC",
+          "end": "0x083C6D08",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6D08",
+          "end": "0x083C6D34",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6D34",
+          "end": "0x083C6D5A",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6D5A",
+          "end": "0x083C6D7A",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6D7A",
+          "end": "0x083C6D94",
+          "symbol": "sMoneyFlowerStage4CollectionOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6D94",
+          "end": "0x083C6DB4",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6DB4",
+          "end": "0x083C6DD4",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6DD4",
+          "end": "0x083C6DF4",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6DF4",
+          "end": "0x083C6E20",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6E20",
+          "end": "0x083C6E4C",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6E4C",
+          "end": "0x083C6E78",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6E78",
+          "end": "0x083C6EA4",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6EA4",
+          "end": "0x083C6ED0",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6ED0",
+          "end": "0x083C6EFC",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6EFC",
+          "end": "0x083C6F22",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6F22",
+          "end": "0x083C6F48",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6F48",
+          "end": "0x083C6F68",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6F68",
+          "end": "0x083C6F82",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C6F82",
+          "end": "0x083C6F9C",
+          "symbol": "sMoneyFlowerStage5CollectionOam_Frame15",
+          "type": "frame"
         },
         {
           "address": "0x083C6F9C",
           "end": "0x083C6FAC",
           "symbol": "sMoneyFlowerSeedIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C6FAC",
           "end": "0x083C7034",
           "symbol": "sMoneyFlowerSeedOpeningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7034",
-          "end": "0x083C70CC",
+          "end": "0x083C7044",
           "symbol": "sMoneyFlowerStage1IdleOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C7044",
+          "end": "0x083C70CC",
+          "symbol": "sSpriteDataRaw_083C7044",
           "type": "raw"
         },
         {
           "address": "0x083C70CC",
           "end": "0x083C715C",
           "symbol": "sMoneyFlowerStage2GrowingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C715C",
           "end": "0x083C716C",
           "symbol": "sMoneyFlowerStage2IdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C716C",
           "end": "0x083C7194",
           "symbol": "sMoneyFlowerStage3GrowingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7194",
           "end": "0x083C71A4",
           "symbol": "sMoneyFlowerStage3IdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C71A4",
           "end": "0x083C71CC",
           "symbol": "sMoneyFlowerStage4GrowingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C71CC",
           "end": "0x083C71DC",
           "symbol": "sMoneyFlowerStage4IdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C71DC",
-          "end": "0x083C7214",
+          "end": "0x083C7204",
           "symbol": "sMoneyFlowerStage5GrowingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C7204",
+          "end": "0x083C7214",
+          "symbol": "sSpriteDataRaw_083C7204",
           "type": "raw"
         },
         {
           "address": "0x083C7214",
           "end": "0x083C72CC",
           "symbol": "sMoneyFlowerStage5IdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C72CC",
           "end": "0x083C72DC",
           "symbol": "sMoneyFlowerCollectedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C72DC",
           "end": "0x083C733C",
           "symbol": "sMoneyFlowerStage2CollectionOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C733C",
           "end": "0x083C739C",
           "symbol": "sMoneyFlowerStage3CollectionOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C739C",
           "end": "0x083C7424",
           "symbol": "sMoneyFlowerStage4CollectionOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7424",
           "end": "0x083C74AC",
           "symbol": "sMoneyFlowerStage5CollectionOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C74AC",
