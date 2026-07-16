@@ -4937,116 +4937,482 @@
         },
         {
           "address": "0x083D25C0",
-          "end": "0x083D27C8",
+          "end": "0x083D2604",
           "symbol": "sMagmaYVelocity",
           "type": "raw"
+        },
+        {
+          "address": "0x083D2604",
+          "end": "0x083D2612",
+          "symbol": "sBossDoorEntryClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2612",
+          "end": "0x083D2650",
+          "symbol": "sBossDoorEntryOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2650",
+          "end": "0x083D268E",
+          "symbol": "sBossDoorEntryOpenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D268E",
+          "end": "0x083D26B4",
+          "symbol": "sBossDoorEntryOpenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D26B4",
+          "end": "0x083D26DA",
+          "symbol": "sBossDoorEntryOpenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D26DA",
+          "end": "0x083D2700",
+          "symbol": "sBossDoorEntryOpenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2700",
+          "end": "0x083D2726",
+          "symbol": "sBossDoorEntryOpenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2726",
+          "end": "0x083D274C",
+          "symbol": "sBossDoorEntryOpenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D274C",
+          "end": "0x083D278A",
+          "symbol": "sBossDoorEntryOpenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D278A",
+          "end": "0x083D27C8",
+          "symbol": "sBossDoorEntryOpeningOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083D27C8",
           "end": "0x083D27D8",
           "symbol": "sBossDoorEntryClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D27D8",
           "end": "0x083D2820",
           "symbol": "sBossDoorEntryOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2820",
-          "end": "0x083D2A0C",
+          "end": "0x083D2830",
           "symbol": "sBossDoorEntryOpeningOam",
-          "type": "raw"
+          "type": "anim"
+        },
+        {
+          "address": "0x083D2830",
+          "end": "0x083D283E",
+          "symbol": "sBossDoorEmeraldClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D283E",
+          "end": "0x083D287C",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D287C",
+          "end": "0x083D28C6",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D28C6",
+          "end": "0x083D28EC",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D28EC",
+          "end": "0x083D2912",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2912",
+          "end": "0x083D2938",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2938",
+          "end": "0x083D295E",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D295E",
+          "end": "0x083D2984",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2984",
+          "end": "0x083D29CE",
+          "symbol": "sBossDoorEmeraldOpenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D29CE",
+          "end": "0x083D2A0C",
+          "symbol": "sBossDoorEmeraldOpeningOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083D2A0C",
           "end": "0x083D2A1C",
           "symbol": "sBossDoorEmeraldClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2A1C",
           "end": "0x083D2A64",
           "symbol": "sBossDoorEmeraldOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2A64",
-          "end": "0x083D2BF0",
+          "end": "0x083D2A74",
           "symbol": "sBossDoorEmeraldOpeningOam",
-          "type": "raw"
+          "type": "anim"
+        },
+        {
+          "address": "0x083D2A74",
+          "end": "0x083D2A82",
+          "symbol": "sBossDoorRubyClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2A82",
+          "end": "0x083D2A9C",
+          "symbol": "sBossDoorRubyOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2A9C",
+          "end": "0x083D2ADA",
+          "symbol": "sBossDoorRubyOpenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2ADA",
+          "end": "0x083D2B00",
+          "symbol": "sBossDoorRubyOpenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2B00",
+          "end": "0x083D2B26",
+          "symbol": "sBossDoorRubyOpenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2B26",
+          "end": "0x083D2B4C",
+          "symbol": "sBossDoorRubyOpenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2B4C",
+          "end": "0x083D2B72",
+          "symbol": "sBossDoorRubyOpenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2B72",
+          "end": "0x083D2B98",
+          "symbol": "sBossDoorRubyOpenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2B98",
+          "end": "0x083D2BD6",
+          "symbol": "sBossDoorRubyOpenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2BD6",
+          "end": "0x083D2BF0",
+          "symbol": "sBossDoorRubyOpeningOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083D2BF0",
           "end": "0x083D2C00",
           "symbol": "sBossDoorRubyClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2C00",
           "end": "0x083D2C48",
           "symbol": "sBossDoorRubyOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2C48",
-          "end": "0x083D2E1C",
+          "end": "0x083D2C58",
           "symbol": "sBossDoorRubyOpeningOam",
-          "type": "raw"
+          "type": "anim"
+        },
+        {
+          "address": "0x083D2C58",
+          "end": "0x083D2C66",
+          "symbol": "sBossDoorTopazClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2C66",
+          "end": "0x083D2CA4",
+          "symbol": "sBossDoorTopazOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2CA4",
+          "end": "0x083D2CE2",
+          "symbol": "sBossDoorTopazOpenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2CE2",
+          "end": "0x083D2D08",
+          "symbol": "sBossDoorTopazOpenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2D08",
+          "end": "0x083D2D2E",
+          "symbol": "sBossDoorTopazOpenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2D2E",
+          "end": "0x083D2D54",
+          "symbol": "sBossDoorTopazOpenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2D54",
+          "end": "0x083D2D7A",
+          "symbol": "sBossDoorTopazOpenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2D7A",
+          "end": "0x083D2DA0",
+          "symbol": "sBossDoorTopazOpenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2DA0",
+          "end": "0x083D2DDE",
+          "symbol": "sBossDoorTopazOpenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2DDE",
+          "end": "0x083D2E1C",
+          "symbol": "sBossDoorTopazOpeningOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083D2E1C",
           "end": "0x083D2E2C",
           "symbol": "sBossDoorTopazClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2E2C",
           "end": "0x083D2E74",
           "symbol": "sBossDoorTopazOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2E74",
-          "end": "0x083D3048",
+          "end": "0x083D2E84",
           "symbol": "sBossDoorTopazOpeningOam",
-          "type": "raw"
+          "type": "anim"
+        },
+        {
+          "address": "0x083D2E84",
+          "end": "0x083D2E92",
+          "symbol": "sBossDoorSapphireClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2E92",
+          "end": "0x083D2ED0",
+          "symbol": "sBossDoorSapphireOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2ED0",
+          "end": "0x083D2F0E",
+          "symbol": "sBossDoorSapphireOpenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2F0E",
+          "end": "0x083D2F34",
+          "symbol": "sBossDoorSapphireOpenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2F34",
+          "end": "0x083D2F5A",
+          "symbol": "sBossDoorSapphireOpenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2F5A",
+          "end": "0x083D2F80",
+          "symbol": "sBossDoorSapphireOpenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2F80",
+          "end": "0x083D2FA6",
+          "symbol": "sBossDoorSapphireOpenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2FA6",
+          "end": "0x083D2FCC",
+          "symbol": "sBossDoorSapphireOpenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D2FCC",
+          "end": "0x083D300A",
+          "symbol": "sBossDoorSapphireOpenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D300A",
+          "end": "0x083D3048",
+          "symbol": "sBossDoorSapphireOpeningOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083D3048",
           "end": "0x083D3058",
           "symbol": "sBossDoorSapphireClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D3058",
           "end": "0x083D30A0",
           "symbol": "sBossDoorSapphireOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D30A0",
-          "end": "0x083D3274",
+          "end": "0x083D30B0",
           "symbol": "sBossDoorSapphireOpeningOam",
-          "type": "raw"
+          "type": "anim"
+        },
+        {
+          "address": "0x083D30B0",
+          "end": "0x083D30BE",
+          "symbol": "sBossDoorGoldenPyramidClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D30BE",
+          "end": "0x083D30FC",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D30FC",
+          "end": "0x083D313A",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D313A",
+          "end": "0x083D3160",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D3160",
+          "end": "0x083D3186",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D3186",
+          "end": "0x083D31AC",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D31AC",
+          "end": "0x083D31D2",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D31D2",
+          "end": "0x083D31F8",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D31F8",
+          "end": "0x083D3236",
+          "symbol": "sBossDoorGoldenPyramidOpenOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D3236",
+          "end": "0x083D3274",
+          "symbol": "sBossDoorGoldenPyramidOpeningOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083D3274",
           "end": "0x083D3284",
           "symbol": "sBossDoorGoldenPyramidClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D3284",
           "end": "0x083D32CC",
           "symbol": "sBossDoorGoldenPyramidOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D32CC",
-          "end": "0x083D6ADC",
+          "end": "0x083D32DC",
           "symbol": "sBossDoorGoldenPyramidOpeningOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083D32DC",
+          "end": "0x083D6ADC",
+          "symbol": "sSpriteDataRaw_083D32DC",
           "type": "raw"
         },
         {

@@ -8978,278 +8978,1236 @@ const u8 sMagmaOam_83D2598[] = {
     0x3C, 0x25, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x56, 0x25, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-/* 0x083D25C0 - 0x083D27C8: not yet typed. */
+/* 0x083D25C0 - 0x083D2604: not yet typed. */
 const u8 sMagmaYVelocity[] = {
     0xFC, 0xFF, 0xFC, 0xFF, 0xF8, 0xFF, 0xF8, 0xFF, 0xF4, 0xFF, 0xF4, 0xFF, 0xF0, 0xFF, 0xF0, 0xFF,
     0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF,
     0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF, 0xEC, 0xFF,
     0xF0, 0xFF, 0xF0, 0xFF, 0xF0, 0xFF, 0xF4, 0xFF, 0xF6, 0xFF, 0xF8, 0xFF, 0xF8, 0xFF, 0xFC, 0xFF,
-    0xFC, 0xFF, 0xFF, 0x7F, 0x02, 0x00, 0xC0, 0x80, 0x00, 0xC0, 0x04, 0x82, 0xC0, 0x80, 0xE0, 0xD1,
-    0x04, 0x82, 0x0A, 0x00, 0xC0, 0x80, 0x00, 0x80, 0x08, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0A, 0x82,
-    0xE0, 0x80, 0x00, 0x80, 0x88, 0x82, 0xE0, 0x80, 0x10, 0x40, 0x8A, 0x82, 0xB8, 0x40, 0x00, 0x00,
-    0x13, 0x82, 0xC0, 0x80, 0xF0, 0x91, 0x08, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0A, 0x82, 0xE0, 0x80,
-    0xF0, 0x91, 0x88, 0x82, 0xE0, 0x80, 0xE8, 0x51, 0x8A, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x13, 0x82,
-    0x0A, 0x00, 0xC0, 0x80, 0x00, 0x80, 0x0B, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0D, 0x82, 0xE0, 0x80,
-    0x00, 0x80, 0x8B, 0x82, 0xE0, 0x80, 0x10, 0x40, 0x8D, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x15, 0x82,
-    0xC0, 0x80, 0xF0, 0x91, 0x0B, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0D, 0x82, 0xE0, 0x80, 0xF0, 0x91,
-    0x8B, 0x82, 0xE0, 0x80, 0xE8, 0x51, 0x8D, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x15, 0x82, 0x06, 0x00,
-    0xC0, 0x80, 0x08, 0x80, 0x0E, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x8E, 0x82, 0xB8, 0x40, 0x08, 0x00,
-    0x17, 0x82, 0xC0, 0x80, 0xE8, 0x91, 0x0E, 0x82, 0xE0, 0x80, 0xE8, 0x91, 0x8E, 0x82, 0xB8, 0x40,
-    0xE8, 0x11, 0x17, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x09, 0x80, 0x10, 0x82, 0xE0, 0x80, 0x09, 0x80,
-    0x90, 0x82, 0xB8, 0x40, 0x09, 0x00, 0x19, 0x82, 0xC0, 0x80, 0xE7, 0x91, 0x10, 0x82, 0xE0, 0x80,
-    0xE7, 0x91, 0x90, 0x82, 0xB8, 0x40, 0xE7, 0x11, 0x19, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x11, 0x40,
-    0x12, 0x82, 0xE0, 0x80, 0x11, 0x40, 0x92, 0x82, 0xB8, 0x00, 0x11, 0x00, 0x1B, 0x82, 0xC0, 0x80,
-    0xE7, 0x51, 0x12, 0x82, 0xE0, 0x80, 0xE7, 0x51, 0x92, 0x82, 0xB8, 0x00, 0xE7, 0x11, 0x1B, 0x82,
-    0x06, 0x00, 0xC0, 0x80, 0x14, 0x90, 0x10, 0x92, 0xE0, 0x80, 0x14, 0x90, 0x90, 0x92, 0xB8, 0x40,
-    0x14, 0x10, 0x19, 0x92, 0xC0, 0x80, 0xDC, 0x81, 0x10, 0x92, 0xE0, 0x80, 0xDC, 0x81, 0x90, 0x92,
-    0xB8, 0x40, 0xDC, 0x01, 0x19, 0x92, 0x06, 0x00, 0xC0, 0x80, 0x15, 0x90, 0x0E, 0x92, 0xE0, 0x80,
-    0x15, 0x90, 0x8E, 0x92, 0xB8, 0x40, 0x15, 0x10, 0x17, 0x92, 0xC0, 0x80, 0xDB, 0x81, 0x0E, 0x92,
-    0xE0, 0x80, 0xDB, 0x81, 0x8E, 0x92, 0xB8, 0x40, 0xDB, 0x01, 0x17, 0x92, 0x0A, 0x00, 0xC0, 0x80,
-    0x1E, 0x90, 0x0B, 0x92, 0xC0, 0x80, 0x16, 0x50, 0x0D, 0x92, 0xE0, 0x80, 0x1E, 0x90, 0x8B, 0x92,
-    0xE0, 0x80, 0x16, 0x50, 0x8D, 0x92, 0xB8, 0x40, 0x1E, 0x10, 0x15, 0x92, 0xC0, 0x80, 0xD2, 0x81,
-    0x0B, 0x92, 0xC0, 0x80, 0xE2, 0x41, 0x0D, 0x92, 0xE0, 0x80, 0xD2, 0x81, 0x8B, 0x92, 0xE0, 0x80,
-    0xE2, 0x41, 0x8D, 0x92, 0xB8, 0x40, 0xD2, 0x01, 0x15, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1F, 0x90,
-    0x08, 0x92, 0xC0, 0x80, 0x17, 0x50, 0x0A, 0x92, 0xE0, 0x80, 0x1F, 0x90, 0x88, 0x92, 0xE0, 0x80,
-    0x17, 0x50, 0x8A, 0x92, 0xB8, 0x40, 0x1F, 0x10, 0x13, 0x92, 0xC0, 0x80, 0xD1, 0x81, 0x08, 0x92,
-    0xC0, 0x80, 0xE1, 0x41, 0x0A, 0x92, 0xE0, 0x80, 0xD1, 0x81, 0x88, 0x92, 0xE0, 0x80, 0xE1, 0x41,
-    0x8A, 0x92, 0xB8, 0x40, 0xD1, 0x01, 0x13, 0x92,
+    0xFC, 0xFF, 0xFF, 0x7F,
 };
-/* 0x083D27C8 - 0x083D27D8: not yet typed. */
-const u8 sBossDoorEntryClosedOam[] = {
-    0x04, 0x26, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D2604: decoded OAM frame. */
+const u16 sBossDoorEntryClosedOam_Frame1[] = {
+    2,
+    /* 80C0 C000 8204 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x64, 0, 516, 8, 0),
+    /* 80C0 D1E0 8204 */
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 516, 8, 0),
 };
-/* 0x083D27D8 - 0x083D2820: not yet typed. */
-const u8 sBossDoorEntryOpenOam[] = {
-    0x12, 0x26, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00, 0x50, 0x26, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
-    0x8E, 0x26, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0xB4, 0x26, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0xDA, 0x26, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x00, 0x27, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0x26, 0x27, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x4C, 0x27, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D2612: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame1[] = {
+    10,
+    /* 80C0 8000 8208 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    /* 80C0 4010 820A */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 522, 8, 0),
+    /* 80E0 8000 8288 */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 648, 8, 0),
+    /* 80E0 4010 828A */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 650, 8, 0),
+    /* 40B8 0000 8213 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 531, 8, 0),
+    /* 80C0 91F0 8208 */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 8, 0),
+    /* 80C0 51E8 820A */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 8, 0),
+    /* 80E0 91F0 8288 */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 8, 0),
+    /* 80E0 51E8 828A */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 8, 0),
+    /* 40B8 11F0 8213 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 8, 0),
 };
-/* 0x083D2820 - 0x083D2A0C: not yet typed. */
-const u8 sBossDoorEntryOpeningOam[] = {
-    0x8A, 0x27, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x02, 0x00, 0xC0, 0x80, 0x00, 0xC0, 0x04, 0x82, 0xC0, 0x80, 0xE0, 0xD1, 0x04, 0x82, 0x0A, 0x00,
-    0xC0, 0x80, 0x03, 0x80, 0x08, 0x82, 0xC0, 0x80, 0x13, 0x40, 0x0A, 0x82, 0xE0, 0x80, 0x03, 0x80,
-    0x88, 0x82, 0xE0, 0x80, 0x13, 0x40, 0x8A, 0x82, 0xB8, 0x40, 0x03, 0x00, 0x13, 0x82, 0xC0, 0x80,
-    0xED, 0x91, 0x08, 0x82, 0xC0, 0x80, 0xE5, 0x51, 0x0A, 0x82, 0xE0, 0x80, 0xED, 0x91, 0x88, 0x82,
-    0xE0, 0x80, 0xE5, 0x51, 0x8A, 0x82, 0xB8, 0x40, 0xED, 0x11, 0x13, 0x82, 0x0C, 0x00, 0xC0, 0x80,
-    0x06, 0x80, 0x0B, 0x82, 0xE0, 0x80, 0x06, 0x80, 0x8B, 0x82, 0xC8, 0x80, 0x16, 0x40, 0x2D, 0x82,
-    0xE8, 0x80, 0x16, 0x00, 0xAD, 0x82, 0xF8, 0x00, 0x16, 0x00, 0xED, 0x82, 0xB8, 0x40, 0x06, 0x00,
-    0x15, 0x82, 0xC0, 0x80, 0xEA, 0x91, 0x0B, 0x82, 0xE0, 0x80, 0xEA, 0x91, 0x8B, 0x82, 0xC8, 0x80,
-    0xE2, 0x51, 0x2D, 0x82, 0xE8, 0x80, 0xE2, 0x11, 0xAD, 0x82, 0xF8, 0x00, 0xE2, 0x11, 0xED, 0x82,
-    0xB8, 0x40, 0xEA, 0x11, 0x15, 0x82, 0x06, 0x00, 0xB8, 0x40, 0x0C, 0x00, 0x17, 0x82, 0xC0, 0x80,
-    0x0C, 0x80, 0x0E, 0x82, 0xE0, 0x80, 0x0C, 0x80, 0x8E, 0x82, 0xB8, 0x40, 0xE4, 0x11, 0x17, 0x82,
-    0xC0, 0x80, 0xE4, 0x91, 0x0E, 0x82, 0xE0, 0x80, 0xE4, 0x91, 0x8E, 0x82, 0x06, 0x00, 0xC0, 0x80,
-    0x0E, 0x80, 0x10, 0x82, 0xE0, 0x80, 0x0E, 0x80, 0x90, 0x82, 0xB8, 0x00, 0x0E, 0x00, 0x19, 0x82,
-    0xC0, 0x80, 0xE2, 0x91, 0x10, 0x82, 0xE0, 0x80, 0xE2, 0x91, 0x90, 0x82, 0xB8, 0x00, 0xEA, 0x11,
-    0x19, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x12, 0x40, 0x12, 0x82, 0xE0, 0x80, 0x12, 0x40, 0x92, 0x82,
-    0xB8, 0x00, 0x12, 0x00, 0x1A, 0x82, 0xC0, 0x80, 0xE6, 0x51, 0x12, 0x82, 0xE0, 0x80, 0xE6, 0x51,
-    0x92, 0x82, 0xB8, 0x00, 0xE6, 0x11, 0x1A, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x12, 0x90, 0x10, 0x92,
-    0xE0, 0x80, 0x12, 0x90, 0x90, 0x92, 0xB8, 0x00, 0x1A, 0x10, 0x19, 0x92, 0xC0, 0x80, 0xDE, 0x81,
-    0x10, 0x92, 0xE0, 0x80, 0xDE, 0x81, 0x90, 0x92, 0xB8, 0x00, 0xDE, 0x01, 0x19, 0x92, 0x06, 0x00,
-    0xB8, 0x40, 0xDC, 0x01, 0x17, 0x92, 0xC0, 0x80, 0xDC, 0x81, 0x0E, 0x92, 0xE0, 0x80, 0xDC, 0x81,
-    0x8E, 0x92, 0xB8, 0x40, 0x14, 0x10, 0x17, 0x92, 0xC0, 0x80, 0x14, 0x90, 0x0E, 0x92, 0xE0, 0x80,
-    0x14, 0x90, 0x8E, 0x92, 0x0C, 0x00, 0xC0, 0x80, 0x1B, 0x90, 0x0B, 0x92, 0xE0, 0x80, 0x1B, 0x90,
-    0x8B, 0x92, 0xC8, 0x80, 0x13, 0x50, 0x2D, 0x92, 0xE8, 0x80, 0x13, 0x10, 0xAD, 0x92, 0xF8, 0x00,
-    0x13, 0x10, 0xED, 0x92, 0xB8, 0x40, 0x1B, 0x10, 0x15, 0x92, 0xC0, 0x80, 0xD5, 0x81, 0x0B, 0x92,
-    0xE0, 0x80, 0xD5, 0x81, 0x8B, 0x92, 0xC8, 0x80, 0xE5, 0x41, 0x2D, 0x92, 0xE8, 0x80, 0xE5, 0x01,
-    0xAD, 0x92, 0xF8, 0x00, 0xE5, 0x01, 0xED, 0x92, 0xB8, 0x40, 0xD5, 0x01, 0x15, 0x92, 0x0A, 0x00,
-    0xC0, 0x80, 0x1E, 0x90, 0x08, 0x92, 0xC0, 0x80, 0x16, 0x50, 0x0A, 0x92, 0xE0, 0x80, 0x1E, 0x90,
-    0x88, 0x92, 0xE0, 0x80, 0x16, 0x50, 0x8A, 0x92, 0xB8, 0x40, 0x1E, 0x10, 0x13, 0x92, 0xC0, 0x80,
-    0xD2, 0x81, 0x08, 0x92, 0xC0, 0x80, 0xE2, 0x41, 0x0A, 0x92, 0xE0, 0x80, 0xD2, 0x81, 0x88, 0x92,
-    0xE0, 0x80, 0xE2, 0x41, 0x8A, 0x92, 0xB8, 0x40, 0xD2, 0x01, 0x13, 0x92,
+/* 0x083D2650: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame2[] = {
+    10,
+    /* 80C0 8000 820B */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 523, 8, 0),
+    /* 80C0 4010 820D */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 525, 8, 0),
+    /* 80E0 8000 828B */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 651, 8, 0),
+    /* 80E0 4010 828D */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 653, 8, 0),
+    /* 40B8 0000 8215 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    /* 80C0 91F0 820B */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 8, 0),
+    /* 80C0 51E8 820D */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 8, 0),
+    /* 80E0 91F0 828B */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 8, 0),
+    /* 80E0 51E8 828D */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 8, 0),
+    /* 40B8 11F0 8215 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 8, 0),
 };
-/* 0x083D2A0C - 0x083D2A1C: not yet typed. */
-const u8 sBossDoorEmeraldClosedOam[] = {
-    0x30, 0x28, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D268E: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame3[] = {
+    6,
+    /* 80C0 8008 820E */
+    OAM_ENTRY(8, -64, SPRITE_SIZE_16x32, 0, 526, 8, 0),
+    /* 80E0 8008 828E */
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 654, 8, 0),
+    /* 40B8 0008 8217 */
+    OAM_ENTRY(8, -72, SPRITE_SIZE_16x8, 0, 535, 8, 0),
+    /* 80C0 91E8 820E */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 8, 0),
+    /* 80E0 91E8 828E */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 8, 0),
+    /* 40B8 11E8 8217 */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 8, 0),
 };
-/* 0x083D2A1C - 0x083D2A64: not yet typed. */
-const u8 sBossDoorEmeraldOpenOam[] = {
-    0x3E, 0x28, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00, 0x7C, 0x28, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
-    0xC6, 0x28, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0xEC, 0x28, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0x12, 0x29, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x38, 0x29, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0x5E, 0x29, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x84, 0x29, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D26B4: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame4[] = {
+    6,
+    /* 80C0 8009 8210 */
+    OAM_ENTRY(9, -64, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    /* 80E0 8009 8290 */
+    OAM_ENTRY(9, -32, SPRITE_SIZE_16x32, 0, 656, 8, 0),
+    /* 40B8 0009 8219 */
+    OAM_ENTRY(9, -72, SPRITE_SIZE_16x8, 0, 537, 8, 0),
+    /* 80C0 91E7 8210 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E0 91E7 8290 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 8, 0),
+    /* 40B8 11E7 8219 */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 8, 0),
 };
-/* 0x083D2A64 - 0x083D2BF0: not yet typed. */
-const u8 sBossDoorEmeraldOpeningOam[] = {
-    0xCE, 0x29, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x02, 0x00, 0xC0, 0x80, 0x00, 0xC0, 0x04, 0x82, 0xC0, 0x80, 0xE0, 0xD1, 0x04, 0x82, 0x04, 0x00,
-    0xC0, 0x80, 0xF8, 0xC1, 0x07, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x13, 0x82, 0xC0, 0x80, 0xE8, 0xD1,
-    0x07, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x13, 0x82, 0x0A, 0x00, 0xC0, 0x80, 0x00, 0x80, 0x0B, 0x82,
-    0xC0, 0x80, 0x10, 0x40, 0x0D, 0x82, 0xE0, 0x80, 0x00, 0x80, 0x8B, 0x82, 0xE0, 0x80, 0x10, 0x40,
-    0x8D, 0x82, 0xB8, 0x40, 0x01, 0x00, 0x15, 0x82, 0xC0, 0x80, 0xF0, 0x91, 0x0B, 0x82, 0xC0, 0x80,
-    0xE8, 0x51, 0x0D, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x8B, 0x82, 0xE0, 0x80, 0xE8, 0x51, 0x8D, 0x82,
-    0xB8, 0x40, 0xEF, 0x11, 0x15, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x08, 0x80, 0x0E, 0x82, 0xE0, 0x80,
-    0x08, 0x80, 0x8E, 0x82, 0xB8, 0x40, 0x08, 0x00, 0x17, 0x82, 0xC0, 0x80, 0xE8, 0x91, 0x0E, 0x82,
-    0xE0, 0x80, 0xE8, 0x91, 0x8E, 0x82, 0xB8, 0x40, 0xE8, 0x11, 0x17, 0x82, 0x06, 0x00, 0xC0, 0x80,
-    0x08, 0x80, 0x10, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x90, 0x82, 0xB8, 0x40, 0x08, 0x00, 0x19, 0x82,
-    0xC0, 0x80, 0xE8, 0x91, 0x10, 0x82, 0xE0, 0x80, 0xE8, 0x91, 0x90, 0x82, 0xB8, 0x40, 0xE8, 0x11,
-    0x19, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x10, 0x40, 0x12, 0x82, 0xE0, 0x80, 0x10, 0x40, 0x92, 0x82,
-    0xB8, 0x00, 0x10, 0x00, 0x1B, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x12, 0x82, 0xE0, 0x80, 0xE8, 0x51,
-    0x92, 0x82, 0xB8, 0x00, 0xE8, 0x11, 0x1B, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x15, 0x90, 0x10, 0x92,
-    0xE0, 0x80, 0x15, 0x90, 0x90, 0x92, 0xB8, 0x40, 0x15, 0x10, 0x19, 0x92, 0xC0, 0x80, 0xDB, 0x81,
-    0x10, 0x92, 0xE0, 0x80, 0xDB, 0x81, 0x90, 0x92, 0xB8, 0x40, 0xDB, 0x01, 0x19, 0x92, 0x06, 0x00,
-    0xC0, 0x80, 0x16, 0x90, 0x0E, 0x92, 0xE0, 0x80, 0x16, 0x90, 0x8E, 0x92, 0xB8, 0x40, 0x16, 0x10,
-    0x17, 0x92, 0xC0, 0x80, 0xDA, 0x81, 0x0E, 0x92, 0xE0, 0x80, 0xDA, 0x81, 0x8E, 0x92, 0xB8, 0x40,
-    0xDA, 0x01, 0x17, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1F, 0x90, 0x0B, 0x92, 0xC0, 0x80, 0x17, 0x50,
-    0x0D, 0x92, 0xE0, 0x80, 0x1F, 0x90, 0x8B, 0x92, 0xE0, 0x80, 0x17, 0x50, 0x8D, 0x92, 0xB8, 0x40,
-    0x1E, 0x10, 0x15, 0x92, 0xC0, 0x80, 0xD1, 0x81, 0x0B, 0x92, 0xC0, 0x80, 0xE1, 0x41, 0x0D, 0x92,
-    0xE0, 0x80, 0xD1, 0x81, 0x8B, 0x92, 0xE0, 0x80, 0xE1, 0x41, 0x8D, 0x92, 0xB8, 0x40, 0xD2, 0x01,
-    0x15, 0x92, 0x04, 0x00, 0xC0, 0x80, 0x17, 0xD0, 0x07, 0x92, 0xB8, 0x40, 0x1F, 0x10, 0x13, 0x92,
-    0xC0, 0x80, 0xC9, 0xC1, 0x07, 0x92, 0xB8, 0x40, 0xD1, 0x01, 0x13, 0x92,
+/* 0x083D26DA: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame5[] = {
+    6,
+    /* 80C0 4011 8212 */
+    OAM_ENTRY(17, -64, SPRITE_SIZE_8x32, 0, 530, 8, 0),
+    /* 80E0 4011 8292 */
+    OAM_ENTRY(17, -32, SPRITE_SIZE_8x32, 0, 658, 8, 0),
+    /* 00B8 0011 821B */
+    OAM_ENTRY(17, -72, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    /* 80C0 51E7 8212 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 530, 8, 0),
+    /* 80E0 51E7 8292 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 658, 8, 0),
+    /* 00B8 11E7 821B */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
 };
-/* 0x083D2BF0 - 0x083D2C00: not yet typed. */
-const u8 sBossDoorRubyClosedOam[] = {
-    0x74, 0x2A, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D2700: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame6[] = {
+    6,
+    /* 80C0 9014 9210 */
+    OAM_ENTRY(20, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 9, 0),
+    /* 80E0 9014 9290 */
+    OAM_ENTRY(20, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 9, 0),
+    /* 40B8 1014 9219 */
+    OAM_ENTRY(20, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 9, 0),
+    /* 80C0 81DC 9210 */
+    OAM_ENTRY(-36, -64, SPRITE_SIZE_16x32, 0, 528, 9, 0),
+    /* 80E0 81DC 9290 */
+    OAM_ENTRY(-36, -32, SPRITE_SIZE_16x32, 0, 656, 9, 0),
+    /* 40B8 01DC 9219 */
+    OAM_ENTRY(-36, -72, SPRITE_SIZE_16x8, 0, 537, 9, 0),
 };
-/* 0x083D2C00 - 0x083D2C48: not yet typed. */
-const u8 sBossDoorRubyOpenOam[] = {
-    0x82, 0x2A, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00, 0x9C, 0x2A, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
-    0xDA, 0x2A, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0x00, 0x2B, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0x26, 0x2B, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x4C, 0x2B, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0x72, 0x2B, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0x98, 0x2B, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D2726: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame7[] = {
+    6,
+    /* 80C0 9015 920E */
+    OAM_ENTRY(21, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 9, 0),
+    /* 80E0 9015 928E */
+    OAM_ENTRY(21, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 9, 0),
+    /* 40B8 1015 9217 */
+    OAM_ENTRY(21, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 9, 0),
+    /* 80C0 81DB 920E */
+    OAM_ENTRY(-37, -64, SPRITE_SIZE_16x32, 0, 526, 9, 0),
+    /* 80E0 81DB 928E */
+    OAM_ENTRY(-37, -32, SPRITE_SIZE_16x32, 0, 654, 9, 0),
+    /* 40B8 01DB 9217 */
+    OAM_ENTRY(-37, -72, SPRITE_SIZE_16x8, 0, 535, 9, 0),
 };
-/* 0x083D2C48 - 0x083D2E1C: not yet typed. */
-const u8 sBossDoorRubyOpeningOam[] = {
-    0xD6, 0x2B, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x02, 0x00, 0xC0, 0x80, 0x00, 0xC0, 0x04, 0x82, 0xC0, 0x80, 0xE0, 0xD1, 0x04, 0x82, 0x0A, 0x00,
-    0xC0, 0x80, 0x00, 0x80, 0x08, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0A, 0x82, 0xE0, 0x80, 0x00, 0x80,
-    0x88, 0x82, 0xE0, 0x80, 0x10, 0x40, 0x8A, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x13, 0x82, 0xC0, 0x80,
-    0xF0, 0x91, 0x08, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0A, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x88, 0x82,
-    0xE0, 0x80, 0xE8, 0x51, 0x8A, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x13, 0x82, 0x0A, 0x00, 0xC0, 0x80,
-    0x00, 0x80, 0x0B, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0D, 0x82, 0xE0, 0x80, 0x00, 0x80, 0x8B, 0x82,
-    0xE0, 0x80, 0x10, 0x40, 0x8D, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x15, 0x82, 0xC0, 0x80, 0xF0, 0x91,
-    0x0B, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0D, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x8B, 0x82, 0xE0, 0x80,
-    0xE8, 0x51, 0x8D, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x15, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x08, 0x80,
-    0x0E, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x8E, 0x82, 0xB8, 0x40, 0x08, 0x00, 0x17, 0x82, 0xC0, 0x80,
-    0xE8, 0x91, 0x0E, 0x82, 0xE0, 0x80, 0xE8, 0x91, 0x8E, 0x82, 0xB8, 0x40, 0xE8, 0x11, 0x17, 0x82,
-    0x06, 0x00, 0xC0, 0x80, 0x09, 0x80, 0x10, 0x82, 0xE0, 0x80, 0x09, 0x80, 0x90, 0x82, 0xB8, 0x40,
-    0x09, 0x00, 0x19, 0x82, 0xC0, 0x80, 0xE7, 0x91, 0x10, 0x82, 0xE0, 0x80, 0xE7, 0x91, 0x90, 0x82,
-    0xB8, 0x40, 0xE7, 0x11, 0x19, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x11, 0x40, 0x12, 0x82, 0xE0, 0x80,
-    0x11, 0x40, 0x92, 0x82, 0xB8, 0x00, 0x11, 0x00, 0x1B, 0x82, 0xC0, 0x80, 0xE7, 0x51, 0x12, 0x82,
-    0xE0, 0x80, 0xE7, 0x51, 0x92, 0x82, 0xB8, 0x00, 0xE7, 0x11, 0x1B, 0x82, 0x06, 0x00, 0xC0, 0x80,
-    0x14, 0x90, 0x10, 0x92, 0xE0, 0x80, 0x14, 0x90, 0x90, 0x92, 0xB8, 0x40, 0x14, 0x10, 0x19, 0x92,
-    0xC0, 0x80, 0xDC, 0x81, 0x10, 0x92, 0xE0, 0x80, 0xDC, 0x81, 0x90, 0x92, 0xB8, 0x40, 0xDC, 0x01,
-    0x19, 0x92, 0x06, 0x00, 0xC0, 0x80, 0x15, 0x90, 0x0E, 0x92, 0xE0, 0x80, 0x15, 0x90, 0x8E, 0x92,
-    0xB8, 0x40, 0x15, 0x10, 0x17, 0x92, 0xC0, 0x80, 0xDB, 0x81, 0x0E, 0x92, 0xE0, 0x80, 0xDB, 0x81,
-    0x8E, 0x92, 0xB8, 0x40, 0xDB, 0x01, 0x17, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1E, 0x90, 0x0B, 0x92,
-    0xC0, 0x80, 0x16, 0x50, 0x0D, 0x92, 0xE0, 0x80, 0x1E, 0x90, 0x8B, 0x92, 0xE0, 0x80, 0x16, 0x50,
-    0x8D, 0x92, 0xB8, 0x40, 0x1E, 0x10, 0x15, 0x92, 0xC0, 0x80, 0xD2, 0x81, 0x0B, 0x92, 0xC0, 0x80,
-    0xE2, 0x41, 0x0D, 0x92, 0xE0, 0x80, 0xD2, 0x81, 0x8B, 0x92, 0xE0, 0x80, 0xE2, 0x41, 0x8D, 0x92,
-    0xB8, 0x40, 0xD2, 0x01, 0x15, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1F, 0x90, 0x08, 0x92, 0xC0, 0x80,
-    0x17, 0x50, 0x0A, 0x92, 0xE0, 0x80, 0x1F, 0x90, 0x88, 0x92, 0xE0, 0x80, 0x17, 0x50, 0x8A, 0x92,
-    0xB8, 0x40, 0x1F, 0x10, 0x13, 0x92, 0xC0, 0x80, 0xD1, 0x81, 0x08, 0x92, 0xC0, 0x80, 0xE1, 0x41,
-    0x0A, 0x92, 0xE0, 0x80, 0xD1, 0x81, 0x88, 0x92, 0xE0, 0x80, 0xE1, 0x41, 0x8A, 0x92, 0xB8, 0x40,
-    0xD1, 0x01, 0x13, 0x92,
+/* 0x083D274C: decoded OAM frame. */
+const u16 sBossDoorEntryOpenOam_Frame8[] = {
+    10,
+    /* 80C0 901E 920B */
+    OAM_ENTRY(30, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 9, 0),
+    /* 80C0 5016 920D */
+    OAM_ENTRY(22, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 9, 0),
+    /* 80E0 901E 928B */
+    OAM_ENTRY(30, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 9, 0),
+    /* 80E0 5016 928D */
+    OAM_ENTRY(22, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 9, 0),
+    /* 40B8 101E 9215 */
+    OAM_ENTRY(30, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 9, 0),
+    /* 80C0 81D2 920B */
+    OAM_ENTRY(-46, -64, SPRITE_SIZE_16x32, 0, 523, 9, 0),
+    /* 80C0 41E2 920D */
+    OAM_ENTRY(-30, -64, SPRITE_SIZE_8x32, 0, 525, 9, 0),
+    /* 80E0 81D2 928B */
+    OAM_ENTRY(-46, -32, SPRITE_SIZE_16x32, 0, 651, 9, 0),
+    /* 80E0 41E2 928D */
+    OAM_ENTRY(-30, -32, SPRITE_SIZE_8x32, 0, 653, 9, 0),
+    /* 40B8 01D2 9215 */
+    OAM_ENTRY(-46, -72, SPRITE_SIZE_16x8, 0, 533, 9, 0),
 };
-/* 0x083D2E1C - 0x083D2E2C: not yet typed. */
-const u8 sBossDoorTopazClosedOam[] = {
-    0x58, 0x2C, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D278A: decoded OAM frame. */
+const u16 sBossDoorEntryOpeningOam_Frame1[] = {
+    10,
+    /* 80C0 901F 9208 */
+    OAM_ENTRY(31, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 9, 0),
+    /* 80C0 5017 920A */
+    OAM_ENTRY(23, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 9, 0),
+    /* 80E0 901F 9288 */
+    OAM_ENTRY(31, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 9, 0),
+    /* 80E0 5017 928A */
+    OAM_ENTRY(23, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 9, 0),
+    /* 40B8 101F 9213 */
+    OAM_ENTRY(31, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 9, 0),
+    /* 80C0 81D1 9208 */
+    OAM_ENTRY(-47, -64, SPRITE_SIZE_16x32, 0, 520, 9, 0),
+    /* 80C0 41E1 920A */
+    OAM_ENTRY(-31, -64, SPRITE_SIZE_8x32, 0, 522, 9, 0),
+    /* 80E0 81D1 9288 */
+    OAM_ENTRY(-47, -32, SPRITE_SIZE_16x32, 0, 648, 9, 0),
+    /* 80E0 41E1 928A */
+    OAM_ENTRY(-31, -32, SPRITE_SIZE_8x32, 0, 650, 9, 0),
+    /* 40B8 01D1 9213 */
+    OAM_ENTRY(-47, -72, SPRITE_SIZE_16x8, 0, 531, 9, 0),
 };
-/* 0x083D2E2C - 0x083D2E74: not yet typed. */
-const u8 sBossDoorTopazOpenOam[] = {
-    0x66, 0x2C, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00, 0xA4, 0x2C, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
-    0xE2, 0x2C, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0x08, 0x2D, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0x2E, 0x2D, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x54, 0x2D, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0x7A, 0x2D, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0xA0, 0x2D, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D27C8: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorEntryClosedOam[] = {
+    {sBossDoorEntryClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
 };
-/* 0x083D2E74 - 0x083D3048: not yet typed. */
-const u8 sBossDoorTopazOpeningOam[] = {
-    0xDE, 0x2D, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x02, 0x00, 0xC0, 0x80, 0x00, 0xC0, 0x04, 0x82, 0xC0, 0x80, 0xE0, 0xD1, 0x04, 0x82, 0x0A, 0x00,
-    0xC0, 0x80, 0x00, 0x80, 0x08, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0A, 0x82, 0xE0, 0x80, 0x00, 0x80,
-    0x88, 0x82, 0xE0, 0x80, 0x10, 0x40, 0x8A, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x13, 0x82, 0xC0, 0x80,
-    0xF0, 0x91, 0x08, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0A, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x88, 0x82,
-    0xE0, 0x80, 0xE8, 0x51, 0x8A, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x13, 0x82, 0x0A, 0x00, 0xC0, 0x80,
-    0x00, 0x80, 0x0B, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0D, 0x82, 0xE0, 0x80, 0x00, 0x80, 0x8B, 0x82,
-    0xE0, 0x80, 0x10, 0x40, 0x8D, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x15, 0x82, 0xC0, 0x80, 0xF0, 0x91,
-    0x0B, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0D, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x8B, 0x82, 0xE0, 0x80,
-    0xE8, 0x51, 0x8D, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x15, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x08, 0x80,
-    0x0E, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x8E, 0x82, 0xB8, 0x40, 0x08, 0x00, 0x17, 0x82, 0xC0, 0x80,
-    0xE8, 0x91, 0x0E, 0x82, 0xE0, 0x80, 0xE8, 0x91, 0x8E, 0x82, 0xB8, 0x40, 0xE8, 0x11, 0x17, 0x82,
-    0x06, 0x00, 0xC0, 0x80, 0x09, 0x80, 0x10, 0x82, 0xE0, 0x80, 0x09, 0x80, 0x90, 0x82, 0xB8, 0x40,
-    0x09, 0x00, 0x19, 0x82, 0xC0, 0x80, 0xE7, 0x91, 0x10, 0x82, 0xE0, 0x80, 0xE7, 0x91, 0x90, 0x82,
-    0xB8, 0x40, 0xE7, 0x11, 0x19, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x11, 0x40, 0x12, 0x82, 0xE0, 0x80,
-    0x11, 0x40, 0x92, 0x82, 0xB8, 0x00, 0x11, 0x00, 0x1B, 0x82, 0xC0, 0x80, 0xE7, 0x51, 0x12, 0x82,
-    0xE0, 0x80, 0xE7, 0x51, 0x92, 0x82, 0xB8, 0x00, 0xE7, 0x11, 0x1B, 0x82, 0x06, 0x00, 0xC0, 0x80,
-    0x14, 0x90, 0x10, 0x92, 0xE0, 0x80, 0x14, 0x90, 0x90, 0x92, 0xB8, 0x40, 0x14, 0x10, 0x19, 0x92,
-    0xC0, 0x80, 0xDC, 0x81, 0x10, 0x92, 0xE0, 0x80, 0xDC, 0x81, 0x90, 0x92, 0xB8, 0x40, 0xDC, 0x01,
-    0x19, 0x92, 0x06, 0x00, 0xC0, 0x80, 0x15, 0x90, 0x0E, 0x92, 0xE0, 0x80, 0x15, 0x90, 0x8E, 0x92,
-    0xB8, 0x40, 0x15, 0x10, 0x17, 0x92, 0xC0, 0x80, 0xDB, 0x81, 0x0E, 0x92, 0xE0, 0x80, 0xDB, 0x81,
-    0x8E, 0x92, 0xB8, 0x40, 0xDB, 0x01, 0x17, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1E, 0x90, 0x0B, 0x92,
-    0xC0, 0x80, 0x16, 0x50, 0x0D, 0x92, 0xE0, 0x80, 0x1E, 0x90, 0x8B, 0x92, 0xE0, 0x80, 0x16, 0x50,
-    0x8D, 0x92, 0xB8, 0x40, 0x1E, 0x10, 0x15, 0x92, 0xC0, 0x80, 0xD2, 0x81, 0x0B, 0x92, 0xC0, 0x80,
-    0xE2, 0x41, 0x0D, 0x92, 0xE0, 0x80, 0xD2, 0x81, 0x8B, 0x92, 0xE0, 0x80, 0xE2, 0x41, 0x8D, 0x92,
-    0xB8, 0x40, 0xD2, 0x01, 0x15, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1F, 0x90, 0x08, 0x92, 0xC0, 0x80,
-    0x17, 0x50, 0x0A, 0x92, 0xE0, 0x80, 0x1F, 0x90, 0x88, 0x92, 0xE0, 0x80, 0x17, 0x50, 0x8A, 0x92,
-    0xB8, 0x40, 0x1F, 0x10, 0x13, 0x92, 0xC0, 0x80, 0xD1, 0x81, 0x08, 0x92, 0xC0, 0x80, 0xE1, 0x41,
-    0x0A, 0x92, 0xE0, 0x80, 0xD1, 0x81, 0x88, 0x92, 0xE0, 0x80, 0xE1, 0x41, 0x8A, 0x92, 0xB8, 0x40,
-    0xD1, 0x01, 0x13, 0x92,
+/* 0x083D27D8: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorEntryOpenOam[] = {
+    {sBossDoorEntryOpenOam_Frame1, 7},
+    {sBossDoorEntryOpenOam_Frame2, 6},
+    {sBossDoorEntryOpenOam_Frame3, 5},
+    {sBossDoorEntryOpenOam_Frame4, 4},
+    {sBossDoorEntryOpenOam_Frame5, 4},
+    {sBossDoorEntryOpenOam_Frame6, 5},
+    {sBossDoorEntryOpenOam_Frame7, 6},
+    {sBossDoorEntryOpenOam_Frame8, 7},
+    ANIMATION_TERMINATOR
 };
-/* 0x083D3048 - 0x083D3058: not yet typed. */
-const u8 sBossDoorSapphireClosedOam[] = {
-    0x84, 0x2E, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D2820: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorEntryOpeningOam[] = {
+    {sBossDoorEntryOpeningOam_Frame1, 200},
+    ANIMATION_TERMINATOR
 };
-/* 0x083D3058 - 0x083D30A0: not yet typed. */
-const u8 sBossDoorSapphireOpenOam[] = {
-    0x92, 0x2E, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00, 0xD0, 0x2E, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
-    0x0E, 0x2F, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0x34, 0x2F, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0x5A, 0x2F, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0x80, 0x2F, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0xA6, 0x2F, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0xCC, 0x2F, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D2830: decoded OAM frame. */
+const u16 sBossDoorEmeraldClosedOam_Frame1[] = {
+    2,
+    /* 80C0 C000 8204 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x64, 0, 516, 8, 0),
+    /* 80C0 D1E0 8204 */
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 516, 8, 0),
 };
-/* 0x083D30A0 - 0x083D3274: not yet typed. */
-const u8 sBossDoorSapphireOpeningOam[] = {
-    0x0A, 0x30, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x02, 0x00, 0xC0, 0x80, 0x00, 0xC0, 0x04, 0x82, 0xC0, 0x80, 0xE0, 0xD1, 0x04, 0x82, 0x0A, 0x00,
-    0xC0, 0x80, 0x00, 0x80, 0x08, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0A, 0x82, 0xE0, 0x80, 0x00, 0x80,
-    0x88, 0x82, 0xE0, 0x80, 0x10, 0x40, 0x8A, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x13, 0x82, 0xC0, 0x80,
-    0xF0, 0x91, 0x08, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0A, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x88, 0x82,
-    0xE0, 0x80, 0xE8, 0x51, 0x8A, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x13, 0x82, 0x0A, 0x00, 0xC0, 0x80,
-    0x00, 0x80, 0x0B, 0x82, 0xC0, 0x80, 0x10, 0x40, 0x0D, 0x82, 0xE0, 0x80, 0x00, 0x80, 0x8B, 0x82,
-    0xE0, 0x80, 0x10, 0x40, 0x8D, 0x82, 0xB8, 0x40, 0x00, 0x00, 0x15, 0x82, 0xC0, 0x80, 0xF0, 0x91,
-    0x0B, 0x82, 0xC0, 0x80, 0xE8, 0x51, 0x0D, 0x82, 0xE0, 0x80, 0xF0, 0x91, 0x8B, 0x82, 0xE0, 0x80,
-    0xE8, 0x51, 0x8D, 0x82, 0xB8, 0x40, 0xF0, 0x11, 0x15, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x08, 0x80,
-    0x0E, 0x82, 0xE0, 0x80, 0x08, 0x80, 0x8E, 0x82, 0xB8, 0x40, 0x08, 0x00, 0x17, 0x82, 0xC0, 0x80,
-    0xE8, 0x91, 0x0E, 0x82, 0xE0, 0x80, 0xE8, 0x91, 0x8E, 0x82, 0xB8, 0x40, 0xE8, 0x11, 0x17, 0x82,
-    0x06, 0x00, 0xC0, 0x80, 0x09, 0x80, 0x10, 0x82, 0xE0, 0x80, 0x09, 0x80, 0x90, 0x82, 0xB8, 0x40,
-    0x09, 0x00, 0x19, 0x82, 0xC0, 0x80, 0xE7, 0x91, 0x10, 0x82, 0xE0, 0x80, 0xE7, 0x91, 0x90, 0x82,
-    0xB8, 0x40, 0xE7, 0x11, 0x19, 0x82, 0x06, 0x00, 0xC0, 0x80, 0x11, 0x40, 0x12, 0x82, 0xE0, 0x80,
-    0x11, 0x40, 0x92, 0x82, 0xB8, 0x00, 0x11, 0x00, 0x1B, 0x82, 0xC0, 0x80, 0xE7, 0x51, 0x12, 0x82,
-    0xE0, 0x80, 0xE7, 0x51, 0x92, 0x82, 0xB8, 0x00, 0xE7, 0x11, 0x1B, 0x82, 0x06, 0x00, 0xC0, 0x80,
-    0x14, 0x90, 0x10, 0x92, 0xE0, 0x80, 0x14, 0x90, 0x90, 0x92, 0xB8, 0x40, 0x14, 0x10, 0x19, 0x92,
-    0xC0, 0x80, 0xDC, 0x81, 0x10, 0x92, 0xE0, 0x80, 0xDC, 0x81, 0x90, 0x92, 0xB8, 0x40, 0xDC, 0x01,
-    0x19, 0x92, 0x06, 0x00, 0xC0, 0x80, 0x15, 0x90, 0x0E, 0x92, 0xE0, 0x80, 0x15, 0x90, 0x8E, 0x92,
-    0xB8, 0x40, 0x15, 0x10, 0x17, 0x92, 0xC0, 0x80, 0xDB, 0x81, 0x0E, 0x92, 0xE0, 0x80, 0xDB, 0x81,
-    0x8E, 0x92, 0xB8, 0x40, 0xDB, 0x01, 0x17, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1E, 0x90, 0x0B, 0x92,
-    0xC0, 0x80, 0x16, 0x50, 0x0D, 0x92, 0xE0, 0x80, 0x1E, 0x90, 0x8B, 0x92, 0xE0, 0x80, 0x16, 0x50,
-    0x8D, 0x92, 0xB8, 0x40, 0x1E, 0x10, 0x15, 0x92, 0xC0, 0x80, 0xD2, 0x81, 0x0B, 0x92, 0xC0, 0x80,
-    0xE2, 0x41, 0x0D, 0x92, 0xE0, 0x80, 0xD2, 0x81, 0x8B, 0x92, 0xE0, 0x80, 0xE2, 0x41, 0x8D, 0x92,
-    0xB8, 0x40, 0xD2, 0x01, 0x15, 0x92, 0x0A, 0x00, 0xC0, 0x80, 0x1F, 0x90, 0x08, 0x92, 0xC0, 0x80,
-    0x17, 0x50, 0x0A, 0x92, 0xE0, 0x80, 0x1F, 0x90, 0x88, 0x92, 0xE0, 0x80, 0x17, 0x50, 0x8A, 0x92,
-    0xB8, 0x40, 0x1F, 0x10, 0x13, 0x92, 0xC0, 0x80, 0xD1, 0x81, 0x08, 0x92, 0xC0, 0x80, 0xE1, 0x41,
-    0x0A, 0x92, 0xE0, 0x80, 0xD1, 0x81, 0x88, 0x92, 0xE0, 0x80, 0xE1, 0x41, 0x8A, 0x92, 0xB8, 0x40,
-    0xD1, 0x01, 0x13, 0x92,
+/* 0x083D283E: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame1[] = {
+    10,
+    /* 80C0 8003 8208 */
+    OAM_ENTRY(3, -64, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    /* 80C0 4013 820A */
+    OAM_ENTRY(19, -64, SPRITE_SIZE_8x32, 0, 522, 8, 0),
+    /* 80E0 8003 8288 */
+    OAM_ENTRY(3, -32, SPRITE_SIZE_16x32, 0, 648, 8, 0),
+    /* 80E0 4013 828A */
+    OAM_ENTRY(19, -32, SPRITE_SIZE_8x32, 0, 650, 8, 0),
+    /* 40B8 0003 8213 */
+    OAM_ENTRY(3, -72, SPRITE_SIZE_16x8, 0, 531, 8, 0),
+    /* 80C0 91ED 8208 */
+    OAM_ENTRY(-19, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 8, 0),
+    /* 80C0 51E5 820A */
+    OAM_ENTRY(-27, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 8, 0),
+    /* 80E0 91ED 8288 */
+    OAM_ENTRY(-19, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 8, 0),
+    /* 80E0 51E5 828A */
+    OAM_ENTRY(-27, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 8, 0),
+    /* 40B8 11ED 8213 */
+    OAM_ENTRY(-19, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 8, 0),
 };
-/* 0x083D3274 - 0x083D3284: not yet typed. */
-const u8 sBossDoorGoldenPyramidClosedOam[] = {
-    0xB0, 0x30, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D287C: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame2[] = {
+    12,
+    /* 80C0 8006 820B */
+    OAM_ENTRY(6, -64, SPRITE_SIZE_16x32, 0, 523, 8, 0),
+    /* 80E0 8006 828B */
+    OAM_ENTRY(6, -32, SPRITE_SIZE_16x32, 0, 651, 8, 0),
+    /* 80C8 4016 822D */
+    OAM_ENTRY(22, -56, SPRITE_SIZE_8x32, 0, 557, 8, 0),
+    /* 80E8 0016 82AD */
+    OAM_ENTRY(22, -24, SPRITE_SIZE_8x16, 0, 685, 8, 0),
+    /* 00F8 0016 82ED */
+    OAM_ENTRY(22, -8, SPRITE_SIZE_8x8, 0, 749, 8, 0),
+    /* 40B8 0006 8215 */
+    OAM_ENTRY(6, -72, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    /* 80C0 91EA 820B */
+    OAM_ENTRY(-22, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 8, 0),
+    /* 80E0 91EA 828B */
+    OAM_ENTRY(-22, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 8, 0),
+    /* 80C8 51E2 822D */
+    OAM_ENTRY(-30, -56, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 557, 8, 0),
+    /* 80E8 11E2 82AD */
+    OAM_ENTRY(-30, -24, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 685, 8, 0),
+    /* 00F8 11E2 82ED */
+    OAM_ENTRY(-30, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 749, 8, 0),
+    /* 40B8 11EA 8215 */
+    OAM_ENTRY(-22, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 8, 0),
 };
-/* 0x083D3284 - 0x083D32CC: not yet typed. */
-const u8 sBossDoorGoldenPyramidOpenOam[] = {
-    0xBE, 0x30, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00, 0xFC, 0x30, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00,
-    0x3A, 0x31, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00, 0x60, 0x31, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0x86, 0x31, 0x3D, 0x08, 0x04, 0x00, 0x00, 0x00, 0xAC, 0x31, 0x3D, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0xD2, 0x31, 0x3D, 0x08, 0x06, 0x00, 0x00, 0x00, 0xF8, 0x31, 0x3D, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D28C6: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame3[] = {
+    6,
+    /* 40B8 000C 8217 */
+    OAM_ENTRY(12, -72, SPRITE_SIZE_16x8, 0, 535, 8, 0),
+    /* 80C0 800C 820E */
+    OAM_ENTRY(12, -64, SPRITE_SIZE_16x32, 0, 526, 8, 0),
+    /* 80E0 800C 828E */
+    OAM_ENTRY(12, -32, SPRITE_SIZE_16x32, 0, 654, 8, 0),
+    /* 40B8 11E4 8217 */
+    OAM_ENTRY(-28, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 8, 0),
+    /* 80C0 91E4 820E */
+    OAM_ENTRY(-28, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 8, 0),
+    /* 80E0 91E4 828E */
+    OAM_ENTRY(-28, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 8, 0),
 };
-/* 0x083D32CC - 0x083D6ADC: not yet typed. */
-const u8 sBossDoorGoldenPyramidOpeningOam[] = {
-    0x36, 0x32, 0x3D, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083D28EC: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame4[] = {
+    6,
+    /* 80C0 800E 8210 */
+    OAM_ENTRY(14, -64, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    /* 80E0 800E 8290 */
+    OAM_ENTRY(14, -32, SPRITE_SIZE_16x32, 0, 656, 8, 0),
+    /* 00B8 000E 8219 */
+    OAM_ENTRY(14, -72, SPRITE_SIZE_8x8, 0, 537, 8, 0),
+    /* 80C0 91E2 8210 */
+    OAM_ENTRY(-30, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E0 91E2 8290 */
+    OAM_ENTRY(-30, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 8, 0),
+    /* 00B8 11EA 8219 */
+    OAM_ENTRY(-22, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 537, 8, 0),
+};
+/* 0x083D2912: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame5[] = {
+    6,
+    /* 80C0 4012 8212 */
+    OAM_ENTRY(18, -64, SPRITE_SIZE_8x32, 0, 530, 8, 0),
+    /* 80E0 4012 8292 */
+    OAM_ENTRY(18, -32, SPRITE_SIZE_8x32, 0, 658, 8, 0),
+    /* 00B8 0012 821A */
+    OAM_ENTRY(18, -72, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+    /* 80C0 51E6 8212 */
+    OAM_ENTRY(-26, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 530, 8, 0),
+    /* 80E0 51E6 8292 */
+    OAM_ENTRY(-26, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 658, 8, 0),
+    /* 00B8 11E6 821A */
+    OAM_ENTRY(-26, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 538, 8, 0),
+};
+/* 0x083D2938: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame6[] = {
+    6,
+    /* 80C0 9012 9210 */
+    OAM_ENTRY(18, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 9, 0),
+    /* 80E0 9012 9290 */
+    OAM_ENTRY(18, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 9, 0),
+    /* 00B8 101A 9219 */
+    OAM_ENTRY(26, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 537, 9, 0),
+    /* 80C0 81DE 9210 */
+    OAM_ENTRY(-34, -64, SPRITE_SIZE_16x32, 0, 528, 9, 0),
+    /* 80E0 81DE 9290 */
+    OAM_ENTRY(-34, -32, SPRITE_SIZE_16x32, 0, 656, 9, 0),
+    /* 00B8 01DE 9219 */
+    OAM_ENTRY(-34, -72, SPRITE_SIZE_8x8, 0, 537, 9, 0),
+};
+/* 0x083D295E: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame7[] = {
+    6,
+    /* 40B8 01DC 9217 */
+    OAM_ENTRY(-36, -72, SPRITE_SIZE_16x8, 0, 535, 9, 0),
+    /* 80C0 81DC 920E */
+    OAM_ENTRY(-36, -64, SPRITE_SIZE_16x32, 0, 526, 9, 0),
+    /* 80E0 81DC 928E */
+    OAM_ENTRY(-36, -32, SPRITE_SIZE_16x32, 0, 654, 9, 0),
+    /* 40B8 1014 9217 */
+    OAM_ENTRY(20, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 9, 0),
+    /* 80C0 9014 920E */
+    OAM_ENTRY(20, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 9, 0),
+    /* 80E0 9014 928E */
+    OAM_ENTRY(20, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 9, 0),
+};
+/* 0x083D2984: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpenOam_Frame8[] = {
+    12,
+    /* 80C0 901B 920B */
+    OAM_ENTRY(27, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 9, 0),
+    /* 80E0 901B 928B */
+    OAM_ENTRY(27, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 9, 0),
+    /* 80C8 5013 922D */
+    OAM_ENTRY(19, -56, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 557, 9, 0),
+    /* 80E8 1013 92AD */
+    OAM_ENTRY(19, -24, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 685, 9, 0),
+    /* 00F8 1013 92ED */
+    OAM_ENTRY(19, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 749, 9, 0),
+    /* 40B8 101B 9215 */
+    OAM_ENTRY(27, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 9, 0),
+    /* 80C0 81D5 920B */
+    OAM_ENTRY(-43, -64, SPRITE_SIZE_16x32, 0, 523, 9, 0),
+    /* 80E0 81D5 928B */
+    OAM_ENTRY(-43, -32, SPRITE_SIZE_16x32, 0, 651, 9, 0),
+    /* 80C8 41E5 922D */
+    OAM_ENTRY(-27, -56, SPRITE_SIZE_8x32, 0, 557, 9, 0),
+    /* 80E8 01E5 92AD */
+    OAM_ENTRY(-27, -24, SPRITE_SIZE_8x16, 0, 685, 9, 0),
+    /* 00F8 01E5 92ED */
+    OAM_ENTRY(-27, -8, SPRITE_SIZE_8x8, 0, 749, 9, 0),
+    /* 40B8 01D5 9215 */
+    OAM_ENTRY(-43, -72, SPRITE_SIZE_16x8, 0, 533, 9, 0),
+};
+/* 0x083D29CE: decoded OAM frame. */
+const u16 sBossDoorEmeraldOpeningOam_Frame1[] = {
+    10,
+    /* 80C0 901E 9208 */
+    OAM_ENTRY(30, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 9, 0),
+    /* 80C0 5016 920A */
+    OAM_ENTRY(22, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 9, 0),
+    /* 80E0 901E 9288 */
+    OAM_ENTRY(30, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 9, 0),
+    /* 80E0 5016 928A */
+    OAM_ENTRY(22, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 9, 0),
+    /* 40B8 101E 9213 */
+    OAM_ENTRY(30, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 9, 0),
+    /* 80C0 81D2 9208 */
+    OAM_ENTRY(-46, -64, SPRITE_SIZE_16x32, 0, 520, 9, 0),
+    /* 80C0 41E2 920A */
+    OAM_ENTRY(-30, -64, SPRITE_SIZE_8x32, 0, 522, 9, 0),
+    /* 80E0 81D2 9288 */
+    OAM_ENTRY(-46, -32, SPRITE_SIZE_16x32, 0, 648, 9, 0),
+    /* 80E0 41E2 928A */
+    OAM_ENTRY(-30, -32, SPRITE_SIZE_8x32, 0, 650, 9, 0),
+    /* 40B8 01D2 9213 */
+    OAM_ENTRY(-46, -72, SPRITE_SIZE_16x8, 0, 531, 9, 0),
+};
+/* 0x083D2A0C: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorEmeraldClosedOam[] = {
+    {sBossDoorEmeraldClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2A1C: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorEmeraldOpenOam[] = {
+    {sBossDoorEmeraldOpenOam_Frame1, 7},
+    {sBossDoorEmeraldOpenOam_Frame2, 6},
+    {sBossDoorEmeraldOpenOam_Frame3, 5},
+    {sBossDoorEmeraldOpenOam_Frame4, 4},
+    {sBossDoorEmeraldOpenOam_Frame5, 4},
+    {sBossDoorEmeraldOpenOam_Frame6, 5},
+    {sBossDoorEmeraldOpenOam_Frame7, 6},
+    {sBossDoorEmeraldOpenOam_Frame8, 7},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2A64: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorEmeraldOpeningOam[] = {
+    {sBossDoorEmeraldOpeningOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2A74: decoded OAM frame. */
+const u16 sBossDoorRubyClosedOam_Frame1[] = {
+    2,
+    /* 80C0 C000 8204 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x64, 0, 516, 8, 0),
+    /* 80C0 D1E0 8204 */
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 516, 8, 0),
+};
+/* 0x083D2A82: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame1[] = {
+    4,
+    /* 80C0 C1F8 8207 */
+    OAM_ENTRY(-8, -64, SPRITE_SIZE_32x64, 0, 519, 8, 0),
+    /* 40B8 0000 8213 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 531, 8, 0),
+    /* 80C0 D1E8 8207 */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 519, 8, 0),
+    /* 40B8 11F0 8213 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 8, 0),
+};
+/* 0x083D2A9C: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame2[] = {
+    10,
+    /* 80C0 8000 820B */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 523, 8, 0),
+    /* 80C0 4010 820D */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 525, 8, 0),
+    /* 80E0 8000 828B */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 651, 8, 0),
+    /* 80E0 4010 828D */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 653, 8, 0),
+    /* 40B8 0001 8215 */
+    OAM_ENTRY(1, -72, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    /* 80C0 91F0 820B */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 8, 0),
+    /* 80C0 51E8 820D */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 8, 0),
+    /* 80E0 91F0 828B */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 8, 0),
+    /* 80E0 51E8 828D */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 8, 0),
+    /* 40B8 11EF 8215 */
+    OAM_ENTRY(-17, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 8, 0),
+};
+/* 0x083D2ADA: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame3[] = {
+    6,
+    /* 80C0 8008 820E */
+    OAM_ENTRY(8, -64, SPRITE_SIZE_16x32, 0, 526, 8, 0),
+    /* 80E0 8008 828E */
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 654, 8, 0),
+    /* 40B8 0008 8217 */
+    OAM_ENTRY(8, -72, SPRITE_SIZE_16x8, 0, 535, 8, 0),
+    /* 80C0 91E8 820E */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 8, 0),
+    /* 80E0 91E8 828E */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 8, 0),
+    /* 40B8 11E8 8217 */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 8, 0),
+};
+/* 0x083D2B00: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame4[] = {
+    6,
+    /* 80C0 8008 8210 */
+    OAM_ENTRY(8, -64, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    /* 80E0 8008 8290 */
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 656, 8, 0),
+    /* 40B8 0008 8219 */
+    OAM_ENTRY(8, -72, SPRITE_SIZE_16x8, 0, 537, 8, 0),
+    /* 80C0 91E8 8210 */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E0 91E8 8290 */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 8, 0),
+    /* 40B8 11E8 8219 */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 8, 0),
+};
+/* 0x083D2B26: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame5[] = {
+    6,
+    /* 80C0 4010 8212 */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 530, 8, 0),
+    /* 80E0 4010 8292 */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 658, 8, 0),
+    /* 00B8 0010 821B */
+    OAM_ENTRY(16, -72, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    /* 80C0 51E8 8212 */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 530, 8, 0),
+    /* 80E0 51E8 8292 */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 658, 8, 0),
+    /* 00B8 11E8 821B */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+};
+/* 0x083D2B4C: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame6[] = {
+    6,
+    /* 80C0 9015 9210 */
+    OAM_ENTRY(21, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 9, 0),
+    /* 80E0 9015 9290 */
+    OAM_ENTRY(21, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 9, 0),
+    /* 40B8 1015 9219 */
+    OAM_ENTRY(21, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 9, 0),
+    /* 80C0 81DB 9210 */
+    OAM_ENTRY(-37, -64, SPRITE_SIZE_16x32, 0, 528, 9, 0),
+    /* 80E0 81DB 9290 */
+    OAM_ENTRY(-37, -32, SPRITE_SIZE_16x32, 0, 656, 9, 0),
+    /* 40B8 01DB 9219 */
+    OAM_ENTRY(-37, -72, SPRITE_SIZE_16x8, 0, 537, 9, 0),
+};
+/* 0x083D2B72: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame7[] = {
+    6,
+    /* 80C0 9016 920E */
+    OAM_ENTRY(22, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 9, 0),
+    /* 80E0 9016 928E */
+    OAM_ENTRY(22, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 9, 0),
+    /* 40B8 1016 9217 */
+    OAM_ENTRY(22, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 9, 0),
+    /* 80C0 81DA 920E */
+    OAM_ENTRY(-38, -64, SPRITE_SIZE_16x32, 0, 526, 9, 0),
+    /* 80E0 81DA 928E */
+    OAM_ENTRY(-38, -32, SPRITE_SIZE_16x32, 0, 654, 9, 0),
+    /* 40B8 01DA 9217 */
+    OAM_ENTRY(-38, -72, SPRITE_SIZE_16x8, 0, 535, 9, 0),
+};
+/* 0x083D2B98: decoded OAM frame. */
+const u16 sBossDoorRubyOpenOam_Frame8[] = {
+    10,
+    /* 80C0 901F 920B */
+    OAM_ENTRY(31, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 9, 0),
+    /* 80C0 5017 920D */
+    OAM_ENTRY(23, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 9, 0),
+    /* 80E0 901F 928B */
+    OAM_ENTRY(31, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 9, 0),
+    /* 80E0 5017 928D */
+    OAM_ENTRY(23, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 9, 0),
+    /* 40B8 101E 9215 */
+    OAM_ENTRY(30, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 9, 0),
+    /* 80C0 81D1 920B */
+    OAM_ENTRY(-47, -64, SPRITE_SIZE_16x32, 0, 523, 9, 0),
+    /* 80C0 41E1 920D */
+    OAM_ENTRY(-31, -64, SPRITE_SIZE_8x32, 0, 525, 9, 0),
+    /* 80E0 81D1 928B */
+    OAM_ENTRY(-47, -32, SPRITE_SIZE_16x32, 0, 651, 9, 0),
+    /* 80E0 41E1 928D */
+    OAM_ENTRY(-31, -32, SPRITE_SIZE_8x32, 0, 653, 9, 0),
+    /* 40B8 01D2 9215 */
+    OAM_ENTRY(-46, -72, SPRITE_SIZE_16x8, 0, 533, 9, 0),
+};
+/* 0x083D2BD6: decoded OAM frame. */
+const u16 sBossDoorRubyOpeningOam_Frame1[] = {
+    4,
+    /* 80C0 D017 9207 */
+    OAM_ENTRY(23, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 519, 9, 0),
+    /* 40B8 101F 9213 */
+    OAM_ENTRY(31, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 9, 0),
+    /* 80C0 C1C9 9207 */
+    OAM_ENTRY(-55, -64, SPRITE_SIZE_32x64, 0, 519, 9, 0),
+    /* 40B8 01D1 9213 */
+    OAM_ENTRY(-47, -72, SPRITE_SIZE_16x8, 0, 531, 9, 0),
+};
+/* 0x083D2BF0: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorRubyClosedOam[] = {
+    {sBossDoorRubyClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2C00: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorRubyOpenOam[] = {
+    {sBossDoorRubyOpenOam_Frame1, 7},
+    {sBossDoorRubyOpenOam_Frame2, 6},
+    {sBossDoorRubyOpenOam_Frame3, 5},
+    {sBossDoorRubyOpenOam_Frame4, 4},
+    {sBossDoorRubyOpenOam_Frame5, 4},
+    {sBossDoorRubyOpenOam_Frame6, 5},
+    {sBossDoorRubyOpenOam_Frame7, 6},
+    {sBossDoorRubyOpenOam_Frame8, 7},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2C48: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorRubyOpeningOam[] = {
+    {sBossDoorRubyOpeningOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2C58: decoded OAM frame. */
+const u16 sBossDoorTopazClosedOam_Frame1[] = {
+    2,
+    /* 80C0 C000 8204 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x64, 0, 516, 8, 0),
+    /* 80C0 D1E0 8204 */
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 516, 8, 0),
+};
+/* 0x083D2C66: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame1[] = {
+    10,
+    /* 80C0 8000 8208 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    /* 80C0 4010 820A */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 522, 8, 0),
+    /* 80E0 8000 8288 */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 648, 8, 0),
+    /* 80E0 4010 828A */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 650, 8, 0),
+    /* 40B8 0000 8213 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 531, 8, 0),
+    /* 80C0 91F0 8208 */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 8, 0),
+    /* 80C0 51E8 820A */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 8, 0),
+    /* 80E0 91F0 8288 */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 8, 0),
+    /* 80E0 51E8 828A */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 8, 0),
+    /* 40B8 11F0 8213 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 8, 0),
+};
+/* 0x083D2CA4: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame2[] = {
+    10,
+    /* 80C0 8000 820B */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 523, 8, 0),
+    /* 80C0 4010 820D */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 525, 8, 0),
+    /* 80E0 8000 828B */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 651, 8, 0),
+    /* 80E0 4010 828D */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 653, 8, 0),
+    /* 40B8 0000 8215 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    /* 80C0 91F0 820B */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 8, 0),
+    /* 80C0 51E8 820D */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 8, 0),
+    /* 80E0 91F0 828B */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 8, 0),
+    /* 80E0 51E8 828D */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 8, 0),
+    /* 40B8 11F0 8215 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 8, 0),
+};
+/* 0x083D2CE2: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame3[] = {
+    6,
+    /* 80C0 8008 820E */
+    OAM_ENTRY(8, -64, SPRITE_SIZE_16x32, 0, 526, 8, 0),
+    /* 80E0 8008 828E */
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 654, 8, 0),
+    /* 40B8 0008 8217 */
+    OAM_ENTRY(8, -72, SPRITE_SIZE_16x8, 0, 535, 8, 0),
+    /* 80C0 91E8 820E */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 8, 0),
+    /* 80E0 91E8 828E */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 8, 0),
+    /* 40B8 11E8 8217 */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 8, 0),
+};
+/* 0x083D2D08: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame4[] = {
+    6,
+    /* 80C0 8009 8210 */
+    OAM_ENTRY(9, -64, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    /* 80E0 8009 8290 */
+    OAM_ENTRY(9, -32, SPRITE_SIZE_16x32, 0, 656, 8, 0),
+    /* 40B8 0009 8219 */
+    OAM_ENTRY(9, -72, SPRITE_SIZE_16x8, 0, 537, 8, 0),
+    /* 80C0 91E7 8210 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E0 91E7 8290 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 8, 0),
+    /* 40B8 11E7 8219 */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 8, 0),
+};
+/* 0x083D2D2E: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame5[] = {
+    6,
+    /* 80C0 4011 8212 */
+    OAM_ENTRY(17, -64, SPRITE_SIZE_8x32, 0, 530, 8, 0),
+    /* 80E0 4011 8292 */
+    OAM_ENTRY(17, -32, SPRITE_SIZE_8x32, 0, 658, 8, 0),
+    /* 00B8 0011 821B */
+    OAM_ENTRY(17, -72, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    /* 80C0 51E7 8212 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 530, 8, 0),
+    /* 80E0 51E7 8292 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 658, 8, 0),
+    /* 00B8 11E7 821B */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+};
+/* 0x083D2D54: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame6[] = {
+    6,
+    /* 80C0 9014 9210 */
+    OAM_ENTRY(20, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 9, 0),
+    /* 80E0 9014 9290 */
+    OAM_ENTRY(20, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 9, 0),
+    /* 40B8 1014 9219 */
+    OAM_ENTRY(20, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 9, 0),
+    /* 80C0 81DC 9210 */
+    OAM_ENTRY(-36, -64, SPRITE_SIZE_16x32, 0, 528, 9, 0),
+    /* 80E0 81DC 9290 */
+    OAM_ENTRY(-36, -32, SPRITE_SIZE_16x32, 0, 656, 9, 0),
+    /* 40B8 01DC 9219 */
+    OAM_ENTRY(-36, -72, SPRITE_SIZE_16x8, 0, 537, 9, 0),
+};
+/* 0x083D2D7A: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame7[] = {
+    6,
+    /* 80C0 9015 920E */
+    OAM_ENTRY(21, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 9, 0),
+    /* 80E0 9015 928E */
+    OAM_ENTRY(21, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 9, 0),
+    /* 40B8 1015 9217 */
+    OAM_ENTRY(21, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 9, 0),
+    /* 80C0 81DB 920E */
+    OAM_ENTRY(-37, -64, SPRITE_SIZE_16x32, 0, 526, 9, 0),
+    /* 80E0 81DB 928E */
+    OAM_ENTRY(-37, -32, SPRITE_SIZE_16x32, 0, 654, 9, 0),
+    /* 40B8 01DB 9217 */
+    OAM_ENTRY(-37, -72, SPRITE_SIZE_16x8, 0, 535, 9, 0),
+};
+/* 0x083D2DA0: decoded OAM frame. */
+const u16 sBossDoorTopazOpenOam_Frame8[] = {
+    10,
+    /* 80C0 901E 920B */
+    OAM_ENTRY(30, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 9, 0),
+    /* 80C0 5016 920D */
+    OAM_ENTRY(22, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 9, 0),
+    /* 80E0 901E 928B */
+    OAM_ENTRY(30, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 9, 0),
+    /* 80E0 5016 928D */
+    OAM_ENTRY(22, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 9, 0),
+    /* 40B8 101E 9215 */
+    OAM_ENTRY(30, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 9, 0),
+    /* 80C0 81D2 920B */
+    OAM_ENTRY(-46, -64, SPRITE_SIZE_16x32, 0, 523, 9, 0),
+    /* 80C0 41E2 920D */
+    OAM_ENTRY(-30, -64, SPRITE_SIZE_8x32, 0, 525, 9, 0),
+    /* 80E0 81D2 928B */
+    OAM_ENTRY(-46, -32, SPRITE_SIZE_16x32, 0, 651, 9, 0),
+    /* 80E0 41E2 928D */
+    OAM_ENTRY(-30, -32, SPRITE_SIZE_8x32, 0, 653, 9, 0),
+    /* 40B8 01D2 9215 */
+    OAM_ENTRY(-46, -72, SPRITE_SIZE_16x8, 0, 533, 9, 0),
+};
+/* 0x083D2DDE: decoded OAM frame. */
+const u16 sBossDoorTopazOpeningOam_Frame1[] = {
+    10,
+    /* 80C0 901F 9208 */
+    OAM_ENTRY(31, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 9, 0),
+    /* 80C0 5017 920A */
+    OAM_ENTRY(23, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 9, 0),
+    /* 80E0 901F 9288 */
+    OAM_ENTRY(31, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 9, 0),
+    /* 80E0 5017 928A */
+    OAM_ENTRY(23, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 9, 0),
+    /* 40B8 101F 9213 */
+    OAM_ENTRY(31, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 9, 0),
+    /* 80C0 81D1 9208 */
+    OAM_ENTRY(-47, -64, SPRITE_SIZE_16x32, 0, 520, 9, 0),
+    /* 80C0 41E1 920A */
+    OAM_ENTRY(-31, -64, SPRITE_SIZE_8x32, 0, 522, 9, 0),
+    /* 80E0 81D1 9288 */
+    OAM_ENTRY(-47, -32, SPRITE_SIZE_16x32, 0, 648, 9, 0),
+    /* 80E0 41E1 928A */
+    OAM_ENTRY(-31, -32, SPRITE_SIZE_8x32, 0, 650, 9, 0),
+    /* 40B8 01D1 9213 */
+    OAM_ENTRY(-47, -72, SPRITE_SIZE_16x8, 0, 531, 9, 0),
+};
+/* 0x083D2E1C: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorTopazClosedOam[] = {
+    {sBossDoorTopazClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2E2C: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorTopazOpenOam[] = {
+    {sBossDoorTopazOpenOam_Frame1, 7},
+    {sBossDoorTopazOpenOam_Frame2, 6},
+    {sBossDoorTopazOpenOam_Frame3, 5},
+    {sBossDoorTopazOpenOam_Frame4, 4},
+    {sBossDoorTopazOpenOam_Frame5, 4},
+    {sBossDoorTopazOpenOam_Frame6, 5},
+    {sBossDoorTopazOpenOam_Frame7, 6},
+    {sBossDoorTopazOpenOam_Frame8, 7},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2E74: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorTopazOpeningOam[] = {
+    {sBossDoorTopazOpeningOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D2E84: decoded OAM frame. */
+const u16 sBossDoorSapphireClosedOam_Frame1[] = {
+    2,
+    /* 80C0 C000 8204 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x64, 0, 516, 8, 0),
+    /* 80C0 D1E0 8204 */
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 516, 8, 0),
+};
+/* 0x083D2E92: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame1[] = {
+    10,
+    /* 80C0 8000 8208 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    /* 80C0 4010 820A */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 522, 8, 0),
+    /* 80E0 8000 8288 */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 648, 8, 0),
+    /* 80E0 4010 828A */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 650, 8, 0),
+    /* 40B8 0000 8213 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 531, 8, 0),
+    /* 80C0 91F0 8208 */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 8, 0),
+    /* 80C0 51E8 820A */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 8, 0),
+    /* 80E0 91F0 8288 */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 8, 0),
+    /* 80E0 51E8 828A */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 8, 0),
+    /* 40B8 11F0 8213 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 8, 0),
+};
+/* 0x083D2ED0: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame2[] = {
+    10,
+    /* 80C0 8000 820B */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 523, 8, 0),
+    /* 80C0 4010 820D */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 525, 8, 0),
+    /* 80E0 8000 828B */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 651, 8, 0),
+    /* 80E0 4010 828D */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 653, 8, 0),
+    /* 40B8 0000 8215 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    /* 80C0 91F0 820B */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 8, 0),
+    /* 80C0 51E8 820D */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 8, 0),
+    /* 80E0 91F0 828B */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 8, 0),
+    /* 80E0 51E8 828D */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 8, 0),
+    /* 40B8 11F0 8215 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 8, 0),
+};
+/* 0x083D2F0E: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame3[] = {
+    6,
+    /* 80C0 8008 820E */
+    OAM_ENTRY(8, -64, SPRITE_SIZE_16x32, 0, 526, 8, 0),
+    /* 80E0 8008 828E */
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 654, 8, 0),
+    /* 40B8 0008 8217 */
+    OAM_ENTRY(8, -72, SPRITE_SIZE_16x8, 0, 535, 8, 0),
+    /* 80C0 91E8 820E */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 8, 0),
+    /* 80E0 91E8 828E */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 8, 0),
+    /* 40B8 11E8 8217 */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 8, 0),
+};
+/* 0x083D2F34: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame4[] = {
+    6,
+    /* 80C0 8009 8210 */
+    OAM_ENTRY(9, -64, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    /* 80E0 8009 8290 */
+    OAM_ENTRY(9, -32, SPRITE_SIZE_16x32, 0, 656, 8, 0),
+    /* 40B8 0009 8219 */
+    OAM_ENTRY(9, -72, SPRITE_SIZE_16x8, 0, 537, 8, 0),
+    /* 80C0 91E7 8210 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E0 91E7 8290 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 8, 0),
+    /* 40B8 11E7 8219 */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 8, 0),
+};
+/* 0x083D2F5A: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame5[] = {
+    6,
+    /* 80C0 4011 8212 */
+    OAM_ENTRY(17, -64, SPRITE_SIZE_8x32, 0, 530, 8, 0),
+    /* 80E0 4011 8292 */
+    OAM_ENTRY(17, -32, SPRITE_SIZE_8x32, 0, 658, 8, 0),
+    /* 00B8 0011 821B */
+    OAM_ENTRY(17, -72, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    /* 80C0 51E7 8212 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 530, 8, 0),
+    /* 80E0 51E7 8292 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 658, 8, 0),
+    /* 00B8 11E7 821B */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+};
+/* 0x083D2F80: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame6[] = {
+    6,
+    /* 80C0 9014 9210 */
+    OAM_ENTRY(20, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 9, 0),
+    /* 80E0 9014 9290 */
+    OAM_ENTRY(20, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 9, 0),
+    /* 40B8 1014 9219 */
+    OAM_ENTRY(20, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 9, 0),
+    /* 80C0 81DC 9210 */
+    OAM_ENTRY(-36, -64, SPRITE_SIZE_16x32, 0, 528, 9, 0),
+    /* 80E0 81DC 9290 */
+    OAM_ENTRY(-36, -32, SPRITE_SIZE_16x32, 0, 656, 9, 0),
+    /* 40B8 01DC 9219 */
+    OAM_ENTRY(-36, -72, SPRITE_SIZE_16x8, 0, 537, 9, 0),
+};
+/* 0x083D2FA6: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame7[] = {
+    6,
+    /* 80C0 9015 920E */
+    OAM_ENTRY(21, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 9, 0),
+    /* 80E0 9015 928E */
+    OAM_ENTRY(21, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 9, 0),
+    /* 40B8 1015 9217 */
+    OAM_ENTRY(21, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 9, 0),
+    /* 80C0 81DB 920E */
+    OAM_ENTRY(-37, -64, SPRITE_SIZE_16x32, 0, 526, 9, 0),
+    /* 80E0 81DB 928E */
+    OAM_ENTRY(-37, -32, SPRITE_SIZE_16x32, 0, 654, 9, 0),
+    /* 40B8 01DB 9217 */
+    OAM_ENTRY(-37, -72, SPRITE_SIZE_16x8, 0, 535, 9, 0),
+};
+/* 0x083D2FCC: decoded OAM frame. */
+const u16 sBossDoorSapphireOpenOam_Frame8[] = {
+    10,
+    /* 80C0 901E 920B */
+    OAM_ENTRY(30, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 9, 0),
+    /* 80C0 5016 920D */
+    OAM_ENTRY(22, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 9, 0),
+    /* 80E0 901E 928B */
+    OAM_ENTRY(30, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 9, 0),
+    /* 80E0 5016 928D */
+    OAM_ENTRY(22, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 9, 0),
+    /* 40B8 101E 9215 */
+    OAM_ENTRY(30, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 9, 0),
+    /* 80C0 81D2 920B */
+    OAM_ENTRY(-46, -64, SPRITE_SIZE_16x32, 0, 523, 9, 0),
+    /* 80C0 41E2 920D */
+    OAM_ENTRY(-30, -64, SPRITE_SIZE_8x32, 0, 525, 9, 0),
+    /* 80E0 81D2 928B */
+    OAM_ENTRY(-46, -32, SPRITE_SIZE_16x32, 0, 651, 9, 0),
+    /* 80E0 41E2 928D */
+    OAM_ENTRY(-30, -32, SPRITE_SIZE_8x32, 0, 653, 9, 0),
+    /* 40B8 01D2 9215 */
+    OAM_ENTRY(-46, -72, SPRITE_SIZE_16x8, 0, 533, 9, 0),
+};
+/* 0x083D300A: decoded OAM frame. */
+const u16 sBossDoorSapphireOpeningOam_Frame1[] = {
+    10,
+    /* 80C0 901F 9208 */
+    OAM_ENTRY(31, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 9, 0),
+    /* 80C0 5017 920A */
+    OAM_ENTRY(23, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 9, 0),
+    /* 80E0 901F 9288 */
+    OAM_ENTRY(31, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 9, 0),
+    /* 80E0 5017 928A */
+    OAM_ENTRY(23, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 9, 0),
+    /* 40B8 101F 9213 */
+    OAM_ENTRY(31, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 9, 0),
+    /* 80C0 81D1 9208 */
+    OAM_ENTRY(-47, -64, SPRITE_SIZE_16x32, 0, 520, 9, 0),
+    /* 80C0 41E1 920A */
+    OAM_ENTRY(-31, -64, SPRITE_SIZE_8x32, 0, 522, 9, 0),
+    /* 80E0 81D1 9288 */
+    OAM_ENTRY(-47, -32, SPRITE_SIZE_16x32, 0, 648, 9, 0),
+    /* 80E0 41E1 928A */
+    OAM_ENTRY(-31, -32, SPRITE_SIZE_8x32, 0, 650, 9, 0),
+    /* 40B8 01D1 9213 */
+    OAM_ENTRY(-47, -72, SPRITE_SIZE_16x8, 0, 531, 9, 0),
+};
+/* 0x083D3048: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorSapphireClosedOam[] = {
+    {sBossDoorSapphireClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D3058: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorSapphireOpenOam[] = {
+    {sBossDoorSapphireOpenOam_Frame1, 7},
+    {sBossDoorSapphireOpenOam_Frame2, 6},
+    {sBossDoorSapphireOpenOam_Frame3, 5},
+    {sBossDoorSapphireOpenOam_Frame4, 4},
+    {sBossDoorSapphireOpenOam_Frame5, 4},
+    {sBossDoorSapphireOpenOam_Frame6, 5},
+    {sBossDoorSapphireOpenOam_Frame7, 6},
+    {sBossDoorSapphireOpenOam_Frame8, 7},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D30A0: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorSapphireOpeningOam[] = {
+    {sBossDoorSapphireOpeningOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D30B0: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidClosedOam_Frame1[] = {
+    2,
+    /* 80C0 C000 8204 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_32x64, 0, 516, 8, 0),
+    /* 80C0 D1E0 8204 */
+    OAM_ENTRY(-32, -64, SPRITE_SIZE_32x64, ST_OAM_HFLIP, 516, 8, 0),
+};
+/* 0x083D30BE: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame1[] = {
+    10,
+    /* 80C0 8000 8208 */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 520, 8, 0),
+    /* 80C0 4010 820A */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 522, 8, 0),
+    /* 80E0 8000 8288 */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 648, 8, 0),
+    /* 80E0 4010 828A */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 650, 8, 0),
+    /* 40B8 0000 8213 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 531, 8, 0),
+    /* 80C0 91F0 8208 */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 8, 0),
+    /* 80C0 51E8 820A */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 8, 0),
+    /* 80E0 91F0 8288 */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 8, 0),
+    /* 80E0 51E8 828A */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 8, 0),
+    /* 40B8 11F0 8213 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 8, 0),
+};
+/* 0x083D30FC: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame2[] = {
+    10,
+    /* 80C0 8000 820B */
+    OAM_ENTRY(0, -64, SPRITE_SIZE_16x32, 0, 523, 8, 0),
+    /* 80C0 4010 820D */
+    OAM_ENTRY(16, -64, SPRITE_SIZE_8x32, 0, 525, 8, 0),
+    /* 80E0 8000 828B */
+    OAM_ENTRY(0, -32, SPRITE_SIZE_16x32, 0, 651, 8, 0),
+    /* 80E0 4010 828D */
+    OAM_ENTRY(16, -32, SPRITE_SIZE_8x32, 0, 653, 8, 0),
+    /* 40B8 0000 8215 */
+    OAM_ENTRY(0, -72, SPRITE_SIZE_16x8, 0, 533, 8, 0),
+    /* 80C0 91F0 820B */
+    OAM_ENTRY(-16, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 8, 0),
+    /* 80C0 51E8 820D */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 8, 0),
+    /* 80E0 91F0 828B */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 8, 0),
+    /* 80E0 51E8 828D */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 8, 0),
+    /* 40B8 11F0 8215 */
+    OAM_ENTRY(-16, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 8, 0),
+};
+/* 0x083D313A: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame3[] = {
+    6,
+    /* 80C0 8008 820E */
+    OAM_ENTRY(8, -64, SPRITE_SIZE_16x32, 0, 526, 8, 0),
+    /* 80E0 8008 828E */
+    OAM_ENTRY(8, -32, SPRITE_SIZE_16x32, 0, 654, 8, 0),
+    /* 40B8 0008 8217 */
+    OAM_ENTRY(8, -72, SPRITE_SIZE_16x8, 0, 535, 8, 0),
+    /* 80C0 91E8 820E */
+    OAM_ENTRY(-24, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 8, 0),
+    /* 80E0 91E8 828E */
+    OAM_ENTRY(-24, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 8, 0),
+    /* 40B8 11E8 8217 */
+    OAM_ENTRY(-24, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 8, 0),
+};
+/* 0x083D3160: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame4[] = {
+    6,
+    /* 80C0 8009 8210 */
+    OAM_ENTRY(9, -64, SPRITE_SIZE_16x32, 0, 528, 8, 0),
+    /* 80E0 8009 8290 */
+    OAM_ENTRY(9, -32, SPRITE_SIZE_16x32, 0, 656, 8, 0),
+    /* 40B8 0009 8219 */
+    OAM_ENTRY(9, -72, SPRITE_SIZE_16x8, 0, 537, 8, 0),
+    /* 80C0 91E7 8210 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E0 91E7 8290 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 8, 0),
+    /* 40B8 11E7 8219 */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 8, 0),
+};
+/* 0x083D3186: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame5[] = {
+    6,
+    /* 80C0 4011 8212 */
+    OAM_ENTRY(17, -64, SPRITE_SIZE_8x32, 0, 530, 8, 0),
+    /* 80E0 4011 8292 */
+    OAM_ENTRY(17, -32, SPRITE_SIZE_8x32, 0, 658, 8, 0),
+    /* 00B8 0011 821B */
+    OAM_ENTRY(17, -72, SPRITE_SIZE_8x8, 0, 539, 8, 0),
+    /* 80C0 51E7 8212 */
+    OAM_ENTRY(-25, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 530, 8, 0),
+    /* 80E0 51E7 8292 */
+    OAM_ENTRY(-25, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 658, 8, 0),
+    /* 00B8 11E7 821B */
+    OAM_ENTRY(-25, -72, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 539, 8, 0),
+};
+/* 0x083D31AC: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame6[] = {
+    6,
+    /* 80C0 9014 9210 */
+    OAM_ENTRY(20, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 528, 9, 0),
+    /* 80E0 9014 9290 */
+    OAM_ENTRY(20, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 656, 9, 0),
+    /* 40B8 1014 9219 */
+    OAM_ENTRY(20, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 537, 9, 0),
+    /* 80C0 81DC 9210 */
+    OAM_ENTRY(-36, -64, SPRITE_SIZE_16x32, 0, 528, 9, 0),
+    /* 80E0 81DC 9290 */
+    OAM_ENTRY(-36, -32, SPRITE_SIZE_16x32, 0, 656, 9, 0),
+    /* 40B8 01DC 9219 */
+    OAM_ENTRY(-36, -72, SPRITE_SIZE_16x8, 0, 537, 9, 0),
+};
+/* 0x083D31D2: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame7[] = {
+    6,
+    /* 80C0 9015 920E */
+    OAM_ENTRY(21, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 526, 9, 0),
+    /* 80E0 9015 928E */
+    OAM_ENTRY(21, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 654, 9, 0),
+    /* 40B8 1015 9217 */
+    OAM_ENTRY(21, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 535, 9, 0),
+    /* 80C0 81DB 920E */
+    OAM_ENTRY(-37, -64, SPRITE_SIZE_16x32, 0, 526, 9, 0),
+    /* 80E0 81DB 928E */
+    OAM_ENTRY(-37, -32, SPRITE_SIZE_16x32, 0, 654, 9, 0),
+    /* 40B8 01DB 9217 */
+    OAM_ENTRY(-37, -72, SPRITE_SIZE_16x8, 0, 535, 9, 0),
+};
+/* 0x083D31F8: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpenOam_Frame8[] = {
+    10,
+    /* 80C0 901E 920B */
+    OAM_ENTRY(30, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 523, 9, 0),
+    /* 80C0 5016 920D */
+    OAM_ENTRY(22, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 525, 9, 0),
+    /* 80E0 901E 928B */
+    OAM_ENTRY(30, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 651, 9, 0),
+    /* 80E0 5016 928D */
+    OAM_ENTRY(22, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 653, 9, 0),
+    /* 40B8 101E 9215 */
+    OAM_ENTRY(30, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 533, 9, 0),
+    /* 80C0 81D2 920B */
+    OAM_ENTRY(-46, -64, SPRITE_SIZE_16x32, 0, 523, 9, 0),
+    /* 80C0 41E2 920D */
+    OAM_ENTRY(-30, -64, SPRITE_SIZE_8x32, 0, 525, 9, 0),
+    /* 80E0 81D2 928B */
+    OAM_ENTRY(-46, -32, SPRITE_SIZE_16x32, 0, 651, 9, 0),
+    /* 80E0 41E2 928D */
+    OAM_ENTRY(-30, -32, SPRITE_SIZE_8x32, 0, 653, 9, 0),
+    /* 40B8 01D2 9215 */
+    OAM_ENTRY(-46, -72, SPRITE_SIZE_16x8, 0, 533, 9, 0),
+};
+/* 0x083D3236: decoded OAM frame. */
+const u16 sBossDoorGoldenPyramidOpeningOam_Frame1[] = {
+    10,
+    /* 80C0 901F 9208 */
+    OAM_ENTRY(31, -64, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 520, 9, 0),
+    /* 80C0 5017 920A */
+    OAM_ENTRY(23, -64, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 522, 9, 0),
+    /* 80E0 901F 9288 */
+    OAM_ENTRY(31, -32, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 648, 9, 0),
+    /* 80E0 5017 928A */
+    OAM_ENTRY(23, -32, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 650, 9, 0),
+    /* 40B8 101F 9213 */
+    OAM_ENTRY(31, -72, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 531, 9, 0),
+    /* 80C0 81D1 9208 */
+    OAM_ENTRY(-47, -64, SPRITE_SIZE_16x32, 0, 520, 9, 0),
+    /* 80C0 41E1 920A */
+    OAM_ENTRY(-31, -64, SPRITE_SIZE_8x32, 0, 522, 9, 0),
+    /* 80E0 81D1 9288 */
+    OAM_ENTRY(-47, -32, SPRITE_SIZE_16x32, 0, 648, 9, 0),
+    /* 80E0 41E1 928A */
+    OAM_ENTRY(-31, -32, SPRITE_SIZE_8x32, 0, 650, 9, 0),
+    /* 40B8 01D1 9213 */
+    OAM_ENTRY(-47, -72, SPRITE_SIZE_16x8, 0, 531, 9, 0),
+};
+/* 0x083D3274: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorGoldenPyramidClosedOam[] = {
+    {sBossDoorGoldenPyramidClosedOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D3284: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorGoldenPyramidOpenOam[] = {
+    {sBossDoorGoldenPyramidOpenOam_Frame1, 7},
+    {sBossDoorGoldenPyramidOpenOam_Frame2, 6},
+    {sBossDoorGoldenPyramidOpenOam_Frame3, 5},
+    {sBossDoorGoldenPyramidOpenOam_Frame4, 4},
+    {sBossDoorGoldenPyramidOpenOam_Frame5, 4},
+    {sBossDoorGoldenPyramidOpenOam_Frame6, 5},
+    {sBossDoorGoldenPyramidOpenOam_Frame7, 6},
+    {sBossDoorGoldenPyramidOpenOam_Frame8, 7},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D32CC: Match_disasm_boss_door. */
+const struct AnimationFrame sBossDoorGoldenPyramidOpeningOam[] = {
+    {sBossDoorGoldenPyramidOpeningOam_Frame1, 200},
+    ANIMATION_TERMINATOR
+};
+/* 0x083D32DC - 0x083D6ADC: not yet typed. */
+const u8 sSpriteDataRaw_083D32DC[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x60, 0x06, 0x00, 0x66, 0xF6, 0x6F,
     0x00, 0x00, 0x00, 0x66, 0x00, 0x00, 0x66, 0xFF, 0x00, 0x60, 0xFF, 0xFF, 0x00, 0xF6, 0xFF, 0xFF,
