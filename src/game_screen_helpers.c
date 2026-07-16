@@ -26,7 +26,7 @@ void func_8071A2C();
 void func_806DF3C();
 void func_806DFD8();
 void func_8000D18();
-void func_8072B24();
+void StopDemo();
 void func_806E598();
 void func_8071600();
 void TransparencyProcessWater();
@@ -668,10 +668,10 @@ void InitializeRoomState(void)
 
     if (initialize == 0) {
         colorFading->type = 2;
-        gUnk_3003200.state = 0;
-        gUnk_3003200.memoryAccessState = 0;
-        gUnk_3003200.previousSongId = 0;
-        gUnk_3003200.playerId = 0;
+        gGameMusicState.state = 0;
+        gGameMusicState.memoryAccessState = 0;
+        gGameMusicState.previousSongId = 0;
+        gGameMusicState.playerId = 0;
         gUnk_3000035 = 0;
         gUnk_30000F4[0] = 0;
         gUnk_30000F4[1] = 0;
@@ -755,7 +755,7 @@ void InitializeRoomState(void)
 
         music = roomData->music;
         if (music != 0)
-            gUnk_3003200.songId = music;
+            gGameMusicState.songId = music;
 
         if (roomData->type == 3) {
             xPosition = roomData->x + 1;
@@ -785,7 +785,7 @@ void InitializeRoomState(void)
         }
 
         if (*stageFlags & 0x80)
-            func_8072B24();
+            StopDemo();
     }
 
     if (gDemoState != 0)
@@ -1338,22 +1338,22 @@ void InitializeRoomMusic(void)
 
     if (gUnk_300001C != 0)
         return;
-    gUnk_3003200.specialState = 0;
-    gUnk_3003200.specialPlayerId = 0;
+    gGameMusicState.specialState = 0;
+    gGameMusicState.specialPlayerId = 0;
     if (gSwitchPressed != 0)
         gCurrentRoomHeader.musicVolume = 0x100;
 
     if (gUnk_3000C3F == 0) {
-        gUnk_3003200.specialSongId = 0;
+        gGameMusicState.specialSongId = 0;
         if (gHasTemporarySave != 0 && gSwitchPressed != 0)
             SetHurryUpMusic(0);
-        m4aSongNumStartOrChange(gUnk_3003200.songId);
+        m4aSongNumStartOrChange(gGameMusicState.songId);
         musicPlayers = gMPlayTable;
         songs = gSongTable;
-        playerId = songs[gUnk_3003200.songId].ms;
+        playerId = songs[gGameMusicState.songId].ms;
         musicPlayer = musicPlayers[playerId].info;
         m4aMPlayVolumeControl(musicPlayer, 0xFFFF, gCurrentRoomHeader.musicVolume);
-        gUnk_3003200.previousSongId = gUnk_3003200.songId;
+        gGameMusicState.previousSongId = gGameMusicState.songId;
         if (gHasTemporarySave != 0) {
             if (gSwitchPressed != 0)
                 m4aSongNumStart(SE_HURRY_UP_SWITCH);
@@ -1361,40 +1361,40 @@ void InitializeRoomMusic(void)
                 m4aSongNumStart(SOUND_1CC);
         }
     } else if (gPauseFlag != 0 || gUnk_3000026 == 5) {
-        if (gUnk_3003200.specialSongId != 0) {
-            m4aSongNumStartOrContinue(gUnk_3003200.specialSongId);
-            gUnk_3003200.specialPlayerId = gSongTable[gUnk_3003200.specialSongId].ms;
-            gUnk_3003200.specialState = 1;
+        if (gGameMusicState.specialSongId != 0) {
+            m4aSongNumStartOrContinue(gGameMusicState.specialSongId);
+            gGameMusicState.specialPlayerId = gSongTable[gGameMusicState.specialSongId].ms;
+            gGameMusicState.specialState = 1;
         } else {
-            if (gUnk_3003200.songId == gUnk_3003200.previousSongId) {
+            if (gGameMusicState.songId == gGameMusicState.previousSongId) {
                 musicPlayers = gMPlayTable;
                 songs = gSongTable;
-                playerId = songs[gUnk_3003200.songId].ms;
+                playerId = songs[gGameMusicState.songId].ms;
                 m4aMPlayFadeIn(musicPlayers[playerId].info, 1);
             } else {
-                m4aSongNumStart(gUnk_3003200.songId);
+                m4aSongNumStart(gGameMusicState.songId);
             }
         }
-        gUnk_3003200.previousSongId = gUnk_3003200.songId;
+        gGameMusicState.previousSongId = gGameMusicState.songId;
     } else {
-        gUnk_3003200.specialSongId = 0;
+        gGameMusicState.specialSongId = 0;
         if (gSwitchPressed != 0)
             SetHurryUpMusic(0);
-        gUnk_3003200.state = 1;
+        gGameMusicState.state = 1;
     }
-    gUnk_3003200.playerId = gSongTable[gUnk_3003200.previousSongId].ms;
+    gGameMusicState.playerId = gSongTable[gGameMusicState.previousSongId].ms;
 }
 
 void SetHurryUpMusic(u8 startMusic)
 {
     if (gUnk_300001C == 0) {
-        gUnk_3003200.songId = BGM_HURRY_UP;
+        gGameMusicState.songId = BGM_HURRY_UP;
         if (startMusic != 0) {
-            gUnk_3003200.state = 0;
-            gUnk_3003200.memoryAccessState = 0;
-            gUnk_3003200.previousSongId = BGM_HURRY_UP;
+            gGameMusicState.state = 0;
+            gGameMusicState.memoryAccessState = 0;
+            gGameMusicState.previousSongId = BGM_HURRY_UP;
             m4aSongNumStartOrChange(BGM_HURRY_UP);
-            gUnk_3003200.playerId = gSongTable[BGM_HURRY_UP].ms;
+            gGameMusicState.playerId = gSongTable[BGM_HURRY_UP].ms;
         }
     }
 }
@@ -1405,7 +1405,7 @@ void ProcessRoomMusic(void)
 
     if (gUnk_300001C != 0)
         return;
-    switch (gUnk_3003200.state) {
+    switch (gGameMusicState.state) {
         case 0:
             ProcessWarioTransformationMusic();
             break;
@@ -1414,16 +1414,16 @@ void ProcessRoomMusic(void)
             const struct MusicPlayer *musicPlayers;
             const struct Song *songs;
 
-            if (gUnk_3003200.previousSongId == gUnk_3003200.songId) {
+            if (gGameMusicState.previousSongId == gGameMusicState.songId) {
                 musicPlayers = gMPlayTable;
                 songs = gSongTable;
-                playerId = songs[gUnk_3003200.songId].ms;
+                playerId = songs[gGameMusicState.songId].ms;
                 musicPlayer = musicPlayers[playerId].info;
                 m4aMPlayVolumeControl(musicPlayer, 0xFFFF, gCurrentRoomHeader.musicVolume);
-                gUnk_3003200.state = 0;
+                gGameMusicState.state = 0;
             } else {
-                gUnk_3003200.state = 2;
-                gUnk_3003200.memoryAccessState = gMPlayMemAccArea[0];
+                gGameMusicState.state = 2;
+                gGameMusicState.memoryAccessState = gMPlayMemAccArea[0];
             }
             break;
         }
@@ -1432,18 +1432,18 @@ void ProcessRoomMusic(void)
             const struct MusicPlayer *musicPlayers;
             const struct Song *songs;
 
-            if (gUnk_3003200.memoryAccessState != gMPlayMemAccArea[0]) {
+            if (gGameMusicState.memoryAccessState != gMPlayMemAccArea[0]) {
                 musicPlayers = gMPlayTable;
-                playerId = gUnk_3003200.playerId;
+                playerId = gGameMusicState.playerId;
                 m4aMPlayFadeOut(musicPlayers[playerId].info, 12);
-                m4aSongNumStart(gUnk_3003200.songId);
+                m4aSongNumStart(gGameMusicState.songId);
                 songs = gSongTable;
-                playerId = songs[gUnk_3003200.songId].ms;
+                playerId = songs[gGameMusicState.songId].ms;
                 musicPlayer = musicPlayers[playerId].info;
                 m4aMPlayVolumeControl(musicPlayer, 0xFFFF, gCurrentRoomHeader.musicVolume);
-                gUnk_3003200.previousSongId = gUnk_3003200.songId;
-                gUnk_3003200.playerId = gSongTable[gUnk_3003200.previousSongId].ms;
-                gUnk_3003200.state = 0;
+                gGameMusicState.previousSongId = gGameMusicState.songId;
+                gGameMusicState.playerId = gSongTable[gGameMusicState.previousSongId].ms;
+                gGameMusicState.state = 0;
             }
             break;
         }
@@ -1458,30 +1458,30 @@ void ProcessWarioTransformationMusic(void)
 
     if (gSwitchPressed != 0)
         return;
-    switch (gUnk_3003200.specialState) {
+    switch (gGameMusicState.specialState) {
         case 0:
             if (gWarioData.reaction == 0 &&
                 (gWarioData.pose == 54 || gWarioData.pose == 59)) {
                 SelectWarioTransformationMusic();
-                m4aSongNumStart(gUnk_3003200.specialSongId);
+                m4aSongNumStart(gGameMusicState.specialSongId);
                 musicPlayers = gMPlayTable;
-                playerId = gUnk_3003200.playerId;
+                playerId = gGameMusicState.playerId;
                 musicPlayer = musicPlayers[playerId].info;
                 m4aMPlayFadeOutTemporarily(musicPlayer, 38);
-                gUnk_3003200.specialState++;
+                gGameMusicState.specialState++;
             }
             break;
         case 1:
             if (gWarioData.reaction == 0 && gWarioData.pose != 54 && gWarioData.pose != 59)
-                gUnk_3003200.specialState = 2;
+                gGameMusicState.specialState = 2;
             break;
         case 2:
             musicPlayers = gMPlayTable;
-            playerId = gUnk_3003200.playerId;
+            playerId = gGameMusicState.playerId;
             m4aMPlayFadeIn(musicPlayers[playerId].info, 1);
-            m4aSongNumStop(gUnk_3003200.specialSongId);
-            gUnk_3003200.specialState = 0;
-            gUnk_3003200.specialSongId = 0;
+            m4aSongNumStop(gGameMusicState.specialSongId);
+            gGameMusicState.specialState = 0;
+            gGameMusicState.specialSongId = 0;
             break;
     }
 }
@@ -1502,7 +1502,7 @@ void SelectWarioTransformationMusic(void)
     index = 0;
     if (currentMusicIndex <= 16)
         index = currentMusicIndex;
-    musicState = &gUnk_3003200;
+    musicState = &gGameMusicState;
     specialMusicTable = sWarioTransformationMusic;
     tableOffset = index << 2;
     tableOffset += (u32)specialMusicTable;
@@ -1514,7 +1514,7 @@ void FadeOutMusicForPause(void)
 {
     m4aMPlayFadeOutTemporarily(gMPlayTable[0].info, 2);
     m4aMPlayFadeOutTemporarily(gMPlayTable[1].info, 2);
-    m4aSongNumStop(gUnk_3003200.specialSongId);
+    m4aSongNumStop(gGameMusicState.specialSongId);
 }
 
 void ProcessGoldenPassageBossTransition(void)
@@ -1675,7 +1675,7 @@ void ProcessRoomBackgrounds(void)
     }
     if (gPauseFlag != 0) {
         func_80701F4();
-        gUnk_3003200.state = 0;
+        gGameMusicState.state = 0;
         gColorFading.unk_2 = 0;
         gColorFading.type = 2;
     }

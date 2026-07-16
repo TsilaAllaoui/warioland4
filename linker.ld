@@ -269,7 +269,7 @@ SECTIONS {
         . = 0x31ca; gUnk_30031CA = .;
         . = 0x31cc; gUnk_30031CC = .;
         . = 0x31f4; gUnk_30031F4 = .;
-        . = 0x3200; gUnk_3003200 = .;
+        . = 0x3200; gGameMusicState = .;
         . = 0x320c; gUnk_300320C = .;
         . = 0x3214; gUnk_3003214 = .;
         . = 0x3218; gUnk_3003218 = .;
@@ -719,7 +719,7 @@ SECTIONS {
         obj/disasm_color_fading.o(.text);
         obj/disasm_hblank.o(.text);
         obj/disasm_stage_end.o(.text);
-        obj/disasm_demo.o(.text);
+        obj/demo.o(.text);
         obj/quit.o(.text);
         obj/disasm_save_file.o(.text);
         obj/boss_pause.o(.text);
@@ -778,7 +778,7 @@ SECTIONS {
         obj/disasm_hblank.o(.rodata);
         obj/disasm_stage_end.o(.rodata);
         obj/blob_0x3FA838-0x3FDA2C.o(.rodata);
-        obj/disasm_demo.o(.rodata);
+        obj/data/demo.o(.rodata);
         obj/quit.o(.rodata);
         obj/disasm_save_file.o(.rodata);
         obj/hud.o(.rodata);

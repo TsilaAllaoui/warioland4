@@ -218,7 +218,7 @@ void AgbMain(void)
 
             case GM_DEMO:
                 if (GameScreenSubroutine() && gPauseFlag) {
-                    gSubGameMode = func_8072B98() ? 0 : -1;
+                    gSubGameMode = AdvanceDemo() ? 0 : -1;
                     gMainGameMode = GM_CUTSCENE;
                 }
                 break;

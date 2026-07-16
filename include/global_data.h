@@ -323,7 +323,7 @@ extern u32 gUnk_3002C74;
 
 /* 0x030031F4 */
 extern struct BackgroundTileTables gUnk_30031F4;
-extern struct GameMusicState gUnk_3003200;
+extern struct GameMusicState gGameMusicState;
 extern u16 gUnk_300320C[4];
 extern struct RoomEffectState gUnk_3003214;
 extern struct RoomEffectState gUnk_3003218;

@@ -917,7 +917,7 @@ func_8072FB0:
 .L_73338:
 	.4byte	gUnk_300003E
 .L_7333c:
-	.4byte	gUnk_3003200
+	.4byte	gGameMusicState
 .L_73340:
 	.4byte	gUnk_300003A
 .L_73344:
@@ -1540,7 +1540,7 @@ func_807345C:
 .L_737c8:
 	.4byte	gUnk_300003E
 .L_737cc:
-	.4byte	gUnk_3003200
+	.4byte	gGameMusicState
 .L_737d0:
 	.4byte	gUnk_300003A
 .L_737d4:

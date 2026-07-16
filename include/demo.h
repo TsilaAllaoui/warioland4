@@ -5,16 +5,34 @@
 
 #define DEMO_INPUT_SIZE 256
 
+struct DemoConfiguration {
+    u8 passage;
+    u8 stage;
+    u8 room;
+    u8 padding3;
+    u16 warioX;
+    u16 warioY;
+    u16 songId;
+    u16 paddingA;
+};
+
+extern const u16 sDemoInputDmaWordCounts[];
+extern const struct DemoConfiguration sDemoConfigurations[];
+extern const u8 sDemoOrder[];
+extern const u16 *const sDemoInputStreams[];
+extern const u16 *const sDemoInputLengthStreams[];
+
+
 extern u16 gDemoInputs[DEMO_INPUT_SIZE];
 extern u16 gDemoInputLengths[DEMO_INPUT_SIZE];
 extern u16 gDemoSequenceIndex;
 extern u16 gDemoButtonPressTimer;
 extern u16 gDemoButtonsPressed;
 
-// func_8072964()
-// func_8072B24()
-// func_8072B74()
-// func_8072B88()
-u32 func_8072B98(void);
+void SetupDemo(void);
+void StopDemo(void);
+void StartDemoPlayback(void);
+void DemoVBlankCallback(void);
+u32 AdvanceDemo(void);
 
 #endif  // DEMO_H
