@@ -3594,9 +3594,11 @@ const struct AnimationFrame sCaterpillarCarriedOam[] = {
     {sCaterpillarCarriedOam_Frame2, 10},
     ANIMATION_TERMINATOR
 };
-/* 0x083C78A4 - 0x083C78AC: not yet typed. */
-const u8 sSpriteDataRaw_083C78A4[] = {
-    0x01, 0x00, 0xE0, 0x00, 0xF0, 0x81, 0x00, 0x82,
+/* 0x083C78A4: decoded OAM frame. */
+const u16 sToyBlockTriangleOam_Frame1[] = {
+    1,
+    /* 00E0 81F0 8200 */
+    OAM_ENTRY(-16, -32, SPRITE_SIZE_32x32, 0, 512, 8, 0),
 };
 /* 0x083C78AC: decoded OAM frame. */
 const u16 sToyBlockSquareOam_Frame1[] = {
@@ -3610,25 +3612,134 @@ const u16 sToyBlockRoundOam_Frame1[] = {
     /* 00E0 81F0 8208 */
     OAM_ENTRY(-16, -32, SPRITE_SIZE_32x32, 0, 520, 8, 0),
 };
-/* 0x083C78BC - 0x083C798C: not yet typed. */
-const u8 sSpriteDataRaw_083C78BC[] = {
-    0x01, 0x00, 0xF8, 0x40, 0xF0, 0x81, 0x0C, 0x92, 0x02, 0x00, 0xD8, 0x80, 0xF0, 0x81, 0x12, 0x92,
-    0xD8, 0x80, 0x00, 0x90, 0x12, 0x92, 0x02, 0x00, 0xF9, 0x00, 0xF0, 0x01, 0x10, 0x92, 0xF8, 0x40,
-    0xF0, 0x81, 0x4C, 0x92, 0x02, 0x00, 0xF9, 0x00, 0xF4, 0x01, 0x10, 0x92, 0xF8, 0x40, 0xF0, 0x81,
-    0x4C, 0x92, 0x02, 0x00, 0xF9, 0x00, 0xF8, 0x01, 0x10, 0x92, 0xF8, 0x40, 0xF0, 0x81, 0x4C, 0x92,
-    0x02, 0x00, 0xF9, 0x00, 0xFC, 0x01, 0x10, 0x92, 0xF8, 0x40, 0xF0, 0x81, 0x4C, 0x92, 0x02, 0x00,
-    0xF9, 0x00, 0x00, 0x00, 0x10, 0x92, 0xF8, 0x40, 0xF0, 0x81, 0x4C, 0x92, 0x02, 0x00, 0xF9, 0x00,
-    0x04, 0x00, 0x10, 0x92, 0xF8, 0x40, 0xF0, 0x81, 0x4C, 0x92, 0x02, 0x00, 0xF9, 0x00, 0x08, 0x00,
-    0x10, 0x92, 0xF8, 0x40, 0xF0, 0x81, 0x4C, 0x92, 0x01, 0x00, 0xF8, 0x00, 0xFC, 0x01, 0x11, 0x82,
-    0x02, 0x00, 0xD8, 0x80, 0xF0, 0x81, 0x14, 0x92, 0xD8, 0x80, 0x00, 0x90, 0x14, 0x92, 0x02, 0x00,
-    0xD8, 0x80, 0xF0, 0x81, 0x16, 0x92, 0xD8, 0x80, 0x00, 0x90, 0x16, 0x92, 0x02, 0x00, 0xD8, 0x80,
-    0xF0, 0x41, 0x18, 0x92, 0xD8, 0x80, 0x08, 0x50, 0x18, 0x92, 0x02, 0x00, 0xD8, 0x80, 0xF0, 0x81,
-    0x19, 0x92, 0xD8, 0x80, 0x00, 0x90, 0x19, 0x92, 0x02, 0x00, 0xD8, 0x80, 0xF0, 0x81, 0x1B, 0x92,
-    0xD8, 0x80, 0x00, 0x90, 0x1B, 0x92, 0x01, 0x00, 0xF8, 0x40, 0xF0, 0x81, 0x4C, 0x92, 0x00, 0x00,
+/* 0x083C78BC: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame9[] = {
+    1,
+    /* 40F8 81F0 920C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 524, 9, 0),
 };
-/* 0x083C798C - 0x083C799C: not yet typed. */
-const u8 sToyBlockTriangleOam[] = {
-    0xA4, 0x78, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C78C4: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame5[] = {
+    2,
+    /* 80D8 81F0 9212 */
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 530, 9, 0),
+    /* 80D8 9000 9212 */
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 530, 9, 0),
+};
+/* 0x083C78D2: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame1[] = {
+    2,
+    /* 00F9 01F0 9210 */
+    OAM_ENTRY(-16, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C78E0: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame2[] = {
+    2,
+    /* 00F9 01F4 9210 */
+    OAM_ENTRY(-12, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C78EE: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame3[] = {
+    2,
+    /* 00F9 01F8 9210 */
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C78FC: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame4[] = {
+    2,
+    /* 00F9 01FC 9210 */
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C790A: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame5[] = {
+    2,
+    /* 00F9 0000 9210 */
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C7918: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame6[] = {
+    2,
+    /* 00F9 0004 9210 */
+    OAM_ENTRY(4, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C7926: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenIdleAnimationOam_Frame7[] = {
+    2,
+    /* 00F9 0008 9210 */
+    OAM_ENTRY(8, -7, SPRITE_SIZE_8x8, 0, 528, 9, 0),
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C7934 - 0x083C793C: not yet typed. */
+const u8 sSpriteDataRaw_083C7934[] = {
+    0x01, 0x00, 0xF8, 0x00, 0xFC, 0x01, 0x11, 0x82,
+};
+/* 0x083C793C: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame6[] = {
+    2,
+    /* 80D8 81F0 9214 */
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 532, 9, 0),
+    /* 80D8 9000 9214 */
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 532, 9, 0),
+};
+/* 0x083C794A: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame7[] = {
+    2,
+    /* 80D8 81F0 9216 */
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 534, 9, 0),
+    /* 80D8 9000 9216 */
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 534, 9, 0),
+};
+/* 0x083C7958: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame8[] = {
+    2,
+    /* 80D8 41F0 9218 */
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_8x32, 0, 536, 9, 0),
+    /* 80D8 5008 9218 */
+    OAM_ENTRY(8, -40, SPRITE_SIZE_8x32, ST_OAM_HFLIP, 536, 9, 0),
+};
+/* 0x083C7966: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame1[] = {
+    2,
+    /* 80D8 81F0 9219 */
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 537, 9, 0),
+    /* 80D8 9000 9219 */
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 537, 9, 0),
+};
+/* 0x083C7974: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpeningOam_Frame2[] = {
+    2,
+    /* 80D8 81F0 921B */
+    OAM_ENTRY(-16, -40, SPRITE_SIZE_16x32, 0, 539, 9, 0),
+    /* 80D8 9000 921B */
+    OAM_ENTRY(0, -40, SPRITE_SIZE_16x32, ST_OAM_HFLIP, 539, 9, 0),
+};
+/* 0x083C7982: decoded OAM frame. */
+const u16 sToyBlockTriangleDoorOpenOam_Frame1[] = {
+    1,
+    /* 40F8 81F0 924C */
+    OAM_ENTRY(-16, -8, SPRITE_SIZE_32x16, 0, 588, 9, 0),
+};
+/* 0x083C798A - 0x083C798C: not yet typed. */
+const u8 sSpriteDataRaw_083C798A[] = {
+    0x00, 0x00,
+};
+/* 0x083C798C: Match_disasm_toy_block_triangle. */
+const struct AnimationFrame sToyBlockTriangleOam[] = {
+    {sToyBlockTriangleOam_Frame1, U8_MAX},
+    ANIMATION_TERMINATOR
 };
 /* 0x083C799C: Match_disasm_toy_block_square. */
 const struct AnimationFrame sToyBlockSquareOam[] = {
@@ -3640,28 +3751,39 @@ const struct AnimationFrame sToyBlockRoundOam[] = {
     {sToyBlockRoundOam_Frame1, U8_MAX},
     ANIMATION_TERMINATOR
 };
-/* 0x083C79BC - 0x083C79FC: not yet typed. */
-const u8 sToyBlockTriangleDoorOpenIdleAnimationOam[] = {
-    0xD2, 0x78, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00, 0xE0, 0x78, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0xEE, 0x78, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00, 0xFC, 0x78, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0x0A, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00, 0x18, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0x26, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C79BC: Match_disasm_toy_block_triangle. */
+const struct AnimationFrame sToyBlockTriangleDoorOpenIdleAnimationOam[] = {
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame1, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame2, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame3, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame4, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame5, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame6, 2},
+    {sToyBlockTriangleDoorOpenIdleAnimationOam_Frame7, 2},
+    ANIMATION_TERMINATOR
 };
-/* 0x083C79FC - 0x083C7A4C: not yet typed. */
-const u8 sToyBlockTriangleDoorOpeningOam[] = {
-    0x66, 0x79, 0x3C, 0x08, 0x04, 0x00, 0x00, 0x00, 0x74, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0x66, 0x79, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00, 0x74, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0xC4, 0x78, 0x3C, 0x08, 0x06, 0x00, 0x00, 0x00, 0x3C, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0x4A, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00, 0x58, 0x79, 0x3C, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0xBC, 0x78, 0x3C, 0x08, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C79FC: Match_disasm_toy_block_triangle. */
+const struct AnimationFrame sToyBlockTriangleDoorOpeningOam[] = {
+    {sToyBlockTriangleDoorOpeningOam_Frame1, 4},
+    {sToyBlockTriangleDoorOpeningOam_Frame2, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame1, 3},
+    {sToyBlockTriangleDoorOpeningOam_Frame2, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame5, 6},
+    {sToyBlockTriangleDoorOpeningOam_Frame6, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame7, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame8, 2},
+    {sToyBlockTriangleDoorOpeningOam_Frame9, 6},
+    ANIMATION_TERMINATOR
 };
-/* 0x083C7A4C - 0x083C7A5C: not yet typed. */
-const u8 sToyBlockTriangleDoorOpenOam[] = {
-    0x82, 0x79, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C7A4C: Match_disasm_toy_block_triangle. */
+const struct AnimationFrame sToyBlockTriangleDoorOpenOam[] = {
+    {sToyBlockTriangleDoorOpenOam_Frame1, U8_MAX},
+    ANIMATION_TERMINATOR
 };
-/* 0x083C7A5C - 0x083C7A6C: not yet typed. */
-const u8 sToyBlockTriangleDoorClosedOam[] = {
-    0xC4, 0x78, 0x3C, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C7A5C: Match_disasm_toy_block_triangle. */
+const struct AnimationFrame sToyBlockTriangleDoorClosedOam[] = {
+    {sToyBlockTriangleDoorOpeningOam_Frame5, U8_MAX},
+    ANIMATION_TERMINATOR
 };
 /* 0x083C7A6C - 0x083C7A84: not yet typed. */
 const u8 sToyBlockSquareYMovement[] = {

@@ -8244,8 +8244,8 @@
         {
           "address": "0x083C78A4",
           "end": "0x083C78AC",
-          "symbol": "sSpriteDataRaw_083C78A4",
-          "type": "raw"
+          "symbol": "sToyBlockTriangleOam_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083C78AC",
@@ -8261,15 +8261,111 @@
         },
         {
           "address": "0x083C78BC",
+          "end": "0x083C78C4",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C78C4",
+          "end": "0x083C78D2",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C78D2",
+          "end": "0x083C78E0",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C78E0",
+          "end": "0x083C78EE",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C78EE",
+          "end": "0x083C78FC",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C78FC",
+          "end": "0x083C790A",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C790A",
+          "end": "0x083C7918",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7918",
+          "end": "0x083C7926",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7926",
+          "end": "0x083C7934",
+          "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7934",
+          "end": "0x083C793C",
+          "symbol": "sSpriteDataRaw_083C7934",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C793C",
+          "end": "0x083C794A",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C794A",
+          "end": "0x083C7958",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7958",
+          "end": "0x083C7966",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7966",
+          "end": "0x083C7974",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7974",
+          "end": "0x083C7982",
+          "symbol": "sToyBlockTriangleDoorOpeningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7982",
+          "end": "0x083C798A",
+          "symbol": "sToyBlockTriangleDoorOpenOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C798A",
           "end": "0x083C798C",
-          "symbol": "sSpriteDataRaw_083C78BC",
+          "symbol": "sSpriteDataRaw_083C798A",
           "type": "raw"
         },
         {
           "address": "0x083C798C",
           "end": "0x083C799C",
           "symbol": "sToyBlockTriangleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C799C",
@@ -8287,25 +8383,25 @@
           "address": "0x083C79BC",
           "end": "0x083C79FC",
           "symbol": "sToyBlockTriangleDoorOpenIdleAnimationOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C79FC",
           "end": "0x083C7A4C",
           "symbol": "sToyBlockTriangleDoorOpeningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7A4C",
           "end": "0x083C7A5C",
           "symbol": "sToyBlockTriangleDoorOpenOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7A5C",
           "end": "0x083C7A6C",
           "symbol": "sToyBlockTriangleDoorClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7A6C",
