@@ -9119,44 +9119,134 @@
         },
         {
           "address": "0x083E27B4",
-          "end": "0x083E2A0C",
+          "end": "0x083E27D4",
           "symbol": "sOnomiCrushedWhileStunnedOam",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E27D4",
+          "end": "0x083E27EE",
+          "symbol": "sBossCorridorCatRunOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E27EE",
+          "end": "0x083E2808",
+          "symbol": "sBossCorridorCatRunOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2808",
+          "end": "0x083E281C",
+          "symbol": "sBossCorridorCatRunOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E281C",
+          "end": "0x083E2864",
+          "symbol": "sSpriteDataRaw_083E281C",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E2864",
+          "end": "0x083E2872",
+          "symbol": "sBossCorridorCatTurnOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2872",
+          "end": "0x083E288C",
+          "symbol": "sBossCorridorCatTurnOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E288C",
+          "end": "0x083E28A0",
+          "symbol": "sBossCorridorCatTurnOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E28A0",
+          "end": "0x083E28C0",
+          "symbol": "sBossCorridorCatWaitRightOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E28C0",
+          "end": "0x083E28E0",
+          "symbol": "sBossCorridorCatWaitRightOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E28E0",
+          "end": "0x083E29E4",
+          "symbol": "sSpriteDataRaw_083E28E0",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E29E4",
+          "end": "0x083E2A0A",
+          "symbol": "sBossCorridorCatWaitToTurnOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2A0A",
+          "end": "0x083E2A0C",
+          "symbol": "sSpriteDataRaw_083E2A0A",
           "type": "raw"
         },
         {
           "address": "0x083E2A0C",
           "end": "0x083E2A2C",
-          "symbol": "sBossCorridorCatDashOam",
-          "type": "raw"
+          "symbol": "sBossCorridorCatRunOam",
+          "type": "anim"
         },
         {
           "address": "0x083E2A2C",
+          "end": "0x083E2A4C",
+          "symbol": "sBossCorridorCatWalkLeftOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E2A4C",
           "end": "0x083E2A6C",
-          "symbol": "sBossCorridorCatSlowLeftOam",
+          "symbol": "sSpriteDataRaw_083E2A4C",
           "type": "raw"
         },
         {
           "address": "0x083E2A6C",
-          "end": "0x083E2AEC",
+          "end": "0x083E2ABC",
           "symbol": "sBossCorridorCatTurnOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E2ABC",
+          "end": "0x083E2AEC",
+          "symbol": "sSpriteDataRaw_083E2ABC",
           "type": "raw"
         },
         {
           "address": "0x083E2AEC",
           "end": "0x083E2B5C",
-          "symbol": "sBossCorridorCatWaitOam",
-          "type": "raw"
+          "symbol": "sBossCorridorCatWaitToTurnOam",
+          "type": "anim"
         },
         {
           "address": "0x083E2B5C",
           "end": "0x083E2B8C",
-          "symbol": "sBossCorridorCatShortWaitOam",
-          "type": "raw"
+          "symbol": "sBossCorridorCatWaitLeftOam",
+          "type": "anim"
         },
         {
           "address": "0x083E2B8C",
+          "end": "0x083E2BA4",
+          "symbol": "sBossCorridorCatWaitRightOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E2BA4",
           "end": "0x083E3878",
-          "symbol": "sBossCorridorCatLongWaitOam",
+          "symbol": "sSpriteDataRaw_083E2BA4",
           "type": "raw"
         },
         {
@@ -9830,6 +9920,11 @@
   ],
   "aliases": {
     "sAerodentBalloonInflatingOam": "sAerodentOam_83DABA0",
+    "sBossCorridorCatDashOam": "sBossCorridorCatRunOam",
+    "sBossCorridorCatLongWaitOam": "sBossCorridorCatWaitRightOam",
+    "sBossCorridorCatShortWaitOam": "sBossCorridorCatWaitLeftOam",
+    "sBossCorridorCatSlowLeftOam": "sBossCorridorCatWalkLeftOam",
+    "sBossCorridorCatWaitOam": "sBossCorridorCatWaitToTurnOam",
     "sBossTreasureOam_83DABA0": "sAerodentOam_83DABA0",
     "sButatabiIdleOam": "sButatabiMovingOam",
     "sButatabiTackledOam": "sButatabiFallingOam",
