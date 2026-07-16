@@ -14531,111 +14531,525 @@
         },
         {
           "address": "0x083E1900",
-          "end": "0x083E1F30",
+          "end": "0x083E1928",
           "symbol": "sToyCarRecoveringOam",
           "type": "raw"
         },
         {
+          "address": "0x083E1928",
+          "end": "0x083E1942",
+          "symbol": "sSpriteA9Oam_83E1F30_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1942",
+          "end": "0x083E195C",
+          "symbol": "sSpriteA9Oam_83E1F30_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E195C",
+          "end": "0x083E1970",
+          "symbol": "sSpriteA9Oam_83E1F30_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1970",
+          "end": "0x083E198A",
+          "symbol": "sSpriteA9Oam_83E1F30_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E198A",
+          "end": "0x083E19A4",
+          "symbol": "sSpriteA9Oam_83E1F30_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E19A4",
+          "end": "0x083E19BE",
+          "symbol": "sSpriteA9Oam_83E1F30_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E19BE",
+          "end": "0x083E19D8",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E19D8",
+          "end": "0x083E19F2",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E19F2",
+          "end": "0x083E1A06",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A06",
+          "end": "0x083E1A1A",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A1A",
+          "end": "0x083E1A2E",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A2E",
+          "end": "0x083E1A48",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A48",
+          "end": "0x083E1A62",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A62",
+          "end": "0x083E1A7C",
+          "symbol": "sSpriteA9Oam_83E1FA0_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A7C",
+          "end": "0x083E1A90",
+          "symbol": "sSpriteA9Oam_83E1FE8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A90",
+          "end": "0x083E1A9E",
+          "symbol": "sSpriteA9Oam_83E1FE8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1A9E",
+          "end": "0x083E1AAC",
+          "symbol": "sSpriteA9Oam_83E1FE8_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1AAC",
+          "end": "0x083E1AC0",
+          "symbol": "sSpriteA9Oam_83E1FE8_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1AC0",
+          "end": "0x083E1AD4",
+          "symbol": "sSpriteA9Oam_83E1FE8_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1AD4",
+          "end": "0x083E1AE8",
+          "symbol": "sSpriteA9Oam_83E1FE8_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1AE8",
+          "end": "0x083E1AF0",
+          "symbol": "sSpriteDataRaw_083E1AE8",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E1AF0",
+          "end": "0x083E1B0A",
+          "symbol": "sSpriteA9Oam_83E2020_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B0A",
+          "end": "0x083E1B1E",
+          "symbol": "sSpriteA9Oam_83E2020_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B1E",
+          "end": "0x083E1B32",
+          "symbol": "sSpriteA9Oam_83E2020_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B32",
+          "end": "0x083E1B46",
+          "symbol": "sSpriteA9Oam_83E2020_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B46",
+          "end": "0x083E1B5A",
+          "symbol": "sSpriteA9Oam_83E2020_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B5A",
+          "end": "0x083E1B6E",
+          "symbol": "sSpriteA9Oam_83E2020_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B6E",
+          "end": "0x083E1B82",
+          "symbol": "sSpriteA9Oam_83E2020_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B82",
+          "end": "0x083E1B96",
+          "symbol": "sSpriteA9Oam_83E20C0_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1B96",
+          "end": "0x083E1BAA",
+          "symbol": "sSpriteA9Oam_83E2238_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1BAA",
+          "end": "0x083E1BBE",
+          "symbol": "sSpriteDataRaw_083E1BAA",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E1BBE",
+          "end": "0x083E1BD8",
+          "symbol": "sSpriteA9Oam_83E2238_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1BD8",
+          "end": "0x083E1BF2",
+          "symbol": "sSpriteDataRaw_083E1BD8",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E1BF2",
+          "end": "0x083E1C0C",
+          "symbol": "sSpriteA9Oam_83E2238_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1C0C",
+          "end": "0x083E1C2E",
+          "symbol": "sSpriteDataRaw_083E1C0C",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E1C2E",
+          "end": "0x083E1C48",
+          "symbol": "sSpriteA9Oam_83E2088_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1C48",
+          "end": "0x083E1C62",
+          "symbol": "sSpriteA9Oam_83E2088_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1C62",
+          "end": "0x083E1C7C",
+          "symbol": "sSpriteA9Oam_83E2088_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1C7C",
+          "end": "0x083E1C90",
+          "symbol": "sSpriteA9Oam_83E2088_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1C90",
+          "end": "0x083E1CAA",
+          "symbol": "sSpriteA9Oam_83E2088_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1CAA",
+          "end": "0x083E1CC4",
+          "symbol": "sSpriteA9Oam_83E2088_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1CC4",
+          "end": "0x083E1CCC",
+          "symbol": "sSpriteDataRaw_083E1CC4",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E1CCC",
+          "end": "0x083E1CE6",
+          "symbol": "sSpriteA9Oam_83E20C0_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1CE6",
+          "end": "0x083E1CFA",
+          "symbol": "sSpriteA9Oam_83E20C0_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1CFA",
+          "end": "0x083E1D0E",
+          "symbol": "sSpriteA9Oam_83E20C0_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D0E",
+          "end": "0x083E1D22",
+          "symbol": "sSpriteA9Oam_83E20C0_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D22",
+          "end": "0x083E1D36",
+          "symbol": "sSpriteA9Oam_83E20C0_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D36",
+          "end": "0x083E1D4A",
+          "symbol": "sSpriteA9Oam_83E20F8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D4A",
+          "end": "0x083E1D5E",
+          "symbol": "sSpriteA9Oam_83E20F8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D5E",
+          "end": "0x083E1D78",
+          "symbol": "sSpriteA9Oam_83E2068_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D78",
+          "end": "0x083E1D92",
+          "symbol": "sSpriteA9Oam_83E2068_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1D92",
+          "end": "0x083E1DAC",
+          "symbol": "sSpriteA9Oam_83E20F8_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1DAC",
+          "end": "0x083E1DC6",
+          "symbol": "sSpriteA9Oam_83E20F8_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1DC6",
+          "end": "0x083E1DE0",
+          "symbol": "sSpriteA9Oam_83E2130_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1DE0",
+          "end": "0x083E1DFA",
+          "symbol": "sSpriteA9Oam_83E2130_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1DFA",
+          "end": "0x083E1E14",
+          "symbol": "sSpriteA9Oam_83E2130_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1E14",
+          "end": "0x083E1E2E",
+          "symbol": "sSpriteA9Oam_83E2150_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1E2E",
+          "end": "0x083E1E48",
+          "symbol": "sSpriteA9Oam_83E2150_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1E48",
+          "end": "0x083E1E62",
+          "symbol": "sSpriteA9Oam_83E2150_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1E62",
+          "end": "0x083E1E7C",
+          "symbol": "sSpriteA9Oam_83E2150_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1E7C",
+          "end": "0x083E1E96",
+          "symbol": "sSpriteA9Oam_83E21A8_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1E96",
+          "end": "0x083E1EB0",
+          "symbol": "sSpriteA9Oam_83E21A8_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1EB0",
+          "end": "0x083E1EDE",
+          "symbol": "sSpriteDataRaw_083E1EB0",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E1EDE",
+          "end": "0x083E1EE6",
+          "symbol": "sSpriteA9Oam_83E21D0_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1EE6",
+          "end": "0x083E1EEE",
+          "symbol": "sSpriteA9Oam_83E21F0_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1EEE",
+          "end": "0x083E1F02",
+          "symbol": "sSpriteA9Oam_83E2238_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1F02",
+          "end": "0x083E1F16",
+          "symbol": "sSpriteA9Oam_83E2238_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E1F16",
+          "end": "0x083E1F30",
+          "symbol": "sSpriteA9Oam_83E2068_Frame3",
+          "type": "frame"
+        },
+        {
           "address": "0x083E1F30",
           "end": "0x083E1F68",
-          "symbol": "sUnk_83E1F30",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E1F30",
+          "type": "anim"
         },
         {
           "address": "0x083E1F68",
           "end": "0x083E1FA0",
-          "symbol": "sUnk_83E1F68",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E1F68",
+          "type": "anim"
         },
         {
           "address": "0x083E1FA0",
           "end": "0x083E1FE8",
-          "symbol": "sUnk_83E1FA0",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E1FA0",
+          "type": "anim"
         },
         {
           "address": "0x083E1FE8",
           "end": "0x083E2020",
-          "symbol": "sUnk_83E1FE8",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E1FE8",
+          "type": "anim"
         },
         {
           "address": "0x083E2020",
           "end": "0x083E2068",
-          "symbol": "sUnk_83E2020",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E2020",
+          "type": "anim"
         },
         {
           "address": "0x083E2068",
           "end": "0x083E2088",
-          "symbol": "sUnk_83E2068",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E2068",
+          "type": "anim"
         },
         {
           "address": "0x083E2088",
           "end": "0x083E20C0",
-          "symbol": "sUnk_83E2088",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E2088",
+          "type": "anim"
         },
         {
           "address": "0x083E20C0",
           "end": "0x083E20F8",
-          "symbol": "sUnk_83E20C0",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E20C0",
+          "type": "anim"
         },
         {
           "address": "0x083E20F8",
           "end": "0x083E2130",
-          "symbol": "sUnk_83E20F8",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E20F8",
+          "type": "anim"
         },
         {
           "address": "0x083E2130",
           "end": "0x083E2150",
-          "symbol": "sUnk_83E2130",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E2130",
+          "type": "anim"
         },
         {
           "address": "0x083E2150",
+          "end": "0x083E2178",
+          "symbol": "sSpriteA9Oam_83E2150",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E2178",
           "end": "0x083E21A8",
-          "symbol": "sUnk_83E2150",
+          "symbol": "sSpriteDataRaw_083E2178",
           "type": "raw"
         },
         {
           "address": "0x083E21A8",
           "end": "0x083E21C0",
-          "symbol": "sUnk_83E21A8",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E21A8",
+          "type": "anim"
         },
         {
           "address": "0x083E21C0",
           "end": "0x083E21D0",
-          "symbol": "sUnk_83E21C0",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E21C0",
+          "type": "anim"
         },
         {
           "address": "0x083E21D0",
           "end": "0x083E21F0",
-          "symbol": "sUnk_83E21D0",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E21D0",
+          "type": "anim"
         },
         {
           "address": "0x083E21F0",
           "end": "0x083E2208",
-          "symbol": "sUnk_83E21F0",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E21F0",
+          "type": "anim"
         },
         {
           "address": "0x083E2208",
           "end": "0x083E2238",
-          "symbol": "sUnk_83E2208",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E2208",
+          "type": "anim"
         },
         {
           "address": "0x083E2238",
           "end": "0x083E22C8",
-          "symbol": "sUnk_83E2238",
-          "type": "raw"
+          "symbol": "sSpriteA9Oam_83E2238",
+          "type": "anim"
         },
         {
           "address": "0x083E22C8",
@@ -17058,6 +17472,23 @@
     "sUnk_83DB5C8": "sAerodentOam_83DB5C8",
     "sUnk_83DB5E8": "sAerodentOam_83DB5E8",
     "sUnk_83DBA60": "sAerodentOam_83DBA60",
-    "sUnk_83DF9E8": "sBossTreasureOam_83DF9E8"
+    "sUnk_83DF9E8": "sBossTreasureOam_83DF9E8",
+    "sUnk_83E1F30": "sSpriteA9Oam_83E1F30",
+    "sUnk_83E1F68": "sSpriteA9Oam_83E1F68",
+    "sUnk_83E1FA0": "sSpriteA9Oam_83E1FA0",
+    "sUnk_83E1FE8": "sSpriteA9Oam_83E1FE8",
+    "sUnk_83E2020": "sSpriteA9Oam_83E2020",
+    "sUnk_83E2068": "sSpriteA9Oam_83E2068",
+    "sUnk_83E2088": "sSpriteA9Oam_83E2088",
+    "sUnk_83E20C0": "sSpriteA9Oam_83E20C0",
+    "sUnk_83E20F8": "sSpriteA9Oam_83E20F8",
+    "sUnk_83E2130": "sSpriteA9Oam_83E2130",
+    "sUnk_83E2150": "sSpriteA9Oam_83E2150",
+    "sUnk_83E21A8": "sSpriteA9Oam_83E21A8",
+    "sUnk_83E21C0": "sSpriteA9Oam_83E21C0",
+    "sUnk_83E21D0": "sSpriteA9Oam_83E21D0",
+    "sUnk_83E21F0": "sSpriteA9Oam_83E21F0",
+    "sUnk_83E2208": "sSpriteA9Oam_83E2208",
+    "sUnk_83E2238": "sSpriteA9Oam_83E2238"
   }
 }
