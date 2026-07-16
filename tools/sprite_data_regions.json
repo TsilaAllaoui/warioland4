@@ -55,63 +55,369 @@
       "entries": [
         {
           "address": "0x083B548C",
+          "end": "0x083B54A6",
+          "symbol": "sSwitchIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B54A6",
+          "end": "0x083B54C0",
+          "symbol": "sEscapeSwitchPressedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B54C0",
+          "end": "0x083B54DA",
+          "symbol": "sEscapeSwitchPressedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B54DA",
+          "end": "0x083B54F4",
+          "symbol": "sEscapeSwitchPressedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B54F4",
+          "end": "0x083B5514",
+          "symbol": "sSwitchReleasedOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5514",
+          "end": "0x083B552E",
+          "symbol": "sEscapeSwitchIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B552E",
+          "end": "0x083B5548",
+          "symbol": "sSwitchReleasedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5548",
+          "end": "0x083B5562",
+          "symbol": "sSwitchReleasedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5562",
+          "end": "0x083B557C",
+          "symbol": "sEscapeSwitchWaitingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B557C",
+          "end": "0x083B5596",
+          "symbol": "sEscapeSwitchWaitingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5596",
+          "end": "0x083B55B0",
+          "symbol": "sEscapeSwitchWaitingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B55B0",
+          "end": "0x083B55CA",
+          "symbol": "sEscapeSwitchWaitingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B55CA",
+          "end": "0x083B55E4",
+          "symbol": "sEscapeSwitchWaitingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B55E4",
+          "end": "0x083B55FE",
+          "symbol": "sEscapeSwitchWaitingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B55FE",
+          "end": "0x083B561E",
+          "symbol": "sSwitchReleasedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B561E",
+          "end": "0x083B563E",
+          "symbol": "sSwitchReleasedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B563E",
+          "end": "0x083B565E",
+          "symbol": "sSwitchReleasedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B565E",
+          "end": "0x083B567E",
+          "symbol": "sSwitchReleasedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B567E",
+          "end": "0x083B569E",
+          "symbol": "sSwitchReleasedOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B569E",
+          "end": "0x083B56BE",
+          "symbol": "sSwitchReleasedOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B56BE",
+          "end": "0x083B56E4",
+          "symbol": "sSwitchPressedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B56E4",
+          "end": "0x083B570A",
+          "symbol": "sSwitchPressedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B570A",
+          "end": "0x083B5730",
+          "symbol": "sSwitchPressedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5730",
+          "end": "0x083B5756",
+          "symbol": "sSwitchPressedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5756",
+          "end": "0x083B575E",
+          "symbol": "sSwitchEffectIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B575E",
+          "end": "0x083B5766",
+          "symbol": "sSwitchEffectIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5766",
+          "end": "0x083B5780",
+          "symbol": "sSwitchEffectIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5780",
+          "end": "0x083B5788",
+          "symbol": "sSwitchEffectIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5788",
+          "end": "0x083B57A2",
+          "symbol": "sSwitchEffectIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B57A2",
+          "end": "0x083B57AA",
+          "symbol": "sSwitchEffectIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B57AA",
+          "end": "0x083B57B2",
+          "symbol": "sSwitchEffectIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B57B2",
+          "end": "0x083B57CC",
+          "symbol": "sSwitchEffectIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B57CC",
+          "end": "0x083B57F0",
+          "symbol": "sSpriteDataRaw_083B57CC",
+          "type": "raw"
+        },
+        {
+          "address": "0x083B57F0",
+          "end": "0x083B580A",
+          "symbol": "sEscapeSwitchWaitingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B580A",
+          "end": "0x083B5824",
+          "symbol": "sEscapeSwitchWaitingOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5824",
+          "end": "0x083B583E",
+          "symbol": "sEscapeSwitchWaitingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B583E",
+          "end": "0x083B5858",
+          "symbol": "sEscapeSwitchWaitingOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5858",
+          "end": "0x083B5872",
+          "symbol": "sSpriteDataRaw_083B5858",
+          "type": "raw"
+        },
+        {
+          "address": "0x083B5872",
+          "end": "0x083B589E",
+          "symbol": "sSwitchEffectActiveOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B589E",
+          "end": "0x083B58D0",
+          "symbol": "sSwitchEffectActiveOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B58D0",
+          "end": "0x083B58F6",
+          "symbol": "sSwitchEffectActiveOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B58F6",
+          "end": "0x083B591C",
+          "symbol": "sSwitchEffectActiveOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B591C",
+          "end": "0x083B5948",
+          "symbol": "sSwitchEffectActiveOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B5948",
+          "end": "0x083B596E",
+          "symbol": "sSwitchEffectActiveOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B596E",
+          "end": "0x083B599A",
+          "symbol": "sSwitchEffectActiveOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B599A",
+          "end": "0x083B59B4",
+          "symbol": "sSwitchEffectActiveOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B59B4",
+          "end": "0x083B59C8",
+          "symbol": "sSwitchEffectActiveOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B59C8",
+          "end": "0x083B59DC",
+          "symbol": "sSwitchEffectActiveOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B59DC",
+          "end": "0x083B59EA",
+          "symbol": "sSwitchEffectActiveOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083B59EA",
           "end": "0x083B59EC",
-          "symbol": "sSpriteDataRaw_083B548C",
+          "symbol": "sSpriteDataRaw_083B59EA",
           "type": "raw"
         },
         {
           "address": "0x083B59EC",
           "end": "0x083B59FC",
           "symbol": "sSwitchIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083B59FC",
           "end": "0x083B5A24",
           "symbol": "sEscapeSwitchPressedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083B5A24",
           "end": "0x083B5A34",
           "symbol": "sEscapeSwitchActiveOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083B5A34",
           "end": "0x083B5A8C",
           "symbol": "sSwitchReleasedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083B5A8C",
           "end": "0x083B5AB4",
           "symbol": "sSwitchPressedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083B5AB4",
-          "end": "0x083B5B1C",
+          "end": "0x083B5AFC",
           "symbol": "sSwitchEffectIdleOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083B5AFC",
+          "end": "0x083B5B1C",
+          "symbol": "sSpriteDataRaw_083B5AFC",
           "type": "raw"
         },
         {
           "address": "0x083B5B1C",
-          "end": "0x083B5BE4",
+          "end": "0x083B5B94",
           "symbol": "sEscapeSwitchWaitingOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083B5B94",
+          "end": "0x083B5BE4",
+          "symbol": "sSpriteDataRaw_083B5B94",
           "type": "raw"
         },
         {
           "address": "0x083B5BE4",
           "end": "0x083B5BF4",
           "symbol": "sEscapeSwitchIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083B5BF4",
           "end": "0x083B5C5C",
           "symbol": "sSwitchEffectActiveOam",
-          "type": "raw"
+          "type": "anim"
         }
       ]
     },
