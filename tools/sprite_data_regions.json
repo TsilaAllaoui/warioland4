@@ -7907,45 +7907,171 @@
         },
         {
           "address": "0x083CA47E",
-          "end": "0x083CA850",
+          "end": "0x083CA4B0",
           "symbol": "sRingosukiAppleYVelocity",
+          "type": "raw"
+        },
+        {
+          "address": "0x083CA4B0",
+          "end": "0x083CA4CA",
+          "symbol": "sPistonPrepareOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA4CA",
+          "end": "0x083CA4F6",
+          "symbol": "sPistonIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA4F6",
+          "end": "0x083CA522",
+          "symbol": "sPistonIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA522",
+          "end": "0x083CA54E",
+          "symbol": "sPistonIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA54E",
+          "end": "0x083CA57A",
+          "symbol": "sPistonIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA57A",
+          "end": "0x083CA5EA",
+          "symbol": "sSpriteDataRaw_083CA57A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083CA5EA",
+          "end": "0x083CA60A",
+          "symbol": "sPistonPostImpactOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA60A",
+          "end": "0x083CA62A",
+          "symbol": "sPistonPrepareOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA62A",
+          "end": "0x083CA632",
+          "symbol": "sPistonChildOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA632",
+          "end": "0x083CA640",
+          "symbol": "sPistonChildOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA640",
+          "end": "0x083CA648",
+          "symbol": "sPistonChildOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA648",
+          "end": "0x083CA650",
+          "symbol": "sPistonChildOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA650",
+          "end": "0x083CA658",
+          "symbol": "sPistonChildOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA658",
+          "end": "0x083CA660",
+          "symbol": "sPistonChildOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA660",
+          "end": "0x083CA66E",
+          "symbol": "sPistonChildOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA66E",
+          "end": "0x083CA676",
+          "symbol": "sPistonChildOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA676",
+          "end": "0x083CA6BA",
+          "symbol": "sPistonImpactOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA6BA",
+          "end": "0x083CA6FE",
+          "symbol": "sPistonImpactOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA6FE",
+          "end": "0x083CA742",
+          "symbol": "sPistonImpactOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA742",
+          "end": "0x083CA786",
+          "symbol": "sPistonImpactOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083CA786",
+          "end": "0x083CA850",
+          "symbol": "sSpriteDataRaw_083CA786",
           "type": "raw"
         },
         {
           "address": "0x083CA850",
           "end": "0x083CA898",
           "symbol": "sPistonChildOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083CA898",
           "end": "0x083CA8E0",
           "symbol": "sPistonIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083CA8E0",
           "end": "0x083CA8F8",
           "symbol": "sPistonPrepareOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083CA8F8",
           "end": "0x083CA910",
           "symbol": "sPistonPostImpactOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083CA910",
           "end": "0x083CA920",
           "symbol": "sPistonExtendOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083CA920",
           "end": "0x083CA980",
           "symbol": "sPistonImpactOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083CA980",
