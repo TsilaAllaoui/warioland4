@@ -13397,81 +13397,279 @@
         },
         {
           "address": "0x083E22C8",
-          "end": "0x083E264C",
+          "end": "0x083E2310",
           "symbol": "sUnk_83E22C8",
           "type": "raw"
+        },
+        {
+          "address": "0x083E2310",
+          "end": "0x083E2330",
+          "symbol": "sOnomiPushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2330",
+          "end": "0x083E234A",
+          "symbol": "sOnomiTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E234A",
+          "end": "0x083E2364",
+          "symbol": "sSpriteDataRaw_083E234A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E2364",
+          "end": "0x083E237E",
+          "symbol": "sOnomiAttackingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E237E",
+          "end": "0x083E2398",
+          "symbol": "sOnomiAttackingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2398",
+          "end": "0x083E23B2",
+          "symbol": "sOnomiAttackingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E23B2",
+          "end": "0x083E23CC",
+          "symbol": "sOnomiAttackingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E23CC",
+          "end": "0x083E23E6",
+          "symbol": "sOnomiPreparingAttackOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E23E6",
+          "end": "0x083E2400",
+          "symbol": "sOnomiPreparingAttackOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2400",
+          "end": "0x083E241A",
+          "symbol": "sOnomiPreparingAttackOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E241A",
+          "end": "0x083E2434",
+          "symbol": "sOnomiPreparingAttackOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2434",
+          "end": "0x083E2454",
+          "symbol": "sOnomiWalkingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2454",
+          "end": "0x083E2474",
+          "symbol": "sOnomiWalkingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2474",
+          "end": "0x083E2494",
+          "symbol": "sOnomiWalkingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2494",
+          "end": "0x083E24B4",
+          "symbol": "sOnomiWalkingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E24B4",
+          "end": "0x083E24CE",
+          "symbol": "sSpriteDataRaw_083E24B4",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E24CE",
+          "end": "0x083E24EE",
+          "symbol": "sOnomiStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E24EE",
+          "end": "0x083E250E",
+          "symbol": "sOnomiStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E250E",
+          "end": "0x083E2528",
+          "symbol": "sOnomiStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2528",
+          "end": "0x083E2548",
+          "symbol": "sOnomiFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2548",
+          "end": "0x083E2568",
+          "symbol": "sOnomiFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2568",
+          "end": "0x083E2582",
+          "symbol": "sOnomiFallingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2582",
+          "end": "0x083E258A",
+          "symbol": "sOnomiTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E258A",
+          "end": "0x083E2592",
+          "symbol": "sOnomiTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2592",
+          "end": "0x083E25AC",
+          "symbol": "sOnomiCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E25AC",
+          "end": "0x083E25B4",
+          "symbol": "sOnomiCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E25B4",
+          "end": "0x083E25BC",
+          "symbol": "sOnomiCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E25BC",
+          "end": "0x083E25E2",
+          "symbol": "sOnomiWalkingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E25E2",
+          "end": "0x083E2608",
+          "symbol": "sOnomiWalkingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2608",
+          "end": "0x083E2622",
+          "symbol": "sOnomiGettingUpOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2622",
+          "end": "0x083E263C",
+          "symbol": "sOnomiCrushedWhileStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E263C",
+          "end": "0x083E2644",
+          "symbol": "sOnomiCrushedWhileStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2644",
+          "end": "0x083E264C",
+          "symbol": "sOnomiCrushedWhileStunnedOam_Frame3",
+          "type": "frame"
         },
         {
           "address": "0x083E264C",
           "end": "0x083E265C",
           "symbol": "sOnomiPushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E265C",
           "end": "0x083E2674",
           "symbol": "sOnomiTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E2674",
           "end": "0x083E269C",
           "symbol": "sOnomiPreparingAttackOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E269C",
           "end": "0x083E26E4",
           "symbol": "sOnomiWalkingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E26E4",
           "end": "0x083E2714",
           "symbol": "sOnomiAttackingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E2714",
           "end": "0x083E2734",
           "symbol": "sOnomiStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E2734",
           "end": "0x083E2754",
           "symbol": "sOnomiFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E2754",
           "end": "0x083E276C",
           "symbol": "sOnomiTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E276C",
           "end": "0x083E278C",
           "symbol": "sOnomiCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E278C",
           "end": "0x083E279C",
           "symbol": "sOnomiGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E279C",
           "end": "0x083E27B4",
           "symbol": "sOnomiTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E27B4",
           "end": "0x083E27D4",
           "symbol": "sOnomiCrushedWhileStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E27D4",
