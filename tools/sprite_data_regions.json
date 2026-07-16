@@ -6353,21 +6353,63 @@
         },
         {
           "address": "0x083C4EE0",
+          "end": "0x083C4EE8",
+          "symbol": "sTogetogeFallingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4EE8",
+          "end": "0x083C4EF0",
+          "symbol": "sTogetogeFallingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4EF0",
+          "end": "0x083C4EF8",
+          "symbol": "sTogetogeFallingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4EF8",
+          "end": "0x083C4F00",
+          "symbol": "sTogetogeFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4F00",
+          "end": "0x083C4F08",
+          "symbol": "sTogetogeFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4F08",
+          "end": "0x083C4F10",
+          "symbol": "sTogetogeFallingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4F10",
+          "end": "0x083C4F18",
+          "symbol": "sTogetogeFallingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4F18",
           "end": "0x083C4F20",
-          "symbol": "sSpriteDataRaw_083C4EE0",
-          "type": "raw"
+          "symbol": "sTogetogeFallingOam_Frame5",
+          "type": "frame"
         },
         {
           "address": "0x083C4F20",
           "end": "0x083C4F68",
           "symbol": "sTogetogeFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C4F68",
           "end": "0x083C4F78",
           "symbol": "sTogetogeIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C4F78",

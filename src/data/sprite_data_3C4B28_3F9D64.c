@@ -314,24 +314,70 @@ const struct AnimationFrame sMiniculaOam_83C4CD8[] = {
     {sMiniculaOam_83C4CD8_Frame36, 2},
     ANIMATION_TERMINATOR
 };
-/* 0x083C4EE0 - 0x083C4F20: not yet typed. */
-const u8 sSpriteDataRaw_083C4EE0[] = {
-    0x01, 0x00, 0xE1, 0x00, 0xF0, 0x81, 0x00, 0x82, 0x01, 0x00, 0xE2, 0x00, 0xF0, 0x81, 0x04, 0x82,
-    0x01, 0x00, 0xE3, 0x00, 0xF0, 0x81, 0x08, 0x82, 0x01, 0x00, 0xE2, 0x00, 0xF0, 0x81, 0x0C, 0x82,
-    0x01, 0x00, 0xE1, 0x00, 0xF0, 0x81, 0x10, 0x82, 0x01, 0x00, 0xE2, 0x00, 0xF0, 0x81, 0x14, 0x82,
-    0x01, 0x00, 0xE3, 0x00, 0xF0, 0x81, 0x18, 0x82, 0x01, 0x00, 0xE2, 0x00, 0xF0, 0x81, 0x1C, 0x82,
+/* 0x083C4EE0: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame6[] = {
+    1,
+    /* 00E1 81F0 8200 */
+    OAM_ENTRY(-16, -31, SPRITE_SIZE_32x32, 0, 512, 8, 0),
 };
-/* 0x083C4F20 - 0x083C4F68: not yet typed. */
-const u8 sTogetogeFallingOam[] = {
-    0xF8, 0x4E, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00, 0x00, 0x4F, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0x08, 0x4F, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00, 0x10, 0x4F, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0x18, 0x4F, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00, 0xE0, 0x4E, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0xE8, 0x4E, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00, 0xF0, 0x4E, 0x3C, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C4EE8: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame7[] = {
+    1,
+    /* 00E2 81F0 8204 */
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 516, 8, 0),
 };
-/* 0x083C4F68 - 0x083C4F78: not yet typed. */
-const u8 sTogetogeIdleOam[] = {
-    0xF0, 0x4E, 0x3C, 0x08, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+/* 0x083C4EF0: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame8[] = {
+    1,
+    /* 00E3 81F0 8208 */
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_32x32, 0, 520, 8, 0),
+};
+/* 0x083C4EF8: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame1[] = {
+    1,
+    /* 00E2 81F0 820C */
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 524, 8, 0),
+};
+/* 0x083C4F00: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame2[] = {
+    1,
+    /* 00E1 81F0 8210 */
+    OAM_ENTRY(-16, -31, SPRITE_SIZE_32x32, 0, 528, 8, 0),
+};
+/* 0x083C4F08: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame3[] = {
+    1,
+    /* 00E2 81F0 8214 */
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 532, 8, 0),
+};
+/* 0x083C4F10: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame4[] = {
+    1,
+    /* 00E3 81F0 8218 */
+    OAM_ENTRY(-16, -29, SPRITE_SIZE_32x32, 0, 536, 8, 0),
+};
+/* 0x083C4F18: decoded OAM frame. */
+const u16 sTogetogeFallingOam_Frame5[] = {
+    1,
+    /* 00E2 81F0 821C */
+    OAM_ENTRY(-16, -30, SPRITE_SIZE_32x32, 0, 540, 8, 0),
+};
+/* 0x083C4F20: Match_disasm_togetoge. */
+const struct AnimationFrame sTogetogeFallingOam[] = {
+    {sTogetogeFallingOam_Frame1, 3},
+    {sTogetogeFallingOam_Frame2, 3},
+    {sTogetogeFallingOam_Frame3, 3},
+    {sTogetogeFallingOam_Frame4, 3},
+    {sTogetogeFallingOam_Frame5, 3},
+    {sTogetogeFallingOam_Frame6, 3},
+    {sTogetogeFallingOam_Frame7, 3},
+    {sTogetogeFallingOam_Frame8, 3},
+    ANIMATION_TERMINATOR
+};
+/* 0x083C4F68: Match_disasm_togetoge. */
+const struct AnimationFrame sTogetogeIdleOam[] = {
+    {sTogetogeFallingOam_Frame8, 200},
+    ANIMATION_TERMINATOR
 };
 /* 0x083C4F78: decoded OAM frame. */
 const u16 sGhostOam_83C5364_Frame1[] = {
