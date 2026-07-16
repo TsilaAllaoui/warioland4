@@ -3623,74 +3623,284 @@
         },
         {
           "address": "0x083C7424",
-          "end": "0x083C770C",
+          "end": "0x083C74AC",
           "symbol": "sMoneyFlowerStage5CollectionOam",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C74AC",
+          "end": "0x083C74C0",
+          "symbol": "sCaterpillarCrawlingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C74C0",
+          "end": "0x083C74D4",
+          "symbol": "sCaterpillarCrawlingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C74D4",
+          "end": "0x083C74E8",
+          "symbol": "sCaterpillarCrawlingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C74E8",
+          "end": "0x083C74FC",
+          "symbol": "sCaterpillarCrawlingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C74FC",
+          "end": "0x083C750A",
+          "symbol": "sCaterpillarTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C750A",
+          "end": "0x083C7512",
+          "symbol": "sCaterpillarTurningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7512",
+          "end": "0x083C751A",
+          "symbol": "sCaterpillarTurningAroundOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C751A",
+          "end": "0x083C7528",
+          "symbol": "sCaterpillarTurningAroundOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7528",
+          "end": "0x083C753C",
+          "symbol": "sCaterpillarTurningAroundOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C753C",
+          "end": "0x083C7550",
+          "symbol": "sCaterpillarPushedBackwardOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7550",
+          "end": "0x083C756A",
+          "symbol": "sCaterpillarPushedBackwardOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C756A",
+          "end": "0x083C757E",
+          "symbol": "sCaterpillarPushedBackwardOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C757E",
+          "end": "0x083C7592",
+          "symbol": "sCaterpillarPushedForwardOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7592",
+          "end": "0x083C75A6",
+          "symbol": "sCaterpillarPushedForwardOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C75A6",
+          "end": "0x083C75B4",
+          "symbol": "sCaterpillarPushedForwardOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C75B4",
+          "end": "0x083C75C8",
+          "symbol": "sCaterpillarCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C75C8",
+          "end": "0x083C75DC",
+          "symbol": "sCaterpillarCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C75DC",
+          "end": "0x083C75F0",
+          "symbol": "sCaterpillarCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C75F0",
+          "end": "0x083C7604",
+          "symbol": "sCaterpillarCrushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7604",
+          "end": "0x083C762A",
+          "symbol": "sCaterpillarCrushedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C762A",
+          "end": "0x083C763E",
+          "symbol": "sCaterpillarTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C763E",
+          "end": "0x083C7652",
+          "symbol": "sCaterpillarTackledOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7652",
+          "end": "0x083C7660",
+          "symbol": "sCaterpillarTackledOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7660",
+          "end": "0x083C766E",
+          "symbol": "sCaterpillarCarriedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C766E",
+          "end": "0x083C767C",
+          "symbol": "sCaterpillarCarriedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C767C",
+          "end": "0x083C7690",
+          "symbol": "sCaterpillarStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7690",
+          "end": "0x083C769E",
+          "symbol": "sCaterpillarStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C769E",
+          "end": "0x083C76B2",
+          "symbol": "sCaterpillarStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C76B2",
+          "end": "0x083C76C6",
+          "symbol": "sCaterpillarStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C76C6",
+          "end": "0x083C76DA",
+          "symbol": "sCaterpillarGettingUpOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C76DA",
+          "end": "0x083C76E8",
+          "symbol": "sCaterpillarGettingUpOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C76E8",
+          "end": "0x083C76F6",
+          "symbol": "sCaterpillarGettingUpOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C76F6",
+          "end": "0x083C770A",
+          "symbol": "sCaterpillarGettingUpOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C770A",
+          "end": "0x083C770C",
+          "symbol": "sSpriteDataRaw_083C770A",
           "type": "raw"
         },
         {
           "address": "0x083C770C",
           "end": "0x083C7734",
           "symbol": "sCaterpillarCrawlingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7734",
           "end": "0x083C775C",
           "symbol": "sCaterpillarFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C775C",
           "end": "0x083C777C",
           "symbol": "sCaterpillarTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C777C",
           "end": "0x083C779C",
           "symbol": "sCaterpillarTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C779C",
           "end": "0x083C77BC",
           "symbol": "sCaterpillarPushedBackwardOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C77BC",
           "end": "0x083C77DC",
           "symbol": "sCaterpillarPushedForwardOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C77DC",
           "end": "0x083C780C",
           "symbol": "sCaterpillarCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C780C",
           "end": "0x083C7834",
           "symbol": "sCaterpillarTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C7834",
           "end": "0x083C785C",
           "symbol": "sCaterpillarStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C785C",
           "end": "0x083C788C",
           "symbol": "sCaterpillarGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C788C",
-          "end": "0x083C798C",
+          "end": "0x083C78A4",
           "symbol": "sCaterpillarCarriedOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C78A4",
+          "end": "0x083C798C",
+          "symbol": "sSpriteDataRaw_083C78A4",
           "type": "raw"
         },
         {
