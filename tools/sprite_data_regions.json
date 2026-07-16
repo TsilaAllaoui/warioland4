@@ -7775,32 +7775,80 @@
         },
         {
           "address": "0x083C9B96",
-          "end": "0x083C9C20",
+          "end": "0x083C9BB8",
           "symbol": "sTobawaniWallFallYVelocity",
           "type": "raw"
+        },
+        {
+          "address": "0x083C9BB8",
+          "end": "0x083C9BC6",
+          "symbol": "sShieragutchiIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9BC6",
+          "end": "0x083C9BD4",
+          "symbol": "sShieragutchiIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9BD4",
+          "end": "0x083C9BE2",
+          "symbol": "sShieragutchiRiseOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9BE2",
+          "end": "0x083C9BF0",
+          "symbol": "sShieragutchiRiseOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9BF0",
+          "end": "0x083C9BFE",
+          "symbol": "sShieragutchiRiseOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9BFE",
+          "end": "0x083C9C0C",
+          "symbol": "sShieragutchiGrabbedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C9C0C",
+          "end": "0x083C9C20",
+          "symbol": "sShieragutchiDefeatOam_Frame2",
+          "type": "frame"
         },
         {
           "address": "0x083C9C20",
           "end": "0x083C9C38",
           "symbol": "sShieragutchiIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9C38",
           "end": "0x083C9CB0",
           "symbol": "sShieragutchiRiseOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9CB0",
           "end": "0x083C9CC8",
           "symbol": "sShieragutchiGrabbedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C9CC8",
-          "end": "0x083C9CF0",
+          "end": "0x083C9CE0",
           "symbol": "sShieragutchiDefeatOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C9CE0",
+          "end": "0x083C9CF0",
+          "symbol": "sSpriteDataRaw_083C9CE0",
           "type": "raw"
         },
         {
