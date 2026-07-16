@@ -8,24 +8,24 @@
 #include "types.h"
 #include "wario.h"
 
-extern const struct AnimationFrame sKaentsuboIdleOam[] asm("sUnk_83B8118");
-extern const struct AnimationFrame sKaentsuboPushedFacingRightOam[] asm("sUnk_83B8150");
-extern const struct AnimationFrame sKaentsuboPushedFacingLeftOam[] asm("sUnk_83B8160");
-extern const struct AnimationFrame sKaentsuboSpitWindupOam[] asm("sUnk_83B8170");
-extern const struct AnimationFrame sKaentsuboStunnedOam[] asm("sUnk_83B81C8");
-extern const struct AnimationFrame sKaentsuboRecoverOam[] asm("sUnk_83B81E0");
-extern const struct AnimationFrame sKaentsuboHitReactOam[] asm("sUnk_83B8248");
-extern const struct AnimationFrame sKaentsuboTurnAroundOam[] asm("sUnk_83B8298");
-extern const struct AnimationFrame sKaentsuboAirborneOam[] asm("sUnk_83B82B8");
-extern const struct AnimationFrame sKaentsuboDefeatedOam[] asm("sUnk_83B82F0");
-extern const struct AnimationFrame sKaentsuboFlameIdleOam[] asm("sUnk_83B8734");
-extern const struct AnimationFrame sKaentsuboFlamePushedRightOam[] asm("sUnk_83B876C");
-extern const struct AnimationFrame sKaentsuboFlamePushedLeftOam[] asm("sUnk_83B8784");
-extern const struct AnimationFrame sKaentsuboFlameAlertOam[] asm("sUnk_83B879C");
-extern const struct AnimationFrame sKaentsuboFireballLaunchOam[] asm("sUnk_83B87C4");
-extern const struct AnimationFrame sKaentsuboFireballTravelOam[] asm("sUnk_83B882C");
-extern const struct AnimationFrame sKaentsuboDefeatSmokeOam[] asm("sUnk_83B8854");
-extern const struct AnimationFrame sKaentsuboFireballSpawnOam[] asm("sUnk_83B8884");
+extern const struct AnimationFrame sKaentsuboIdleOam[];
+extern const struct AnimationFrame sKaentsuboPushedFacingRightOam[];
+extern const struct AnimationFrame sKaentsuboPushedFacingLeftOam[];
+extern const struct AnimationFrame sKaentsuboSpitWindupOam[];
+extern const struct AnimationFrame sKaentsuboStunnedOam[];
+extern const struct AnimationFrame sKaentsuboRecoverOam[];
+extern const struct AnimationFrame sKaentsuboHitReactOam[];
+extern const struct AnimationFrame sKaentsuboTurnAroundOam[];
+extern const struct AnimationFrame sKaentsuboAirborneOam[];
+extern const struct AnimationFrame sKaentsuboDefeatedOam[];
+extern const struct AnimationFrame sKaentsuboFlameIdleOam[];
+extern const struct AnimationFrame sKaentsuboFlamePushedRightOam[];
+extern const struct AnimationFrame sKaentsuboFlamePushedLeftOam[];
+extern const struct AnimationFrame sKaentsuboFlameAlertOam[];
+extern const struct AnimationFrame sKaentsuboFireballLaunchOam[];
+extern const struct AnimationFrame sKaentsuboFireballTravelOam[];
+extern const struct AnimationFrame sKaentsuboDefeatSmokeOam[];
+extern const struct AnimationFrame sKaentsuboFireballSpawnOam[];
 
 void func_801E3A8();
 void func_8023FA8(void);

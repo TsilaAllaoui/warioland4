@@ -62,93 +62,93 @@ sUnk_83B78D8:
 
 baserom_blob 0x3B78D8, 0x3B8118
 
-.global sUnk_83B8118
-sUnk_83B8118:
+.global sKaentsuboIdleOam
+sKaentsuboIdleOam:
 
 baserom_blob 0x3B8118, 0x3B8150
 
-.global sUnk_83B8150
-sUnk_83B8150:
+.global sKaentsuboPushedFacingRightOam
+sKaentsuboPushedFacingRightOam:
 
 baserom_blob 0x3B8150, 0x3B8160
 
-.global sUnk_83B8160
-sUnk_83B8160:
+.global sKaentsuboPushedFacingLeftOam
+sKaentsuboPushedFacingLeftOam:
 
 baserom_blob 0x3B8160, 0x3B8170
 
-.global sUnk_83B8170
-sUnk_83B8170:
+.global sKaentsuboSpitWindupOam
+sKaentsuboSpitWindupOam:
 
 baserom_blob 0x3B8170, 0x3B81C8
 
-.global sUnk_83B81C8
-sUnk_83B81C8:
+.global sKaentsuboStunnedOam
+sKaentsuboStunnedOam:
 
 baserom_blob 0x3B81C8, 0x3B81E0
 
-.global sUnk_83B81E0
-sUnk_83B81E0:
+.global sKaentsuboRecoverOam
+sKaentsuboRecoverOam:
 
 baserom_blob 0x3B81E0, 0x3B8248
 
-.global sUnk_83B8248
-sUnk_83B8248:
+.global sKaentsuboHitReactOam
+sKaentsuboHitReactOam:
 
 baserom_blob 0x3B8248, 0x3B8298
 
-.global sUnk_83B8298
-sUnk_83B8298:
+.global sKaentsuboTurnAroundOam
+sKaentsuboTurnAroundOam:
 
 baserom_blob 0x3B8298, 0x3B82B8
 
-.global sUnk_83B82B8
-sUnk_83B82B8:
+.global sKaentsuboAirborneOam
+sKaentsuboAirborneOam:
 
 baserom_blob 0x3B82B8, 0x3B82F0
 
-.global sUnk_83B82F0
-sUnk_83B82F0:
+.global sKaentsuboDefeatedOam
+sKaentsuboDefeatedOam:
 
 baserom_blob 0x3B82F0, 0x3B8734
 
-.global sUnk_83B8734
-sUnk_83B8734:
+.global sKaentsuboFlameIdleOam
+sKaentsuboFlameIdleOam:
 
 baserom_blob 0x3B8734, 0x3B876C
 
-.global sUnk_83B876C
-sUnk_83B876C:
+.global sKaentsuboFlamePushedRightOam
+sKaentsuboFlamePushedRightOam:
 
 baserom_blob 0x3B876C, 0x3B8784
 
-.global sUnk_83B8784
-sUnk_83B8784:
+.global sKaentsuboFlamePushedLeftOam
+sKaentsuboFlamePushedLeftOam:
 
 baserom_blob 0x3B8784, 0x3B879C
 
-.global sUnk_83B879C
-sUnk_83B879C:
+.global sKaentsuboFlameAlertOam
+sKaentsuboFlameAlertOam:
 
 baserom_blob 0x3B879C, 0x3B87C4
 
-.global sUnk_83B87C4
-sUnk_83B87C4:
+.global sKaentsuboFireballLaunchOam
+sKaentsuboFireballLaunchOam:
 
 baserom_blob 0x3B87C4, 0x3B882C
 
-.global sUnk_83B882C
-sUnk_83B882C:
+.global sKaentsuboFireballTravelOam
+sKaentsuboFireballTravelOam:
 
 baserom_blob 0x3B882C, 0x3B8854
 
-.global sUnk_83B8854
-sUnk_83B8854:
+.global sKaentsuboDefeatSmokeOam
+sKaentsuboDefeatSmokeOam:
 
 baserom_blob 0x3B8854, 0x3B8884
 
-.global sUnk_83B8884
-sUnk_83B8884:
+.global sKaentsuboFireballSpawnOam
+sKaentsuboFireballSpawnOam:
 
 baserom_blob 0x3B8884, 0x3B889C
 
