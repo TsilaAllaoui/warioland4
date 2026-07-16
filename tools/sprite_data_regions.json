@@ -9815,92 +9815,416 @@
         },
         {
           "address": "0x083E05B8",
-          "end": "0x083E0D68",
+          "end": "0x083E064C",
           "symbol": "sUnk_83E05B8",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E064C",
+          "end": "0x083E066C",
+          "symbol": "sDiceIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E066C",
+          "end": "0x083E068C",
+          "symbol": "sDiceIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E068C",
+          "end": "0x083E06B2",
+          "symbol": "sDiceIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E06B2",
+          "end": "0x083E06D8",
+          "symbol": "sDiceIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E06D8",
+          "end": "0x083E06F8",
+          "symbol": "sDiceIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E06F8",
+          "end": "0x083E0718",
+          "symbol": "sDiceIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0718",
+          "end": "0x083E0738",
+          "symbol": "sDiceIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0738",
+          "end": "0x083E075E",
+          "symbol": "sDiceIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E075E",
+          "end": "0x083E0784",
+          "symbol": "sDiceIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0784",
+          "end": "0x083E07A4",
+          "symbol": "sDiceIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E07A4",
+          "end": "0x083E07CA",
+          "symbol": "sDiceFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E07CA",
+          "end": "0x083E07F0",
+          "symbol": "sDiceFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E07F0",
+          "end": "0x083E0816",
+          "symbol": "sDiceFallingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0816",
+          "end": "0x083E083C",
+          "symbol": "sDiceFallingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E083C",
+          "end": "0x083E0862",
+          "symbol": "sDiceFallingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0862",
+          "end": "0x083E0888",
+          "symbol": "sDiceFallingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0888",
+          "end": "0x083E08AE",
+          "symbol": "sDiceFallingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E08AE",
+          "end": "0x083E08D4",
+          "symbol": "sDiceFallingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E08D4",
+          "end": "0x083E08FA",
+          "symbol": "sDiceFallingOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E08FA",
+          "end": "0x083E0920",
+          "symbol": "sDiceFallingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0920",
+          "end": "0x083E0940",
+          "symbol": "sDiceTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0940",
+          "end": "0x083E0972",
+          "symbol": "sDiceTurningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0972",
+          "end": "0x083E0992",
+          "symbol": "sDiceTurningAroundOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0992",
+          "end": "0x083E09B2",
+          "symbol": "sDiceTurningAroundOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E09B2",
+          "end": "0x083E09D8",
+          "symbol": "sDiceAlternateStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E09D8",
+          "end": "0x083E09F8",
+          "symbol": "sDiceAlternateStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E09F8",
+          "end": "0x083E0A1E",
+          "symbol": "sDiceAlternateStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0A1E",
+          "end": "0x083E0A3E",
+          "symbol": "sDiceAlternateStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0A3E",
+          "end": "0x083E0A5E",
+          "symbol": "sDiceStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0A5E",
+          "end": "0x083E0A7E",
+          "symbol": "sDiceStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0A7E",
+          "end": "0x083E0A9E",
+          "symbol": "sDiceStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0A9E",
+          "end": "0x083E0ABE",
+          "symbol": "sDiceStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0ABE",
+          "end": "0x083E0ADE",
+          "symbol": "sDiceStunnedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0ADE",
+          "end": "0x083E0AFE",
+          "symbol": "sDiceStunnedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0AFE",
+          "end": "0x083E0B1E",
+          "symbol": "sDiceStunnedOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0B1E",
+          "end": "0x083E0B3E",
+          "symbol": "sDiceStunnedOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0B3E",
+          "end": "0x083E0B5E",
+          "symbol": "sDiceStunnedOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0B5E",
+          "end": "0x083E0B7E",
+          "symbol": "sDiceAlternatePushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0B7E",
+          "end": "0x083E0BA4",
+          "symbol": "sDiceAlternatePushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0BA4",
+          "end": "0x083E0BD0",
+          "symbol": "sDicePushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0BD0",
+          "end": "0x083E0BFC",
+          "symbol": "sDicePushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0BFC",
+          "end": "0x083E0C22",
+          "symbol": "sDiceAlternateCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0C22",
+          "end": "0x083E0C48",
+          "symbol": "sDiceAlternateCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0C48",
+          "end": "0x083E0C6E",
+          "symbol": "sDiceCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0C6E",
+          "end": "0x083E0C94",
+          "symbol": "sDiceCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0C94",
+          "end": "0x083E0CC0",
+          "symbol": "sDiceAlternateTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0CC0",
+          "end": "0x083E0CE6",
+          "symbol": "sDiceAlternateTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0CE6",
+          "end": "0x083E0D06",
+          "symbol": "sDiceTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0D06",
+          "end": "0x083E0D26",
+          "symbol": "sDiceTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0D26",
+          "end": "0x083E0D46",
+          "symbol": "sDiceRecoveringOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0D46",
+          "end": "0x083E0D66",
+          "symbol": "sDiceRecoveringOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E0D66",
+          "end": "0x083E0D68",
+          "symbol": "sSpriteDataRaw_083E0D66",
           "type": "raw"
         },
         {
           "address": "0x083E0D68",
           "end": "0x083E0DC0",
           "symbol": "sDiceIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0DC0",
           "end": "0x083E0E18",
           "symbol": "sDiceFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0E18",
           "end": "0x083E0E38",
           "symbol": "sDiceTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0E38",
           "end": "0x083E0E50",
           "symbol": "sDiceTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0E50",
-          "end": "0x083E0ED8",
+          "end": "0x083E0E80",
           "symbol": "sDiceAlternateStunnedOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E0E80",
+          "end": "0x083E0ED8",
+          "symbol": "sSpriteDataRaw_083E0E80",
           "type": "raw"
         },
         {
           "address": "0x083E0ED8",
           "end": "0x083E0F08",
           "symbol": "sDiceGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0F08",
           "end": "0x083E0F60",
           "symbol": "sDiceStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0F60",
           "end": "0x083E0F80",
           "symbol": "sDiceAlternatePushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0F80",
           "end": "0x083E0FA0",
           "symbol": "sDicePushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0FA0",
           "end": "0x083E0FC0",
           "symbol": "sDiceAlternateCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0FC0",
           "end": "0x083E0FE0",
           "symbol": "sDiceCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0FE0",
           "end": "0x083E0FF8",
           "symbol": "sDiceAlternateTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E0FF8",
           "end": "0x083E1010",
           "symbol": "sDiceTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E1010",
-          "end": "0x083E1650",
+          "end": "0x083E1038",
           "symbol": "sDiceRecoveringOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083E1038",
+          "end": "0x083E1650",
+          "symbol": "sSpriteDataRaw_083E1038",
           "type": "raw"
         },
         {
