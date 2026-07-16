@@ -6101,81 +6101,279 @@
         },
         {
           "address": "0x083C7F20",
-          "end": "0x083C8250",
+          "end": "0x083C7F50",
           "symbol": "sMenhammerYVelocity",
           "type": "raw"
+        },
+        {
+          "address": "0x083C7F50",
+          "end": "0x083C7F6A",
+          "symbol": "sMenonoPushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7F6A",
+          "end": "0x083C7F84",
+          "symbol": "sMenonoTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7F84",
+          "end": "0x083C7F9E",
+          "symbol": "sSpriteDataRaw_083C7F84",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C7F9E",
+          "end": "0x083C7FB2",
+          "symbol": "sMenonoAttackingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7FB2",
+          "end": "0x083C7FC6",
+          "symbol": "sMenonoAttackingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7FC6",
+          "end": "0x083C7FDA",
+          "symbol": "sMenonoAttackingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7FDA",
+          "end": "0x083C7FF4",
+          "symbol": "sMenonoAttackingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C7FF4",
+          "end": "0x083C800E",
+          "symbol": "sMenonoPreparingAttackOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C800E",
+          "end": "0x083C8028",
+          "symbol": "sMenonoPreparingAttackOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8028",
+          "end": "0x083C8042",
+          "symbol": "sMenonoPreparingAttackOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8042",
+          "end": "0x083C805C",
+          "symbol": "sMenonoPreparingAttackOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C805C",
+          "end": "0x083C8076",
+          "symbol": "sMenonoWalkingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8076",
+          "end": "0x083C8090",
+          "symbol": "sMenonoWalkingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8090",
+          "end": "0x083C80AA",
+          "symbol": "sMenonoWalkingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C80AA",
+          "end": "0x083C80C4",
+          "symbol": "sMenonoWalkingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C80C4",
+          "end": "0x083C80DE",
+          "symbol": "sSpriteDataRaw_083C80C4",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C80DE",
+          "end": "0x083C80FE",
+          "symbol": "sMenonoStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C80FE",
+          "end": "0x083C811E",
+          "symbol": "sMenonoStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C811E",
+          "end": "0x083C8138",
+          "symbol": "sMenonoStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8138",
+          "end": "0x083C8158",
+          "symbol": "sMenonoFallingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8158",
+          "end": "0x083C8178",
+          "symbol": "sMenonoFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8178",
+          "end": "0x083C8192",
+          "symbol": "sMenonoFallingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8192",
+          "end": "0x083C819A",
+          "symbol": "sMenonoTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C819A",
+          "end": "0x083C81A2",
+          "symbol": "sMenonoTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C81A2",
+          "end": "0x083C81BC",
+          "symbol": "sMenonoCrushedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C81BC",
+          "end": "0x083C81C4",
+          "symbol": "sMenonoCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C81C4",
+          "end": "0x083C81CC",
+          "symbol": "sMenonoCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C81CC",
+          "end": "0x083C81EC",
+          "symbol": "sMenonoWalkingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C81EC",
+          "end": "0x083C820C",
+          "symbol": "sMenonoWalkingOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C820C",
+          "end": "0x083C8226",
+          "symbol": "sMenonoGettingUpOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8226",
+          "end": "0x083C8240",
+          "symbol": "sMenonoCrushedWhileStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8240",
+          "end": "0x083C8248",
+          "symbol": "sMenonoCrushedWhileStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C8248",
+          "end": "0x083C8250",
+          "symbol": "sMenonoCrushedWhileStunnedOam_Frame3",
+          "type": "frame"
         },
         {
           "address": "0x083C8250",
           "end": "0x083C8260",
           "symbol": "sMenonoPushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8260",
           "end": "0x083C8278",
           "symbol": "sMenonoTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8278",
           "end": "0x083C82A0",
           "symbol": "sMenonoPreparingAttackOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C82A0",
           "end": "0x083C82E8",
           "symbol": "sMenonoWalkingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C82E8",
           "end": "0x083C8318",
           "symbol": "sMenonoAttackingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8318",
           "end": "0x083C8338",
           "symbol": "sMenonoStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8338",
           "end": "0x083C8358",
           "symbol": "sMenonoFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8358",
           "end": "0x083C8370",
           "symbol": "sMenonoTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8370",
           "end": "0x083C8390",
           "symbol": "sMenonoCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C8390",
           "end": "0x083C83A0",
           "symbol": "sMenonoGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C83A0",
           "end": "0x083C83B8",
           "symbol": "sMenonoTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C83B8",
           "end": "0x083C83D8",
           "symbol": "sMenonoCrushedWhileStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083C83D8",
