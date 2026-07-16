@@ -1707,141 +1707,423 @@
         },
         {
           "address": "0x083BC8F4",
-          "end": "0x083BCEB4",
-          "symbol": "sSpriteDataRaw_083BC8F4",
+          "end": "0x083BC908",
+          "symbol": "sTogeroboOam_83BD01C_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC908",
+          "end": "0x083BC922",
+          "symbol": "sTogeroboOam_83BD1AC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC922",
+          "end": "0x083BC936",
+          "symbol": "sTogeroboOam_83BD1AC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC936",
+          "end": "0x083BC950",
+          "symbol": "sTogeroboOam_83BD1AC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC950",
+          "end": "0x083BC964",
+          "symbol": "sTogeroboOam_83BCEB4_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC964",
+          "end": "0x083BC97E",
+          "symbol": "sTogeroboOam_83BCEB4_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC97E",
+          "end": "0x083BC992",
+          "symbol": "sTogeroboOam_83BD01C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC992",
+          "end": "0x083BC9AC",
+          "symbol": "sTogeroboOam_83BD164_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC9AC",
+          "end": "0x083BC9D2",
+          "symbol": "sTogeroboOam_83BD0CC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC9D2",
+          "end": "0x083BC9F2",
+          "symbol": "sTogeroboOam_83BD0CC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BC9F2",
+          "end": "0x083BCA0E",
+          "symbol": "sSpriteDataRaw_083BC9F2",
           "type": "raw"
+        },
+        {
+          "address": "0x083BCA0E",
+          "end": "0x083BCA28",
+          "symbol": "sTogeroboOam_83BCEB4_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCA28",
+          "end": "0x083BCA48",
+          "symbol": "sTogeroboOam_83BCEB4_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCA48",
+          "end": "0x083BCA68",
+          "symbol": "sTogeroboOam_83BCEB4_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCA68",
+          "end": "0x083BCA8E",
+          "symbol": "sTogeroboOam_83BCEB4_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCA8E",
+          "end": "0x083BCAAE",
+          "symbol": "sTogeroboOam_83BCEB4_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCAAE",
+          "end": "0x083BCADA",
+          "symbol": "sTogeroboOam_83BCEFC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCADA",
+          "end": "0x083BCB00",
+          "symbol": "sTogeroboOam_83BCEFC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCB00",
+          "end": "0x083BCB2C",
+          "symbol": "sTogeroboOam_83BCEFC_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCB2C",
+          "end": "0x083BCB40",
+          "symbol": "sTogeroboOam_83BCF94_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCB40",
+          "end": "0x083BCB5A",
+          "symbol": "sTogeroboOam_83BCFAC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCB5A",
+          "end": "0x083BCB80",
+          "symbol": "sSpriteDataRaw_083BCB5A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BCB80",
+          "end": "0x083BCB94",
+          "symbol": "sTogeroboOam_83BD0EC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCB94",
+          "end": "0x083BCBDC",
+          "symbol": "sSpriteDataRaw_083BCB94",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BCBDC",
+          "end": "0x083BCBE4",
+          "symbol": "sTogeroboOam_83BCFD4_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCBE4",
+          "end": "0x083BCBF8",
+          "symbol": "sTogeroboOam_83BCFD4_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCBF8",
+          "end": "0x083BCC1E",
+          "symbol": "sTogeroboOam_83BCFD4_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCC1E",
+          "end": "0x083BCC38",
+          "symbol": "sTogeroboOam_83BCFD4_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCC38",
+          "end": "0x083BCC46",
+          "symbol": "sTogeroboOam_83BCFD4_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCC46",
+          "end": "0x083BCC5A",
+          "symbol": "sTogeroboOam_83BCFD4_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCC5A",
+          "end": "0x083BCC90",
+          "symbol": "sSpriteDataRaw_083BCC5A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083BCC90",
+          "end": "0x083BCCB6",
+          "symbol": "sTogeroboOam_83BCEB4_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCCB6",
+          "end": "0x083BCCDC",
+          "symbol": "sTogeroboOam_83BCF4C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCCDC",
+          "end": "0x083BCD08",
+          "symbol": "sTogeroboOam_83BCF4C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCD08",
+          "end": "0x083BCD2E",
+          "symbol": "sTogeroboOam_83BCF4C_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCD2E",
+          "end": "0x083BCD5A",
+          "symbol": "sTogeroboOam_83BCF4C_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCD5A",
+          "end": "0x083BCD6E",
+          "symbol": "sTogeroboOam_83BD09C_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCD6E",
+          "end": "0x083BCD94",
+          "symbol": "sTogeroboOam_83BD14C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCD94",
+          "end": "0x083BCDBA",
+          "symbol": "sTogeroboOam_83BD0EC_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCDBA",
+          "end": "0x083BCDE0",
+          "symbol": "sTogeroboOam_83BD0EC_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCDE0",
+          "end": "0x083BCDFA",
+          "symbol": "sTogeroboOam_83BD04C_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCDFA",
+          "end": "0x083BCE14",
+          "symbol": "sTogeroboOam_83BD04C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCE14",
+          "end": "0x083BCE2E",
+          "symbol": "sTogeroboOam_83BD04C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCE2E",
+          "end": "0x083BCE48",
+          "symbol": "sTogeroboOam_83BD04C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCE48",
+          "end": "0x083BCE68",
+          "symbol": "sTogeroboOam_83BD074_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCE68",
+          "end": "0x083BCE8E",
+          "symbol": "sTogeroboOam_83BD074_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BCE8E",
+          "end": "0x083BCEB4",
+          "symbol": "sTogeroboOam_83BD09C_Frame1",
+          "type": "frame"
         },
         {
           "address": "0x083BCEB4",
           "end": "0x083BCEFC",
-          "symbol": "sUnk_83BCEB4",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCEB4",
+          "type": "anim"
         },
         {
           "address": "0x083BCEFC",
           "end": "0x083BCF24",
-          "symbol": "sUnk_83BCEFC",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCEFC",
+          "type": "anim"
         },
         {
           "address": "0x083BCF24",
           "end": "0x083BCF4C",
-          "symbol": "sUnk_83BCF24",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCF24",
+          "type": "anim"
         },
         {
           "address": "0x083BCF4C",
           "end": "0x083BCF94",
-          "symbol": "sUnk_83BCF4C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCF4C",
+          "type": "anim"
         },
         {
           "address": "0x083BCF94",
           "end": "0x083BCFAC",
-          "symbol": "sUnk_83BCF94",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCF94",
+          "type": "anim"
         },
         {
           "address": "0x083BCFAC",
           "end": "0x083BCFBC",
-          "symbol": "sUnk_83BCFAC",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCFAC",
+          "type": "anim"
         },
         {
           "address": "0x083BCFBC",
           "end": "0x083BCFD4",
-          "symbol": "sUnk_83BCFBC",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCFBC",
+          "type": "anim"
         },
         {
           "address": "0x083BCFD4",
           "end": "0x083BD00C",
-          "symbol": "sUnk_83BCFD4",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BCFD4",
+          "type": "anim"
         },
         {
           "address": "0x083BD00C",
           "end": "0x083BD01C",
-          "symbol": "sUnk_83BD00C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD00C",
+          "type": "anim"
         },
         {
           "address": "0x083BD01C",
           "end": "0x083BD04C",
-          "symbol": "sUnk_83BD01C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD01C",
+          "type": "anim"
         },
         {
           "address": "0x083BD04C",
           "end": "0x083BD074",
-          "symbol": "sUnk_83BD04C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD04C",
+          "type": "anim"
         },
         {
           "address": "0x083BD074",
           "end": "0x083BD09C",
-          "symbol": "sUnk_83BD074",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD074",
+          "type": "anim"
         },
         {
           "address": "0x083BD09C",
           "end": "0x083BD0CC",
-          "symbol": "sUnk_83BD09C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD09C",
+          "type": "anim"
         },
         {
           "address": "0x083BD0CC",
           "end": "0x083BD0EC",
-          "symbol": "sUnk_83BD0CC",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD0CC",
+          "type": "anim"
         },
         {
           "address": "0x083BD0EC",
           "end": "0x083BD10C",
-          "symbol": "sUnk_83BD0EC",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD0EC",
+          "type": "anim"
         },
         {
           "address": "0x083BD10C",
+          "end": "0x083BD124",
+          "symbol": "sTogeroboOam_83BD10C",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BD124",
           "end": "0x083BD134",
-          "symbol": "sUnk_83BD10C",
+          "symbol": "sSpriteDataRaw_083BD124",
           "type": "raw"
         },
         {
           "address": "0x083BD134",
           "end": "0x083BD14C",
-          "symbol": "sUnk_83BD134",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD134",
+          "type": "anim"
         },
         {
           "address": "0x083BD14C",
           "end": "0x083BD164",
-          "symbol": "sUnk_83BD14C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD14C",
+          "type": "anim"
         },
         {
           "address": "0x083BD164",
           "end": "0x083BD18C",
-          "symbol": "sUnk_83BD164",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD164",
+          "type": "anim"
         },
         {
           "address": "0x083BD18C",
           "end": "0x083BD19C",
-          "symbol": "sUnk_83BD18C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD18C",
+          "type": "anim"
         },
         {
           "address": "0x083BD19C",
           "end": "0x083BD1AC",
-          "symbol": "sUnk_83BD19C",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD19C",
+          "type": "anim"
         },
         {
           "address": "0x083BD1AC",
           "end": "0x083BD1D4",
-          "symbol": "sUnk_83BD1AC",
-          "type": "raw"
+          "symbol": "sTogeroboOam_83BD1AC",
+          "type": "anim"
         },
         {
           "address": "0x083BD1D4",
@@ -17993,6 +18275,28 @@
     "sUnk_83B4534": "sRotatingPlatformOam_83B4534",
     "sUnk_83B4544": "sRotatingPlatformOam_83B4544",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
+    "sUnk_83BCEB4": "sTogeroboOam_83BCEB4",
+    "sUnk_83BCEFC": "sTogeroboOam_83BCEFC",
+    "sUnk_83BCF24": "sTogeroboOam_83BCF24",
+    "sUnk_83BCF4C": "sTogeroboOam_83BCF4C",
+    "sUnk_83BCF94": "sTogeroboOam_83BCF94",
+    "sUnk_83BCFAC": "sTogeroboOam_83BCFAC",
+    "sUnk_83BCFBC": "sTogeroboOam_83BCFBC",
+    "sUnk_83BCFD4": "sTogeroboOam_83BCFD4",
+    "sUnk_83BD00C": "sTogeroboOam_83BD00C",
+    "sUnk_83BD01C": "sTogeroboOam_83BD01C",
+    "sUnk_83BD04C": "sTogeroboOam_83BD04C",
+    "sUnk_83BD074": "sTogeroboOam_83BD074",
+    "sUnk_83BD09C": "sTogeroboOam_83BD09C",
+    "sUnk_83BD0CC": "sTogeroboOam_83BD0CC",
+    "sUnk_83BD0EC": "sTogeroboOam_83BD0EC",
+    "sUnk_83BD10C": "sTogeroboOam_83BD10C",
+    "sUnk_83BD134": "sTogeroboOam_83BD134",
+    "sUnk_83BD14C": "sTogeroboOam_83BD14C",
+    "sUnk_83BD164": "sTogeroboOam_83BD164",
+    "sUnk_83BD18C": "sTogeroboOam_83BD18C",
+    "sUnk_83BD19C": "sTogeroboOam_83BD19C",
+    "sUnk_83BD1AC": "sTogeroboOam_83BD1AC",
     "sUnk_83C2C14": "sSpoiledRottenOam_83C2C14",
     "sUnk_83C2C4C": "sSpoiledRottenOam_83C2C4C",
     "sUnk_83C2C84": "sSpoiledRottenOam_83C2C84",
