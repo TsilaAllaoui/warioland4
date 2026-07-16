@@ -2109,26 +2109,68 @@
         },
         {
           "address": "0x083BD5E4",
+          "end": "0x083BD5F2",
+          "symbol": "sTogemasukuIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD5F2",
+          "end": "0x083BD600",
+          "symbol": "sTogemasukuDefeatedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD600",
+          "end": "0x083BD60E",
+          "symbol": "sTogemasukuRespawningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD60E",
+          "end": "0x083BD61C",
+          "symbol": "sTogemasukuRespawningOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD61C",
+          "end": "0x083BD630",
+          "symbol": "sTogemasukuIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD630",
+          "end": "0x083BD644",
+          "symbol": "sTogemasukuIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083BD644",
           "end": "0x083BD660",
-          "symbol": "sSpriteDataRaw_083BD5E4",
+          "symbol": "sSpriteDataRaw_083BD644",
           "type": "raw"
         },
         {
           "address": "0x083BD660",
           "end": "0x083BD6D8",
           "symbol": "sTogemasukuIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD6D8",
           "end": "0x083BD6F0",
           "symbol": "sTogemasukuDefeatedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083BD6F0",
-          "end": "0x083BD8C0",
+          "end": "0x083BD788",
           "symbol": "sTogemasukuRespawningOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083BD788",
+          "end": "0x083BD8C0",
+          "symbol": "sSpriteDataRaw_083BD788",
           "type": "raw"
         },
         {
