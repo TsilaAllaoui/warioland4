@@ -5393,75 +5393,519 @@
         },
         {
           "address": "0x083D172C",
-          "end": "0x083D204C",
+          "end": "0x083D1748",
           "symbol": "sYetiTackledOrDefeatedOam",
           "type": "raw"
+        },
+        {
+          "address": "0x083D1748",
+          "end": "0x083D1756",
+          "symbol": "sBowlerIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1756",
+          "end": "0x083D1764",
+          "symbol": "sBowlerTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1764",
+          "end": "0x083D1784",
+          "symbol": "sBowlerThrowOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1784",
+          "end": "0x083D179E",
+          "symbol": "sBowlerThrowOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D179E",
+          "end": "0x083D17B2",
+          "symbol": "sBowlerThrowOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D17B2",
+          "end": "0x083D17D2",
+          "symbol": "sBowlerThrowOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D17D2",
+          "end": "0x083D17EC",
+          "symbol": "sBowlerThrowOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D17EC",
+          "end": "0x083D1806",
+          "symbol": "sBowlerThrowOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1806",
+          "end": "0x083D1820",
+          "symbol": "sBowlerThrowOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1820",
+          "end": "0x083D183A",
+          "symbol": "sBowlerThrowOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D183A",
+          "end": "0x083D1854",
+          "symbol": "sBowlerThrowOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1854",
+          "end": "0x083D186E",
+          "symbol": "sBowlerThrowOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D186E",
+          "end": "0x083D1888",
+          "symbol": "sBowlerThrowOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1888",
+          "end": "0x083D18A2",
+          "symbol": "sBowlerThrowOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D18A2",
+          "end": "0x083D18BC",
+          "symbol": "sBowlerThrowOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D18BC",
+          "end": "0x083D18D6",
+          "symbol": "sBowlerThrowOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D18D6",
+          "end": "0x083D18F0",
+          "symbol": "sBowlerThrowOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D18F0",
+          "end": "0x083D1910",
+          "symbol": "sBowlerThrowOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1910",
+          "end": "0x083D1930",
+          "symbol": "sBowlerThrowOam_Frame18",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1930",
+          "end": "0x083D1950",
+          "symbol": "sBowlerThrowOam_Frame19",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1950",
+          "end": "0x083D1970",
+          "symbol": "sBowlerThrowOam_Frame20",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1970",
+          "end": "0x083D1990",
+          "symbol": "sBowlerThrowOam_Frame21",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1990",
+          "end": "0x083D19B0",
+          "symbol": "sBowlerThrowOam_Frame22",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D19B0",
+          "end": "0x083D19D0",
+          "symbol": "sBowlerThrowOam_Frame23",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D19D0",
+          "end": "0x083D19F0",
+          "symbol": "sBowlerThrowOam_Frame24",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D19F0",
+          "end": "0x083D1A10",
+          "symbol": "sBowlerThrowOam_Frame25",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1A10",
+          "end": "0x083D1A30",
+          "symbol": "sBowlerThrowOam_Frame26",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1A30",
+          "end": "0x083D1A44",
+          "symbol": "sBowlerThrowOam_Frame27",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1A44",
+          "end": "0x083D1A58",
+          "symbol": "sBowlerThrowOam_Frame28",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1A58",
+          "end": "0x083D1A6C",
+          "symbol": "sBowlerThrowOam_Frame29",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1A6C",
+          "end": "0x083D1A86",
+          "symbol": "sBowlerThrowOam_Frame30",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1A86",
+          "end": "0x083D1AA0",
+          "symbol": "sBowlerThrowOam_Frame31",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1AA0",
+          "end": "0x083D1AB4",
+          "symbol": "sBowlerThrowOam_Frame33",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1AB4",
+          "end": "0x083D1AC8",
+          "symbol": "sBowlerThrowOam_Frame34",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1AC8",
+          "end": "0x083D1AE2",
+          "symbol": "sBowlerThrowOam_Frame35",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1AE2",
+          "end": "0x083D1AFC",
+          "symbol": "sBowlerThrowOam_Frame36",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1AFC",
+          "end": "0x083D1B1C",
+          "symbol": "sBowlerThrowOam_Frame37",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1B1C",
+          "end": "0x083D1B3C",
+          "symbol": "sBowlerThrowOam_Frame38",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1B3C",
+          "end": "0x083D1B4A",
+          "symbol": "sBowlerThrowOam_Frame40",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1B4A",
+          "end": "0x083D1B58",
+          "symbol": "sBowlerThrowOam_Frame41",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1B58",
+          "end": "0x083D1B72",
+          "symbol": "sBowlerWalkingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1B72",
+          "end": "0x083D1B8C",
+          "symbol": "sBowlerWalkingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1B8C",
+          "end": "0x083D1BA6",
+          "symbol": "sBowlerWalkingOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1BA6",
+          "end": "0x083D1BC0",
+          "symbol": "sBowlerWalkingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1BC0",
+          "end": "0x083D1BDA",
+          "symbol": "sBowlerWalkingOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1BDA",
+          "end": "0x083D1BEE",
+          "symbol": "sSpriteDataRaw_083D1BDA",
+          "type": "raw"
+        },
+        {
+          "address": "0x083D1BEE",
+          "end": "0x083D1BF6",
+          "symbol": "sBowlerDyingOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1BF6",
+          "end": "0x083D1C0A",
+          "symbol": "sBowlerKnockbackRightOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1C0A",
+          "end": "0x083D1C2A",
+          "symbol": "sBowlerKnockbackUpOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1C2A",
+          "end": "0x083D1C4A",
+          "symbol": "sBowlerKnockbackUpOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1C4A",
+          "end": "0x083D1C52",
+          "symbol": "sBowlerBallOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1C52",
+          "end": "0x083D1C6C",
+          "symbol": "sBowlerTransformOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1C6C",
+          "end": "0x083D1C86",
+          "symbol": "sBowlerTransformOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1C86",
+          "end": "0x083D1CA0",
+          "symbol": "sBowlerTransformOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1CA0",
+          "end": "0x083D1CC6",
+          "symbol": "sBowlerTransformOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1CC6",
+          "end": "0x083D1CEC",
+          "symbol": "sBowlerTransformOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1CEC",
+          "end": "0x083D1D12",
+          "symbol": "sBowlerTransformOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1D12",
+          "end": "0x083D1D2C",
+          "symbol": "sBowlerTransformOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1D2C",
+          "end": "0x083D1D58",
+          "symbol": "sBowlerTransformOam_Frame13",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1D58",
+          "end": "0x083D1D84",
+          "symbol": "sBowlerTransformOam_Frame14",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1D84",
+          "end": "0x083D1DB0",
+          "symbol": "sBowlerTransformOam_Frame15",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1DB0",
+          "end": "0x083D1DDC",
+          "symbol": "sBowlerTransformOam_Frame16",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1DDC",
+          "end": "0x083D1E08",
+          "symbol": "sBowlerTransformOam_Frame17",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1E08",
+          "end": "0x083D1E34",
+          "symbol": "sBowlerTransformOam_Frame18",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1E34",
+          "end": "0x083D1E60",
+          "symbol": "sBowlerTransformOam_Frame19",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1E60",
+          "end": "0x083D1E8C",
+          "symbol": "sBowlerTransformOam_Frame20",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1E8C",
+          "end": "0x083D1EAC",
+          "symbol": "sBowlerTransformOam_Frame28",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1EAC",
+          "end": "0x083D1ED2",
+          "symbol": "sBowlerTransformOam_Frame29",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1ED2",
+          "end": "0x083D1EF8",
+          "symbol": "sBowlerTransformOam_Frame30",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1EF8",
+          "end": "0x083D1F42",
+          "symbol": "sBowlerTransformOam_Frame31",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1F42",
+          "end": "0x083D1F92",
+          "symbol": "sBowlerTransformOam_Frame32",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1F92",
+          "end": "0x083D1FE2",
+          "symbol": "sBowlerTransformOam_Frame33",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D1FE2",
+          "end": "0x083D203E",
+          "symbol": "sBowlerTransformOam_Frame34",
+          "type": "frame"
+        },
+        {
+          "address": "0x083D203E",
+          "end": "0x083D204C",
+          "symbol": "sBowlerKnockbackLeftOam_Frame2",
+          "type": "frame"
         },
         {
           "address": "0x083D204C",
           "end": "0x083D205C",
           "symbol": "sBowlerIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D205C",
           "end": "0x083D2074",
           "symbol": "sBowlerTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2074",
           "end": "0x083D208C",
           "symbol": "sBowlerTurnAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D208C",
           "end": "0x083D21E4",
           "symbol": "sBowlerThrowOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D21E4",
           "end": "0x083D221C",
           "symbol": "sBowlerWalkingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D221C",
           "end": "0x083D222C",
           "symbol": "sBowlerDyingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D222C",
           "end": "0x083D2244",
           "symbol": "sBowlerKnockbackLeftOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2244",
           "end": "0x083D2264",
           "symbol": "sBowlerKnockbackUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2264",
           "end": "0x083D2274",
           "symbol": "sBowlerBallOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D2274",
           "end": "0x083D238C",
           "symbol": "sBowlerTransformOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D238C",
           "end": "0x083D23A4",
           "symbol": "sBowlerKnockbackRightOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083D23A4",
