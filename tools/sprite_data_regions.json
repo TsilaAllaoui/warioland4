@@ -4397,50 +4397,200 @@
         },
         {
           "address": "0x083C4F68",
-          "end": "0x083C5364",
+          "end": "0x083C4F78",
           "symbol": "sTogetogeIdleOam",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C4F78",
+          "end": "0x083C4FB6",
+          "symbol": "sGhostOam_83C5364_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4FB6",
+          "end": "0x083C4FF4",
+          "symbol": "sGhostOam_83C5364_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C4FF4",
+          "end": "0x083C5032",
+          "symbol": "sGhostOam_83C5364_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5032",
+          "end": "0x083C5070",
+          "symbol": "sGhostOam_83C5364_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5070",
+          "end": "0x083C50AE",
+          "symbol": "sGhostOam_83C538C_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C50AE",
+          "end": "0x083C50EC",
+          "symbol": "sGhostOam_83C538C_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C50EC",
+          "end": "0x083C512A",
+          "symbol": "sGhostOam_83C538C_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C512A",
+          "end": "0x083C5168",
+          "symbol": "sGhostOam_83C538C_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5168",
+          "end": "0x083C51A6",
+          "symbol": "sGhostOam_83C53B4_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C51A6",
+          "end": "0x083C51F0",
+          "symbol": "sGhostOam_83C53C4_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C51F0",
+          "end": "0x083C523A",
+          "symbol": "sGhostOam_83C53C4_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C523A",
+          "end": "0x083C5284",
+          "symbol": "sGhostOam_83C53C4_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5284",
+          "end": "0x083C52CE",
+          "symbol": "sGhostOam_83C53C4_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C52CE",
+          "end": "0x083C5318",
+          "symbol": "sGhostOam_83C53C4_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5318",
+          "end": "0x083C5362",
+          "symbol": "sGhostOam_83C53FC_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5362",
+          "end": "0x083C5364",
+          "symbol": "sSpriteDataRaw_083C5362",
           "type": "raw"
         },
         {
           "address": "0x083C5364",
           "end": "0x083C538C",
-          "symbol": "sUnk_83C5364",
-          "type": "raw"
+          "symbol": "sGhostOam_83C5364",
+          "type": "anim"
         },
         {
           "address": "0x083C538C",
           "end": "0x083C53B4",
-          "symbol": "sUnk_83C538C",
-          "type": "raw"
+          "symbol": "sGhostOam_83C538C",
+          "type": "anim"
         },
         {
           "address": "0x083C53B4",
           "end": "0x083C53C4",
-          "symbol": "sUnk_83C53B4",
-          "type": "raw"
+          "symbol": "sGhostOam_83C53B4",
+          "type": "anim"
         },
         {
           "address": "0x083C53C4",
           "end": "0x083C53FC",
-          "symbol": "sUnk_83C53C4",
-          "type": "raw"
+          "symbol": "sGhostOam_83C53C4",
+          "type": "anim"
         },
         {
           "address": "0x083C53FC",
+          "end": "0x083C540C",
+          "symbol": "sGhostOam_83C53FC",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C540C",
+          "end": "0x083C5426",
+          "symbol": "sGhostOam_83C5528_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5426",
+          "end": "0x083C5440",
+          "symbol": "sGhostOam_83C5528_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C5440",
+          "end": "0x083C545A",
+          "symbol": "sGhostOam_83C5528_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C545A",
+          "end": "0x083C54A8",
+          "symbol": "sSpriteDataRaw_083C545A",
+          "type": "raw"
+        },
+        {
+          "address": "0x083C54A8",
+          "end": "0x083C54C8",
+          "symbol": "sGhostOam_83C5568_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C54C8",
+          "end": "0x083C54E8",
+          "symbol": "sGhostOam_83C5568_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083C54E8",
           "end": "0x083C5528",
-          "symbol": "sUnk_83C53FC",
+          "symbol": "sSpriteDataRaw_083C54E8",
           "type": "raw"
         },
         {
           "address": "0x083C5528",
+          "end": "0x083C5548",
+          "symbol": "sGhostOam_83C5528",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C5548",
           "end": "0x083C5568",
-          "symbol": "sUnk_83C5528",
+          "symbol": "sSpriteDataRaw_083C5548",
           "type": "raw"
         },
         {
           "address": "0x083C5568",
+          "end": "0x083C5580",
+          "symbol": "sGhostOam_83C5568",
+          "type": "anim"
+        },
+        {
+          "address": "0x083C5580",
           "end": "0x083C5598",
-          "symbol": "sUnk_83C5568",
+          "symbol": "sSpriteDataRaw_083C5580",
           "type": "raw"
         },
         {
@@ -12427,6 +12577,13 @@
     "sButatabiTurnEndOam": "sButatabiTurnAroundOam",
     "sButatabiTurnStartOam": "sButatabiTurningOam",
     "sUnk_83BA7BC": "sBossTreasureOam_83BA7BC",
+    "sUnk_83C5364": "sGhostOam_83C5364",
+    "sUnk_83C538C": "sGhostOam_83C538C",
+    "sUnk_83C53B4": "sGhostOam_83C53B4",
+    "sUnk_83C53C4": "sGhostOam_83C53C4",
+    "sUnk_83C53FC": "sGhostOam_83C53FC",
+    "sUnk_83C5528": "sGhostOam_83C5528",
+    "sUnk_83C5568": "sGhostOam_83C5568",
     "sUnk_83C62FC": "sBeezleyOam_83C62FC",
     "sUnk_83C6384": "sBeezleyOam_83C6384",
     "sUnk_83C63EC": "sBeezleyOam_83C63EC",
