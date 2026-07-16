@@ -13811,81 +13811,537 @@
         },
         {
           "address": "0x083E2BA4",
-          "end": "0x083E3878",
+          "end": "0x083E2BEC",
           "symbol": "sSpriteDataRaw_083E2BA4",
           "type": "raw"
+        },
+        {
+          "address": "0x083E2BEC",
+          "end": "0x083E2C12",
+          "symbol": "sPetbottomIdleOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2C12",
+          "end": "0x083E2C3E",
+          "symbol": "sPetbottomIdleOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2C3E",
+          "end": "0x083E2C64",
+          "symbol": "sPetbottomIdleOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2C64",
+          "end": "0x083E2C90",
+          "symbol": "sPetbottomIdleOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2C90",
+          "end": "0x083E2CB6",
+          "symbol": "sPetbottomIdleOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2CB6",
+          "end": "0x083E2CE2",
+          "symbol": "sPetbottomIdleOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2CE2",
+          "end": "0x083E2D08",
+          "symbol": "sPetbottomIdleOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2D08",
+          "end": "0x083E2D34",
+          "symbol": "sPetbottomIdleOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2D34",
+          "end": "0x083E2D5A",
+          "symbol": "sPetbottomIdleOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2D5A",
+          "end": "0x083E2D86",
+          "symbol": "sPetbottomIdleOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2D86",
+          "end": "0x083E2DAC",
+          "symbol": "sPetbottomIdleOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2DAC",
+          "end": "0x083E2DD8",
+          "symbol": "sPetbottomIdleOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2DD8",
+          "end": "0x083E2E04",
+          "symbol": "sPetbottomFallingOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2E04",
+          "end": "0x083E2E30",
+          "symbol": "sPetbottomFallingOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2E30",
+          "end": "0x083E2E5C",
+          "symbol": "sPetbottomFallingOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2E5C",
+          "end": "0x083E2E88",
+          "symbol": "sPetbottomFallingOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2E88",
+          "end": "0x083E2EB4",
+          "symbol": "sPetbottomFallingOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2EB4",
+          "end": "0x083E2EE0",
+          "symbol": "sPetbottomFallingOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2EE0",
+          "end": "0x083E2F06",
+          "symbol": "sPetbottomTurningOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2F06",
+          "end": "0x083E2F32",
+          "symbol": "sPetbottomTurningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2F32",
+          "end": "0x083E2F4C",
+          "symbol": "sPetbottomTurningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2F4C",
+          "end": "0x083E2F66",
+          "symbol": "sPetbottomTurningOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2F66",
+          "end": "0x083E2F86",
+          "symbol": "sPetbottomTurningAroundOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2F86",
+          "end": "0x083E2FB2",
+          "symbol": "sPetbottomTurningAroundOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2FB2",
+          "end": "0x083E2FDE",
+          "symbol": "sPetbottomTurningAroundOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E2FDE",
+          "end": "0x083E300A",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E300A",
+          "end": "0x083E3036",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3036",
+          "end": "0x083E3062",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3062",
+          "end": "0x083E308E",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E308E",
+          "end": "0x083E30BA",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E30BA",
+          "end": "0x083E30E6",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E30E6",
+          "end": "0x083E3112",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3112",
+          "end": "0x083E313E",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E313E",
+          "end": "0x083E316A",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E316A",
+          "end": "0x083E3196",
+          "symbol": "sPetbottomGettingUpOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3196",
+          "end": "0x083E31C2",
+          "symbol": "sPetbottomGettingUpOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E31C2",
+          "end": "0x083E31EE",
+          "symbol": "sPetbottomGettingUpOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E31EE",
+          "end": "0x083E321A",
+          "symbol": "sPetbottomGettingUpOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E321A",
+          "end": "0x083E3246",
+          "symbol": "sPetbottomStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3246",
+          "end": "0x083E326C",
+          "symbol": "sPetbottomStunnedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E326C",
+          "end": "0x083E3298",
+          "symbol": "sPetbottomStunnedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3298",
+          "end": "0x083E32BE",
+          "symbol": "sPetbottomStunnedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E32BE",
+          "end": "0x083E32EA",
+          "symbol": "sPetbottomStunnedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E32EA",
+          "end": "0x083E3310",
+          "symbol": "sPetbottomStunnedOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3310",
+          "end": "0x083E333C",
+          "symbol": "sPetbottomStunnedOam_Frame7",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E333C",
+          "end": "0x083E3362",
+          "symbol": "sPetbottomStunnedOam_Frame8",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3362",
+          "end": "0x083E338E",
+          "symbol": "sPetbottomStunnedOam_Frame9",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E338E",
+          "end": "0x083E33B4",
+          "symbol": "sPetbottomStunnedOam_Frame10",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E33B4",
+          "end": "0x083E33E0",
+          "symbol": "sPetbottomStunnedOam_Frame11",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E33E0",
+          "end": "0x083E3406",
+          "symbol": "sPetbottomStunnedOam_Frame12",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3406",
+          "end": "0x083E3432",
+          "symbol": "sSpriteDataRaw_083E3406",
+          "type": "raw"
+        },
+        {
+          "address": "0x083E3432",
+          "end": "0x083E345E",
+          "symbol": "sPetbottomAlternatePushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E345E",
+          "end": "0x083E348A",
+          "symbol": "sPetbottomAlternatePushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E348A",
+          "end": "0x083E34B6",
+          "symbol": "sPetbottomAlternatePushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E34B6",
+          "end": "0x083E34E2",
+          "symbol": "sPetbottomPushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E34E2",
+          "end": "0x083E350E",
+          "symbol": "sPetbottomPushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E350E",
+          "end": "0x083E353A",
+          "symbol": "sPetbottomPushedOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E353A",
+          "end": "0x083E3566",
+          "symbol": "sPetbottomPushedOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3566",
+          "end": "0x083E358C",
+          "symbol": "sPetbottomCrushedOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E358C",
+          "end": "0x083E35B8",
+          "symbol": "sPetbottomCrushedOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E35B8",
+          "end": "0x083E35E4",
+          "symbol": "sPetbottomTackledOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E35E4",
+          "end": "0x083E3610",
+          "symbol": "sPetbottomTackledOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3610",
+          "end": "0x083E363C",
+          "symbol": "sPetbottomTackledOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E363C",
+          "end": "0x083E3668",
+          "symbol": "sPetbottomTackledOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3668",
+          "end": "0x083E3694",
+          "symbol": "sPetbottomTackledOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3694",
+          "end": "0x083E36C0",
+          "symbol": "sPetbottomTackledOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E36C0",
+          "end": "0x083E36EC",
+          "symbol": "sPetbottomRecoveringOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E36EC",
+          "end": "0x083E3718",
+          "symbol": "sPetbottomRecoveringOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3718",
+          "end": "0x083E3744",
+          "symbol": "sPetbottomRecoveringOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3744",
+          "end": "0x083E3770",
+          "symbol": "sPetbottomRecoveringOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3770",
+          "end": "0x083E379C",
+          "symbol": "sPetbottomRecoveringOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E379C",
+          "end": "0x083E37C8",
+          "symbol": "sPetbottomRecoveringOam_Frame6",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E37C8",
+          "end": "0x083E37F4",
+          "symbol": "sPetbottomAlternateStunnedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E37F4",
+          "end": "0x083E3820",
+          "symbol": "sPetbottomTurningAroundOam_Frame4",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E3820",
+          "end": "0x083E384C",
+          "symbol": "sPetbottomTurningAroundOam_Frame5",
+          "type": "frame"
+        },
+        {
+          "address": "0x083E384C",
+          "end": "0x083E3878",
+          "symbol": "sPetbottomGettingUpOam_Frame11",
+          "type": "frame"
         },
         {
           "address": "0x083E3878",
           "end": "0x083E38E0",
           "symbol": "sPetbottomIdleOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E38E0",
           "end": "0x083E3948",
           "symbol": "sPetbottomFallingOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3948",
           "end": "0x083E3970",
           "symbol": "sPetbottomTurningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3970",
           "end": "0x083E39A0",
           "symbol": "sPetbottomTurningAroundOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E39A0",
           "end": "0x083E39F8",
           "symbol": "sPetbottomAlternateStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E39F8",
           "end": "0x083E3A58",
           "symbol": "sPetbottomGettingUpOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3A58",
           "end": "0x083E3AC0",
           "symbol": "sPetbottomStunnedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3AC0",
           "end": "0x083E3AE8",
           "symbol": "sPetbottomAlternatePushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3AE8",
           "end": "0x083E3B20",
           "symbol": "sPetbottomPushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3B20",
           "end": "0x083E3B40",
           "symbol": "sPetbottomCrushedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3B40",
           "end": "0x083E3B78",
           "symbol": "sPetbottomTackledOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3B78",
           "end": "0x083E3BB0",
           "symbol": "sPetbottomRecoveringOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083E3BB0",
