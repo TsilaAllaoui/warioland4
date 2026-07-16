@@ -10079,26 +10079,56 @@
         },
         {
           "address": "0x083DD678",
-          "end": "0x083DD720",
+          "end": "0x083DD688",
           "symbol": "sPencilRedOam",
           "type": "raw"
+        },
+        {
+          "address": "0x083DD688",
+          "end": "0x083DD6BA",
+          "symbol": "sFoldingDoorClosedOam_Frame1",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD6BA",
+          "end": "0x083DD6EC",
+          "symbol": "sFoldingDoorOpeningOam_Frame2",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD6EC",
+          "end": "0x083DD706",
+          "symbol": "sFoldingDoorOpeningOam_Frame3",
+          "type": "frame"
+        },
+        {
+          "address": "0x083DD706",
+          "end": "0x083DD720",
+          "symbol": "sFoldingDoorOpeningOam_Frame4",
+          "type": "frame"
         },
         {
           "address": "0x083DD720",
           "end": "0x083DD730",
           "symbol": "sFoldingDoorClosedOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DD730",
           "end": "0x083DD758",
           "symbol": "sFoldingDoorOpeningOam",
-          "type": "raw"
+          "type": "anim"
         },
         {
           "address": "0x083DD758",
-          "end": "0x083DDB14",
+          "end": "0x083DD768",
           "symbol": "sFoldingDoorOpenOam",
+          "type": "anim"
+        },
+        {
+          "address": "0x083DD768",
+          "end": "0x083DDB14",
+          "symbol": "sSpriteDataRaw_083DD768",
           "type": "raw"
         },
         {
