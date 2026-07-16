@@ -640,7 +640,7 @@ SECTIONS {
         obj/sprite_ai/disasm_cuckoo_condor.o(.text);
         obj/sprite_ai/totsumen.o(.text);
         obj/sprite_ai/pig_head_statue.o(.text);
-        obj/sprite_ai/disasm_moguramen.o(.text);
+        obj/sprite_ai/moguramen.o(.text);
         obj/sprite_ai/spiky.o(.text);
         obj/sprite_ai/bubble.o(.text);
         obj/sprite_ai/togerobo.o(.text);
