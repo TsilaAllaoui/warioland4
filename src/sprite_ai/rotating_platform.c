@@ -195,7 +195,7 @@ void func_80284BC(void)
     register u8 *caseWork asm("r0");
     register u32 caseDirection asm("r1");
 
-    block = func_806DD44(
+    block = GetBg2CollisionTypeAtTile(
         gCurrentSprite.yPosition >> 6,
         gCurrentSprite.xPosition >> 6
     );
@@ -287,7 +287,7 @@ void func_80285A4(void)
     register u8 *caseWork asm("r0");
     register u32 caseDirection asm("r1");
 
-    block = func_806DD44(
+    block = GetBg2CollisionTypeAtTile(
         gCurrentSprite.yPosition >> 6,
         gCurrentSprite.xPosition >> 6
     );
@@ -390,7 +390,7 @@ void func_802868C(void)
 {
     s32 block;
 
-    block = func_806DD44(
+    block = GetBg2CollisionTypeAtTile(
         gCurrentSprite.yPosition >> 6,
         ((s32)gCurrentSprite.xPosition - 128) / 64
     );
@@ -405,7 +405,7 @@ void func_80286C0(void)
 {
     s32 block;
 
-    block = func_806DD44(
+    block = GetBg2CollisionTypeAtTile(
         gCurrentSprite.yPosition >> 6,
         ((s32)gCurrentSprite.xPosition + 128) / 64
     );

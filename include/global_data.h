@@ -301,6 +301,9 @@ extern u8 gUnk_30000F4[6];
 extern u8 gUnk_30000FC;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+extern u8 gUnk_3000023;
+extern struct BackgroundTileTables gUnk_30031F4;
+extern u8 gUnk_300342C;
 
 /* 0x03000544 */
 extern u8 gUnk_3000544[];

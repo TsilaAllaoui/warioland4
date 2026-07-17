@@ -336,7 +336,7 @@ void ProcessBouncyWarioCollision(void)
         s32 collisionResult;
 
         wario = &gWarioData;
-        collisionResult = func_806DAC0(wario->yPosition - 48, wario->xPosition);
+        collisionResult = GetBackgroundCollisionAtPosition(wario->yPosition - 48, wario->xPosition);
         if ((collisionResult & 0xFF) == 1) {
             wario->reaction = REACTION_WATER;
             wario->damageTimer = 0x60;

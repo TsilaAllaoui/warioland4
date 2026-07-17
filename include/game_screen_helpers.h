@@ -71,5 +71,9 @@ void ProcessRoomBackgrounds(void);
 void ProcessRoomWindowEffect(void);
 void UpdateRoomAnimatedGraphics(void);
 void DrawGameScreen(void);
+void func_806B410(void);
+void func_806BF88(void);
+void GameScreenDraw(void);
+void FadeOutMusicForPause(void);
 
 #endif  // GAME_SCREEN_HELPERS_H

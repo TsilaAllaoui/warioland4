@@ -580,7 +580,7 @@ void ProcessFatWarioCollision(void)
     {
         register struct WarioData *currentWario asm("r5");
         currentWario = &gWarioData;
-        collisionResult = func_806DAC0(currentWario->yPosition - 0x30, currentWario->xPosition);
+        collisionResult = GetBackgroundCollisionAtPosition(currentWario->yPosition - 0x30, currentWario->xPosition);
         collisionResult &= 0xFF;
         if (collisionResult == 1) {
             currentWario->reaction = collisionResult;

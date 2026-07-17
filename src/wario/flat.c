@@ -385,7 +385,7 @@ void ProcessFlatWarioCollision(void)
         result = func_8014758();
     }
 
-    collisionResult = func_806DAC0(gWarioData.yPosition - 0x30, gWarioData.xPosition);
+    collisionResult = GetBackgroundCollisionAtPosition(gWarioData.yPosition - 0x30, gWarioData.xPosition);
     /* The empty constraint keeps the function result in r0 and materializes the masked copy in r1. */
     asm("" : "=r"(maskedResult) : "0"(collisionResult));
     maskedResult &= 0xFF;

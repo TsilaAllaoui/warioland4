@@ -240,7 +240,7 @@ void ProcessFrozenWarioCollision(void)
         result = (u8)callResult;
     }
     warioAgain = &gWarioData;
-    floorResult = func_806DAC0((u16)(warioAgain->yPosition - 48), warioAgain->xPosition);
+    floorResult = GetBackgroundCollisionAtPosition((u16)(warioAgain->yPosition - 48), warioAgain->xPosition);
     mask = 0xFF;
     floorResult &= mask;
     if (floorResult == 1) {

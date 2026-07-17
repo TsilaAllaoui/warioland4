@@ -192,7 +192,7 @@ func_800FE58:
 	lsr	r0, r0, #16
 	lsl	r1, r1, #16
 	lsr	r1, r1, #16
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	asr	r0, r0, #16
 	mov	r6, #255	@ 0xff
 	and	r0, r6
@@ -236,7 +236,7 @@ func_800FE58:
 	lsr	r0, r0, #16
 	lsl	r1, r1, #16
 	lsr	r1, r1, #16
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	asr	r0, r0, #16
 	and	r0, r6
 	cmp	r0, #6

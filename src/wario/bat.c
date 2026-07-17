@@ -412,7 +412,7 @@ void ProcessBatWarioCollision(void)
     }
 
     floorWario = &gWarioData;
-    floorResult = func_806DAC0((u16)(floorWario->yPosition - 48), floorWario->xPosition);
+    floorResult = GetBackgroundCollisionAtPosition((u16)(floorWario->yPosition - 48), floorWario->xPosition);
     mask = 0xFF;
     floorResult &= mask;
     if (floorResult == 1) {

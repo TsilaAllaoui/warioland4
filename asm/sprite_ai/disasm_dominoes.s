@@ -302,7 +302,7 @@ func_803BBD4:
 	ldrb	r5, [r0, #0]
 	add	r0, r4, #0
 	add	r1, r5, #0
-	bl	func_806DD44
+	bl	GetBg2CollisionTypeAtTile
 	sub	r0, #9
 	cmp	r0, #9
 	bhi	.L_3bcae
@@ -418,7 +418,7 @@ func_803BCB8:
 	lsr	r7, r0, #6
 	add	r0, r6, #0
 	add	r1, r7, #0
-	bl	func_806DD44
+	bl	GetBg2CollisionTypeAtTile
 	sub	r0, #9
 	cmp	r0, #9
 	bls	.L_3bcf0
@@ -496,7 +496,7 @@ func_803BCB8:
 	strb	r7, [r0, #0]
 	add	r1, r7, #4
 	add	r0, r6, #0
-	bl	func_806DD44
+	bl	GetBg2CollisionTypeAtTile
 	cmp	r0, #19
 	bne	.L_3bda4
 	ldrh	r0, [r5, #10]
@@ -570,7 +570,7 @@ func_803BCB8:
 	strb	r7, [r0, #0]
 	sub	r1, r7, #4
 	add	r0, r6, #0
-	bl	func_806DD44
+	bl	GetBg2CollisionTypeAtTile
 	cmp	r0, #19
 	bne	.L_3be34
 	ldrh	r0, [r5, #10]

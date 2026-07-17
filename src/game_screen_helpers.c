@@ -23,8 +23,8 @@ void func_806F7CC();
 void InitAnimatedGraphics();
 void func_8071598();
 void func_8071A2C();
-void func_806DF3C();
-void func_806DFD8();
+void ApplyRoomTransitionTileOffset();
+void SetRoomTransitionTileValues();
 void func_8000D18();
 void StopDemo();
 void func_806E598();
@@ -634,8 +634,8 @@ void RestoreTemporarySaveRoomTiles(void)
                 } while (index != *count);
             }
         }
-        func_806DF3C(1);
-        func_806DFD8(1);
+        ApplyRoomTransitionTileOffset(1);
+        SetRoomTransitionTileValues(1);
     }
 }
 

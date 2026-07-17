@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  62.3%   2,535 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  46.1%   281,362 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  62.4%   2,542 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  46.4%   282,846 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4457,18 +4457,18 @@
 <rect x="1214.58" y="591.86" width="6.83" height="2.67" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>glass_bird/GlassBirdFragmentSetFallingPose: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_bg_clip: 0.0% matched, 1,484 bytes</title>
+<title>bg_clip: 100.0% matched, 1,484 bytes</title>
 <rect x="1222.76" y="550.51" width="49.64" height="44.77" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip104"><rect x="1224.76" y="551.51" width="46.24" height="10.00"/></clipPath>
 <rect x="1223.76" y="551.51" width="48.24" height="10.00" fill="#05080d"/>
-<text x="1225.26" y="558.51" clip-path="url(#moduleLabelClip104)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm…</text>
-<rect x="1223.76" y="561.51" width="20.59" height="33.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806DAC0: 644 bytes, not matched, size=symbol</title></rect>
-<rect x="1244.69" y="561.51" width="13.62" height="13.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806DE8C: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="1258.66" y="561.51" width="12.99" height="13.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806DDE4: 168 bytes, not matched, size=symbol</title></rect>
-<rect x="1244.69" y="575.17" width="17.05" height="9.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806DD44: 160 bytes, not matched, size=symbol</title></rect>
-<rect x="1244.69" y="585.15" width="17.05" height="9.38" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806DF3C: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="1262.09" y="575.17" width="9.56" height="11.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806E01C: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="1262.09" y="587.44" width="9.56" height="7.09" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_bg_clip/func_806DFD8: 68 bytes, not matched, size=symbol</title></rect>
+<text x="1225.26" y="558.51" clip-path="url(#moduleLabelClip104)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">bg_clip</text>
+<rect x="1223.76" y="561.51" width="20.59" height="33.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/GetBackgroundCollisionAtPosition: 644 bytes, matched, size=symbol</title></rect>
+<rect x="1244.69" y="561.51" width="13.62" height="13.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/CheckRoomTransitionAtPosition: 176 bytes, matched, size=symbol</title></rect>
+<rect x="1258.66" y="561.51" width="12.99" height="13.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/TryTriggerRoomTransitionAtTile: 168 bytes, matched, size=symbol</title></rect>
+<rect x="1244.69" y="575.17" width="17.05" height="9.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/GetBg2CollisionTypeAtTile: 160 bytes, matched, size=symbol</title></rect>
+<rect x="1244.69" y="585.15" width="17.05" height="9.38" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/ApplyRoomTransitionTileOffset: 156 bytes, matched, size=symbol</title></rect>
+<rect x="1262.09" y="575.17" width="9.56" height="11.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/StartRoomTransitionFade: 112 bytes, matched, size=symbol</title></rect>
+<rect x="1262.09" y="587.44" width="9.56" height="7.09" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>bg_clip/SetRoomTransitionTileValues: 68 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>switch: 100.0% matched, 1,464 bytes</title>

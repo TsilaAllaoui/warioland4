@@ -482,7 +482,7 @@ void ProcessZombieWarioCollision(void)
         int hit;
 
         currentWario = &gWarioData;
-        hit = func_806DAC0(currentWario->yPosition - 0x30, currentWario->xPosition) & 0xFF;
+        hit = GetBackgroundCollisionAtPosition(currentWario->yPosition - 0x30, currentWario->xPosition) & 0xFF;
         if (hit == 1) {
             currentWario->reaction = 1;
             currentWario->damageTimer = 0x60;

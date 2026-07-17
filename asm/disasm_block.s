@@ -309,7 +309,7 @@ func_806D5C0:
 .L_6d5fc:
 	mov	r0, r9
 	mov	r1, sl
-	bl	func_806DAC0
+	bl	GetBackgroundCollisionAtPosition
 	add	r0, sp, #8
 	lsr	r1, r4, #22
 	str	r1, [r0, #8]

@@ -26,7 +26,7 @@ extern const struct ZombieWarioGraphicsFrame sZombieWarioHatFallingFrames[];
 extern const struct ZombieWarioGraphicsFrame sZombieWarioTouchingLightFrames[];
 extern const struct ZombieWarioGraphicsFrame sZombieWarioUnknown11Frames[];
 
-extern int func_806DAC0(u16, u16);
+extern int GetBackgroundCollisionAtPosition(u16, u16);
 
 u8 UpdateZombieWario(void);
 u8 ZombieWarioTransforming(void);

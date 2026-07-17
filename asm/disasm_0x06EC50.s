@@ -2522,7 +2522,7 @@ func_806FD74:
 	bne	.L_6fe7a
 	ldrh	r1, [r4, #0]
 	lsr	r0, r7, #16
-	bl	func_806DDE4
+	bl	TryTriggerRoomTransitionAtTile
 	cmp	r0, #0
 	bne	.L_6ff52
 	b	.L_6fe96
@@ -2531,7 +2531,7 @@ func_806FD74:
 	bne	.L_6fe92
 	ldrh	r1, [r4, #0]
 	lsr	r0, r7, #16
-	bl	func_806DDE4
+	bl	TryTriggerRoomTransitionAtTile
 	cmp	r0, #0
 	beq	.L_6fe96
 	mov	r0, #25
@@ -2600,7 +2600,7 @@ func_806FD74:
 	mov	r0, #3
 	strh	r0, [r1, #0]
 	mov	r0, #2
-	bl	func_806E01C
+	bl	StartRoomTransitionFade
 	ldr	r4, .L_6ff40
 	ldr	r0, [r4, #36]	@ 0x24
 	bl	MPlayStop

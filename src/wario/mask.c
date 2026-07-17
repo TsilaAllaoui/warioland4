@@ -189,7 +189,7 @@ void ProcessMaskWarioCollision(void)
         }
     }
 
-    collisionResult = func_806DAC0(gWarioData.yPosition - 0x30, gWarioData.xPosition);
+    collisionResult = GetBackgroundCollisionAtPosition(gWarioData.yPosition - 0x30, gWarioData.xPosition);
     collisionResult &= 0xFF;
     if (collisionResult == 1) {
         gWarioData.reaction = collisionResult;
