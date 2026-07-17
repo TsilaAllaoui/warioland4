@@ -23,47 +23,6 @@ extern const struct AnimationFrame sSkeletonBirdProjectileBreakOam[];
 extern const struct AnimationFrame sSkeletonBirdDebrisOam[];
 extern const s16 sSkeletonBirdBobYSpeed[];
 
-void UpdateSkeletonBirdFacingAndProjectile(void);
-void InitSkeletonBird(void);
-void UpdateSkeletonBirdMoveLeft(void);
-void UpdateSkeletonBirdMoveRight(void);
-void InitSkeletonBirdAttackWindup(void);
-void UpdateSkeletonBirdAttackWindup(void);
-void InitSkeletonBirdTurnTowardLeft(void);
-void InitSkeletonBirdTurnCommon(void);
-void InitSkeletonBirdPushedRight(void);
-void InitSkeletonBirdPushedLeft(void);
-void InitSkeletonBirdTumbleCommon(void);
-void InitSkeletonBirdTumbleRight(void);
-void InitSkeletonBirdTumbleLeft(void);
-void InitSkeletonBirdShortTumbleCommon(void);
-void InitSkeletonBirdShortTumbleRight(void);
-void InitSkeletonBirdShortTumbleLeft(void);
-void InitSkeletonBirdStunCommon(void);
-void InitSkeletonBirdAirStunRight(void);
-void InitSkeletonBirdAirStunLeft(void);
-void InitSkeletonBirdAirStunFromTimer(void);
-void InitSkeletonBirdAirBounceCommon(void);
-void InitSkeletonBirdAirBounceRight(void);
-void InitSkeletonBirdAirBounceLeft(void);
-void InitSkeletonBirdLiftedCommon(void);
-void InitSkeletonBirdLiftedRight(void);
-void InitSkeletonBirdLiftedLeft(void);
-void InitSkeletonBirdCarriedCommon(void);
-void InitSkeletonBirdCarriedRight(void);
-void InitSkeletonBirdCarriedLeft(void);
-void InitSkeletonBirdThrownCommon(void);
-void InitSkeletonBirdCrashRecover(void);
-void UpdateSkeletonBirdCrashRecover(void);
-void InitSkeletonBirdPerch(void);
-void UpdateSkeletonBirdPerch(void);
-void InitSkeletonBirdProjectile(void);
-void UpdateSkeletonBirdProjectile(void);
-void InitSkeletonBirdProjectileBreak(void);
-void UpdateSkeletonBirdProjectileBreak(void);
-void InitSkeletonBirdDebris(void);
-void UpdateSkeletonBirdDebris(void);
-
 void UpdateSkeletonBirdFacingAndProjectile(void)
 {
     register struct PrimarySpriteData *currentSprite asm("r4") = &gCurrentSprite;
