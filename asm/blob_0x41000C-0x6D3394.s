@@ -2,77 +2,6 @@
 
 .section .rodata
 
-
-.global sUnk_840F1C8
-sUnk_840F1C8:
-
-baserom_blob 0x40F1C8, 0x40F200
-
-.global sUnk_840F200
-sUnk_840F200:
-
-baserom_blob 0x40F200, 0x40F214
-
-.global sUnk_840F214
-sUnk_840F214:
-
-baserom_blob 0x40F214, 0x40F248
-
-.global sUnk_840F248
-sUnk_840F248:
-
-baserom_blob 0x40F248, 0x40F258
-
-.global sUnk_840F258
-sUnk_840F258:
-
-baserom_blob 0x40F258, 0x40F268
-
-.global sUnk_840F268
-sUnk_840F268:
-
-baserom_blob 0x40F268, 0x40F278
-
-.global sUnk_840F278
-sUnk_840F278:
-
-baserom_blob 0x40F278, 0x40F288
-
-.global sUnk_840F288
-sUnk_840F288:
-
-baserom_blob 0x40F288, 0x40FAD4
-
-.global sUnk_840FAD4
-sUnk_840FAD4:
-
-baserom_blob 0x40FAD4, 0x40FB94
-
-.global sUnk_840FB94
-sUnk_840FB94:
-
-baserom_blob 0x40FB94, 0x40FC7C
-
-.global sUnk_840FC7C
-sUnk_840FC7C:
-
-baserom_blob 0x40FC7C, 0x40FE74
-
-.global sUnk_840FE74
-sUnk_840FE74:
-
-baserom_blob 0x40FE74, 0x40FEA4
-
-.global sUnk_840FEA4
-sUnk_840FEA4:
-
-baserom_blob 0x40FEA4, 0x40FFAC
-
-.global sUnk_840FFAC
-sUnk_840FFAC:
-
-baserom_blob 0x40FFAC, 0x41000C
-
 .global sUnk_841000C
 sUnk_841000C:
 
@@ -490,111 +419,138 @@ baserom_blob 0x414A5C, 0x414A64
 
 .global sStageEntryPassagePal
 sStageEntryPassagePal:
-    baserom_blob 0x414A64, 0x414A84
+
+baserom_blob 0x414A64, 0x414A84
 
 .global sStageEmeraldPassagePal
 sStageEmeraldPassagePal:
-    baserom_blob 0x414A84, 0x414AA4
+
+baserom_blob 0x414A84, 0x414AA4
 
 .global sStageRubyPassagePal
 sStageRubyPassagePal:
-    baserom_blob 0x414AA4, 0x414AC4
+
+baserom_blob 0x414AA4, 0x414AC4
 
 .global sStageTopazPassagePal
 sStageTopazPassagePal:
-    baserom_blob 0x414AC4, 0x414AE4
+
+baserom_blob 0x414AC4, 0x414AE4
 
 .global sStageSapphirePassagePal
 sStageSapphirePassagePal:
-    baserom_blob 0x414AE4, 0x414B04
+
+baserom_blob 0x414AE4, 0x414B04
 
 .global sStageGoldenPyramidPal
 sStageGoldenPyramidPal:
-    baserom_blob 0x414B04, 0x414B24
+
+baserom_blob 0x414B04, 0x414B24
 
 .global sBossLife20Gfx
 sBossLife20Gfx:
-    baserom_blob 0x414B24, 0x414C64
+
+baserom_blob 0x414B24, 0x414C64
 
 .global sBossLife19Gfx
 sBossLife19Gfx:
-    baserom_blob 0x414C64, 0x414DA4
+
+baserom_blob 0x414C64, 0x414DA4
 
 .global sBossLife18Gfx
 sBossLife18Gfx:
-    baserom_blob 0x414DA4, 0x414EE4
+
+baserom_blob 0x414DA4, 0x414EE4
 
 .global sBossLife17Gfx
 sBossLife17Gfx:
-    baserom_blob 0x414EE4, 0x415024
+
+baserom_blob 0x414EE4, 0x415024
 
 .global sBossLife16Gfx
 sBossLife16Gfx:
-    baserom_blob 0x415024, 0x415164
+
+baserom_blob 0x415024, 0x415164
 
 .global sBossLife15Gfx
 sBossLife15Gfx:
-    baserom_blob 0x415164, 0x4152A4
+
+baserom_blob 0x415164, 0x4152A4
 
 .global sBossLife14Gfx
 sBossLife14Gfx:
-    baserom_blob 0x4152A4, 0x4153E4
+
+baserom_blob 0x4152A4, 0x4153E4
 
 .global sBossLife13Gfx
 sBossLife13Gfx:
-    baserom_blob 0x4153E4, 0x415524
+
+baserom_blob 0x4153E4, 0x415524
 
 .global sBossLife12Gfx
 sBossLife12Gfx:
-    baserom_blob 0x415524, 0x415664
+
+baserom_blob 0x415524, 0x415664
 
 .global sBossLife11Gfx
 sBossLife11Gfx:
-    baserom_blob 0x415664, 0x4157A4
+
+baserom_blob 0x415664, 0x4157A4
 
 .global sBossLife10Gfx
 sBossLife10Gfx:
-    baserom_blob 0x4157A4, 0x4158E4
+
+baserom_blob 0x4157A4, 0x4158E4
 
 .global sBossLife9Gfx
 sBossLife9Gfx:
-    baserom_blob 0x4158E4, 0x415A24
+
+baserom_blob 0x4158E4, 0x415A24
 
 .global sBossLife8Gfx
 sBossLife8Gfx:
-    baserom_blob 0x415A24, 0x415B64
+
+baserom_blob 0x415A24, 0x415B64
 
 .global sBossLife7Gfx
 sBossLife7Gfx:
-    baserom_blob 0x415B64, 0x415CA4
+
+baserom_blob 0x415B64, 0x415CA4
 
 .global sBossLife6Gfx
 sBossLife6Gfx:
-    baserom_blob 0x415CA4, 0x415DE4
+
+baserom_blob 0x415CA4, 0x415DE4
 
 .global sBossLife5Gfx
 sBossLife5Gfx:
-    baserom_blob 0x415DE4, 0x415F24
+
+baserom_blob 0x415DE4, 0x415F24
 
 .global sBossLife4Gfx
 sBossLife4Gfx:
-    baserom_blob 0x415F24, 0x416064
+
+baserom_blob 0x415F24, 0x416064
 
 .global sBossLife3Gfx
 sBossLife3Gfx:
-    baserom_blob 0x416064, 0x4161A4
+
+baserom_blob 0x416064, 0x4161A4
 
 .global sBossLife2Gfx
 sBossLife2Gfx:
-    baserom_blob 0x4161A4, 0x4162E4
+
+baserom_blob 0x4161A4, 0x4162E4
 
 .global sBossLife1Gfx
 sBossLife1Gfx:
-    baserom_blob 0x4162E4, 0x416424
+
+baserom_blob 0x4162E4, 0x416424
 
 .global sBossLife0Gfx
 sBossLife0Gfx:
-    baserom_blob 0x416424, 0x416564
+
+baserom_blob 0x416424, 0x416564
 
 .global sBigBoardSpaceSpriteTable
 sBigBoardSpaceSpriteTable:
@@ -603,7 +559,8 @@ baserom_blob 0x416564, 0x4165A4
 
 .global sBigBoardSpaces
 sBigBoardSpaces:
-    baserom_blob 0x4165A4, 0x4165F4
+
+baserom_blob 0x4165A4, 0x4165F4
 
 .global sUnk_84165F4
 sUnk_84165F4:
@@ -679,9 +636,6 @@ baserom_blob 0x639068, 0x6391C4
 sUnk_86391C4:
 
 baserom_blob 0x6391C4, 0x63926C
-
-
-@ Map screen
 
 .global sUnk_863926C
 sUnk_863926C:
@@ -792,9 +746,6 @@ baserom_blob 0x6395FC, 0x639618
 sUnk_8639618:
 
 baserom_blob 0x639618, 0x639634
-
-
-@ Stage entry screen
 
 .global sUnk_8639634
 sUnk_8639634:
@@ -961,22 +912,13 @@ sUnk_863A43C:
 
 baserom_blob 0x63A43C, 0x63A47C
 
-
-@ Vortex cutscene
-
 .global sUnk_863A47C
 sUnk_863A47C:
 
 baserom_blob 0x63A47C, 0x63A490
 
-
-@ Stage results
-
 .global sUnk_863A490
 sUnk_863A490:
-
-
-@ Stage ejection
 
 baserom_blob 0x63A490, 0x63A498
 
@@ -1019,9 +961,6 @@ baserom_blob 0x63A51C, 0x63A534
 sUnk_863A534:
 
 baserom_blob 0x63A534, 0x63A54C
-
-
-@ Boss treasure cutscene
 
 .global sUnk_863A54C
 sUnk_863A54C:
@@ -1258,9 +1197,6 @@ sUnk_863BC70:
 
 baserom_blob 0x63BC70, 0x63BC7C
 
-
-@ CLEAR! screen
-
 .global sUnk_863BC7C
 sUnk_863BC7C:
 
@@ -1325,9 +1261,6 @@ baserom_blob 0x63C3EC, 0x63C404
 sUnk_863C404:
 
 baserom_blob 0x63C404, 0x63C41C
-
-
-@ Passage screen
 
 .global sUnk_863C41C
 sUnk_863C41C:
@@ -1404,9 +1337,6 @@ sUnk_863C5D4:
 
 baserom_blob 0x63C5D4, 0x63C5DC
 
-
-@ Boss door opening cutscene
-
 .global sUnk_863C5DC
 sUnk_863C5DC:
 
@@ -1436,9 +1366,6 @@ baserom_blob 0x63C654, 0x63C674
 sUnk_863C674:
 
 baserom_blob 0x63C674, 0x63C694
-
-
-@ Sound room data
 
 .global sUnk_863C694
 sUnk_863C694:
@@ -2379,3 +2306,4 @@ baserom_blob 0x6D3108, 0x6D3226
 sUnk_86D3226:
 
 baserom_blob 0x6D3226, 0x6D3394
+

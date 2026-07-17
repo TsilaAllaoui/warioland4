@@ -3590,63 +3590,63 @@ sUnk_83F132C:
 
 baserom_blob 0x3F132C, 0x3F1AA0
 
-.global sUnk_83F1AA0
-sUnk_83F1AA0:
+.global sProfessorWalkOam
+sProfessorWalkOam:
 
 baserom_blob 0x3F1AA0, 0x3F1AD8
 
-.global sUnk_83F1AD8
-sUnk_83F1AD8:
+.global sProfessorTurnOam
+sProfessorTurnOam:
 
 baserom_blob 0x3F1AD8, 0x3F1AF0
 
-.global sUnk_83F1AF0
-sUnk_83F1AF0:
+.global sProfessorAirborneOam
+sProfessorAirborneOam:
 
 baserom_blob 0x3F1AF0, 0x3F1B30
 
-.global sUnk_83F1B30
-sUnk_83F1B30:
+.global sProfessorThrownRightOam
+sProfessorThrownRightOam:
 
 baserom_blob 0x3F1B30, 0x3F1B78
 
-.global sUnk_83F1B78
-sUnk_83F1B78:
+.global sProfessorThrownLeftOam
+sProfessorThrownLeftOam:
 
 baserom_blob 0x3F1B78, 0x3F1BC0
 
-.global sUnk_83F1BC0
-sUnk_83F1BC0:
+.global sProfessorWaitOam
+sProfessorWaitOam:
 
 baserom_blob 0x3F1BC0, 0x3F1BD8
 
-.global sUnk_83F1BD8
-sUnk_83F1BD8:
+.global sProfessorFallOam
+sProfessorFallOam:
 
 baserom_blob 0x3F1BD8, 0x3F1C00
 
-.global sUnk_83F1C00
-sUnk_83F1C00:
+.global sProfessorSplashOam
+sProfessorSplashOam:
 
 baserom_blob 0x3F1C00, 0x3F1D10
 
-.global sUnk_83F1D10
-sUnk_83F1D10:
+.global sProfessorScoreDigitTwoOrSevenOam
+sProfessorScoreDigitTwoOrSevenOam:
 
 baserom_blob 0x3F1D10, 0x3F1D38
 
-.global sUnk_83F1D38
-sUnk_83F1D38:
+.global sProfessorUnderwaterPatrolOam
+sProfessorUnderwaterPatrolOam:
 
 baserom_blob 0x3F1D38, 0x3F1D60
 
-.global sUnk_83F1D60
-sUnk_83F1D60:
+.global sProfessorScoreDigitFourOrNineOam
+sProfessorScoreDigitFourOrNineOam:
 
 baserom_blob 0x3F1D60, 0x3F1E28
 
-.global sUnk_83F1E28
-sUnk_83F1E28:
+.global sProfessorPatrolYOffsets
+sProfessorPatrolYOffsets:
 
 baserom_blob 0x3F1E28, 0x3F1E80
 

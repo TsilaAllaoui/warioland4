@@ -331,6 +331,6 @@ ProcedureFunc sPrimarySpriteAITable[PSPRITE_COUNT] = {
     [PSPRITE_F7] = SpriteUnknownF7,
     [PSPRITE_F8] = SpriteUnknownF8,
     [PSPRITE_F9] = SpriteUnknownF9,
-    [PSPRITE_FA] = SpriteUnknownFA,
+    [PSPRITE_PROFESSOR_PROJECTILE] = SpriteProfessorProjectile,
     [PSPRITE_CATBAT_MINE_SPAWNER] = SpriteCatbatMineSpawner,
 };

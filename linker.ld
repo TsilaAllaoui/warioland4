@@ -706,7 +706,7 @@ SECTIONS {
         obj/sprite_ai/disasm_golden_diva.o(.text);
         obj/sprite_ai/chandelier.o(.text);
         obj/sprite_ai/crumbling_block.o(.text);
-        obj/sprite_ai/disasm_professor.o(.text);
+        obj/sprite_ai/professor.o(.text);
         obj/screen_shake.o(.text);
         obj/transparency.o(.text);
         obj/game_screen_helpers.o(.text);
@@ -782,7 +782,8 @@ SECTIONS {
         obj/quit.o(.rodata);
         obj/disasm_save_file.o(.rodata);
         obj/hud.o(.rodata);
-        obj/blob_0x40F1C8-0x6D3394.o(.rodata);
+        obj/data/sprite_data_40F1C8_41000C.o(.rodata);
+        obj/blob_0x41000C-0x6D3394.o(.rodata);
         obj/voice_set.o(.rodata);
         obj/blob_0x6D36A4-0x78E6CC.o(.rodata);
     } > ROM

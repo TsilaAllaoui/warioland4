@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████░░░░░░░░░░░░  61.4%   2,499 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  45.5%   277,446 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  62.3%   2,535 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  46.1%   281,362 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2624,48 +2624,48 @@
 <rect x="765.16" y="369.32" width="4.14" height="4.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>totsumen/func_8032ECC: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_professor: 0.0% matched, 3,916 bytes</title>
+<title>professor: 100.0% matched, 3,916 bytes</title>
 <rect x="697.27" y="375.62" width="72.78" height="81.38" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip44"><rect x="699.27" y="376.62" width="69.38" height="14.76"/></clipPath>
 <rect x="698.27" y="376.62" width="71.38" height="14.76" fill="#05080d"/>
-<text x="699.77" y="386.62" clip-path="url(#moduleLabelClip44)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_prof…</text>
-<text x="767.65" y="385.62" text-anchor="end" clip-path="url(#moduleLabelClip44)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="698.27" y="391.37" width="30.05" height="64.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/SpriteProfessor: 1,668 bytes, not matched, size=symbol</title></rect>
-<rect x="728.67" y="391.37" width="20.40" height="17.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_8069F78: 312 bytes, not matched, size=symbol</title></rect>
-<rect x="749.43" y="391.37" width="19.87" height="17.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_8069E28: 304 bytes, not matched, size=symbol</title></rect>
-<rect x="728.67" y="409.24" width="17.45" height="13.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_8069D54: 212 bytes, not matched, size=symbol</title></rect>
-<rect x="746.47" y="409.24" width="11.41" height="13.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A46C: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="758.23" y="409.24" width="11.07" height="13.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/SpriteUnknownFA: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="728.67" y="423.40" width="9.25" height="15.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A0D0: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="728.67" y="438.76" width="9.25" height="8.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A1B4: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="728.67" y="447.68" width="9.25" height="8.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A1FC: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="738.27" y="423.40" width="9.53" height="7.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A264: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="748.15" y="423.40" width="7.20" height="7.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A538: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="755.70" y="423.40" width="6.62" height="7.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A14C: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="762.68" y="423.40" width="6.62" height="7.83" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A2A8: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="738.27" y="431.59" width="6.12" height="8.48" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A320: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="738.27" y="440.41" width="6.12" height="7.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A3C4: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="738.27" y="448.50" width="6.12" height="7.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A3F0: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="744.74" y="431.59" width="6.38" height="6.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A2F8: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="751.47" y="431.59" width="6.38" height="6.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A444: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="758.20" y="431.59" width="5.71" height="6.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A378: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="764.26" y="431.59" width="5.04" height="6.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_8069F58: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="744.74" y="438.65" width="6.01" height="5.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A0B0: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="744.74" y="444.63" width="6.01" height="5.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A244: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="744.74" y="450.61" width="6.01" height="5.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A2D8: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="751.10" y="438.65" width="4.95" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A17C: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="751.10" y="444.93" width="4.95" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A198: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="751.10" y="451.21" width="4.95" height="5.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A4F8: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="756.40" y="438.65" width="4.07" height="5.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A350: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="760.82" y="438.65" width="4.07" height="5.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A364: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.23" y="438.65" width="4.07" height="5.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A39C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="756.40" y="444.03" width="5.33" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A3B0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="756.40" y="448.22" width="5.33" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A41C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="756.40" y="452.41" width="5.33" height="3.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A430: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="762.08" y="444.03" width="3.44" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A510: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.86" y="444.03" width="3.44" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A524: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="762.08" y="450.31" width="3.44" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A56C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="765.86" y="450.31" width="3.44" height="5.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_professor/func_806A580: 20 bytes, not matched, size=symbol</title></rect>
+<text x="699.77" y="386.62" clip-path="url(#moduleLabelClip44)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">professor</text>
+<text x="767.65" y="385.62" text-anchor="end" clip-path="url(#moduleLabelClip44)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="698.27" y="391.37" width="30.05" height="64.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/SpriteProfessor: 1,668 bytes, matched, size=symbol</title></rect>
+<rect x="728.67" y="391.37" width="20.40" height="17.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorWalk: 312 bytes, matched, size=symbol</title></rect>
+<rect x="749.43" y="391.37" width="19.87" height="17.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorPatrolAndSpawnProjectiles: 304 bytes, matched, size=symbol</title></rect>
+<rect x="728.67" y="409.24" width="17.45" height="13.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorInit: 212 bytes, matched, size=symbol</title></rect>
+<rect x="746.47" y="409.24" width="11.41" height="13.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorLifted: 140 bytes, matched, size=symbol</title></rect>
+<rect x="758.23" y="409.24" width="11.07" height="13.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/SpriteProfessorProjectile: 136 bytes, matched, size=symbol</title></rect>
+<rect x="728.67" y="423.40" width="9.25" height="15.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorTurnAround: 124 bytes, matched, size=symbol</title></rect>
+<rect x="728.67" y="438.76" width="9.25" height="8.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorTackledLeftInit: 72 bytes, matched, size=symbol</title></rect>
+<rect x="728.67" y="447.68" width="9.25" height="8.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorTackledRightInit: 72 bytes, matched, size=symbol</title></rect>
+<rect x="738.27" y="423.40" width="9.53" height="7.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorWait: 68 bytes, matched, size=symbol</title></rect>
+<rect x="748.15" y="423.40" width="7.20" height="7.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorCarriedCommon: 52 bytes, matched, size=symbol</title></rect>
+<rect x="755.70" y="423.40" width="6.62" height="7.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorHopInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="762.68" y="423.40" width="6.62" height="7.83" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorKnockbackCommon: 48 bytes, matched, size=symbol</title></rect>
+<rect x="738.27" y="431.59" width="6.12" height="8.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorPushedCommon: 48 bytes, matched, size=symbol</title></rect>
+<rect x="738.27" y="440.41" width="6.12" height="7.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorKnockAwayFromWario: 44 bytes, matched, size=symbol</title></rect>
+<rect x="738.27" y="448.50" width="6.12" height="7.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorThrownUpCommon: 44 bytes, matched, size=symbol</title></rect>
+<rect x="744.74" y="431.59" width="6.38" height="6.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorLandingInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="751.47" y="431.59" width="6.38" height="6.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorLiftedInit: 40 bytes, matched, size=symbol</title></rect>
+<rect x="758.20" y="431.59" width="5.71" height="6.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorImpactCommon: 36 bytes, matched, size=symbol</title></rect>
+<rect x="764.26" y="431.59" width="5.04" height="6.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorFallInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="744.74" y="438.65" width="6.01" height="5.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorTurnAroundInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="744.74" y="444.63" width="6.01" height="5.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorWaitInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="744.74" y="450.61" width="6.01" height="5.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorWalkInit: 32 bytes, matched, size=symbol</title></rect>
+<rect x="751.10" y="438.65" width="4.95" height="5.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorKnockedLeftInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="751.10" y="444.93" width="4.95" height="5.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorKnockedRightInit: 28 bytes, matched, size=symbol</title></rect>
+<rect x="751.10" y="451.21" width="4.95" height="5.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorLiftedByWarioCommon: 24 bytes, matched, size=symbol</title></rect>
+<rect x="756.40" y="438.65" width="4.07" height="5.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorCarriedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="760.82" y="438.65" width="4.07" height="5.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorCarriedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.23" y="438.65" width="4.07" height="5.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorImpactLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="756.40" y="444.03" width="5.33" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorImpactRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="756.40" y="448.22" width="5.33" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="756.40" y="452.41" width="5.33" height="3.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="762.08" y="444.03" width="3.44" height="5.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.86" y="444.03" width="3.44" height="5.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="762.08" y="450.31" width="3.44" height="5.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorThrownUpLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="765.86" y="450.31" width="3.44" height="5.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>professor/ProfessorThrownUpRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>ghost: 100.0% matched, 3,864 bytes</title>

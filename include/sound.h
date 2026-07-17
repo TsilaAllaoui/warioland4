@@ -31,7 +31,7 @@ enum SoundID {
     SOUND_17,
     SE_SNOWMAN_WARIO_LAND,
     SOUND_19,
-    SOUND_1A,
+    SE_PROFESSOR_HIT,
     SOUND_1B,
     SOUND_1C,
     SOUND_1D,
