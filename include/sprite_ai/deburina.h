@@ -2,6 +2,6 @@
 #define SPRITE_AI_DEBURINA_H
 
 void SpriteDeburina(void);
-void SpriteUnknownD2(void);
+void SpriteDeburinaChild(void);
 
 #endif  // SPRITE_AI_DEBURINA_H

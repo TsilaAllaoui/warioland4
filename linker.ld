@@ -688,7 +688,7 @@ SECTIONS {
         obj/sprite_ai/disasm_hoggus.o(.text);
         obj/sprite_ai/disasm_denden.o(.text);
         obj/sprite_ai/disasm_butatabi.o(.text);
-        obj/sprite_ai/disasm_deburina.o(.text);
+        obj/sprite_ai/deburina.o(.text);
         obj/sprite_ai/disasm_pencil.o(.text);
         obj/sprite_ai/disasm_folding_door.o(.text);
         obj/sprite_ai/disasm_robobird.o(.text);
