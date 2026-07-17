@@ -2370,68 +2370,68 @@ sUnk_83DCE3E:
 
 baserom_blob 0x3DCE3E, 0x3DD344
 
-.global sUnk_83DD344
-sUnk_83DD344:
+.global sDeburinaChildIdleOam
+sDeburinaChildIdleOam:
 
 baserom_blob 0x3DD344, 0x3DD36C
 
-.global sUnk_83DD36C
-sUnk_83DD36C:
+.global sDeburinaIdleOam
+sDeburinaIdleOam:
 
 baserom_blob 0x3DD36C, 0x3DD394
 
-.global sUnk_83DD394
-sUnk_83DD394:
+.global sDeburinaTurnOam
+sDeburinaTurnOam:
 
 baserom_blob 0x3DD394, 0x3DD3AC
 
-.global sUnk_83DD3AC
-sUnk_83DD3AC:
+.global sDeburinaPushedOam
+sDeburinaPushedOam:
 
 baserom_blob 0x3DD3AC, 0x3DD3C4
 
-.global sUnk_83DD3C4
-sUnk_83DD3C4:
+.global sDeburinaStunnedOam
+sDeburinaStunnedOam:
 
 baserom_blob 0x3DD3C4, 0x3DD43C
 
-.global sUnk_83DD43C
-sUnk_83DD43C:
+.global sDeburinaHopOam
+sDeburinaHopOam:
 
 baserom_blob 0x3DD43C, 0x3DD464
 
-.global sUnk_83DD464
-sUnk_83DD464:
+.global sDeburinaDefeatedOam
+sDeburinaDefeatedOam:
 
 baserom_blob 0x3DD464, 0x3DD49C
 
-.global sUnk_83DD49C
-sUnk_83DD49C:
+.global sDeburinaTumbleOam
+sDeburinaTumbleOam:
 
 baserom_blob 0x3DD49C, 0x3DD4CC
 
-.global sUnk_83DD4CC
-sUnk_83DD4CC:
+.global sDeburinaSpawnOam
+sDeburinaSpawnOam:
 
 baserom_blob 0x3DD4CC, 0x3DD4DC
 
-.global sUnk_83DD4DC
-sUnk_83DD4DC:
+.global sDeburinaAlertOam
+sDeburinaAlertOam:
 
 baserom_blob 0x3DD4DC, 0x3DD594
 
-.global sUnk_83DD594
-sUnk_83DD594:
+.global sDeburinaLeapWindupOam
+sDeburinaLeapWindupOam:
 
 baserom_blob 0x3DD594, 0x3DD5DC
 
-.global sUnk_83DD5DC
-sUnk_83DD5DC:
+.global sDeburinaCarriedOam
+sDeburinaCarriedOam:
 
 baserom_blob 0x3DD5DC, 0x3DD5F4
 
-.global sUnk_83DD5F4
-sUnk_83DD5F4:
+.global sDeburinaAirborneOam
+sDeburinaAirborneOam:
 
 baserom_blob 0x3DD5F4, 0x3DD658
 

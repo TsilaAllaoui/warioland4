@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  63.8%   2,596 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  47.2%   287,946 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  64.9%   2,641 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  47.8%   291,494 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2977,57 +2977,57 @@
 <rect x="1056.91" y="362.84" width="2.70" height="4.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>beezley/func_8040CA0: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_deburina: 0.0% matched, 3,548 bytes</title>
+<title>deburina: 100.0% matched, 3,548 bytes</title>
 <rect x="1060.95" y="291.71" width="70.38" height="76.19" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip54"><rect x="1062.95" y="292.71" width="66.98" height="13.82"/></clipPath>
 <rect x="1061.95" y="292.71" width="68.98" height="13.82" fill="#05080d"/>
-<text x="1063.45" y="302.71" clip-path="url(#moduleLabelClip54)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_deb…</text>
-<text x="1128.93" y="301.71" text-anchor="end" clip-path="url(#moduleLabelClip54)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="1061.95" y="306.53" width="24.46" height="44.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/SpriteDeburina: 940 bytes, not matched, size=symbol</title></rect>
-<rect x="1061.95" y="351.45" width="24.46" height="15.70" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80589E0: 336 bytes, not matched, size=symbol</title></rect>
-<rect x="1086.76" y="306.53" width="15.60" height="11.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8059198: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="1102.71" y="306.53" width="13.96" height="11.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8059024: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="1117.02" y="306.53" width="13.56" height="11.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80588C8: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="1086.76" y="318.13" width="11.38" height="11.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058CBC: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1098.49" y="318.13" width="10.59" height="11.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058820: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="1109.43" y="318.13" width="10.59" height="11.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058BF8: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="1120.38" y="318.13" width="10.20" height="11.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058950: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="1086.76" y="330.26" width="9.20" height="12.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058D5C: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1086.76" y="342.67" width="9.20" height="12.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058E94: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1086.76" y="355.09" width="9.20" height="12.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8059134: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1096.31" y="330.26" width="10.09" height="8.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058B5C: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="1106.75" y="330.26" width="8.44" height="8.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058F30: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="1115.54" y="330.26" width="7.34" height="8.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058890: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1123.24" y="330.26" width="7.34" height="8.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058EF8: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1096.31" y="338.88" width="7.77" height="7.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058DE8: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="1096.31" y="346.48" width="7.77" height="7.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058F98: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="1096.31" y="354.07" width="7.77" height="6.66" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058FF4: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="1096.31" y="361.08" width="7.77" height="6.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058B30: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.42" y="338.88" width="6.59" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058BA8: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1111.37" y="338.88" width="6.59" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058C90: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1118.31" y="338.88" width="5.96" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058C68: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1124.62" y="338.88" width="5.96" height="7.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058E44: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.42" y="346.40" width="5.27" height="7.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80589BC: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.42" y="354.00" width="5.27" height="7.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058BD4: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="1104.42" y="361.59" width="5.27" height="5.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/SpriteUnknownD2: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.04" y="346.40" width="6.01" height="4.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80590F0: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="1116.40" y="346.40" width="5.10" height="4.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80590B0: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="1121.85" y="346.40" width="4.19" height="4.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058D34: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1126.39" y="346.40" width="4.19" height="4.87" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058D48: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.04" y="351.62" width="4.13" height="4.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058DC0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.04" y="356.91" width="4.13" height="4.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058DD4: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1110.04" y="362.21" width="4.13" height="4.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058E1C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1114.52" y="351.62" width="4.13" height="4.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058E30: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1114.52" y="356.91" width="4.13" height="4.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058E6C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1114.52" y="362.21" width="4.13" height="4.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058E80: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1118.99" y="351.62" width="3.63" height="5.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058F70: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1122.97" y="351.62" width="3.63" height="5.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058F84: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1126.95" y="351.62" width="3.63" height="5.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058FCC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1118.99" y="357.57" width="4.42" height="4.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8058FE0: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1118.99" y="362.54" width="4.42" height="4.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80590C8: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1123.77" y="357.57" width="3.23" height="6.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_80590DC: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1127.35" y="357.57" width="3.23" height="6.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_805910C: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="1123.77" y="364.19" width="6.81" height="2.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_deburina/func_8059120: 20 bytes, not matched, size=symbol</title></rect>
+<text x="1063.45" y="302.71" clip-path="url(#moduleLabelClip54)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">deburina</text>
+<text x="1128.93" y="301.71" text-anchor="end" clip-path="url(#moduleLabelClip54)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="1061.95" y="306.53" width="24.46" height="44.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/SpriteDeburina: 940 bytes, matched, size=symbol</title></rect>
+<rect x="1061.95" y="351.45" width="24.46" height="15.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaIdle: 336 bytes, matched, size=symbol</title></rect>
+<rect x="1086.76" y="306.53" width="15.60" height="11.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaChild: 156 bytes, matched, size=symbol</title></rect>
+<rect x="1102.71" y="306.53" width="13.96" height="11.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaThrownCrash: 140 bytes, matched, size=symbol</title></rect>
+<rect x="1117.02" y="306.53" width="13.56" height="11.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/StartDeburinaLeapWindup: 136 bytes, matched, size=symbol</title></rect>
+<rect x="1086.76" y="318.13" width="11.38" height="11.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaTumbleCommon: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1098.49" y="318.13" width="10.59" height="11.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaAlert: 112 bytes, matched, size=symbol</title></rect>
+<rect x="1109.43" y="318.13" width="10.59" height="11.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaHopStart: 112 bytes, matched, size=symbol</title></rect>
+<rect x="1120.38" y="318.13" width="10.20" height="11.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaLeap: 108 bytes, matched, size=symbol</title></rect>
+<rect x="1086.76" y="330.26" width="9.20" height="12.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaChild: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1086.76" y="342.67" width="9.20" height="12.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaDefeated: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1086.76" y="355.09" width="9.20" height="12.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaShortTumbleCommon: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1096.31" y="330.26" width="10.09" height="8.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaTurn: 76 bytes, matched, size=symbol</title></rect>
+<rect x="1106.75" y="330.26" width="8.44" height="8.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaAirBounceCommon: 64 bytes, matched, size=symbol</title></rect>
+<rect x="1115.54" y="330.26" width="7.34" height="8.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/KillDeburina: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1123.24" y="330.26" width="7.34" height="8.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/UpdateDeburinaAlertWait: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1096.31" y="338.88" width="7.77" height="7.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaGroundBounceCommon: 52 bytes, matched, size=symbol</title></rect>
+<rect x="1096.31" y="346.48" width="7.77" height="7.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaPushedWindupCommon: 52 bytes, matched, size=symbol</title></rect>
+<rect x="1096.31" y="354.07" width="7.77" height="6.66" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaThrownCrash: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1096.31" y="361.08" width="7.77" height="6.07" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaHopBack: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1104.42" y="338.88" width="6.59" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaStunned: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1111.37" y="338.88" width="6.59" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaTurn: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1118.31" y="338.88" width="5.96" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaFalling: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1124.62" y="338.88" width="5.96" height="7.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaPushedSlideCommon: 40 bytes, matched, size=symbol</title></rect>
+<rect x="1104.42" y="346.40" width="5.27" height="7.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaHopStart: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1104.42" y="354.00" width="5.27" height="7.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaIdle: 36 bytes, matched, size=symbol</title></rect>
+<rect x="1104.42" y="361.59" width="5.27" height="5.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaCarriedCommon: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1110.04" y="346.40" width="6.01" height="4.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/SpriteDeburinaChild: 28 bytes, matched, size=symbol</title></rect>
+<rect x="1116.40" y="346.40" width="5.10" height="4.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaLiftedCommon: 24 bytes, matched, size=symbol</title></rect>
+<rect x="1121.85" y="346.40" width="4.19" height="4.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaAirBounceLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1126.39" y="346.40" width="4.19" height="4.87" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaAirBounceRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1110.04" y="351.62" width="4.13" height="4.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaBumpedLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1110.04" y="356.91" width="4.13" height="4.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaBumpedRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1110.04" y="362.21" width="4.13" height="4.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaCarriedLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1114.52" y="351.62" width="4.13" height="4.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaCarriedRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1114.52" y="356.91" width="4.13" height="4.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaGroundBounceLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1114.52" y="362.21" width="4.13" height="4.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaGroundBounceRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1118.99" y="351.62" width="3.63" height="5.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaLiftedLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1122.97" y="351.62" width="3.63" height="5.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaLiftedRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1126.95" y="351.62" width="3.63" height="5.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaPushedLeftWindup: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1118.99" y="357.57" width="4.42" height="4.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaPushedRightWindup: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1118.99" y="362.54" width="4.42" height="4.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaShortTumbleLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1123.77" y="357.57" width="3.23" height="6.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaShortTumbleRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1127.35" y="357.57" width="3.23" height="6.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaTumbleLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="1123.77" y="364.19" width="6.81" height="2.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>deburina/InitDeburinaTumbleRight: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>yeti: 100.0% matched, 3,540 bytes</title>
