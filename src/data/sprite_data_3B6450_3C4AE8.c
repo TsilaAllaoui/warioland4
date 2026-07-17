@@ -1,373 +1,1978 @@
 #include "types.h"
 #include "oam.h"
 
-/* 0x083B6450 - 0x083B75E8: not yet typed. */
-const u8 sSpriteDataRaw_083B6450[] = {
-    0x0D, 0x00, 0xED, 0x00, 0xFC, 0x11, 0x00, 0x82, 0xF5, 0x40, 0xF4, 0x11, 0x21, 0x82, 0xED, 0x00,
-    0xF4, 0x11, 0x02, 0x82, 0xF4, 0x80, 0xFA, 0x11, 0x0E, 0x82, 0xFC, 0x00, 0xF2, 0x11, 0x2F, 0x82,
-    0xF7, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xEE, 0x80, 0x03, 0x10, 0x0B, 0x82, 0xEE, 0x40, 0xF7, 0x11,
-    0x09, 0x82, 0xF8, 0x00, 0xFC, 0x41, 0x11, 0x82, 0x07, 0x00, 0xFE, 0x01, 0x15, 0x82, 0x03, 0x40,
-    0xFD, 0x11, 0x29, 0x82, 0xEE, 0x80, 0x09, 0x00, 0x19, 0x82, 0xEE, 0x00, 0x11, 0x00, 0x1A, 0x82,
-    0x0C, 0x00, 0xEC, 0x00, 0xFC, 0x11, 0x00, 0x82, 0xF4, 0x40, 0xF4, 0x11, 0x21, 0x82, 0xEC, 0x00,
-    0xF4, 0x11, 0x02, 0x82, 0xF3, 0x80, 0xFA, 0x11, 0x0E, 0x82, 0xFB, 0x00, 0xF2, 0x11, 0x2F, 0x82,
-    0xF6, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x03, 0x10, 0x0B, 0x82, 0xED, 0x40, 0xF7, 0x11,
-    0x09, 0x82, 0xF7, 0x00, 0xFC, 0x41, 0x11, 0x82, 0x06, 0x00, 0xFD, 0x01, 0x15, 0x82, 0x02, 0x40,
-    0xFC, 0x11, 0x29, 0x82, 0xEC, 0x80, 0x09, 0x00, 0x18, 0x82, 0x0C, 0x00, 0xEC, 0x00, 0xFB, 0x11,
-    0x00, 0x82, 0xF4, 0x40, 0xF3, 0x11, 0x21, 0x82, 0xEC, 0x00, 0xF3, 0x11, 0x02, 0x82, 0xF3, 0x80,
-    0xF9, 0x11, 0x0E, 0x82, 0xFB, 0x00, 0xF1, 0x11, 0x2F, 0x82, 0xF6, 0x00, 0xFD, 0x11, 0x0F, 0x82,
-    0xED, 0x80, 0x02, 0x10, 0x0B, 0x82, 0xED, 0x40, 0xF6, 0x11, 0x09, 0x82, 0xF7, 0x00, 0xFB, 0x41,
-    0x11, 0x82, 0x06, 0x00, 0xFB, 0x01, 0x15, 0x82, 0x02, 0x40, 0xFA, 0x11, 0x29, 0x82, 0xF6, 0x40,
-    0x08, 0x00, 0x3A, 0x82, 0x0C, 0x00, 0xEE, 0x00, 0xFB, 0x11, 0x00, 0x82, 0xF6, 0x40, 0xF3, 0x11,
-    0x21, 0x82, 0xEE, 0x00, 0xF3, 0x11, 0x02, 0x82, 0xF5, 0x80, 0xF9, 0x11, 0x0E, 0x82, 0xFD, 0x00,
-    0xF1, 0x11, 0x2F, 0x82, 0xF8, 0x00, 0xFD, 0x11, 0x0F, 0x82, 0xEF, 0x80, 0x02, 0x10, 0x0B, 0x82,
-    0xEF, 0x40, 0xF6, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFB, 0x41, 0x11, 0x82, 0x07, 0x00, 0xFB, 0x01,
-    0x15, 0x82, 0x03, 0x40, 0xFA, 0x11, 0x29, 0x82, 0xF8, 0x40, 0x08, 0x20, 0x3A, 0x82, 0x0D, 0x00,
-    0xF0, 0x00, 0xFB, 0x11, 0x00, 0x82, 0xF8, 0x40, 0xF3, 0x11, 0x21, 0x82, 0xF0, 0x00, 0xF3, 0x11,
-    0x02, 0x82, 0xF7, 0x80, 0xF9, 0x11, 0x0E, 0x82, 0xFF, 0x00, 0xF1, 0x11, 0x2F, 0x82, 0xFA, 0x00,
-    0xFC, 0x11, 0x0F, 0x82, 0xF1, 0x80, 0x02, 0x10, 0x0B, 0x82, 0xF1, 0x40, 0xF6, 0x11, 0x09, 0x82,
-    0xF9, 0x00, 0xFA, 0x41, 0x13, 0x82, 0x0A, 0x00, 0xFB, 0x01, 0x15, 0x82, 0x06, 0x40, 0xFA, 0x11,
-    0x29, 0x82, 0xF1, 0x80, 0x08, 0x00, 0x19, 0x82, 0xF1, 0x00, 0x10, 0x00, 0x1A, 0x82, 0x0C, 0x00,
-    0xF0, 0x00, 0xFC, 0x11, 0x00, 0x82, 0xF8, 0x40, 0xF4, 0x11, 0x21, 0x82, 0xF0, 0x00, 0xF4, 0x11,
-    0x02, 0x82, 0xF7, 0x80, 0xFA, 0x11, 0x0E, 0x82, 0xFF, 0x00, 0xF2, 0x11, 0x2F, 0x82, 0xFA, 0x00,
-    0xFD, 0x11, 0x0F, 0x82, 0xF1, 0x80, 0x03, 0x10, 0x0B, 0x82, 0xF1, 0x40, 0xF7, 0x11, 0x09, 0x82,
-    0xFA, 0x00, 0xFB, 0x41, 0x13, 0x82, 0x0B, 0x00, 0xFD, 0x01, 0x15, 0x82, 0x07, 0x40, 0xFC, 0x11,
-    0x29, 0x82, 0xF1, 0x80, 0x09, 0x00, 0x18, 0x82, 0x0C, 0x00, 0xF0, 0x00, 0xFD, 0x11, 0x00, 0x82,
-    0xF8, 0x40, 0xF5, 0x11, 0x21, 0x82, 0xF0, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF7, 0x80, 0xFB, 0x11,
-    0x0E, 0x82, 0xFF, 0x00, 0xF3, 0x11, 0x2F, 0x82, 0xFA, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xF1, 0x80,
-    0x04, 0x10, 0x0B, 0x82, 0xF1, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFC, 0x41, 0x13, 0x82,
-    0x0B, 0x00, 0xFE, 0x01, 0x15, 0x82, 0x07, 0x40, 0xFD, 0x11, 0x29, 0x82, 0xFB, 0x40, 0x0A, 0x00,
-    0x3A, 0x82, 0x0C, 0x00, 0xEF, 0x00, 0xFD, 0x11, 0x00, 0x82, 0xF7, 0x40, 0xF5, 0x11, 0x21, 0x82,
-    0xEF, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF6, 0x80, 0xFB, 0x11, 0x0E, 0x82, 0xFE, 0x00, 0xF3, 0x11,
-    0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xF0, 0x80, 0x04, 0x10, 0x0B, 0x82, 0xF0, 0x40,
-    0xF8, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFC, 0x41, 0x13, 0x82, 0x09, 0x00, 0xFE, 0x01, 0x15, 0x82,
-    0x05, 0x40, 0xFD, 0x11, 0x29, 0x82, 0xFA, 0x40, 0x0A, 0x20, 0x3A, 0x82, 0x01, 0x00, 0xFC, 0x00,
-    0xFC, 0x01, 0x3F, 0x82, 0x0D, 0x00, 0xEC, 0x00, 0xFC, 0x11, 0x00, 0x82, 0xF4, 0x40, 0xF4, 0x11,
-    0x21, 0x82, 0xEC, 0x00, 0xF4, 0x11, 0x02, 0x82, 0xF3, 0x80, 0xFA, 0x11, 0x0E, 0x82, 0xFB, 0x00,
-    0xF2, 0x11, 0x2F, 0x82, 0xF6, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x03, 0x10, 0x0B, 0x82,
-    0xED, 0x40, 0xF7, 0x11, 0x09, 0x82, 0xF7, 0x00, 0xFC, 0x41, 0x11, 0x82, 0x06, 0x00, 0xFD, 0x01,
-    0x15, 0x82, 0x02, 0x40, 0xFC, 0x11, 0x29, 0x82, 0xED, 0x80, 0x09, 0x00, 0x19, 0x82, 0xED, 0x00,
-    0x11, 0x00, 0x1A, 0x82, 0x0C, 0x00, 0xEE, 0x00, 0xFB, 0x11, 0x00, 0x82, 0xF6, 0x40, 0xF3, 0x11,
-    0x21, 0x82, 0xEE, 0x00, 0xF3, 0x11, 0x02, 0x82, 0xF5, 0x80, 0xF9, 0x11, 0x0E, 0x82, 0xFD, 0x00,
-    0xF1, 0x11, 0x2F, 0x82, 0xF8, 0x00, 0xFD, 0x11, 0x0F, 0x82, 0xEF, 0x80, 0x02, 0x10, 0x0B, 0x82,
-    0xEF, 0x40, 0xF6, 0x11, 0x09, 0x82, 0xF8, 0x00, 0xFC, 0x41, 0x11, 0x82, 0x07, 0x00, 0xFE, 0x01,
-    0x15, 0x82, 0x03, 0x40, 0xFD, 0x11, 0x29, 0x82, 0xED, 0x80, 0x09, 0x00, 0x18, 0x82, 0x0C, 0x00,
-    0xEF, 0x00, 0xFB, 0x11, 0x00, 0x82, 0xF7, 0x40, 0xF3, 0x11, 0x21, 0x82, 0xEF, 0x00, 0xF3, 0x11,
-    0x02, 0x82, 0xF6, 0x80, 0xF9, 0x11, 0x0E, 0x82, 0xFE, 0x00, 0xF1, 0x11, 0x2F, 0x82, 0xF9, 0x00,
-    0xFD, 0x11, 0x0F, 0x82, 0xF0, 0x80, 0x02, 0x10, 0x0B, 0x82, 0xF0, 0x40, 0xF6, 0x11, 0x09, 0x82,
-    0xF7, 0x00, 0xFC, 0x41, 0x13, 0x82, 0x08, 0x00, 0xFE, 0x01, 0x15, 0x82, 0x04, 0x40, 0xFD, 0x11,
-    0x29, 0x82, 0xF6, 0x40, 0x09, 0x00, 0x3A, 0x82, 0x0C, 0x00, 0xF0, 0x00, 0xFA, 0x11, 0x00, 0x82,
-    0xF8, 0x40, 0xF2, 0x11, 0x21, 0x82, 0xF0, 0x00, 0xF2, 0x11, 0x02, 0x82, 0xF7, 0x80, 0xF8, 0x11,
-    0x0E, 0x82, 0xFF, 0x00, 0xF0, 0x11, 0x2F, 0x82, 0xFA, 0x00, 0xFC, 0x11, 0x0F, 0x82, 0xF1, 0x80,
-    0x01, 0x10, 0x0B, 0x82, 0xF1, 0x40, 0xF5, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFB, 0x41, 0x13, 0x82,
-    0x0A, 0x00, 0xFD, 0x01, 0x15, 0x82, 0x06, 0x40, 0xFC, 0x11, 0x29, 0x82, 0xEE, 0x80, 0x08, 0x00,
-    0x18, 0x82, 0x0C, 0x00, 0xEE, 0x00, 0xFA, 0x11, 0x00, 0x82, 0xF6, 0x40, 0xF2, 0x11, 0x21, 0x82,
-    0xEE, 0x00, 0xF2, 0x11, 0x02, 0x82, 0xF5, 0x80, 0xF8, 0x11, 0x0E, 0x82, 0xFD, 0x00, 0xF0, 0x11,
-    0x2F, 0x82, 0xF8, 0x00, 0xFC, 0x11, 0x0F, 0x82, 0xEF, 0x80, 0x01, 0x10, 0x0B, 0x82, 0xEF, 0x40,
-    0xF5, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFB, 0x41, 0x11, 0x82, 0x08, 0x00, 0xFB, 0x01, 0x15, 0x82,
-    0x04, 0x40, 0xF9, 0x11, 0x29, 0x82, 0xF9, 0x40, 0x08, 0x20, 0x3A, 0x82, 0x01, 0x00, 0xF8, 0x00,
-    0x00, 0x00, 0x3F, 0x82, 0x0D, 0x00, 0xED, 0x00, 0xFD, 0x11, 0x00, 0x82, 0xF5, 0x40, 0xF5, 0x11,
-    0x21, 0x82, 0xED, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF3, 0x80, 0xFB, 0x11, 0x0E, 0x82, 0xFB, 0x00,
-    0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFF, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x04, 0x10, 0x0B, 0x82,
-    0xED, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFA, 0x41, 0x11, 0x82, 0x08, 0x00, 0xFC, 0x01,
-    0x15, 0x82, 0x05, 0x40, 0xFB, 0x01, 0x29, 0x82, 0xF0, 0x80, 0x07, 0x00, 0x19, 0x82, 0xF0, 0x00,
-    0x0F, 0x00, 0x1A, 0x82, 0x0A, 0x00, 0xF2, 0x00, 0xF3, 0x51, 0x07, 0x82, 0xFC, 0x00, 0xF9, 0x11,
-    0x1F, 0x82, 0xF6, 0x80, 0xFB, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x02, 0x10, 0x0C, 0x82, 0xEE, 0x40,
-    0xF7, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFF, 0x11, 0x0F, 0x82, 0xF9, 0x00, 0xFB, 0x41, 0x13, 0x82,
-    0x08, 0x00, 0xFD, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFC, 0x01, 0x29, 0x82, 0xEE, 0x80, 0x08, 0x00,
-    0x18, 0x82, 0x0A, 0x00, 0xF2, 0x00, 0xF3, 0x51, 0x07, 0x82, 0xFD, 0x00, 0xFA, 0x11, 0x1F, 0x82,
-    0xF7, 0x80, 0xFB, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x02, 0x10, 0x0C, 0x82, 0xEE, 0x40, 0xF7, 0x11,
-    0x09, 0x82, 0xF9, 0x00, 0xFF, 0x11, 0x0F, 0x82, 0xF8, 0x00, 0xFC, 0x41, 0x13, 0x82, 0x07, 0x00,
-    0xFE, 0x01, 0x15, 0x82, 0x04, 0x40, 0xFD, 0x01, 0x29, 0x82, 0xF7, 0x40, 0x09, 0x00, 0x3A, 0x82,
-    0x0A, 0x00, 0xF2, 0x00, 0xF4, 0x51, 0x07, 0x82, 0xFC, 0x00, 0xFB, 0x11, 0x3F, 0x82, 0xF7, 0x80,
-    0xFC, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x03, 0x10, 0x0C, 0x82, 0xEE, 0x40, 0xF8, 0x11, 0x09, 0x82,
-    0xF9, 0x00, 0x00, 0x10, 0x0F, 0x82, 0xF8, 0x00, 0xFD, 0x41, 0x13, 0x82, 0x07, 0x00, 0xFF, 0x01,
-    0x15, 0x82, 0x04, 0x40, 0xFE, 0x01, 0x29, 0x82, 0xF7, 0x40, 0x0A, 0x20, 0x3A, 0x82, 0x0C, 0x00,
-    0xF1, 0x00, 0xF7, 0x51, 0x07, 0x82, 0xFC, 0x00, 0xFF, 0x11, 0x3F, 0x82, 0xFF, 0x00, 0xFA, 0x11,
-    0x1F, 0x82, 0xF6, 0x80, 0xFF, 0x11, 0x10, 0x82, 0xED, 0x80, 0x06, 0x10, 0x0C, 0x82, 0xED, 0x40,
-    0xFB, 0x11, 0x09, 0x82, 0xF8, 0x00, 0x03, 0x10, 0x0F, 0x82, 0xF7, 0x00, 0x00, 0x40, 0x13, 0x82,
-    0x05, 0x00, 0x01, 0x00, 0x35, 0x82, 0x03, 0x40, 0x01, 0x00, 0x29, 0x82, 0xED, 0x80, 0x0D, 0x00,
-    0x19, 0x82, 0xED, 0x00, 0x15, 0x00, 0x1A, 0x82, 0x0C, 0x00, 0xF9, 0x00, 0x01, 0x10, 0x3F, 0x82,
-    0xFA, 0x00, 0xFC, 0x11, 0x3F, 0x82, 0xFA, 0x00, 0xF7, 0x11, 0x1F, 0x82, 0xEE, 0x00, 0xF8, 0x51,
-    0x07, 0x82, 0xF3, 0x80, 0x00, 0x10, 0x10, 0x82, 0xEA, 0x80, 0x07, 0x10, 0x0C, 0x82, 0xEA, 0x40,
-    0xFC, 0x11, 0x09, 0x82, 0xF5, 0x00, 0x04, 0x10, 0x0F, 0x82, 0xF4, 0x00, 0x01, 0x40, 0x13, 0x82,
-    0x03, 0x00, 0x02, 0x00, 0x35, 0x82, 0x00, 0x40, 0x02, 0x00, 0x29, 0x82, 0xE9, 0x80, 0x0E, 0x00,
-    0x18, 0x82, 0x0C, 0x00, 0xF3, 0x00, 0x02, 0x10, 0x3F, 0x82, 0xF7, 0x00, 0xFD, 0x11, 0x3F, 0x82,
-    0xF5, 0x00, 0xF8, 0x11, 0x3F, 0x82, 0xEB, 0x00, 0xF8, 0x51, 0x07, 0x82, 0xF0, 0x80, 0x00, 0x10,
-    0x10, 0x82, 0xE7, 0x80, 0x07, 0x10, 0x0C, 0x82, 0xE7, 0x40, 0xFC, 0x11, 0x09, 0x82, 0xF2, 0x00,
-    0x04, 0x10, 0x0F, 0x82, 0xF0, 0x00, 0x02, 0x40, 0x13, 0x82, 0xFE, 0x00, 0x03, 0x00, 0x35, 0x82,
-    0xFC, 0x40, 0x03, 0x00, 0x29, 0x82, 0xEF, 0x40, 0x0F, 0x00, 0x3A, 0x82, 0x0C, 0x00, 0xFC, 0x00,
-    0xFE, 0x11, 0x3F, 0x82, 0xFE, 0x00, 0xF8, 0x11, 0x3F, 0x82, 0xFC, 0x00, 0xF2, 0x11, 0x3F, 0x82,
-    0xF2, 0x00, 0xF5, 0x51, 0x07, 0x82, 0xF7, 0x80, 0xFD, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x04, 0x10,
-    0x0C, 0x82, 0xEE, 0x40, 0xF9, 0x11, 0x09, 0x82, 0xF9, 0x00, 0x01, 0x10, 0x0F, 0x82, 0xF7, 0x00,
-    0xFF, 0x41, 0x13, 0x82, 0x07, 0x00, 0x01, 0x00, 0x15, 0x82, 0x03, 0x40, 0x00, 0x00, 0x29, 0x82,
-    0xF6, 0x40, 0x0C, 0x20, 0x3A, 0x82, 0x09, 0x00, 0xF3, 0x00, 0xF2, 0x51, 0x07, 0x82, 0xF9, 0x80,
-    0xFA, 0x11, 0x10, 0x82, 0xEF, 0x80, 0x01, 0x10, 0x0C, 0x82, 0xEF, 0x40, 0xF6, 0x11, 0x09, 0x82,
-    0xFA, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xF7, 0x00, 0xFC, 0x41, 0x13, 0x82, 0x07, 0x00, 0xFE, 0x01,
-    0x15, 0x82, 0x03, 0x40, 0xFD, 0x01, 0x29, 0x82, 0xEC, 0x80, 0x09, 0x00, 0x18, 0x82, 0x09, 0x00,
-    0xF2, 0x00, 0xF3, 0x51, 0x07, 0x82, 0xF8, 0x80, 0xFB, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x02, 0x10,
-    0x0C, 0x82, 0xEE, 0x40, 0xF7, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFF, 0x11, 0x0F, 0x82, 0xF8, 0x00,
-    0xFC, 0x41, 0x13, 0x82, 0x08, 0x00, 0xFE, 0x01, 0x15, 0x82, 0x04, 0x40, 0xFD, 0x01, 0x29, 0x82,
-    0xF7, 0x40, 0x09, 0x00, 0x3A, 0x82, 0x0C, 0x00, 0xED, 0x00, 0xFD, 0x11, 0x00, 0x82, 0xF5, 0x40,
-    0xF5, 0x11, 0x21, 0x82, 0xED, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF3, 0x80, 0xFB, 0x11, 0x0E, 0x82,
-    0xFB, 0x00, 0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFF, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x04, 0x10,
-    0x0B, 0x82, 0xED, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFB, 0x41, 0x11, 0x82, 0x09, 0x00,
-    0xFD, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFC, 0x01, 0x29, 0x82, 0xF9, 0x40, 0x08, 0x20, 0x3A, 0x82,
-    0x01, 0x00, 0xFC, 0x00, 0xFC, 0x01, 0x3F, 0x82, 0x0D, 0x00, 0xED, 0x00, 0xFC, 0x11, 0x00, 0x82,
-    0xF5, 0x40, 0xF4, 0x11, 0x21, 0x82, 0xED, 0x00, 0xF4, 0x11, 0x02, 0x82, 0xF4, 0x80, 0xFA, 0x11,
-    0x0E, 0x82, 0xFC, 0x00, 0xF2, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xED, 0x80,
-    0x03, 0x10, 0x0B, 0x82, 0xED, 0x40, 0xF7, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xF9, 0x41, 0x11, 0x82,
-    0x08, 0x00, 0xFB, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFA, 0x01, 0x29, 0x82, 0xF0, 0x80, 0x06, 0x00,
-    0x19, 0x82, 0xF0, 0x00, 0x0E, 0x00, 0x1A, 0x82, 0x0A, 0x00, 0xF2, 0x00, 0xF2, 0x51, 0x07, 0x82,
-    0xFC, 0x00, 0xF8, 0x11, 0x1F, 0x82, 0xF6, 0x80, 0xFA, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x01, 0x10,
-    0x0C, 0x82, 0xEE, 0x40, 0xF6, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xF9, 0x00,
-    0xFA, 0x41, 0x13, 0x82, 0x08, 0x00, 0xFC, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFB, 0x01, 0x29, 0x82,
-    0xEE, 0x80, 0x07, 0x00, 0x18, 0x82, 0x0A, 0x00, 0xF2, 0x00, 0xF2, 0x51, 0x07, 0x82, 0xFD, 0x00,
-    0xF9, 0x11, 0x1F, 0x82, 0xF7, 0x80, 0xFA, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x01, 0x10, 0x0C, 0x82,
-    0xEE, 0x40, 0xF6, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xF8, 0x00, 0xFB, 0x41,
-    0x13, 0x82, 0x07, 0x00, 0xFD, 0x01, 0x15, 0x82, 0x04, 0x40, 0xFC, 0x01, 0x29, 0x82, 0xF7, 0x40,
-    0x08, 0x00, 0x3A, 0x82, 0x0A, 0x00, 0xF2, 0x00, 0xF3, 0x51, 0x07, 0x82, 0xFC, 0x00, 0xFA, 0x11,
-    0x3F, 0x82, 0xF7, 0x80, 0xFB, 0x11, 0x10, 0x82, 0xEE, 0x80, 0x02, 0x10, 0x0C, 0x82, 0xEE, 0x40,
-    0xF7, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFF, 0x11, 0x0F, 0x82, 0xF8, 0x00, 0xFC, 0x41, 0x13, 0x82,
-    0x07, 0x00, 0xFE, 0x01, 0x15, 0x82, 0x04, 0x40, 0xFD, 0x01, 0x29, 0x82, 0xF7, 0x40, 0x09, 0x20,
-    0x3A, 0x82, 0x0C, 0x00, 0xF1, 0x00, 0xF6, 0x51, 0x07, 0x82, 0xFC, 0x00, 0xFE, 0x11, 0x3F, 0x82,
-    0xFF, 0x00, 0xF9, 0x11, 0x1F, 0x82, 0xF6, 0x80, 0xFE, 0x11, 0x10, 0x82, 0xED, 0x80, 0x05, 0x10,
-    0x0C, 0x82, 0xED, 0x40, 0xFA, 0x11, 0x09, 0x82, 0xF8, 0x00, 0x02, 0x10, 0x0F, 0x82, 0xF7, 0x00,
-    0xFF, 0x41, 0x13, 0x82, 0x05, 0x00, 0x00, 0x00, 0x35, 0x82, 0x03, 0x40, 0x00, 0x00, 0x29, 0x82,
-    0xED, 0x80, 0x0C, 0x00, 0x19, 0x82, 0xED, 0x00, 0x14, 0x00, 0x1A, 0x82, 0x0C, 0x00, 0xF9, 0x00,
-    0x00, 0x10, 0x3F, 0x82, 0xFA, 0x00, 0xFB, 0x11, 0x3F, 0x82, 0xFA, 0x00, 0xF6, 0x11, 0x1F, 0x82,
-    0xEE, 0x00, 0xF7, 0x51, 0x07, 0x82, 0xF3, 0x80, 0xFF, 0x11, 0x10, 0x82, 0xEA, 0x80, 0x06, 0x10,
-    0x0C, 0x82, 0xEA, 0x40, 0xFB, 0x11, 0x09, 0x82, 0xF5, 0x00, 0x03, 0x10, 0x0F, 0x82, 0xF4, 0x00,
-    0x00, 0x40, 0x13, 0x82, 0x03, 0x00, 0x01, 0x00, 0x35, 0x82, 0x00, 0x40, 0x01, 0x00, 0x29, 0x82,
-    0xE9, 0x80, 0x0D, 0x00, 0x18, 0x82, 0x0F, 0x00, 0xF0, 0x00, 0x00, 0x10, 0x3F, 0x82, 0xF3, 0x00,
-    0xFB, 0x11, 0x3F, 0x82, 0xF2, 0x00, 0xF6, 0x11, 0x3F, 0x82, 0xE6, 0x00, 0x01, 0x10, 0x00, 0x82,
-    0xEE, 0x40, 0xF9, 0x11, 0x21, 0x82, 0xE6, 0x00, 0xF9, 0x11, 0x02, 0x82, 0xEF, 0x80, 0xFF, 0x11,
-    0x0E, 0x82, 0xF7, 0x00, 0xF7, 0x11, 0x2F, 0x82, 0xF2, 0x00, 0x03, 0x10, 0x0F, 0x82, 0xE6, 0x80,
-    0x08, 0x10, 0x0B, 0x82, 0xE6, 0x40, 0xFC, 0x11, 0x09, 0x82, 0xF4, 0x00, 0xFF, 0x41, 0x11, 0x82,
-    0x02, 0x00, 0x00, 0x00, 0x35, 0x82, 0xFF, 0x40, 0xFF, 0x01, 0x29, 0x82, 0xF3, 0x40, 0x0C, 0x00,
-    0x3A, 0x82, 0x0F, 0x00, 0xF4, 0x00, 0xFD, 0x11, 0x3F, 0x82, 0xF6, 0x00, 0xF7, 0x11, 0x3F, 0x82,
-    0xF4, 0x00, 0xF1, 0x11, 0x3F, 0x82, 0xE9, 0x00, 0xFE, 0x11, 0x00, 0x82, 0xF1, 0x40, 0xF6, 0x11,
-    0x21, 0x82, 0xE9, 0x00, 0xF6, 0x11, 0x02, 0x82, 0xF2, 0x80, 0xFC, 0x11, 0x0E, 0x82, 0xFA, 0x00,
-    0xF4, 0x11, 0x2F, 0x82, 0xF5, 0x00, 0x00, 0x10, 0x0F, 0x82, 0xE9, 0x80, 0x05, 0x10, 0x0B, 0x82,
-    0xE9, 0x40, 0xF9, 0x11, 0x09, 0x82, 0xF7, 0x00, 0xFC, 0x41, 0x11, 0x82, 0x04, 0x00, 0xFC, 0x01,
-    0x35, 0x82, 0x02, 0x40, 0xFC, 0x01, 0x29, 0x82, 0xF6, 0x40, 0x09, 0x20, 0x3A, 0x82, 0x0C, 0x00,
-    0xED, 0x00, 0xFB, 0x11, 0x00, 0x82, 0xF5, 0x40, 0xF3, 0x11, 0x21, 0x82, 0xED, 0x00, 0xF3, 0x11,
-    0x02, 0x82, 0xF8, 0x80, 0xF9, 0x11, 0x0E, 0x82, 0x00, 0x00, 0xF1, 0x11, 0x2F, 0x82, 0xF9, 0x00,
-    0xFD, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x02, 0x10, 0x0B, 0x82, 0xED, 0x40, 0xF6, 0x11, 0x09, 0x82,
-    0xF8, 0x00, 0xFB, 0x41, 0x11, 0x82, 0x06, 0x00, 0xFB, 0x01, 0x15, 0x82, 0x03, 0x40, 0xFB, 0x01,
-    0x29, 0x82, 0xED, 0x80, 0x08, 0x00, 0x18, 0x82, 0x0C, 0x00, 0xED, 0x00, 0xFC, 0x11, 0x00, 0x82,
-    0xF5, 0x40, 0xF4, 0x11, 0x21, 0x82, 0xED, 0x00, 0xF4, 0x11, 0x02, 0x82, 0xF6, 0x80, 0xFA, 0x11,
-    0x0E, 0x82, 0xFE, 0x00, 0xF2, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xED, 0x80,
-    0x03, 0x10, 0x0B, 0x82, 0xED, 0x40, 0xF7, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFB, 0x41, 0x11, 0x82,
-    0x08, 0x00, 0xFC, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFB, 0x01, 0x29, 0x82, 0xF9, 0x40, 0x08, 0x00,
-    0x3A, 0x82, 0x0C, 0x00, 0xEF, 0x00, 0xFC, 0x11, 0x00, 0x82, 0xF7, 0x40, 0xF4, 0x11, 0x21, 0x82,
-    0xEF, 0x00, 0xF4, 0x11, 0x02, 0x82, 0xF6, 0x80, 0xFA, 0x11, 0x0E, 0x82, 0xFE, 0x00, 0xF2, 0x11,
-    0x2F, 0x82, 0xFA, 0x00, 0xFD, 0x11, 0x0F, 0x82, 0xEF, 0x80, 0x03, 0x10, 0x0B, 0x82, 0xEF, 0x40,
-    0xF7, 0x11, 0x09, 0x82, 0xFB, 0x00, 0xFA, 0x41, 0x11, 0x82, 0x09, 0x00, 0xFB, 0x01, 0x15, 0x82,
-    0x06, 0x40, 0xFA, 0x01, 0x29, 0x82, 0xFA, 0x40, 0x07, 0x20, 0x3A, 0x82, 0x01, 0x00, 0xFC, 0x00,
-    0xFC, 0x01, 0x3F, 0x82, 0x0D, 0x00, 0xED, 0x00, 0xFD, 0x11, 0x00, 0x82, 0xF5, 0x40, 0xF5, 0x11,
-    0x21, 0x82, 0xED, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF3, 0x80, 0xFB, 0x11, 0x0E, 0x82, 0xFB, 0x00,
-    0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x04, 0x10, 0x0B, 0x82,
-    0xED, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFA, 0x41, 0x11, 0x82, 0x08, 0x00, 0xFC, 0x01,
-    0x15, 0x82, 0x05, 0x40, 0xFB, 0x01, 0x29, 0x82, 0xF0, 0x80, 0x07, 0x00, 0x19, 0x82, 0xF0, 0x00,
-    0x0F, 0x00, 0x1A, 0x82, 0x0E, 0x00, 0xEE, 0x80, 0xF8, 0x01, 0x00, 0x82, 0xEE, 0x80, 0x00, 0x10,
-    0x00, 0x82, 0xEE, 0x40, 0xF8, 0x01, 0x09, 0x82, 0xF4, 0x80, 0xF8, 0x01, 0x0D, 0x82, 0xF4, 0x80,
-    0x00, 0x10, 0x0D, 0x82, 0xFA, 0x00, 0xF9, 0x01, 0x0F, 0x82, 0xFA, 0x00, 0xFF, 0x11, 0x0F, 0x82,
-    0xFB, 0x80, 0xF8, 0x01, 0x16, 0x82, 0xFB, 0x80, 0x00, 0x10, 0x16, 0x82, 0x09, 0x00, 0xFC, 0x01,
-    0x1E, 0x82, 0x06, 0x40, 0xF8, 0x01, 0x29, 0x82, 0xFE, 0x40, 0xF8, 0x21, 0x29, 0x82, 0xF1, 0x80,
-    0x05, 0x00, 0x18, 0x82, 0xF1, 0x80, 0xF3, 0x11, 0x18, 0x82, 0x0E, 0x00, 0xED, 0x80, 0xF8, 0x01,
-    0x00, 0x82, 0xED, 0x80, 0x00, 0x10, 0x00, 0x82, 0xED, 0x40, 0xF8, 0x01, 0x09, 0x82, 0xF5, 0x80,
-    0xF8, 0x01, 0x0D, 0x82, 0xF5, 0x80, 0x00, 0x10, 0x0D, 0x82, 0xF9, 0x00, 0xF8, 0x01, 0x0F, 0x82,
-    0xF9, 0x00, 0x00, 0x10, 0x0F, 0x82, 0xFA, 0x80, 0xF8, 0x01, 0x16, 0x82, 0xFA, 0x80, 0x00, 0x10,
-    0x16, 0x82, 0x07, 0x00, 0xFC, 0x01, 0x1E, 0x82, 0x04, 0x40, 0xF8, 0x01, 0x29, 0x82, 0xFC, 0x40,
-    0xF8, 0x21, 0x29, 0x82, 0xFC, 0x40, 0x05, 0x00, 0x3A, 0x82, 0xFC, 0x40, 0xEB, 0x11, 0x3A, 0x82,
-    0x0C, 0x00, 0xEE, 0x00, 0xFB, 0x01, 0x00, 0x82, 0xF6, 0x40, 0xFB, 0x01, 0x21, 0x82, 0xEE, 0x00,
-    0x03, 0x00, 0x02, 0x82, 0xF4, 0x80, 0xFD, 0x01, 0x0E, 0x82, 0xFC, 0x00, 0x05, 0x00, 0x2F, 0x82,
-    0xFA, 0x00, 0xFA, 0x01, 0x0F, 0x82, 0xEE, 0x80, 0xF4, 0x01, 0x0B, 0x82, 0xEE, 0x40, 0xF8, 0x01,
-    0x09, 0x82, 0xFB, 0x00, 0xF6, 0x51, 0x11, 0x82, 0x09, 0x00, 0xFD, 0x11, 0x15, 0x82, 0x06, 0x40,
-    0xF6, 0x11, 0x29, 0x82, 0xFA, 0x40, 0xE9, 0x31, 0x3A, 0x82, 0x01, 0x00, 0xFC, 0x00, 0xFC, 0x01,
-    0x3F, 0x82, 0x05, 0x00, 0xFA, 0x40, 0x08, 0x20, 0x3A, 0x82, 0xF0, 0x00, 0xF8, 0x51, 0x05, 0x82,
-    0xF8, 0x00, 0x04, 0x10, 0x0F, 0x82, 0xF0, 0x80, 0x07, 0x10, 0x0C, 0x82, 0xF0, 0x40, 0xFB, 0x11,
-    0x09, 0x82, 0x06, 0x00, 0xF1, 0x80, 0x08, 0x00, 0x19, 0x82, 0xF1, 0x00, 0x10, 0x00, 0x1A, 0x82,
-    0xF0, 0x00, 0xF8, 0x51, 0x05, 0x82, 0xF8, 0x00, 0x04, 0x10, 0x0F, 0x82, 0xF0, 0x80, 0x07, 0x10,
-    0x0B, 0x82, 0xF0, 0x40, 0xFB, 0x11, 0x09, 0x82, 0x06, 0x00, 0xF1, 0x80, 0x04, 0x00, 0x19, 0x82,
-    0xF1, 0x00, 0x0C, 0x00, 0x1A, 0x82, 0xF3, 0x00, 0xF5, 0x51, 0x07, 0x82, 0xF8, 0x00, 0x00, 0x10,
-    0x0F, 0x82, 0xF0, 0x80, 0x04, 0x10, 0x0B, 0x82, 0xF0, 0x40, 0xF8, 0x01, 0x09, 0x82, 0x06, 0x00,
-    0xEA, 0x80, 0x0A, 0x00, 0x18, 0x82, 0xEF, 0x00, 0xF6, 0x51, 0x07, 0x82, 0xF4, 0x00, 0x01, 0x10,
-    0x0F, 0x82, 0xEC, 0x80, 0x05, 0x10, 0x0B, 0x82, 0xEC, 0x40, 0xF9, 0x01, 0x09, 0x82, 0xF3, 0x00,
-    0xFC, 0x41, 0x13, 0x82, 0x07, 0x00, 0xEF, 0x40, 0x09, 0x00, 0x3A, 0x82, 0xEA, 0x00, 0xF6, 0x51,
-    0x07, 0x82, 0xEF, 0x00, 0x01, 0x10, 0x0F, 0x82, 0xE7, 0x80, 0x05, 0x10, 0x0B, 0x82, 0xE7, 0x40,
-    0xF9, 0x01, 0x09, 0x82, 0xF0, 0x00, 0xFC, 0x41, 0x13, 0x82, 0xFC, 0x40, 0xFD, 0x01, 0x29, 0x82,
-    0x07, 0x00, 0xE9, 0x00, 0xF6, 0x51, 0x07, 0x82, 0xEE, 0x00, 0x02, 0x10, 0x0F, 0x82, 0xE6, 0x80,
-    0x05, 0x10, 0x0B, 0x82, 0xE6, 0x40, 0xF9, 0x01, 0x09, 0x82, 0xF0, 0x00, 0xFC, 0x41, 0x13, 0x82,
-    0xFC, 0x40, 0xFE, 0x01, 0x29, 0x82, 0xEF, 0x40, 0x09, 0x20, 0x3A, 0x82, 0x09, 0x00, 0xE5, 0x00,
-    0xF7, 0x51, 0x07, 0x82, 0xEA, 0x00, 0x02, 0x10, 0x0F, 0x82, 0xE2, 0x80, 0x06, 0x10, 0x0B, 0x82,
-    0xE2, 0x40, 0xFA, 0x01, 0x09, 0x82, 0xEB, 0x00, 0xFD, 0x41, 0x13, 0x82, 0xF9, 0x00, 0x00, 0x00,
-    0x15, 0x82, 0xF7, 0x40, 0xFF, 0x01, 0x29, 0x82, 0xE1, 0x80, 0x0A, 0x00, 0x19, 0x82, 0xE1, 0x00,
-    0x12, 0x00, 0x1A, 0x82, 0x08, 0x00, 0xE3, 0x00, 0xF7, 0x51, 0x07, 0x82, 0xE8, 0x00, 0x03, 0x10,
-    0x0F, 0x82, 0xE0, 0x80, 0x06, 0x10, 0x0B, 0x82, 0xE0, 0x40, 0xFA, 0x01, 0x09, 0x82, 0xEA, 0x00,
-    0xFD, 0x41, 0x13, 0x82, 0xF8, 0x00, 0x01, 0x00, 0x15, 0x82, 0xF6, 0x40, 0xFF, 0x01, 0x29, 0x82,
-    0xDF, 0x80, 0x0A, 0x00, 0x18, 0x82, 0x0B, 0x00, 0xDF, 0x80, 0xF8, 0x11, 0x02, 0x82, 0xE7, 0x00,
-    0x00, 0x10, 0x21, 0x82, 0xDF, 0x00, 0x00, 0x10, 0x00, 0x82, 0xEB, 0x40, 0xF7, 0x11, 0x2E, 0x82,
-    0xE8, 0x00, 0x03, 0x10, 0x0F, 0x82, 0xE0, 0x80, 0x06, 0x10, 0x0B, 0x82, 0xE0, 0x40, 0xFA, 0x01,
-    0x09, 0x82, 0xEA, 0x00, 0xFD, 0x41, 0x13, 0x82, 0xF8, 0x00, 0x01, 0x00, 0x15, 0x82, 0xF6, 0x40,
-    0xFF, 0x01, 0x29, 0x82, 0xE9, 0x40, 0x0A, 0x00, 0x3A, 0x82, 0x0B, 0x00, 0xDE, 0x80, 0xF8, 0x11,
-    0x02, 0x82, 0xE6, 0x00, 0x00, 0x10, 0x21, 0x82, 0xDE, 0x00, 0x00, 0x10, 0x00, 0x82, 0xEC, 0x40,
-    0xF6, 0x11, 0x2E, 0x82, 0xE7, 0x00, 0x03, 0x10, 0x0F, 0x82, 0xDF, 0x80, 0x06, 0x10, 0x0B, 0x82,
-    0xDF, 0x40, 0xFA, 0x01, 0x09, 0x82, 0xE9, 0x00, 0xFD, 0x41, 0x13, 0x82, 0xF7, 0x00, 0x01, 0x00,
-    0x15, 0x82, 0xF5, 0x40, 0xFF, 0x01, 0x29, 0x82, 0xE8, 0x40, 0x0A, 0x20, 0x3A, 0x82, 0x01, 0x00,
-    0xF8, 0x00, 0x00, 0x00, 0x3F, 0x82, 0x0E, 0x00, 0xEF, 0x00, 0xF1, 0x51, 0x03, 0x82, 0xFB, 0x80,
-    0xF8, 0x11, 0x0E, 0x82, 0x03, 0x00, 0xF0, 0x11, 0x2F, 0x82, 0xFB, 0x00, 0xFD, 0x11, 0x0F, 0x82,
-    0xEF, 0x80, 0x01, 0x10, 0x0C, 0x82, 0xEF, 0x40, 0xF5, 0x01, 0x09, 0x82, 0xFD, 0x00, 0xFA, 0x41,
-    0x11, 0x82, 0x0D, 0x00, 0xFB, 0x01, 0x15, 0x82, 0x0D, 0x40, 0xFC, 0x01, 0x29, 0x82, 0x05, 0x40,
-    0xFC, 0x21, 0x29, 0x82, 0xF3, 0x80, 0x07, 0x00, 0x19, 0x82, 0xF3, 0x00, 0x0F, 0x00, 0x1A, 0x82,
-    0xE4, 0x80, 0xFA, 0x11, 0x19, 0x82, 0xE4, 0x00, 0xF2, 0x11, 0x1A, 0x82, 0x08, 0x00, 0xF2, 0x00,
-    0xF4, 0x51, 0x03, 0x82, 0xFE, 0x80, 0xFB, 0x11, 0x0E, 0x82, 0x06, 0x00, 0xF3, 0x11, 0x2F, 0x82,
-    0xFE, 0x00, 0x00, 0x10, 0x0F, 0x82, 0xF2, 0x80, 0x04, 0x10, 0x0C, 0x82, 0xF2, 0x40, 0xF8, 0x01,
-    0x09, 0x82, 0xF6, 0x80, 0x07, 0x00, 0x19, 0x82, 0xF6, 0x00, 0x0F, 0x00, 0x1A, 0x82, 0x06, 0x00,
-    0xF2, 0x00, 0xF3, 0x41, 0x11, 0x82, 0x05, 0x40, 0xF6, 0x01, 0x29, 0x82, 0xFD, 0x40, 0xF6, 0x21,
-    0x29, 0x82, 0x0D, 0x00, 0xF6, 0x01, 0x15, 0x82, 0xEC, 0x80, 0x04, 0x00, 0x19, 0x82, 0xEC, 0x00,
-    0x0C, 0x00, 0x1A, 0x82, 0x06, 0x00, 0xF1, 0x00, 0xF1, 0x41, 0x11, 0x82, 0x04, 0x40, 0xF8, 0x01,
-    0x29, 0x82, 0xFC, 0x40, 0xF8, 0x21, 0x29, 0x82, 0x0C, 0x00, 0xF4, 0x01, 0x15, 0x82, 0xEB, 0x80,
-    0x06, 0x00, 0x19, 0x82, 0xEB, 0x00, 0x0E, 0x00, 0x1A, 0x82, 0x06, 0x00, 0xF0, 0x00, 0xEF, 0x41,
-    0x11, 0x82, 0x03, 0x40, 0xFA, 0x01, 0x29, 0x82, 0xFB, 0x40, 0xFA, 0x21, 0x29, 0x82, 0x0B, 0x00,
-    0xF2, 0x01, 0x15, 0x82, 0xEA, 0x80, 0x08, 0x00, 0x19, 0x82, 0xEA, 0x00, 0x10, 0x00, 0x1A, 0x82,
-    0x06, 0x00, 0xF1, 0x00, 0xED, 0x41, 0x11, 0x82, 0x04, 0x40, 0xFC, 0x01, 0x29, 0x82, 0xFC, 0x40,
-    0xFC, 0x21, 0x29, 0x82, 0x0C, 0x00, 0xF0, 0x01, 0x15, 0x82, 0xEB, 0x80, 0x0A, 0x00, 0x19, 0x82,
-    0xEB, 0x00, 0x12, 0x00, 0x1A, 0x82, 0x06, 0x00, 0xF4, 0x00, 0xEB, 0x41, 0x11, 0x82, 0x07, 0x40,
-    0xFE, 0x01, 0x29, 0x82, 0xFF, 0x40, 0xFE, 0x21, 0x29, 0x82, 0x0F, 0x00, 0xEE, 0x01, 0x15, 0x82,
-    0xEE, 0x80, 0x0C, 0x00, 0x19, 0x82, 0xEE, 0x00, 0x14, 0x00, 0x1A, 0x82, 0x06, 0x00, 0xF9, 0x00,
-    0xE9, 0x41, 0x11, 0x82, 0x0C, 0x40, 0x00, 0x00, 0x29, 0x82, 0x04, 0x40, 0x00, 0x20, 0x29, 0x82,
-    0x14, 0x00, 0xEC, 0x01, 0x15, 0x82, 0xF3, 0x80, 0x0E, 0x00, 0x19, 0x82, 0xF3, 0x00, 0x16, 0x00,
-    0x1A, 0x82, 0x06, 0x00, 0x00, 0x00, 0xE7, 0x41, 0x11, 0x82, 0x13, 0x40, 0x02, 0x00, 0x29, 0x82,
-    0x0B, 0x40, 0x02, 0x20, 0x29, 0x82, 0x1B, 0x00, 0xEA, 0x01, 0x15, 0x82, 0xFA, 0x80, 0x10, 0x00,
-    0x19, 0x82, 0xFA, 0x00, 0x18, 0x00, 0x1A, 0x82, 0x06, 0x00, 0x09, 0x00, 0xE5, 0x41, 0x11, 0x82,
-    0x1C, 0x40, 0x04, 0x00, 0x29, 0x82, 0x14, 0x40, 0x04, 0x20, 0x29, 0x82, 0x24, 0x00, 0xE8, 0x01,
-    0x15, 0x82, 0x03, 0x80, 0x12, 0x00, 0x19, 0x82, 0x03, 0x00, 0x1A, 0x00, 0x1A, 0x82, 0x06, 0x00,
-    0x14, 0x00, 0xE3, 0x41, 0x11, 0x82, 0x27, 0x40, 0x06, 0x00, 0x29, 0x82, 0x1F, 0x40, 0x06, 0x20,
-    0x29, 0x82, 0x2F, 0x00, 0xE6, 0x01, 0x15, 0x82, 0x0E, 0x80, 0x14, 0x00, 0x19, 0x82, 0x0E, 0x00,
-    0x1C, 0x00, 0x1A, 0x82, 0x01, 0x00, 0xFD, 0x00, 0xFC, 0x01, 0x3F, 0x82, 0x04, 0x00, 0xF8, 0x00,
-    0xF8, 0x01, 0x3F, 0x82, 0xFE, 0x00, 0xFA, 0x01, 0x3F, 0x82, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x82,
-    0xFA, 0x00, 0xFE, 0x01, 0x3F, 0x82, 0x04, 0x00, 0xF9, 0x00, 0xF8, 0x01, 0x3F, 0x82, 0xFF, 0x00,
-    0xFA, 0x01, 0x3F, 0x82, 0xFF, 0x00, 0x00, 0x00, 0x3F, 0x82, 0xF9, 0x00, 0xFE, 0x01, 0x3F, 0x82,
-    0x04, 0x00, 0xFA, 0x00, 0xF8, 0x01, 0x3F, 0x82, 0x00, 0x00, 0xFA, 0x01, 0x3F, 0x82, 0xFE, 0x00,
-    0x00, 0x00, 0x3F, 0x82, 0xF8, 0x00, 0xFE, 0x01, 0x3F, 0x82, 0x04, 0x00, 0xFB, 0x00, 0xF8, 0x01,
-    0x3F, 0x82, 0x00, 0x00, 0xFB, 0x01, 0x3F, 0x82, 0xFD, 0x00, 0x00, 0x00, 0x3F, 0x82, 0xF8, 0x00,
-    0xFD, 0x01, 0x3F, 0x82, 0x04, 0x00, 0xFC, 0x00, 0xF8, 0x01, 0x3F, 0x82, 0x00, 0x00, 0xFC, 0x01,
-    0x3F, 0x82, 0xFC, 0x00, 0x00, 0x00, 0x3F, 0x82, 0xF8, 0x00, 0xFC, 0x01, 0x3F, 0x82, 0x04, 0x00,
-    0xFD, 0x00, 0xF8, 0x01, 0x3F, 0x82, 0x00, 0x00, 0xFD, 0x01, 0x3F, 0x82, 0xFB, 0x00, 0x00, 0x00,
-    0x3F, 0x82, 0xF8, 0x00, 0xFB, 0x01, 0x3F, 0x82, 0x04, 0x00, 0xFE, 0x00, 0xF8, 0x01, 0x3F, 0x82,
-    0x00, 0x00, 0xFE, 0x01, 0x3F, 0x82, 0xFA, 0x00, 0x00, 0x00, 0x3F, 0x82, 0xF8, 0x00, 0xFA, 0x01,
-    0x3F, 0x82, 0x04, 0x00, 0xFE, 0x00, 0xF9, 0x01, 0x3F, 0x82, 0x00, 0x00, 0xFF, 0x01, 0x3F, 0x82,
-    0xF9, 0x00, 0xFF, 0x01, 0x3F, 0x82, 0xF8, 0x00, 0xF9, 0x01, 0x3F, 0x82, 0x0D, 0x00, 0xED, 0x00,
-    0xFD, 0x11, 0x00, 0x82, 0xF5, 0x40, 0xF5, 0x11, 0x21, 0x82, 0xED, 0x00, 0xF5, 0x11, 0x02, 0x82,
-    0xF3, 0x80, 0xFB, 0x11, 0x0E, 0x82, 0xFB, 0x00, 0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11,
-    0x0F, 0x82, 0xED, 0x80, 0x04, 0x10, 0x0B, 0x82, 0xED, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xFA, 0x00,
-    0xFA, 0x41, 0x11, 0x82, 0x07, 0x00, 0xFC, 0x01, 0x15, 0x82, 0x04, 0x40, 0xFB, 0x01, 0x29, 0x82,
-    0xF0, 0x80, 0x07, 0x00, 0x19, 0x82, 0xF0, 0x00, 0x0F, 0x00, 0x1A, 0x82, 0x0C, 0x00, 0xEE, 0x00,
-    0xFD, 0x11, 0x00, 0x82, 0xF6, 0x40, 0xF5, 0x11, 0x21, 0x82, 0xEE, 0x00, 0xF5, 0x11, 0x02, 0x82,
-    0xF5, 0x80, 0xFB, 0x11, 0x0E, 0x82, 0xFD, 0x00, 0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11,
-    0x0F, 0x82, 0xEE, 0x80, 0x04, 0x10, 0x0B, 0x82, 0xEE, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xF9, 0x00,
-    0xFA, 0x41, 0x13, 0x82, 0x08, 0x00, 0xFB, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFA, 0x01, 0x29, 0x82,
-    0xF9, 0x40, 0x07, 0x20, 0x3A, 0x82, 0x0D, 0x00, 0xED, 0x00, 0xFD, 0x11, 0x00, 0x82, 0xF5, 0x40,
-    0xF5, 0x11, 0x21, 0x82, 0xED, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF3, 0x80, 0xFB, 0x11, 0x0E, 0x82,
-    0xFB, 0x00, 0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xED, 0x80, 0x04, 0x10,
-    0x0B, 0x82, 0xED, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xFA, 0x00, 0xFA, 0x41, 0x11, 0x82, 0x08, 0x00,
-    0xFC, 0x01, 0x15, 0x82, 0x05, 0x40, 0xFB, 0x01, 0x29, 0x82, 0xF0, 0x80, 0x07, 0x00, 0x19, 0x82,
-    0xF0, 0x00, 0x0F, 0x00, 0x1A, 0x82, 0x0C, 0x00, 0xEF, 0x00, 0xFD, 0x11, 0x00, 0x82, 0xF7, 0x40,
-    0xF5, 0x11, 0x21, 0x82, 0xEF, 0x00, 0xF5, 0x11, 0x02, 0x82, 0xF8, 0x80, 0xFB, 0x11, 0x0E, 0x82,
-    0x00, 0x00, 0xF3, 0x11, 0x2F, 0x82, 0xF9, 0x00, 0xFE, 0x11, 0x0F, 0x82, 0xEF, 0x80, 0x04, 0x10,
-    0x0B, 0x82, 0xEF, 0x40, 0xF8, 0x11, 0x09, 0x82, 0xF9, 0x00, 0xFA, 0x41, 0x13, 0x82, 0x09, 0x00,
-    0xFB, 0x01, 0x15, 0x82, 0x06, 0x40, 0xFA, 0x01, 0x29, 0x82, 0xF9, 0x40, 0x07, 0x20, 0x3A, 0x82,
-    0x04, 0x00, 0x00, 0x00, 0xF8, 0x01, 0x3F, 0x82, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x82, 0xF7, 0x00,
-    0x01, 0x00, 0x3F, 0x82, 0xF7, 0x00, 0xF8, 0x01, 0x3F, 0x82, 0x04, 0x00, 0xF6, 0x00, 0x03, 0x00,
-    0x3E, 0x82, 0xF6, 0x00, 0xF8, 0x01, 0x3E, 0x82, 0x02, 0x00, 0x03, 0x00, 0x3E, 0x82, 0x02, 0x00,
-    0xF8, 0x01, 0x3E, 0x82, 0x04, 0x00, 0xF3, 0x00, 0x06, 0x00, 0x3E, 0x82, 0xF2, 0x00, 0xF5, 0x01,
-    0x3E, 0x82, 0x08, 0x00, 0x09, 0x00, 0x3E, 0x82, 0x06, 0x00, 0xF3, 0x01, 0x3E, 0x82, 0x04, 0x00,
-    0xEC, 0x00, 0x0C, 0x00, 0x3E, 0x82, 0x0E, 0x00, 0xE9, 0x01, 0x3E, 0x82, 0x0E, 0x00, 0x0F, 0x00,
-    0x3E, 0x82, 0xEA, 0x00, 0xEF, 0x01, 0x3E, 0x82,
+/* 0x083B6450: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame0[] = {
+    13,
+    /* 00ED 11FC 8200 */
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F4 8221 */
+    OAM_ENTRY(-12, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F4 8202 */
+    OAM_ENTRY(-12, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F4 11FA 820E */
+    OAM_ENTRY(-6, -12, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FC 11F2 822F */
+    OAM_ENTRY(-14, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F7 11FE 820F */
+    OAM_ENTRY(-2, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EE 1003 820B */
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EE 11F7 8209 */
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F8 41FC 8211 */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0007 01FE 8215 */
+    OAM_ENTRY(-2, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4003 11FD 8229 */
+    OAM_ENTRY(-3, 3, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80EE 0009 8219 */
+    OAM_ENTRY(9, -18, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00EE 0011 821A */
+    OAM_ENTRY(17, -18, SPRITE_SIZE_8x8, 0, 538, 8, 0),
 };
-/* 0x083B75E8 - 0x083B7660: not yet typed. */
-const u8 sUnk_83B75E8[] = {
-    0x50, 0x64, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0xA0, 0x64, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xEA, 0x64, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x34, 0x65, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x7E, 0x65, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0xCE, 0x65, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x18, 0x66, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x62, 0x66, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB4, 0x66, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x04, 0x67, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x4E, 0x67, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x98, 0x67, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0xE2, 0x67, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B64A0: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame1[] = {
+    12,
+    /* 00EC 11FC 8200 */
+    OAM_ENTRY(-4, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F4 11F4 8221 */
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EC 11F4 8202 */
+    OAM_ENTRY(-12, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FA 820E */
+    OAM_ENTRY(-6, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F2 822F */
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F6 11FE 820F */
+    OAM_ENTRY(-2, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1003 820B */
+    OAM_ENTRY(3, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F7 8209 */
+    OAM_ENTRY(-9, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F7 41FC 8211 */
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0006 01FD 8215 */
+    OAM_ENTRY(-3, 6, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4002 11FC 8229 */
+    OAM_ENTRY(-4, 2, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80EC 0009 8218 */
+    OAM_ENTRY(9, -20, SPRITE_SIZE_8x16, 0, 536, 8, 0),
 };
-/* 0x083B7660 - 0x083B7688: not yet typed. */
-const u8 sUnk_83B7660[] = {
-    0x64, 0x6E, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0xB4, 0x6E, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x0A, 0x6F, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x60, 0x6F, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B64EA: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame2[] = {
+    12,
+    /* 00EC 11FB 8200 */
+    OAM_ENTRY(-5, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F4 11F3 8221 */
+    OAM_ENTRY(-13, -12, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EC 11F3 8202 */
+    OAM_ENTRY(-13, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11F9 820E */
+    OAM_ENTRY(-7, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F1 822F */
+    OAM_ENTRY(-15, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F6 11FD 820F */
+    OAM_ENTRY(-3, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1002 820B */
+    OAM_ENTRY(2, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F6 8209 */
+    OAM_ENTRY(-10, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F7 41FB 8211 */
+    OAM_ENTRY(-5, -9, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0006 01FB 8215 */
+    OAM_ENTRY(-5, 6, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4002 11FA 8229 */
+    OAM_ENTRY(-6, 2, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40F6 0008 823A */
+    OAM_ENTRY(8, -10, SPRITE_SIZE_16x8, 0, 570, 8, 0),
 };
-/* 0x083B7688 - 0x083B76A0: not yet typed. */
-const u8 sUnk_83B7688[] = {
-    0xB2, 0x6F, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00, 0xD2, 0x6F, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B6534: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame3[] = {
+    12,
+    /* 00EE 11FB 8200 */
+    OAM_ENTRY(-5, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F6 11F3 8221 */
+    OAM_ENTRY(-13, -10, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EE 11F3 8202 */
+    OAM_ENTRY(-13, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F5 11F9 820E */
+    OAM_ENTRY(-7, -11, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FD 11F1 822F */
+    OAM_ENTRY(-15, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F8 11FD 820F */
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EF 1002 820B */
+    OAM_ENTRY(2, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EF 11F6 8209 */
+    OAM_ENTRY(-10, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 41FB 8211 */
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0007 01FB 8215 */
+    OAM_ENTRY(-5, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4003 11FA 8229 */
+    OAM_ENTRY(-6, 3, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40F8 2008 823A */
+    OAM_ENTRY(8, -8, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
 };
-/* 0x083B76A0 - 0x083B76E8: not yet typed. */
-const u8 sUnk_83B76A0[] = {
-    0xF8, 0x6F, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00, 0x1E, 0x70, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00,
-    0x44, 0x70, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00, 0x70, 0x70, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00,
-    0x9C, 0x70, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00, 0xD4, 0x70, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00,
-    0x06, 0x71, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00, 0x4A, 0x71, 0x3B, 0x08, 0x08, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B657E: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame4[] = {
+    13,
+    /* 00F0 11FB 8200 */
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F8 11F3 8221 */
+    OAM_ENTRY(-13, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00F0 11F3 8202 */
+    OAM_ENTRY(-13, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F7 11F9 820E */
+    OAM_ENTRY(-7, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FF 11F1 822F */
+    OAM_ENTRY(-15, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FA 11FC 820F */
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F1 1002 820B */
+    OAM_ENTRY(2, -15, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F1 11F6 8209 */
+    OAM_ENTRY(-10, -15, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 41FA 8213 */
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 000A 01FB 8215 */
+    OAM_ENTRY(-5, 10, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4006 11FA 8229 */
+    OAM_ENTRY(-6, 6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80F1 0008 8219 */
+    OAM_ENTRY(8, -15, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F1 0010 821A */
+    OAM_ENTRY(16, -15, SPRITE_SIZE_8x8, 0, 538, 8, 0),
 };
-/* 0x083B76E8 - 0x083B76F8: not yet typed. */
-const u8 sUnk_83B76E8[] = {
-    0x96, 0x71, 0x3B, 0x08, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B65CE: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame5[] = {
+    12,
+    /* 00F0 11FC 8200 */
+    OAM_ENTRY(-4, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F8 11F4 8221 */
+    OAM_ENTRY(-12, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00F0 11F4 8202 */
+    OAM_ENTRY(-12, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F7 11FA 820E */
+    OAM_ENTRY(-6, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FF 11F2 822F */
+    OAM_ENTRY(-14, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FA 11FD 820F */
+    OAM_ENTRY(-3, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F1 1003 820B */
+    OAM_ENTRY(3, -15, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F1 11F7 8209 */
+    OAM_ENTRY(-9, -15, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FB 8213 */
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 000B 01FD 8215 */
+    OAM_ENTRY(-3, 11, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4007 11FC 8229 */
+    OAM_ENTRY(-4, 7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80F1 0009 8218 */
+    OAM_ENTRY(9, -15, SPRITE_SIZE_8x16, 0, 536, 8, 0),
 };
-/* 0x083B76F8 - 0x083B7708: not yet typed. */
-const u8 sUnk_83B76F8[] = {
-    0xEC, 0x71, 0x3B, 0x08, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B6618: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame6[] = {
+    12,
+    /* 00F0 11FD 8200 */
+    OAM_ENTRY(-3, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F8 11F5 8221 */
+    OAM_ENTRY(-11, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00F0 11F5 8202 */
+    OAM_ENTRY(-11, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F7 11FB 820E */
+    OAM_ENTRY(-5, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FF 11F3 822F */
+    OAM_ENTRY(-13, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FA 11FE 820F */
+    OAM_ENTRY(-2, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F1 1004 820B */
+    OAM_ENTRY(4, -15, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F1 11F8 8209 */
+    OAM_ENTRY(-8, -15, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FC 8213 */
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 000B 01FE 8215 */
+    OAM_ENTRY(-2, 11, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4007 11FD 8229 */
+    OAM_ENTRY(-3, 7, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40FB 000A 823A */
+    OAM_ENTRY(10, -5, SPRITE_SIZE_16x8, 0, 570, 8, 0),
 };
-/* 0x083B7708 - 0x083B77A8: not yet typed. */
-const u8 sUnk_83B7708[] = {
-    0x1E, 0x72, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00, 0x44, 0x72, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0x6A, 0x72, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00, 0x90, 0x72, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0xB6, 0x72, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00, 0xDC, 0x72, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0x02, 0x73, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00, 0x28, 0x73, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00,
-    0x4E, 0x73, 0x3B, 0x08, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x4C, 0x74, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x9C, 0x74, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xE6, 0x74, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x36, 0x75, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xEC, 0x71, 0x3B, 0x08, 0x32, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB2, 0x6F, 0x3B, 0x08, 0x05, 0x00, 0x00, 0x00,
-    0xD2, 0x6F, 0x3B, 0x08, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B6662: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame7[] = {
+    12,
+    /* 00EF 11FD 8200 */
+    OAM_ENTRY(-3, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F7 11F5 8221 */
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EF 11F5 8202 */
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F6 11FB 820E */
+    OAM_ENTRY(-5, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FE 11F3 822F */
+    OAM_ENTRY(-13, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F0 1004 820B */
+    OAM_ENTRY(4, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F0 11F8 8209 */
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 41FC 8213 */
+    OAM_ENTRY(-4, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0009 01FE 8215 */
+    OAM_ENTRY(-2, 9, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 11FD 8229 */
+    OAM_ENTRY(-3, 5, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40FA 200A 823A */
+    OAM_ENTRY(10, -6, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
 };
-/* 0x083B77A8 - 0x083B77F0: not yet typed. */
-const u8 sUnk_83B77A8[] = {
-    0x7C, 0x73, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00, 0x96, 0x73, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00,
-    0xB0, 0x73, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00, 0xCA, 0x73, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00,
-    0xE4, 0x73, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00, 0xFE, 0x73, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00,
-    0x18, 0x74, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00, 0x32, 0x74, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B66AC - 0x083B66B4: not yet typed. */
+const u8 sUnk_083B66AC[] = {
+    0x01, 0x00, 0xFC, 0x00, 0xFC, 0x01, 0x3F, 0x82,
 };
-/* 0x083B77F0 - 0x083B78B0: not yet typed. */
-const u8 sUnk_83B77F0[] = {
-    0x28, 0x6B, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x78, 0x6B, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xB6, 0x6B, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0xF4, 0x6B, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x32, 0x6C, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x7C, 0x6C, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xC6, 0x6C, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x22, 0x6D, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x7E, 0x6D, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0xC8, 0x6D, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x12, 0x6E, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x34, 0x68, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x84, 0x68, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xC2, 0x68, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x00, 0x69, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x3E, 0x69, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x88, 0x69, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xD2, 0x69, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x1C, 0x6A, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0x66, 0x6A, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x9E, 0x6A, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00,
-    0xD6, 0x6A, 0x3B, 0x08, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B66B4: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame8[] = {
+    13,
+    /* 00EC 11FC 8200 */
+    OAM_ENTRY(-4, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F4 11F4 8221 */
+    OAM_ENTRY(-12, -12, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EC 11F4 8202 */
+    OAM_ENTRY(-12, -20, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FA 820E */
+    OAM_ENTRY(-6, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F2 822F */
+    OAM_ENTRY(-14, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F6 11FE 820F */
+    OAM_ENTRY(-2, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1003 820B */
+    OAM_ENTRY(3, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F7 8209 */
+    OAM_ENTRY(-9, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F7 41FC 8211 */
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0006 01FD 8215 */
+    OAM_ENTRY(-3, 6, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4002 11FC 8229 */
+    OAM_ENTRY(-4, 2, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80ED 0009 8219 */
+    OAM_ENTRY(9, -19, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00ED 0011 821A */
+    OAM_ENTRY(17, -19, SPRITE_SIZE_8x8, 0, 538, 8, 0),
 };
-/* 0x083B78B0 - 0x083B78D8: not yet typed. */
-const u8 sUnk_83B78B0[] = {
-    0x80, 0x75, 0x3B, 0x08, 0x01, 0x00, 0x00, 0x00, 0x9A, 0x75, 0x3B, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0xB4, 0x75, 0x3B, 0x08, 0x02, 0x00, 0x00, 0x00, 0xCE, 0x75, 0x3B, 0x08, 0x02, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+/* 0x083B6704: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame9[] = {
+    12,
+    /* 00EE 11FB 8200 */
+    OAM_ENTRY(-5, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F6 11F3 8221 */
+    OAM_ENTRY(-13, -10, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EE 11F3 8202 */
+    OAM_ENTRY(-13, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F5 11F9 820E */
+    OAM_ENTRY(-7, -11, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FD 11F1 822F */
+    OAM_ENTRY(-15, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F8 11FD 820F */
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EF 1002 820B */
+    OAM_ENTRY(2, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EF 11F6 8209 */
+    OAM_ENTRY(-10, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F8 41FC 8211 */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0007 01FE 8215 */
+    OAM_ENTRY(-2, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4003 11FD 8229 */
+    OAM_ENTRY(-3, 3, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80ED 0009 8218 */
+    OAM_ENTRY(9, -19, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B674E: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame10[] = {
+    12,
+    /* 00EF 11FB 8200 */
+    OAM_ENTRY(-5, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F7 11F3 8221 */
+    OAM_ENTRY(-13, -9, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EF 11F3 8202 */
+    OAM_ENTRY(-13, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F6 11F9 820E */
+    OAM_ENTRY(-7, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FE 11F1 822F */
+    OAM_ENTRY(-15, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FD 820F */
+    OAM_ENTRY(-3, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F0 1002 820B */
+    OAM_ENTRY(2, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F0 11F6 8209 */
+    OAM_ENTRY(-10, -16, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F7 41FC 8213 */
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0008 01FE 8215 */
+    OAM_ENTRY(-2, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 11FD 8229 */
+    OAM_ENTRY(-3, 4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40F6 0009 823A */
+    OAM_ENTRY(9, -10, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6798: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame11[] = {
+    12,
+    /* 00F0 11FA 8200 */
+    OAM_ENTRY(-6, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F8 11F2 8221 */
+    OAM_ENTRY(-14, -8, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00F0 11F2 8202 */
+    OAM_ENTRY(-14, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F7 11F8 820E */
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FF 11F0 822F */
+    OAM_ENTRY(-16, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FA 11FC 820F */
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F1 1001 820B */
+    OAM_ENTRY(1, -15, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F1 11F5 8209 */
+    OAM_ENTRY(-11, -15, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 41FB 8213 */
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 000A 01FD 8215 */
+    OAM_ENTRY(-3, 10, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4006 11FC 8229 */
+    OAM_ENTRY(-4, 6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 80EE 0008 8218 */
+    OAM_ENTRY(8, -18, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B67E2: decoded OAM frame. */
+const u16 sSkeletonBirdGlideOamFrame12[] = {
+    12,
+    /* 00EE 11FA 8200 */
+    OAM_ENTRY(-6, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F6 11F2 8221 */
+    OAM_ENTRY(-14, -10, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EE 11F2 8202 */
+    OAM_ENTRY(-14, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F5 11F8 820E */
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FD 11F0 822F */
+    OAM_ENTRY(-16, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F8 11FC 820F */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EF 1001 820B */
+    OAM_ENTRY(1, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EF 11F5 8209 */
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FB 8211 */
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0008 01FB 8215 */
+    OAM_ENTRY(-5, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 11F9 8229 */
+    OAM_ENTRY(-7, 4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40F9 2008 823A */
+    OAM_ENTRY(8, -7, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B682C - 0x083B6834: not yet typed. */
+const u8 sUnk_083B682C[] = {
+    0x01, 0x00, 0xF8, 0x00, 0x00, 0x00, 0x3F, 0x82,
+};
+
+/* 0x083B6834: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame11[] = {
+    13,
+    /* 00ED 11FD 8200 */
+    OAM_ENTRY(-3, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F5 8221 */
+    OAM_ENTRY(-11, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F5 8202 */
+    OAM_ENTRY(-11, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FB 820E */
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F3 822F */
+    OAM_ENTRY(-13, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FF 820F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1004 820B */
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F8 8209 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FA 8211 */
+    OAM_ENTRY(-6, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0008 01FC 8215 */
+    OAM_ENTRY(-4, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FB 8229 */
+    OAM_ENTRY(-5, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80F0 0007 8219 */
+    OAM_ENTRY(7, -16, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F0 000F 821A */
+    OAM_ENTRY(15, -16, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B6884: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame12[] = {
+    10,
+    /* 00F2 51F3 8207 */
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FC 11F9 821F */
+    OAM_ENTRY(-7, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 80F6 11FB 8210 */
+    OAM_ENTRY(-5, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1002 820C */
+    OAM_ENTRY(2, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F7 8209 */
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 11FF 820F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F9 41FB 8213 */
+    OAM_ENTRY(-5, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0008 01FD 8215 */
+    OAM_ENTRY(-3, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FC 8229 */
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80EE 0008 8218 */
+    OAM_ENTRY(8, -18, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B68C2: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame13[] = {
+    10,
+    /* 00F2 51F3 8207 */
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FD 11FA 821F */
+    OAM_ENTRY(-6, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 80F7 11FB 8210 */
+    OAM_ENTRY(-5, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1002 820C */
+    OAM_ENTRY(2, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F7 8209 */
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 11FF 820F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F8 41FC 8213 */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0007 01FE 8215 */
+    OAM_ENTRY(-2, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 01FD 8229 */
+    OAM_ENTRY(-3, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F7 0009 823A */
+    OAM_ENTRY(9, -9, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6900: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame14[] = {
+    10,
+    /* 00F2 51F4 8207 */
+    OAM_ENTRY(-12, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FC 11FB 823F */
+    OAM_ENTRY(-5, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 80F7 11FC 8210 */
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1003 820C */
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F8 8209 */
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 1000 820F */
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F8 41FD 8213 */
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0007 01FF 8215 */
+    OAM_ENTRY(-1, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 01FE 8229 */
+    OAM_ENTRY(-2, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F7 200A 823A */
+    OAM_ENTRY(10, -9, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B693E: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame15[] = {
+    12,
+    /* 00F1 51F7 8207 */
+    OAM_ENTRY(-9, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FC 11FF 823F */
+    OAM_ENTRY(-1, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FF 11FA 821F */
+    OAM_ENTRY(-6, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 80F6 11FF 8210 */
+    OAM_ENTRY(-1, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80ED 1006 820C */
+    OAM_ENTRY(6, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40ED 11FB 8209 */
+    OAM_ENTRY(-5, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F8 1003 820F */
+    OAM_ENTRY(3, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F7 4000 8213 */
+    OAM_ENTRY(0, -9, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0005 0001 8235 */
+    OAM_ENTRY(1, 5, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 4003 0001 8229 */
+    OAM_ENTRY(1, 3, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80ED 000D 8219 */
+    OAM_ENTRY(13, -19, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00ED 0015 821A */
+    OAM_ENTRY(21, -19, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B6988: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame16[] = {
+    12,
+    /* 00F9 1001 823F */
+    OAM_ENTRY(1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FA 11FC 823F */
+    OAM_ENTRY(-4, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FA 11F7 821F */
+    OAM_ENTRY(-9, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 00EE 51F8 8207 */
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 80F3 1000 8210 */
+    OAM_ENTRY(0, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EA 1007 820C */
+    OAM_ENTRY(7, -22, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EA 11FC 8209 */
+    OAM_ENTRY(-4, -22, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F5 1004 820F */
+    OAM_ENTRY(4, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F4 4001 8213 */
+    OAM_ENTRY(1, -12, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0003 0002 8235 */
+    OAM_ENTRY(2, 3, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 4000 0002 8229 */
+    OAM_ENTRY(2, 0, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80E9 000E 8218 */
+    OAM_ENTRY(14, -23, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B69D2: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame17[] = {
+    12,
+    /* 00F3 1002 823F */
+    OAM_ENTRY(2, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F7 11FD 823F */
+    OAM_ENTRY(-3, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F5 11F8 823F */
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00EB 51F8 8207 */
+    OAM_ENTRY(-8, -21, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 80F0 1000 8210 */
+    OAM_ENTRY(0, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80E7 1007 820C */
+    OAM_ENTRY(7, -25, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40E7 11FC 8209 */
+    OAM_ENTRY(-4, -25, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F2 1004 820F */
+    OAM_ENTRY(4, -14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F0 4002 8213 */
+    OAM_ENTRY(2, -16, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 00FE 0003 8235 */
+    OAM_ENTRY(3, -2, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 40FC 0003 8229 */
+    OAM_ENTRY(3, -4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40EF 000F 823A */
+    OAM_ENTRY(15, -17, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6A1C: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame18[] = {
+    12,
+    /* 00FC 11FE 823F */
+    OAM_ENTRY(-2, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FE 11F8 823F */
+    OAM_ENTRY(-8, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FC 11F2 823F */
+    OAM_ENTRY(-14, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F2 51F5 8207 */
+    OAM_ENTRY(-11, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 80F7 11FD 8210 */
+    OAM_ENTRY(-3, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1004 820C */
+    OAM_ENTRY(4, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F9 8209 */
+    OAM_ENTRY(-7, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 1001 820F */
+    OAM_ENTRY(1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F7 41FF 8213 */
+    OAM_ENTRY(-1, -9, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0007 0001 8215 */
+    OAM_ENTRY(1, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4003 0000 8229 */
+    OAM_ENTRY(0, 3, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F6 200C 823A */
+    OAM_ENTRY(12, -10, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B6A66: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame19[] = {
+    9,
+    /* 00F3 51F2 8207 */
+    OAM_ENTRY(-14, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 80F9 11FA 8210 */
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EF 1001 820C */
+    OAM_ENTRY(1, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EF 11F6 8209 */
+    OAM_ENTRY(-10, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 11FE 820F */
+    OAM_ENTRY(-2, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F7 41FC 8213 */
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0007 01FE 8215 */
+    OAM_ENTRY(-2, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4003 01FD 8229 */
+    OAM_ENTRY(-3, 3, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80EC 0009 8218 */
+    OAM_ENTRY(9, -20, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B6A9E: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame20[] = {
+    9,
+    /* 00F2 51F3 8207 */
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 80F8 11FB 8210 */
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1002 820C */
+    OAM_ENTRY(2, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F7 8209 */
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 11FF 820F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F8 41FC 8213 */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0008 01FE 8215 */
+    OAM_ENTRY(-2, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 01FD 8229 */
+    OAM_ENTRY(-3, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F7 0009 823A */
+    OAM_ENTRY(9, -9, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6AD6: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame21[] = {
+    12,
+    /* 00ED 11FD 8200 */
+    OAM_ENTRY(-3, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F5 8221 */
+    OAM_ENTRY(-11, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F5 8202 */
+    OAM_ENTRY(-11, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FB 820E */
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F3 822F */
+    OAM_ENTRY(-13, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FF 820F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1004 820B */
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F8 8209 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FB 8211 */
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0009 01FD 8215 */
+    OAM_ENTRY(-3, 9, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FC 8229 */
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F9 2008 823A */
+    OAM_ENTRY(8, -7, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B6B20 - 0x083B6B28: not yet typed. */
+const u8 sUnk_083B6B20[] = {
+    0x01, 0x00, 0xFC, 0x00, 0xFC, 0x01, 0x3F, 0x82,
+};
+
+/* 0x083B6B28: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame0[] = {
+    13,
+    /* 00ED 11FC 8200 */
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F4 8221 */
+    OAM_ENTRY(-12, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F4 8202 */
+    OAM_ENTRY(-12, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F4 11FA 820E */
+    OAM_ENTRY(-6, -12, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FC 11F2 822F */
+    OAM_ENTRY(-14, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1003 820B */
+    OAM_ENTRY(3, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F7 8209 */
+    OAM_ENTRY(-9, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41F9 8211 */
+    OAM_ENTRY(-7, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0008 01FB 8215 */
+    OAM_ENTRY(-5, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FA 8229 */
+    OAM_ENTRY(-6, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80F0 0006 8219 */
+    OAM_ENTRY(6, -16, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F0 000E 821A */
+    OAM_ENTRY(14, -16, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B6B78: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame1[] = {
+    10,
+    /* 00F2 51F2 8207 */
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FC 11F8 821F */
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 80F6 11FA 8210 */
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1001 820C */
+    OAM_ENTRY(1, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F6 8209 */
+    OAM_ENTRY(-10, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F9 41FA 8213 */
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0008 01FC 8215 */
+    OAM_ENTRY(-4, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FB 8229 */
+    OAM_ENTRY(-5, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80EE 0007 8218 */
+    OAM_ENTRY(7, -18, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B6BB6: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame2[] = {
+    10,
+    /* 00F2 51F2 8207 */
+    OAM_ENTRY(-14, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FD 11F9 821F */
+    OAM_ENTRY(-7, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 80F7 11FA 8210 */
+    OAM_ENTRY(-6, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1001 820C */
+    OAM_ENTRY(1, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F6 8209 */
+    OAM_ENTRY(-10, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F8 41FB 8213 */
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0007 01FD 8215 */
+    OAM_ENTRY(-3, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 01FC 8229 */
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F7 0008 823A */
+    OAM_ENTRY(8, -9, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6BF4: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame3[] = {
+    10,
+    /* 00F2 51F3 8207 */
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FC 11FA 823F */
+    OAM_ENTRY(-6, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 80F7 11FB 8210 */
+    OAM_ENTRY(-5, -9, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EE 1002 820C */
+    OAM_ENTRY(2, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EE 11F7 8209 */
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 11FF 820F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F8 41FC 8213 */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0007 01FE 8215 */
+    OAM_ENTRY(-2, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 01FD 8229 */
+    OAM_ENTRY(-3, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F7 2009 823A */
+    OAM_ENTRY(9, -9, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B6C32: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame4[] = {
+    12,
+    /* 00F1 51F6 8207 */
+    OAM_ENTRY(-10, -15, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00FC 11FE 823F */
+    OAM_ENTRY(-2, -4, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FF 11F9 821F */
+    OAM_ENTRY(-7, -1, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 80F6 11FE 8210 */
+    OAM_ENTRY(-2, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80ED 1005 820C */
+    OAM_ENTRY(5, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40ED 11FA 8209 */
+    OAM_ENTRY(-6, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F8 1002 820F */
+    OAM_ENTRY(2, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F7 41FF 8213 */
+    OAM_ENTRY(-1, -9, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0005 0000 8235 */
+    OAM_ENTRY(0, 5, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 4003 0000 8229 */
+    OAM_ENTRY(0, 3, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80ED 000C 8219 */
+    OAM_ENTRY(12, -19, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00ED 0014 821A */
+    OAM_ENTRY(20, -19, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B6C7C: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame5[] = {
+    12,
+    /* 00F9 1000 823F */
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FA 11FB 823F */
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00FA 11F6 821F */
+    OAM_ENTRY(-10, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 543, 8, 0),
+    /* 00EE 51F7 8207 */
+    OAM_ENTRY(-9, -18, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 80F3 11FF 8210 */
+    OAM_ENTRY(-1, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 528, 8, 0),
+    /* 80EA 1006 820C */
+    OAM_ENTRY(6, -22, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EA 11FB 8209 */
+    OAM_ENTRY(-5, -22, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F5 1003 820F */
+    OAM_ENTRY(3, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 00F4 4000 8213 */
+    OAM_ENTRY(0, -12, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0003 0001 8235 */
+    OAM_ENTRY(1, 3, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 4000 0001 8229 */
+    OAM_ENTRY(1, 0, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80E9 000D 8218 */
+    OAM_ENTRY(13, -23, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B6CC6: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame6[] = {
+    15,
+    /* 00F0 1000 823F */
+    OAM_ENTRY(0, -16, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F3 11FB 823F */
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F2 11F6 823F */
+    OAM_ENTRY(-10, -14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00E6 1001 8200 */
+    OAM_ENTRY(1, -26, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40EE 11F9 8221 */
+    OAM_ENTRY(-7, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00E6 11F9 8202 */
+    OAM_ENTRY(-7, -26, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80EF 11FF 820E */
+    OAM_ENTRY(-1, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00F7 11F7 822F */
+    OAM_ENTRY(-9, -9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F2 1003 820F */
+    OAM_ENTRY(3, -14, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E6 1008 820B */
+    OAM_ENTRY(8, -26, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E6 11FC 8209 */
+    OAM_ENTRY(-4, -26, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F4 41FF 8211 */
+    OAM_ENTRY(-1, -12, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0002 0000 8235 */
+    OAM_ENTRY(0, 2, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 40FF 01FF 8229 */
+    OAM_ENTRY(-1, -1, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F3 000C 823A */
+    OAM_ENTRY(12, -13, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6D22: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame7[] = {
+    15,
+    /* 00F4 11FD 823F */
+    OAM_ENTRY(-3, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F6 11F7 823F */
+    OAM_ENTRY(-9, -10, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00F4 11F1 823F */
+    OAM_ENTRY(-15, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 575, 8, 0),
+    /* 00E9 11FE 8200 */
+    OAM_ENTRY(-2, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F1 11F6 8221 */
+    OAM_ENTRY(-10, -15, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00E9 11F6 8202 */
+    OAM_ENTRY(-10, -23, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F2 11FC 820E */
+    OAM_ENTRY(-4, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FA 11F4 822F */
+    OAM_ENTRY(-12, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F5 1000 820F */
+    OAM_ENTRY(0, -11, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E9 1005 820B */
+    OAM_ENTRY(5, -23, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E9 11F9 8209 */
+    OAM_ENTRY(-7, -23, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F7 41FC 8211 */
+    OAM_ENTRY(-4, -9, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0004 01FC 8235 */
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_8x8, 0, 565, 8, 0),
+    /* 4002 01FC 8229 */
+    OAM_ENTRY(-4, 2, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F6 2009 823A */
+    OAM_ENTRY(9, -10, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B6D7E: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame8[] = {
+    12,
+    /* 00ED 11FB 8200 */
+    OAM_ENTRY(-5, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F3 8221 */
+    OAM_ENTRY(-13, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F3 8202 */
+    OAM_ENTRY(-13, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F8 11F9 820E */
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 0000 11F1 822F */
+    OAM_ENTRY(-15, 0, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FD 820F */
+    OAM_ENTRY(-3, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1002 820B */
+    OAM_ENTRY(2, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F6 8209 */
+    OAM_ENTRY(-10, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F8 41FB 8211 */
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0006 01FB 8215 */
+    OAM_ENTRY(-5, 6, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4003 01FB 8229 */
+    OAM_ENTRY(-5, 3, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80ED 0008 8218 */
+    OAM_ENTRY(8, -19, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B6DC8: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame9[] = {
+    12,
+    /* 00ED 11FC 8200 */
+    OAM_ENTRY(-4, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F4 8221 */
+    OAM_ENTRY(-12, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F4 8202 */
+    OAM_ENTRY(-12, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F6 11FA 820E */
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FE 11F2 822F */
+    OAM_ENTRY(-14, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1003 820B */
+    OAM_ENTRY(3, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F7 8209 */
+    OAM_ENTRY(-9, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FB 8211 */
+    OAM_ENTRY(-5, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0008 01FC 8215 */
+    OAM_ENTRY(-4, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FB 8229 */
+    OAM_ENTRY(-5, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F9 0008 823A */
+    OAM_ENTRY(8, -7, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B6E12: decoded OAM frame. */
+const u16 sSkeletonBirdFireOamFrame10[] = {
+    12,
+    /* 00EF 11FC 8200 */
+    OAM_ENTRY(-4, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F7 11F4 8221 */
+    OAM_ENTRY(-12, -9, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EF 11F4 8202 */
+    OAM_ENTRY(-12, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F6 11FA 820E */
+    OAM_ENTRY(-6, -10, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FE 11F2 822F */
+    OAM_ENTRY(-14, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FA 11FD 820F */
+    OAM_ENTRY(-3, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EF 1003 820B */
+    OAM_ENTRY(3, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EF 11F7 8209 */
+    OAM_ENTRY(-9, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FB 41FA 8211 */
+    OAM_ENTRY(-6, -5, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0009 01FB 8215 */
+    OAM_ENTRY(-5, 9, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4006 01FA 8229 */
+    OAM_ENTRY(-6, 6, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FA 2007 823A */
+    OAM_ENTRY(7, -6, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B6E5C - 0x083B6E64: not yet typed. */
+const u8 sUnk_083B6E5C[] = {
+    0x01, 0x00, 0xFC, 0x00, 0xFC, 0x01, 0x3F, 0x82,
+};
+
+/* 0x083B6E64: decoded OAM frame. */
+const u16 sSkeletonBirdTurnOamFrame0[] = {
+    13,
+    /* 00ED 11FD 8200 */
+    OAM_ENTRY(-3, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F5 8221 */
+    OAM_ENTRY(-11, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F5 8202 */
+    OAM_ENTRY(-11, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FB 820E */
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F3 822F */
+    OAM_ENTRY(-13, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1004 820B */
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F8 8209 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FA 8211 */
+    OAM_ENTRY(-6, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0008 01FC 8215 */
+    OAM_ENTRY(-4, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FB 8229 */
+    OAM_ENTRY(-5, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80F0 0007 8219 */
+    OAM_ENTRY(7, -16, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F0 000F 821A */
+    OAM_ENTRY(15, -16, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B6EB4: decoded OAM frame. */
+const u16 sSkeletonBirdTurnOamFrame1[] = {
+    14,
+    /* 80EE 01F8 8200 */
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    /* 80EE 1000 8200 */
+    OAM_ENTRY(0, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40EE 01F8 8209 */
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 80F4 01F8 820D */
+    OAM_ENTRY(-8, -12, SPRITE_SIZE_8x16, 0, 525, 8, 0),
+    /* 80F4 1000 820D */
+    OAM_ENTRY(0, -12, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 525, 8, 0),
+    /* 00FA 01F9 820F */
+    OAM_ENTRY(-7, -6, SPRITE_SIZE_8x8, 0, 527, 8, 0),
+    /* 00FA 11FF 820F */
+    OAM_ENTRY(-1, -6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80FB 01F8 8216 */
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_8x16, 0, 534, 8, 0),
+    /* 80FB 1000 8216 */
+    OAM_ENTRY(0, -5, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 534, 8, 0),
+    /* 0009 01FC 821E */
+    OAM_ENTRY(-4, 9, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    /* 4006 01F8 8229 */
+    OAM_ENTRY(-8, 6, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FE 21F8 8229 */
+    OAM_ENTRY(-8, -2, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 80F1 0005 8218 */
+    OAM_ENTRY(5, -15, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+    /* 80F1 11F3 8218 */
+    OAM_ENTRY(-13, -15, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 536, 8, 0),
+};
+
+/* 0x083B6F0A: decoded OAM frame. */
+const u16 sSkeletonBirdTurnOamFrame2[] = {
+    14,
+    /* 80ED 01F8 8200 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_8x16, 0, 512, 8, 0),
+    /* 80ED 1000 8200 */
+    OAM_ENTRY(0, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40ED 01F8 8209 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 80F5 01F8 820D */
+    OAM_ENTRY(-8, -11, SPRITE_SIZE_8x16, 0, 525, 8, 0),
+    /* 80F5 1000 820D */
+    OAM_ENTRY(0, -11, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 525, 8, 0),
+    /* 00F9 01F8 820F */
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_8x8, 0, 527, 8, 0),
+    /* 00F9 1000 820F */
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80FA 01F8 8216 */
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_8x16, 0, 534, 8, 0),
+    /* 80FA 1000 8216 */
+    OAM_ENTRY(0, -6, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 534, 8, 0),
+    /* 0007 01FC 821E */
+    OAM_ENTRY(-4, 7, SPRITE_SIZE_8x8, 0, 542, 8, 0),
+    /* 4004 01F8 8229 */
+    OAM_ENTRY(-8, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FC 21F8 8229 */
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 40FC 0005 823A */
+    OAM_ENTRY(5, -4, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+    /* 40FC 11EB 823A */
+    OAM_ENTRY(-21, -4, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 570, 8, 0),
+};
+
+/* 0x083B6F60: decoded OAM frame. */
+const u16 sSkeletonBirdTurnOamFrame3[] = {
+    12,
+    /* 00EE 01FB 8200 */
+    OAM_ENTRY(-5, -18, SPRITE_SIZE_8x8, 0, 512, 8, 0),
+    /* 40F6 01FB 8221 */
+    OAM_ENTRY(-5, -10, SPRITE_SIZE_16x8, 0, 545, 8, 0),
+    /* 00EE 0003 8202 */
+    OAM_ENTRY(3, -18, SPRITE_SIZE_8x8, 0, 514, 8, 0),
+    /* 80F4 01FD 820E */
+    OAM_ENTRY(-3, -12, SPRITE_SIZE_8x16, 0, 526, 8, 0),
+    /* 00FC 0005 822F */
+    OAM_ENTRY(5, -4, SPRITE_SIZE_8x8, 0, 559, 8, 0),
+    /* 00FA 01FA 820F */
+    OAM_ENTRY(-6, -6, SPRITE_SIZE_8x8, 0, 527, 8, 0),
+    /* 80EE 01F4 820B */
+    OAM_ENTRY(-12, -18, SPRITE_SIZE_8x16, 0, 523, 8, 0),
+    /* 40EE 01F8 8209 */
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00FB 51F6 8211 */
+    OAM_ENTRY(-10, -5, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 529, 8, 0),
+    /* 0009 11FD 8215 */
+    OAM_ENTRY(-3, 9, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 533, 8, 0),
+    /* 4006 11F6 8229 */
+    OAM_ENTRY(-10, 6, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 553, 8, 0),
+    /* 40FA 31E9 823A */
+    OAM_ENTRY(-23, -6, SPRITE_SIZE_16x8, ST_OAM_HFLIP | ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B6FAA - 0x083B6FB2: not yet typed. */
+const u8 sUnk_083B6FAA[] = {
+    0x01, 0x00, 0xFC, 0x00, 0xFC, 0x01, 0x3F, 0x82,
+};
+
+/* 0x083B6FB2: decoded OAM frame. */
+const u16 sSkeletonBirdFallOamFrame0[] = {
+    5,
+    /* 40FA 2008 823A */
+    OAM_ENTRY(8, -6, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+    /* 00F0 51F8 8205 */
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 517, 8, 0),
+    /* 00F8 1004 820F */
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F0 1007 820C */
+    OAM_ENTRY(7, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40F0 11FB 8209 */
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+/* 0x083B6FD2: decoded OAM frame. */
+const u16 sSkeletonBirdFallOamFrame1[] = {
+    6,
+    /* 80F1 0008 8219 */
+    OAM_ENTRY(8, -15, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F1 0010 821A */
+    OAM_ENTRY(16, -15, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+    /* 00F0 51F8 8205 */
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 517, 8, 0),
+    /* 00F8 1004 820F */
+    OAM_ENTRY(4, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F0 1007 820B */
+    OAM_ENTRY(7, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F0 11FB 8209 */
+    OAM_ENTRY(-5, -16, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+};
+
+/* 0x083B6FF8: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame0[] = {
+    6,
+    /* 80F1 0004 8219 */
+    OAM_ENTRY(4, -15, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F1 000C 821A */
+    OAM_ENTRY(12, -15, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+    /* 00F3 51F5 8207 */
+    OAM_ENTRY(-11, -13, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00F8 1000 820F */
+    OAM_ENTRY(0, -8, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F0 1004 820B */
+    OAM_ENTRY(4, -16, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40F0 01F8 8209 */
+    OAM_ENTRY(-8, -16, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+};
+
+/* 0x083B701E: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame1[] = {
+    6,
+    /* 80EA 000A 8218 */
+    OAM_ENTRY(10, -22, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+    /* 00EF 51F6 8207 */
+    OAM_ENTRY(-10, -17, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00F4 1001 820F */
+    OAM_ENTRY(1, -12, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EC 1005 820B */
+    OAM_ENTRY(5, -20, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EC 01F9 8209 */
+    OAM_ENTRY(-7, -20, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00F3 41FC 8213 */
+    OAM_ENTRY(-4, -13, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+};
+
+/* 0x083B7044: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame2[] = {
+    7,
+    /* 40EF 0009 823A */
+    OAM_ENTRY(9, -17, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+    /* 00EA 51F6 8207 */
+    OAM_ENTRY(-10, -22, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00EF 1001 820F */
+    OAM_ENTRY(1, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E7 1005 820B */
+    OAM_ENTRY(5, -25, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E7 01F9 8209 */
+    OAM_ENTRY(-7, -25, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00F0 41FC 8213 */
+    OAM_ENTRY(-4, -16, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 40FC 01FD 8229 */
+    OAM_ENTRY(-3, -4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+};
+
+/* 0x083B7070: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame3[] = {
+    7,
+    /* 00E9 51F6 8207 */
+    OAM_ENTRY(-10, -23, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00EE 1002 820F */
+    OAM_ENTRY(2, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E6 1005 820B */
+    OAM_ENTRY(5, -26, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E6 01F9 8209 */
+    OAM_ENTRY(-7, -26, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00F0 41FC 8213 */
+    OAM_ENTRY(-4, -16, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 40FC 01FE 8229 */
+    OAM_ENTRY(-2, -4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40EF 2009 823A */
+    OAM_ENTRY(9, -17, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B709C: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame4[] = {
+    9,
+    /* 00E5 51F7 8207 */
+    OAM_ENTRY(-9, -27, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00EA 1002 820F */
+    OAM_ENTRY(2, -22, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E2 1006 820B */
+    OAM_ENTRY(6, -30, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E2 01FA 8209 */
+    OAM_ENTRY(-6, -30, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00EB 41FD 8213 */
+    OAM_ENTRY(-3, -21, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 00F9 0000 8215 */
+    OAM_ENTRY(0, -7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 40F7 01FF 8229 */
+    OAM_ENTRY(-1, -9, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80E1 000A 8219 */
+    OAM_ENTRY(10, -31, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00E1 0012 821A */
+    OAM_ENTRY(18, -31, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B70D4: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame5[] = {
+    8,
+    /* 00E3 51F7 8207 */
+    OAM_ENTRY(-9, -29, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 519, 8, 0),
+    /* 00E8 1003 820F */
+    OAM_ENTRY(3, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E0 1006 820B */
+    OAM_ENTRY(6, -32, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E0 01FA 8209 */
+    OAM_ENTRY(-6, -32, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00EA 41FD 8213 */
+    OAM_ENTRY(-3, -22, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 00F8 0001 8215 */
+    OAM_ENTRY(1, -8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 40F6 01FF 8229 */
+    OAM_ENTRY(-1, -10, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80DF 000A 8218 */
+    OAM_ENTRY(10, -33, SPRITE_SIZE_8x16, 0, 536, 8, 0),
+};
+
+/* 0x083B7106: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame6[] = {
+    11,
+    /* 80DF 11F8 8202 */
+    OAM_ENTRY(-8, -33, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 514, 8, 0),
+    /* 00E7 1000 8221 */
+    OAM_ENTRY(0, -25, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00DF 1000 8200 */
+    OAM_ENTRY(0, -33, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40EB 11F7 822E */
+    OAM_ENTRY(-9, -21, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 558, 8, 0),
+    /* 00E8 1003 820F */
+    OAM_ENTRY(3, -24, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80E0 1006 820B */
+    OAM_ENTRY(6, -32, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40E0 01FA 8209 */
+    OAM_ENTRY(-6, -32, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00EA 41FD 8213 */
+    OAM_ENTRY(-3, -22, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 00F8 0001 8215 */
+    OAM_ENTRY(1, -8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 40F6 01FF 8229 */
+    OAM_ENTRY(-1, -10, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40E9 000A 823A */
+    OAM_ENTRY(10, -23, SPRITE_SIZE_16x8, 0, 570, 8, 0),
+};
+
+/* 0x083B714A: decoded OAM frame. */
+const u16 sSkeletonBirdRecoverOamFrame7[] = {
+    11,
+    /* 80DE 11F8 8202 */
+    OAM_ENTRY(-8, -34, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 514, 8, 0),
+    /* 00E6 1000 8221 */
+    OAM_ENTRY(0, -26, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00DE 1000 8200 */
+    OAM_ENTRY(0, -34, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40EC 11F6 822E */
+    OAM_ENTRY(-10, -20, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 558, 8, 0),
+    /* 00E7 1003 820F */
+    OAM_ENTRY(3, -25, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80DF 1006 820B */
+    OAM_ENTRY(6, -33, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40DF 01FA 8209 */
+    OAM_ENTRY(-6, -33, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00E9 41FD 8213 */
+    OAM_ENTRY(-3, -23, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 00F7 0001 8215 */
+    OAM_ENTRY(1, -9, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 40F5 01FF 8229 */
+    OAM_ENTRY(-1, -11, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40E8 200A 823A */
+    OAM_ENTRY(10, -24, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B718E - 0x083B7196: not yet typed. */
+const u8 sUnk_083B718E[] = {
+    0x01, 0x00, 0xF8, 0x00, 0x00, 0x00, 0x3F, 0x82,
+};
+
+/* 0x083B7196: decoded OAM frame. */
+const u16 sSkeletonBirdAttackOamFrame[] = {
+    14,
+    /* 00EF 51F1 8203 */
+    OAM_ENTRY(-15, -17, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 515, 8, 0),
+    /* 80FB 11F8 820E */
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 0003 11F0 822F */
+    OAM_ENTRY(-16, 3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FB 11FD 820F */
+    OAM_ENTRY(-3, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EF 1001 820C */
+    OAM_ENTRY(1, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40EF 01F5 8209 */
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 00FD 41FA 8211 */
+    OAM_ENTRY(-6, -3, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 000D 01FB 8215 */
+    OAM_ENTRY(-5, 13, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 400D 01FC 8229 */
+    OAM_ENTRY(-4, 13, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 4005 21FC 8229 */
+    OAM_ENTRY(-4, 5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 80F3 0007 8219 */
+    OAM_ENTRY(7, -13, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F3 000F 821A */
+    OAM_ENTRY(15, -13, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+    /* 80E4 11FA 8219 */
+    OAM_ENTRY(-6, -28, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 537, 8, 0),
+    /* 00E4 11F2 821A */
+    OAM_ENTRY(-14, -28, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 538, 8, 0),
+};
+
+/* 0x083B71EC: decoded OAM frame. */
+const u16 sSkeletonBirdStunnedOamFrame[] = {
+    8,
+    /* 00F2 51F4 8203 */
+    OAM_ENTRY(-12, -14, SPRITE_SIZE_16x16, ST_OAM_HFLIP, 515, 8, 0),
+    /* 80FE 11FB 820E */
+    OAM_ENTRY(-5, -2, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 0006 11F3 822F */
+    OAM_ENTRY(-13, 6, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00FE 1000 820F */
+    OAM_ENTRY(0, -2, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80F2 1004 820C */
+    OAM_ENTRY(4, -14, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 524, 8, 0),
+    /* 40F2 01F8 8209 */
+    OAM_ENTRY(-8, -14, SPRITE_SIZE_16x8, 0, 521, 8, 0),
+    /* 80F6 0007 8219 */
+    OAM_ENTRY(7, -10, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F6 000F 821A */
+    OAM_ENTRY(15, -10, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B721E: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame0[] = {
+    6,
+    /* 00F2 41F3 8211 */
+    OAM_ENTRY(-13, -14, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4005 01F6 8229 */
+    OAM_ENTRY(-10, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FD 21F6 8229 */
+    OAM_ENTRY(-10, -3, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 000D 01F6 8215 */
+    OAM_ENTRY(-10, 13, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80EC 0004 8219 */
+    OAM_ENTRY(4, -20, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00EC 000C 821A */
+    OAM_ENTRY(12, -20, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B7244: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame1[] = {
+    6,
+    /* 00F1 41F1 8211 */
+    OAM_ENTRY(-15, -15, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4004 01F8 8229 */
+    OAM_ENTRY(-8, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FC 21F8 8229 */
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 000C 01F4 8215 */
+    OAM_ENTRY(-12, 12, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80EB 0006 8219 */
+    OAM_ENTRY(6, -21, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00EB 000E 821A */
+    OAM_ENTRY(14, -21, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B726A: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame2[] = {
+    6,
+    /* 00F0 41EF 8211 */
+    OAM_ENTRY(-17, -16, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4003 01FA 8229 */
+    OAM_ENTRY(-6, 3, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FB 21FA 8229 */
+    OAM_ENTRY(-6, -5, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 000B 01F2 8215 */
+    OAM_ENTRY(-14, 11, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80EA 0008 8219 */
+    OAM_ENTRY(8, -22, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00EA 0010 821A */
+    OAM_ENTRY(16, -22, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B7290: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame3[] = {
+    6,
+    /* 00F1 41ED 8211 */
+    OAM_ENTRY(-19, -15, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4004 01FC 8229 */
+    OAM_ENTRY(-4, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FC 21FC 8229 */
+    OAM_ENTRY(-4, -4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 000C 01F0 8215 */
+    OAM_ENTRY(-16, 12, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80EB 000A 8219 */
+    OAM_ENTRY(10, -21, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00EB 0012 821A */
+    OAM_ENTRY(18, -21, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B72B6: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame4[] = {
+    6,
+    /* 00F4 41EB 8211 */
+    OAM_ENTRY(-21, -12, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4007 01FE 8229 */
+    OAM_ENTRY(-2, 7, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40FF 21FE 8229 */
+    OAM_ENTRY(-2, -1, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 000F 01EE 8215 */
+    OAM_ENTRY(-18, 15, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80EE 000C 8219 */
+    OAM_ENTRY(12, -18, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00EE 0014 821A */
+    OAM_ENTRY(20, -18, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B72DC: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame5[] = {
+    6,
+    /* 00F9 41E9 8211 */
+    OAM_ENTRY(-23, -7, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 400C 0000 8229 */
+    OAM_ENTRY(0, 12, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 4004 2000 8229 */
+    OAM_ENTRY(0, 4, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 0014 01EC 8215 */
+    OAM_ENTRY(-20, 20, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80F3 000E 8219 */
+    OAM_ENTRY(14, -13, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F3 0016 821A */
+    OAM_ENTRY(22, -13, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B7302: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame6[] = {
+    6,
+    /* 0000 41E7 8211 */
+    OAM_ENTRY(-25, 0, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4013 0002 8229 */
+    OAM_ENTRY(2, 19, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 400B 2002 8229 */
+    OAM_ENTRY(2, 11, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 001B 01EA 8215 */
+    OAM_ENTRY(-22, 27, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 80FA 0010 8219 */
+    OAM_ENTRY(16, -6, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00FA 0018 821A */
+    OAM_ENTRY(24, -6, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B7328: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame7[] = {
+    6,
+    /* 0009 41E5 8211 */
+    OAM_ENTRY(-27, 9, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 401C 0004 8229 */
+    OAM_ENTRY(4, 28, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 4014 2004 8229 */
+    OAM_ENTRY(4, 20, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 0024 01E8 8215 */
+    OAM_ENTRY(-24, 36, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 8003 0012 8219 */
+    OAM_ENTRY(18, 3, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 0003 001A 821A */
+    OAM_ENTRY(26, 3, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B734E: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame8[] = {
+    6,
+    /* 0014 41E3 8211 */
+    OAM_ENTRY(-29, 20, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 4027 0006 8229 */
+    OAM_ENTRY(6, 39, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 401F 2006 8229 */
+    OAM_ENTRY(6, 31, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 553, 8, 0),
+    /* 002F 01E6 8215 */
+    OAM_ENTRY(-26, 47, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 800E 0014 8219 */
+    OAM_ENTRY(20, 14, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 000E 001C 821A */
+    OAM_ENTRY(28, 14, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B7374 - 0x083B737C: not yet typed. */
+const u8 sUnk_083B7374[] = {
+    0x01, 0x00, 0xFD, 0x00, 0xFC, 0x01, 0x3F, 0x82,
+};
+
+/* 0x083B737C: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame0[] = {
+    4,
+    /* 00F8 01F8 823F */
+    OAM_ENTRY(-8, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FE 01FA 823F */
+    OAM_ENTRY(-6, -2, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 0000 823F */
+    OAM_ENTRY(0, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FA 01FE 823F */
+    OAM_ENTRY(-2, -6, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B7396: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame1[] = {
+    4,
+    /* 00F9 01F8 823F */
+    OAM_ENTRY(-8, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FF 01FA 823F */
+    OAM_ENTRY(-6, -1, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FF 0000 823F */
+    OAM_ENTRY(0, -1, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F9 01FE 823F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B73B0: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame2[] = {
+    4,
+    /* 00FA 01F8 823F */
+    OAM_ENTRY(-8, -6, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 01FA 823F */
+    OAM_ENTRY(-6, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FE 0000 823F */
+    OAM_ENTRY(0, -2, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F8 01FE 823F */
+    OAM_ENTRY(-2, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B73CA: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame3[] = {
+    4,
+    /* 00FB 01F8 823F */
+    OAM_ENTRY(-8, -5, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 01FB 823F */
+    OAM_ENTRY(-5, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FD 0000 823F */
+    OAM_ENTRY(0, -3, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F8 01FD 823F */
+    OAM_ENTRY(-3, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B73E4: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame4[] = {
+    4,
+    /* 00FC 01F8 823F */
+    OAM_ENTRY(-8, -4, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 01FC 823F */
+    OAM_ENTRY(-4, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FC 0000 823F */
+    OAM_ENTRY(0, -4, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F8 01FC 823F */
+    OAM_ENTRY(-4, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B73FE: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame5[] = {
+    4,
+    /* 00FD 01F8 823F */
+    OAM_ENTRY(-8, -3, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 01FD 823F */
+    OAM_ENTRY(-3, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FB 0000 823F */
+    OAM_ENTRY(0, -5, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F8 01FB 823F */
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B7418: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame6[] = {
+    4,
+    /* 00FE 01F8 823F */
+    OAM_ENTRY(-8, -2, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 01FE 823F */
+    OAM_ENTRY(-2, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00FA 0000 823F */
+    OAM_ENTRY(0, -6, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F8 01FA 823F */
+    OAM_ENTRY(-6, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B7432: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileOamFrame7[] = {
+    4,
+    /* 00FE 01F9 823F */
+    OAM_ENTRY(-7, -2, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 01FF 823F */
+    OAM_ENTRY(-1, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F9 01FF 823F */
+    OAM_ENTRY(-1, -7, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F8 01F9 823F */
+    OAM_ENTRY(-7, -8, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B744C: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame9[] = {
+    13,
+    /* 00ED 11FD 8200 */
+    OAM_ENTRY(-3, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F5 8221 */
+    OAM_ENTRY(-11, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F5 8202 */
+    OAM_ENTRY(-11, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FB 820E */
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F3 822F */
+    OAM_ENTRY(-13, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1004 820B */
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F8 8209 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FA 8211 */
+    OAM_ENTRY(-6, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0007 01FC 8215 */
+    OAM_ENTRY(-4, 7, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4004 01FB 8229 */
+    OAM_ENTRY(-5, 4, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80F0 0007 8219 */
+    OAM_ENTRY(7, -16, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F0 000F 821A */
+    OAM_ENTRY(15, -16, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B749C: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame10[] = {
+    12,
+    /* 00EE 11FD 8200 */
+    OAM_ENTRY(-3, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F6 11F5 8221 */
+    OAM_ENTRY(-11, -10, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EE 11F5 8202 */
+    OAM_ENTRY(-11, -18, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F5 11FB 820E */
+    OAM_ENTRY(-5, -11, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FD 11F3 822F */
+    OAM_ENTRY(-13, -3, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EE 1004 820B */
+    OAM_ENTRY(4, -18, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EE 11F8 8209 */
+    OAM_ENTRY(-8, -18, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 41FA 8213 */
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0008 01FB 8215 */
+    OAM_ENTRY(-5, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FA 8229 */
+    OAM_ENTRY(-6, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F9 2007 823A */
+    OAM_ENTRY(7, -7, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B74E6: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame11[] = {
+    13,
+    /* 00ED 11FD 8200 */
+    OAM_ENTRY(-3, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F5 11F5 8221 */
+    OAM_ENTRY(-11, -11, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00ED 11F5 8202 */
+    OAM_ENTRY(-11, -19, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F3 11FB 820E */
+    OAM_ENTRY(-5, -13, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 00FB 11F3 822F */
+    OAM_ENTRY(-13, -5, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80ED 1004 820B */
+    OAM_ENTRY(4, -19, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40ED 11F8 8209 */
+    OAM_ENTRY(-8, -19, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00FA 41FA 8211 */
+    OAM_ENTRY(-6, -6, SPRITE_SIZE_16x16, 0, 529, 8, 0),
+    /* 0008 01FC 8215 */
+    OAM_ENTRY(-4, 8, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4005 01FB 8229 */
+    OAM_ENTRY(-5, 5, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 80F0 0007 8219 */
+    OAM_ENTRY(7, -16, SPRITE_SIZE_8x16, 0, 537, 8, 0),
+    /* 00F0 000F 821A */
+    OAM_ENTRY(15, -16, SPRITE_SIZE_8x8, 0, 538, 8, 0),
+};
+
+/* 0x083B7536: decoded OAM frame. */
+const u16 sSkeletonBirdDebrisOamFrame12[] = {
+    12,
+    /* 00EF 11FD 8200 */
+    OAM_ENTRY(-3, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 512, 8, 0),
+    /* 40F7 11F5 8221 */
+    OAM_ENTRY(-11, -9, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 545, 8, 0),
+    /* 00EF 11F5 8202 */
+    OAM_ENTRY(-11, -17, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 514, 8, 0),
+    /* 80F8 11FB 820E */
+    OAM_ENTRY(-5, -8, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 526, 8, 0),
+    /* 0000 11F3 822F */
+    OAM_ENTRY(-13, 0, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 559, 8, 0),
+    /* 00F9 11FE 820F */
+    OAM_ENTRY(-2, -7, SPRITE_SIZE_8x8, ST_OAM_HFLIP, 527, 8, 0),
+    /* 80EF 1004 820B */
+    OAM_ENTRY(4, -17, SPRITE_SIZE_8x16, ST_OAM_HFLIP, 523, 8, 0),
+    /* 40EF 11F8 8209 */
+    OAM_ENTRY(-8, -17, SPRITE_SIZE_16x8, ST_OAM_HFLIP, 521, 8, 0),
+    /* 00F9 41FA 8213 */
+    OAM_ENTRY(-6, -7, SPRITE_SIZE_16x16, 0, 531, 8, 0),
+    /* 0009 01FB 8215 */
+    OAM_ENTRY(-5, 9, SPRITE_SIZE_8x8, 0, 533, 8, 0),
+    /* 4006 01FA 8229 */
+    OAM_ENTRY(-6, 6, SPRITE_SIZE_16x8, 0, 553, 8, 0),
+    /* 40F9 2007 823A */
+    OAM_ENTRY(7, -7, SPRITE_SIZE_16x8, ST_OAM_VFLIP, 570, 8, 0),
+};
+
+/* 0x083B7580: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileBreakOamFrame0[] = {
+    4,
+    /* 0000 01F8 823F */
+    OAM_ENTRY(-8, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 0000 0000 823F */
+    OAM_ENTRY(0, 0, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F7 0001 823F */
+    OAM_ENTRY(1, -9, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+    /* 00F7 01F8 823F */
+    OAM_ENTRY(-8, -9, SPRITE_SIZE_8x8, 0, 575, 8, 0),
+};
+
+/* 0x083B759A: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileBreakOamFrame1[] = {
+    4,
+    /* 00F6 0003 823E */
+    OAM_ENTRY(3, -10, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 00F6 01F8 823E */
+    OAM_ENTRY(-8, -10, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 0002 0003 823E */
+    OAM_ENTRY(3, 2, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 0002 01F8 823E */
+    OAM_ENTRY(-8, 2, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+};
+
+/* 0x083B75B4: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileBreakOamFrame2[] = {
+    4,
+    /* 00F3 0006 823E */
+    OAM_ENTRY(6, -13, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 00F2 01F5 823E */
+    OAM_ENTRY(-11, -14, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 0008 0009 823E */
+    OAM_ENTRY(9, 8, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 0006 01F3 823E */
+    OAM_ENTRY(-13, 6, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+};
+
+/* 0x083B75CE: decoded OAM frame. */
+const u16 sSkeletonBirdProjectileBreakOamFrame3[] = {
+    4,
+    /* 00EC 000C 823E */
+    OAM_ENTRY(12, -20, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 000E 01E9 823E */
+    OAM_ENTRY(-23, 14, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 000E 000F 823E */
+    OAM_ENTRY(15, 14, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+    /* 00EA 01EF 823E */
+    OAM_ENTRY(-17, -22, SPRITE_SIZE_8x8, 0, 574, 8, 0),
+};
+/* 0x083B75E8: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdGlideOam[] = {
+    {sSkeletonBirdGlideOamFrame0, 7},
+    {sSkeletonBirdGlideOamFrame1, 7},
+    {sSkeletonBirdGlideOamFrame2, 7},
+    {sSkeletonBirdGlideOamFrame3, 7},
+    {sSkeletonBirdGlideOamFrame4, 7},
+    {sSkeletonBirdGlideOamFrame5, 7},
+    {sSkeletonBirdGlideOamFrame6, 7},
+    {sSkeletonBirdGlideOamFrame7, 7},
+    ANIMATION_TERMINATOR,
+    {sSkeletonBirdGlideOamFrame8, 7},
+    {sSkeletonBirdGlideOamFrame9, 7},
+    {sSkeletonBirdGlideOamFrame10, 7},
+    {sSkeletonBirdGlideOamFrame11, 7},
+    {sSkeletonBirdGlideOamFrame12, 7},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B7660: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdTurnOam[] = {
+    {sSkeletonBirdTurnOamFrame0, 7},
+    {sSkeletonBirdTurnOamFrame1, 7},
+    {sSkeletonBirdTurnOamFrame2, 7},
+    {sSkeletonBirdTurnOamFrame3, 7},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B7688: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdFallOam[] = {
+    {sSkeletonBirdFallOamFrame0, 8},
+    {sSkeletonBirdFallOamFrame1, 8},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B76A0: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdRecoverOam[] = {
+    {sSkeletonBirdRecoverOamFrame0, 8},
+    {sSkeletonBirdRecoverOamFrame1, 8},
+    {sSkeletonBirdRecoverOamFrame2, 8},
+    {sSkeletonBirdRecoverOamFrame3, 8},
+    {sSkeletonBirdRecoverOamFrame4, 8},
+    {sSkeletonBirdRecoverOamFrame5, 8},
+    {sSkeletonBirdRecoverOamFrame6, 8},
+    {sSkeletonBirdRecoverOamFrame7, 8},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B76E8: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdAttackOam[] = {
+    {sSkeletonBirdAttackOamFrame, 0xE},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B76F8: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdStunnedOam[] = {
+    {sSkeletonBirdStunnedOamFrame, 0x32},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B7708: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdDebrisOam[] = {
+    {sSkeletonBirdDebrisOamFrame0, 3},
+    {sSkeletonBirdDebrisOamFrame1, 3},
+    {sSkeletonBirdDebrisOamFrame2, 3},
+    {sSkeletonBirdDebrisOamFrame3, 3},
+    {sSkeletonBirdDebrisOamFrame4, 3},
+    {sSkeletonBirdDebrisOamFrame5, 3},
+    {sSkeletonBirdDebrisOamFrame6, 3},
+    {sSkeletonBirdDebrisOamFrame7, 3},
+    {sSkeletonBirdDebrisOamFrame8, 3},
+    ANIMATION_TERMINATOR,
+    {sSkeletonBirdDebrisOamFrame9, 7},
+    {sSkeletonBirdDebrisOamFrame10, 7},
+    {sSkeletonBirdDebrisOamFrame11, 7},
+    {sSkeletonBirdDebrisOamFrame12, 7},
+    ANIMATION_TERMINATOR,
+    {sSkeletonBirdStunnedOamFrame, 0x32},
+    ANIMATION_TERMINATOR,
+    {sSkeletonBirdFallOamFrame0, 5},
+    {sSkeletonBirdFallOamFrame1, 5},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B77A8: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdProjectileOam[] = {
+    {sSkeletonBirdProjectileOamFrame0, 1},
+    {sSkeletonBirdProjectileOamFrame1, 1},
+    {sSkeletonBirdProjectileOamFrame2, 1},
+    {sSkeletonBirdProjectileOamFrame3, 1},
+    {sSkeletonBirdProjectileOamFrame4, 1},
+    {sSkeletonBirdProjectileOamFrame5, 1},
+    {sSkeletonBirdProjectileOamFrame6, 1},
+    {sSkeletonBirdProjectileOamFrame7, 1},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B77F0: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdFireOam[] = {
+    {sSkeletonBirdFireOamFrame0, 7},
+    {sSkeletonBirdFireOamFrame1, 7},
+    {sSkeletonBirdFireOamFrame2, 7},
+    {sSkeletonBirdFireOamFrame3, 7},
+    {sSkeletonBirdFireOamFrame4, 7},
+    {sSkeletonBirdFireOamFrame5, 7},
+    {sSkeletonBirdFireOamFrame6, 7},
+    {sSkeletonBirdFireOamFrame7, 7},
+    {sSkeletonBirdFireOamFrame8, 7},
+    {sSkeletonBirdFireOamFrame9, 7},
+    {sSkeletonBirdFireOamFrame10, 7},
+    ANIMATION_TERMINATOR,
+    {sSkeletonBirdFireOamFrame11, 7},
+    {sSkeletonBirdFireOamFrame12, 7},
+    {sSkeletonBirdFireOamFrame13, 7},
+    {sSkeletonBirdFireOamFrame14, 7},
+    {sSkeletonBirdFireOamFrame15, 7},
+    {sSkeletonBirdFireOamFrame16, 7},
+    {sSkeletonBirdFireOamFrame17, 7},
+    {sSkeletonBirdFireOamFrame18, 7},
+    {sSkeletonBirdFireOamFrame19, 7},
+    {sSkeletonBirdFireOamFrame20, 7},
+    {sSkeletonBirdFireOamFrame21, 7},
+    ANIMATION_TERMINATOR,
+};
+/* 0x083B78B0: decoded animation table. */
+const struct AnimationFrame sSkeletonBirdProjectileBreakOam[] = {
+    {sSkeletonBirdProjectileBreakOamFrame0, 1},
+    {sSkeletonBirdProjectileBreakOamFrame1, 2},
+    {sSkeletonBirdProjectileBreakOamFrame2, 2},
+    {sSkeletonBirdProjectileBreakOamFrame3, 2},
+    ANIMATION_TERMINATOR,
 };
 /* 0x083B78D8 - 0x083B7A1C: not yet typed. */
-const u8 sUnk_83B78D8[] = {
+const u8 sSkeletonBirdBobYSpeed[] = {
     0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00,
     0x03, 0x00, 0x03, 0x00, 0x03, 0x00, 0x03, 0x00, 0x04, 0x00, 0x04, 0x00, 0x04, 0x00, 0x04, 0x00,

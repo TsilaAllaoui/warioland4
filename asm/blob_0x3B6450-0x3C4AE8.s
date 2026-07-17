@@ -7,58 +7,58 @@
 
 baserom_blob 0x3B6450, 0x3B75E8
 
-.global sUnk_83B75E8
-sUnk_83B75E8:
+.global sSkeletonBirdGlideOam
+sSkeletonBirdGlideOam:
 
 baserom_blob 0x3B75E8, 0x3B7660
 
-.global sUnk_83B7660
-sUnk_83B7660:
+.global sSkeletonBirdTurnOam
+sSkeletonBirdTurnOam:
 
 baserom_blob 0x3B7660, 0x3B7688
 
-.global sUnk_83B7688
-sUnk_83B7688:
+.global sSkeletonBirdFallOam
+sSkeletonBirdFallOam:
 
 baserom_blob 0x3B7688, 0x3B76A0
 
-.global sUnk_83B76A0
-sUnk_83B76A0:
+.global sSkeletonBirdRecoverOam
+sSkeletonBirdRecoverOam:
 
 baserom_blob 0x3B76A0, 0x3B76E8
 
-.global sUnk_83B76E8
-sUnk_83B76E8:
+.global sSkeletonBirdAttackOam
+sSkeletonBirdAttackOam:
 
 baserom_blob 0x3B76E8, 0x3B76F8
 
-.global sUnk_83B76F8
-sUnk_83B76F8:
+.global sSkeletonBirdStunnedOam
+sSkeletonBirdStunnedOam:
 
 baserom_blob 0x3B76F8, 0x3B7708
 
-.global sUnk_83B7708
-sUnk_83B7708:
+.global sSkeletonBirdDebrisOam
+sSkeletonBirdDebrisOam:
 
 baserom_blob 0x3B7708, 0x3B77A8
 
-.global sUnk_83B77A8
-sUnk_83B77A8:
+.global sSkeletonBirdProjectileOam
+sSkeletonBirdProjectileOam:
 
 baserom_blob 0x3B77A8, 0x3B77F0
 
-.global sUnk_83B77F0
-sUnk_83B77F0:
+.global sSkeletonBirdFireOam
+sSkeletonBirdFireOam:
 
 baserom_blob 0x3B77F0, 0x3B78B0
 
-.global sUnk_83B78B0
-sUnk_83B78B0:
+.global sSkeletonBirdProjectileBreakOam
+sSkeletonBirdProjectileBreakOam:
 
 baserom_blob 0x3B78B0, 0x3B78D8
 
-.global sUnk_83B78D8
-sUnk_83B78D8:
+.global sSkeletonBirdBobYSpeed
+sSkeletonBirdBobYSpeed:
 
 baserom_blob 0x3B78D8, 0x3B8118
 

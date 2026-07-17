@@ -2,7 +2,7 @@
 #define SPRITE_AI_SKELETON_BIRD_H
 
 void SpriteSkeletonBird(void);
-void SpriteUnknown98(void);
-void SpriteUnknown99(void);
+void SpriteSkeletonBirdProjectile(void);
+void SpriteSkeletonBirdDebris(void);
 
 #endif  // SPRITE_AI_SKELETON_BIRD_H
