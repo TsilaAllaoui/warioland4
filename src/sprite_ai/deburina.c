@@ -69,19 +69,16 @@ void StartDeburinaLeapWindup(void)
     register u32 one asm("r5");
 
     sprite = &gCurrentSprite;
-    /* Preserve the original agbcc countdown scheduling. */
-    asm volatile(
-        "mov %0, %3\n"
-        "add %0, #39\n"
-        "ldrb r0, [%0]\n"
-        "sub r0, #1\n"
-        "strb r0, [%0]\n"
-        "lsl r0, r0, #24\n"
-        "lsr %1, r0, #24\n"
-        "mov %2, %3"
-        : "=r"(timer), "=r"(timerValue), "=r"(savedSprite)
-        : "r"(sprite)
-        : "r0", "memory");
+    {
+        register u32 decrementedTimer asm("r0");
+
+        timer = &sprite->work0;
+        decrementedTimer = *timer;
+        decrementedTimer--;
+        *timer = decrementedTimer;
+        timerValue = (u8)decrementedTimer;
+        savedSprite = sprite;
+    }
     if (timerValue == 0) {
         register u16 status asm("r0");
         register u16 currentStatus asm("r1");
@@ -129,18 +126,16 @@ void UpdateDeburinaLeap(void)
     register u32 timerValue asm("r1");
 
     sprite = &gCurrentSprite;
-    /* Preserve the original agbcc countdown scheduling. */
-    asm volatile(
-        "mov %0, %1\n"
-        "add %0, #39\n"
-        "ldrb r0, [%0]\n"
-        "sub r0, #1\n"
-        "strb r0, [%0]\n"
-        "lsl r0, r0, #24\n"
-        "lsr %0, r0, #24"
-        : "=r"(timerValue)
-        : "r"(sprite)
-        : "r0", "memory");
+    {
+        u8 *timer;
+        register u32 decrementedTimer asm("r0");
+
+        timer = &sprite->work0;
+        decrementedTimer = *timer;
+        decrementedTimer--;
+        *timer = decrementedTimer;
+        timerValue = (u8)decrementedTimer;
+    }
     if (timerValue != 0) {
         if (sprite->work2 != 0) {
             sprite->xPosition++;
@@ -522,9 +517,10 @@ void UpdateDeburinaThrownCrash(void)
     register const s16 *table asm("r6");
     register const s16 *entry asm("r0");
     register u16 yVelocity asm("r4");
-    register int threshold asm("r0");
     register int signedVelocity asm("r1");
+    register int threshold asm("r0");
     register struct PrimarySpriteData *sprite asm("r5");
+    register int zero asm("r5");
     register struct PrimarySpriteData *currentSprite asm("r4");
     u8 *timer;
 
@@ -532,38 +528,27 @@ void UpdateDeburinaThrownCrash(void)
     indexPtr = &base->work3;
     index = *indexPtr;
     table = sUnk_8352B18;
-    asm volatile(
-        "lsl %0, %1, #1\n"
-        "add %0, %0, %2"
-        : "=r"(entry)
-        : "r"(index), "r"(table));
-    yVelocity = *entry;
-    threshold = (int)entry;
-    /* Preserve agbcc's signed table load before the constant comparison. */
-    asm volatile(
-        "mov %1, #0\n"
-        "ldrsh %0, [%2, %1]"
-        : "=r"(signedVelocity), "=r"(sprite)
-        : "r"(entry)
-        : "memory");
+    entry = (const s16 *)((u32)(index * sizeof(s16)) + (u32)table);
+    yVelocity = *(const u16 *)entry;
+    zero = 0;
+    signedVelocity = entry[zero];
     threshold = S16_MAX;
-    asm volatile("mov %0, %2" : "=r"(sprite) : "r"(threshold), "r"(base));
+    sprite = base;
+
     {
         register u16 newYPosition asm("r0");
 
         if (signedVelocity == threshold) {
             register int previousIndexRegister asm("r1");
+            register const u16 *previousEntry asm("r1");
+            register u16 previousVelocity asm("r1");
 
-            asm volatile(
-                "sub %1, %2, #1\n"
-                "lsl %1, %1, #1\n"
-                "add %1, %1, %3\n"
-                "ldrh %0, [%4, #8]\n"
-                "ldrh %1, [%1]\n"
-                "add %0, %0, %1"
-                : "=r"(newYPosition), "=r"(previousIndexRegister)
-                : "r"(index), "r"(table), "r"(sprite)
-                : "memory");
+            previousIndexRegister = index - 1;
+            previousIndexRegister <<= 1;
+            previousEntry = (const u16 *)((u32)previousIndexRegister + (u32)table);
+            newYPosition = ((volatile struct PrimarySpriteData *)sprite)->yPosition;
+            previousVelocity = *previousEntry;
+            newYPosition = newYPosition + previousVelocity;
         } else {
             register int nextIndex asm("r0");
             register u8 *storePtr asm("r1");
@@ -667,32 +652,32 @@ void InitDeburinaChild(void)
 void UpdateDeburinaChild(void)
 {
     register s32 parentSlot asm("r4");
+    register struct PrimarySpriteData *spriteData asm("r2");
     register struct PrimarySpriteData *sprites asm("r5");
     register struct PrimarySpriteData *parent asm("r3");
     register u32 parentExists asm("r0");
+    register u16 parentStatus asm("r1");
+    register u32 parentOffset asm("r0");
 
     parentSlot = SpriteUtilFindParentSlotOrU8Max(PSPRITE_DEBURINA);
-    if (parentSlot == U8_MAX ||
-        ({
-            register struct PrimarySpriteData *spriteData asm("r2");
-
-            spriteData = gSpriteData;
-            /* Preserve the original agbcc parent-address register layout. */
-            asm volatile(
-                "mov %0, #44\n"
-                "mul %0, %4\n"
-                "add %1, %0, %3\n"
-                "ldrh r1, [%1]\n"
-                "mov %0, #1\n"
-                "and %0, r1\n"
-                "mov %2, %3"
-                : "=r"(parentExists), "=r"(parent), "=r"(sprites)
-                : "r"(spriteData), "r"(parentSlot)
-                : "r1", "memory");
-            parentExists;
-        }) == 0) {
+    if (parentSlot == U8_MAX) {
         gCurrentSprite.status = 0;
-    } else {
+        return;
+    }
+
+    spriteData = gSpriteData;
+    parentOffset = sizeof(*spriteData) * parentSlot;
+    parent = (struct PrimarySpriteData *)(parentOffset + (u32)spriteData);
+    parentStatus = parent->status;
+    parentExists = SPRITE_STATUS_EXISTS;
+    parentExists &= parentStatus;
+    sprites = spriteData;
+    if (parentExists == 0) {
+        gCurrentSprite.status = 0;
+        return;
+    }
+
+    {
         register struct PrimarySpriteData *destination asm("r2");
 
         switch (parent->pose) {
@@ -720,21 +705,26 @@ void UpdateDeburinaChild(void)
                 }
                 break;
             default:
-                gCurrentSprite.disableWarioCollisionTimer = 2;
-                gCurrentSprite.status |= SPRITE_STATUS_HIDDEN;
-                asm volatile("mov %0, r1" : "=r"(destination));
+                {
+                    register struct PrimarySpriteData *currentSprite asm("r1");
+                    register u16 currentStatus asm("r2");
+                    register u16 hiddenStatus asm("r0");
+
+                    currentSprite = &gCurrentSprite;
+                    currentSprite->disableWarioCollisionTimer = 2;
+                    currentStatus = currentSprite->status;
+                    hiddenStatus = SPRITE_STATUS_HIDDEN;
+                    hiddenStatus |= currentStatus;
+                    currentSprite->status = hiddenStatus;
+                    destination = currentSprite;
+                }
                 break;
         }
 
         {
             register struct PrimarySpriteData *positionParent asm("r0");
 
-            asm volatile(
-                "mov %0, #44\n"
-                "mul %0, %1\n"
-                "add %0, %0, %2"
-                : "=r"(positionParent)
-                : "r"(parentSlot), "r"(sprites));
+            positionParent = (struct PrimarySpriteData *)((u32)(sizeof(*sprites) * parentSlot) + (u32)sprites);
             destination->yPosition = positionParent->yPosition;
             destination->xPosition = positionParent->xPosition;
         }
