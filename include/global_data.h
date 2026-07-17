@@ -137,8 +137,7 @@ struct WarioCollisionData {
     u16 flags;
     u8 unk_04;
     u8 unk_05;
-    u8 unk_06;
-    u8 unk_07;
+    u16 unk_06;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;
@@ -151,6 +150,7 @@ struct WarioCollisionData {
     u8 unk_11;
     u8 unk_12;
     u8 unk_13;
+    u8 unk_14;
 };
 
 struct WarioPoseProperty {
@@ -354,7 +354,7 @@ extern u16 gButtonsHeld;
 extern u8 gOamSlotsUsed;
 extern s8 gWarioMusicState;
 extern struct WarioCollisionData gWarioCollisionData;
-extern u8 gWarioCollisionBytes[];
+
 
 /* ROM data */
 extern const s16 sWarioHitboxes[][4];

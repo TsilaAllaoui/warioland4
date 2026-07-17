@@ -364,7 +364,7 @@ void SetFlamingWarioPose(u8 pose)
         }
     }
 
-    func_8010230();
+    ResetWarioState();
     if (newPose == 0) {
         register struct WarioData *copy asm("r1");
         register u8 copyDirection asm("r0");
@@ -545,7 +545,7 @@ void UpdateFlamingWarioMotion(void)
         collision->unk_0A = *(const u8 *)poseOffset;
     }
 
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
     yOffset = 0;
     if (wario->unk_1A == 2) {
         register u16 velocity asm("r1");
@@ -573,7 +573,7 @@ void UpdateFlamingWarioMotion(void)
     {
         register u32 xVelocity asm("r0");
         if (wario->unk_1A == 0) {
-            xVelocity = func_800FDBC();
+            xVelocity = GetAdjustedWarioXVelocity();
         } else {
             xVelocity = *(u16 *)&wario->xVelocity;
         }
@@ -723,7 +723,7 @@ void LoadFlamingWarioGraphics(int variant)
     asm("" : "+r"(graphicsVariant));
     graphicsVariant <<= 24;
     graphicsVariant >>= 24;
-    func_800FF64();
+    UpdateWarioPositionHistory();
     frame = sFlamingWarioGraphicsTable[gWarioData.pose][graphicsVariant];
     frame += gWarioData.unk_1F;
     gfx = frame->gfx;
@@ -779,7 +779,7 @@ void LoadFlamingWarioGraphics(int variant)
     default:
         break;
     }
-    func_800FD90(palette, 0, 0x20);
+    CopyWarioPalette(palette, 0, 0x20);
 }
 
 void UpdateFlamingWarioMusic(void)

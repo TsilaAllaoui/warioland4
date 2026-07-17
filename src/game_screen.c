@@ -125,7 +125,7 @@ u32 GameScreenSubroutine(void)
                 gButtonsHeld = 0;
                 gButtonsPressed = 0;
                 WarioProcessControls();
-                func_8010154();
+                ProcessWarioInteraction();
             }
             break;
 
@@ -146,7 +146,7 @@ u32 GameScreenSubroutine(void)
         func_801D684();
         if (!gDisableWario) {
             func_806E7F8();
-            func_8010154();
+            ProcessWarioInteraction();
         }
         func_8074808();
         func_8074988();
@@ -159,7 +159,7 @@ u32 GameScreenSubroutine(void)
         DrawGameScreen();
     }
 
-    func_80101D0();
+    FinalizeWarioUpdate();
     ProcessRoomMusic();
 
     return result;
@@ -383,7 +383,7 @@ void GameScreenInitAndLoadGenerics(void)
         WarioProcessControls();
         WarioProcessCollision();
     }
-    func_8010154();
+    ProcessWarioInteraction();
     func_801BD4C();
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);

@@ -11,10 +11,10 @@
 
 #include "gba/m4a.h"
 
-extern u32 func_800FDBC(void);
-extern void func_800FE58(void);
-extern void func_800FF64(void);
-extern void func_8010230(void);
+extern s32 GetAdjustedWarioXVelocity(void);
+extern void UpdateWarioHorizontalCollisionOffset(void);
+extern void UpdateWarioPositionHistory(void);
+extern void ResetWarioState(void);
 extern s32 func_8014268(u8, u16, void*);
 extern u8 func_80143D8(void);
 extern u8 func_8014758(void);
@@ -328,7 +328,7 @@ u8 SnowmanWarioRollingLargeMidair(void)
 
 void SetSnowmanWarioPose(u8 result)
 {
-    func_8010230();
+    ResetWarioState();
     if (result == 0) {
         if (gWarioDataCopy.unk_1A == 2)
             result = 1;
@@ -423,7 +423,7 @@ void UpdateSnowmanWarioMovement(void)
         collision->unk_0A = *(const u8*)offset;
     }
 
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
     movement = 0;
     if (wario->unk_1A == 2) {
         register u16 velocity asm("r1");
@@ -443,7 +443,7 @@ void UpdateSnowmanWarioMovement(void)
 
     wario->yPosition -= movement;
     if (wario->unk_1A == 0)
-        xMovement = func_800FDBC();
+        xMovement = GetAdjustedWarioXVelocity();
     else
         xMovement = (u16)wario->xVelocity;
 
@@ -564,7 +564,7 @@ void UpdateSnowmanWarioGraphics(u8 variant)
     const struct WarioAnimationFrame* frame;
     const u8* data;
 
-    func_800FF64();
+    UpdateWarioPositionHistory();
     frames = sSnowmanWarioAnimationTable[gWarioData.pose][variant];
     frame = &frames[gWarioData.unk_1F];
     data = frame->objData;
@@ -576,8 +576,8 @@ void UpdateSnowmanWarioGraphics(u8 variant)
     gWarioData.pObjData2 = (u8*)(data + gWarioData.objData1Size);
     gWarioData.pOamData = frame->oamData;
     gWarioPaletteSize = 0x60;
-    func_800FD90(sWarioDefaultObjPalette, 0, 16);
-    func_800FD90(sSnowmanWarioPalette, 16, 32);
+    CopyWarioPalette(sWarioDefaultObjPalette, 0, 16);
+    CopyWarioPalette(sSnowmanWarioPalette, 16, 32);
 }
 
 void ApplySnowmanWarioMusicEffect(void)

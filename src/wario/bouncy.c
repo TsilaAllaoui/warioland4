@@ -172,7 +172,7 @@ void SetBouncyWarioPose(u8 result)
         return;
     }
 
-    func_8010230();
+    ResetWarioState();
     if (result == 0) {
         if (gWarioDataCopy.unk_1A == 2)
             result = 1;
@@ -369,7 +369,7 @@ void UpdateBouncyWarioGraphics(u8 variant)
     const u8* data;
     const u16* palette;
 
-    func_800FF64();
+    UpdateWarioPositionHistory();
     frames = sUnk_82DDB10[gWarioData.pose][variant];
     frame = &frames[gWarioData.unk_1F];
     data = frame->objData;
@@ -399,12 +399,12 @@ void UpdateBouncyWarioGraphics(u8 variant)
         palette = sWarioDefaultObjPalette;
     }
 
-    func_800FD90(palette, 0, 16);
+    CopyWarioPalette(palette, 0, 16);
     {
         register const u16* secondPalette asm("r2");
 
         secondPalette = sBouncyWarioPalette;
-        func_800FD90(secondPalette, 16, 16);
+        CopyWarioPalette(secondPalette, 16, 16);
     }
 }
 

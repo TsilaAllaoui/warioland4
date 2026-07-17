@@ -4858,8 +4858,8 @@ sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
-.global sUnk_82DEB60
-sUnk_82DEB60:
+.global sWarioHorizontalCollisionProbeOffsets
+sWarioHorizontalCollisionProbeOffsets:
 
 baserom_blob 0x2DEB60, 0x2DEBA2
 
@@ -4923,13 +4923,13 @@ sUnk_82DEC3D:
 
 baserom_blob 0x2DEC3D, 0x2DEC40
 
-.global sUnk_82DEC40
-sUnk_82DEC40:
+.global sCarriedSpriteXOffsets
+sCarriedSpriteXOffsets:
 
 baserom_blob 0x2DEC40, 0x2DEC58
 
-.global sUnk_82DEC58
-sUnk_82DEC58:
+.global sCarriedSpriteYOffsets
+sCarriedSpriteYOffsets:
 
 baserom_blob 0x2DEC58, 0x2DEC70
 

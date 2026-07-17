@@ -324,7 +324,7 @@ void SetFatWarioPose(u8 pose)
     register struct WarioData *poseTarget asm("r3");
 
     newPose = pose;
-    func_8010230();
+    ResetWarioState();
     if (newPose == 0) {
         if (gWarioDataCopy.unk_1A == 2) {
             newPose = 1;
@@ -451,7 +451,7 @@ void UpdateFatWarioMotion(void)
         collision->unk_0A = *(const u8 *)poseOffset;
     }
 
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
     yOffset = 0;
     if (wario->unk_1A == 2) {
         register u16 velocity asm("r1");
@@ -479,7 +479,7 @@ void UpdateFatWarioMotion(void)
     {
         register u32 xVelocity asm("r0");
         if (wario->unk_1A == 0) {
-            xVelocity = func_800FDBC();
+            xVelocity = GetAdjustedWarioXVelocity();
         } else {
             xVelocity = *(u16 *)&wario->xVelocity;
         }
@@ -615,7 +615,7 @@ void LoadFatWarioGraphics(int variant)
     asm("" : "+r"(graphicsVariant));
     graphicsVariant <<= 24;
     graphicsVariant >>= 24;
-    func_800FF64();
+    UpdateWarioPositionHistory();
 
     frame = sFatWarioGraphicsTable[gWarioData.pose][graphicsVariant];
     frame += gWarioData.unk_1F;
@@ -628,7 +628,7 @@ void LoadFatWarioGraphics(int variant)
     gWarioData.pObjData2 = (u8 *)gfx + gWarioData.objData1Size;
     gWarioData.pOamData = frame->oam;
     gWarioPaletteSize = 0x20;
-    func_800FD90(sWarioDefaultObjPalette, 0, 0x10);
+    CopyWarioPalette(sWarioDefaultObjPalette, 0, 0x10);
 }
 
 void UpdateFatWarioMusic(void)

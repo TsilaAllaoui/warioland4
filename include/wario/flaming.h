@@ -26,8 +26,8 @@ extern const struct FlamingWarioGraphicsFrame sFlamingWarioRedFrames[];
 extern const struct FlamingWarioGraphicsFrame sFlamingWarioEngulfedFrames[];
 extern const struct FlamingWarioGraphicsFrame sFlamingWarioRecoveringFrames[];
 
-extern void func_800FE58();
-extern u32 func_800FDBC();
+extern void UpdateWarioHorizontalCollisionOffset();
+extern s32 GetAdjustedWarioXVelocity();
 extern u8 func_80143D8();
 extern u8 func_8014758();
 

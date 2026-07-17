@@ -12,10 +12,10 @@
 
 extern const u16 sUnk_82DE918[];
 
-extern void func_8010230(void);
-extern int func_800FDBC(void);
-extern void func_800FE58(void);
-extern void func_800FF64(void);
+extern void ResetWarioState(void);
+extern int GetAdjustedWarioXVelocity(void);
+extern void UpdateWarioHorizontalCollisionOffset(void);
+extern void UpdateWarioPositionHistory(void);
 extern u8 func_80143D8(void);
 extern u8 func_8014758(void);
 extern u8 func_8014930(void);
@@ -244,7 +244,7 @@ u8 FlatWarioDetransforming(void)
 
 void SetFlatWarioPose(u8 value)
 {
-    func_8010230();
+    ResetWarioState();
     switch (value) {
     case 0xFE:
         if (gWarioDataCopy.unk_08 == 1) {
@@ -300,7 +300,7 @@ void UpdateFlatWarioMovement(void)
     properties += 3;
     offset += (int)properties;
     collision->unk_0A = *(const u8*)offset;
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
 
     movement = 0;
     if (wario->pose == WPOSE_FLAT_JUMPING) {
@@ -312,7 +312,7 @@ void UpdateFlatWarioMovement(void)
     wario->yPosition -= movement;
 
     if (wario->unk_1A == 0) {
-        velocity = func_800FDBC();
+        velocity = GetAdjustedWarioXVelocity();
     } else {
         velocity = (u16)wario->xVelocity;
     }
@@ -418,7 +418,7 @@ void LoadFlatWarioGraphics(u8 value)
     const struct WarioAnimationFrame* frame;
     const u8* graphics;
 
-    func_800FF64();
+    UpdateWarioPositionHistory();
     frame = sFlatWarioAnimationTable[gWarioData.pose][value];
     frame += gWarioData.unk_1F;
     graphics = (const u8*)frame->objData;
@@ -428,7 +428,7 @@ void LoadFlatWarioGraphics(u8 value)
     gWarioData.pObjData2 = (u8*)(graphics + gWarioData.objData1Size);
     gWarioData.pOamData = frame->oamData;
     gWarioPaletteSize = 0x20;
-    func_800FD90(sUnk_82DE918, 0, 0x10);
+    CopyWarioPalette(sUnk_82DE918, 0, 0x10);
 }
 
 void ApplyFlatWarioMusicEffects(void)

@@ -311,7 +311,7 @@ void SetZombieWarioPose(u8 pose)
     register struct WarioData *wario asm("r2");
 
     newPose = pose;
-    func_8010230();
+    ResetWarioState();
     switch (newPose) {
     case 0xFE:
         wario = &gWarioData;
@@ -383,7 +383,7 @@ void UpdateZombieWarioMotion(void)
         poseOffset = wario->pose; poseOffset <<= 3; config += 3;
         poseOffset += (u32)config; collision->unk_0A = *(const u8 *)poseOffset;
     }
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
     yOffset = 0;
     if (wario->unk_1A == 2) {
         register u16 velocity asm("r1");
@@ -400,7 +400,7 @@ void UpdateZombieWarioMotion(void)
     wario->yPosition -= yOffset;
     {
         register u32 xVelocity asm("r0");
-        if (wario->unk_1A == 0) xVelocity = func_800FDBC();
+        if (wario->unk_1A == 0) xVelocity = GetAdjustedWarioXVelocity();
         else xVelocity = *(u16 *)&wario->xVelocity;
         xVelocity <<= 16; xVelocity = (s32)xVelocity >> 19; xVelocity <<= 16; xVelocity >>= 16;
         {
@@ -559,7 +559,7 @@ void LoadZombieWarioGraphics(int variant)
     asm("" : "+r"(graphicsVariant));
     graphicsVariant <<= 24;
     graphicsVariant >>= 24;
-    func_800FF64();
+    UpdateWarioPositionHistory();
     frame = sZombieWarioGraphicsTable[gWarioData.pose][graphicsVariant];
     frame += gWarioData.unk_1F;
     gfx = frame->gfx;
@@ -571,7 +571,7 @@ void LoadZombieWarioGraphics(int variant)
     gWarioData.pObjData2 = (u8 *)gfx + gWarioData.objData1Size;
     gWarioData.pOamData = frame->oam;
     gWarioPaletteSize = 0x40;
-    func_800FD90(sZombieWarioPalette, 0, 0x20);
+    CopyWarioPalette(sZombieWarioPalette, 0, 0x20);
 }
 
 void UpdateZombieWarioMusic(void)

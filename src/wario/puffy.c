@@ -1,9 +1,9 @@
 #include "types.h"
 
-#define func_800FD90 PuffyHeader_func_800FD90
+#define CopyWarioPalette PuffyHeader_CopyWarioPalette
 #define func_8014C4C PuffyHeader_func_8014C4C
 #include "wario.h"
-#undef func_800FD90
+#undef CopyWarioPalette
 #undef func_8014C4C
 
 #include "gba/m4a.h"
@@ -16,7 +16,7 @@
 
 /* ABI-sensitive declarations required by the original matched source. */
 void func_8014C4C(void);
-void func_800FD90(const void* source, u32 destination, u32 size);
+void CopyWarioPalette(const void* source, u32 destination, u32 size);
 
 u8 UpdatePuffyWario(void)
 {
@@ -142,7 +142,7 @@ void SetPuffyWarioPose(u8 pose)
         goto end;
     }
 
-    func_8010230();
+    ResetWarioState();
     gWarioData.pose = value;
 
     if (value == 1) {
@@ -193,7 +193,7 @@ void UpdatePuffyWarioPosition(void)
     const u8* ptr;
     u32 index;
     u16 yVelocity, velocity, xMovement;
-    hitbox = gWarioCollisionBytes;
+    hitbox = &gWarioCollisionData;
     data = sPuffyPoseData;
     wario = &gWarioData;
     index = wario->pose * 8;
@@ -225,7 +225,7 @@ void UpdatePuffyWarioCollision(void)
     register struct WarioData* wario asm("r4");
     const u8* ptr;
     u32 index;
-    hitbox = gWarioCollisionBytes;
+    hitbox = &gWarioCollisionData;
     data = sPuffyPoseData;
     wario = &gWarioData;
     index = wario->pose * 8;
@@ -261,7 +261,7 @@ void LoadPuffyWarioGraphics(int index)
     asm("" : "+r"(value));
     value <<= 24;
     value >>= 24;
-    func_800FF64();
+    UpdateWarioPositionHistory();
     table = sPuffyGraphicsTable;
     value <<= 2;
     wario = &gWarioData;
@@ -278,7 +278,7 @@ void LoadPuffyWarioGraphics(int index)
     wario->pObjData2 = (u8*)data + wario->objData1Size;
     wario->pOamData = frame->oam;
     gWarioPaletteSize = 0x20;
-    func_800FD90(sPuffyPalette, 0, 16);
+    CopyWarioPalette(sPuffyPalette, 0, 16);
 }
 
 void ApplyPuffyWarioMusicEffect(void)

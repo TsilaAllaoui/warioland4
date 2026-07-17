@@ -1,11 +1,11 @@
 #include "types.h"
 
-#define func_800FD90 FrozenHeader_func_800FD90
+#define CopyWarioPalette FrozenHeader_CopyWarioPalette
 #define func_8014930 FrozenHeader_func_8014930
 #define func_8014C4C FrozenHeader_func_8014C4C
 #define func_8016614 FrozenHeader_func_8016614
 #include "wario.h"
-#undef func_800FD90
+#undef CopyWarioPalette
 #undef func_8014930
 #undef func_8014C4C
 #undef func_8016614
@@ -85,7 +85,7 @@ void SetFrozenWarioPose(int pose)
     register int value asm("r4");
     pose <<= 24;
     value = (u32)pose >> 24;
-    func_8010230();
+    ResetWarioState();
     if (value == 3) {
         goto playVoice;
     }
@@ -132,7 +132,7 @@ void UpdateFrozenWarioMovement(void)
     u16 horizontalMovement;
     u32 index;
 
-    hitbox = gWarioCollisionBytes;
+    hitbox = &gWarioCollisionData;
     data = sFrozenPoseData;
     wario = &gWarioData;
     index = wario->pose * 8;
@@ -147,7 +147,7 @@ void UpdateFrozenWarioMovement(void)
     data += 3;
     index += (u32)data;
     hitbox[10] = *(u8*)index;
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
     movement = 0;
     if (wario->unk_1A == 2) {
         velocity = wario->yVelocity;
@@ -163,7 +163,7 @@ void UpdateFrozenWarioMovement(void)
     }
     wario->yPosition -= movement;
     if (wario->unk_1A == 0) {
-        temp = func_800FDBC();
+        temp = GetAdjustedWarioXVelocity();
     } else {
         temp = (u16)wario->xVelocity;
     }
@@ -191,7 +191,7 @@ void ProcessFrozenWarioCollision(void)
     u32 index;
     u16 flags;
 
-    hitbox = gWarioCollisionBytes;
+    hitbox = &gWarioCollisionData;
     data = sFrozenPoseData;
     wario = &gWarioData;
     index = wario->pose * 8;
@@ -249,7 +249,7 @@ void ProcessFrozenWarioCollision(void)
         }
         gWarioDustEffect1.unk0 = floorResult;
     } else {
-        hitboxAgain = gWarioCollisionBytes;
+        hitboxAgain = &gWarioCollisionData;
         if (hitboxAgain[17] != 0xFF) {
             if (hitboxAgain[18] != 0) {
                 result = 3;
@@ -272,7 +272,7 @@ void LoadFrozenWarioGraphics(int index)
     asm("" : "+r"(value));
     value <<= 24;
     value >>= 24;
-    func_800FF64();
+    UpdateWarioPositionHistory();
     table = sFrozenGraphicsTable;
     value <<= 2;
     wario = (struct WarioData*)0x03001898;
@@ -289,8 +289,8 @@ void LoadFrozenWarioGraphics(int index)
     wario->pObjData2 = (u8*)gfx + wario->objData1Size;
     wario->pOamData = frame->oam;
     gWarioPaletteSize = 64;
-    func_800FD90(sWarioDefaultObjPalette, 0, 16);
-    func_800FD90(sFrozenPalette, 16, 16);
+    CopyWarioPalette(sWarioDefaultObjPalette, 0, 16);
+    CopyWarioPalette(sFrozenPalette, 16, 16);
 }
 
 void ApplyFrozenWarioMusicEffects(void)

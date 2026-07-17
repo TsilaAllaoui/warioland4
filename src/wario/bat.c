@@ -4,12 +4,12 @@
  * Keep the matched ABI declarations from wario/matched_helpers.h.  The
  * narrower convenience prototypes in wario.h alter agbcc call-site output.
  */
-#define func_800FD90 BatHeader_func_800FD90
+#define CopyWarioPalette BatHeader_CopyWarioPalette
 #define func_8014930 BatHeader_func_8014930
 #define func_8014C4C BatHeader_func_8014C4C
 #define func_8016614 BatHeader_func_8016614
 #include "wario.h"
-#undef func_800FD90
+#undef CopyWarioPalette
 #undef func_8014930
 #undef func_8014C4C
 #undef func_8016614
@@ -229,7 +229,7 @@ void SetBatWarioPose(int pose)
     register struct WarioData* wario asm("r1");
     pose <<= 24;
     value = (u32)pose >> 24;
-    func_8010230();
+    ResetWarioState();
     if (value == 4) {
         goto resetEffects;
     }
@@ -293,7 +293,7 @@ void UpdateBatWarioMovement(void)
     const u8* ptr;
     u32 index;
 
-    hitbox = gWarioCollisionBytes;
+    hitbox = &gWarioCollisionData;
     data = sBatPoseData;
     wario = &gWarioData;
     index = wario->pose * 8;
@@ -308,7 +308,7 @@ void UpdateBatWarioMovement(void)
     data += 3;
     index += (u32)data;
     hitbox[10] = *(u8*)index;
-    func_800FE58();
+    UpdateWarioHorizontalCollisionOffset();
 
     movement = 0;
     if (wario->pose == 1) {
@@ -332,7 +332,7 @@ void UpdateBatWarioMovement(void)
         gWarioData.yVelocity = -128;
     }
     if (gWarioData.unk_1A == 0) {
-        horizontalMovement = func_800FDBC();
+        horizontalMovement = GetAdjustedWarioXVelocity();
     } else {
         horizontalMovement = (u16)gWarioData.xVelocity;
     }
@@ -361,7 +361,7 @@ void ProcessBatWarioCollision(void)
     const u8* ptr;
     u32 index;
 
-    hitbox = gWarioCollisionBytes;
+    hitbox = &gWarioCollisionData;
     data = sBatPoseData;
     wario = &gWarioData;
     index = wario->pose * 8;
@@ -420,7 +420,7 @@ void ProcessBatWarioCollision(void)
         floorWario->damageTimer = 96;
         func_8016614(0);
     } else {
-        finalHitbox = gWarioCollisionBytes;
+        finalHitbox = &gWarioCollisionData;
         if (finalHitbox[17] != 0xFF && result != 0xFF) {
             SetBatWarioPose(result);
         }
@@ -438,7 +438,7 @@ void LoadBatWarioGraphics(int index)
     const u8* gfx;
     index <<= 24;
     value = (u32)index >> 24;
-    func_800FF64();
+    UpdateWarioPositionHistory();
     wario = &gWarioData;
     pose = wario->pose;
     if (pose != 0 || gCurrentWarioEffect.unk_3 > 3) {
@@ -459,7 +459,7 @@ void LoadBatWarioGraphics(int index)
         wario->pOamData = frame->oam;
     }
     gWarioPaletteSize = 96;
-    func_800FD90(sBatPalette, 0, 48);
+    CopyWarioPalette(sBatPalette, 0, 48);
 }
 
 void ApplyBatWarioMusicEffects(void)

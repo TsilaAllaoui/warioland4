@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  63.5%   2,585 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  47.0%   286,490 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ███████████████████░░░░░░░░░░░  63.8%   2,596 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████████░░░░░░░░░░░░░░░░  47.2%   287,946 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4492,22 +4492,22 @@
 <rect x="1050.80" y="636.94" width="10.19" height="3.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>switch/SwitchInit: 40 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_wario: 0.0% matched, 1,456 bytes</title>
+<title>wario: 100.0% matched, 1,456 bytes</title>
 <rect x="1013.66" y="642.08" width="48.08" height="45.35" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip106"><rect x="1015.66" y="643.08" width="44.68" height="10.00"/></clipPath>
 <rect x="1014.66" y="643.08" width="46.68" height="10.00" fill="#05080d"/>
-<text x="1016.16" y="650.08" clip-path="url(#moduleLabelClip106)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm…</text>
-<rect x="1014.66" y="653.08" width="11.70" height="16.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/WarioProcessControls: 192 bytes, not matched, size=symbol</title></rect>
-<rect x="1014.66" y="670.41" width="11.70" height="16.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/WarioProcessCollision: 184 bytes, not matched, size=symbol</title></rect>
-<rect x="1026.71" y="653.08" width="15.81" height="11.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_800FE58: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="1026.71" y="665.20" width="15.81" height="10.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_8010230: 168 bytes, not matched, size=symbol</title></rect>
-<rect x="1026.71" y="676.52" width="15.81" height="10.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_800FDBC: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="1042.87" y="653.08" width="9.03" height="14.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_8010154: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="1052.25" y="653.08" width="8.73" height="14.03" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_800FF64: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1042.87" y="667.46" width="9.25" height="11.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_800FD28: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="1052.47" y="667.46" width="8.51" height="11.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_80101D0: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="1042.87" y="679.25" width="11.96" height="7.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_800FF0C: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="1055.18" y="679.25" width="5.81" height="7.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario/func_800FD90: 44 bytes, not matched, size=symbol</title></rect>
+<text x="1016.16" y="650.08" clip-path="url(#moduleLabelClip106)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">wario</text>
+<rect x="1014.66" y="653.08" width="11.70" height="16.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/WarioProcessControls: 192 bytes, matched, size=symbol</title></rect>
+<rect x="1014.66" y="670.41" width="11.70" height="16.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/WarioProcessCollision: 184 bytes, matched, size=symbol</title></rect>
+<rect x="1026.71" y="653.08" width="15.81" height="11.77" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/UpdateWarioHorizontalCollisionOffset: 180 bytes, matched, size=symbol</title></rect>
+<rect x="1026.71" y="665.20" width="15.81" height="10.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/ResetWarioState: 168 bytes, matched, size=symbol</title></rect>
+<rect x="1026.71" y="676.52" width="15.81" height="10.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/GetAdjustedWarioXVelocity: 156 bytes, matched, size=symbol</title></rect>
+<rect x="1042.87" y="653.08" width="9.03" height="14.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/ProcessWarioInteraction: 124 bytes, matched, size=symbol</title></rect>
+<rect x="1052.25" y="653.08" width="8.73" height="14.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/UpdateWarioPositionHistory: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1042.87" y="667.46" width="9.25" height="11.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/PrepareWarioUpdate: 104 bytes, matched, size=symbol</title></rect>
+<rect x="1052.47" y="667.46" width="8.51" height="11.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/FinalizeWarioUpdate: 96 bytes, matched, size=symbol</title></rect>
+<rect x="1042.87" y="679.25" width="11.96" height="7.43" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/UpdateCarriedSpriteOffsets: 88 bytes, matched, size=symbol</title></rect>
+<rect x="1055.18" y="679.25" width="5.81" height="7.43" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario/CopyWarioPalette: 44 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>hoggus: 100.0% matched, 1,364 bytes</title>

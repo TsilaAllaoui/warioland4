@@ -66,7 +66,7 @@ u8 MaskWarioAirborne(void)
 void SetMaskWarioPose(u8 pose)
 {
     if ((u8)(pose + 3) > 1) {
-        func_8010230();
+        ResetWarioState();
         gWarioData.pose = pose;
         if (pose == 0) {
             VoiceSetPlay(VS_WARIO_SCREAMS);
@@ -207,7 +207,7 @@ void LoadMaskWarioGraphics(u8 variant)
     const struct MaskWarioGraphicsFrame *frame;
     const u8 *gfx;
 
-    func_800FF64();
+    UpdateWarioPositionHistory();
 
     frame = sMaskWarioGraphicsTable[gWarioData.pose][variant];
     frame += gWarioData.unk_1F;
@@ -220,7 +220,7 @@ void LoadMaskWarioGraphics(u8 variant)
     gWarioData.pObjData2 = (u8 *)gfx + gWarioData.objData1Size;
     gWarioData.pOamData = frame->oam;
     gWarioPaletteSize = 0x20;
-    func_800FD90(sMaskWarioPalette, 0, 0x10);
+    CopyWarioPalette(sMaskWarioPalette, 0, 0x10);
 }
 
 void UpdateMaskWarioAnimation(void)

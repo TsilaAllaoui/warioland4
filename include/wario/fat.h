@@ -21,8 +21,8 @@ extern const struct FatWarioGraphicsFrame sFatWarioKillingEnemyFrames[];
 extern const struct FatWarioGraphicsFrame sFatWarioDetransformingFrames[];
 
 extern int func_8014268(u8, u16, void *);
-extern void func_800FE58();
-extern u32 func_800FDBC();
+extern void UpdateWarioHorizontalCollisionOffset();
+extern s32 GetAdjustedWarioXVelocity();
 extern u8 func_8014758();
 extern u8 func_80143D8();
 
