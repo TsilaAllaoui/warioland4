@@ -183,7 +183,7 @@ SECTIONS {
         . = 0x18D4; gWarioDataCopy = .;
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
-        . = 0x1918; gUnk_3001918 = .;
+        . = 0x1918; gUnk_3001918 = .; gWarioCollisionData = .;
         . = 0x1930; gUnk_3001930 = .;
         . = 0x1938; gUnk_3001938 = .;
         . = 0x1940; gCurrentWarioEffect = .;
@@ -191,7 +191,7 @@ SECTIONS {
         . = 0x1950; gWarioDustEffect1 = .;
         . = 0x195C; gWarioDustEffect2 = .;
         . = 0x19f0; gUnk_30019F0 = .;
-        . = 0x19f1; gUnk_30019F1 = .;
+        . = 0x19f1; gUnk_30019F1 = .; gPreviousWarioReaction = .;
         . = 0x19f2; gPreviousXPosition = .;
         . = 0x19f4; gPreviousYPosition = .;
         . = 0x19f6; gWarioPauseTimer = .;
@@ -265,7 +265,7 @@ SECTIONS {
         . = 0x31bc; gUnk_30031BC = .;
         . = 0x31bd; gUnk_30031BD = .;
         . = 0x31be; gUnk_30031BE = .;
-        . = 0x31c8; gUnk_30031C8 = .;
+        . = 0x31c8; gUnk_30031C8 = .; gWarioHorizontalCollisionOffset = .;
         . = 0x31ca; gUnk_30031CA = .;
         . = 0x31cc; gUnk_30031CC = .;
         . = 0x31f4; gUnk_30031F4 = .;
@@ -608,7 +608,7 @@ SECTIONS {
         obj/cutscenes/disasm_0x00D1AC.o(.text);
         obj/cutscenes/disasm_0x00F7BC.o(.text);
         obj/cutscenes/disasm_0x00F9E0.o(.text);
-        obj/disasm_wario.o(.text);
+        obj/wario.o(.text);
         obj/demo_input.o(.text);
         obj/wario/disasm_normal.o(.text);
         obj/wario/disasm_swimming.o(.text);

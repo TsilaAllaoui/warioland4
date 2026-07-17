@@ -282,7 +282,7 @@ func_801A6E0:
 	lsr	r0, r0, #24
 	cmp	r0, #1
 	bls	.L_1a738
-	bl	func_8010230
+	bl	ResetWarioState
 	ldr	r1, .L_1a708
 	strb	r4, [r1, #1]
 	cmp	r4, #1
@@ -442,7 +442,7 @@ func_801A80C:
 	add	r4, r0, #0
 	lsl	r4, r4, #24
 	lsr	r4, r4, #24
-	bl	func_800FF64
+	bl	UpdateWarioPositionHistory
 	ldr	r1, .L_1a868
 	lsl	r4, r4, #2
 	ldr	r2, .L_1a86c
@@ -477,7 +477,7 @@ func_801A80C:
 	ldr	r0, .L_1a874
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	pop	{r4}
 	pop	{r0}
 	bx	r0

@@ -131,6 +131,27 @@ struct Window {
     u8 content;
 };
 
+struct WarioCollisionData {
+    u16 unk_00;
+    u16 flags;
+    u8 unk_04;
+    u8 unk_05;
+    u16 unk_06;
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+    u8 unk_0C;
+    u8 unk_0D;
+    u8 unk_0E;
+    u8 unk_0F;
+    u8 unk_10;
+    u8 unk_11;
+    u8 unk_12;
+    u8 unk_13;
+    u8 unk_14;
+};
+
 struct ScreenShakeParameters {
     u8 duration;
     u8 frameTimer;
@@ -191,6 +212,10 @@ extern struct RoomHeader gCurrentRoomHeader;
 extern struct Unk_30000A0 gUnk_30000A0;
 extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
+extern struct WarioCollisionData gWarioCollisionData;
+extern s16 gWarioHorizontalCollisionOffset;
+extern u8 gPreviousWarioReaction;
+extern u8 gUnk_30031BB;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
 

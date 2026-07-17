@@ -1334,7 +1334,7 @@ func_8016614:
 	push	{r4, r5, lr}
 	lsl	r0, r0, #24
 	lsr	r5, r0, #24
-	bl	func_800FD28
+	bl	PrepareWarioUpdate
 	ldr	r2, .L_1665c
 	ldr	r0, .L_16660
 	ldr	r1, [r0, #4]
@@ -2451,7 +2451,7 @@ func_8016E00:
 .L_16e98:
 	.4byte	gWarioData
 .L_16e9c:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_16ea0:
 	ldr	r3, .L_16ec4
 	ldrh	r1, [r4, #0]
@@ -2557,7 +2557,7 @@ func_8016E00:
 	ldrh	r0, [r4, #0]
 	b	.L_16f9e
 .L_16f68:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_16f6c:
 	ldr	r1, .L_16f94
 	ldrh	r0, [r1, #0]
@@ -2620,7 +2620,7 @@ func_8016E00:
 	b	.L_16fe2
 	.align	2, 0
 .L_16fdc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_16fe0:
 	mov	r0, #255	@ 0xff
 .L_16fe2:
@@ -2683,7 +2683,7 @@ func_8016FF4:
 .L_1704c:
 	.4byte	gUnk_3001918
 .L_17050:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_17054:
 	.4byte	gWarioData
 .L_17058:
@@ -2772,7 +2772,7 @@ func_8016FF4:
 .L_170f8:
 	.4byte	gUnk_3001918
 .L_170fc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_17100:
 	add	r0, sp, #8
 	ldrh	r0, [r0, #0]
@@ -2978,7 +2978,7 @@ func_80171EC:
 .L_17284:
 	.4byte	gWarioData
 .L_17288:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_1728c:
 	add	r0, sp, #4
 	ldrh	r0, [r0, #0]
@@ -3078,7 +3078,7 @@ func_80171EC:
 .L_17348:
 	.4byte	gWarioData
 .L_1734c:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioHorizontalCollisionProbeOffsets
 .L_17350:
 	ldrh	r0, [r5, #0]
 	cmp	r0, #0
@@ -3195,7 +3195,7 @@ func_8017394:
 .L_1741c:
 	.4byte	gUnk_30031BA
 .L_17420:
-	bl	func_800FF64
+	bl	UpdateWarioPositionHistory
 .L_17424:
 	ldr	r0, .L_17434
 	ldrb	r1, [r0, #1]
@@ -3319,12 +3319,12 @@ func_8017394:
 	add	r0, r1, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	ldr	r1, .L_17524
 	add	r0, r1, #0
 	mov	r1, #16
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	ldr	r1, .L_17528
 	add	r0, r1, #0
 	mov	r1, #32
@@ -3354,13 +3354,13 @@ func_8017394:
 	add	r0, r1, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	ldr	r1, .L_1756c
 	add	r0, r1, #0
 	mov	r1, #16
 .L_17552:
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	b	.L_1758e
 	.align	2, 0
 .L_1755c:
@@ -3381,12 +3381,12 @@ func_8017394:
 	add	r0, r1, #0
 	mov	r1, #0
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	ldr	r1, .L_1759c
 	add	r0, r1, #0
 	mov	r1, #16
 	mov	r2, #16
-	bl	func_800FD90
+	bl	CopyWarioPalette
 .L_1758e:
 	pop	{r4, r5, r6}
 	pop	{r0}

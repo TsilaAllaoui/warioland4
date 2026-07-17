@@ -603,7 +603,7 @@ func_8017ADC:
 	bhi	.L_17af8
 	b	.L_17c34
 .L_17af8:
-	bl	func_8010230
+	bl	ResetWarioState
 	cmp	r4, #0
 	bne	.L_17b28
 	ldr	r1, .L_17b24
@@ -804,7 +804,7 @@ func_8017C40:
 	add	r0, r0, r2
 	ldrb	r0, [r0, #0]
 	strb	r0, [r3, #10]
-	bl	func_800FE58
+	bl	UpdateWarioHorizontalCollisionOffset
 	mov	r2, #0
 	ldrb	r0, [r4, #26]
 	cmp	r0, #2
@@ -831,7 +831,7 @@ func_8017C40:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #0
 	bne	.L_17cb4
-	bl	func_800FDBC
+	bl	GetAdjustedWarioXVelocity
 	b	.L_17cb6
 	.align	2, 0
 .L_17ca8:
@@ -998,7 +998,7 @@ func_8017DCC:
 	add	r4, r0, #0
 	lsl	r4, r4, #24
 	lsr	r4, r4, #24
-	bl	func_800FF64
+	bl	UpdateWarioPositionHistory
 .L_17dd8:
 	ldr	r1, .L_17e28
 	lsl	r4, r4, #2
@@ -1115,7 +1115,7 @@ func_8017DCC:
 	add	r0, r5, #0
 	mov	r1, #0
 	mov	r2, #32
-	bl	func_800FD90
+	bl	CopyWarioPalette
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0

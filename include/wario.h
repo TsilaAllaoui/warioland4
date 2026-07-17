@@ -356,7 +356,7 @@ extern struct WarioAfterimageData gUnk_3003138;
 extern s16 gUnk_30031B8;
 extern s8 gUnk_30031BA;
 extern s8 gUnk_30031BC;
-extern u8 gUnk_30031BD;
+extern s8 gUnk_30031BD;
 extern s8 gUnk_30031BE;
 
 extern struct WarioData sStartingWarioData;
@@ -385,12 +385,29 @@ extern WarioPoseFunc sBatWarioPoseTable[WPOSE_BAT_COUNT];
 extern WarioPoseFunc sFlatWarioPoseTable[WPOSE_FLAT_COUNT];
 extern WarioPoseFunc sWarioMaskPoseTable[WPOSE_MASK_COUNT];
 extern u8 sUnk_82DF094[];
+extern u16 sWarioHorizontalCollisionProbeOffsets[][3];
+extern u16 sCarriedSpriteXOffsets[];
+extern u16 sCarriedSpriteYOffsets[];
+extern WarioPoseFunc sUnk_82DECD0[];
+extern WarioPoseFunc sUnk_82DED00[];
+extern WarioInteractionFunc sUnk_82DED30[];
+extern WarioPoseFunc sUnk_82DED60[];
+extern WarioPoseFunc sUnk_82DED90[];
 
-void WarioProcessControls();
-void WarioProcessCollision();
-void func_8010154();
-void func_80101D0();
-void func_8010154();
+void PrepareWarioUpdate(void);
+void CopyWarioPalette(const void *source, int destinationIndex, int size);
+s32 GetAdjustedWarioXVelocity(void);
+void UpdateWarioHorizontalCollisionOffset(void);
+void UpdateCarriedSpriteOffsets(void);
+void UpdateWarioPositionHistory(void);
+void WarioProcessControls(void);
+void WarioProcessCollision(void);
+void ProcessWarioInteraction(void);
+void FinalizeWarioUpdate(void);
+void ResetWarioState(void);
+void ProcessWarioInteraction(void);
+void FinalizeWarioUpdate(void);
+
 u32 WarioCheckReaction(u8 reaction);
 
 #endif  // WARIO_H
