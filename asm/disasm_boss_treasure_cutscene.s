@@ -505,7 +505,7 @@ func_8082024:
 .L_823f0:
 	.4byte	0x1AF
 .L_823f4:
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r0, .L_8241c
 	strh	r5, [r0, #0]
 	ldr	r0, .L_82420
@@ -590,7 +590,7 @@ func_8082428:
 	lsl	r1, r1, #19
 	add	r0, r3, #0
 	bl	LZ77UnCompVram
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r1, .L_82590
 	mov	r4, #0
 	mov	r2, #0

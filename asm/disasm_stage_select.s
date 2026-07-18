@@ -998,7 +998,7 @@ StageSelectSubroutine:
 	.4byte	gSubGameMode
 .L_7a1b8:
 	mov	r0, #10
-	bl	func_8089B9C
+	bl	MinigameWaitForFrames
 	cmp	r0, #0
 	bne	.L_7a1c4
 	b	.L_7a36a
@@ -1321,8 +1321,8 @@ func_807A3D4:
 	bx	r1
 
 
-thumb_func_start func_807A428
-func_807A428:
+thumb_func_start InitMinigameScoreDisplay
+InitMinigameScoreDisplay:
 	push	{lr}
 	ldr	r0, .L_7a440
 	ldrb	r0, [r0, #0]
@@ -2250,8 +2250,8 @@ func_807AA4C:
 	.4byte	0x6000080
 
 
-thumb_func_start func_807AB8C
-func_807AB8C:
+thumb_func_start DrawMinigameNumber
+DrawMinigameNumber:
 	push	{r4, r5, r6, r7, lr}
 	mov	r7, r8
 	push	{r7}

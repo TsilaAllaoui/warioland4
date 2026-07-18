@@ -312,7 +312,7 @@ func_807AEF0:
 	mov	r2, #128	@ 0x80
 	lsl	r2, r2, #1
 	bl	m4aMPlayVolumeControl
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r0, .L_7b188
 	mov	r7, #0
 	strh	r7, [r0, #0]

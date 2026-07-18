@@ -603,7 +603,7 @@ func_80846F4:
 	ldrh	r0, [r0, #0]
 	ldr	r2, .L_84af0
 	ldr	r1, .L_84ae8
-	bl	func_807AB8C
+	bl	DrawMinigameNumber
 	mov	r3, #0
 	ldr	r6, .L_84af4
 	mov	r5, #0
@@ -688,7 +688,7 @@ func_80846F4:
 	mov	r4, #0
 	bl	func_808502C
 	bl	func_8085178
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r0, .L_84b98
 	strh	r4, [r0, #0]
 	sub	r0, #2

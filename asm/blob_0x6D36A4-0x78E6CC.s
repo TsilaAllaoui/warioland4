@@ -560,178 +560,178 @@ baserom_blob 0x71BCF8, 0x71D4F8
 
 @ Wario's Homerun Derby data
 
-.global sUnk_871D4F8
-sUnk_871D4F8:
+.global sHomerunPitcherAnimations
+sHomerunPitcherAnimations:
 
 baserom_blob 0x71D4F8, 0x71D510
 
-.global sUnk_871D510
-sUnk_871D510:
+.global sHomerunResultAnimations
+sHomerunResultAnimations:
 
 baserom_blob 0x71D510, 0x71D520
 
-.global sUnk_871D520
-sUnk_871D520:
+.global sHomerunPitchSounds
+sHomerunPitchSounds:
 
 baserom_blob 0x71D520, 0x71D53C
 
-.global sUnk_871D53C
-sUnk_871D53C:
+.global sHomerunPitchPathChoices
+sHomerunPitchPathChoices:
 
 baserom_blob 0x71D53C, 0x71D604
 
-.global sUnk_871D604
-sUnk_871D604:
+.global sHomerunPitchAnimationsNormal
+sHomerunPitchAnimationsNormal:
 
 baserom_blob 0x71D604, 0x71D627
 
-.global sUnk_871D627
-sUnk_871D627:
+.global sHomerunPitchAnimationsHard
+sHomerunPitchAnimationsHard:
 
 baserom_blob 0x71D627, 0x71D64A
 
-.global sUnk_871D64A
-sUnk_871D64A:
+.global sHomerunPitchPathLengths
+sHomerunPitchPathLengths:
 
 baserom_blob 0x71D64A, 0x71D652
 
-.global sUnk_871D652
-sUnk_871D652:
+.global sHomerunPitchPathX
+sHomerunPitchPathX:
 
 baserom_blob 0x71D652, 0x71D9C4
 
-.global sUnk_871D9C4
-sUnk_871D9C4:
+.global sHomerunPitchPathY
+sHomerunPitchPathY:
 
 baserom_blob 0x71D9C4, 0x71DD36
 
-.global sUnk_871DD36
-sUnk_871DD36:
+.global sHomerunHitSpeed
+sHomerunHitSpeed:
 
 baserom_blob 0x71DD36, 0x71DD3D
 
-.global sUnk_871DD3D
-sUnk_871DD3D:
+.global sHomerunHitLift
+sHomerunHitLift:
 
 baserom_blob 0x71DD3D, 0x71DD44
 
-.global sUnk_871DD44
-sUnk_871DD44:
+.global sHomerunBatAngles
+sHomerunBatAngles:
 
 baserom_blob 0x71DD44, 0x71DD5C
 
-.global sUnk_871DD5C
-sUnk_871DD5C:
+.global sHomerunBonusAnimations
+sHomerunBonusAnimations:
 
 baserom_blob 0x71DD5C, 0x71DD84
 
-.global sUnk_871DD84
-sUnk_871DD84:
+.global sHomerunBonusYLimits
+sHomerunBonusYLimits:
 
 baserom_blob 0x71DD84, 0x71E354
 
-.global sUnk_871E354
-sUnk_871E354:
+.global sHomerunBallIdleAnimation
+sHomerunBallIdleAnimation:
 
 baserom_blob 0x71E354, 0x71E364
 
-.global sUnk_871E364
-sUnk_871E364:
+.global sHomerunBallHitAnimation
+sHomerunBallHitAnimation:
 
 baserom_blob 0x71E364, 0x71E374
 
-.global sUnk_871E374
-sUnk_871E374:
+.global sHomerunBallHitDurations
+sHomerunBallHitDurations:
 
 baserom_blob 0x71E374, 0x71E424
 
-.global sUnk_871E424
-sUnk_871E424:
+.global sHomerunBatAnimation
+sHomerunBatAnimation:
 
 baserom_blob 0x71E424, 0x71E48C
 
-.global sUnk_871E48C
-sUnk_871E48C:
+.global sHomerunBallPitchAnimation
+sHomerunBallPitchAnimation:
 
 baserom_blob 0x71E48C, 0x71E4B4
 
-.global sUnk_871E4B4
-sUnk_871E4B4:
+.global sHomerunCameraOamMode2
+sHomerunCameraOamMode2:
 
 baserom_blob 0x71E4B4, 0x71E4C4
 
-.global sUnk_871E4C4
-sUnk_871E4C4:
+.global sHomerunCameraOamMode1
+sHomerunCameraOamMode1:
 
 baserom_blob 0x71E4C4, 0x71E4FC
 
-.global sUnk_871E4FC
-sUnk_871E4FC:
+.global sHomerunStaticOam
+sHomerunStaticOam:
 
 baserom_blob 0x71E4FC, 0x71E50C
 
-.global sUnk_871E50C
-sUnk_871E50C:
+.global sHomerunBallPitchDurations
+sHomerunBallPitchDurations:
 
 baserom_blob 0x71E50C, 0x71E6E4
 
-.global sUnk_871E6E4
-sUnk_871E6E4:
+.global sHomerunBgTilemapA
+sHomerunBgTilemapA:
 
 baserom_blob 0x71E6E4, 0x71EEE4
 
-.global sUnk_871EEE4
-sUnk_871EEE4:
+.global sHomerunBgTilemapB
+sHomerunBgTilemapB:
 
 baserom_blob 0x71EEE4, 0x720EE4
 
-.global sUnk_8720EE4
-sUnk_8720EE4:
+.global sHomerunBgPalette
+sHomerunBgPalette:
 
 baserom_blob 0x720EE4, 0x7210E4
 
-.global sUnk_87210E4
-sUnk_87210E4:
+.global sHomerunBgTiles
+sHomerunBgTiles:
 
 baserom_blob 0x7210E4, 0x724964
 
-.global sUnk_8724964
-sUnk_8724964:
+.global sHomerunMedalTiles
+sHomerunMedalTiles:
 
 baserom_blob 0x724964, 0x724AA4
 
-.global sUnk_8724AA4
-sUnk_8724AA4:
+.global sHomerunHighlightedMedalTiles
+sHomerunHighlightedMedalTiles:
 
 baserom_blob 0x724AA4, 0x725164
 
-.global sUnk_8725164
-sUnk_8725164:
+.global sHomerunDigitTiles
+sHomerunDigitTiles:
 
 baserom_blob 0x725164, 0x725CE4
 
-.global sUnk_8725CE4
-sUnk_8725CE4:
+.global sHomerunObjPalette
+sHomerunObjPalette:
 
 baserom_blob 0x725CE4, 0x725EE4
 
-.global sUnk_8725EE4
-sUnk_8725EE4:
+.global sHomerunObjTiles
+sHomerunObjTiles:
 
 baserom_blob 0x725EE4, 0x72DEE4
 
-.global sUnk_872DEE4
-sUnk_872DEE4:
+.global sHomerunBgTilemapD
+sHomerunBgTilemapD:
 
 baserom_blob 0x72DEE4, 0x72E6E4
 
-.global sUnk_872E6E4
-sUnk_872E6E4:
+.global sHomerunBgTilemapC
+sHomerunBgTilemapC:
 
 baserom_blob 0x72E6E4, 0x72EEE4
 
-.global sUnk_872EEE4
-sUnk_872EEE4:
+.global sHomerunHardModeObjTiles
+sHomerunHardModeObjTiles:
 
 baserom_blob 0x72EEE4, 0x72FEE4
 

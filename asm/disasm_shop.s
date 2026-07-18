@@ -428,7 +428,7 @@ func_808FCE0:
 	ldrh	r0, [r7, #0]
 	ldr	r1, .L_8ff68
 	mov	r2, #128	@ 0x80
-	bl	func_807AB8C
+	bl	DrawMinigameNumber
 	ldr	r0, .L_8ff6c
 	mov	r3, #0
 	strh	r3, [r0, #0]
@@ -1229,7 +1229,7 @@ func_809047C:
 	ldrh	r0, [r4, #0]
 	ldr	r1, .L_904c8
 	mov	r2, #128	@ 0x80
-	bl	func_807AB8C
+	bl	DrawMinigameNumber
 	ldr	r1, .L_904cc
 	ldrh	r0, [r4, #0]
 	ldrh	r1, [r1, #0]

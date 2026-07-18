@@ -1,0 +1,2230 @@
+#include "minigames/homerun_derby.h"
+#include "gba/m4a.h"
+#include "global_data.h"
+#include "input.h"
+#include "fixed_point.h"
+#include "minigame.h"
+#include "oam.h"
+#include "stage_select.h"
+
+struct Dma3Regs {
+    vu32 src;
+    vu32 dst;
+    vu32 cnt;
+};
+
+#define DMA3 ((volatile struct Dma3Regs *)0x040000D4)
+
+
+typedef u8 OamByte;
+
+struct HomerunBallState {
+    u16 animationTimer;
+    u16 animationFrame;
+    u16 xPosition;
+    u16 yPosition;
+    u16 screenX;
+    s16 screenY;
+    s8 xVelocity;
+    s8 yVelocity;
+    s8 gravity;
+    s8 reservedF;
+    u16 rotation;
+    u16 scale;
+};
+
+
+struct HomerunBallRenderState {
+    u16 animationTimer;
+    u16 animationFrame;
+    s16 xPosition;
+    s16 yPosition;
+    s16 screenX;
+    u8 screenY;
+    u8 reservedB;
+    u8 xVelocity;
+    u8 yVelocity;
+    u8 gravity;
+    u8 reservedF;
+    u16 rotation;
+    s16 scale;
+};
+
+struct HomerunBatState {
+    u16 animationTimer;
+    u16 animationFrame;
+    u16 angle;
+    u8 swingFrame;
+    u8 contactFrame;
+};
+
+struct HomerunCameraState {
+    u16 reserved0;
+    u16 reserved2;
+    u16 scale;
+    u16 rotation;
+    s16 xPosition;
+    u8 yPosition;
+    u8 reservedB;
+    u8 oamMode;
+};
+
+struct HomerunSimpleAnimation {
+    u16 animationTimer;
+    u16 animationFrame;
+    s16 xPosition;
+    u8 yPosition;
+    u8 reserved7;
+    u8 animationIndex;
+    u8 nextAnimationIndex;
+};
+
+struct HomerunPitcherState {
+    u16 animationTimer;
+    u16 animationFrame;
+    u8 animationIndex;
+    u8 pitchCounter;
+};
+
+struct HomerunAnimationCursor {
+    u16 animationTimer;
+    u16 animationFrame;
+};
+
+struct HomerunBonusState {
+    u16 animationTimer;
+    u16 animationFrame;
+    u16 xPosition;
+    s16 yPosition;
+    u8 animationIndex;
+    u8 nextAnimationIndex;
+    u8 direction;
+};
+
+extern u8 gHomerunState;
+extern u8 gHomerunSubstate;
+extern u8 gHomerunSequenceState;
+extern u16 gHomerunSequenceTimer;
+extern u8 gHomerunNewHighScore;
+extern u16 gHomerunScore;
+extern struct HomerunAnimationCursor gHomerunUiAnimation;
+extern u8 gHomerunMedalHighlight;
+extern u8 gHomerunCamera[];
+extern struct HomerunCameraState gHomerunCameraState;
+extern u16 gHomerunBgX;
+extern u16 gHomerunBgY;
+extern u16 gHomerunBall[];
+extern struct HomerunBallRenderState gHomerunBallRenderState;
+extern u8 gHomerunPitchPath;
+extern u8 gHomerunPitchFrame;
+extern u16 gHomerunBat[];
+extern struct HomerunAnimationCursor gHomerunBatAnimation;
+extern u16 gHomerunBatX;
+extern u16 gHomerunBatY;
+extern u8 gHomerunBatSwingActive;
+extern u8 gHomerunPitcher[];
+extern struct HomerunPitcherState gHomerunPitcherAnimation;
+extern u16 gHomerunResultAnimation[];
+extern struct HomerunSimpleAnimation gHomerunResultRender;
+extern u16 gHomerunBonusAnimation[];
+extern struct HomerunSimpleAnimation gHomerunBonusRender;
+extern u8 gHomerunBonusCycle;
+extern u8 gHomerunPitchResult;
+extern u8 gHomerunMissCount;
+extern u8 gHomerunPitchLevel;
+extern u16 gMedalCount;
+extern u16 gMinigameHighScores;
+
+extern struct AnimationFrame *sHomerunPitcherAnimations[];
+extern struct AnimationFrame *sHomerunResultAnimations[];
+extern u16 sHomerunPitchSounds[];
+extern u8 sHomerunPitchPathChoices[];
+extern u8 sHomerunPitchAnimationsNormal[];
+extern u8 sHomerunPitchAnimationsHard[];
+extern const u8 sHomerunPitchPathLengths[];
+extern const u16 sHomerunPitchPathX[];
+extern const u16 sHomerunPitchPathY[];
+extern u8 sHomerunHitSpeed[];
+extern s8 sHomerunHitLift[];
+extern const u8 sHomerunBatAngles[];
+extern struct AnimationFrame *sHomerunBonusAnimations[];
+extern s32 sHomerunBonusYLimits[];
+extern struct AnimationFrame sHomerunBallIdleAnimation[];
+extern struct AnimationFrame sHomerunBallHitAnimation[];
+extern struct AnimationFrame sHomerunBallHitDurations[];
+extern struct AnimationFrame sHomerunBatAnimation[];
+extern struct AnimationFrame sHomerunBallPitchAnimation[];
+extern u16 *sHomerunCameraOamMode2;
+extern u16 *sHomerunCameraOamMode1;
+extern u16 *sHomerunStaticOam;
+extern struct AnimationFrame sHomerunBallPitchDurations[];
+extern u8 sHomerunBgTilemapA[];
+extern u8 sHomerunBgTilemapB[];
+extern u8 sHomerunBgPalette[];
+extern u8 sHomerunBgTiles[];
+extern const u16 sHomerunMedalTiles[];
+extern const u16 sHomerunHighlightedMedalTiles[];
+extern const u16 sHomerunDigitTiles[];
+extern u8 sHomerunObjPalette[];
+extern u8 sHomerunObjTiles[];
+extern u8 sHomerunBgTilemapD[];
+extern u8 sHomerunBgTilemapC[];
+extern u8 sHomerunHardModeObjTiles[];
+
+/*
+
+ALL asm inlined code islands are for agbcc frontier, i couldn't find a replacement in pure C
+
+*/
+
+s32 UpdateHomerunDerby(void)
+{
+    register u8 *stateAddress asm("r0");
+    register u8 *savedStateAddress  asm("r4");
+    register u8 *cameraData asm("r4");
+    register u8 *cameraDataForExit asm("r3");
+    u8 *swingActiveFlag;
+    u8 *pitchAnimationTable;
+    u8 *pitcherData;
+    u8 *pitcherState;
+    register u8 *pitcherDataForSound asm("r5");
+    u8 *ballState;
+    register u8 currentState asm("r1");
+    s32 difficulty;
+    s32 pitchAnimationIndex;
+    s32 updatedMissCount;
+    u8 animationIndex;
+    register s32 nextValue asm("r0");
+
+    stateAddress = &gHomerunState;
+    currentState = *stateAddress;
+    savedStateAddress = stateAddress;
+
+    switch (currentState) {
+    case 0:
+        if (MinigameWaitForFrames(10) == 0) {
+            break;
+        }
+        *(vu16 *)0x04000000 = 0x1800;
+        gHomerunState++;
+        break;
+
+    case 1:
+        cameraData = gHomerunCamera;
+        nextValue = *(u16 *)(cameraData + 4) + 0xC0;
+        *(u16 *)(cameraData + 4) = nextValue;
+        *(u16 *)(cameraData + 6) = (*(u16 *)(cameraData + 6) + 0xFE7) & 0xFFF;
+        if ((u16)nextValue > 0x2000) {
+            m4aSongNumStart(0x236);
+            *(u16 *)(cameraData + 4) = 0x2000;
+            nextValue = 0xC00;
+            *(u16 *)(cameraData + 6) = nextValue;
+            gHomerunState++;
+        }
+        break;
+
+    case 2:
+        if (MinigameWaitForFrames(0x28) != 0) {
+            gHomerunState++;
+            gHomerunCamera[12] = 0;
+            *(vu16 *)0x04000000 = 0x1C00;
+        }
+        break;
+
+    case 3:
+        if (MinigameWaitForFrames(20) != 0) {
+            if (gHomerunPitchResult == 1 || gHomerunPitchResult == 4) {
+                m4aSongNumStart(0x2C5);
+                gHomerunState++;
+            } else {
+                gHomerunState = 5;
+                gHomerunPitchResult = 4;
+            }
+        }
+        break;
+
+    case 4:
+        UpdateHomerunBatInput();
+        if (MinigameWaitForFrames(100) != 0) {
+            gHomerunState++;
+        }
+        break;
+
+    case 5:
+        UpdateHomerunBatInput();
+        if (MinigameWaitForFrames(30) != 0) {
+            gHomerunState++;
+            pitcherData = gHomerunPitcher;
+            pitcherData[5]++;
+            difficulty = gDifficulty;
+            pitcherState = pitcherData;
+            if (difficulty == 2) {
+                pitchAnimationTable = sHomerunPitchAnimationsHard;
+                pitchAnimationIndex = (gHomerunPitchPath * 5) - 1;
+                pitchAnimationIndex += pitcherState[5];
+            } else {
+                pitchAnimationTable = sHomerunPitchAnimationsNormal;
+                pitchAnimationIndex = (gHomerunPitchPath * 5) - 1;
+                pitchAnimationIndex += pitcherState[5];
+            }
+            pitchAnimationIndex += (s32)pitchAnimationTable;
+            animationIndex = *(u8 *)pitchAnimationIndex;
+            pitcherState[4] = animationIndex;
+            pitcherDataForSound = pitcherState;
+            if (pitcherDataForSound[4] == 3) {
+                m4aSongNumStart(0x226);
+            }
+            if (pitcherDataForSound[4] == 2) {
+                m4aSongNumStart(0x227);
+            }
+            *(u16 *)(pitcherState + 2) = 0;
+            *(u16 *)(pitcherState + 0) = 0;
+        }
+        break;
+
+    case 6:
+        UpdateHomerunBatInput();
+        break;
+
+    case 7:
+        UpdateHomerunBatInput();
+        if (UpdateHomerunPitch() != 0) {
+            if (gHomerunPitchResult == 2) {
+                m4aSongNumStart(0x2C9);
+                gHomerunMissCount++;
+                gHomerunState = 12;
+            } else {
+                gHomerunState++;
+                ballState = gHomerunBall;
+                *(u16 *)(ballState + 4) = *(u16 *)(ballState + 8) << 4;
+                *(u16 *)(ballState + 6) = *(u16 *)(ballState + 10) << 4;
+                gHomerunBatSwingActive = 1;
+            }
+        }
+        break;
+
+    case 8:
+        swingActiveFlag = &gHomerunBatSwingActive;
+        if (*swingActiveFlag != 0 && UpdateHomerunBatSwing() != 0) {
+            *swingActiveFlag = 0;
+        }
+        if (UpdateHomerunHitBall() != 0) {
+            switch (gHomerunPitchResult) {
+            case 1:
+                m4aSongNumStart(0x2C6);
+                gHomerunState = 11;
+                break;
+            case 0:
+                updatedMissCount = gHomerunMissCount + 1;
+                gHomerunMissCount = updatedMissCount;
+                if ((u8)updatedMissCount > 2) {
+                    gHomerunMissCount = 2;
+                }
+                gHomerunState = 12;
+                m4aSongNumStart(0x2CA);
+                break;
+            case 5:
+                m4aSongNumStart(0x235);
+                gHomerunState = 9;
+                break;
+            }
+        }
+        break;
+
+    case 9:
+        swingActiveFlag = &gHomerunBatSwingActive;
+        if (*swingActiveFlag != 0 && UpdateHomerunBatSwing() != 0) {
+            *swingActiveFlag = 0;
+        }
+        if (UpdateHomerunMissedBall() != 0) {
+            if (gHomerunPitchResult == 1) {
+                m4aSongNumStart(0x2C6);
+            }
+            gHomerunState++;
+        }
+        break;
+
+    case 10:
+        swingActiveFlag = &gHomerunBatSwingActive;
+        if (*swingActiveFlag != 0 && UpdateHomerunBatSwing() != 0) {
+            *swingActiveFlag = 0;
+        }
+        if (MinigameWaitForFrames(80) != 0) {
+            *(vu16 *)0x04000000 = 0x1C00;
+            if (gHomerunPitchResult == 1) {
+                gHomerunState = 11;
+            } else {
+                updatedMissCount = gHomerunMissCount + 1;
+                gHomerunMissCount = updatedMissCount;
+                if ((u8)updatedMissCount > 2) {
+                    gHomerunMissCount = 2;
+                }
+                m4aSongNumStart(0x2CA);
+                gHomerunState = 12;
+            }
+        }
+        break;
+
+    case 11:
+        if (UpdateHomerunScoreSequence() != 0) {
+            gHomerunMissCount = 0;
+            ResetHomerunDerbyPitch();
+            if ((gHomerunScore % 9) != 0) {
+                gHomerunState = 3;
+            } else {
+                StartHomerunBonusAnimation();
+                gHomerunState = 17;
+            }
+        }
+        break;
+
+    case 12:
+        swingActiveFlag = &gHomerunBatSwingActive;
+        if (*swingActiveFlag != 0 && UpdateHomerunBatSwing() != 0) {
+            *swingActiveFlag = 0;
+        }
+        if (MinigameWaitForFrames(100) != 0) {
+            if (gHomerunMissCount == 3) {
+                if ((MinigameRandom() & 1) == 0) {
+                    m4aSongNumStart(0x2C7);
+                } else {
+                    m4aSongNumStart(0x2C8);
+                }
+                gHomerunPitchResult = 3;
+                gHomerunState++;
+            } else {
+                ResetHomerunDerbyPitch();
+                gHomerunState = 3;
+            }
+        }
+        break;
+
+    case 13:
+        nextValue = 120;
+        asm(".4byte 0xfbb2f7fb" : "+r"(nextValue) : : "lr");
+        if (nextValue == 0) {
+            break;
+        }
+        gHomerunState++;
+        *(vu16 *)0x04000000 = 0x1800;
+        gHomerunCamera[12] = 2;
+        nextValue = 0x200;
+        *(u16 *)(gHomerunCamera + 4) = nextValue;
+        break;
+
+    case 14:
+        cameraDataForExit = gHomerunCamera;
+        nextValue = *(u16 *)(cameraDataForExit + 4) + 0xC0;
+        *(u16 *)(cameraDataForExit + 4) = nextValue;
+        *(u16 *)(cameraDataForExit + 6) = (*(u16 *)(cameraDataForExit + 6) + 25) & 0xFFF;
+        if ((u16)nextValue > 0x2000) {
+            *(u16 *)(cameraDataForExit + 4) = 0x2000;
+            (*savedStateAddress)++;
+            m4aSongNumStart(0x236);
+        }
+        break;
+
+    case 15:
+        if (MinigameWaitForFrames(80) != 0) {
+            gHomerunState = 0;
+            return 1;
+        }
+        break;
+
+    case 16:
+        if (MinigameWaitForFrames(30) != 0) {
+            gHomerunState = 0;
+            return 1;
+        }
+        break;
+
+    case 17:
+        asm(".4byte 0xfa8ef001" : "=r"(nextValue) : : "lr");
+        if (nextValue != 0) {
+            gHomerunState = 3;
+        }
+        break;
+    }
+
+    return 0;
+}
+
+void ResetHomerunDerbyRound(void)
+{
+    register u16 zeroHalfword asm("r2");
+    register u8 zeroByte asm("r3");
+    u16 *ballState;
+    u16 *batState;
+    u16 *pitcherState;
+    u16 *resultState;
+
+    ballState = gHomerunBall;
+    zeroByte = 0;
+    zeroHalfword = 0;
+    ballState[4] = 60;
+    ballState[5] = 88;
+    ballState[0] = zeroHalfword;
+    ballState[1] = zeroHalfword;
+    ballState[8] = zeroHalfword;
+    ballState[9] = 64;
+    gHomerunPitchFrame = zeroByte;
+
+    batState = gHomerunBat;
+    batState[0] = zeroHalfword;
+    batState[1] = zeroHalfword;
+    ((u8 *)batState)[6] = zeroByte;
+    batState[2] = sHomerunBatAngles[0];
+
+    gHomerunBatX = 215;
+    gHomerunBatY = 121;
+    gHomerunBatSwingActive = zeroByte;
+
+    pitcherState = (u16 *)gHomerunPitcher;
+    pitcherState[0] = zeroHalfword;
+    pitcherState[1] = zeroHalfword;
+    ((u8 *)pitcherState)[4] = zeroByte;
+    ((u8 *)pitcherState)[5] = zeroByte;
+
+    resultState = gHomerunResultAnimation;
+    resultState[0] = zeroHalfword;
+    resultState[1] = zeroHalfword;
+    resultState[2] = 120;
+    resultState[3] = 80;
+    SelectHomerunPitchPath();
+}
+
+void InitHomerunDerby(void)
+{
+    register u8 *difficultyPointer asm("r12");
+    register u8 *pitchLevelPointer asm("r8");
+    register u8 *backgroundTilemapB asm("r9");
+    register u8 *backgroundTilemapD asm("r10");
+    register u8 *backgroundTiles asm("r4");
+    register u8 *objectPalette asm("r3");
+    register u8 *objectTiles asm("r5");
+    register u8 *backgroundTilemapA asm("r6");
+    register u32 dmaBusyMask asm("r2");
+    register u32 zeroValue asm("r1");
+    register u32 dmaStatus asm("r0");
+
+    DMA3->src = (u32)sHomerunBgPalette;
+    DMA3->dst = 0x05000000;
+    DMA3->cnt = 0x80000100;
+    dmaStatus = DMA3->cnt;
+    dmaStatus = DMA3->cnt;
+    dmaBusyMask = 0x80000000;
+    objectPalette = sHomerunObjPalette;
+    backgroundTiles = sHomerunBgTiles;
+    objectTiles = sHomerunObjTiles;
+    difficultyPointer = &gDifficulty;
+    backgroundTilemapA = sHomerunBgTilemapA;
+    backgroundTilemapB = sHomerunBgTilemapB;
+    backgroundTilemapD = sHomerunBgTilemapD;
+    pitchLevelPointer = &gHomerunPitchLevel;
+    if ((s32)dmaStatus < 0) {
+        do {
+            dmaStatus = DMA3->cnt & dmaBusyMask;
+        } while (dmaStatus != 0);
+    }
+
+    DMA3->src = (u32)objectPalette;
+    DMA3->dst = 0x05000200;
+    DMA3->cnt = 0x80000100;
+    dmaStatus = DMA3->cnt;
+    dmaStatus = DMA3->cnt;
+    dmaBusyMask = 0x80000000;
+    if ((s32)dmaStatus < 0) {
+        do {
+            dmaStatus = DMA3->cnt & dmaBusyMask;
+        } while (dmaStatus != 0);
+    }
+
+    DMA3->src = (u32)backgroundTiles;
+    DMA3->dst = 0x06000000;
+    DMA3->cnt = 0x80002600;
+    dmaStatus = DMA3->cnt;
+    dmaStatus = DMA3->cnt;
+    dmaBusyMask = 0x80000000;
+    if ((s32)dmaStatus < 0) {
+        do {
+            dmaStatus = DMA3->cnt & dmaBusyMask;
+        } while (dmaStatus != 0);
+    }
+
+    DMA3->src = (u32)objectTiles;
+    DMA3->dst = 0x06010000;
+    DMA3->cnt = 0x80004000;
+    dmaStatus = DMA3->cnt;
+    dmaStatus = DMA3->cnt;
+    dmaBusyMask = 0x80000000;
+    if ((s32)dmaStatus < 0) {
+        do {
+            dmaStatus = DMA3->cnt & dmaBusyMask;
+        } while (dmaStatus != 0);
+    }
+
+    {
+        register u8 *difficultyForHardMode asm("r1");
+        difficultyForHardMode = difficultyPointer;
+        if (*difficultyForHardMode == 2) {
+            DMA3->src = (u32)sHomerunHardModeObjTiles;
+            DMA3->dst = 0x06010000;
+            DMA3->cnt = 0x80000800;
+            dmaStatus = DMA3->cnt;
+            dmaStatus = DMA3->cnt;
+            dmaBusyMask = 0x80000000;
+            if ((s32)dmaStatus < 0) {
+                do {
+                    dmaStatus = DMA3->cnt & dmaBusyMask;
+                } while (dmaStatus != 0);
+            }
+        }
+    }
+
+    DMA3->src = (u32)backgroundTilemapA;
+    DMA3->dst = 0x0600C000;
+    dmaStatus = (DMA3->cnt = 0x80000400);
+    dmaStatus = DMA3->cnt;
+    dmaBusyMask = 0x80000000;
+    if ((s32)dmaStatus < 0) {
+        do {
+            dmaStatus = DMA3->cnt & dmaBusyMask;
+        } while (dmaStatus != 0);
+    }
+
+    {
+        register volatile struct Dma3Regs *dmaRegisters asm("r1");
+        register u8 *backgroundTilemapC asm("r2");
+        dmaRegisters = DMA3;
+        backgroundTilemapC = sHomerunBgTilemapC;
+        dmaRegisters->src = (u32)backgroundTilemapC;
+        dmaRegisters->dst = 0x0600C800;
+        dmaRegisters->cnt = 0x80000400;
+        dmaStatus = dmaRegisters->cnt;
+        dmaStatus = dmaRegisters->cnt;
+        dmaBusyMask = 0x80000000;
+        if ((s32)dmaStatus < 0) {
+            do {
+                dmaStatus = dmaRegisters->cnt & dmaBusyMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        register volatile struct Dma3Regs *dmaRegisters asm("r1");
+        register u8 *backgroundTilemapBReload asm("r6");
+        dmaRegisters = DMA3;
+        backgroundTilemapBReload = backgroundTilemapB;
+        dmaRegisters->src = (u32)backgroundTilemapBReload;
+        dmaRegisters->dst = 0x0600D000;
+        dmaRegisters->cnt = 0x80001000;
+        dmaStatus = dmaRegisters->cnt;
+        dmaStatus = dmaRegisters->cnt;
+        dmaBusyMask = 0x80000000;
+        if ((s32)dmaStatus < 0) {
+            do {
+                dmaStatus = dmaRegisters->cnt & dmaBusyMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        register volatile struct Dma3Regs *dmaRegisters asm("r1");
+        dmaRegisters = DMA3;
+        asm("mov r7, %0\n\tstr r7, [r1]" : : "r"(backgroundTilemapD));
+        dmaRegisters->dst = 0x0600F000;
+        dmaRegisters->cnt = 0x80000400;
+        dmaStatus = dmaRegisters->cnt;
+    }
+
+    *(vu16 *)0x0400000E = 0x1803;
+    *(vu16 *)0x0400000A = 0x1901;
+    *(vu16 *)0x04000008 = 0xDA00;
+    *(vu16 *)0x0400000C = 0x1E02;
+
+    {
+        register vu16 *displayRegister asm("r0");
+        displayRegister = (vu16 *)0x0400001A;
+        zeroValue = 0;
+        *displayRegister = zeroValue;
+        displayRegister--;
+        *displayRegister = zeroValue;
+        displayRegister += 3;
+        *displayRegister = zeroValue;
+        displayRegister--;
+        *displayRegister = zeroValue;
+        gHomerunBgX = zeroValue;
+        gHomerunBgY = zeroValue;
+        displayRegister -= 5;
+        *displayRegister = zeroValue;
+        displayRegister--;
+        *displayRegister = zeroValue;
+    }
+
+    {
+        register u8 *difficultyForPitchLevel asm("r2");
+        difficultyForPitchLevel = difficultyPointer;
+        if (*difficultyForPitchLevel == 2) {
+            register u8 *pitchLevelOutput asm("r6");
+            dmaStatus = 1;
+            pitchLevelOutput = pitchLevelPointer;
+            *pitchLevelOutput = dmaStatus;
+        } else {
+            asm("mov r7, %0\n\tstrb r1, [r7]" : : "r"(pitchLevelPointer));
+        }
+    }
+
+    {
+        register u8 *pitchResultPointer asm("r1");
+        dmaStatus = 4;
+        pitchResultPointer = &gHomerunPitchResult;
+        *pitchResultPointer = dmaStatus;
+    }
+
+    ResetHomerunDerbyRound();
+
+    gHomerunBonusAnimation[0] = 0;
+    gHomerunBonusAnimation[1] = 0;
+    ((u8 *)gHomerunBonusAnimation)[8] = 0;
+    ((u8 *)gHomerunBonusAnimation)[9] = 0;
+    ((u8 *)gHomerunBonusAnimation)[10] = 0;
+    gHomerunBonusCycle = 0;
+
+    {
+        register u8 *cameraData asm("r1");
+        cameraData = gHomerunCamera;
+        dmaStatus = 0x200;
+        *(u16 *)(cameraData + 4) = dmaStatus;
+        *(u16 *)(cameraData + 8) = 0x68;
+        *(u16 *)(cameraData + 10) = 0x40;
+        *(u16 *)(cameraData + 6) = 0;
+        cameraData[12] = 1;
+    }
+
+    gHomerunState = 0;
+    gHomerunSubstate = 0;
+    gHomerunSequenceState = 0;
+    gHomerunSequenceTimer = 0;
+    gHomerunScore = 0;
+    gHomerunNewHighScore = 0;
+    DrawHomerunDerbyScore();
+    gHomerunMissCount = 0;
+    InitMinigameScoreDisplay();
+    *(vu16 *)0x04000054 = 0;
+    *(vu16 *)0x04000050 = 0x1C42;
+    *(vu16 *)0x04000052 = 0x060A;
+
+    {
+        register vu16 *displayRegister asm("r1");
+        register u32 displayControl asm("r7");
+        register u32 displayControlValue asm("r0");
+        asm(".4byte 0x27803952" : "=r"(displayRegister), "=r"(displayControl));
+        displayControl <<= 4;
+        displayControlValue = displayControl;
+        *displayRegister = displayControlValue;
+    }
+}
+
+void ResetHomerunDerbyPitch(void)
+{
+    u32 scoreRemainder;
+
+    *(vu16 *)0x04000200 ^= 1;
+    *(vu16 *)0x04000000 = 0x1C00;
+
+    scoreRemainder = gHomerunScore % 5;
+    if ((scoreRemainder << 16) == 0 && gHomerunPitchResult == 1) {
+        gHomerunPitchLevel++;
+    }
+    if (gHomerunPitchLevel > 9) {
+        gHomerunPitchLevel = 9;
+    }
+
+    ResetHomerunDerbyRound();
+    *(vu16 *)0x04000200 |= 1;
+}
+
+void SelectHomerunPitchPath(void)
+{
+    unsigned char *dst;
+    unsigned char *table;
+    s32 randomSelection;
+    unsigned char row;
+    s32 difficultyOffset;
+
+    dst = &gHomerunPitchPath;
+    table = sHomerunPitchPathChoices;
+    randomSelection = MinigameRandom();
+    difficultyOffset = randomSelection % 20;
+    row = gHomerunPitchLevel;
+    difficultyOffset += row * 20;
+    *dst = table[difficultyOffset];
+}
+
+s32 UpdateHomerunPitch(void)
+{
+    register u16 *ballState asm("r5");
+    u16 *ballStateReload;
+    register const u16 *pathXCoordinates asm("r3");
+    register const u16 *pathYCoordinates asm("r3");
+    register u8 *pitchFramePointer asm("r4");
+    register u8 *frameIndexPointer asm("r2");
+    s32 coordinateOffset;
+    s32 xPosition;
+    s32 yPosition;
+
+    ballState = gHomerunBall;
+    pathXCoordinates = sHomerunPitchPathX;
+    pitchFramePointer = &gHomerunPitchFrame;
+    frameIndexPointer = &gHomerunPitchPath;
+    coordinateOffset = (*frameIndexPointer * 63) + *pitchFramePointer;
+    xPosition = pathXCoordinates[coordinateOffset] + 60;
+    ballState[4] = xPosition;
+
+    pathYCoordinates = sHomerunPitchPathY;
+    coordinateOffset = (*frameIndexPointer * 63) + *pitchFramePointer;
+    yPosition = pathYCoordinates[coordinateOffset] + 88;
+    ballState[5] = yPosition;
+
+    if ((s32)(xPosition << 16) >> 16 > 140) {
+        if (CheckHomerunBatHit() != 0) {
+            return 1;
+        }
+    }
+
+    gHomerunPitchFrame++;
+    if ((u8)gHomerunPitchFrame == sHomerunPitchPathLengths[gHomerunPitchPath]) {
+        ballStateReload = gHomerunBall;
+        ballStateReload[2] = ballStateReload[4] << 4;
+        ballStateReload[3] = ballStateReload[5] << 4;
+        gHomerunPitchResult = 2;
+        return 1;
+    }
+
+    return 0;
+}
+
+void UpdateHomerunBatInput(void)
+{
+    if (gButtonsPressed & 1) {
+        if (gHomerunBatSwingActive == 0) {
+            gHomerunBatSwingActive = 1;
+            m4aSongNumStart(0x232);
+        }
+    }
+
+    if (gHomerunBatSwingActive != 0) {
+        if (UpdateHomerunBatSwing() != 0) {
+            gHomerunBatSwingActive = 0;
+        }
+    }
+}
+
+s32 CheckHomerunBatHit(void)
+{
+    const s16 *pathXCoordinates;
+    u8 *difficultyPointer;
+    s32 nextPathX;
+    s32 nextPathY;
+    s32 previousPathX;
+    s32 previousPathY;
+    s32 currentPathOffset;
+    s32 nextPathOffset;
+    s32 previousPathOffset;
+    s32 batOffsetX;
+    u8 **liftTablePointer;
+    s32 batOffsetY;
+    s32 batCrossProduct;
+    s32 secondaryValue;
+    s32 workingValue;
+    s32 trigIndex;
+    s16 ballScreenY;
+    u8 previousPitchResult;
+    u16 batAngle;
+    struct HomerunBallState *ballState;
+    pathXCoordinates = (const s16 *)sHomerunPitchPathX;
+    previousPitchResult = gHomerunPitchFrame;
+    nextPathOffset = (previousPitchResult + 1) * 2;
+    difficultyPointer = &gHomerunPitchPath;
+    currentPathOffset = (*difficultyPointer) * 0x3F;
+    currentPathOffset *= 2;
+    nextPathOffset += currentPathOffset;
+    nextPathX = (*((s16 *)(((u8 *)pathXCoordinates) + nextPathOffset))) + 0x3C;
+    nextPathY = (*((s16 *)(((u8 *)sHomerunPitchPathY) + nextPathOffset))) + 0x58;
+    previousPathOffset = (previousPitchResult - 1) * 2;
+    previousPathOffset += currentPathOffset;
+    previousPathX = (*((s16 *)(((u8 *)pathXCoordinates) + previousPathOffset))) + 0x3C;
+    previousPathY = (*((s16 *)(previousPathOffset + ((u8 *)sHomerunPitchPathY)))) + 0x58;
+    batOffsetX = ((s16)gHomerunBatX) - 0xD7;
+    batOffsetY = ((s16)gHomerunBatY) - 0x60;
+    batCrossProduct = (((s16)gHomerunBatY) * 0xD7) - (((s16)gHomerunBatX) * 0x60);
+    ballState = (struct HomerunBallState *)gHomerunBall;
+    ballScreenY = ballState->screenY;
+    if ((((((s16)gHomerunBatY) <= ballScreenY) && (ballScreenY <= 0x60)) &&
+         ((batOffsetY * previousPathX) >= ((batOffsetX * previousPathY) + batCrossProduct))) &&
+        ((nextPathX * batOffsetY) <= ((nextPathY * batOffsetX) + batCrossProduct))) {
+        struct HomerunBatState *batState;
+        u8 *trigTable;
+        register u8 contactFrame asm("r3");
+        register s32 velocityMask asm("r5");
+        register s32 sineValue asm("r9");
+        register u8 *velocityTable asm("r4");
+        register unsigned int scaledVelocity;
+        register s32 velocityComponent asm("r0");
+        register s32 trigIndexRegister asm("r1");
+        batState = (struct HomerunBatState *)gHomerunBat;
+        contactFrame = batState->swingFrame;
+        batState->contactFrame = contactFrame;
+        trigTable = (u8 *)sSinCosTable;
+        batAngle = batState->angle;
+        trigIndex = 2;
+        trigIndex = batAngle * trigIndex;
+        velocityMask = 0xFF;
+        trigIndex &= velocityMask;
+        trigIndex += 0x40;
+        trigIndex <<= 1;
+        sineValue = *((s16 *)(trigTable + trigIndex));
+        velocityTable = sHomerunHitSpeed;
+        scaledVelocity = sineValue * ((s8)velocityTable[*difficultyPointer]);
+        velocityComponent = scaledVelocity;
+        trigIndexRegister = batAngle - 0x40;
+        trigIndexRegister <<= 1;
+        secondaryValue = *((s16 *)(trigTable + trigIndexRegister));
+        velocityComponent *= secondaryValue;
+        velocityComponent *= secondaryValue;
+        ballState->xVelocity = -(((s32)velocityComponent) >> 0x18);
+        batAngle = batState->angle;
+        trigIndex = batAngle * 2;
+        trigIndex &= velocityMask;
+        trigIndex <<= 1;
+        workingValue = *((s16 *)(trigIndex + trigTable));
+        scaledVelocity = workingValue * ((s8)(*((volatile u8 *)(velocityTable + (*difficultyPointer)))));
+        trigIndexRegister = batAngle - 0x40;
+        trigIndexRegister <<= 1;
+        secondaryValue = *((s16 *)(trigTable + trigIndexRegister));
+        velocityComponent = secondaryValue;
+        velocityComponent *= scaledVelocity;
+        ballState->yVelocity = -(((s32)velocityComponent) >> 0x10);
+        velocityTable = (u8 *)sHomerunHitLift;
+        liftTablePointer = &velocityTable;
+        secondaryValue = ((s8 *)(*liftTablePointer))[*difficultyPointer];
+        trigIndex = batState->angle - 0x40;
+        trigIndex <<= 1;
+        velocityComponent = *((s16 *)(trigTable + trigIndex));
+        velocityComponent *= secondaryValue;
+        scaledVelocity = ((s32)velocityComponent) >> 8;
+        ballState->gravity = scaledVelocity;
+        if (((u8)contactFrame) == 0xC) {
+            trigIndex = *difficultyPointer;
+            secondaryValue = ((s8 *)velocityTable)[trigIndex];
+            trigIndex = batState->angle;
+            trigIndex = trigIndex - 0x40;
+            trigIndex <<= 1;
+            velocityComponent = *((s16 *)(trigTable + trigIndex));
+            velocityComponent *= secondaryValue;
+            ballState->gravity = scaledVelocity + (((s32)velocityComponent) >> 8);
+        }
+        if (((u8)(batState->contactFrame - 0xA)) <= 2) {
+            m4aSongNumStart(0x234U);
+        } else {
+            asm("ldr r0, .LhomerunSound233\n\tbl m4aSongNumStart");
+        }
+        asm(
+            "mov r0, #1\n\t"
+            ".4byte 0x0000e003\n\t"
+            ".align 2, 0\n"
+            ".LhomerunSound233:\n\t"
+            ".4byte 0x233"
+        );
+    }
+    return 0;
+}
+
+s32 UpdateHomerunBatSwing(void)
+{
+    register u8 *batState asm("r4");
+    u16 *batXPosition;
+    register u16 *batYPosition asm("r5");
+    register const u8 *swingAngles asm("ip");
+    register s32 batCenterX asm("r6");
+    register s32 swingFrame asm("r2");
+    register const s16 *trigTable asm("r3");
+    s32 batAngle;
+    s32 trigValue;
+    s32 scaledOffset;
+    s32 position;
+
+    batState = (u8 *)gHomerunBat;
+    swingFrame = batState[6] + 1;
+    batState[6] = swingFrame;
+
+    swingAngles = sHomerunBatAngles;
+    batAngle = swingAngles[batState[6]];
+    ((u16 *)batState)[2] = batAngle;
+
+    batXPosition = &gHomerunBatX;
+    trigTable = sSinCosTable;
+    trigValue = trigTable[((u16 *)batState)[2]];
+    scaledOffset = (trigValue * 25) >> 8;
+    batCenterX = 215;
+    *batXPosition = batCenterX - scaledOffset;
+
+    batYPosition = &gHomerunBatY;
+    batAngle = ((u16 *)batState)[2];
+    batAngle += 64;
+    trigValue = trigTable[batAngle];
+    scaledOffset = (trigValue * 25) >> 8;
+    *batYPosition = scaledOffset + 96;
+
+    if ((u8)swingFrame > 21) {
+        goto reset;
+    }
+    position = 0;
+    goto done;
+
+reset:
+    {
+        register const u8 *initialSwingAngles asm("r1");
+
+        batState[6] = 0;
+        initialSwingAngles = swingAngles;
+        ((u16 *)batState)[2] = initialSwingAngles[0];
+        *batXPosition = batCenterX;
+        *batYPosition = 121;
+        position = 1;
+    }
+
+done:
+    return position;
+}
+
+
+s32 UpdateHomerunHitBall(void)
+{
+    register struct HomerunBallState *ballState asm("r1");
+    register s32 xPosition asm("r4");
+    register s32 yPosition asm("r2");
+    register s32 nextXPosition asm("r3");
+    s32 nextYPosition;
+    register s32 coordinateMask asm("r5");
+    register s32 workingValue asm("r0");
+    u8 *pitchResultPointer;
+    u8 pitchResult;
+
+    ballState = (struct HomerunBallState *)gHomerunBall;
+    xPosition = ballState->xPosition;
+    nextXPosition = xPosition << 16;
+    if (nextXPosition > 0
+        && (yPosition = ballState->yPosition, nextYPosition = yPosition << 16, nextYPosition > 0)
+        && (workingValue = nextYPosition >> 20, workingValue <= 0x9F)
+        && (workingValue = nextXPosition >> 20, workingValue <= 0xEF)) {
+        workingValue = 0xC;
+        workingValue = *(s8 *)((u8 *)ballState + workingValue);
+        nextXPosition = xPosition + workingValue;
+        ballState->xPosition = nextXPosition;
+        workingValue = 0xD;
+        workingValue = *(s8 *)((u8 *)ballState + workingValue);
+        xPosition = yPosition + workingValue;
+        ballState->yPosition = xPosition;
+        workingValue = ballState->rotation;
+        workingValue += 5;
+        coordinateMask = 0xFF;
+        workingValue &= coordinateMask;
+        ballState->rotation = workingValue;
+        workingValue = 0xE;
+        workingValue = *(s8 *)((u8 *)ballState + workingValue);
+        yPosition = ballState->scale;
+        workingValue += yPosition;
+        ballState->scale = workingValue;
+        {
+            register s32 backgroundY asm("r1");
+
+            workingValue <<= 16;
+            backgroundY = 0x80;
+            backgroundY <<= 18;
+            if ((u32)workingValue <= backgroundY) {
+                goto ret0;
+            } else {
+                register u16 *ballXPosition asm("r0");
+                register s32 backgroundX asm("r2");
+                register vu16 *backgroundYRegister asm("r0");
+                register s32 backgroundPositionAddress asm("r3");
+
+                ballXPosition = &gHomerunBgX;
+                backgroundX = (s32)(nextXPosition << 16) >> 20;
+                backgroundPositionAddress = 0x80;
+                backgroundPositionAddress <<= 1;
+                asm("add %0, %1, #0" : "=r"(backgroundY) : "r"(backgroundPositionAddress));
+                backgroundX = backgroundY - backgroundX;
+                *ballXPosition = backgroundX;
+                backgroundPositionAddress = (s32)&gHomerunBgY;
+                workingValue = (s32)(xPosition << 16) >> 20;
+                backgroundY -= workingValue;
+                *(u16 *)backgroundPositionAddress = backgroundY;
+                backgroundYRegister = (vu16 *)0x04000012;
+                *backgroundYRegister = backgroundY;
+                backgroundYRegister--;
+                *backgroundYRegister = backgroundX;
+                backgroundYRegister += 3;
+                {
+                    register s32 screenOffset asm("r3");
+
+                    xPosition = 0xC0;
+                    xPosition <<= 1;
+                    asm("add %0, %1, #0" : "=r"(screenOffset) : "r"(xPosition));
+                    backgroundY += screenOffset;
+                    backgroundY &= coordinateMask;
+                    *backgroundYRegister = backgroundY;
+                    backgroundYRegister--;
+                    backgroundX += screenOffset;
+                }
+                backgroundX &= coordinateMask;
+                *backgroundYRegister = backgroundX;
+                *(vu16 *)0x04000000 = 0x1F00;
+                pitchResultPointer = &gHomerunPitchResult;
+                pitchResult = 5;
+            }
+        }
+    } else if ((u8)(((struct HomerunBatState *)gHomerunBat)->contactFrame - 0xA) <= 2) {
+        pitchResultPointer = &gHomerunPitchResult;
+        pitchResult = 1;
+    } else {
+        pitchResultPointer = &gHomerunPitchResult;
+        pitchResult = 0;
+    }
+
+    *pitchResultPointer = pitchResult;
+    return 1;
+
+ret0:
+    return 0;
+}
+
+
+s32 UpdateHomerunMissedBall(void)
+{
+    register struct HomerunBallState *ballState asm("r2");
+    register s32 xPosition asm("r5");
+    register s32 yPosition asm("r4");
+    register s32 workingValue asm("r0");
+    register s32 groundHeight asm("r1");
+    register s32 minimumY asm("r3");
+    register u8 *pitchResultPointer asm("r1");
+    register u8 pitchResult asm("r0");
+
+    ballState = (struct HomerunBallState *)gHomerunBall;
+    xPosition = ballState->xPosition;
+    workingValue = xPosition << 16;
+    groundHeight = workingValue >> 20;
+    minimumY = 20;
+    minimumY = -minimumY;
+    if (groundHeight > minimumY
+        && (yPosition = ballState->yPosition, workingValue = yPosition << 16, workingValue = workingValue >> 20, workingValue > minimumY)
+        && workingValue <= 0xB3
+        && (workingValue = 0x103, groundHeight <= workingValue)) {
+        workingValue = 0xC;
+        workingValue = *(s8 *)((u8 *)ballState + workingValue);
+        workingValue = xPosition + workingValue;
+        ballState->xPosition = workingValue;
+        workingValue = 0xD;
+        workingValue = *(s8 *)((u8 *)ballState + workingValue);
+        workingValue = yPosition + workingValue;
+        ballState->yPosition = workingValue;
+        workingValue = ballState->rotation;
+        workingValue += 5;
+        groundHeight = 0xFF;
+        workingValue &= groundHeight;
+        ballState->rotation = workingValue;
+        workingValue = 0xE;
+        workingValue = *(s8 *)((u8 *)ballState + workingValue);
+        groundHeight = ballState->scale;
+        workingValue += groundHeight;
+        ballState->scale = workingValue;
+        workingValue <<= 16;
+        workingValue = (u32)workingValue >> 16;
+        groundHeight = 0x80;
+        groundHeight <<= 3;
+        if ((u32)workingValue > (u32)groundHeight) {
+            ballState->scale = groundHeight;
+        }
+        goto ret0;
+    } else if ((u8)(((struct HomerunBatState *)gHomerunBat)->contactFrame - 0xA) <= 2) {
+        pitchResultPointer = &gHomerunPitchResult;
+        pitchResult = 1;
+    } else {
+        pitchResultPointer = &gHomerunPitchResult;
+        pitchResult = 0;
+    }
+
+    *pitchResultPointer = pitchResult;
+    return 1;
+
+ret0:
+    return 0;
+}
+
+void DrawHomerunDerbyScore(void)
+{
+    const u16 *scoreTiles;
+    u32 score;
+
+    if (gHomerunMedalHighlight != 0) {
+        DrawMinigameNumber(gMedalCount, sHomerunHighlightedMedalTiles, 0x3800);
+    } else {
+        DrawMinigameNumber(gMedalCount, sHomerunMedalTiles, 0x3800);
+    }
+
+    score = gHomerunScore;
+    scoreTiles = sHomerunDigitTiles;
+    DrawMinigameNumber(score, scoreTiles, 0x4000);
+    DrawMinigameHighScore(gMinigameHighScores, scoreTiles + 0x400, 0x4800);
+}
+
+
+void DrawHomerunDerby(void)
+{
+  u16 affineMatrix[4];
+  u16 *affinePb;
+  u16 *affinePc;
+  u16 *affinePd;
+  register struct HomerunCameraState *cameraTransform asm("r9");
+  register struct HomerunCameraState *cameraForMatrix asm("r1");
+  register struct HomerunCameraState *cameraForRotation asm("r3");
+  register struct HomerunPitcherState *pitcherState asm("r3");
+  register struct HomerunSimpleAnimation *activeAnimationState asm("r3");
+  register struct AnimationFrame *activeAnimation asm("r5");
+  register u8 *stackFrame asm("sp");
+  u32 animationCounterLimit;
+  register u32 oamXMask asm("sl");
+  register s32 oamAttributeMask asm("ip");
+  register long preservedOamBits;
+  register OamByte *dataPointer asm("r2");
+  register OamByte *oamBuffer asm("r2");
+  register OamByte *oamEntry asm("r4");
+  register OamByte *objectState asm("r5");
+  register struct HomerunCameraState *cameraForSprites asm("r5");
+  s16 matrixCosine;
+  s16 animationMatrixPb;
+  s16 animationMatrixPc;
+  s16 animationMatrixPd;
+  struct HomerunCameraState *oamXMaskPointer;
+  s16 matrixSine;
+  s16 matrixNegativeSine;
+  struct HomerunSimpleAnimation *bonusRenderState = &gHomerunBonusRender;
+  s16 matrixCosineD;
+  s16 ballMatrixCosine;
+  s16 ballMatrixSine;
+  s16 ballMatrixNegativeSine;
+  int ballMatrixCosineD;
+  s16 animationMatrixPa;
+  register unsigned int oamByteMask asm("sl");
+  register OamByte *resultAnimation asm("r4");
+  register s32 workingOffset asm("r0");
+  struct AnimationFrame *bonusAnimation;
+  u32 frameDuration;
+  OamByte *pitcherAnimation;
+  s32 entryCounter;
+  s32 cameraEntryCount;
+  s32 secondaryEntryCount;
+  s32 batEntryCount;
+  register s32 bonusEntryCount asm("r7");
+  s32 pitcherEntryCount;
+  s32 savedOamIndex;
+  register struct AnimationFrame *bonusAnimationFrames asm("r4");
+  register u16 *affinePointer asm("r0");
+  u16 **affinePointerReference;
+  u16 *bonusFrameData;
+  u16 *pitcherFrameData;
+  u16 *resultFrameData;
+  u16 *ballFrameData;
+  u16 *secondaryFrameData;
+  u16 *batFrameData;
+  u16 *activeFrameData;
+  register u16 *frameData asm("r3");
+  u8 *pitcherOamBytes;
+  struct HomerunCameraState *cameraData;
+  int clearAffineModeMask;
+  register OamByte *oamDataDestination asm("r6");
+  u16 frameTimeValue;
+  int clearOamXMask;
+  u16 affinePdValue;
+  s32 ballAffinePd;
+  s32 uiAnimationTimer;
+  s32 animationTimer;
+  u16 affinePaValue;
+  register s32 positionValue asm("r1");
+  u8 *stackPointer;
+  s32 frameCounter;
+  s32 bonusAnimationTimer;
+  s32 pitcherAnimationTimer;
+  s32 resultAnimationTimer;
+  register u16 oamAttribute asm("r2");
+  register s32 oamCoordinate10 asm("r2");
+  u16 oamAttribute11;
+  register s32 oamCoordinate12 asm("r2");
+  register u16 oamAttribute13 asm("r2");
+  u16 oamAttribute14;
+  register s32 oamCoordinate15 asm("r2");
+  u16 pitchSoundId;
+  register u16 oamAttribute16 asm("r2");
+  register s32 oamCoordinate17 asm("r2");
+  u16 oamAttribute2;
+  int oamXMaskValue;
+  register struct AnimationFrame *bonusFrame asm("r0");
+  register s32 coordinateMask asm("r2");
+  register u16 oamAttribute3 asm("r2");
+  register s32 oamCoordinate4 asm("r2");
+  u16 oamAttribute5;
+  u16 oamAttribute6;
+  register s32 oamCoordinate7 asm("r2");
+  register s32 oamCoordinate8 asm("r2");
+  register s32 oamCoordinate9 asm("r2");
+  u8 byteValue;
+  u8 pitcherFrameTime;
+  u8 pitcherAnimationIndex;
+  u8 resultFrameTime;
+  u32 currentFrameDuration;
+  u8 frameTimeA;
+  u8 frameTimeB;
+  u8 frameTimeC;
+  u8 frameTimeD;
+  register u8 pitcherAnimationType asm("r1");
+  u8 animationType;
+  u8 bonusAnimationIndex;
+  register s32 firstOamIndex asm("r7");
+  register s32 nextOamIndex asm("r8");
+  void *oamBufferPointer;
+  int clearObjectModeMask;
+  void *currentOamBytes;
+  void *resultOamBytes;
+  register OamByte *ballOamBytes asm("r4");
+  void *secondaryOamBytes;
+  register OamByte *batOamBytes asm("r4");
+  void *staticOamBytes;
+  register OamByte *bonusOamBytes asm("r4");
+  void *pitcherOamEntry;
+  firstOamIndex = 0;
+  nextOamIndex = gOamSlotsUsed;
+  workingOffset = nextOamIndex * 8;
+  oamBuffer = (OamByte *) gOamBuffer;
+  oamDataDestination = (OamByte *) (((s32) workingOffset) + ((s32) oamBuffer));
+  byteValue = gHomerunCameraState.oamMode;
+  cameraTransform = &gHomerunCameraState;
+  if (byteValue != 0)
+  {
+    if (byteValue == 1)
+    {
+      frameData = sHomerunCameraOamMode1;
+    }
+    if (byteValue == 2)
+    {
+      frameData = sHomerunCameraOamMode2;
+    }
+    nextOamIndex += *frameData;
+    frameData = (u16 *) (((u8 *) frameData) + 2);
+    affinePointer = (u16 *) (stackFrame + 2);
+    affinePb = affinePointer;
+    affinePc = (u16 *) (stackFrame + 4);
+    affinePointerReference = &affinePointer;
+    affinePd = (*affinePointerReference) + 2;
+    if (firstOamIndex < nextOamIndex)
+    {
+      cameraForSprites = cameraTransform;
+      oamEntry = oamBuffer;
+      oamXMask = 0x1FF;
+      oamAttributeMask = -13;
+      firstOamIndex = nextOamIndex;
+      do
+      {
+        oamAttribute = *((u16 *) (((u8 *) frameData) + 0));
+        frameData = (u16 *) (((u8 *) frameData) + 2);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute;
+        oamDataDestination += 2;
+        *((s8 *) (((u8 *) oamEntry) + 0)) = (s8) (((*cameraForSprites).yPosition + oamAttribute) - 0x10);
+        *((u8 *) (((u8 *) oamEntry) + 1)) = (u8) ((*((u8 *) (((u8 *) oamEntry) + 1))) | 3);
+        oamAttribute2 = *((u16 *) (((u8 *) frameData) + 0));
+        frameData = (u16 *) (((u8 *) frameData) + 2);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute2;
+        oamDataDestination += 2;
+        positionValue = *((s16 *) (((u8 *) cameraForSprites) + 8));
+        positionValue = oamAttribute2 + positionValue;
+        positionValue -= 0x20;
+        coordinateMask = oamXMask;
+        positionValue &= coordinateMask;
+        oamAttribute2 = *((u16 *) (((u8 *) oamEntry) + 2));
+        preservedOamBits = 0xFFFFFE00;
+        preservedOamBits &= oamAttribute2;
+        *((u16 *) (((u8 *) oamEntry) + 2)) = (u16) (preservedOamBits | positionValue);
+        positionValue = *((u8 *) (((u8 *) oamEntry) + 3));
+        preservedOamBits = -0xF;
+        *((u8 *) (((u8 *) oamEntry) + 3)) = (u8) (preservedOamBits & positionValue);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = (u16) (*((u16 *) (((u8 *) frameData) + 0)));
+        frameData = (u16 *) (((u8 *) frameData) + 2);
+        positionValue = *((u8 *) (((u8 *) oamEntry) + 5));
+        *((u8 *) (((u8 *) oamEntry) + 5)) = (u8) (oamAttributeMask & positionValue);
+        oamDataDestination += 4;
+        oamEntry = oamEntry + 8;
+        firstOamIndex -= 1;
+      }
+      while (firstOamIndex != 0);
+      firstOamIndex = nextOamIndex;
+    }
+    cameraForRotation = cameraTransform;
+    matrixCosine = sSinCosTable[(((u16) cameraForRotation->rotation) >> 4) + 0x40];
+    affineMatrix[0] = (u16) FixedMul((s32) matrixCosine, (s32) ((s16) FixedInverse((s32) (((u16) cameraForRotation->scale) >> 4))));
+    cameraForRotation = cameraTransform;
+    matrixSine = sSinCosTable[((u16) cameraForRotation->rotation) >> 4];
+    *affinePb = (u16) FixedMul((s32) matrixSine, (s32) ((s16) FixedInverse((s32) (((u16) cameraForRotation->scale) >> 4))));
+    cameraForMatrix = cameraTransform;
+    matrixNegativeSine = 0 - sSinCosTable[((u16) cameraForMatrix->rotation) >> 4];
+    *affinePc = (u16) FixedMul((s32) matrixNegativeSine, (s32) ((s16) FixedInverse((s32) (((u16) cameraForMatrix->scale) >> 4))));
+    cameraForMatrix = cameraTransform;
+    matrixCosineD = sSinCosTable[(((u16) cameraForMatrix->rotation) >> 4) + 0x40];
+    affinePdValue = (u16) FixedMul((s32) matrixCosineD, (s32) ((s16) FixedInverse((s32) (((u16) cameraForMatrix->scale) >> 4))));
+    *affinePd = affinePdValue;
+    oamBuffer = (OamByte *) gOamBuffer;
+    *((u16 *) (((u8 *) oamBuffer) + 6)) = (u16) affineMatrix[0];
+    *((u16 *) (((u8 *) oamBuffer) + 0xE)) = (u16) (*affinePb);
+    *((u16 *) (((u8 *) oamBuffer) + 0x16)) = (u16) (*affinePc);
+    *((u16 *) (((u8 *) oamBuffer) + 0x1E)) = affinePdValue;
+  }
+  if (((((u32) gHomerunState) > 2U) && (gHomerunState != 0xF)) && (gHomerunState != 0xE))
+  {
+    if (((u32) ((u8) (gHomerunState - 8))) <= 1U)
+    {
+      dataPointer = (OamByte *) (&gHomerunBallRenderState);
+      frameCounter = (*((u16 *) (((u8 *) dataPointer) + 0))) + 1;
+      *((u16 *) (((u8 *) dataPointer) + 0)) = frameCounter;
+      frameTimeB = sHomerunBallHitDurations[*((u16 *) (((u8 *) dataPointer) + 2))].time;
+      animationCounterLimit = (u32) ((u16) frameCounter);
+      objectState = dataPointer;
+      if (((u32) frameTimeB) < animationCounterLimit)
+      {
+        *((u16 *) (((u8 *) objectState) + 0)) = 0U;
+        *((u16 *) (((u8 *) objectState) + 2)) = (u16) ((*((u16 *) (((u8 *) objectState) + 2))) + 1);
+        frameTimeB = sHomerunBallHitAnimation[*((u16 *) (((u8 *) objectState) + 2))].time;
+        if (frameTimeB == 0)
+        {
+          *((u16 *) (((u8 *) objectState) + 2)) = (u16) frameTimeB;
+        }
+      }
+      secondaryFrameData = sHomerunBallHitAnimation[*((u16 *) (((u8 *) objectState) + 2))].oam;
+      nextOamIndex += *secondaryFrameData;
+      frameData = secondaryFrameData + 1;
+      affinePb = (u16 *) (stackFrame + 2);
+      affinePc = (u16 *) (stackFrame + 4);
+      affinePd = (u16 *) (stackFrame + 6);
+      if (((s32) firstOamIndex) < ((s32) nextOamIndex))
+      {
+        positionValue = (s32) ((OamByte *) gOamBuffer);
+        cameraTransform = (struct HomerunCameraState *) objectState;
+        oamAttributeMask = -15;
+        workingOffset = firstOamIndex << 3;
+        oamEntry = (OamByte *) (workingOffset + positionValue);
+        oamXMask = 0x1FF;
+        secondaryEntryCount = nextOamIndex - firstOamIndex;
+        do
+        {
+          oamAttribute5 = *(frameData++);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute5;
+          oamDataDestination += 2;
+          cameraForMatrix = cameraTransform;
+          *((s8 *) (((u8 *) oamEntry) + 0)) = (s8) (((((s32) (cameraForMatrix->rotation << 0x10)) >> 0x14) + oamAttribute5) - 0x20);
+          *((u8 *) (((u8 *) oamEntry) + 1)) = (u8) ((*((u8 *) (((u8 *) oamEntry) + 1))) | 3);
+          oamAttribute6 = *(frameData++);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute6;
+          oamDataDestination += 2;
+          positionValue = (s32) (cameraTransform->scale << 0x10);
+          positionValue >>= 0x14;
+          positionValue = oamAttribute6 + positionValue;
+          positionValue -= 0x20;
+          coordinateMask = oamXMask;
+          asm("" : "+r"(coordinateMask));
+          positionValue &= coordinateMask;
+          oamAttribute2 = *((u16 *) (((u8 *) oamEntry) + 2));
+          preservedOamBits = 0xFFFFFE00;
+          preservedOamBits &= oamAttribute2;
+          *((u16 *) (((u8 *) oamEntry) + 2)) = (u16) (preservedOamBits | positionValue);
+          positionValue = *((u8 *) (((u8 *) oamEntry) + 3));
+          currentOamBytes = (u8 *) oamEntry;
+          *((u8 *) (((u8 *) currentOamBytes) + 3)) = (u8) (oamAttributeMask & positionValue);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+          oamDataDestination += 4;
+          oamEntry += 8;
+          secondaryEntryCount -= 1;
+        }
+        while (secondaryEntryCount != 0);
+        firstOamIndex = nextOamIndex;
+      }
+      ballMatrixCosine = sSinCosTable[((struct HomerunBallRenderState *) objectState)->rotation + 0x40];
+      affineMatrix[0] = (u16) FixedMul((s32) ballMatrixCosine, (s32) ((s16) FixedInverse((s32) ((struct HomerunBallRenderState *) objectState)->scale)));
+      ballMatrixSine = sSinCosTable[((struct HomerunBallRenderState *) objectState)->rotation];
+      *affinePb = (u16) FixedMul((s32) ballMatrixSine, (s32) ((s16) FixedInverse((s32) ((struct HomerunBallRenderState *) objectState)->scale)));
+      ballMatrixNegativeSine = 0 - sSinCosTable[((struct HomerunBallRenderState *) objectState)->rotation];
+      *affinePc = (u16) FixedMul((s32) ballMatrixNegativeSine, (s32) ((s16) FixedInverse((s32) ((struct HomerunBallRenderState *) objectState)->scale)));
+      ballMatrixCosineD = sSinCosTable[((struct HomerunBallRenderState *) objectState)->rotation + 0x40];
+      ballAffinePd = (*affinePd = FixedMul((s32) ballMatrixCosineD, (s32) ((s16) FixedInverse((s32) ((struct HomerunBallRenderState *) objectState)->scale))));
+      oamBuffer = (OamByte *) gOamBuffer;
+      *((u16 *) (((u8 *) oamBuffer) + 6)) = (u16) (affinePaValue = affineMatrix[0]);
+      *((u16 *) (((u8 *) oamBuffer) + 0xE)) = (u16) (*affinePb);
+      *((u16 *) (((u8 *) oamBuffer) + 0x16)) = (u16) (*affinePc);
+      *((u16 *) (((u8 *) oamBuffer) + 0x1E)) = ballAffinePd;
+    }
+    else
+    {
+      affinePb = (u16 *) (stackFrame + 2);
+      affinePc = (u16 *) (stackFrame + 4);
+      affinePd = (u16 *) (stackFrame + 6);
+      if (gHomerunState == 7)
+      {
+        dataPointer = (OamByte *) (&gHomerunBallRenderState);
+        positionValue = (*((u16 *) (((u8 *) dataPointer) + 0))) + 1;
+        *((u16 *) (((u8 *) dataPointer) + 0)) = positionValue;
+        workingOffset = (u32) sHomerunBallPitchDurations[*((u16 *) (((u8 *) dataPointer) + 2))].time;
+        affinePaValue = (u16) positionValue;
+        objectState = dataPointer;
+        if (((u32) workingOffset) < ((u32) affinePaValue))
+        {
+          *((u16 *) (((u8 *) objectState) + 0)) = 0U;
+          *((u16 *) (((u8 *) objectState) + 2)) = (u16) ((*((u16 *) (((u8 *) objectState) + 2))) + 1);
+          frameTimeA = sHomerunBallPitchAnimation[*((u16 *) (((u8 *) objectState) + 2))].time;
+          animationMatrixPc = (u16) frameTimeA;
+          if (frameTimeA == 0)
+          {
+            *((u16 *) (((u8 *) objectState) + 2)) = animationMatrixPc;
+          }
+        }
+        ballFrameData = sHomerunBallPitchAnimation[*((u16 *) (((u8 *) objectState) + 2))].oam;
+        nextOamIndex += *ballFrameData;
+        frameData = ballFrameData + 1;
+        stackPointer = stackFrame;
+        affinePointerReference = (u16 **) (&stackPointer);
+        affinePb = (u16 *) (((u8 *) (*affinePointerReference)) + 2);
+        affinePc = (u16 *) (((u8 *) (*affinePointerReference)) + 4);
+        affinePd = (u16 *) (((u8 *) (*affinePointerReference)) + 6);
+        clearObjectModeMask = -4;
+        if (((s32) firstOamIndex) < ((s32) nextOamIndex))
+        {
+          positionValue = (s32) ((OamByte *) gOamBuffer);
+          oamAttributeMask = 0xFFFFFE00;
+          workingOffset = firstOamIndex << 3;
+          ballOamBytes = (OamByte *) (((s32) workingOffset) + positionValue);
+          cameraTransform = (struct HomerunCameraState *) 0x1FF;
+          oamByteMask = -0xD;
+          cameraEntryCount = nextOamIndex - firstOamIndex;
+          do
+          {
+            oamAttribute3 = *(frameData++);
+            *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute3;
+            oamDataDestination += 2;
+            *((s8 *) (((u8 *) ballOamBytes) + 0)) = (s8) ((*((u8 *) (((u8 *) objectState) + 0xA))) + oamAttribute3);
+            *((u8 *) (((u8 *) ballOamBytes) + 1)) = (u8) (clearObjectModeMask & (*((u8 *) (((u8 *) ballOamBytes) + 1))));
+            oamCoordinate4 = *(frameData++);
+            *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate4;
+            oamDataDestination += 2;
+            positionValue = *((s16 *) (((u8 *) objectState) + 8));
+            positionValue = oamCoordinate4 + positionValue;
+            positionValue &= (s32) cameraTransform;
+            oamAttribute = *((u16 *) (((u8 *) ballOamBytes) + 2));
+            preservedOamBits = oamAttributeMask;
+            preservedOamBits &= oamAttribute;
+            *((u16 *) (((u8 *) ballOamBytes) + 2)) = (u16) (preservedOamBits | positionValue);
+            *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+            positionValue = *((u8 *) (((u8 *) ballOamBytes) + 5));
+            *((u8 *) (((u8 *) ballOamBytes) + 5)) = (u8) (oamByteMask & positionValue);
+            oamDataDestination += 4;
+            ballOamBytes += 8;
+            cameraEntryCount -= 1;
+          }
+          while (cameraEntryCount != 0);
+          firstOamIndex = nextOamIndex;
+        }
+      }
+    }
+    clearOamXMask = 0xFFFFFE00;
+    oamAttributeMask = gHomerunMissCount;
+    if (((s32) oamAttributeMask) > 2)
+    {
+      oamAttributeMask = 2;
+    }
+    objectState = 0;
+    if (((s32) objectState) < ((s32) oamAttributeMask))
+    {
+      do
+      {
+        nextOamIndex += *sHomerunStaticOam;
+        frameData = sHomerunStaticOam + 1;
+        if (((s32) firstOamIndex) < ((s32) nextOamIndex))
+        {
+          positionValue = (s32) ((OamByte *) gOamBuffer);
+          oamByteMask = -0xD;
+          workingOffset = firstOamIndex << 3;
+          secondaryOamBytes = (OamByte *) (workingOffset + positionValue);
+          secondaryEntryCount = nextOamIndex - firstOamIndex;
+          do
+          {
+            oamCoordinate7 = *(frameData++);
+            *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate7;
+            oamDataDestination += 2;
+            workingOffset = oamCoordinate7 + 0x20;
+            *((s8 *) (((u8 *) secondaryOamBytes) + 0)) = (s8) (workingOffset - (((s32) objectState) * 8));
+            oamAttribute5 = *(frameData++);
+            oamCoordinate8 = oamAttribute5;
+            *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate8;
+            oamDataDestination += 2;
+            positionValue = oamCoordinate8 + 0xE0;
+            preservedOamBits = 0x1FF;
+            positionValue &= preservedOamBits;
+            oamAttribute = *((u16 *) (((u8 *) secondaryOamBytes) + 2));
+            preservedOamBits = clearOamXMask;
+            preservedOamBits &= oamAttribute;
+            *((u16 *) (((u8 *) secondaryOamBytes) + 2)) = (u16) (preservedOamBits | positionValue);
+            *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+            positionValue = *((u8 *) (((u8 *) secondaryOamBytes) + 5));
+            *((u8 *) (((u8 *) secondaryOamBytes) + 5)) = (u8) ((oamByteMask & positionValue) | 8);
+            oamDataDestination += 4;
+            secondaryOamBytes += 8;
+            secondaryEntryCount -= 1;
+          }
+          while (secondaryEntryCount != 0);
+          firstOamIndex = nextOamIndex;
+        }
+        objectState = (OamByte *) (((s32) objectState) + 1);
+      }
+      while (((s32) objectState) < ((s32) oamAttributeMask));
+    }
+    if (gHomerunMedalHighlight != 0)
+    {
+      uiAnimationTimer = gHomerunUiAnimation.animationTimer + 1;
+      gHomerunUiAnimation.animationTimer = uiAnimationTimer;
+      if (((u32) sHomerunBatAnimation[gHomerunUiAnimation.animationFrame].time) < ((u32) ((u16) uiAnimationTimer)))
+      {
+        gHomerunUiAnimation.animationTimer = 1U;
+        gHomerunUiAnimation.animationFrame = (u16) (gHomerunUiAnimation.animationFrame + 1);
+        frameTimeC = sHomerunBatAnimation[gHomerunUiAnimation.animationFrame].time;
+        if (frameTimeC == 0)
+        {
+          gHomerunUiAnimation.animationFrame = (u16) frameTimeC;
+          gHomerunUiAnimation.animationTimer = (u16) frameTimeC;
+          gHomerunMedalHighlight = 0;
+          DrawHomerunDerbyScore();
+        }
+      }
+    }
+    oamXMaskValue = 0x1FF;
+    batFrameData = sHomerunBatAnimation[gHomerunUiAnimation.animationFrame].oam;
+    nextOamIndex += *batFrameData;
+    frameData = batFrameData + 1;
+    cameraTransform = (struct HomerunCameraState *) &gHomerunBatAnimation;
+    activeAnimation = sHomerunBallIdleAnimation;
+    if (((s32) firstOamIndex) < nextOamIndex)
+    {
+      positionValue = (s32) ((OamByte *) gOamBuffer);
+      oamAttributeMask = 0x1FF;
+      oamByteMask = -0xD;
+      workingOffset = firstOamIndex << 3;
+      batOamBytes = (OamByte *) (workingOffset + positionValue);
+      batEntryCount = nextOamIndex - firstOamIndex;
+      do
+      {
+        oamCoordinate9 = *(frameData++);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate9;
+        oamDataDestination += 2;
+        workingOffset = oamCoordinate9;
+        workingOffset += 0x92;
+        *((s8 *) (((u8 *) batOamBytes) + 0)) = (s8) workingOffset;
+        oamCoordinate10 = *(frameData++);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate10;
+        oamDataDestination += 2;
+        positionValue = oamCoordinate10 + 0x18;
+        positionValue &= oamAttributeMask;
+        clearOamXMask = 0xFFFFFE00;
+        *((u16 *) (((u8 *) batOamBytes) + 2)) = (u16) ((clearOamXMask & (*((u16 *) (((u8 *) batOamBytes) + 2)))) | positionValue);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+        positionValue = *((u8 *) (((u8 *) batOamBytes) + 5));
+        *((u8 *) (((u8 *) batOamBytes) + 5)) = (oamByteMask & positionValue) | 8;
+        oamDataDestination += 4;
+        batOamBytes += 8;
+        batEntryCount -= 1;
+      }
+      while (batEntryCount != 0);
+      firstOamIndex = nextOamIndex;
+    }
+    activeAnimationState = (struct HomerunSimpleAnimation *) cameraTransform;
+    animationTimer = activeAnimationState->animationTimer + 1;
+    activeAnimationState->animationTimer = animationTimer;
+    currentFrameDuration = (u32) activeAnimation[activeAnimationState->animationFrame].time;
+    if (currentFrameDuration < ((u32) ((u16) animationTimer)))
+    {
+      activeAnimationState->animationTimer = 0U;
+      activeAnimationState->animationFrame = (u16) (activeAnimationState->animationFrame + 1);
+      frameTimeD = activeAnimation[activeAnimationState->animationFrame].time;
+      if (frameTimeD == 0)
+      {
+        activeAnimationState->animationFrame = (u16) frameTimeD;
+      }
+    }
+    cameraForMatrix = cameraTransform;
+    activeFrameData = activeAnimation[((struct HomerunSimpleAnimation *) cameraForMatrix)->animationFrame].oam;
+    nextOamIndex += *activeFrameData;
+    frameData = activeFrameData + 1;
+    if (((s32) firstOamIndex) < nextOamIndex)
+    {
+      positionValue = (s32) ((OamByte *) gOamBuffer);
+      asm("ldr r2, [pc, #356]\nmov ip, r2");
+      workingOffset = firstOamIndex << 3;
+      staticOamBytes = (OamByte *) (workingOffset + positionValue);
+      objectState = (OamByte *) oamXMaskValue;
+      asm("movs r0, #15\nneg r0, r0\nmov sl, r0");
+      asm("mov r1, r8\nsub r7, r1, r7");
+      do
+      {
+        oamCoordinate12 = *(frameData++);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate12;
+        oamDataDestination += 2;
+        workingOffset = oamCoordinate12;
+        workingOffset += 0x60;
+        *((u8 *) (((u8 *) staticOamBytes) + 0)) = (u8) workingOffset;
+        positionValue = *((u8 *) (((u8 *) staticOamBytes) + 1));
+        *((u8 *) (((u8 *) staticOamBytes) + 1)) = (u8) ((clearObjectModeMask & positionValue) | 1);
+        oamCoordinate12 = *(frameData++);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate12;
+        oamDataDestination += 2;
+        positionValue = oamCoordinate12 + 0xD7;
+        positionValue &= (s32) objectState;
+        oamAttribute = *((u16 *) (((u8 *) staticOamBytes) + 2));
+        preservedOamBits = oamAttributeMask;
+        preservedOamBits &= oamAttribute;
+        *((u16 *) (((u8 *) staticOamBytes) + 2)) = (u16) (preservedOamBits | positionValue);
+        pitcherAnimationType = *((u8 *) (((u8 *) staticOamBytes) + 3));
+        workingOffset = oamXMask;
+        workingOffset &= pitcherAnimationType;
+        *((u8 *) (((u8 *) staticOamBytes) + 3)) = (u8) (workingOffset | 2);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+        *((u8 *) (((u8 *) staticOamBytes) + 5)) = (u8) ((*((u8 *) (((u8 *) staticOamBytes) + 5))) | 0xC);
+        oamDataDestination += 4;
+        staticOamBytes += 8;
+        firstOamIndex -= 1;
+      }
+      while (firstOamIndex != 0);
+      firstOamIndex = nextOamIndex;
+    }
+    savedOamIndex = nextOamIndex;
+    cameraData = cameraTransform;
+    dataPointer = (OamByte *) cameraData;
+    asm("" : "+r" (dataPointer));
+    animationMatrixPa = sSinCosTable[(*((u16 *) (((u8 *) dataPointer) + 4))) + 0x40];
+    affineMatrix[0] = (u16) FixedMul((s32) animationMatrixPa, (s32) ((s16) FixedInverse(0x100)));
+    objectState = (OamByte *) 0x100;
+    dataPointer = (OamByte *) cameraData;
+    animationMatrixPb = sSinCosTable[*((u16 *) (((u8 *) dataPointer) + 4))];
+    *affinePb = (u16) FixedMul((s32) animationMatrixPb, (s32) ((s16) FixedInverse((s32) objectState)));
+    frameData = (frameData = (u16 *) cameraData);
+    animationMatrixPc = 0 - sSinCosTable[frameData[2]];
+    *affinePc = (u16) FixedMul((s32) animationMatrixPc, (s32) ((s16) FixedInverse((s32) objectState)));
+    frameData = (u16 *) cameraData;
+    animationMatrixPd = sSinCosTable[frameData[2] + 0x40];
+    frameTimeValue = (*affinePd = (u16) FixedMul((s32) animationMatrixPd, (s32) ((s16) FixedInverse((s32) objectState))));
+    oamBufferPointer = (u8 *) ((OamByte *) gOamBuffer);
+    oamAttribute14 = (affinePaValue = affineMatrix[0]);
+    *((u16 *) (((u8 *) ((OamByte *) gOamBuffer)) + 0x26)) = (u16) oamAttribute14;
+    oamAttribute11 = *affinePb;
+    *((u16 *) (((u8 *) ((OamByte *) gOamBuffer)) + 0x2E)) = (u16) oamAttribute11;
+    *((u16 *) (((u8 *) oamBufferPointer) + 0x36)) = (u16) (*affinePc);
+    *((u16 *) (((u8 *) ((OamByte *) gOamBuffer)) + 0x3E)) = frameTimeValue;
+    if (gHomerunBonusRender.animationIndex == 0)
+    {
+    }
+    else
+    {
+      bonusAnimationIndex = gHomerunBonusRender.animationIndex;
+      bonusAnimationFrames = sHomerunBonusAnimations[bonusAnimationIndex];
+      bonusOamBytes = (OamByte *) bonusAnimationFrames;
+      bonusAnimationTimer = gHomerunBonusRender.animationTimer + 1;
+      gHomerunBonusRender.animationTimer = bonusAnimationTimer;
+      bonusFrame = (struct AnimationFrame *) ((u32) gHomerunBonusRender.animationFrame);
+      asm(".word 0x190000c0");
+      frameDuration = (u32) bonusFrame->time;
+      if (frameDuration < ((u32) ((u16) bonusAnimationTimer)))
+      {
+        gHomerunBonusRender.animationTimer = 1U;
+        bonusAnimation = bonusAnimationFrames;
+        gHomerunBonusRender.animationFrame = (u16) (gHomerunBonusRender.animationFrame + 1);
+        asm(".pool");
+        if ((byteValue = bonusAnimation[gHomerunBonusRender.animationFrame].time) == 0)
+        {
+          gHomerunBonusRender.animationFrame = 0;
+          animationType = gHomerunSequenceState;
+          if (animationType == 1)
+          {
+            if (!(animationType & ((u32 (*)(void)) MinigameRandom)()))
+            {
+              m4aSongNumStart(0x237U);
+            }
+            else
+            {
+              m4aSongNumStart(0x238U);
+            }
+            m4aSongNumStart(0x2CCU);
+            gHomerunBonusRender.animationIndex = (u8) gHomerunBonusRender.nextAnimationIndex;
+            gHomerunBonusRender.animationTimer = 0U;
+            gHomerunSequenceState += 1;
+          }
+        }
+      }
+      bonusOamBytes = (OamByte *) sHomerunBonusAnimations[(*bonusRenderState).animationIndex];
+      bonusFrameData = ((struct AnimationFrame *) bonusOamBytes)[gHomerunBonusRender.animationFrame].oam;
+      nextOamIndex += *bonusFrameData;
+      frameData = bonusFrameData + 1;
+      if (((s32) firstOamIndex) < ((s32) nextOamIndex))
+      {
+        OamByte *render_state;
+        positionValue = 0x03001444;
+        render_state = (OamByte *) (&gHomerunBonusRender);
+        cameraTransform = (struct HomerunCameraState *) 0x1FF;
+        oamXMask = 0xFFFFFE00;
+        asm("" : : "r"(positionValue));
+        asm(".word 0x184400f8");
+        bonusEntryCount = nextOamIndex - firstOamIndex;
+        do
+        {
+          oamAttribute13 = *(frameData++);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute13;
+          oamDataDestination += 2;
+          *((s8 *) (((u8 *) bonusOamBytes) + 0)) = (s8) ((*((u8 *) (((u8 *) render_state) + 6))) + oamAttribute13);
+          oamAttribute2 = *frameData;
+          asm(".word 0x80323302" : : "r"(oamAttribute2));
+          oamDataDestination += 2;
+          positionValue = *((s16 *) (((u8 *) render_state) + 4));
+          positionValue = oamAttribute2 + positionValue;
+          positionValue &= (s32) cameraTransform;
+          oamAttribute = *((u16 *) (((u8 *) bonusOamBytes) + 2));
+          preservedOamBits = oamXMask;
+          preservedOamBits &= oamAttribute;
+          *((u16 *) (((u8 *) bonusOamBytes) + 2)) = (u16) (preservedOamBits | positionValue);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+          *((u8 *) (((u8 *) bonusOamBytes) + 5)) = (u8) ((*((u8 *) (((u8 *) bonusOamBytes) + 5))) | 0xC);
+          oamDataDestination += 4;
+          bonusOamBytes += 8;
+          bonusEntryCount -= 1;
+        }
+        while (bonusEntryCount != 0);
+        firstOamIndex = nextOamIndex;
+      }
+    }
+    pitcherAnimation = (OamByte *) sHomerunPitcherAnimations[gHomerunPitcherAnimation.animationIndex];
+    pitcherAnimationTimer = gHomerunPitcherAnimation.animationTimer + 1;
+    gHomerunPitcherAnimation.animationTimer = pitcherAnimationTimer;
+    if (((u32) ((struct AnimationFrame *) pitcherAnimation)[gHomerunPitcherAnimation.animationFrame].time) >= ((u32) ((u16) pitcherAnimationTimer)))
+    {
+    }
+    else
+    {
+      gHomerunPitcherAnimation.animationTimer = 0U;
+      gHomerunPitcherAnimation.animationFrame = (u16) (gHomerunPitcherAnimation.animationFrame + 1);
+      if (gHomerunPitcherAnimation.animationIndex == 4)
+      {
+        switch (gHomerunPitcherAnimation.animationFrame)
+        {
+          case 10:
+            gHomerunState = 7;
+            m4aSongNumStart(sHomerunPitchSounds[gHomerunPitchPath * 2]);
+            break;
+            pitchSoundId = 0x22BU;
+
+          case 0:
+            m4aSongNumStart(0x228U);
+            break;
+
+          case 1:
+            asm("ldr r0, [pc, #8]");
+            asm("bl m4aSongNumStart");
+            asm(".word 0x0000e00b");
+            asm(".word 0x00000229");
+
+          case 5:
+            m4aSongNumStart(0x22AU);
+            break;
+
+          case 8:
+            m4aSongNumStart(0x22BU);
+            break;
+
+        }
+
+      }
+      pitcherState = (struct HomerunPitcherState *) 0x03004A10;
+      pitcherFrameTime = ((struct AnimationFrame *) pitcherAnimation)[pitcherState->animationFrame].time;
+      if (pitcherFrameTime == 0)
+      {
+        pitcherState->animationFrame = (u16) pitcherFrameTime;
+        pitcherAnimationIndex = pitcherState->animationIndex;
+        if (pitcherAnimationIndex == 4)
+        {
+          pitcherState->animationIndex = 5U;
+          pitcherAnimation = (OamByte *) sHomerunPitcherAnimations[5];
+        }
+        else
+          if (((u32) ((u8) (pitcherAnimationIndex - 1))) <= 3U)
+        {
+          pitcherState->pitchCounter = (u8) (pitcherState->pitchCounter + 1);
+          if (gDifficulty == 2)
+          {
+            dataPointer = &sHomerunPitchAnimationsHard;
+          }
+          else
+          {
+            dataPointer = &sHomerunPitchAnimationsNormal;
+          }
+          entryCounter = (gHomerunPitchPath * 5) - 1;
+          pitcherState->animationIndex = (u8) (*((u8 *) ((entryCounter + pitcherState->pitchCounter) + ((s32) dataPointer))));
+          dataPointer = (OamByte *) sHomerunPitcherAnimations;
+          objectState = (OamByte *) 0x03004A10;
+          pitcherAnimationType = *((u8 *) (((u8 *) objectState) + 4));
+          pitcherAnimation = (OamByte *) ((struct AnimationFrame **) dataPointer)[pitcherAnimationType];
+          if (pitcherAnimationType == 3)
+          {
+            m4aSongNumStart(0x226U);
+          }
+          if ((*((u8 *) (((u8 *) objectState) + 4))) == 2)
+          {
+            m4aSongNumStart(0x227U);
+          }
+          oamXMaskPointer = (struct HomerunCameraState *) 0x1FF;
+        }
+      }
+    }
+    pitcherFrameData = ((struct AnimationFrame *) pitcherAnimation)[((struct HomerunPitcherState *) 0x03004A10)->animationFrame].oam;
+    nextOamIndex += *pitcherFrameData;
+    frameData = pitcherFrameData + 1;
+    if (((s32) firstOamIndex) < ((s32) nextOamIndex))
+    {
+      positionValue = (s32) ((OamByte *) gOamBuffer);
+      objectState = (OamByte *) 0x1FF;
+      cameraTransform = (struct HomerunCameraState *) 0xFFFFFE00;
+      workingOffset = firstOamIndex << 3;
+      pitcherOamEntry = (OamByte *) (workingOffset + positionValue);
+      positionValue = nextOamIndex;
+      pitcherEntryCount = positionValue - firstOamIndex;
+      do
+      {
+        oamCoordinate15 = *(frameData++);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate15;
+        oamDataDestination += 2;
+        workingOffset = oamCoordinate15;
+        workingOffset += 0x58;
+        *((u8 *) (((u8 *) pitcherOamEntry) + 0)) = (u8) workingOffset;
+        oamCoordinate15 = *(frameData++);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate15;
+        oamDataDestination += 2;
+        positionValue = oamCoordinate15 + 0x48;
+        positionValue &= (s32) objectState;
+        pitcherOamBytes = (u8 *) pitcherOamEntry;
+        oamAttribute = *((u16 *) (pitcherOamBytes + 2));
+        preservedOamBits = (s32) cameraTransform;
+        preservedOamBits &= oamAttribute;
+        *((u16 *) (pitcherOamBytes + 2)) = (u16) (preservedOamBits | positionValue);
+        *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+        *((u8 *) (pitcherOamBytes + 5)) = (u8) ((*((u8 *) (pitcherOamBytes + 5))) | 0xC);
+        oamDataDestination += 4;
+        pitcherOamEntry += 8;
+        pitcherEntryCount -= 1;
+      }
+      while (pitcherEntryCount != 0);
+      firstOamIndex = nextOamIndex;
+    }
+    if (((u32) ((u8) (gHomerunState - 0xB))) <= 2U)
+    {
+      resultAnimation = (OamByte *) sHomerunResultAnimations[gHomerunPitchResult];
+      resultAnimationTimer = gHomerunResultRender.animationTimer + 1;
+      if (1)
+      {
+        gHomerunResultRender.animationTimer = resultAnimationTimer;
+      }
+      if (((u32) ((struct AnimationFrame *) resultAnimation)[gHomerunResultRender.animationFrame].time) < ((u32) ((u16) resultAnimationTimer)))
+      {
+        gHomerunResultRender.animationTimer = 0U;
+        gHomerunResultRender.animationFrame = (u16) (gHomerunResultRender.animationFrame + 1);
+        resultFrameTime = ((struct AnimationFrame *) resultAnimation)[gHomerunResultRender.animationFrame].time;
+        if (resultFrameTime == 0)
+        {
+          gHomerunResultRender.animationFrame = (u16) resultFrameTime;
+        }
+      }
+      resultFrameData = ((struct AnimationFrame *) resultAnimation)[gHomerunResultRender.animationFrame].oam;
+      nextOamIndex += *resultFrameData;
+      frameData = resultFrameData + 1;
+      if (((s32) firstOamIndex) < ((s32) nextOamIndex))
+      {
+        positionValue = (s32) ((OamByte *) gOamBuffer);
+        objectState = (OamByte *) (&gHomerunResultRender);
+        oamXMask = 0x1FF;
+        oamAttributeMask = 0xFFFFFE00;
+        clearAffineModeMask = -0xD;
+        workingOffset = firstOamIndex << 3;
+        resultOamBytes = (OamByte *) (workingOffset + positionValue);
+        entryCounter = nextOamIndex - firstOamIndex;
+        do
+        {
+          oamAttribute16 = *(frameData++);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamAttribute16;
+          oamDataDestination += 2;
+          *((s8 *) (((u8 *) resultOamBytes) + 0)) = (s8) ((*((u8 *) (((u8 *) objectState) + 6))) + oamAttribute16);
+          oamCoordinate17 = *(frameData++);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = oamCoordinate17;
+          oamDataDestination += 2;
+          positionValue = *((s16 *) (((u8 *) objectState) + 4));
+          positionValue = oamCoordinate17 + positionValue;
+          positionValue &= oamXMask;
+          oamAttribute = *((u16 *) (((u8 *) resultOamBytes) + 2));
+          preservedOamBits = oamAttributeMask;
+          preservedOamBits &= oamAttribute;
+          *((u16 *) (((u8 *) resultOamBytes) + 2)) = (u16) (preservedOamBits | positionValue);
+          *((u16 *) (((u8 *) oamDataDestination) + 0)) = *(frameData++);
+          positionValue = *((u8 *) (((u8 *) resultOamBytes) + 5));
+          *((u8 *) (((u8 *) resultOamBytes) + 5)) = (u8) (clearAffineModeMask & positionValue);
+          oamDataDestination += 4;
+          resultOamBytes += 8;
+          entryCounter -= 1;
+        }
+        while (entryCounter != 0);
+      }
+    }
+  }
+  gOamSlotsUsed = nextOamIndex;
+}
+asm(".set $t.hd_085c, DrawHomerunDerby + 0x85c\n"
+    ".set $d.hd_0860, DrawHomerunDerby + 0x860\n"
+    ".set $t.hd_0914, DrawHomerunDerby + 0x914\n"
+    ".set $d.hd_0918, DrawHomerunDerby + 0x918\n"
+    ".set $d.hd_0958, DrawHomerunDerby + 0x958\n"
+    ".set $t.hd_095c, DrawHomerunDerby + 0x95c\n"
+    ".set $d.hd_0aa8, DrawHomerunDerby + 0xaa8\n"
+    ".set $t.hd_0aac, DrawHomerunDerby + 0xaac");
+
+s32 UpdateHomerunScoreSequence(void)
+{
+    register u8 *sequenceStatePointer asm("r5");
+    register s32 sequenceState asm("r4");
+
+    sequenceStatePointer = &gHomerunSequenceState;
+    sequenceState = *sequenceStatePointer;
+
+    if (sequenceState == 1) {
+        goto state1;
+    }
+    if (sequenceState > 1) {
+        goto stateGt;
+    }
+    if (sequenceState == 0) {
+        goto state0;
+    }
+    goto ret0;
+
+stateGt:
+    if (sequenceState == 2) {
+        goto state2;
+    }
+    goto ret0;
+
+state0:
+    if (MinigameWaitForFrames(60) != 0) {
+        gHomerunScore++;
+        if ((u16)gHomerunScore > 999) {
+            gHomerunScore = 999;
+        } else {
+            m4aSongNumStart(0x224);
+        }
+
+        if (gHomerunScore > gMinigameHighScores) {
+            gHomerunNewHighScore = 1;
+            gMinigameHighScores = gHomerunScore;
+        }
+        DrawHomerunDerbyScore();
+        goto incState;
+    }
+    goto ret0;
+
+state1:
+    if (MinigameWaitForFrames(20) != 0) {
+        if ((gHomerunScore % 3U) == 0) {
+            gMedalCount++;
+            if ((u16)gMedalCount > 999) {
+                gMedalCount = 999;
+            } else {
+                m4aSongNumStart(0x223);
+                gHomerunMedalHighlight = sequenceState;
+            }
+            DrawHomerunDerbyScore();
+        }
+incState:
+        gHomerunSequenceState++;
+    }
+    goto ret0;
+
+state2:
+    if (MinigameWaitForFrames(30) != 0) {
+        gHomerunSequenceTimer = 0;
+        *sequenceStatePointer = 0;
+        return 1;
+    }
+
+ret0:
+    return 0;
+}
+
+s32 UpdateHomerunBonusAnimation(void)
+{
+    register u8 *sequenceStatePointer asm("r5");
+    register u8 *sequenceStatePointerReload asm("r2");
+    struct HomerunBonusState *bonusState;
+    s32 yPosition;
+    u16 nextYPosition;
+    s32 animationIndex;
+    s32 sequenceState;
+    s32 minimumAnimation;
+
+    sequenceStatePointer = &gHomerunSequenceState;
+    sequenceState = *sequenceStatePointer;
+    sequenceStatePointerReload = sequenceStatePointer;
+
+    switch (sequenceState) {
+    case 0:
+    {
+        register struct HomerunBonusState *movingBonusState asm("r0");
+        register s32 movementDirection asm("r1");
+        register struct HomerunBonusState *centeredBonusState asm("r5");
+
+        movingBonusState = (struct HomerunBonusState *)gHomerunBonusAnimation;
+        movementDirection = movingBonusState->direction;
+        bonusState = movingBonusState;
+        if (movementDirection != 0) {
+            bonusState->yPosition++;
+            if (bonusState->yPosition > 0x50) {
+                bonusState->yPosition = 0x50;
+            }
+        } else {
+            bonusState->yPosition--;
+            if (bonusState->yPosition <= 0x4F) {
+                bonusState->yPosition = 0x50;
+            }
+        }
+
+        centeredBonusState = bonusState;
+        if (centeredBonusState->yPosition == 0x50) {
+            (*sequenceStatePointerReload)++;
+            centeredBonusState->animationTimer = 0;
+            centeredBonusState->animationFrame = 0;
+
+            animationIndex = centeredBonusState->animationIndex;
+            if (animationIndex != 4) {
+                if (animationIndex <= 4) {
+                    if (animationIndex < (minimumAnimation = 1)) {
+                        break;
+                    }
+                    centeredBonusState->animationIndex = MinigameRandom() % 2 + 7;
+                }
+            } else {
+                bonusState->animationIndex = MinigameRandom() % 2 + 5;
+            }
+        }
+        break;
+    }
+
+    case 1:
+        break;
+
+    case 2:
+    {
+        register struct HomerunBonusState *returningBonusState asm("r3");
+        register s32 direction asm("r4");
+
+        returningBonusState = (struct HomerunBonusState *)gHomerunBonusAnimation;
+        direction = returningBonusState->direction;
+        if (direction != 0) {
+            register u16 *timerOutput asm("r1");
+
+            nextYPosition = returningBonusState->yPosition + 1;
+            direction = 0;
+            returningBonusState->yPosition = nextYPosition;
+            yPosition = returningBonusState->yPosition;
+            if (yPosition > sHomerunBonusYLimits[returningBonusState->direction - 1]) {
+                timerOutput = &gHomerunSequenceTimer;
+                *timerOutput = 0;
+                *sequenceStatePointer = direction;
+                returningBonusState->animationIndex = direction;
+                return 1;
+            }
+        } else {
+            register u8 zeroValue asm("r6");
+
+            nextYPosition = returningBonusState->yPosition - 1;
+            zeroValue = 0;
+            returningBonusState->yPosition = nextYPosition;
+            yPosition = returningBonusState->yPosition;
+            if (yPosition < sHomerunBonusYLimits[returningBonusState->direction + 1]) {
+                gHomerunSequenceTimer = direction;
+                *sequenceStatePointer = zeroValue;
+                returningBonusState->animationIndex = zeroValue;
+                return 1;
+            }
+        }
+        break;
+    }
+    }
+
+    return 0;
+}
+
+void StartHomerunBonusAnimation(void)
+{
+    register struct HomerunBonusState *bonusState asm("r4");
+    register s32 evenRandomBase asm("r1");
+    register s32 direction asm("r5");
+    u32 randomValue;
+    u8 cycleIndex;
+    register s32 animationIndex asm("r0");
+
+    randomValue = MinigameRandom();
+    bonusState = (struct HomerunBonusState *)gHomerunBonusAnimation;
+    evenRandomBase = randomValue >> 0x1F;
+    evenRandomBase = randomValue + evenRandomBase;
+    evenRandomBase = evenRandomBase >> 1;
+    evenRandomBase <<= 1;
+    direction = randomValue - evenRandomBase;
+    bonusState->direction = direction;
+    bonusState->xPosition = 0x78;
+    bonusState->yPosition = sHomerunBonusYLimits[bonusState->direction];
+    cycleIndex = (u8)(gHomerunBonusCycle % 3U);
+    switch (cycleIndex) {
+    case 1:
+        animationIndex = 4;
+        bonusState->animationIndex = animationIndex;
+        break;
+    case 2:
+        animationIndex = 9;
+        bonusState->animationIndex = animationIndex;
+        break;
+    default:
+        animationIndex = direction + 1;
+        bonusState->animationIndex = animationIndex;
+        if ((MinigameRandom() % 3) == 0) {
+            animationIndex = 3;
+            bonusState->animationIndex = animationIndex;
+        }
+        break;
+    }
+    {
+        register struct HomerunBonusState *resetBonusState asm("r0");
+        register s32 zeroValue asm("r1");
+
+        resetBonusState = (struct HomerunBonusState *)gHomerunBonusAnimation;
+        zeroValue = 0;
+        resetBonusState->animationTimer = zeroValue;
+        resetBonusState->animationFrame = zeroValue;
+        zeroValue = resetBonusState->animationIndex;
+        resetBonusState->nextAnimationIndex = zeroValue;
+    }
+    gHomerunBonusCycle++;
+    m4aSongNumStart(0x2CB);
+}
