@@ -1,7 +1,7 @@
 #include "bitmap_draw.h"
 #include "background_registers.h"
 
-void SetBgTileColor(s32 x, s32 y, s32 color)
+void DrawSetBgTileColor(s32 x, s32 y, s32 color)
 {
     s32 offset;
     u16 *dst;
@@ -45,7 +45,7 @@ modeDefault:
     *dst = color;
 }
 
-void DrawBgLine(s32 x0, s32 y0, s32 x1, s32 y1, s32 color)
+void BitmapDrawBgLine(s32 x0, s32 y0, s32 x1, s32 y1, s32 color)
 {
     volatile s32 sp0;
     volatile s32 sp4;
@@ -106,7 +106,7 @@ void DrawBgLine(s32 x0, s32 y0, s32 x1, s32 y1, s32 color)
                 r0v = r6v + r1v;
                 r1v = r5v + r7v;
                 temp_r2 = sp0;
-                SetBgTileColor(r0v, r1v, temp_r2);
+                DrawSetBgTileColor(r0v, r1v, temp_r2);
                 r6v += 1;
             } while (r6v <= r8v);
         }
@@ -140,7 +140,7 @@ void DrawBgLine(s32 x0, s32 y0, s32 x1, s32 y1, s32 color)
                 r0v = r6v + r1v;
                 r1v = r5v + r7v;
                 temp_r2 = sp0;
-                SetBgTileColor(r0v, r1v, temp_r2);
+                DrawSetBgTileColor(r0v, r1v, temp_r2);
                 r5v += 1;
             } while (r5v <= r9v);
         }
