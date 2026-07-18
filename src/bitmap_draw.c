@@ -1,4 +1,5 @@
 #include "bitmap_draw.h"
+#include "background_registers.h"
 
 void SetBgTileColor(s32 x, s32 y, s32 color)
 {

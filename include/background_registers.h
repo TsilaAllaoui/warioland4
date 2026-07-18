@@ -27,5 +27,7 @@ extern u16 gUnk_300187E;
 extern u16 gUnk_3001880;
 extern u16 gUnk_3001882;
 extern u16 gUnk_3001884;
+extern u8 gVideoMode;
+extern u8 gVideoPage;
 
 #endif  // BACKGROUND_REGISTERS_H
