@@ -5,11 +5,11 @@
 
 u32 MinigameSubroutine(void);
 s32 MinigameRandom(void);
-// func_8089B9C()
+s32 MinigameWaitForFrames(s32 frames);
 // func_8089BBC()
 // func_8089BCC()
 // func_8089C64()
-// func_8089C98()
+void DrawMinigameHighScore(u32 value, const u16 *tiles, u32 destination);
 // func_8089D4C()
 // func_8089DCC()
 // func_8089E14()

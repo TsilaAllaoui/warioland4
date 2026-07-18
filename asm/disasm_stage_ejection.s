@@ -182,7 +182,7 @@ func_80816A4:
 	bl	m4aSongNumStart
 	mov	r0, #6
 	bl	VoiceSetPlay
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	mov	r1, #128	@ 0x80
 	lsl	r1, r1, #19
 	mov	r3, #136	@ 0x88

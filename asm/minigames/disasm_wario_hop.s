@@ -17,7 +17,7 @@ func_808CB18:
 	mov	pc, r0
 	.align	2, 0
 .L_8cb30:
-	.4byte	gUnk_30047B9
+	.4byte	gHomerunState
 .L_8cb34:
 	.4byte	.L_8cb38
 .L_8cb38:
@@ -31,7 +31,7 @@ func_808CB18:
 	bl	func_808D5AC
 	bl	func_808D394
 	mov	r0, #40	@ 0x28
-	bl	func_8089B9C
+	bl	MinigameWaitForFrames
 	cmp	r0, #0
 	beq	.L_8cc1c
 	b	.L_8cbe8
@@ -53,7 +53,7 @@ func_808CB18:
 	b	.L_8cbe8
 	.align	2, 0
 .L_8cb88:
-	.4byte	gUnk_30047E4
+	.4byte	gHomerunCamera
 .L_8cb8c:
 	bl	func_808D5AC
 	bl	func_808D394
@@ -65,7 +65,7 @@ func_808CB18:
 	bl	func_808D44C
 	bl	func_808D7CC
 	mov	r0, #120	@ 0x78
-	bl	func_8089B9C
+	bl	MinigameWaitForFrames
 	cmp	r0, #0
 	beq	.L_8cc1c
 	ldr	r1, .L_8cbc0
@@ -77,9 +77,9 @@ func_808CB18:
 	strb	r0, [r1, #12]
 	b	.L_8cc1c
 .L_8cbc0:
-	.4byte	gUnk_30047B9
+	.4byte	gHomerunState
 .L_8cbc4:
-	.4byte	gUnk_30047E4
+	.4byte	gHomerunCamera
 .L_8cbc8:
 	bl	func_808D44C
 	ldr	r4, .L_8cbf4
@@ -103,15 +103,15 @@ func_808CB18:
 	b	.L_8cc1c
 	.align	2, 0
 .L_8cbf4:
-	.4byte	gUnk_30047E4
+	.4byte	gHomerunCamera
 .L_8cbf8:
 	.4byte	0x00000236
 .L_8cbfc:
-	.4byte	gUnk_30047B9
+	.4byte	gHomerunState
 .L_8cc00:
 	bl	func_808D44C
 	mov	r0, #60	@ 0x3c
-	bl	func_8089B9C
+	bl	MinigameWaitForFrames
 	cmp	r0, #0
 	beq	.L_8cc1c
 	ldr	r1, .L_8cc18
@@ -120,7 +120,7 @@ func_808CB18:
 	mov	r0, #1
 	b	.L_8cc1e
 .L_8cc18:
-	.4byte	gUnk_30047B9
+	.4byte	gHomerunState
 .L_8cc1c:
 	mov	r0, #0
 .L_8cc1e:
@@ -440,7 +440,7 @@ func_808CC5C:
 	bl	func_808D6D4
 	ldr	r0, .L_8cf9c
 	strb	r5, [r0, #0]
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r0, .L_8cfa0
 	strh	r4, [r0, #0]
 	ldr	r0, .L_8cfa4
@@ -590,11 +590,11 @@ func_808CC5C:
 .L_8cf8c:
 	.4byte	gUnk_3004940
 .L_8cf90:
-	.4byte	gUnk_30047B9
+	.4byte	gHomerunState
 .L_8cf94:
-	.4byte	gUnk_30047D6
+	.4byte	gHomerunScore
 .L_8cf98:
-	.4byte	gUnk_30047D4
+	.4byte	gHomerunNewHighScore
 .L_8cf9c:
 	.4byte	gUnk_30049DB
 .L_8cfa0:
@@ -622,11 +622,11 @@ func_808CC5C:
 .L_8cfcc:
 	.4byte	gUnk_30049C6
 .L_8cfd0:
-	.4byte	gUnk_30047DC
+	.4byte	gHomerunUiAnimation
 .L_8cfd4:
-	.4byte	gUnk_30047E0
+	.4byte	gHomerunMedalHighlight
 .L_8cfd8:
-	.4byte	gUnk_30047E4
+	.4byte	gHomerunCamera
 .L_8cfdc:
 	.4byte	gUnk_30049B8
 .L_8cfe0:
@@ -1586,11 +1586,11 @@ func_808D6D4:
 	ldr	r1, .L_8d6f8
 	mov	r2, #225	@ 0xe1
 	lsl	r2, r2, #6
-	bl	func_807AB8C
+	bl	DrawMinigameNumber
 	b	.L_8d70a
 	.align	2, 0
 .L_8d6f0:
-	.4byte	gUnk_30047E0
+	.4byte	gHomerunMedalHighlight
 .L_8d6f4:
 	.4byte	gMedalCount
 .L_8d6f8:
@@ -1601,7 +1601,7 @@ func_808D6D4:
 	ldr	r1, .L_8d738
 	mov	r2, #225	@ 0xe1
 	lsl	r2, r2, #6
-	bl	func_807AB8C
+	bl	DrawMinigameNumber
 .L_8d70a:
 	ldr	r0, .L_8d73c
 	ldrh	r0, [r0, #0]
@@ -1609,7 +1609,7 @@ func_808D6D4:
 	mov	r2, #227	@ 0xe3
 	lsl	r2, r2, #6
 	add	r1, r4, #0
-	bl	func_807AB8C
+	bl	DrawMinigameNumber
 	ldr	r0, .L_8d744
 	ldrh	r0, [r0, #2]
 	mov	r1, #194	@ 0xc2
@@ -1617,7 +1617,7 @@ func_808D6D4:
 	add	r4, r4, r1
 	ldr	r2, .L_8d748
 	add	r1, r4, #0
-	bl	func_8089C98
+	bl	DrawMinigameHighScore
 	pop	{r4}
 	pop	{r0}
 	bx	r0
@@ -1627,7 +1627,7 @@ func_808D6D4:
 .L_8d738:
 	.4byte	sUnk_8711AF8
 .L_8d73c:
-	.4byte	gUnk_30047D6
+	.4byte	gHomerunScore
 .L_8d740:
 	.4byte	sUnk_8711438
 .L_8d744:
@@ -1662,7 +1662,7 @@ func_808D74C:
 	strh	r1, [r3, #0]
 	b	.L_8d78c
 .L_8d778:
-	.4byte	gUnk_30047D6
+	.4byte	gHomerunScore
 .L_8d77c:
 	.4byte	gUnk_30049C6
 .L_8d780:
@@ -1694,11 +1694,11 @@ func_808D74C:
 	b	.L_8d7c6
 	.align	2, 0
 .L_8d7b8:
-	.4byte	gUnk_30047D6
+	.4byte	gHomerunScore
 .L_8d7bc:
 	.4byte	gMinigameHighScores
 .L_8d7c0:
-	.4byte	gUnk_30047D4
+	.4byte	gHomerunNewHighScore
 .L_8d7c4:
 	mov	r0, #1
 .L_8d7c6:
@@ -1753,7 +1753,7 @@ func_808D7CC:
 .L_8d81c:
 	.4byte	0x00000223
 .L_8d820:
-	.4byte	gUnk_30047E0
+	.4byte	gHomerunMedalHighlight
 
 
 thumb_func_start func_808D824
@@ -2245,7 +2245,7 @@ func_808D824:
 .L_8dbc4:
 	.4byte	gOamBuffer
 .L_8dbc8:
-	.4byte	gUnk_30047E4
+	.4byte	gHomerunCamera
 .L_8dbcc:
 	.4byte	sUnk_870D880
 .L_8dbd0:
@@ -2255,9 +2255,9 @@ func_808D824:
 .L_8dbd8:
 	.4byte	0x000001ff
 .L_8dbdc:
-	.4byte	gUnk_30047E0
+	.4byte	gHomerunMedalHighlight
 .L_8dbe0:
-	.4byte	gUnk_30047DC
+	.4byte	gHomerunUiAnimation
 .L_8dbe4:
 	.4byte	sUnk_870D428
 .L_8dbe8:
@@ -2267,7 +2267,7 @@ func_808D824:
 .L_8dbf0:
 	.4byte	sUnk_870CE14
 .L_8dbf4:
-	.4byte	gUnk_30047B9
+	.4byte	gHomerunState
 .L_8dbf8:
 	.4byte	sUnk_870D4A8
 .L_8dbfc:
@@ -2756,6 +2756,6 @@ func_808D824:
 .L_8dfc4:
 	.4byte	sSinCosTable
 .L_8dfc8:
-	.4byte	gUnk_30047E4
+	.4byte	gHomerunCamera
 .L_8dfcc:
 	.4byte	gOamSlotsUsed

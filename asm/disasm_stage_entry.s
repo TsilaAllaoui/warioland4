@@ -744,7 +744,7 @@ func_807CADC:
 	strb	r4, [r0, #0]
 	ldr	r0, .L_7d0e4
 	strb	r4, [r0, #0]
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r0, .L_7d0e8
 	mov	r3, #8
 	strh	r3, [r0, #0]

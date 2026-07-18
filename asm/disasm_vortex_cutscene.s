@@ -55,7 +55,7 @@ func_807F924:
 	mov	r5, r8
 	push	{r5, r6, r7}
 	bl	InitializeVideoMemory
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r1, .L_7fa48
 	ldr	r0, .L_7fa4c
 	str	r0, [r1, #0]

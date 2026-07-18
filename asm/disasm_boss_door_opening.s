@@ -529,7 +529,7 @@ func_8086064:
 	ldr	r3, .L_8630c
 	add	r0, r3, #0
 	strh	r0, [r1, #0]
-	bl	func_807A428
+	bl	InitMinigameScoreDisplay
 	ldr	r0, .L_86310
 	mov	r4, #0
 	strh	r4, [r0, #0]
