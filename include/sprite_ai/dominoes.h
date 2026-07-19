@@ -1,19 +1,19 @@
 #ifndef SPRITE_AI_DOMINOES_H
 #define SPRITE_AI_DOMINOES_H
 
-void SpriteDominoes2D(void);
-void SpriteDominoes2E(void);
-void SpriteDominoes2F(void);
+void SpriteDominoActivator(void);
+void SpriteDominoLongPieceA(void);
+void SpriteDominoLongPieceB(void);
 void SpriteDominoGoal(void);
-void SpriteDominoes30(void);
-void SpriteDominoes31(void);
-void SpriteDominoes32(void);
-void SpriteDominoes33(void);
-void SpriteDominoes34(void);
-void SpriteDominoes35(void);
-void SpriteDominoes36(void);
-void SpriteDominoes37(void);
-void SpriteDominoes38(void);
-void SpriteDominoes39(void);
+void SpriteDominoTile0(void);
+void SpriteDominoTile1(void);
+void SpriteDominoTile2(void);
+void SpriteDominoTile3(void);
+void SpriteDominoTile4(void);
+void SpriteDominoTile5(void);
+void SpriteDominoTile6(void);
+void SpriteDominoTile7(void);
+void SpriteDominoTile8(void);
+void SpriteDominoTile9(void);
 
 #endif  // SPRITE_AI_DOMINOES_H
