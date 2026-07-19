@@ -653,7 +653,7 @@ SECTIONS {
         obj/sprite_ai/disasm_chance_wheel.o(.text);
         obj/sprite_ai/disasm_marumen.o(.text);
         obj/sprite_ai/disasm_spoiled_rotten.o(.text);
-        obj/sprite_ai/disasm_dominoes.o(.text);
+        obj/sprite_ai/dominoes.o(.text);
         obj/sprite_ai/disasm_mayubird.o(.text);
         obj/sprite_ai/rock.o(.text);
         obj/sprite_ai/disasm_minicula.o(.text);

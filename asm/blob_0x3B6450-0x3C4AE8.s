@@ -1282,508 +1282,508 @@ sUnk_83C30F4:
 
 baserom_blob 0x3C30F4, 0x3C4174
 
-.global sUnk_83C4174
-sUnk_83C4174:
+.global sDominoTile0Animation0
+sDominoTile0Animation0:
 
 baserom_blob 0x3C4174, 0x3C4184
 
-.global sUnk_83C4184
-sUnk_83C4184:
+.global sDominoTile0Animation1
+sDominoTile0Animation1:
 
 baserom_blob 0x3C4184, 0x3C4194
 
-.global sUnk_83C4194
-sUnk_83C4194:
+.global sDominoTile0Animation2
+sDominoTile0Animation2:
 
 baserom_blob 0x3C4194, 0x3C41A4
 
-.global sUnk_83C41A4
-sUnk_83C41A4:
+.global sDominoTile0Animation3
+sDominoTile0Animation3:
 
 baserom_blob 0x3C41A4, 0x3C41B4
 
-.global sUnk_83C41B4
-sUnk_83C41B4:
+.global sDominoTile0Animation4
+sDominoTile0Animation4:
 
 baserom_blob 0x3C41B4, 0x3C41C4
 
-.global sUnk_83C41C4
-sUnk_83C41C4:
+.global sDominoTile0Animation5
+sDominoTile0Animation5:
 
 baserom_blob 0x3C41C4, 0x3C41D4
 
-.global sUnk_83C41D4
-sUnk_83C41D4:
+.global sDominoTile0Animation6
+sDominoTile0Animation6:
 
 baserom_blob 0x3C41D4, 0x3C41E4
 
-.global sUnk_83C41E4
-sUnk_83C41E4:
+.global sDominoTile0Animation7
+sDominoTile0Animation7:
 
 baserom_blob 0x3C41E4, 0x3C41F4
 
-.global sUnk_83C41F4
-sUnk_83C41F4:
+.global sDominoTile1Animation0
+sDominoTile1Animation0:
 
 baserom_blob 0x3C41F4, 0x3C4204
 
-.global sUnk_83C4204
-sUnk_83C4204:
+.global sDominoTile1Animation1
+sDominoTile1Animation1:
 
 baserom_blob 0x3C4204, 0x3C4214
 
-.global sUnk_83C4214
-sUnk_83C4214:
+.global sDominoTile1Animation2
+sDominoTile1Animation2:
 
 baserom_blob 0x3C4214, 0x3C4224
 
-.global sUnk_83C4224
-sUnk_83C4224:
+.global sDominoTile1Animation3
+sDominoTile1Animation3:
 
 baserom_blob 0x3C4224, 0x3C4234
 
-.global sUnk_83C4234
-sUnk_83C4234:
+.global sDominoTile1Animation4
+sDominoTile1Animation4:
 
 baserom_blob 0x3C4234, 0x3C4244
 
-.global sUnk_83C4244
-sUnk_83C4244:
+.global sDominoTile1Animation5
+sDominoTile1Animation5:
 
 baserom_blob 0x3C4244, 0x3C4254
 
-.global sUnk_83C4254
-sUnk_83C4254:
+.global sDominoTile1Animation6
+sDominoTile1Animation6:
 
 baserom_blob 0x3C4254, 0x3C4264
 
-.global sUnk_83C4264
-sUnk_83C4264:
+.global sDominoTile1Animation7
+sDominoTile1Animation7:
 
 baserom_blob 0x3C4264, 0x3C4274
 
-.global sUnk_83C4274
-sUnk_83C4274:
+.global sDominoTile2Animation0
+sDominoTile2Animation0:
 
 baserom_blob 0x3C4274, 0x3C4284
 
-.global sUnk_83C4284
-sUnk_83C4284:
+.global sDominoTile2Animation1
+sDominoTile2Animation1:
 
 baserom_blob 0x3C4284, 0x3C4294
 
-.global sUnk_83C4294
-sUnk_83C4294:
+.global sDominoTile2Animation2
+sDominoTile2Animation2:
 
 baserom_blob 0x3C4294, 0x3C42A4
 
-.global sUnk_83C42A4
-sUnk_83C42A4:
+.global sDominoTile2Animation3
+sDominoTile2Animation3:
 
 baserom_blob 0x3C42A4, 0x3C42B4
 
-.global sUnk_83C42B4
-sUnk_83C42B4:
+.global sDominoTile2Animation4
+sDominoTile2Animation4:
 
 baserom_blob 0x3C42B4, 0x3C42C4
 
-.global sUnk_83C42C4
-sUnk_83C42C4:
+.global sDominoTile2Animation5
+sDominoTile2Animation5:
 
 baserom_blob 0x3C42C4, 0x3C42D4
 
-.global sUnk_83C42D4
-sUnk_83C42D4:
+.global sDominoTile2Animation6
+sDominoTile2Animation6:
 
 baserom_blob 0x3C42D4, 0x3C42E4
 
-.global sUnk_83C42E4
-sUnk_83C42E4:
+.global sDominoTile2Animation7
+sDominoTile2Animation7:
 
 baserom_blob 0x3C42E4, 0x3C42F4
 
-.global sUnk_83C42F4
-sUnk_83C42F4:
+.global sDominoTile2Animation8
+sDominoTile2Animation8:
 
 baserom_blob 0x3C42F4, 0x3C4304
 
-.global sUnk_83C4304
-sUnk_83C4304:
+.global sDominoTile2Animation9
+sDominoTile2Animation9:
 
 baserom_blob 0x3C4304, 0x3C4314
 
-.global sUnk_83C4314
-sUnk_83C4314:
+.global sDominoTile3Animation0
+sDominoTile3Animation0:
 
 baserom_blob 0x3C4314, 0x3C4324
 
-.global sUnk_83C4324
-sUnk_83C4324:
+.global sDominoTile3Animation1
+sDominoTile3Animation1:
 
 baserom_blob 0x3C4324, 0x3C4334
 
-.global sUnk_83C4334
-sUnk_83C4334:
+.global sDominoTile3Animation2
+sDominoTile3Animation2:
 
 baserom_blob 0x3C4334, 0x3C4344
 
-.global sUnk_83C4344
-sUnk_83C4344:
+.global sDominoTile3Animation3
+sDominoTile3Animation3:
 
 baserom_blob 0x3C4344, 0x3C4354
 
-.global sUnk_83C4354
-sUnk_83C4354:
+.global sDominoTile3Animation4
+sDominoTile3Animation4:
 
 baserom_blob 0x3C4354, 0x3C4364
 
-.global sUnk_83C4364
-sUnk_83C4364:
+.global sDominoTile3Animation5
+sDominoTile3Animation5:
 
 baserom_blob 0x3C4364, 0x3C4374
 
-.global sUnk_83C4374
-sUnk_83C4374:
+.global sDominoTile3Animation6
+sDominoTile3Animation6:
 
 baserom_blob 0x3C4374, 0x3C4384
 
-.global sUnk_83C4384
-sUnk_83C4384:
+.global sDominoTile3Animation7
+sDominoTile3Animation7:
 
 baserom_blob 0x3C4384, 0x3C4394
 
-.global sUnk_83C4394
-sUnk_83C4394:
+.global sDominoTile3Animation8
+sDominoTile3Animation8:
 
 baserom_blob 0x3C4394, 0x3C43A4
 
-.global sUnk_83C43A4
-sUnk_83C43A4:
+.global sDominoTile3Animation9
+sDominoTile3Animation9:
 
 baserom_blob 0x3C43A4, 0x3C43B4
 
-.global sUnk_83C43B4
-sUnk_83C43B4:
+.global sDominoTile4Animation0
+sDominoTile4Animation0:
 
 baserom_blob 0x3C43B4, 0x3C43C4
 
-.global sUnk_83C43C4
-sUnk_83C43C4:
+.global sDominoTile4Animation1
+sDominoTile4Animation1:
 
 baserom_blob 0x3C43C4, 0x3C43D4
 
-.global sUnk_83C43D4
-sUnk_83C43D4:
+.global sDominoTile4Animation2
+sDominoTile4Animation2:
 
 baserom_blob 0x3C43D4, 0x3C43E4
 
-.global sUnk_83C43E4
-sUnk_83C43E4:
+.global sDominoTile4Animation3
+sDominoTile4Animation3:
 
 baserom_blob 0x3C43E4, 0x3C43F4
 
-.global sUnk_83C43F4
-sUnk_83C43F4:
+.global sDominoTile4Animation4
+sDominoTile4Animation4:
 
 baserom_blob 0x3C43F4, 0x3C4404
 
-.global sUnk_83C4404
-sUnk_83C4404:
+.global sDominoTile4Animation5
+sDominoTile4Animation5:
 
 baserom_blob 0x3C4404, 0x3C4414
 
-.global sUnk_83C4414
-sUnk_83C4414:
+.global sDominoTile4Animation6
+sDominoTile4Animation6:
 
 baserom_blob 0x3C4414, 0x3C4424
 
-.global sUnk_83C4424
-sUnk_83C4424:
+.global sDominoTile4Animation7
+sDominoTile4Animation7:
 
 baserom_blob 0x3C4424, 0x3C4434
 
-.global sUnk_83C4434
-sUnk_83C4434:
+.global sDominoTile4Animation8
+sDominoTile4Animation8:
 
 baserom_blob 0x3C4434, 0x3C4444
 
-.global sUnk_83C4444
-sUnk_83C4444:
+.global sDominoTile5Animation0
+sDominoTile5Animation0:
 
 baserom_blob 0x3C4444, 0x3C4454
 
-.global sUnk_83C4454
-sUnk_83C4454:
+.global sDominoTile5Animation1
+sDominoTile5Animation1:
 
 baserom_blob 0x3C4454, 0x3C4464
 
-.global sUnk_83C4464
-sUnk_83C4464:
+.global sDominoTile5Animation2
+sDominoTile5Animation2:
 
 baserom_blob 0x3C4464, 0x3C4474
 
-.global sUnk_83C4474
-sUnk_83C4474:
+.global sDominoTile5Animation3
+sDominoTile5Animation3:
 
 baserom_blob 0x3C4474, 0x3C4484
 
-.global sUnk_83C4484
-sUnk_83C4484:
+.global sDominoTile5Animation4
+sDominoTile5Animation4:
 
 baserom_blob 0x3C4484, 0x3C4494
 
-.global sUnk_83C4494
-sUnk_83C4494:
+.global sDominoTile5Animation5
+sDominoTile5Animation5:
 
 baserom_blob 0x3C4494, 0x3C44A4
 
-.global sUnk_83C44A4
-sUnk_83C44A4:
+.global sDominoTile5Animation6
+sDominoTile5Animation6:
 
 baserom_blob 0x3C44A4, 0x3C44B4
 
-.global sUnk_83C44B4
-sUnk_83C44B4:
+.global sDominoTile5Animation7
+sDominoTile5Animation7:
 
 baserom_blob 0x3C44B4, 0x3C44C4
 
-.global sUnk_83C44C4
-sUnk_83C44C4:
+.global sDominoTile5Animation8
+sDominoTile5Animation8:
 
 baserom_blob 0x3C44C4, 0x3C44D4
 
-.global sUnk_83C44D4
-sUnk_83C44D4:
+.global sDominoTile6Animation0
+sDominoTile6Animation0:
 
 baserom_blob 0x3C44D4, 0x3C44E4
 
-.global sUnk_83C44E4
-sUnk_83C44E4:
+.global sDominoTile6Animation1
+sDominoTile6Animation1:
 
 baserom_blob 0x3C44E4, 0x3C44F4
 
-.global sUnk_83C44F4
-sUnk_83C44F4:
+.global sDominoTile6Animation2
+sDominoTile6Animation2:
 
 baserom_blob 0x3C44F4, 0x3C4504
 
-.global sUnk_83C4504
-sUnk_83C4504:
+.global sDominoTile6Animation3
+sDominoTile6Animation3:
 
 baserom_blob 0x3C4504, 0x3C4514
 
-.global sUnk_83C4514
-sUnk_83C4514:
+.global sDominoTile6Animation4
+sDominoTile6Animation4:
 
 baserom_blob 0x3C4514, 0x3C4524
 
-.global sUnk_83C4524
-sUnk_83C4524:
+.global sDominoTile6Animation5
+sDominoTile6Animation5:
 
 baserom_blob 0x3C4524, 0x3C4534
 
-.global sUnk_83C4534
-sUnk_83C4534:
+.global sDominoTile6Animation6
+sDominoTile6Animation6:
 
 baserom_blob 0x3C4534, 0x3C4544
 
-.global sUnk_83C4544
-sUnk_83C4544:
+.global sDominoTile6Animation7
+sDominoTile6Animation7:
 
 baserom_blob 0x3C4544, 0x3C4554
 
-.global sUnk_83C4554
-sUnk_83C4554:
+.global sDominoTile6Animation8
+sDominoTile6Animation8:
 
 baserom_blob 0x3C4554, 0x3C4564
 
-.global sUnk_83C4564
-sUnk_83C4564:
+.global sDominoTile6Animation9
+sDominoTile6Animation9:
 
 baserom_blob 0x3C4564, 0x3C4574
 
-.global sUnk_83C4574
-sUnk_83C4574:
+.global sDominoTile7Animation0
+sDominoTile7Animation0:
 
 baserom_blob 0x3C4574, 0x3C4584
 
-.global sUnk_83C4584
-sUnk_83C4584:
+.global sDominoTile7Animation1
+sDominoTile7Animation1:
 
 baserom_blob 0x3C4584, 0x3C4594
 
-.global sUnk_83C4594
-sUnk_83C4594:
+.global sDominoTile7Animation2
+sDominoTile7Animation2:
 
 baserom_blob 0x3C4594, 0x3C45A4
 
-.global sUnk_83C45A4
-sUnk_83C45A4:
+.global sDominoTile7Animation3
+sDominoTile7Animation3:
 
 baserom_blob 0x3C45A4, 0x3C45B4
 
-.global sUnk_83C45B4
-sUnk_83C45B4:
+.global sDominoTile7Animation4
+sDominoTile7Animation4:
 
 baserom_blob 0x3C45B4, 0x3C45C4
 
-.global sUnk_83C45C4
-sUnk_83C45C4:
+.global sDominoTile7Animation5
+sDominoTile7Animation5:
 
 baserom_blob 0x3C45C4, 0x3C45D4
 
-.global sUnk_83C45D4
-sUnk_83C45D4:
+.global sDominoTile7Animation6
+sDominoTile7Animation6:
 
 baserom_blob 0x3C45D4, 0x3C45E4
 
-.global sUnk_83C45E4
-sUnk_83C45E4:
+.global sDominoTile7Animation7
+sDominoTile7Animation7:
 
 baserom_blob 0x3C45E4, 0x3C45F4
 
-.global sUnk_83C45F4
-sUnk_83C45F4:
+.global sDominoTile7Animation8
+sDominoTile7Animation8:
 
 baserom_blob 0x3C45F4, 0x3C4604
 
-.global sUnk_83C4604
-sUnk_83C4604:
+.global sDominoTile7Animation9
+sDominoTile7Animation9:
 
 baserom_blob 0x3C4604, 0x3C4614
 
-.global sUnk_83C4614
-sUnk_83C4614:
+.global sDominoTile8Animation0
+sDominoTile8Animation0:
 
 baserom_blob 0x3C4614, 0x3C4624
 
-.global sUnk_83C4624
-sUnk_83C4624:
+.global sDominoTile8Animation1
+sDominoTile8Animation1:
 
 baserom_blob 0x3C4624, 0x3C4634
 
-.global sUnk_83C4634
-sUnk_83C4634:
+.global sDominoTile8Animation2
+sDominoTile8Animation2:
 
 baserom_blob 0x3C4634, 0x3C4644
 
-.global sUnk_83C4644
-sUnk_83C4644:
+.global sDominoTile8Animation3
+sDominoTile8Animation3:
 
 baserom_blob 0x3C4644, 0x3C4654
 
-.global sUnk_83C4654
-sUnk_83C4654:
+.global sDominoTile8Animation4
+sDominoTile8Animation4:
 
 baserom_blob 0x3C4654, 0x3C4664
 
-.global sUnk_83C4664
-sUnk_83C4664:
+.global sDominoTile8Animation5
+sDominoTile8Animation5:
 
 baserom_blob 0x3C4664, 0x3C4674
 
-.global sUnk_83C4674
-sUnk_83C4674:
+.global sDominoTile8Animation6
+sDominoTile8Animation6:
 
 baserom_blob 0x3C4674, 0x3C4684
 
-.global sUnk_83C4684
-sUnk_83C4684:
+.global sDominoTile8Animation7
+sDominoTile8Animation7:
 
 baserom_blob 0x3C4684, 0x3C4694
 
-.global sUnk_83C4694
-sUnk_83C4694:
+.global sDominoTile8Animation8
+sDominoTile8Animation8:
 
 baserom_blob 0x3C4694, 0x3C46A4
 
-.global sUnk_83C46A4
-sUnk_83C46A4:
+.global sDominoTile8Animation9
+sDominoTile8Animation9:
 
 baserom_blob 0x3C46A4, 0x3C46B4
 
-.global sUnk_83C46B4
-sUnk_83C46B4:
+.global sDominoTile9Animation0
+sDominoTile9Animation0:
 
 baserom_blob 0x3C46B4, 0x3C46C4
 
-.global sUnk_83C46C4
-sUnk_83C46C4:
+.global sDominoTile9Animation1
+sDominoTile9Animation1:
 
 baserom_blob 0x3C46C4, 0x3C46D4
 
-.global sUnk_83C46D4
-sUnk_83C46D4:
+.global sDominoTile9Animation2
+sDominoTile9Animation2:
 
 baserom_blob 0x3C46D4, 0x3C46E4
 
-.global sUnk_83C46E4
-sUnk_83C46E4:
+.global sDominoTile9Animation3
+sDominoTile9Animation3:
 
 baserom_blob 0x3C46E4, 0x3C46F4
 
-.global sUnk_83C46F4
-sUnk_83C46F4:
+.global sDominoTile9Animation4
+sDominoTile9Animation4:
 
 baserom_blob 0x3C46F4, 0x3C4704
 
-.global sUnk_83C4704
-sUnk_83C4704:
+.global sDominoTile9Animation5
+sDominoTile9Animation5:
 
 baserom_blob 0x3C4704, 0x3C4714
 
-.global sUnk_83C4714
-sUnk_83C4714:
+.global sDominoTile9Animation6
+sDominoTile9Animation6:
 
 baserom_blob 0x3C4714, 0x3C4724
 
-.global sUnk_83C4724
-sUnk_83C4724:
+.global sDominoTile9Animation7
+sDominoTile9Animation7:
 
 baserom_blob 0x3C4724, 0x3C4734
 
-.global sUnk_83C4734
-sUnk_83C4734:
+.global sDominoTile9Animation8
+sDominoTile9Animation8:
 
 baserom_blob 0x3C4734, 0x3C4744
 
-.global sUnk_83C4744
-sUnk_83C4744:
+.global sDominoTile9Animation9
+sDominoTile9Animation9:
 
 baserom_blob 0x3C4744, 0x3C4754
 
-.global sUnk_83C4754
-sUnk_83C4754:
+.global sDominoGoalOpeningAnimation
+sDominoGoalOpeningAnimation:
 
 baserom_blob 0x3C4754, 0x3C4794
 
-.global sUnk_83C4794
-sUnk_83C4794:
+.global sDominoGoalOpenLeftAnimation
+sDominoGoalOpenLeftAnimation:
 
 baserom_blob 0x3C4794, 0x3C47B4
 
-.global sUnk_83C47B4
-sUnk_83C47B4:
+.global sDominoGoalOpenRightAnimation
+sDominoGoalOpenRightAnimation:
 
 baserom_blob 0x3C47B4, 0x3C47D4
 
-.global sUnk_83C47D4
-sUnk_83C47D4:
+.global sDominoGoalClosedAnimation
+sDominoGoalClosedAnimation:
 
 baserom_blob 0x3C47D4, 0x3C48D4
 
-.global sUnk_83C48D4
-sUnk_83C48D4:
+.global sDominoLongPieceAAnimation
+sDominoLongPieceAAnimation:
 
 baserom_blob 0x3C48D4, 0x3C48F4
 
-.global sUnk_83C48F4
-sUnk_83C48F4:
+.global sDominoLongPieceBAnimation
+sDominoLongPieceBAnimation:
 
 baserom_blob 0x3C48F4, 0x3C491C
 
-.global sUnk_83C491C
-sUnk_83C491C:
+.global sDominoActivatorAnimation
+sDominoActivatorAnimation:
 
 baserom_blob 0x3C491C, 0x3C4984
 

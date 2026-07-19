@@ -1,19 +1,143 @@
 #ifndef SPRITE_AI_DOMINOES_H
 #define SPRITE_AI_DOMINOES_H
 
-void SpriteDominoes2D(void);
-void SpriteDominoes2E(void);
-void SpriteDominoes2F(void);
+#include "oam.h"
+
+void SpriteDominoActivator(void);
+void SpriteDominoLongPieceA(void);
+void SpriteDominoLongPieceB(void);
 void SpriteDominoGoal(void);
-void SpriteDominoes30(void);
-void SpriteDominoes31(void);
-void SpriteDominoes32(void);
-void SpriteDominoes33(void);
-void SpriteDominoes34(void);
-void SpriteDominoes35(void);
-void SpriteDominoes36(void);
-void SpriteDominoes37(void);
-void SpriteDominoes38(void);
-void SpriteDominoes39(void);
+void SpriteDominoTile0(void);
+void SpriteDominoTile1(void);
+void SpriteDominoTile2(void);
+void SpriteDominoTile3(void);
+void SpriteDominoTile4(void);
+void SpriteDominoTile5(void);
+void SpriteDominoTile6(void);
+void SpriteDominoTile7(void);
+void SpriteDominoTile8(void);
+void SpriteDominoTile9(void);
+
+// Domino tile 0 animation states.
+extern const struct AnimationFrame sDominoTile0Animation0[];
+extern const struct AnimationFrame sDominoTile0Animation1[];
+extern const struct AnimationFrame sDominoTile0Animation2[];
+extern const struct AnimationFrame sDominoTile0Animation3[];
+extern const struct AnimationFrame sDominoTile0Animation4[];
+extern const struct AnimationFrame sDominoTile0Animation5[];
+extern const struct AnimationFrame sDominoTile0Animation6[];
+extern const struct AnimationFrame sDominoTile0Animation7[];
+
+// Domino tile 1 animation states.
+extern const struct AnimationFrame sDominoTile1Animation0[];
+extern const struct AnimationFrame sDominoTile1Animation1[];
+extern const struct AnimationFrame sDominoTile1Animation2[];
+extern const struct AnimationFrame sDominoTile1Animation3[];
+extern const struct AnimationFrame sDominoTile1Animation4[];
+extern const struct AnimationFrame sDominoTile1Animation5[];
+extern const struct AnimationFrame sDominoTile1Animation6[];
+extern const struct AnimationFrame sDominoTile1Animation7[];
+
+// Domino tile 2 animation states.
+extern const struct AnimationFrame sDominoTile2Animation0[];
+extern const struct AnimationFrame sDominoTile2Animation1[];
+extern const struct AnimationFrame sDominoTile2Animation2[];
+extern const struct AnimationFrame sDominoTile2Animation3[];
+extern const struct AnimationFrame sDominoTile2Animation4[];
+extern const struct AnimationFrame sDominoTile2Animation5[];
+extern const struct AnimationFrame sDominoTile2Animation6[];
+extern const struct AnimationFrame sDominoTile2Animation7[];
+extern const struct AnimationFrame sDominoTile2Animation8[];
+extern const struct AnimationFrame sDominoTile2Animation9[];
+
+// Domino tile 3 animation states.
+extern const struct AnimationFrame sDominoTile3Animation0[];
+extern const struct AnimationFrame sDominoTile3Animation1[];
+extern const struct AnimationFrame sDominoTile3Animation2[];
+extern const struct AnimationFrame sDominoTile3Animation3[];
+extern const struct AnimationFrame sDominoTile3Animation4[];
+extern const struct AnimationFrame sDominoTile3Animation5[];
+extern const struct AnimationFrame sDominoTile3Animation6[];
+extern const struct AnimationFrame sDominoTile3Animation7[];
+extern const struct AnimationFrame sDominoTile3Animation8[];
+extern const struct AnimationFrame sDominoTile3Animation9[];
+
+// Domino tile 4 animation states.
+extern const struct AnimationFrame sDominoTile4Animation0[];
+extern const struct AnimationFrame sDominoTile4Animation1[];
+extern const struct AnimationFrame sDominoTile4Animation2[];
+extern const struct AnimationFrame sDominoTile4Animation3[];
+extern const struct AnimationFrame sDominoTile4Animation4[];
+extern const struct AnimationFrame sDominoTile4Animation5[];
+extern const struct AnimationFrame sDominoTile4Animation6[];
+extern const struct AnimationFrame sDominoTile4Animation7[];
+extern const struct AnimationFrame sDominoTile4Animation8[];
+
+// Domino tile 5 animation states.
+extern const struct AnimationFrame sDominoTile5Animation0[];
+extern const struct AnimationFrame sDominoTile5Animation1[];
+extern const struct AnimationFrame sDominoTile5Animation2[];
+extern const struct AnimationFrame sDominoTile5Animation3[];
+extern const struct AnimationFrame sDominoTile5Animation4[];
+extern const struct AnimationFrame sDominoTile5Animation5[];
+extern const struct AnimationFrame sDominoTile5Animation6[];
+extern const struct AnimationFrame sDominoTile5Animation7[];
+extern const struct AnimationFrame sDominoTile5Animation8[];
+
+// Domino tile 6 animation states.
+extern const struct AnimationFrame sDominoTile6Animation0[];
+extern const struct AnimationFrame sDominoTile6Animation1[];
+extern const struct AnimationFrame sDominoTile6Animation2[];
+extern const struct AnimationFrame sDominoTile6Animation3[];
+extern const struct AnimationFrame sDominoTile6Animation4[];
+extern const struct AnimationFrame sDominoTile6Animation5[];
+extern const struct AnimationFrame sDominoTile6Animation6[];
+extern const struct AnimationFrame sDominoTile6Animation7[];
+extern const struct AnimationFrame sDominoTile6Animation8[];
+extern const struct AnimationFrame sDominoTile6Animation9[];
+
+// Domino tile 7 animation states.
+extern const struct AnimationFrame sDominoTile7Animation0[];
+extern const struct AnimationFrame sDominoTile7Animation1[];
+extern const struct AnimationFrame sDominoTile7Animation2[];
+extern const struct AnimationFrame sDominoTile7Animation3[];
+extern const struct AnimationFrame sDominoTile7Animation4[];
+extern const struct AnimationFrame sDominoTile7Animation5[];
+extern const struct AnimationFrame sDominoTile7Animation6[];
+extern const struct AnimationFrame sDominoTile7Animation7[];
+extern const struct AnimationFrame sDominoTile7Animation8[];
+extern const struct AnimationFrame sDominoTile7Animation9[];
+
+// Domino tile 8 animation states.
+extern const struct AnimationFrame sDominoTile8Animation0[];
+extern const struct AnimationFrame sDominoTile8Animation1[];
+extern const struct AnimationFrame sDominoTile8Animation2[];
+extern const struct AnimationFrame sDominoTile8Animation3[];
+extern const struct AnimationFrame sDominoTile8Animation4[];
+extern const struct AnimationFrame sDominoTile8Animation5[];
+extern const struct AnimationFrame sDominoTile8Animation6[];
+extern const struct AnimationFrame sDominoTile8Animation7[];
+extern const struct AnimationFrame sDominoTile8Animation8[];
+extern const struct AnimationFrame sDominoTile8Animation9[];
+
+// Domino tile 9 animation states.
+extern const struct AnimationFrame sDominoTile9Animation0[];
+extern const struct AnimationFrame sDominoTile9Animation1[];
+extern const struct AnimationFrame sDominoTile9Animation2[];
+extern const struct AnimationFrame sDominoTile9Animation3[];
+extern const struct AnimationFrame sDominoTile9Animation4[];
+extern const struct AnimationFrame sDominoTile9Animation5[];
+extern const struct AnimationFrame sDominoTile9Animation6[];
+extern const struct AnimationFrame sDominoTile9Animation7[];
+extern const struct AnimationFrame sDominoTile9Animation8[];
+extern const struct AnimationFrame sDominoTile9Animation9[];
+
+extern const struct AnimationFrame sDominoGoalOpeningAnimation[];
+extern const struct AnimationFrame sDominoGoalOpenLeftAnimation[];
+extern const struct AnimationFrame sDominoGoalOpenRightAnimation[];
+extern const struct AnimationFrame sDominoGoalClosedAnimation[];
+extern const struct AnimationFrame sDominoLongPieceAAnimation[];
+extern const struct AnimationFrame sDominoLongPieceBAnimation[];
+extern const struct AnimationFrame sDominoActivatorAnimation[];
 
 #endif  // SPRITE_AI_DOMINOES_H
