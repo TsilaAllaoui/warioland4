@@ -624,7 +624,7 @@ func_8053FDC:
 	bl	SpriteUtilTurnTowardWario
 	mov	r0, #16
 	strb	r0, [r4, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	ldrb	r1, [r4, #24]
 	ldrb	r2, [r4, #25]
 	ldrh	r3, [r4, #8]
@@ -646,7 +646,7 @@ func_8053FDC:
 	mov	r0, #131	@ 0x83
 	mov	r1, #8
 	mov	r2, #4
-	bl	func_8070964
+	bl	LoadBossSpriteGraphics
 	add	sp, #4
 	pop	{r4}
 	pop	{r0}
@@ -1246,7 +1246,7 @@ func_8054480:
 	str	r5, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_544c4
 .L_544ac:
 	.4byte	gCurrentSprite
@@ -1259,7 +1259,7 @@ func_8054480:
 	str	r1, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_544c4:
 	mov	r0, #144	@ 0x90
 	bl	m4aSongNumStart
@@ -1391,7 +1391,7 @@ func_8054578:
 .L_545b0:
 	.4byte	gCurrentSprite
 .L_545b4:
-	.4byte	gUnk_30000F4
+	.4byte	gColorFadingState
 .L_545b8:
 	.4byte	gCurrentShopItem
 
@@ -1922,7 +1922,7 @@ func_8054940:
 	str	r0, [sp, #0]
 	str	r6, [sp, #4]
 	mov	r0, #205	@ 0xcd
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_549a6
 .L_54988:
 	.4byte	gCurrentSprite
@@ -1938,7 +1938,7 @@ func_8054940:
 	str	r0, [sp, #0]
 	str	r5, [sp, #4]
 	mov	r0, #205	@ 0xcd
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_549a6:
 	mov	r0, #143	@ 0x8f
 	bl	m4aSongNumStart
@@ -2563,7 +2563,7 @@ func_8054D80:
 	strb	r0, [r1, #0]
 	bl	SpriteUtilSetWarioBossVictoryPose
 .L_54e16:
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 .L_54e1a:
 	mov	r0, #12
 	bl	VoiceSetPlay
@@ -2826,7 +2826,7 @@ func_8054F70:
 	beq	.L_54ffc
 	sub	r0, #1
 	strb	r0, [r3, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	mov	r0, #122	@ 0x7a
 	bl	m4aSongNumStart
 .L_54ffc:
@@ -2881,7 +2881,7 @@ func_8055010:
 	beq	.L_55066
 	sub	r0, r2, #1
 	strb	r0, [r4, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	mov	r0, #122	@ 0x7a
 	bl	m4aSongNumStart
 .L_55066:
@@ -3006,7 +3006,7 @@ func_8055100:
 .L_55140:
 	.4byte	gCurrentSprite
 .L_55144:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55148:
 	.4byte	0xFFBF
 .L_5514c:
@@ -3039,7 +3039,7 @@ func_8055100:
 	b	.L_5518e
 	.align	2, 0
 .L_55184:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55188:
 	ldrh	r0, [r4, #10]
 	sub	r0, #2
@@ -3157,7 +3157,7 @@ func_8055218:
 .L_55258:
 	.4byte	gCurrentSprite
 .L_5525c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55260:
 	.4byte	0xFFBF
 .L_55264:
@@ -3190,7 +3190,7 @@ func_8055218:
 	b	.L_552a6
 	.align	2, 0
 .L_5529c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_552a0:
 	ldrh	r0, [r4, #10]
 	sub	r0, #1
@@ -3248,7 +3248,7 @@ func_8055218:
 .L_55308:
 	.4byte	gUnk_30000A0
 .L_5530c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55310:
 	.4byte	sUnk_83DB4AC
 .L_55314:
@@ -3366,7 +3366,7 @@ func_80553A0:
 .L_553e0:
 	.4byte	gCurrentSprite
 .L_553e4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_553e8:
 	.4byte	0xFFBF
 .L_553ec:
@@ -3399,7 +3399,7 @@ func_80553A0:
 	b	.L_5542e
 	.align	2, 0
 .L_55424:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55428:
 	ldrh	r0, [r4, #10]
 	sub	r0, #4
@@ -3511,7 +3511,7 @@ func_80554AC:
 .L_554ec:
 	.4byte	gCurrentSprite
 .L_554f0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_554f4:
 	.4byte	0xFFBF
 .L_554f8:
@@ -3544,7 +3544,7 @@ func_80554AC:
 	b	.L_5553a
 	.align	2, 0
 .L_55530:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55534:
 	ldrh	r0, [r4, #10]
 	sub	r0, #2
@@ -3595,7 +3595,7 @@ func_80554AC:
 .L_55590:
 	.4byte	gUnk_30000A0
 .L_55594:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55598:
 	.4byte	sUnk_83DB4AC
 .L_5559c:
@@ -3989,7 +3989,7 @@ func_8055824:
 	pop	{r0}
 	bx	r0
 .L_55840:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55844:
 	.4byte	gCurrentSprite
 
@@ -4495,7 +4495,7 @@ func_8055B5C:
 .L_55b9c:
 	.4byte	gCurrentSprite
 .L_55ba0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55ba4:
 	.4byte	0xFFBF
 .L_55ba8:
@@ -4528,7 +4528,7 @@ func_8055B5C:
 	b	.L_55bea
 	.align	2, 0
 .L_55be0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55be4:
 	ldrh	r0, [r4, #10]
 	sub	r0, #1
@@ -4561,7 +4561,7 @@ func_8055B5C:
 .L_55c18:
 	.4byte	gUnk_30000A0
 .L_55c1c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55c20:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4
@@ -4672,7 +4672,7 @@ func_8055CB8:
 	str	r4, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #1
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r2, [r5, #25]
 	ldrh	r3, [r5, #8]
 	ldrh	r0, [r5, #10]
@@ -4681,7 +4681,7 @@ func_8055CB8:
 	str	r4, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #1
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_55cf6:
 	cmp	r6, #20
 	bne	.L_55d24
@@ -4694,7 +4694,7 @@ func_8055CB8:
 	str	r4, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #2
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r2, [r5, #25]
 	ldrh	r3, [r5, #8]
 	ldrh	r0, [r5, #10]
@@ -4703,7 +4703,7 @@ func_8055CB8:
 	str	r4, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #2
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_55d24:
 	cmp	r6, #15
 	bne	.L_55d52
@@ -4716,7 +4716,7 @@ func_8055CB8:
 	str	r4, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #2
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r2, [r5, #25]
 	ldrh	r3, [r5, #8]
 	ldrh	r0, [r5, #10]
@@ -4725,7 +4725,7 @@ func_8055CB8:
 	str	r4, [sp, #4]
 	mov	r0, #206	@ 0xce
 	mov	r1, #2
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_55d52:
 	ldrb	r0, [r7, #0]
 	sub	r0, #1
@@ -5033,7 +5033,7 @@ SpriteUnknownCC:
 .L_55fd8:
 	.4byte	gSpriteData
 .L_55fdc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_55fe0:
 	.4byte	0xEFFF
 .L_55fe4:

@@ -1939,19 +1939,19 @@ func_8075F44:
 .L_760c0:
 	.4byte	gGoldenTreasureCount
 .L_760c4:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_760c8:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_760cc:
-	.4byte	gUnk_3000A5A
+	.4byte	gCuckooCondorMoveRight
 .L_760d0:
-	.4byte	gUnk_3000A5B
+	.4byte	gCuckooCondorHasCapturedWario
 .L_760d4:
-	.4byte	gUnk_3000A5C
+	.4byte	gBossHurtState
 .L_760d8:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossHurtTimer
 .L_760dc:
-	.4byte	gUnk_3000A5E
+	.4byte	gBossInitialHealth
 .L_760e0:
 	.4byte	gUnk_3000A5F
 .L_760e4:
@@ -1961,7 +1961,7 @@ func_8075F44:
 .L_760ec:
 	.4byte	gUnk_3000A62
 .L_760f0:
-	.4byte	gUnk_3000A64
+	.4byte	gCuckooCondorPendulumRadius
 .L_760f4:
 	.4byte	gUnk_3000C04
 .L_760f8:

@@ -157,7 +157,7 @@ func_804DA24:
 	b	.L_4db38
 	.align	2, 0
 .L_4dab0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_4dab4:
 	add	r2, r4, #0
 	add	r2, #40	@ 0x28
@@ -224,7 +224,7 @@ func_804DA24:
 	b	.L_4db3a
 	.align	2, 0
 .L_4db30:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_4db34:
 	ldrh	r0, [r4, #10]
 	sub	r0, #2
@@ -572,7 +572,7 @@ func_804DD44:
 	str	r0, [sp, #0]
 	str	r6, [sp, #4]
 	mov	r0, #186	@ 0xba
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_4dda4
 	.align	2, 0
 .L_4dd88:
@@ -588,7 +588,7 @@ func_804DD44:
 	str	r0, [sp, #0]
 	str	r5, [sp, #4]
 	mov	r0, #186	@ 0xba
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_4dda4:
 	add	sp, #8
 	pop	{r4, r5, r6}

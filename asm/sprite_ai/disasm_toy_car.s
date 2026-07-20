@@ -107,7 +107,7 @@ func_805EFC8:
 	bl	func_8023BFC
 	b	.L_5f018
 .L_5effc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_5f000:
 	.4byte	gCurrentSprite
 .L_5f004:
@@ -130,7 +130,7 @@ func_805EFC8:
 	strb	r0, [r1, #28]
 	b	.L_5f0e8
 .L_5f028:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_5f02c:
 	.4byte	gCurrentSprite
 .L_5f030:
@@ -176,7 +176,7 @@ func_805EFC8:
 .L_5f080:
 	.4byte	gCurrentSprite
 .L_5f084:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_5f088:
 	mov	r7, #240	@ 0xf0
 	add	r0, r7, #0
@@ -223,7 +223,7 @@ func_805EFC8:
 	strb	r0, [r4, #28]
 	b	.L_5f0e8
 .L_5f0e0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_5f0e4:
 	bl	SpriteUtilMoveForward1HalfPixel
 .L_5f0e8:
@@ -275,7 +275,7 @@ func_805F120:
 	b	.L_5f1b4
 	.align	2, 0
 .L_5f13c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_5f140:
 	.4byte	gCurrentSprite
 .L_5f144:
@@ -1098,7 +1098,7 @@ func_805F694:
 .L_5f6cc:
 	.4byte	gCurrentSprite
 .L_5f6d0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_5f6d4:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

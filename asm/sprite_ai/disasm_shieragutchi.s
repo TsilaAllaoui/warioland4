@@ -168,7 +168,7 @@ func_8046620:
 .L_4666c:
 	.4byte	gUnk_30000A0
 .L_46670:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_46674:
 	.4byte	sUnk_83C9CF0
 .L_46678:
@@ -227,7 +227,7 @@ func_80466B0:
 .L_466d0:
 	.4byte	gCurrentSprite
 .L_466d4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_466d8:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4
@@ -406,7 +406,7 @@ func_80467DC:
 .L_46810:
 	.4byte	gCurrentSprite
 .L_46814:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_46818:
 	ldr	r0, .L_46828
 	mov	r1, #112	@ 0x70

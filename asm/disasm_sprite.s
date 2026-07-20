@@ -1787,8 +1787,8 @@ SpriteSpawnAsChild:
 	bx	r0
 
 
-thumb_func_start func_801E3A8
-func_801E3A8:
+thumb_func_start SpawnPrimarySpriteWithStatus
+SpawnPrimarySpriteWithStatus:
 	push	{r4, r5, r6, r7, lr}
 	mov	r7, sl
 	mov	r6, r9

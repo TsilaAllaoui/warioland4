@@ -574,7 +574,7 @@ func_804EE58:
 .L_4ee66:
 	bx	lr
 .L_4ee68:
-	.4byte	gUnk_30000F4
+	.4byte	gColorFadingState
 .L_4ee6c:
 	.4byte	gCurrentSprite
 
@@ -1029,7 +1029,7 @@ func_804F1B4:
 .L_4f1fc:
 	.4byte	gCurrentSprite
 .L_4f200:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4f204:
 	.4byte	sUnk_83DA0CC
 
@@ -1154,7 +1154,7 @@ func_804F2A8:
 	strh	r0, [r4, #10]
 	b	.L_4f312
 .L_4f2e4:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4f2e8:
 	.4byte	gCurrentSprite
 .L_4f2ec:
@@ -1302,7 +1302,7 @@ func_804F364:
 .L_4f3f4:
 	.4byte	sUnk_83DA0AC
 .L_4f3f8:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 
 
 thumb_func_start func_804F3FC
@@ -1379,7 +1379,7 @@ func_804F454:
 .L_4f47c:
 	.4byte	gCurrentSprite
 .L_4f480:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4f484:
 	cmp	r1, #60	@ 0x3c
 	bne	.L_4f490
@@ -1425,7 +1425,7 @@ func_804F454:
 	bx	r0
 	.align	2, 0
 .L_4f4d8:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4f4dc:
 	.4byte	sUnk_83DA144
 
@@ -1616,7 +1616,7 @@ func_804F5A8:
 .L_4f660:
 	.4byte	sSinCosTable
 .L_4f664:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4f668:
 	mov	r0, #0
 	strh	r0, [r7, #0]
@@ -1671,7 +1671,7 @@ func_804F688:
 .L_4f6c8:
 	.4byte	gCurrentPassage
 .L_4f6cc:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4f6d0:
 	.4byte	gCurrentSprite
 .L_4f6d4:
@@ -1852,7 +1852,7 @@ func_804F7D4:
 .L_4f828:
 	.4byte	gCurrentPassage
 .L_4f82c:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4f830:
 	.4byte	gCurrentSprite
 .L_4f834:
@@ -2137,7 +2137,7 @@ func_804F9F8:
 .L_4fa40:
 	.4byte	gCurrentPassage
 .L_4fa44:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4fa48:
 	.4byte	gCurrentSprite
 .L_4fa4c:
@@ -2501,7 +2501,7 @@ func_804FC94:
 .L_4fce8:
 	.4byte	gCurrentPassage
 .L_4fcec:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4fcf0:
 	.4byte	gCurrentSprite
 .L_4fcf4:
@@ -2716,7 +2716,7 @@ func_804FE20:
 .L_4fe74:
 	.4byte	gCurrentPassage
 .L_4fe78:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4fe7c:
 	.4byte	gCurrentSprite
 .L_4fe80:
@@ -3197,7 +3197,7 @@ func_8050144:
 	bx	r0
 	.align	2, 0
 .L_501dc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_501e0:
 	.4byte	sUnk_83DA1A4
 
@@ -3452,7 +3452,7 @@ func_805037C:
 	bx	lr
 	.align	2, 0
 .L_50398:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossHurtTimer
 .L_5039c:
 	.4byte	gCurrentSprite
 .L_503a0:
@@ -3479,7 +3479,7 @@ func_80503A4:
 .L_503c2:
 	bx	lr
 .L_503c4:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossHurtTimer
 .L_503c8:
 	.4byte	gCurrentSprite
 .L_503cc:
@@ -6688,7 +6688,7 @@ func_8051C08:
 .L_51c70:
 	.4byte	0x7FFF
 .L_51c74:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_51c78:
 	.4byte	gCurrentPassage
 .L_51c7c:
@@ -7284,7 +7284,7 @@ func_8052048:
 .L_520ac:
 	.4byte	0x7FFF
 .L_520b0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 
 
 thumb_func_start func_80520B4
@@ -8568,7 +8568,7 @@ func_8052A9C:
 	pop	{r0}
 	bx	r0
 .L_52b10:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 
 
 thumb_func_start SpriteUnknownC3
@@ -9956,7 +9956,7 @@ func_80534FC:
 .L_5352c:
 	.4byte	gCurrentSprite
 .L_53530:
-	.4byte	sUnk_8352ADC
+	.4byte	sSharedDebrisYVelocity
 .L_53534:
 	.4byte	0x7FFF
 .L_53538:
@@ -10148,7 +10148,7 @@ func_80534FC:
 .L_5369c:
 	.4byte	gHasGoldenDivaChest12
 .L_536a0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_536a4:
 	.4byte	sUnk_83D873C
 

@@ -196,7 +196,7 @@ enum PrimarySpriteID {
     PSPRITE_BA,
     PSPRITE_BB,
     PSPRITE_ITEM_APPLE,
-    PSPRITE_BD,
+    PSPRITE_CUCKOO_CONDOR_SMALL_DEBRIS,
     PSPRITE_ITEM_BLAST_CANNON,
     PSPRITE_ITEM_VIZORMAN,
     PSPRITE_ITEM_BUGLE,
@@ -207,7 +207,7 @@ enum PrimarySpriteID {
     PSPRITE_C5,
     PSPRITE_C6,
     PSPRITE_C7,
-    PSPRITE_C8,
+    PSPRITE_CUCKOO_CONDOR_LARGE_DEBRIS,
     PSPRITE_C9,
     PSPRITE_CA,
     PSPRITE_CB,
@@ -236,12 +236,12 @@ enum PrimarySpriteID {
     PSPRITE_E2,
     PSPRITE_E3,
     PSPRITE_E4,
-    PSPRITE_E5,
-    PSPRITE_E6,
-    PSPRITE_E7,
-    PSPRITE_E8,
-    PSPRITE_E9,
-    PSPRITE_EA,
+    PSPRITE_CUCKOO_CONDOR_HEAD,
+    PSPRITE_CUCKOO_CONDOR_CLOCK_BODY,
+    PSPRITE_CUCKOO_CONDOR_CLOCK_PIECE,
+    PSPRITE_CUCKOO_CONDOR_PENDULUM_PART,
+    PSPRITE_CUCKOO_CONDOR_EGG,
+    PSPRITE_CUCKOO_CONDOR_CHICK,
     PSPRITE_EB,
     PSPRITE_EC,
     PSPRITE_ED,
@@ -469,14 +469,14 @@ extern u8 gPersistentSpriteData[16][MAX_SPRITE_SLOTS_PER_ROOM];
 #define MAKE_PERSISTENT_DATA(pose, status) (((pose) << 4) | (status))
 extern struct PrimarySpriteData gCurrentSprite;
 
-extern u8 gUnk_3000A50;
-extern u8 gUnk_3000A51;
+extern u8 gSpriteCollisionResult;
+extern u8 gSpriteCollisionTileType;
 extern u8 gSpriteCollisionFlags;
 extern u8 gIgnoreSpriteCollision;
-extern s8 gUnk_3000A58;
-extern s8 gUnk_3000A59;
-extern u8 gUnk_3000A5A;
-extern u8 gUnk_3000A5B;
+extern s8 gBossTookDamage;
+extern s8 gCuckooCondorPendulumLength;
+extern u8 gCuckooCondorMoveRight;
+extern u8 gCuckooCondorHasCapturedWario;
 extern u8 gUnk_3000A60;
 
 extern const u16 sUnk_83B35F8[][2];

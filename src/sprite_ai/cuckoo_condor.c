@@ -1,0 +1,4742 @@
+#include "fixed_point.h"
+#include "background_registers.h"
+#include "global_data.h"
+#include "gba/m4a.h"
+#include "main.h"
+#include "oam.h"
+#include "score.h"
+#include "sound.h"
+#include "sprite.h"
+#include "sprite_ai/cuckoo_condor.h"
+#include "sprite_util.h"
+#include "voice_set.h"
+#include "wario.h"
+
+extern const struct AnimationFrame sCuckooCondorHurtOam[];
+extern const struct AnimationFrame sCuckooCondorClockIntroOam[];
+extern const struct AnimationFrame sCuckooCondorClockBodyFallingOam[];
+extern const struct AnimationFrame sCuckooCondorClockBodyOam[];
+extern const struct AnimationFrame sCuckooCondorClockIdleOam[];
+extern const struct AnimationFrame sCuckooCondorHeadIdleOam[];
+extern const struct AnimationFrame sCuckooCondorHeadBlinkOam[];
+extern const struct AnimationFrame sCuckooCondorHeadHurtOam[];
+extern const struct AnimationFrame sCuckooCondorHeadAttackOam[];
+extern const struct AnimationFrame sCuckooCondorPendulumRetractedOam[];
+extern const struct AnimationFrame sCuckooCondorPendulumLinkOam[];
+extern const struct AnimationFrame sCuckooCondorClawIdleOam[];
+extern const struct AnimationFrame sCuckooCondorClawOpenOam[];
+extern const struct AnimationFrame sCuckooCondorClawGrabOam[];
+extern const struct AnimationFrame sCuckooCondorClawCloseOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceTopOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceUpperRightOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceLowerRightOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceLowerLeftOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceUpperLeftWindupOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceUpperLeftDrop1Oam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceUpperLeftDrop2Oam[];
+extern const struct AnimationFrame sCuckooCondorSmallDebrisOam[];
+extern const struct AnimationFrame sCuckooCondorClockPieceUpperLeftOam[];
+extern const struct AnimationFrame sCuckooCondorBodyOam[];
+extern const struct AnimationFrame sCuckooCondorHeadPhase2Oam[];
+extern const struct AnimationFrame sCuckooCondorChickWalkOam[];
+extern const struct AnimationFrame sCuckooCondorChickExplodeOam[];
+extern const struct AnimationFrame sCuckooCondorChickDashOam[];
+extern const struct AnimationFrame sCuckooCondorChickChaseOam[];
+extern const struct AnimationFrame sCuckooCondorChickAttackOam[];
+extern const struct AnimationFrame sCuckooCondorChickAttackEndOam[];
+extern const struct AnimationFrame sCuckooCondorEggOam[];
+extern const struct AnimationFrame sCuckooCondorEggHatchOam[];
+
+extern void LoadBossSpriteGraphics(u8, u8, u8);
+extern void UpdateBossHealthGauge(void);
+extern void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
+
+/* Compiler-boundary alias: preserve the original untruncated register argument. */
+extern void SpriteUtilFindOwnSlotU32(u32 roomSlot) asm("SpriteUtilFindOwnSlot");
+
+extern u8 gColorFadingState;
+extern u8 gSpriteCollisionResult;
+extern u8 gSpriteCollisionTileType;
+extern s8 gBossTookDamage;
+extern s8 gCuckooCondorPendulumLength;
+extern u8 gCuckooCondorMoveRight;
+extern u8 gCuckooCondorHasCapturedWario;
+extern u8 gBossHurtState;
+extern u8 gBossHurtTimer;
+extern u8 gBossInitialHealth;
+extern u16 gCuckooCondorPendulumRadius;
+extern const s16 sSharedDebrisYVelocity[];
+
+void UpdateCuckooCondorPendulumOrbit(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 angle asm("r6");
+    register int slot asm("r3");
+    register u16 radius asm("r5");
+    register u32 temp asm("r0");
+    register u32 adjustmentR1 asm("r1");
+    register u32 adjustmentR2 asm("r2");
+    register u32 adjustmentR4 asm("r4");
+    register struct PrimarySpriteData *parentBase asm("r2");
+    register struct PrimarySpriteData *parent asm("r1");
+    register u32 index asm("r1");
+    register u16 baseY asm("r4");
+    register u16 savedY;
+    register u16 baseX asm("r12");
+    register const s16 *table asm("r8");
+    register const s16 *tableSource asm("r1");
+    register s32 value asm("r3");
+    register s32 product asm("r0");
+    register u32 work asm("r0");
+    register s32 secondTrig asm("r1");
+    register s32 result asm("r1");
+    register struct PrimarySpriteData *current asm("r2");
+    register s32 xResult asm("r0");
+    register u32 angleShifted asm("r2");
+    register s32 shifted asm("r1");
+    register s32 xOffset asm("r1");
+
+    sprite = &gCurrentSprite;
+    work = sprite->work0;
+    asm("" : "+r"(work));
+    angle = work;
+    angle += 0x40;
+    angle &= 0xFF;
+    slot = SpriteUtilFindSpriteSlot(0xE5);
+    radius = gCuckooCondorPendulumRadius;
+
+    switch (sprite->roomSlot) {
+    case 0:
+        goto radiusReady;
+    case 1:
+        temp = radius << 16;
+        adjustmentR1 = 0xFFB80000;
+        goto addAdjustmentR1;
+    case 2:
+        temp = radius << 16;
+        adjustmentR2 = 0xFF980000;
+        asm("" : "+r"(adjustmentR2));
+        temp += adjustmentR2;
+        goto finishRadius;
+    case 3:
+        temp = radius << 16;
+        adjustmentR4 = 0xFF780000;
+        asm("" : "+r"(adjustmentR4));
+        temp += adjustmentR4;
+        goto finishRadius;
+    case 4:
+        temp = radius << 16;
+        adjustmentR1 = 0xFF580000;
+addAdjustmentR1:
+        temp += adjustmentR1;
+finishRadius:
+        radius = temp >> 16;
+        break;
+    }
+radiusReady:
+
+    parentBase = gSpriteData;
+    index = slot;
+    index *= sizeof(struct PrimarySpriteData);
+    index += (u32)parentBase;
+    parent = (struct PrimarySpriteData *)index;
+    temp = gCuckooCondorPendulumRadius;
+    temp += parent->yPosition;
+    temp <<= 16;
+    baseY = temp >> 16;
+    savedY = baseY;
+    baseX = parent->xPosition;
+    tableSource = sSinCosTable;
+    angleShifted = angle << 16;
+    temp = angleShifted >> 15;
+    temp += (u32)tableSource;
+    angle = 0;
+    value = *(const s16 *)((const u8 *)temp + angle);
+    table = tableSource;
+    angle = angleShifted;
+
+    if (value < 0) {
+        register s32 trigAbs asm("r2");
+        trigAbs = -value;
+        shifted = radius << 16;
+        product = (shifted >> 16) * trigAbs;
+        value = shifted;
+        if (product < 0)
+            product += 0xFF;
+        product = (u32)product << 8;
+        asm("" : "+r"(product));
+        current = &gCurrentSprite;
+        asm("" : "+r"(current));
+        result = baseY;
+        result = (s16)result;
+        result -= product >> 16;
+    } else {
+        shifted = radius << 16;
+        product = (shifted >> 16) * value;
+        value = shifted;
+        if (product < 0)
+            product += 0xFF;
+        product = (u32)product << 8;
+        asm("" : "+r"(product));
+        current = &gCurrentSprite;
+        asm("" : "+r"(current));
+        result = savedY;
+        result = (s16)result;
+        result += product >> 16;
+    }
+    current->yPosition = result;
+
+    temp = angle >> 15;
+    temp += 0x80;
+    temp += (u32)table;
+    secondTrig = *(const s16 *)temp;
+    if (secondTrig < 0) {
+        secondTrig = -secondTrig;
+        product = value >> 16;
+        product *= secondTrig;
+        if (product < 0)
+            product += 0xFF;
+        xOffset = (u32)product << 8;
+        xResult = baseX;
+        xResult = (s16)xResult;
+        xResult -= xOffset >> 16;
+    } else {
+        product = value >> 16;
+        product *= secondTrig;
+        if (product < 0)
+            product += 0xFF;
+        xOffset = (u32)product << 8;
+        xResult = baseX;
+        xResult = (s16)xResult;
+        xResult += xOffset >> 16;
+    }
+    current->xPosition = xResult;
+}
+
+void UpdateCuckooCondorPendulumAffine(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register u32 angle asm("r4");
+    register const s16 *table asm("r8");
+    register s32 sinValue asm("r9");
+    register s32 cosValue asm("r4");
+    register s32 scale asm("r6");
+    register s32 inverse asm("r1");
+    register u32 sinIndex asm("r0");
+
+    sprite = &gCurrentSprite;
+    sprite->status |= 0x80;
+    angle = sprite->work0;
+    table = sSinCosTable;
+    sinIndex = angle;
+    sinIndex += 0x40;
+    sinIndex <<= 1;
+    sinIndex += (u32)table;
+    sinValue = *(const s16 *)sinIndex;
+    scale = 0x100;
+
+    inverse = FixedInverse(scale);
+    sprite->affinePA = FixedMul(sinValue, inverse);
+
+    cosValue = table[angle];
+    inverse = FixedInverse(scale);
+    sprite->affinePB = FixedMul(cosValue, inverse);
+
+    cosValue = -cosValue;
+    inverse = FixedInverse(scale);
+    sprite->affinePC = FixedMul(cosValue, inverse);
+
+    inverse = FixedInverse(scale);
+    sprite->affinePD = FixedMul(sinValue, inverse);
+}
+
+void UpdateCuckooCondorPendulumHeight(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register struct PrimarySpriteData *current asm("r0");
+    register u32 roomSlot asm("r2");
+    register u32 currentY asm("r4");
+    register u32 targetY asm("r1");
+    register u32 speed asm("r2");
+    register u32 offset asm("r1");
+    register struct PrimarySpriteData *sprites asm("r3");
+    register u32 temp asm("r0");
+    register u32 base asm("r2");
+    register u32 distance asm("r0");
+
+    current = &gCurrentSprite;
+    roomSlot = current->roomSlot;
+    sprite = current;
+    if (roomSlot == 4) {
+        current = (struct PrimarySpriteData *)&gCuckooCondorPendulumLength;
+        offset = *(u8 *)current;
+    } else {
+        offset = 0x20;
+        if (roomSlot == 0)
+            offset = 0x48;
+    }
+
+    temp = sprite->yPosition;
+    temp -= offset;
+    base = 0x80;
+    base <<= 2;
+    asm("" : "+r"(base));
+    targetY = base;
+    temp += targetY;
+    temp <<= 16;
+    currentY = temp >> 16;
+
+    sprites = gSpriteData;
+    current = sprite;
+    current = (struct PrimarySpriteData *)((u8 *)current + 0x2A);
+    speed = *(u8 *)current;
+    temp = sizeof(struct PrimarySpriteData);
+    temp *= speed;
+    temp += (u32)sprites;
+    temp = ((struct PrimarySpriteData *)temp)->yPosition;
+    targetY += temp;
+    targetY <<= 16;
+    targetY >>= 16;
+    asm volatile("" ::: "memory");
+
+    if (currentY > targetY)
+        distance = currentY - targetY;
+    else
+        distance = targetY - currentY;
+    distance <<= 16;
+    distance >>= 16;
+
+    if (distance <= 1) {
+        speed = 0;
+    } else {
+        distance -= 2;
+        distance = (s32)distance >> 1;
+        distance <<= 16;
+        speed = distance >> 16;
+        if (speed == 0)
+            speed = 1;
+    }
+
+    asm("" ::: "memory");
+    if (currentY > targetY) {
+        temp = sprite->yPosition;
+        temp -= speed;
+        sprite->yPosition = temp;
+    } else if (currentY < targetY) {
+        temp = sprite->yPosition;
+        temp = speed + temp;
+        sprite->yPosition = temp;
+    }
+}
+
+void UpdateCuckooCondorCapturedWario(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register const s16 *table asm("r5");
+    register u32 index asm("r2");
+    register u16 delta asm("r3");
+    register u32 zero asm("r6");
+    register u32 address asm("r0");
+    register s32 signedDelta asm("r1");
+    register u8 *work3Ptr asm("r12");
+    register u8 *flag asm("r4");
+    register int slot asm("r3");
+    register struct WarioData *wario asm("r2");
+    register struct PrimarySpriteData *sprites asm("r1");
+    register struct PrimarySpriteData *other asm("r0");
+
+    sprite = &gCurrentSprite;
+    address = 0x2A;
+    address += (u32)sprite;
+    work3Ptr = (u8 *)address;
+    index = *work3Ptr;
+    table = sCuckooCondorClockYVelocity;
+    address = index << 1;
+    address += (u32)table;
+    delta = *(u16 *)address;
+    zero = 0;
+    signedDelta = *(s16 *)(address + zero);
+    address = 0x7FFF;
+    if (signedDelta == address) {
+        delta = table[0];
+        index = 0;
+    }
+    address = index + 1;
+    signedDelta = (u32)work3Ptr;
+    *(u8 *)signedDelta = address;
+    sprite->yPosition += delta;
+
+    flag = &gCuckooCondorHasCapturedWario;
+    address = *flag;
+    if (address != 0) {
+        slot = SpriteUtilFindSprite(0xE8, 0);
+        wario = &gWarioData;
+        address = wario->damageTimer;
+        if (address != 0) {
+            address = 0;
+            *flag = address;
+            sprites = gSpriteData;
+            address = sizeof(struct PrimarySpriteData);
+            address *= slot;
+            address += (u32)sprites;
+            other = (struct PrimarySpriteData *)address;
+            signedDelta = 0x43;
+            other->warioCollision = signedDelta;
+        } else {
+            sprites = gSpriteData;
+            address = sizeof(struct PrimarySpriteData);
+            address *= slot;
+            address += (u32)sprites;
+            other = (struct PrimarySpriteData *)address;
+            address = other->yPosition;
+            signedDelta = *(u16 *)((u8 *)wario + 0x34);
+            address -= signedDelta;
+            wario->yPosition = address;
+        }
+    }
+}
+
+void InitCuckooCondor(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register s8 *horizontalOffset asm("r4");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+    register u32 value asm("r0");
+    register u32 four asm("r1");
+
+    gBossTookDamage = 0;
+    horizontalOffset = &gCuckooCondorPendulumLength;
+    *horizontalOffset = 0x10;
+    gCuckooCondorMoveRight = 0;
+    gCuckooCondorHasCapturedWario = 0;
+    gBossHurtState = 0;
+    gBossHurtTimer = 0;
+    gBossInitialHealth = 0x0E;
+
+    sprite = &gCurrentSprite;
+    four = sprite->status;
+    zeroByte = 0x81;
+    zeroByte <<= 3;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    zeroHalf = 0;
+    value |= four;
+    sprite->status = value;
+    value = sprite->drawPriority;
+    four = 0x80;
+    value |= four;
+    sprite->drawPriority = value;
+    sprite->warioCollision = zeroByte;
+    four = (u32)sprite;
+    four += 0x20;
+    value = 0x28;
+    *(u8 *)four = value;
+    four++;
+    asm("" : "+r"(four));
+    *(u8 *)four = value;
+    four++;
+    asm("" : "+r"(four));
+    *(u8 *)four = value;
+    value = (u32)sprite;
+    value += 0x23;
+    four = 4;
+    *(u8 *)value = four;
+    value++;
+    asm("" : "+r"(value));
+    *(u8 *)value = four;
+    value++;
+    asm("" : "+r"(value));
+    *(u8 *)value = four;
+    value++;
+    asm("" : "+r"(value));
+    *(u8 *)value = four;
+    sprite->pOamData = sCuckooCondorClockIntroOam;
+    sprite->currentAnimationFrame = zeroByte;
+    sprite->animationTimer = zeroHalf;
+    sprite->pose = 1;
+    sprite->work3 = zeroByte;
+
+    /* Make agbcc rematerialize the third argument after preparing the coordinates. */
+    asm("" : : : "r2");
+    func_801E430(0xE7, four, 0, sprite->yPosition + 0x38, sprite->xPosition + 0xF8);
+    func_801E430(0xE7, 3, 0, sprite->yPosition + 0x34, sprite->xPosition + 0xE0);
+    func_801E430(0xE7, 2, 0, sprite->yPosition + 0x5C, sprite->xPosition + 0x94);
+    func_801E430(0xE7, 1, 0, sprite->yPosition + 0x56, sprite->xPosition - 0xB0);
+    func_801E430(0xE7, 0, 0, sprite->yPosition + 0x56, sprite->xPosition - 0x90);
+
+    func_801E430(0xE8, 0, 0, sprite->yPosition + (u8)*horizontalOffset + 0xA8, sprite->xPosition);
+    func_801E430(0xE8, 1, 0, sprite->yPosition + (u8)*horizontalOffset + 0x60, sprite->xPosition);
+    func_801E430(0xE8, 2, 0, sprite->yPosition + (u8)*horizontalOffset + 0x40, sprite->xPosition);
+    func_801E430(0xE8, 3, 0, sprite->yPosition + (u8)*horizontalOffset + 0x20, sprite->xPosition);
+    func_801E430(0xE8, 4, 0, sprite->yPosition + (u8)*horizontalOffset, sprite->xPosition);
+    func_801E430(0xE5, 0, 0, sprite->yPosition - 0x98, sprite->xPosition);
+    func_801E430(0xE6, 0, 0, sprite->yPosition, sprite->xPosition);
+
+    sprite->work2 = 0x3C;
+    LoadBossSpriteGraphics(0x83, 8, 4);
+    sprite->health = 0x0E;
+    UpdateBossHealthGauge();
+}
+
+void CuckooCondorWaitForIntro(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u8 *timer asm("r2");
+    register u32 value asm("r0");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work2;
+    value = *timer;
+    if (value != 0) {
+        value--;
+        *timer = value;
+        value <<= 24;
+        if (value != 0)
+            return;
+        {
+            register u8 *state asm("r1");
+            state = &gColorFadingState;
+            value = 7;
+            *state = value;
+        }
+    }
+    value = gColorFadingState;
+    if (value == 0) {
+        value = 2;
+        sprite->pose = value;
+        value = 0x5A;
+        *timer = value;
+    }
+}
+
+void CuckooCondorStartBattle(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register u8 *timer asm("r1");
+    register u32 value asm("r0");
+    register u32 zero asm("r4");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work2;
+    value = *timer;
+    value--;
+    *timer = value;
+    value <<= 24;
+    if (value == 0) {
+        value = gCurrentShopItem;
+        zero = value;
+        if (zero == 0) {
+            SpriteUtilStartBossTimer();
+            sprite->pOamData = sCuckooCondorClockIdleOam;
+            sprite->currentAnimationFrame = zero;
+            sprite->animationTimer = zero;
+            m4aSongNumStart(SOUND_A2);
+        }
+        value = 3;
+        sprite->pose = value;
+    }
+}
+
+void CuckooCondorWaitForTimer(void)
+{
+    if (gWarioPauseTimer == 0 && gTimerState == 1) {
+        SpriteUtilUnsetAllSpritesHighPriority();
+        gCurrentSprite.work2 = 0x18;
+        gCurrentSprite.pose = 4;
+    }
+}
+
+void CuckooCondorEnterArena(void)
+{
+    register struct PrimarySpriteData *sprite asm("r2");
+    register u32 spriteY asm("r3");
+    register u32 value asm("r0");
+    register u32 bgY asm("r1");
+    register u32 zero asm("r4");
+    register int slot asm("r0");
+    register struct PrimarySpriteData *sprites asm("r3");
+    register u32 offset asm("r2");
+    register u32 size asm("r1");
+    register struct PrimarySpriteData *other asm("r2");
+
+    sprite = &gCurrentSprite;
+    spriteY = sprite->yPosition;
+    value = spriteY >> 2;
+    bgY = gBg1YPosition;
+    bgY >>= 2;
+    value -= bgY;
+    value <<= 16;
+    value >>= 16;
+    if (value > 0x24) {
+        value = spriteY - 4;
+        sprite->yPosition = value;
+    } else {
+        zero = 0;
+        sprite->pose = 0x10;
+        {
+            register u8 *timer asm("r1");
+            timer = (u8 *)sprite;
+            timer += 0x29;
+            *timer = 0x3C;
+        }
+        slot = SpriteUtilFindSprite(0xE8, 0);
+        sprites = gSpriteData;
+        size = sizeof(struct PrimarySpriteData);
+        offset = slot;
+        offset *= size;
+        value = (u32)sprites + 4;
+        value = offset + value;
+        *(const struct AnimationFrame **)value = sCuckooCondorClawOpenOam;
+        other = (struct PrimarySpriteData *)(offset + (u32)sprites);
+        *(u8 *)((u32)other + 0x16) = zero;
+        *(u16 *)((u32)other + 0x14) = zero;
+        {
+            register u32 dma asm("r1");
+            dma = 0x040000D4;
+            *(vu32 *)dma = (u32)sCuckooCondorBattleGfx;
+            *(vu32 *)(dma + 4) = 0x06013000;
+            *(vu32 *)(dma + 8) = 0x80000800;
+            value = *(vu32 *)(dma + 8);
+        }
+        m4aSongNumStart(SOUND_A2);
+    }
+}
+
+int TryStartCuckooCondorGrab(void)
+{
+    register u32 flag asm("r3");
+    register struct WarioData *wario asm("r1");
+    register struct PrimarySpriteData *sprite asm("r1");
+    register u32 warioX asm("r2");
+    register u32 spriteX asm("r1");
+    register int slot asm("r0");
+    register struct PrimarySpriteData *sprites asm("r3");
+    register u32 offset asm("r2");
+    register u32 value asm("r0");
+    register u32 size asm("r1");
+    register u32 zero asm("r0");
+    register struct PrimarySpriteData *current asm("r0");
+    register u32 keep asm("r1");
+
+    flag = 0;
+    wario = &gWarioData;
+    warioX = wario->xPosition;
+    sprite = &gCurrentSprite;
+    spriteX = sprite->xPosition;
+    if (spriteX > warioX) {
+        spriteX -= warioX;
+        if ((s32)spriteX > 0x3F)
+            goto after_check;
+        goto trigger;
+    } else {
+        spriteX = warioX - spriteX;
+        if ((s32)spriteX <= 0x3F)
+            flag = 1;
+    }
+after_check:
+    if (flag == 0)
+        return;
+trigger:
+    slot = SpriteUtilFindSprite(0xE8, 0);
+    sprites = gSpriteData;
+    size = sizeof(struct PrimarySpriteData);
+    offset = slot;
+    offset *= size;
+    value = (u32)sprites + 4;
+    value = offset + value;
+    *(const struct AnimationFrame **)value = sCuckooCondorClawGrabOam;
+    offset += (u32)sprites;
+    zero = 0;
+    *(u8 *)(offset + 0x16) = zero;
+    *(u16 *)(offset + 0x14) = zero;
+    current = &gCurrentSprite;
+    size = 0x6E;
+    current->pose = size;
+    current += 0; /* keep current live */
+    current->work2 = 0x10;
+    m4aSongNumStart(SOUND_A2);
+    keep = 0;
+    asm("" : "+r"(keep));
+}
+
+void CuckooCondorMoveClock(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register u32 flagPtr asm("r2");
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 directionPtr asm("r5");
+
+    directionPtr = (u32)&gCuckooCondorMoveRight;
+    temp = *(u8 *)directionPtr;
+    if (temp != 0)
+        goto moveRight;
+
+    sprite = &gCurrentSprite;
+    temp = sprite->yPosition;
+    asm("" ::: "memory");
+    value = sprite->xPosition;
+    value -= 0x3C;
+    value <<= 16;
+    value >>= 16;
+    func_8023BFC(temp, value);
+    temp = gSpriteCollisionTileType;
+    if (temp == 0x11) {
+        temp = 1;
+        *(u8 *)directionPtr = temp;
+        goto end;
+    }
+    temp = sprite->xPosition;
+    temp -= 2;
+    sprite->xPosition = temp;
+    temp = (u32)&gCuckooCondorHasCapturedWario;
+    value = *(u8 *)temp;
+    flagPtr = temp;
+    if (value == 0)
+        goto updateTimer;
+    value = (u32)&gWarioData;
+    temp = *(u16 *)(value + 0x12);
+    temp -= 2;
+    goto storeWarioX;
+
+moveRight:
+    sprite = &gCurrentSprite;
+    temp = sprite->yPosition;
+    asm("" ::: "memory");
+    value = sprite->xPosition;
+    value += 0x3C;
+    value <<= 16;
+    value >>= 16;
+    func_8023BFC(temp, value);
+    temp = gSpriteCollisionTileType;
+    if (temp == 0x11) {
+        temp = 0;
+        *(u8 *)directionPtr = temp;
+        goto end;
+    }
+    temp = sprite->xPosition;
+    temp += 2;
+    sprite->xPosition = temp;
+    temp = (u32)&gCuckooCondorHasCapturedWario;
+    value = *(u8 *)temp;
+    flagPtr = temp;
+    if (value == 0)
+        goto updateTimer;
+    value = (u32)&gWarioData;
+    temp = *(u16 *)(value + 0x12);
+    temp += 2;
+
+storeWarioX:
+    *(u16 *)(value + 0x12) = temp;
+
+updateTimer:
+    temp = (u32)&gCurrentSprite;
+    asm("" : "+r"(temp));
+    value = temp;
+    value += 0x29;
+    temp = *(u8 *)value;
+    if (temp != 0) {
+        temp--;
+        goto storeTimer;
+    }
+    temp = *(u8 *)flagPtr;
+    if (temp == 0) {
+        TryStartCuckooCondorGrab();
+        goto end;
+    }
+    temp = 0x3C;
+storeTimer:
+    *(u8 *)value = temp;
+end:
+    return;
+}
+
+void CuckooCondorLowerPendulum(void)
+{
+    register u32 value asm("r4");
+    register struct PrimarySpriteData *sprite asm("r6");
+    register u8 *timer asm("r5");
+    register u32 temp asm("r0");
+    register u32 base asm("r1");
+    register u32 slot asm("r2");
+    register u32 base3 asm("r3");
+
+    if (gCuckooCondorHasCapturedWario != 0)
+        goto setDone;
+
+    value = *(u8 *)&gBossTookDamage;
+    if (value != 0) {
+        gCurrentSprite.pose = 0x11;
+        return;
+    }
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work2;
+    temp = *timer;
+    if (temp != 0) {
+        temp--;
+        *timer = temp;
+        temp <<= 24;
+        if (temp != 0)
+            return;
+
+        temp = SpriteUtilFindSprite(0xE8, 0);
+        slot = temp;
+        base = (u32)gSpriteData;
+        temp = sizeof(struct PrimarySpriteData);
+        temp *= slot;
+        temp += base;
+        base = 0x43;
+        *(u8 *)(temp + 0x1E) = base;
+        temp = SOUND_A4;
+        m4aSongNumStart(temp);
+    }
+
+    base = (u32)&gCuckooCondorPendulumLength;
+    temp = *(u8 *)base;
+    if (temp <= 0xBC) {
+        temp += 0x10;
+        *(u8 *)base = temp;
+        return;
+    }
+
+    temp = 0x6F;
+    sprite->pose = temp;
+    temp = 0x3C;
+    *timer = temp;
+    temp = 0xBC;
+    *(u8 *)base = temp;
+
+    slot = SpriteUtilFindSprite(0xE8, 0);
+    asm("" : "+r"(slot));
+    base3 = (u32)gSpriteData;
+    temp = sizeof(struct PrimarySpriteData);
+    slot *= temp;
+    temp = base3 + 4;
+    temp = slot + temp;
+    base = (u32)sCuckooCondorPendulumRetractedOam;
+    *(u32 *)temp = base;
+    slot += base3;
+    *(u8 *)(slot + 0x16) = value;
+    *(u16 *)(slot + 0x14) = value;
+    return;
+
+setDone:
+    temp = (u32)&gCurrentSprite;
+    slot = 0;
+    base = 0x6F;
+    *(u8 *)(temp + 0x1C) = base;
+    temp += 0x29;
+    *(u8 *)temp = slot;
+}
+
+void CuckooCondorRaisePendulum(void)
+{
+    register u8 *flag asm("r4");
+    register u32 zero asm("r6");
+    register u32 timer asm("r5");
+    register s32 slot asm("r4");
+    register u32 value asm("r0");
+    register u32 temp asm("r1");
+    register u32 offset asm("r2");
+    register struct PrimarySpriteData *other asm("r3");
+    u8 *timerPtr;
+    u8 *verticalOffset;
+    struct PrimarySpriteData *sprite;
+
+    value = (u32)&gCuckooCondorHasCapturedWario;
+    temp = *(u8 *)value;
+    flag = (u8 *)value;
+    if (temp == 0) {
+        zero = (u8)gBossTookDamage;
+        if (zero != 0) {
+            gCurrentSprite.pose = 0x11;
+            return;
+        }
+
+        sprite = &gCurrentSprite;
+        timerPtr = &sprite->work2;
+        value = *timerPtr;
+        if (value != 0) {
+            temp = value - 1;
+            *timerPtr = temp;
+            value = temp;
+            value <<= 24;
+            timer = value >> 24;
+            if (timer != 0) {
+                value = timer;
+                asm("" : "+r"(value));
+                if (value != 0x30)
+                    return;
+                slot = SpriteUtilFindSprite(0xE8, 0);
+                asm("" : "+r"(slot));
+                temp = (u32)gSpriteData;
+                value = sizeof(struct PrimarySpriteData);
+                offset = slot;
+                offset *= value;
+                other = (struct PrimarySpriteData *)(offset + temp);
+                value = 0x44;
+                other->warioCollision = value;
+                temp += 4;
+                offset += temp;
+                value = (u32)sCuckooCondorClawCloseOam;
+                *(u32 *)offset = value;
+                other->currentAnimationFrame = zero;
+                value = 1;
+                other->animationTimer = value;
+                return;
+            }
+
+            slot = SpriteUtilFindSprite(0xE8, 0);
+                asm("" : "+r"(slot));
+            other = (struct PrimarySpriteData *)gSpriteData;
+            value = sizeof(struct PrimarySpriteData);
+            offset = slot;
+            offset *= value;
+            value = (u32)other + 4;
+            value = offset + value;
+            temp = (u32)sCuckooCondorClawIdleOam;
+            *(u32 *)value = temp;
+            offset += (u32)other;
+            *(u8 *)(offset + 0x16) = timer;
+            *(u16 *)(offset + 0x14) = timer;
+            value = 0x42;
+            *(u8 *)(offset + 0x1E) = value;
+            return;
+        }
+    }
+
+    verticalOffset = &gCuckooCondorPendulumLength;
+    value = *verticalOffset;
+    if (value > 0x10) {
+        value -= 8;
+        *verticalOffset = value;
+        value = *flag;
+        if (value != 0) {
+            slot = SpriteUtilFindSprite(0xE8, 0);
+            asm("" : "+r"(slot));
+            gWarioData.yPosition = gSpriteData[slot].yPosition - gWarioData.hitboxOffsetTop;
+        }
+    } else {
+        timer = *flag;
+        if (timer == 0) {
+            value = (u32)&gCurrentSprite;
+            offset = 0x10;
+            *(u8 *)(value + 0x1C) = offset;
+            value += 0x29;
+            temp = 0x3C;
+            *(u8 *)value = temp;
+            *verticalOffset = offset;
+            slot = SpriteUtilFindSprite(0xE8, 0);
+            asm("" : "+r"(slot));
+            other = (struct PrimarySpriteData *)gSpriteData;
+            value = sizeof(struct PrimarySpriteData);
+            offset = slot;
+            offset *= value;
+            value = (u32)other + 4;
+            value = offset + value;
+            temp = (u32)sCuckooCondorClawOpenOam;
+            *(u32 *)value = temp;
+            offset += (u32)other;
+            *(u8 *)(offset + 0x16) = timer;
+            *(u16 *)(offset + 0x14) = timer;
+            m4aSongNumStart(SOUND_A2);
+        } else {
+            value = (u32)&gCurrentSprite;
+            offset = 0x10;
+            *(u8 *)(value + 0x1C) = offset;
+            value += 0x29;
+            temp = 0x3C;
+            *(u8 *)value = temp;
+            *verticalOffset = offset;
+        }
+    }
+}
+
+void CuckooCondorSinkAfterHit(void)
+{
+    u16 difference;
+
+    difference = (gCurrentSprite.yPosition >> 2) - (gBg1YPosition >> 2);
+    if (difference <= 0x4F)
+        gCurrentSprite.yPosition += 8;
+    else {
+        gCurrentSprite.pose = 0x12;
+        gCurrentSprite.work2 = 0x30;
+    }
+}
+
+void CuckooCondorHandleClockDamage(void)
+{
+    register u32 reg6 asm("r6");
+    register u32 timer asm("r4");
+    register u32 zero asm("r5");
+    register u32 pose41 asm("r8");
+    register u32 savedTimer asm("r9");
+    register u8 *savedTimerPtr asm("r10");
+    register u32 raw asm("r0");
+    register u32 temp asm("r1");
+    register u32 mask asm("r2");
+    register u8 *workPtr asm("r1");
+    register u8 *laterPtr asm("r3");
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprites;
+    u32 stride;
+    s32 slot;
+
+    raw = (u32)&gCurrentSprite;
+    workPtr = (u8 *)raw;
+    workPtr += 0x29;
+    mask = *workPtr;
+    reg6 = raw;
+    if (mask != 0) {
+        raw = mask - 1;
+        *workPtr = raw;
+        raw <<= 24;
+        timer = raw >> 24;
+        if (timer <= 0x20) {
+            zero = 7;
+            zero &= timer;
+            if (zero == 0) {
+                raw = *(u8 *)(reg6 + 0x1D);
+                if (raw != 0 && timer == 0x20) {
+                    raw--;
+                    *(u8 *)(reg6 + 0x1D) = raw;
+                    UpdateBossHealthGauge();
+                    *(const struct AnimationFrame **)(reg6 + 4) = sCuckooCondorHurtOam;
+                    *(u8 *)(reg6 + 0x16) = zero;
+                    *(u16 *)(reg6 + 0x14) = zero;
+                    VoiceSetPlay(13);
+                }
+
+                raw = 8;
+                raw &= timer;
+                asm("" : "+r"(raw));
+                raw <<= 24;
+                mask = raw >> 24;
+                if (mask != 0) {
+                    temp = (u32)&gCurrentSprite;
+                    raw = 3;
+                    *(u8 *)(temp + 0x1B) = raw;
+                    reg6 = temp;
+                } else {
+                    raw = (u32)&gCurrentSprite;
+                    *(u8 *)(raw + 0x1B) = mask;
+                    reg6 = raw;
+                }
+            }
+        }
+    }
+
+    current = (struct PrimarySpriteData *)reg6;
+    temp = current->health;
+    raw = (u32)&gBossInitialHealth;
+    raw = *(u8 *)raw;
+    raw >>= 1;
+    raw++;
+    if ((s32)temp < (s32)raw) {
+        raw = 0x29;
+        raw += (u32)current;
+        savedTimerPtr = (u8 *)raw;
+        temp = *savedTimerPtr;
+        savedTimer = temp;
+        if (temp != 0)
+            return;
+        {
+            slot = SpriteUtilFindSpriteSlot(0xE6);
+            sprites = gSpriteData;
+            stride = sizeof(struct PrimarySpriteData);
+            raw = (u32)&sprites[slot];
+            reg6 = 0x27;
+            asm("" : "+r"(reg6));
+            *(u8 *)(raw + 0x1C) = reg6;
+
+            slot = SpriteUtilFindSprite(0xE7, 4);
+            sprites[slot].pose = reg6;
+            slot = SpriteUtilFindSprite(0xE7, 3);
+            raw = (u32)&sprites[slot];
+            pose41 = 0x29;
+            asm("" : "+r"(pose41));
+            *(u8 *)(raw + 0x1C) = pose41;
+            slot = SpriteUtilFindSprite(0xE7, 2);
+            sprites[slot].pose = reg6;
+            slot = SpriteUtilFindSprite(0xE7, 1);
+            sprites[slot].pose = reg6;
+            slot = SpriteUtilFindSprite(0xE7, 0);
+            sprites[slot].pose = pose41;
+            slot = SpriteUtilFindSprite(0xE8, 4);
+            sprites[slot].pose = pose41;
+            slot = SpriteUtilFindSprite(0xE8, 3);
+            sprites[slot].pose = reg6;
+            slot = SpriteUtilFindSprite(0xE8, 2);
+            sprites[slot].pose = pose41;
+            slot = SpriteUtilFindSprite(0xE8, 1);
+            sprites[slot].pose = reg6;
+            slot = SpriteUtilFindSprite(0xE8, 0);
+            sprites[slot].pose = pose41;
+
+            current->pose = 0x13;
+            temp = savedTimer;
+            asm("" : "+r"(temp));
+            raw = (u32)savedTimerPtr;
+            *(u8 *)raw = temp;
+            m4aSongNumStart(SOUND_AA);
+            VoiceSetPlay(0);
+            return;
+        }
+    }
+
+    laterPtr = (u8 *)current;
+    laterPtr += 0x29;
+    raw = *laterPtr;
+    if (raw <= 0x10) {
+        mask = current->yPosition;
+        raw = mask >> 2;
+        temp = (u32)&gBg1YPosition;
+        temp = *(u16 *)temp;
+        temp >>= 2;
+        raw -= temp;
+        raw <<= 16;
+        raw >>= 16;
+        if (raw > 0x24) {
+            raw = mask - 4;
+            current->yPosition = raw;
+        } else {
+            raw = 0;
+            temp = 0x6F;
+            *(u8 *)(reg6 + 0x1C) = temp;
+            *laterPtr = raw;
+            temp = (u32)sCuckooCondorClockIdleOam;
+            *(u32 *)(reg6 + 4) = temp;
+            *(u8 *)(reg6 + 0x16) = raw;
+            *(u16 *)(reg6 + 0x14) = raw;
+        }
+    }
+}
+
+void CuckooCondorBreakClock(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *counter asm("r12");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+    register u8 *extent asm("r1");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+
+    sprite = &gCurrentSprite;
+    value = 0x29;
+    counter = (u8 *)sprite + value;
+    switch (*counter) {
+    case 0:
+        gSwitchStates[2] = 2;
+        SpriteSpawnAsChild(0x0A, 0, 0, sprite->yPosition,
+                           sprite->xPosition - 0x20);
+        SpriteSpawnAsChild(0x0A, 0, 0, sprite->yPosition + 0xA0,
+                           sprite->xPosition + 0x20);
+        break;
+    case 2:
+        SpriteSpawnAsChild(0x0B, 0, 0, sprite->yPosition,
+                           sprite->xPosition + 0x50);
+        SpriteSpawnAsChild(0x0B, 0, 0, sprite->yPosition + 0x8C,
+                           sprite->xPosition - 0x50);
+        break;
+    case 6:
+        status = sprite->status;
+        value = 0xFBFF;
+        value &= status;
+        zeroByte = 0;
+        zeroHalf = 0;
+        sprite->status = value;
+        extent = &sprite->hitboxExtentUp;
+        *extent = 0x70;
+        extent++;
+        *extent = 0x38;
+        extent++;
+        *extent = 0x28;
+        extent++;
+        asm("" : "+r"(extent));
+        *extent = 0x28;
+        sprite->pOamData = sCuckooCondorBodyOam;
+        sprite->currentAnimationFrame = zeroByte;
+        sprite->animationTimer = zeroHalf;
+        sprite->warioCollision = 0x47;
+        sprite->work3 = zeroByte;
+        sprite->pose = 0x14;
+        value = 0x4D;
+        asm("" : "+r"(value));
+        extent = counter;
+        *extent = value;
+        break;
+    }
+    gCurrentSprite.work2++;
+}
+
+void CuckooCondorFlyAndBob(void)
+{
+    register u32 spriteBase asm("r2");
+    register u32 workPtr asm("r12");
+    register u32 index asm("r3");
+    register u32 table asm("r6");
+    register u32 delta asm("r5");
+    register u32 sprite asm("r4");
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register u32 x asm("r2");
+
+    spriteBase = (u32)&gCurrentSprite;
+    temp = 0x2A;
+    asm("" : "+r"(temp));
+    temp += spriteBase;
+    workPtr = temp;
+    index = *(u8 *)temp;
+    table = (u32)sCuckooCondorFlightYVelocity;
+    temp = index << 1;
+    temp += table;
+    delta = *(u16 *)temp;
+    sprite = 0;
+    value = *(s16 *)(temp + sprite);
+    temp = 0x7FFF;
+    sprite = spriteBase;
+    if ((s32)value == (s32)temp) {
+        delta = *(u16 *)table;
+        index = 0;
+    }
+
+    temp = index + 1;
+    value = workPtr;
+    *(u8 *)value = temp;
+    temp = *(u16 *)(sprite + 8);
+    temp += delta;
+    *(u16 *)(sprite + 8) = temp;
+
+    value = sprite;
+    value += 0x29;
+    temp = *(u8 *)value;
+    temp--;
+    *(u8 *)value = temp;
+    temp <<= 24;
+    if (temp == 0) {
+        temp = 21;
+        *(u8 *)(sprite + 0x1C) = temp;
+        temp = *(u8 *)(sprite + 0x1D);
+        if (temp <= 1) {
+            temp = 12;
+            *(u8 *)value = temp;
+            return;
+        }
+        temp = 25;
+        *(u8 *)value = temp;
+        return;
+    }
+
+    value = *(u16 *)sprite;
+    temp = 0x40;
+    temp &= value;
+    if (temp != 0) {
+        temp = *(u8 *)(sprite + 0x1D);
+        if (temp <= 1) {
+            temp = *(u16 *)(sprite + 0x0A);
+            temp += 2;
+            *(u16 *)(sprite + 0x0A) = temp;
+            temp = *(u8 *)(sprite + 0x16);
+            temp++;
+            *(u8 *)(sprite + 0x16) = temp;
+        } else {
+            temp = *(u16 *)(sprite + 0x0A);
+            temp++;
+            *(u16 *)(sprite + 0x0A) = temp;
+        }
+        temp = *(u16 *)(sprite + 8);
+        asm volatile("" : : : "memory");
+        x = 0x80;
+        x <<= 1;
+        asm("" : "+r"(x));
+        value = x;
+        x = *(u16 *)(sprite + 0x0A);
+        value += x;
+        value <<= 16;
+        value >>= 16;
+        func_8023BFC(temp, value);
+        temp = *(u8 *)&gSpriteCollisionTileType;
+        if (temp != 0x11)
+            return;
+        value = *(u16 *)sprite;
+        temp = 0xFFBF;
+        temp &= value;
+    } else {
+        temp = *(u8 *)(sprite + 0x1D);
+        if (temp <= 1) {
+            temp = *(u16 *)(sprite + 0x0A);
+            temp -= 2;
+            *(u16 *)(sprite + 0x0A) = temp;
+            temp = *(u8 *)(sprite + 0x16);
+            temp++;
+            *(u8 *)(sprite + 0x16) = temp;
+        } else {
+            temp = *(u16 *)(sprite + 0x0A);
+            temp--;
+            *(u16 *)(sprite + 0x0A) = temp;
+        }
+        temp = *(u16 *)(sprite + 8);
+        asm volatile("" : : : "memory");
+        x = (u32)-0x100;
+        asm("" : "+r"(x));
+        value = x;
+        x = *(u16 *)(sprite + 0x0A);
+        value += x;
+        value <<= 16;
+        value >>= 16;
+        func_8023BFC(temp, value);
+        temp = *(u8 *)&gSpriteCollisionTileType;
+        if (temp != 0x11)
+            return;
+        value = *(u16 *)sprite;
+        temp = 0x40;
+        temp |= value;
+    }
+    *(u16 *)sprite = temp;
+}
+
+void CuckooCondorLayEgg(void)
+{
+    struct PrimarySpriteData *sprite = &gCurrentSprite;
+    u32 index = sprite->work3;
+    s16 delta = sCuckooCondorFlightYVelocity[index];
+    if (delta == 0x7FFF) {
+        delta = sCuckooCondorFlightYVelocity[0];
+        index = 0;
+    }
+    sprite->work3 = index + 1;
+    sprite->yPosition += delta;
+    if (sprite->health <= 4)
+        sprite->currentAnimationFrame++;
+    if (--sprite->work2 != 0)
+        return;
+
+    sprite->pose = 20;
+    if (sprite->health <= 4)
+        sprite->work2 = 0x2F;
+    else
+        sprite->work2 = 0x4D;
+
+    if (sprite->status & 0x40)
+        SpawnPrimarySpriteWithStatus(0xE9, 0, 0, sprite->yPosition + 0x5C, sprite->xPosition - 0x10, 0);
+    else
+        SpawnPrimarySpriteWithStatus(0xE9, 0, 0, sprite->yPosition + 0x5C, sprite->xPosition + 0x10, 0x40);
+}
+
+void CuckooCondorHandleCondorDamage(void)
+{
+    register struct PrimarySpriteData *sprite asm("r2");
+    register u8 *timer asm("r12");
+    register u32 value asm("r0");
+    register u32 mask asm("r1");
+    register u32 work asm("r4");
+    register s32 other asm("r2");
+    register s32 end asm("r6");
+    register u32 one asm("r5");
+    register u32 pose asm("r3");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work2;
+    value = *timer;
+    mask = value;
+    if (mask != 0) {
+        value--;
+        *timer = value;
+        mask = 0xFF;
+        value <<= 24;
+        work = value >> 24;
+        if (work > 0x0F && (work & 7) == 0) {
+            value = sprite->health;
+            if (value != 0 && work == 0x30) {
+                value--;
+                sprite->health = value;
+                value &= mask;
+                if (value == 0) {
+                    gTimerState = 11;
+                    SpriteUtilSetWarioBossVictoryPose();
+                    other = (s32)gSpriteData;
+                    value = 0xFD;
+                    value <<= 2;
+                    end = other + value;
+                    one = 1;
+                    pose = 0x6B;
+                    do {
+                        value = *(u8 *)(other + 0x17);
+                        value += 23;
+                        value <<= 24;
+                        value >>= 24;
+                        if (value <= 1) {
+                            mask = *(u16 *)other;
+                            value = one;
+                            value &= mask;
+                            if (value != 0)
+                                *(u8 *)(other + 0x1C) = pose;
+                        }
+                        other += sizeof(struct PrimarySpriteData);
+                    } while (other <= end);
+                }
+                UpdateBossHealthGauge();
+                VoiceSetPlay(13);
+            }
+            value = work & 8;
+            value <<= 24;
+            mask = value >> 24;
+            if (mask != 0) {
+                register struct PrimarySpriteData *current asm("r1");
+                current = &gCurrentSprite;
+                value = 2;
+                current->palette = value;
+                if (work == 0x28)
+                    VoiceSetPlay(1);
+            } else {
+                register struct PrimarySpriteData *current asm("r0");
+                current = &gCurrentSprite;
+                current->palette = mask;
+            }
+        }
+    } else {
+        value = sprite->health;
+        pose = value;
+        if (pose == 0) {
+            value = 0x78;
+            sprite->pose = value;
+            *timer = value;
+            m4aSongNumStart(SOUND_A1);
+        } else {
+            sprite->pOamData = sCuckooCondorBodyOam;
+            sprite->currentAnimationFrame = mask;
+            sprite->animationTimer = mask;
+            sprite->pose = 20;
+            if (pose <= 4)
+                value = 0x2F;
+            else
+                value = 0x4D;
+            *timer = value;
+        }
+    }
+}
+
+void CuckooCondorExplode(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register struct PrimarySpriteData *base asm("r1");
+    register u8 *timer asm("r2");
+    register u32 value asm("r0");
+
+    base = &gCurrentSprite;
+    timer = &base->work2;
+    value = *timer;
+    value--;
+    *timer = value;
+    value = *timer;
+    sprite = base;
+    switch (value) {
+    case 110:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0xC0,
+                     sprite->xPosition);
+        break;
+    case 107:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0xC0,
+                     sprite->xPosition - 0x40);
+        break;
+    case 103:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0xC0,
+                     sprite->xPosition + 0x48);
+        break;
+    case 100:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x80,
+                     sprite->xPosition - 0x20);
+        break;
+    case 97:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x80,
+                     sprite->xPosition - 0x48);
+        break;
+    case 93:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x80,
+                     sprite->xPosition + 0x40);
+        break;
+    case 90:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x40,
+                     sprite->xPosition + 0x20);
+        break;
+    case 87:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x40,
+                     sprite->xPosition - 0x40);
+        break;
+    case 83:
+        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x40,
+                     sprite->xPosition + 0x48);
+        break;
+    case 80:
+        func_801E430(0x0B, 0, 0, sprite->yPosition,
+                     sprite->xPosition);
+        break;
+    case 77:
+        func_801E430(0x0B, 0, 0, sprite->yPosition,
+                     sprite->xPosition - 0x48);
+        break;
+    case 73:
+        func_801E430(0x0B, 0, 0, sprite->yPosition,
+                     sprite->xPosition + 0x60);
+        break;
+    case 70:
+        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x40,
+                     sprite->xPosition - 0x20);
+        break;
+    case 67:
+        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x40,
+                     sprite->xPosition - 0x60);
+        break;
+    case 63:
+        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x40,
+                     sprite->xPosition + 0x40);
+        break;
+    case 60:
+        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x80,
+                     sprite->xPosition - 0x20);
+        break;
+    case 57:
+        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x80,
+                     sprite->xPosition - 0x60);
+        break;
+    case 53:
+        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x80,
+                     sprite->xPosition + 0x40);
+        break;
+    case 50:
+        func_801E430(0x0A, 0, 0, sprite->yPosition + 0x60,
+                     sprite->xPosition + 0x60);
+        break;
+    case 40:
+        func_801E430(0x0A, 0, 0, sprite->yPosition,
+                     sprite->xPosition);
+        break;
+    case 30:
+        func_801E430(0x0A, 0, 0, sprite->yPosition - 0x40,
+                     sprite->xPosition - 0x40);
+        break;
+    case 20:
+        func_801E430(0x0A, 0, 0, sprite->yPosition + 0x80,
+                     sprite->xPosition - 0x20);
+        break;
+    case 24:
+        func_801E430(0x0A, 0, 0, sprite->yPosition + 0x60,
+                     sprite->xPosition + 0x20);
+        break;
+    case 0:
+        func_801E430(0xCF, 0, 0, sprite->yPosition,
+                     sprite->xPosition);
+        sprite->status = 0;
+        break;
+    }
+}
+
+void CuckooCondorTakeShopItemHit(void)
+{
+    struct PrimarySpriteData *sprite;
+    u8 timer;
+    switch (gCurrentShopItem) {
+    case 2: timer = 12; break;
+    case 3: timer = 11; break;
+    case 4: timer = 10; break;
+    case 5: timer = 5; break;
+    case 6: timer = 6; break;
+    case 7: timer = 2; break;
+    case 8: timer = 7; break;
+    default: timer = 12; break;
+    }
+    sprite = &gCurrentSprite;
+    sprite->work2 = timer;
+    sprite->pOamData = sCuckooCondorHurtOam;
+    sprite->currentAnimationFrame = 0;
+    sprite->animationTimer = 0;
+    gBossHurtTimer = 0x20;
+    gBossHurtState = 0x21;
+    sprite->pose = 0x7B;
+    if (sprite->health != 0) {
+        sprite->health--;
+        UpdateBossHealthGauge();
+        m4aSongNumStart(SOUND_7A);
+    }
+    VoiceSetPlay(13);
+}
+
+void CuckooCondorHandleShopItemHit(void)
+{
+    register u32 timerPtr asm("r5");
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register u32 health asm("r2");
+    register u32 sprite asm("r3");
+    register u32 healthCopy asm("r4");
+
+    timerPtr = (u32)&gBossHurtTimer;
+    temp = *(u8 *)timerPtr;
+    value = temp;
+    if (value != 0) {
+        temp--;
+        *(u8 *)timerPtr = temp;
+        temp <<= 24;
+        value = temp >> 24;
+        temp = 7;
+        temp &= value;
+        if (temp != 0)
+            return;
+
+        temp = 8;
+        temp &= value;
+        asm("" : "+r"(temp));
+        temp <<= 24;
+        value = temp >> 24;
+        if (value != 0) {
+            value = (u32)&gCurrentSprite;
+            temp = 3;
+            *(u8 *)(value + 0x1B) = temp;
+            return;
+        }
+        temp = (u32)&gCurrentSprite;
+        *(u8 *)(temp + 0x1B) = value;
+        return;
+    }
+
+    sprite = (u32)&gCurrentSprite;
+    temp = sprite;
+    temp += 0x29;
+    health = *(u8 *)(sprite + 0x1D);
+    healthCopy = health;
+    temp = *(u8 *)temp;
+    if (healthCopy == temp) {
+        temp = (u32)&gBossInitialHealth;
+        *(u8 *)temp = health;
+        temp = 3;
+        *(u8 *)(sprite + 0x1C) = temp;
+        temp = (u32)sCuckooCondorClockIdleOam;
+        *(u32 *)(sprite + 4) = temp;
+        *(u8 *)(sprite + 0x16) = value;
+        *(u16 *)(sprite + 0x14) = value;
+        SpriteUtilStartBossTimer();
+        temp = SOUND_A2;
+        m4aSongNumStart(temp);
+        return;
+    }
+
+    value = 0x20;
+    *(u8 *)timerPtr = value;
+    temp = (u32)&gBossHurtState;
+    *(u8 *)temp = value;
+    if (healthCopy == 0)
+        return;
+    temp = health - 1;
+    *(u8 *)(sprite + 0x1D) = temp;
+    UpdateBossHealthGauge();
+    temp = SOUND_7A;
+    m4aSongNumStart(temp);
+}
+
+void InitCuckooCondorClockPiece(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register struct PrimarySpriteData *ptr asm("r3");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+    register u8 *bytePtr asm("r0");
+    register u8 *bytePtr2 asm("r1");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    zeroByte = 0x8408;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    zeroHalf = 0;
+    value |= status;
+    value &= 0xFFFB;
+    bytePtr2 = (u8 *)sprite;
+    *(u16 *)bytePtr2 = value;
+    *(bytePtr2 + 0x1E) = zeroByte;
+
+    bytePtr = (u8 *)sprite + 0x23;
+    status = 4;
+    *bytePtr = status;
+    bytePtr++;
+    asm("" : "+r"(bytePtr));
+    *bytePtr = status;
+    bytePtr++;
+    asm("" : "+r"(bytePtr));
+    *bytePtr = status;
+    bytePtr++;
+    asm("" : "+r"(bytePtr));
+    *bytePtr = status;
+
+    bytePtr = (u8 *)sprite;
+    *(bytePtr + 0x16) = zeroByte;
+    *(u16 *)(bytePtr + 0x14) = zeroHalf;
+    value = 0x10;
+    bytePtr2 = (u8 *)sprite;
+    *(bytePtr2 + 0x1C) = value;
+    value = *(bytePtr2 + 0x18);
+    ptr = sprite;
+
+    switch (value) {
+    case 0:
+        value = (u32)sCuckooCondorClockPieceLowerLeftOam;
+        goto commonSmall;
+    case 1:
+        value = (u32)sCuckooCondorClockPieceUpperLeftOam;
+        ptr->pOamData = (const struct AnimationFrame *)value;
+        bytePtr = (u8 *)ptr;
+        bytePtr += 0x20;
+        status = 0x30;
+        *bytePtr = status;
+        bytePtr++;
+        asm("" : "+r"(bytePtr));
+        *bytePtr = status;
+        bytePtr2 = (u8 *)ptr;
+        bytePtr2 += 0x22;
+        value = 0x18;
+        *bytePtr2 = value;
+        bytePtr2 += 6;
+        asm("" : "+r"(bytePtr2));
+        value = 0x3C;
+        *bytePtr2 = value;
+        break;
+    case 2:
+        value = (u32)sCuckooCondorClockPieceLowerRightOam;
+commonSmall:
+        ptr->pOamData = (const struct AnimationFrame *)value;
+        bytePtr = (u8 *)ptr;
+        bytePtr += 0x20;
+        status = 0x10;
+        *bytePtr = status;
+        bytePtr++;
+        asm("" : "+r"(bytePtr));
+        *bytePtr = status;
+        bytePtr2 = (u8 *)ptr;
+        bytePtr2 += 0x22;
+        value = 0x18;
+        *bytePtr2 = value;
+        break;
+    case 3:
+        value = (u32)sCuckooCondorClockPieceUpperRightOam;
+        ptr->pOamData = (const struct AnimationFrame *)value;
+        bytePtr = (u8 *)ptr;
+        bytePtr += 0x20;
+        status = 0x10;
+        *bytePtr = status;
+        bytePtr++;
+        asm("" : "+r"(bytePtr));
+        *bytePtr = status;
+        bytePtr++;
+        asm("" : "+r"(bytePtr));
+        *bytePtr = status;
+        break;
+    case 4:
+        value = (u32)sCuckooCondorClockPieceTopOam;
+        ptr->pOamData = (const struct AnimationFrame *)value;
+        bytePtr2 = (u8 *)ptr;
+        bytePtr2 += 0x20;
+        value = 0x10;
+        *bytePtr2 = value;
+        bytePtr2++;
+        asm("" : "+r"(bytePtr2));
+        *bytePtr2 = value;
+        bytePtr2++;
+        asm("" : "+r"(bytePtr2));
+        *bytePtr2 = value;
+        status = ptr->status;
+        value = 0x80;
+        zeroByte = 0;
+        value |= status;
+        ptr->status = value;
+        bytePtr = (u8 *)ptr + 0x27;
+        *bytePtr = zeroByte;
+        bytePtr2 = (u8 *)ptr + 0x28;
+        value = 0x3C;
+        *bytePtr2 = value;
+        bytePtr = (u8 *)ptr + 0x29;
+        *bytePtr = zeroByte;
+        break;
+    }
+    SpriteUtilFindSpriteSlotWork3(0x18);
+}
+
+void UpdateCuckooCondorClockPiece(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 size asm("r5");
+    register struct PrimarySpriteData *sprites asm("r6");
+    register struct PrimarySpriteData *parent asm("r1");
+    register u32 value asm("r0");
+    u8 *timer;
+
+    sprite = &gCurrentSprite;
+    if (sprite->roomSlot == 1)
+        goto room1;
+    if (sprite->roomSlot == 4)
+        goto room4;
+    goto end;
+
+room1:
+    sprites = gSpriteData;
+    size = sizeof(struct PrimarySpriteData);
+    value = sprite->work3;
+    size = sizeof(struct PrimarySpriteData);
+    value *= size;
+    parent = (struct PrimarySpriteData *)(value + (u32)sprites);
+    value = parent->pose;
+    /* agbcc lengthens this in C by four bytes when the final label is just
+     * outside its conservative range estimate; the original uses one cmp/bls. */
+    asm("cmp %0, #15\n\tbls .LCuckooCondorClockPieceUpdateEnd" : : "r"(value));
+    if (gTimerState != 1)
+        goto end;
+    if (parent->health > 10)
+        goto end;
+    if (gCuckooCondorHasCapturedWario != 0)
+        goto end;
+    if (*(u8 *)&gBossTookDamage != 0)
+        goto end;
+    timer = &sprite->work1;
+    if (*timer != 0) {
+        (*timer)--;
+        goto end;
+    }
+    func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - 0x20));
+    if (gSpriteCollisionTileType == 0x11)
+        goto end;
+    value = SpriteUtilFindSprite(0xE7, 4);
+    value *= size;
+    value += (u32)sprites;
+    if (((struct PrimarySpriteData *)value)->pose != 16)
+        goto end;
+    sprite->pose = 0x6E;
+    goto end;
+
+room4:
+    {
+        register u8 *work0Ptr asm("r2");
+        register u32 value asm("r0");
+        register u32 zero asm("r1");
+        register u8 *work2Ptr asm("r0");
+        work0Ptr = &sprite->work0;
+        value = *work0Ptr;
+        value--;
+        zero = 0;
+        *work0Ptr = value;
+        work2Ptr = &sprite->work2;
+        *work2Ptr = zero;
+        sprites = gSpriteData;
+        work2Ptr++;
+        asm("" : "+r"(work2Ptr));
+        value = *work2Ptr;
+        size = sizeof(struct PrimarySpriteData);
+        value *= size;
+        parent = (struct PrimarySpriteData *)(value + (u32)sprites);
+    }
+    if (parent->pose <= 15)
+        goto end;
+    if (gTimerState != 1)
+        goto end;
+    if (parent->health > 12)
+        goto end;
+    if (gCuckooCondorHasCapturedWario != 0)
+        goto end;
+    if (*(u8 *)&gBossTookDamage != 0)
+        goto end;
+    timer = &sprite->work1;
+    if (*timer != 0) {
+        (*timer)--;
+        goto end;
+    }
+    func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition + 0x80));
+    if (gSpriteCollisionTileType == 0x11)
+        goto end;
+    value = SpriteUtilFindSprite(0xE7, 1);
+    value *= size;
+    value += (u32)sprites;
+    if (((struct PrimarySpriteData *)value)->pose != 16)
+        goto end;
+    sprite->pose = 0x11;
+end:
+    asm(".LCuckooCondorClockPieceUpdateEnd:");
+}
+
+void CuckooCondorClockPieceStartSpin(void)
+{
+    gCurrentSprite.pose = 0x12;
+    gCurrentSprite.work1 = 0x3C;
+    m4aSongNumStart(SOUND_A8);
+}
+
+void CuckooCondorClockPieceSpinUp(void)
+{
+    register struct PrimarySpriteData *baseSprite asm("r0");
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *timer asm("r5");
+    register u32 value asm("r1");
+    register u32 newValue asm("r2");
+    register u8 *work0 asm("r1");
+    register u32 temp asm("r0");
+    register u32 y asm("r3");
+
+    baseSprite = &gCurrentSprite;
+    timer = &baseSprite->work1;
+    value = *timer;
+    newValue = value - 1;
+    *timer = newValue;
+    value = newValue << 24;
+    sprite = baseSprite;
+    if (value != 0) {
+        temp = value;
+        asm("" : "+r"(temp));
+        temp >>= 24;
+        if (temp > 0x32) {
+            work0 = &sprite->work0;
+            temp = *work0;
+            temp -= 2;
+            goto storeWork0;
+        }
+        if (temp > 0x23) {
+            work0 = &sprite->work0;
+            temp = *work0;
+            temp -= 4;
+            goto storeWork0;
+        }
+        if (temp > 20) {
+            work0 = &sprite->work0;
+            temp = *work0;
+            temp -= 8;
+            goto storeWork0;
+        }
+        work0 = &sprite->work0;
+        temp = *work0;
+        temp -= 16;
+storeWork0:
+        *work0 = temp;
+        return;
+    }
+
+    if (gCuckooCondorHasCapturedWario == 0 && *(u8 *)&gBossTookDamage == 0) {
+        temp = *(volatile u8 *)&sprite->work0;
+        y = sprite->yPosition;
+        SpriteSpawnAsChild(0xC8, temp, 0, y, sprite->xPosition);
+        sprite->pose = 19;
+        *timer = 0xF0;
+    } else {
+        sprite->pose = 0x10;
+        work0 = &sprite->work1;
+        temp = 0x3C;
+        *work0 = temp;
+    }
+}
+
+void CuckooCondorClockPieceFlash(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u16 status asm("r2");
+    register u32 four asm("r4");
+    register u32 value asm("r0");
+    register u8 *timer asm("r1");
+
+    sprite = &gCurrentSprite;
+    value = sprite->status;
+    four = 4;
+    status = four;
+    status |= value;
+    sprite->status = status;
+    timer = &sprite->work1;
+    value = *timer;
+    value--;
+    *timer = value;
+    value <<= 24;
+    if (value == 0) {
+        value = 0xFFFB;
+        status &= value;
+        sprite->status = status;
+        value = 0x14;
+        sprite->pose = value;
+        {
+            register u8 *timer2 asm("r0");
+            timer2 = &sprite->work2;
+            *timer2 = four;
+        }
+        m4aSongNumStart(SOUND_A8);
+    }
+}
+
+void CuckooCondorClockPieceSpin(void)
+{
+    gCurrentSprite.work2 += 4;
+    if (gCurrentSprite.work2 > 0xFB) {
+        gCurrentSprite.pose = 0x10;
+        gCurrentSprite.work1 = 0xF0;
+    }
+}
+
+void CuckooCondorClockPieceStartDebrisDrop(void)
+{
+    gCurrentSprite.pOamData = sCuckooCondorClockPieceUpperLeftWindupOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.pose = 0x6F;
+    gCurrentSprite.work0 = 0;
+    m4aSongNumStart(SOUND_D0);
+}
+
+void CuckooCondorClockPieceDropDebris(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *timer asm("r1");
+    register u32 value asm("r0");
+    register u32 zero asm("r5");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    value++;
+    zero = 0;
+    *timer = value;
+    value = *timer;
+
+    if (value == 0x4C)
+        goto spawnCheck;
+    if ((s32)value > 0x4C)
+        goto greater;
+    if (value == 0x3C)
+        goto case3c;
+    if (value == 0x40)
+        goto case40;
+    goto end;
+
+greater:
+    if (value == 0x50)
+        goto finish;
+    goto end;
+
+case3c:
+    value = (u32)sCuckooCondorClockPieceUpperLeftDrop1Oam;
+    goto setAnim;
+case40:
+    value = (u32)sCuckooCondorClockPieceUpperLeftDrop2Oam;
+    goto setAnim;
+
+spawnCheck:
+    func_8023BFC(sprite->yPosition + 0x80, sprite->xPosition);
+    if (gSpriteCollisionTileType != 0x11) {
+        SpriteSpawnAsChild(0xBD, 0, 0, sprite->yPosition + 0x80, sprite->xPosition);
+    }
+    value = (u32)sCuckooCondorClockPieceUpperLeftOam;
+setAnim:
+    sprite->pOamData = (const struct AnimationFrame *)value;
+    *(u8 *)((u8 *)sprite + 0x16) = zero;
+    sprite->animationTimer = zero;
+    goto end;
+
+finish:
+    value = (u32)sCuckooCondorClockPieceUpperLeftOam;
+    sprite->pOamData = (const struct AnimationFrame *)value;
+    *(u8 *)((u8 *)sprite + 0x16) = zero;
+    sprite->animationTimer = zero;
+    value = 0x10;
+    sprite->pose = value;
+    timer = (u8 *)sprite;
+    timer += 0x28;
+    value = 0xB4;
+    *timer = value;
+end:
+    ;
+}
+
+void CuckooCondorClockPieceFallRight(void)
+{
+    gCurrentSprite.status &= 0x7F77;
+    gCurrentSprite.pose = 0x28;
+    gCurrentSprite.work2 = 2;
+    gCurrentSprite.work3 = 0;
+}
+
+void CuckooCondorClockPieceFallLeft(void)
+{
+    gCurrentSprite.status &= 0x7F77;
+    gCurrentSprite.pose = 0x2A;
+    gCurrentSprite.work2 = 2;
+    gCurrentSprite.work3 = 0;
+}
+
+void InitCuckooCondorPendulumPart(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u32 zero asm("r2");
+    register u8 *ptr asm("r1");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    zero = 0x8408;
+    asm("" : "+r"(zero));
+    value = zero;
+    zero = 0;
+    value |= status;
+    value &= 0xFFFB;
+    sprite->status = value;
+    sprite->warioCollision = zero;
+    ptr = (u8 *)sprite + 0x23;
+    value = 0x20;
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    value = 0x28;
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    value = 0x40;
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    value = 0x3C;
+    *ptr = value;
+    sprite->currentAnimationFrame = zero;
+    value = 0x10;
+    sprite->pose = value;
+    value = sprite->roomSlot;
+
+    switch (value) {
+    case 0:
+        sprite->pOamData = sCuckooCondorClawIdleOam;
+        ptr = (u8 *)sprite + 0x20;
+        zero = 0;
+        value = 0x20;
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        sprite->animationTimer = zero;
+        value = 0x42;
+        sprite->warioCollision = value;
+        break;
+    case 1:
+        sprite->pOamData = sCuckooCondorPendulumLinkOam;
+        ptr = (u8 *)sprite + 0x20;
+        zero = 0;
+        value = 8;
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        sprite->animationTimer = zero;
+        break;
+    case 2:
+        sprite->pOamData = sCuckooCondorPendulumLinkOam;
+        ptr = (u8 *)sprite + 0x20;
+        value = 8;
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        value = 1;
+        sprite->animationTimer = value;
+        break;
+    case 3:
+        sprite->pOamData = sCuckooCondorPendulumLinkOam;
+        ptr = (u8 *)sprite + 0x20;
+        value = 8;
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        value = 2;
+        sprite->animationTimer = value;
+        break;
+    case 4:
+        sprite->pOamData = sCuckooCondorPendulumLinkOam;
+        ptr = (u8 *)sprite + 0x20;
+        value = 8;
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        ptr++;
+        asm("" : "+r"(ptr));
+        *ptr = value;
+        value = 3;
+        sprite->animationTimer = value;
+        break;
+    }
+
+    value = sprite->roomSlot;
+    if (value == 4) {
+        value = 0x18;
+        SpriteUtilFindSpriteSlotWork3(value);
+    } else {
+        /* Force the second room-slot load used by the original agbcc output. */
+        asm("" : : : "memory");
+        value = sprite->roomSlot;
+        value++;
+        SpriteUtilFindOwnSlotU32(value);
+    }
+}
+
+void UpdateCuckooCondorPendulumPart(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    int slot;
+
+    sprite = &gCurrentSprite;
+    UpdateCuckooCondorPendulumHeight();
+    slot = SpriteUtilFindSpriteSlot(0x18);
+    sprite->xPosition = gSpriteData[slot].xPosition;
+}
+
+void CuckooCondorPendulumEndSwing(void)
+{
+    gCurrentSprite.pose = 0x18;
+    gCurrentSprite.work2 = 0x1E;
+    gBossHurtState = 0x20;
+    m4aSongNumStart(SOUND_A6);
+}
+
+void CuckooCondorPendulumStartClockwiseSwing(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register const struct AnimationFrame *anim asm("r12");
+    register struct PrimarySpriteData *base asm("r0");
+    register struct PrimarySpriteData *scan asm("r3");
+    register u8 *idp asm("r2");
+    register struct PrimarySpriteData *end asm("r4");
+    u32 zero;
+    register u32 one asm("r6");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u8 *ptr0 asm("r0");
+    register u16 *dst asm("r4");
+    register u32 ydiff asm("r2");
+
+    sprite = &gCurrentSprite;
+    anim = sCuckooCondorClawIdleOam;
+    base = gSpriteData;
+    zero = 0;
+    one = 1;
+    idp = &base->globalID;
+    scan = base;
+    value = 0xFD;
+    value <<= 2;
+    end = (struct PrimarySpriteData *)((u8 *)scan + value);
+loop:
+    value = *idp;
+    if (value == 0xE8) {
+        status = scan->status;
+        value = one;
+        value &= status;
+        if (value != 0) {
+            value = 0x22;
+            idp[5] = value;
+            idp[16] = zero;
+        }
+    }
+    idp += sizeof(struct PrimarySpriteData);
+    scan++;
+    if ((s32)scan <= (s32)end)
+        goto loop;
+
+    status = 0;
+    value = 0x22;
+    sprite->pose = value;
+    ptr0 = (u8 *)sprite;
+    ptr0 += 0x27;
+    *ptr0 = status;
+    value = (u32)anim;
+    sprite->pOamData = (const struct AnimationFrame *)value;
+    *(u8 *)((u8 *)sprite + 0x16) = status;
+    sprite->animationTimer = status;
+    value = 0xE5;
+    value = SpriteUtilFindSpriteSlot(value);
+    dst = &gCuckooCondorPendulumRadius;
+    ydiff = sprite->yPosition;
+    scan = gSpriteData;
+    status = sizeof(struct PrimarySpriteData);
+    value *= status;
+    value += (u32)scan;
+    value = *(u16 *)(value + 8);
+    ydiff -= value;
+    ydiff = (s32)ydiff >> 1;
+    *dst = ydiff;
+    m4aSongNumStart(SOUND_A3);
+}
+
+void CuckooCondorPendulumSwingClockwise(void)
+{
+    register struct PrimarySpriteData *sprite asm("r0");
+    register struct PrimarySpriteData *parent asm("r1");
+    register u8 *timer asm("r1");
+    u8 value;
+    register int slot asm("r0");
+    register u32 size asm("r1");
+    register struct PrimarySpriteData *sprites asm("r2");
+
+    UpdateCuckooCondorPendulumOrbit();
+    UpdateCuckooCondorPendulumAffine();
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    if (value > 0x77) {
+        slot = SpriteUtilFindSpriteSlot(0xE5);
+        sprites = gSpriteData;
+        size = sizeof(struct PrimarySpriteData);
+        size *= slot;
+        parent = (struct PrimarySpriteData *)(size + (u32)sprites);
+        SpriteSpawnSecondary(parent->yPosition - 0x20, parent->xPosition - 0x14, 6);
+        CuckooCondorPendulumEndSwing();
+    } else {
+        value += 4;
+        *timer = value;
+    }
+}
+
+void CuckooCondorPendulumStartCounterclockwiseSwing(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register const struct AnimationFrame *anim asm("r12");
+    register struct PrimarySpriteData *base asm("r0");
+    register struct PrimarySpriteData *scan asm("r3");
+    register u8 *idp asm("r2");
+    register struct PrimarySpriteData *end asm("r4");
+    u32 zero;
+    register u32 one asm("r6");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u8 *ptr0 asm("r0");
+    register u16 *dst asm("r4");
+    register u32 ydiff asm("r2");
+
+    sprite = &gCurrentSprite;
+    anim = sCuckooCondorClawIdleOam;
+    base = gSpriteData;
+    zero = 0;
+    one = 1;
+    idp = &base->globalID;
+    scan = base;
+    value = 0xFD;
+    value <<= 2;
+    end = (struct PrimarySpriteData *)((u8 *)scan + value);
+loop:
+    value = *idp;
+    if (value == 0xE8) {
+        status = scan->status;
+        value = one;
+        value &= status;
+        if (value != 0) {
+            value = 0x20;
+            idp[5] = value;
+            idp[16] = zero;
+        }
+    }
+    idp += sizeof(struct PrimarySpriteData);
+    scan++;
+    if ((s32)scan <= (s32)end)
+        goto loop;
+
+    status = 0;
+    value = 0x20;
+    sprite->pose = value;
+    ptr0 = (u8 *)sprite;
+    ptr0 += 0x27;
+    *ptr0 = status;
+    value = (u32)anim;
+    sprite->pOamData = (const struct AnimationFrame *)value;
+    *(u8 *)((u8 *)sprite + 0x16) = status;
+    sprite->animationTimer = status;
+    value = 0xE5;
+    value = SpriteUtilFindSpriteSlot(value);
+    dst = &gCuckooCondorPendulumRadius;
+    ydiff = sprite->yPosition;
+    scan = gSpriteData;
+    status = sizeof(struct PrimarySpriteData);
+    value *= status;
+    value += (u32)scan;
+    value = *(u16 *)(value + 8);
+    ydiff -= value;
+    ydiff = (s32)ydiff >> 1;
+    *dst = ydiff;
+    m4aSongNumStart(SOUND_A3);
+}
+
+void CuckooCondorPendulumSwingCounterclockwise(void)
+{
+    register struct PrimarySpriteData *sprite asm("r0");
+    register struct PrimarySpriteData *parent asm("r1");
+    register u8 *timer asm("r2");
+    register u8 value asm("r1");
+    register int slot asm("r0");
+    register u32 size asm("r1");
+    register struct PrimarySpriteData *sprites asm("r2");
+    register u8 result asm("r0");
+
+    UpdateCuckooCondorPendulumOrbit();
+    UpdateCuckooCondorPendulumAffine();
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    if ((u8)(value - 1) <= 0x87) {
+        slot = SpriteUtilFindSpriteSlot(0xE5);
+        sprites = gSpriteData;
+        size = sizeof(struct PrimarySpriteData);
+        size *= slot;
+        parent = (struct PrimarySpriteData *)(size + (u32)sprites);
+        SpriteSpawnSecondary(parent->yPosition - 0x20, parent->xPosition + 0x14, 6);
+        CuckooCondorPendulumEndSwing();
+    } else {
+        result = value - 4;
+        *timer = result;
+    }
+}
+
+void CuckooCondorPendulumPause(void)
+{
+    UpdateCuckooCondorPendulumAffine();
+    gCurrentSprite.work2--;
+    if (gCurrentSprite.work2 == 0) {
+        if (gCurrentSprite.work0 > 0x80)
+            gCurrentSprite.pose = 0x14;
+        else
+            gCurrentSprite.pose = 0x12;
+        VoiceSetPlay(0);
+    }
+}
+
+void CuckooCondorPendulumReturnCounterclockwise(void)
+{
+    UpdateCuckooCondorPendulumOrbit();
+    UpdateCuckooCondorPendulumAffine();
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pose = 0x10;
+        gCurrentSprite.status &= 0xFF7F;
+        gBossTookDamage = 0;
+    } else
+        gCurrentSprite.work0 -= 4;
+}
+
+void CuckooCondorPendulumReturnClockwise(void)
+{
+    UpdateCuckooCondorPendulumOrbit();
+    UpdateCuckooCondorPendulumAffine();
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pose = 0x10;
+        gCurrentSprite.status &= 0xFF7F;
+        gBossTookDamage = 0;
+    } else
+        gCurrentSprite.work0 += 4;
+}
+
+void CuckooCondorPendulumFallRight(void)
+{
+    gCurrentSprite.status &= 0x7F77;
+    gCurrentSprite.pose = 0x28;
+    if (gCurrentSprite.roomSlot == 0)
+        gCurrentSprite.work2 = 1;
+    else
+        gCurrentSprite.work2 = 3;
+    gCurrentSprite.work3 = 0;
+}
+
+void CuckooCondorPendulumFallLeft(void)
+{
+    gCurrentSprite.status &= 0x7F77;
+    gCurrentSprite.pose = 0x2A;
+    if (gCurrentSprite.roomSlot == 0)
+        gCurrentSprite.work2 = 1;
+    else
+        gCurrentSprite.work2 = 3;
+    gCurrentSprite.work3 = 0;
+}
+
+void InitCuckooCondorHead(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+    register u8 *ptr asm("r1");
+    register u8 *ptr2 asm("r0");
+    register u8 *hitbox asm("r4");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    zeroByte = 0x8408;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    zeroHalf = 0;
+    value |= status;
+    value &= 0xFFFB;
+    ptr = (u8 *)sprite;
+    *(u16 *)ptr = value;
+    *(ptr + 0x1E) = zeroByte;
+    ptr += 0x20;
+    value = 0x20;
+    *ptr = value;
+    ptr2 = (u8 *)sprite + 0x21;
+    *ptr2 = zeroByte;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    status = 0x28;
+    *ptr2 = status;
+    hitbox = (u8 *)sprite + 0x23;
+    value = 0x40;
+    *hitbox = value;
+    ptr2 = (u8 *)sprite + 0x24;
+    *ptr2 = zeroByte;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    value = (u32)sCuckooCondorHeadIdleOam;
+    ptr = (u8 *)sprite;
+    *(const struct AnimationFrame **)(ptr + 4) = (const struct AnimationFrame *)value;
+    *(ptr + 0x16) = zeroByte;
+    *(u16 *)(ptr + 0x14) = zeroHalf;
+    value = 0x10;
+    *(ptr + 0x1C) = value;
+    SpriteUtilFindSpriteSlotWork3(0x18);
+}
+
+void UpdateCuckooCondorHead(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register u32 timerPtr asm("r2");
+    register u32 oam asm("r3");
+    register struct PrimarySpriteData *sprite asm("r4");
+
+    temp = (u32)&gBossHurtState;
+    value = *(u8 *)temp;
+    timerPtr = temp;
+    if (value == 0)
+        return;
+
+    if (value == 0x20) {
+        temp = (u32)&gCurrentSprite;
+        oam = *(u32 *)(temp + 4);
+        value = (u32)sCuckooCondorHeadIdleOam;
+        sprite = (struct PrimarySpriteData *)temp;
+
+        if (oam == value) {
+            temp = sprite->animationTimer;
+            if (temp > 3) {
+                value = sprite->status;
+                temp = 0x40;
+                temp |= value;
+                sprite->status = temp;
+            } else {
+                value = sprite->status;
+                temp = value & 0xFFBF;
+                sprite->status = temp;
+            }
+        } else if (oam == (u32)sCuckooCondorHeadBlinkOam) {
+            temp = sprite->animationTimer;
+            if (temp <= 3) {
+                value = sprite->status;
+                temp = 0x40;
+                temp |= value;
+                sprite->status = temp;
+            } else {
+                value = sprite->status;
+                temp = value & 0xFFBF;
+                sprite->status = temp;
+            }
+        }
+
+        sprite->pOamData = sCuckooCondorHeadHurtOam;
+        temp = 0;
+        *(u8 *)((u32)sprite + 0x16) = temp;
+        *(u16 *)((u32)sprite + 0x14) = temp;
+    }
+
+    temp = *(u8 *)timerPtr;
+    temp--;
+    *(u8 *)timerPtr = temp;
+    if ((temp << 24) != 0)
+        return;
+
+    timerPtr = (u32)&gCurrentSprite;
+    value = *(u16 *)timerPtr;
+    temp = 0x40;
+    temp &= value;
+    sprite = (struct PrimarySpriteData *)timerPtr;
+
+    if (temp != 0)
+        sprite->pOamData = sCuckooCondorHeadBlinkOam;
+    else
+        sprite->pOamData = sCuckooCondorHeadIdleOam;
+
+    temp = 0;
+    sprite->currentAnimationFrame = temp;
+    temp = 2;
+    sprite->animationTimer = temp;
+
+    temp = sprite->status;
+    oam = 0xFFBF;
+    oam &= temp;
+    sprite->status = oam;
+
+    timerPtr = (u32)gSpriteData;
+    temp = (u32)sprite;
+    temp += 0x2A;
+    value = *(u8 *)temp;
+    temp = 0x2C;
+    temp *= value;
+    temp += timerPtr;
+    value = *(u8 *)(temp + 0x1D);
+    temp = gBossInitialHealth;
+    temp >>= 1;
+    temp++;
+    if ((s32)value < (s32)temp) {
+        temp = 0x12;
+        sprite->pose = temp;
+        temp = 0xFBFF;
+        temp &= oam;
+        sprite->status = temp;
+    }
+}
+
+void CuckooCondorHeadStartAttack(void)
+{
+    gCurrentSprite.pose = 0x12;
+}
+
+void CuckooCondorHeadAttack(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register u32 child asm("r2");
+    register u32 zero asm("r3");
+    register u32 base asm("r4");
+    register struct PrimarySpriteData *sprite asm("r5");
+    register u32 zeroByte asm("r6");
+
+    value = (u32)&gCurrentSprite;
+    temp = *(u8 *)(value + 0x1C);
+    if (temp == 0x6A) {
+        temp = *(u16 *)(value + 8);
+        temp -= 0x20;
+        value = *(u16 *)(value + 0xA);
+        value -= 0x20;
+        child = 0x40;
+        SpriteSpawnSecondary(temp, value, child);
+    } else {
+        temp = *(u16 *)(value + 8);
+        temp -= 0x20;
+        value = *(u16 *)(value + 0xA);
+        value += 0x20;
+        child = 0x40;
+        SpriteSpawnSecondary(temp, value, child);
+    }
+
+    temp = (u32)&gCurrentSprite;
+    child = *(u32 *)(temp + 4);
+    value = (u32)sCuckooCondorHeadIdleOam;
+    sprite = (struct PrimarySpriteData *)temp;
+
+    if (child == value) {
+        temp = sprite->animationTimer;
+        if (temp > 3) {
+            value = sprite->status;
+            temp = 0x40;
+            temp |= value;
+            sprite->status = temp;
+        } else {
+            value = sprite->status;
+            temp = value & 0xFFBF;
+            sprite->status = temp;
+        }
+    } else if (child == (u32)sCuckooCondorHeadBlinkOam) {
+        temp = sprite->animationTimer;
+        if (temp <= 3) {
+            value = sprite->status;
+            temp = 0x40;
+            temp |= value;
+            sprite->status = temp;
+        } else {
+            value = sprite->status;
+            temp = value & 0xFFBF;
+            sprite->status = temp;
+        }
+    }
+
+    sprite->pOamData = sCuckooCondorHeadAttackOam;
+    zero = 0;
+    *(u8 *)((u32)sprite + 0x16) = zero;
+    zeroByte = 0;
+    *(u16 *)((u32)sprite + 0x14) = zero;
+
+    temp = (u32)sprite;
+    temp += 0x2A;
+    value = *(u8 *)temp;
+    base = (u32)gSpriteData;
+    temp = 0x2C;
+    child = value;
+    child *= temp;
+    temp = base + 4;
+    temp = child + temp;
+    value = (u32)sCuckooCondorHeadPhase2Oam;
+    *(u32 *)temp = value;
+    child += base;
+    *(u8 *)(child + 0x16) = zeroByte;
+    *(u16 *)(child + 0x14) = zero;
+    value = child;
+    value += 0x29;
+    temp = 0x31;
+    *(u8 *)value = temp;
+    zero = 0x16;
+    *(u8 *)(child + 0x1C) = zero;
+
+    temp = *(u8 *)(child + 0x1D);
+    if (temp == 1) {
+        temp = *(u16 *)child;
+        base = 0x80;
+        base <<= 3;
+        asm("" : "+r"(base));
+        value = base;
+        temp |= value;
+        *(u16 *)child = temp;
+        temp = sprite->status;
+        temp |= value;
+        sprite->status = temp;
+        sprite->pose = zero;
+        value = (u32)sprite;
+        value += 0x27;
+        temp = 0x60;
+    } else {
+        temp = 0x14;
+        sprite->pose = temp;
+        value = (u32)sprite;
+        value += 0x27;
+        temp = 0x30;
+    }
+    *(u8 *)value = temp;
+}
+
+void CuckooCondorHeadRecover(void)
+{
+    register struct PrimarySpriteData *sprite asm("r1");
+    register struct PrimarySpriteData *body asm("r2");
+    register u8 *timer asm("r2");
+    register u32 value asm("r0");
+    register u16 status asm("r1");
+    register u32 masked asm("r0");
+
+    sprite = &gCurrentSprite;
+    body = sprite;
+    timer = &body->work0;
+    value = *timer;
+    value -= 1;
+    *timer = value;
+    value <<= 24;
+    body = sprite;
+    if (value == 0) {
+        status = body->status;
+        masked = status & 0x40;
+        if (masked != 0)
+            body->pOamData = sCuckooCondorHeadBlinkOam;
+        else
+            body->pOamData = sCuckooCondorHeadIdleOam;
+        body->currentAnimationFrame = 0;
+        body->animationTimer = 2;
+        status = body->status;
+        masked = status & 0xFFBF;
+        body->pose = 18;
+        masked &= 0xFDFF;
+        body->status = masked;
+    }
+}
+
+void CuckooCondorHeadSpawnDebris(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *timer asm("r1");
+    register u32 value asm("r0");
+    register u32 zero asm("r5");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    value--;
+    *timer = value;
+    value <<= 24;
+    zero = value >> 24;
+    if (zero == 0) {
+        func_801E430(0xB, 0, 0, sprite->yPosition, sprite->xPosition);
+        sprite->status = zero;
+    }
+}
+
+void InitCuckooCondorClockBody(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register struct PrimarySpriteData *ptr asm("r1");
+    register u16 status asm("r1");
+    register u32 value asm("r0");
+    register u32 constant asm("r2");
+    register u32 zero asm("r2");
+    register u32 timer asm("r3");
+    register const struct AnimationFrame *oam asm("r0");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    constant = 0x8408;
+    asm("" : "+r"(constant));
+    value = constant;
+    zero = 0;
+    timer = 0;
+    value |= status;
+    value &= 0xFFFB;
+    ptr = sprite;
+    ptr->status = value;
+    ptr->warioCollision = zero;
+    sprite->drawDistanceDown = 0x28;
+    sprite->drawDistanceUp = 0x28;
+    sprite->drawDistanceLeftRight = 0x60;
+    sprite->hitboxExtentUp = 4;
+    sprite->hitboxExtentDown = 4;
+    sprite->hitboxExtentLeft = 4;
+    sprite->hitboxExtentRight = 4;
+    oam = sCuckooCondorClockBodyOam;
+    ptr = sprite;
+    ptr->pOamData = oam;
+    ptr->currentAnimationFrame = zero;
+    ptr->animationTimer = timer;
+    ptr->pose = 0x10;
+    SpriteUtilFindSpriteSlotWork3(0x18);
+}
+
+void CuckooCondorClockBodyStartFall(void)
+{
+    gCurrentSprite.status &= 0x7F77;
+    gCurrentSprite.pose = 0x28;
+    gCurrentSprite.work2 = 1;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.pOamData = sCuckooCondorClockBodyFallingOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+}
+
+void InitCuckooCondorSmallDebris(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+    register u8 *ptr asm("r1");
+    register u8 *ptr2 asm("r0");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    zeroByte = 0x80;
+    zeroByte <<= 3;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    zeroHalf = 0;
+    value |= status;
+    value &= 0xFFFB;
+    ptr = (u8 *)sprite;
+    *(u16 *)ptr = value;
+    value = 0x45;
+    *(ptr + 0x1E) = value;
+    ptr += 0x20;
+    value = 0x10;
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    *ptr = value;
+    ptr2 = (u8 *)sprite + 0x23;
+    status = 0x20;
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    value = (u32)sCuckooCondorSmallDebrisOam;
+    ptr = (u8 *)sprite;
+    *(const struct AnimationFrame **)(ptr + 4) = (const struct AnimationFrame *)value;
+    *(ptr + 0x16) = zeroByte;
+    *(u16 *)(ptr + 0x14) = zeroHalf;
+    value = 0x1C;
+    *(ptr + 0x1C) = value;
+    ptr2 = (u8 *)sprite + 0x2A;
+    *ptr2 = zeroByte;
+    value = 1;
+    ((struct PrimarySpriteData *)ptr)->drawPriority = value;
+    SpriteUtilTurnTowardWario();
+    m4aSongNumStart(SOUND_D0);
+}
+
+void UpdateCuckooCondorSmallDebrisFall(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 newY asm("r1");
+    register u32 value asm("r0");
+    register u8 *work3Ptr asm("r12");
+    register u32 index asm("r2");
+    register const s16 *table asm("r5");
+    register u32 addr asm("r0");
+    register u32 delta asm("r3");
+    register s32 signedDelta asm("r1");
+    register u32 zero asm("r6");
+    register u8 *work0Ptr asm("r1");
+
+    sprite = &gCurrentSprite;
+    newY = func_8023A60(sprite->yPosition, sprite->xPosition);
+    value = gSpriteCollisionResult;
+    if (value != 0) {
+        value = 0;
+        sprite->yPosition = newY;
+        newY = 0x10;
+        sprite->pose = newY;
+        work0Ptr = &sprite->work0;
+        *work0Ptr = value;
+        m4aSongNumStart(SOUND_D1);
+    } else {
+        work3Ptr = &sprite->work3;
+        index = *work3Ptr;
+        table = sSharedDebrisYVelocity;
+        addr = index << 1;
+        addr += (u32)table;
+        delta = *(const u16 *)addr;
+        zero = 0;
+        signedDelta = *(const s16 *)(addr + zero);
+        value = 0x7FFF;
+        if (signedDelta == value) {
+            signedDelta = index - 1;
+            signedDelta <<= 1;
+            signedDelta += (u32)table;
+            value = sprite->yPosition;
+            signedDelta = *(const u16 *)signedDelta;
+            value += signedDelta;
+            sprite->yPosition = value;
+        } else {
+            value = index + 1;
+            *work3Ptr = value;
+            value = sprite->yPosition;
+            value += delta;
+            sprite->yPosition = value;
+        }
+    }
+}
+
+void UpdateCuckooCondorSmallDebris(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *timer asm("r1");
+    register u32 value asm("r0");
+    register u32 mask asm("r1");
+    register u32 status asm("r1");
+    register struct PrimarySpriteData *sprite2 asm("r2");
+
+    sprite = &gCurrentSprite;
+    timer = &sprite->work0;
+    value = *timer;
+    value += 1;
+    *timer = value;
+    mask = 0x1F;
+    value &= mask;
+    if (value == 0)
+        m4aSongNumStart(SOUND_D1);
+
+    status = sprite->status;
+    value = 0x40;
+    value &= status;
+    if (value != 0) {
+        value = sprite->xPosition;
+        value += 8;
+    } else {
+        value = sprite->xPosition;
+        value -= 8;
+    }
+    sprite->xPosition = value;
+    sprite2 = &gCurrentSprite;
+    status = sprite2->status;
+    value = 2;
+    value &= status;
+    value <<= 16;
+    asm("" : "+r"(value));
+    value >>= 16;
+    if (value == 0)
+        sprite2->status = value;
+}
+
+void InitCuckooCondorLargeDebris(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+    register u8 *ptr asm("r1");
+    register u8 *ptr2 asm("r0");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    zeroByte = 0x90;
+    zeroByte <<= 3;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    zeroHalf = 0;
+    value |= status;
+    value &= 0xFFFB;
+    ptr = (u8 *)sprite;
+    *(u16 *)ptr = value;
+    value = 0x45;
+    *(ptr + 0x1E) = value;
+    ptr += 0x20;
+    value = 0x10;
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    *ptr = value;
+    ptr++;
+    asm("" : "+r"(ptr));
+    *ptr = value;
+    ptr2 = (u8 *)sprite + 0x23;
+    status = 0x20;
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    ptr2++;
+    asm("" : "+r"(ptr2));
+    *ptr2 = status;
+    value = (u32)sCuckooCondorClockPieceTopOam;
+    ptr = (u8 *)sprite;
+    *(const struct AnimationFrame **)(ptr + 4) = (const struct AnimationFrame *)value;
+    *(ptr + 0x16) = zeroByte;
+    *(u16 *)(ptr + 0x14) = zeroHalf;
+    value = 0x1C;
+    *(ptr + 0x1C) = value;
+    value = *(ptr + 0x18);
+    ptr += 0x27;
+    *ptr = value;
+    ptr2 = (u8 *)sprite + 0x2A;
+    *ptr2 = zeroByte;
+    SpriteUtilTurnTowardWario();
+    m4aSongNumStart(SOUND_A8);
+}
+
+void UpdateCuckooCondorLargeDebrisFall(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 newY asm("r1");
+    register u32 value asm("r0");
+    register u8 *work3Ptr asm("r12");
+    register u32 index asm("r2");
+    register const s16 *table asm("r5");
+    register u32 addr asm("r0");
+    register u32 delta asm("r3");
+    register s32 signedDelta asm("r1");
+    register u32 zero asm("r6");
+    register u8 *timer asm("r1");
+
+    sprite = &gCurrentSprite;
+    newY = func_8023A60(sprite->yPosition, sprite->xPosition);
+    value = gSpriteCollisionResult;
+    if (value != 0) {
+        sprite->yPosition = newY;
+        value = 0x10;
+        sprite->pose = value;
+        m4aSongNumStart(SOUND_A9);
+    } else {
+        work3Ptr = &sprite->work3;
+        index = *work3Ptr;
+        table = sSharedDebrisYVelocity;
+        addr = index << 1;
+        addr += (u32)table;
+        delta = *(const u16 *)addr;
+        zero = 0;
+        signedDelta = *(const s16 *)(addr + zero);
+        value = 0x7FFF;
+        if (signedDelta == value) {
+            signedDelta = index - 1;
+            signedDelta <<= 1;
+            signedDelta += (u32)table;
+            value = sprite->yPosition;
+            signedDelta = *(const u16 *)signedDelta;
+            value += signedDelta;
+            sprite->yPosition = value;
+        } else {
+            value = index + 1;
+            *work3Ptr = value;
+            value = sprite->yPosition;
+            value += delta;
+            sprite->yPosition = value;
+        }
+    }
+    timer = (u8 *)&gCurrentSprite;
+    timer += 0x27;
+    value = *timer;
+    value -= 0x10;
+    *timer = value;
+}
+
+void UpdateCuckooCondorLargeDebris(void)
+{
+    if (gCurrentSprite.status & 0x40) {
+        gCurrentSprite.work0 += 0x10;
+        gCurrentSprite.xPosition += 4;
+    } else {
+        gCurrentSprite.work0 -= 0x10;
+        gCurrentSprite.xPosition -= 4;
+    }
+    if (!(gCurrentSprite.status & 2))
+        gCurrentSprite.status = 0;
+}
+
+void InitCuckooCondorEgg(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register u32 status asm("r2");
+    register u32 zero asm("r3");
+    register u32 eight asm("r4");
+    register u32 zero16 asm("r5");
+    register struct PrimarySpriteData *sp2 asm("r2");
+    register u32 tmp asm("r0");
+    register u8 *ptr asm("r1");
+
+    sprite = &gCurrentSprite;
+    tmp = sprite->status;
+    eight = 8;
+    zero = 0;
+    zero16 = 0;
+    status = eight;
+    status |= tmp;
+    status &= 0xFFFB;
+    ptr = (u8 *)sprite;
+    *(u16 *)ptr = status;
+    tmp = 5;
+    sprite->warioCollision = tmp;
+    ptr = &sprite->drawDistanceDown;
+    tmp = 16;
+    *ptr = tmp;
+    sprite->drawDistanceUp = zero;
+    sprite->drawDistanceLeftRight = eight;
+    ptr += 3;
+    tmp = 44;
+    *ptr = tmp;
+    sprite->hitboxExtentDown = zero;
+    ptr += 2;
+    tmp = 24;
+    *ptr = tmp;
+    ptr++;
+    asm("" : "+r"(ptr));
+    *ptr = tmp;
+    tmp = (u32)sCuckooCondorEggOam;
+    ptr = (u8 *)sprite;
+    ((struct PrimarySpriteData *)ptr)->pOamData = (const struct AnimationFrame *)tmp;
+    ((struct PrimarySpriteData *)ptr)->currentAnimationFrame = zero;
+    ((struct PrimarySpriteData *)ptr)->animationTimer = zero16;
+    tmp = 64;
+    tmp &= status;
+    sp2 = sprite;
+    if (tmp != 0)
+        tmp = 52;
+    else
+        tmp = 54;
+    sp2->pose = tmp;
+    zero = (u32)sp2;
+    zero += 0x27;
+    ptr = 0;
+    tmp = 10;
+    *(u8 *)zero = tmp;
+    zero += 2;
+    asm("" : "+r"(zero));
+    tmp = 5;
+    *(u8 *)zero = tmp;
+    tmp = (u32)sp2;
+    tmp += 0x2A;
+    *(u8 *)tmp = (u32)ptr;
+    m4aSongNumStart(SOUND_AB);
+}
+
+void CuckooCondorEggStartHatching(void)
+{
+    register struct PrimarySpriteData *sprite asm("r2");
+    register u32 zeroHalf asm("r4");
+    register u32 zeroByte asm("r3");
+    register u32 value asm("r0");
+    register u32 mask asm("r1");
+
+    sprite = &gCurrentSprite;
+    zeroHalf = 0;
+    value = 1;
+    sprite->disableWarioCollisionTimer = value;
+    mask = sprite->status;
+    zeroByte = 0x400;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    value |= mask;
+    mask = 0xFEF7;
+    value &= mask;
+    sprite->status = value;
+    sprite->pOamData = sCuckooCondorEggHatchOam;
+    sprite->currentAnimationFrame = zeroByte;
+    sprite->animationTimer = zeroHalf;
+    value = 0x7B;
+    sprite->pose = value;
+    sprite->work0 = 0x24;
+}
+
+void CuckooCondorEggHatch(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u8 *timer asm("r2");
+    register u32 oldValue asm("r0");
+    register u32 value asm("r1");
+
+    sprite = &gCurrentSprite;
+    oldValue = 1;
+    sprite->disableWarioCollisionTimer = oldValue;
+    timer = &sprite->work0;
+    oldValue = *timer;
+    value = oldValue - 1;
+    *timer = value;
+    oldValue = value << 24;
+    oldValue >>= 24;
+    if (oldValue == 0)
+        goto clear;
+    oldValue = value << 24;
+    oldValue >>= 24;
+    if (oldValue != 0x1C)
+        goto end;
+    SpriteSpawnAsChild(0xEA, 0, 0, sprite->yPosition, sprite->xPosition);
+    goto end;
+clear:
+    sprite->status = oldValue;
+end:
+    return;
+}
+
+void ResetCuckooCondorEggMotion(void)
+{
+    gCurrentSprite.work0 = 4;
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+}
+
+void CuckooCondorEggStartSlideRight(void)
+{
+    gCurrentSprite.pose = 0x34;
+    ResetCuckooCondorEggMotion();
+}
+
+void CuckooCondorEggStartSlideLeft(void)
+{
+    gCurrentSprite.pose = 0x36;
+    ResetCuckooCondorEggMotion();
+}
+
+void CuckooCondorEggStartFall(void)
+{
+    gCurrentSprite.pose = 0x1E;
+    gCurrentSprite.work3 = 0;
+}
+
+void PrepareCuckooCondorEggFallOffscreen(void)
+{
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.drawPriority = 0;
+    gCurrentSprite.status = (gCurrentSprite.status & 0xFEFF) | 0x200;
+}
+
+void CuckooCondorEggFallOffscreenRight(void)
+{
+    gCurrentSprite.pose = 0x20;
+    PrepareCuckooCondorEggFallOffscreen();
+}
+
+void CuckooCondorEggFallOffscreenLeft(void)
+{
+    gCurrentSprite.pose = 0x22;
+    PrepareCuckooCondorEggFallOffscreen();
+}
+
+void ResetCuckooCondorEggBounce(void)
+{
+    gCurrentSprite.work2 = 8;
+    gCurrentSprite.work3 = 0;
+}
+
+void CuckooCondorEggBounceRight(void)
+{
+    gCurrentSprite.pose = 0x48;
+    ResetCuckooCondorEggBounce();
+}
+
+void CuckooCondorEggBounceLeft(void)
+{
+    gCurrentSprite.pose = 0x4A;
+    ResetCuckooCondorEggBounce();
+}
+
+void CuckooCondorEggLiftRight(void)
+{
+    gCurrentSprite.status &= 0xFFF7;
+    gCurrentSprite.pose = 0x52;
+}
+
+void CuckooCondorEggLiftLeft(void)
+{
+    gCurrentSprite.status &= 0xFFF7;
+    gCurrentSprite.pose = 0x54;
+}
+
+void CuckooCondorEggCarryRight(void)
+{
+    gCurrentSprite.status &= 0xFFF7;
+    gCurrentSprite.pose = 0x58;
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+}
+
+void CuckooCondorEggCarryLeft(void)
+{
+    gCurrentSprite.status &= 0xFFF7;
+    gCurrentSprite.pose = 0x56;
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+}
+
+void InitCuckooCondorChick(void)
+{
+    register struct PrimarySpriteData *sprite asm("r3");
+    register u32 statusRaw asm("r0");
+    register u32 status asm("r5");
+    register u32 zero asm("r4");
+    register u16 zero16 asm("r2");
+    register u8 *ptr asm("r1");
+    register u8 *ptr0 asm("r0");
+    register struct WarioData *wario asm("r1");
+    register u16 spriteX asm("r0");
+    register u16 warioX asm("r1");
+    register u32 newStatus asm("r0");
+    register u32 flag asm("r1");
+
+    sprite = &gCurrentSprite;
+    statusRaw = sprite->status;
+    status = 0xFFFB;
+    status &= statusRaw;
+    zero = 0;
+    zero16 = 0;
+    asm("" : "+r"(zero16));
+    sprite->status = status;
+    sprite->warioCollision = 2;
+    ptr = &sprite->drawDistanceDown;
+    *ptr = 0x10;
+    ptr0 = &sprite->drawDistanceUp;
+    *ptr0 = zero;
+    ptr += 2;
+    *ptr = 8;
+    ptr++;
+    *ptr = 0x28;
+    ptr0 = &sprite->hitboxExtentDown;
+    *ptr0 = zero;
+    ptr += 2;
+    *ptr = 0x18;
+    ptr++;
+    *ptr = 0x14;
+    sprite->pOamData = sCuckooCondorChickWalkOam;
+    *((u8 *)&sprite->currentAnimationFrame) = zero;
+    sprite->animationTimer = zero16;
+    sprite->pose = 0x1C;
+    ptr++;
+    *ptr = 0xA;
+    ptr++;
+    asm("" : "+r"(ptr));
+    *ptr = 0xAA;
+    ptr0 = &sprite->work3;
+    *ptr0 = zero;
+    wario = &gWarioData;
+    spriteX = sprite->xPosition;
+    warioX = wario->xPosition;
+    if (spriteX < warioX) {
+        newStatus = status & 0xFFBF;
+    } else {
+        flag = 0x40;
+        newStatus = status;
+        newStatus |= flag;
+    }
+    sprite->status = newStatus;
+    m4aSongNumStart(SOUND_D2);
+}
+
+void CuckooCondorChickWaitToMove(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0) {
+        gCurrentSprite.pose = 0x10;
+        gCurrentSprite.work3 = 0;
+        gCurrentSprite.work0 = 0x1E;
+    }
+}
+
+void UpdateCuckooCondorChickWalk(void)
+{
+    {
+        register struct PrimarySpriteData *sprite asm("r4");
+        register u8 *work3 asm("r5");
+
+        sprite = &gCurrentSprite;
+        work3 = &sprite->work3;
+        if (*work3 == 1) {
+            func_8023BFC((u16)(sprite->yPosition + 8), sprite->xPosition);
+            if (gSpriteCollisionTileType != 0x11) {
+                sprite->pose = 28;
+                *work3 = 0;
+                return;
+            }
+        }
+    }
+
+    {
+        register struct PrimarySpriteData *sprite asm("r4");
+        register u8 *work0 asm("r12");
+        register u8 *work3 asm("r6");
+        register const s16 *table asm("r5");
+        register u32 workValue asm("r2");
+        register u32 base asm("r0");
+        register u8 *workPtr asm("r1");
+        u32 index;
+        s16 delta;
+
+        base = (u32)&gCurrentSprite;
+        workPtr = (u8 *)0x27;
+        /* Prevent agbcc from folding the offset into a copy-plus-immediate pair. */
+        asm("" : "+r"(workPtr));
+        workPtr += base;
+        work0 = workPtr;
+        workValue = *workPtr;
+        sprite = (struct PrimarySpriteData *)base;
+        if (workValue != 0) {
+            base = workValue - 1;
+            *workPtr = base;
+        }
+        work3 = &sprite->work3;
+        index = *work3;
+        table = (const s16 *)sCuckooCondorChickYVelocity;
+        delta = table[index];
+        if (delta == 0x7FFF) {
+            delta = table[0];
+            index = 0;
+        }
+        *work3 = index + 1;
+        sprite->yPosition += delta;
+        if (sprite->status & 0x40) {
+            register u8 *testWork0 asm("r1");
+            testWork0 = work0;
+            if (*testWork0 != 0)
+                sprite->xPosition += 4;
+            else
+                sprite->xPosition += 2;
+            func_8023BFC((u16)(sprite->yPosition - 0x20), (u16)(sprite->xPosition + 0x20));
+            if (gSpriteCollisionTileType == 0x11)
+                sprite->status &= 0xFFBF;
+        } else {
+            register u8 *testWork0 asm("r7");
+            register u32 testValue asm("r0");
+            testWork0 = work0;
+            /* agbcc otherwise copies r7 to r0 before this byte load. */
+            asm("ldrb %0, [%1]" : "=r"(testValue) : "r"(testWork0));
+            if (testValue != 0)
+                sprite->xPosition -= 4;
+            else
+                sprite->xPosition -= 2;
+            func_8023BFC((u16)(sprite->yPosition - 0x20), (u16)(sprite->xPosition - 0x20));
+            if (gSpriteCollisionTileType == 0x11)
+                sprite->status |= 0x40;
+        }
+    }
+}
+void ResetCuckooCondorChickMotion(void)
+{
+    gCurrentSprite.pOamData = sCuckooCondorChickWalkOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.health = 0;
+    gCurrentSprite.work3 = 0;
+    gCurrentSprite.work1 = 0;
+    gCurrentSprite.work0 = 0;
+    gCurrentSprite.drawPriority = 0;
+    gCurrentSprite.status = (gCurrentSprite.status & 0xFEFF) | 0x280;
+}
+
+void CuckooCondorChickKnockbackRight(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+
+    sprite = &gCurrentSprite;
+    sprite->pose = 0x20;
+    sprite->work2 = 8;
+    ResetCuckooCondorChickMotion();
+    SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition, 6);
+}
+
+void CuckooCondorChickKnockbackLeft(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+
+    sprite = &gCurrentSprite;
+    sprite->pose = 0x22;
+    sprite->work2 = 8;
+    ResetCuckooCondorChickMotion();
+    SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition, 6);
+}
+
+void CuckooCondorChickFallRight(void)
+{
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+    gCurrentSprite.pose = 0x20;
+    gCurrentSprite.work2 = 4;
+    ResetCuckooCondorChickMotion();
+}
+
+void CuckooCondorChickFallLeft(void)
+{
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+    gCurrentSprite.pose = 0x22;
+    gCurrentSprite.work2 = 4;
+    ResetCuckooCondorChickMotion();
+}
+
+void PrepareCuckooCondorChickDash(void)
+{
+    gCurrentSprite.pOamData = sCuckooCondorChickDashOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 0;
+    gCurrentSprite.work0 = 0x20;
+    gCurrentSprite.work1 = 0x3C;
+}
+
+void CuckooCondorChickStartDashRight(void)
+{
+    gCurrentSprite.status |= 0x40;
+    gCurrentSprite.pose = 0x24;
+    PrepareCuckooCondorChickDash();
+}
+
+void UpdateCuckooCondorChickDashRight(void)
+{
+    register struct PrimarySpriteData *sprite asm("r1");
+    register u8 *timer asm("r2");
+    register struct PrimarySpriteData *current asm("r4");
+    register u32 value asm("r0");
+    register u32 zero asm("r1");
+    register u32 zero2 asm("r2");
+
+    sprite = &gCurrentSprite;
+    value = sprite->xPosition;
+    value += 4;
+    sprite->xPosition = value;
+    timer = &sprite->work0;
+    value = *timer;
+    current = sprite;
+    if (value != 0) {
+        value -= 1;
+        *timer = value;
+        value <<= 24;
+        zero = value >> 24;
+        if (zero == 0) {
+            current->pOamData = sCuckooCondorChickWalkOam;
+            current->currentAnimationFrame = 0;
+            current->animationTimer = zero;
+        }
+    } else {
+        value = current->currentAnimationFrame;
+        value += 1;
+        current->currentAnimationFrame = value;
+    }
+
+    value = current->yPosition;
+    value -= 0x20;
+    value <<= 16;
+    value >>= 16;
+    asm volatile("" ::: "memory");
+    zero = ((volatile struct PrimarySpriteData *)current)->xPosition;
+    zero += 0x20;
+    zero <<= 16;
+    zero >>= 16;
+    func_8023BFC(value, zero);
+    if (gSpriteCollisionTileType == 0x11) {
+        zero = current->status;
+        value = zero & 0xFFBF;
+        zero = 0;
+        zero2 = 0;
+        current->status = value;
+        current->pose = 0x10;
+        current->pOamData = sCuckooCondorChickWalkOam;
+        current->currentAnimationFrame = zero;
+        current->animationTimer = zero2;
+    }
+}
+
+void CuckooCondorChickStartDashLeft(void)
+{
+    gCurrentSprite.status &= 0xFFBF;
+    gCurrentSprite.pose = 0x26;
+    PrepareCuckooCondorChickDash();
+}
+
+void UpdateCuckooCondorChickDashLeft(void)
+{
+    register struct PrimarySpriteData *sprite asm("r1");
+    register u8 *timer asm("r2");
+    register struct PrimarySpriteData *current asm("r4");
+    register u32 value asm("r0");
+    register u32 arg asm("r1");
+    register u32 zero asm("r2");
+    register u32 zero2 asm("r3");
+
+    sprite = &gCurrentSprite;
+    value = sprite->xPosition;
+    value -= 4;
+    sprite->xPosition = value;
+    timer = &sprite->work0;
+    value = *timer;
+    current = sprite;
+    if (value != 0) {
+        value -= 1;
+        *timer = value;
+        value <<= 24;
+        arg = value >> 24;
+        if (arg == 0) {
+            current->pOamData = sCuckooCondorChickWalkOam;
+            current->currentAnimationFrame = 0;
+            current->animationTimer = arg;
+        }
+    } else {
+        value = current->currentAnimationFrame;
+        value += 1;
+        current->currentAnimationFrame = value;
+    }
+
+    value = current->yPosition;
+    value -= 0x20;
+    value <<= 16;
+    value >>= 16;
+    asm volatile("" ::: "memory");
+    arg = ((volatile struct PrimarySpriteData *)current)->xPosition;
+    arg -= 0x20;
+    arg <<= 16;
+    arg >>= 16;
+    func_8023BFC(value, arg);
+    if (gSpriteCollisionTileType == 0x11) {
+        arg = current->status;
+        value = 0x40;
+        zero = 0;
+        zero2 = 0;
+        value |= arg;
+        current->status = value;
+        current->pose = 0x10;
+        current->pOamData = sCuckooCondorChickWalkOam;
+        current->currentAnimationFrame = zero;
+        current->animationTimer = zero2;
+    }
+}
+
+void CuckooCondorChickStartChase(void)
+{
+    gCurrentSprite.pOamData = sCuckooCondorChickChaseOam;
+    gCurrentSprite.currentAnimationFrame = 0;
+    gCurrentSprite.animationTimer = 1;
+    gCurrentSprite.pose = 0x6F;
+    gCurrentSprite.work0 = 0x46;
+    SpriteUtilTurnTowardWario();
+}
+
+void UpdateCuckooCondorChickChase(void)
+{
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register struct PrimarySpriteData *sprite2 asm("r2");
+    register u8 *timer asm("r3");
+    register u32 zero asm("r4");
+
+    sprite = &gCurrentSprite;
+    status = sprite->status;
+    value = 0x40;
+    value &= status;
+    if (value == 0)
+        goto left;
+
+    status = sprite->xPosition;
+    value = status + 4;
+    sprite->xPosition = value;
+    value = sprite->yPosition;
+    value -= 0x20;
+    value <<= 16;
+    value >>= 16;
+    asm volatile("" ::: "memory");
+    status += 0x24;
+    status <<= 16;
+    status >>= 16;
+    func_8023BFC(value, status);
+    value = gSpriteCollisionTileType;
+    if (value != 0x11)
+        goto afterCollision;
+    status = sprite->status;
+    value = 0xFFBF;
+    value &= status;
+    goto storeStatus;
+
+left:
+    status = sprite->xPosition;
+    value = status - 4;
+    sprite->xPosition = value;
+    value = sprite->yPosition;
+    value -= 0x20;
+    value <<= 16;
+    value >>= 16;
+    asm volatile("" ::: "memory");
+    status -= 0x24;
+    status <<= 16;
+    status >>= 16;
+    func_8023BFC(value, status);
+    value = gSpriteCollisionTileType;
+    if (value != 0x11)
+        goto afterCollision;
+    value = sprite->status;
+    status = 0x40;
+    value |= status;
+storeStatus:
+    sprite->status = value;
+
+afterCollision:
+    sprite2 = &gCurrentSprite;
+    timer = &sprite2->work0;
+    value = *timer;
+    status = value - 1;
+    zero = 0;
+    *timer = status;
+    value = status << 24;
+    if (value == 0)
+        goto finishTimer;
+    value >>= 24;
+    if (value == 0x3C) {
+        sprite2->warioCollision = 0x46;
+        goto done;
+    }
+    if (value == 0x28) {
+        value = (u32)sCuckooCondorChickAttackOam;
+        goto setAnim;
+    }
+    if (value == 20) {
+        value = (u32)sCuckooCondorChickAttackEndOam;
+setAnim:
+        sprite2->pOamData = (const struct AnimationFrame *)value;
+        sprite2->currentAnimationFrame = zero;
+        value = 1;
+        sprite2->animationTimer = value;
+    }
+    goto done;
+finishTimer:
+    value = 0x70;
+    sprite2->pose = value;
+done:
+    ;
+}
+
+void CuckooCondorChickStartExplosion(void)
+{
+    register struct PrimarySpriteData *sprite asm("r12");
+    register struct PrimarySpriteData *ptr asm("r1");
+    register struct PrimarySpriteData *ptr2 asm("r2");
+    register u32 value asm("r0");
+    register u32 status asm("r1");
+    register u32 zeroByte asm("r2");
+    register u32 zeroHalf asm("r3");
+
+    value = (u32)&gCurrentSprite;
+    sprite = (struct PrimarySpriteData *)value;
+    ptr = (struct PrimarySpriteData *)value;
+    status = ptr->status;
+    asm volatile("" ::: "memory");
+    asm("" : "+r"(status));
+    zeroByte = 0x80;
+    zeroByte <<= 3;
+    asm("" : "+r"(zeroByte));
+    value = zeroByte;
+    zeroByte = 0;
+    zeroHalf = 0;
+    value |= status;
+    ptr = sprite;
+    ptr->status = value;
+    value = (u32)sCuckooCondorChickExplodeOam;
+    ptr->pOamData = (const struct AnimationFrame *)value;
+    ptr->currentAnimationFrame = zeroByte;
+    ptr->animationTimer = zeroHalf;
+    ptr = (struct PrimarySpriteData *)((u8 *)ptr + 0x27);
+    value = 0x16;
+    *(u8 *)ptr = value;
+    value = 0x45;
+    ptr2 = sprite;
+    ptr2->warioCollision = value;
+    value = (u32)sprite;
+    value += 0x23;
+    status = 0x20;
+    *(u8 *)value = status;
+    value++;
+    asm("" : "+r"(value));
+    *(u8 *)value = status;
+    status = (u32)sprite;
+    status += 0x25;
+    value = 0x30;
+    *(u8 *)status = value;
+    status++;
+    asm("" : "+r"(status));
+    *(u8 *)status = value;
+    value = 0x71;
+    ptr2->pose = value;
+    value = 1;
+    ptr2->drawPriority = value;
+    value = ptr2->yPosition;
+    value -= 0x1C;
+    ptr2->yPosition = value;
+    m4aSongNumStart(SOUND_D3);
+}
+
+void UpdateCuckooCondorChickExplosion(void)
+{
+    gCurrentSprite.work0--;
+    if (gCurrentSprite.work0 == 0)
+        gCurrentSprite.status = 0;
+}
+
+void SpriteCuckooCondor(void)
+{
+    switch (gCurrentSprite.pose) {
+    case 0:
+        InitCuckooCondor();
+        break;
+    case 1:
+        CuckooCondorWaitForIntro();
+        break;
+    case 2:
+        CuckooCondorStartBattle();
+        break;
+    case 3:
+        CuckooCondorWaitForTimer();
+        break;
+    case 4:
+        CuckooCondorEnterArena();
+        break;
+    case 16:
+        CuckooCondorMoveClock();
+        break;
+    case 110:
+        CuckooCondorLowerPendulum();
+        break;
+    case 111:
+        CuckooCondorRaisePendulum();
+        break;
+    case 17:
+        CuckooCondorSinkAfterHit();
+        break;
+    case 18:
+        CuckooCondorHandleClockDamage();
+        break;
+    case 19:
+        CuckooCondorBreakClock();
+        break;
+    case 20:
+        CuckooCondorFlyAndBob();
+        break;
+    case 51:
+    case 53:
+    case 105:
+    case 106:
+        gCurrentSprite.pose = 20;
+        gCurrentSprite.status &= 0xFDFF;
+        CuckooCondorFlyAndBob();
+        break;
+    case 21:
+        CuckooCondorLayEgg();
+        break;
+    case 22:
+        CuckooCondorHandleCondorDamage();
+        break;
+    case 120:
+        CuckooCondorExplode();
+        break;
+    case 122:
+        CuckooCondorTakeShopItemHit();
+    case 123:
+        CuckooCondorHandleShopItemHit();
+        break;
+    }
+
+    if (gCurrentSprite.health >= ((gBossInitialHealth >> 1) + 1)
+        && *(u8 *)&gBossTookDamage == 0)
+        UpdateCuckooCondorCapturedWario();
+}
+
+void SpriteCuckooCondorClockPiece(void)
+{
+    gCurrentSprite.disableWarioCollisionTimer = 1;
+    switch (gCurrentSprite.pose) {
+    case 0:
+        InitCuckooCondorClockPiece();
+        break;
+    case 16:
+        UpdateCuckooCondorClockPiece();
+        break;
+    case 110:
+        if (gCurrentSprite.roomSlot == 1)
+            CuckooCondorClockPieceStartDebrisDrop();
+        break;
+    case 111:
+        if (gCurrentSprite.roomSlot == 1)
+            CuckooCondorClockPieceDropDebris();
+        break;
+    case 17:
+        if (gCurrentSprite.roomSlot == 4)
+            CuckooCondorClockPieceStartSpin();
+    case 18:
+        if (gCurrentSprite.roomSlot == 4)
+            CuckooCondorClockPieceSpinUp();
+        break;
+    case 19:
+        if (gCurrentSprite.roomSlot == 4)
+            CuckooCondorClockPieceFlash();
+        break;
+    case 20:
+        if (gCurrentSprite.roomSlot == 4)
+            CuckooCondorClockPieceSpin();
+        break;
+    case 39:
+        CuckooCondorClockPieceFallRight();
+    case 40:
+        SpriteUtilFallOffscreenRight();
+        return;
+    case 41:
+        CuckooCondorClockPieceFallLeft();
+    case 42:
+        SpriteUtilFallOffscreenLeft();
+        return;
+    }
+
+    {
+        struct PrimarySpriteData *sprite;
+        struct PrimarySpriteData *current;
+        struct PrimarySpriteData *parent;
+        register u32 parentSlot asm("r3");
+        u32 roomSlot;
+
+        current = &gCurrentSprite;
+        parentSlot = current->work3;
+        roomSlot = current->roomSlot;
+        sprite = current;
+        switch (roomSlot) {
+        case 0:
+        {
+            register struct PrimarySpriteData *sprites asm("r2");
+            register u32 index asm("r1");
+            register u32 size asm("r0");
+
+            sprites = gSpriteData;
+            size = sizeof(struct PrimarySpriteData);
+            index = parentSlot;
+            index *= size;
+            index += (u32)sprites;
+            parent = (struct PrimarySpriteData *)index;
+            sprite->yPosition = parent->yPosition + 0x56;
+            sprite->xPosition = parent->xPosition + 0xFF70;
+            break;
+        }
+        case 1:
+        {
+            register struct PrimarySpriteData *sprites asm("r2");
+            register u32 index asm("r1");
+            register u32 size asm("r0");
+
+            sprites = gSpriteData;
+            size = sizeof(struct PrimarySpriteData);
+            index = parentSlot;
+            index *= size;
+            index += (u32)sprites;
+            parent = (struct PrimarySpriteData *)index;
+            sprite->yPosition = parent->yPosition + 0x56;
+            sprite->xPosition = parent->xPosition + 0xFF50;
+            break;
+        }
+        case 2:
+        {
+            register struct PrimarySpriteData *sprites asm("r2");
+            register u32 index asm("r1");
+            register u32 size asm("r0");
+
+            sprites = gSpriteData;
+            size = sizeof(struct PrimarySpriteData);
+            index = parentSlot;
+            index *= size;
+            index += (u32)sprites;
+            parent = (struct PrimarySpriteData *)index;
+            sprite->yPosition = parent->yPosition + 0x5C;
+            sprite->xPosition = parent->xPosition + 0x94;
+            break;
+        }
+        case 3:
+        {
+            register struct PrimarySpriteData *sprites asm("r2");
+            register u32 index asm("r1");
+            register u32 size asm("r0");
+
+            sprites = gSpriteData;
+            size = sizeof(struct PrimarySpriteData);
+            index = parentSlot;
+            index *= size;
+            index += (u32)sprites;
+            parent = (struct PrimarySpriteData *)index;
+            sprite->yPosition = parent->yPosition + 0x34;
+            sprite->xPosition = parent->xPosition + 0xE0;
+            break;
+        }
+        case 4:
+        {
+            register u32 r5Value asm("r5");
+            register u32 r6Value asm("r6");
+            register u8 *workPtr asm("r8");
+            register s32 trig asm("r4");
+            u32 sinIndex;
+            s32 inverse;
+
+            {
+                register struct PrimarySpriteData *sprites asm("r2");
+                register u32 index asm("r1");
+                register u32 size asm("r0");
+
+                sprites = gSpriteData;
+                size = sizeof(struct PrimarySpriteData);
+                index = parentSlot;
+                index *= size;
+                index += (u32)sprites;
+                parent = (struct PrimarySpriteData *)index;
+                sprite->yPosition = parent->yPosition + 0x38;
+                sprite->xPosition = parent->xPosition + 0xF8;
+            }
+            workPtr = &sprite->work2;
+            if (*workPtr != 0) {
+                r5Value = (u32)sSinCosTable;
+                r6Value = (u32)&sprite->work0;
+
+                sinIndex = *(u8 *)r6Value;
+                sinIndex += 0x40;
+                sinIndex <<= 1;
+                sinIndex += r5Value;
+                trig = *(const s16 *)sinIndex;
+                {
+                    register u8 *scaleRead asm("r2");
+
+                    scaleRead = workPtr;
+                    inverse = FixedInverse(*scaleRead);
+                }
+                sprite->affinePA = FixedMul(trig, inverse);
+
+                sinIndex = *(u8 *)r6Value;
+                sinIndex <<= 1;
+                sinIndex += r5Value;
+                {
+                    register u32 zero asm("r1");
+
+                    zero = 0;
+                    /* agbcc otherwise selects r2 for this signed table load. */
+                    asm("ldrsh %0, [%1, %2]" : "=r"(trig) : "r"(sinIndex), "r"(zero));
+                }
+                {
+                    register u8 *scaleRead asm("r2");
+
+                    scaleRead = workPtr;
+                    inverse = FixedInverse(*scaleRead);
+                }
+                sprite->affinePB = FixedMul(trig, inverse);
+
+                sinIndex = *(u8 *)r6Value;
+                sinIndex <<= 1;
+                sinIndex += r5Value;
+                {
+                    /* agbcc otherwise selects r2 for this signed table load. */
+                    asm("movs r1, #0\n\tldrsh %0, [%1, r1]" : "=r"(trig) : "r"(sinIndex) : "r1");
+                    trig = -trig;
+                }
+                {
+                    register u8 *scaleRead asm("r2");
+
+                    scaleRead = workPtr;
+                    inverse = FixedInverse(*scaleRead);
+                }
+                sprite->affinePC = FixedMul(trig, inverse);
+
+                sinIndex = *(u8 *)r6Value;
+                sinIndex += 0x40;
+                sinIndex <<= 1;
+                sinIndex += r5Value;
+                {
+                    register u32 zero asm("r1");
+
+                    zero = 0;
+                    /* agbcc otherwise selects r2 for this signed table load. */
+                    asm("ldrsh %0, [%1, %2]" : "=r"(trig) : "r"(sinIndex), "r"(zero));
+                }
+                {
+                    register u8 *scaleRead asm("r2");
+
+                    scaleRead = workPtr;
+                    inverse = FixedInverse(*scaleRead);
+                }
+                sprite->affinePD = FixedMul(trig, inverse);
+            } else {
+                r6Value = (u32)sSinCosTable;
+                {
+                    register u32 angleValue asm("r0");
+
+                    /* agbcc otherwise materializes the work pointer through r2. */
+                    asm("movs %0, #39\n\tadd %0, %2\n\tmov %1, %0\n\tldrb %0, [%0]"
+                        : "=r"(angleValue), "=r"(workPtr)
+                        : "r"(sprite));
+                    angleValue += 0x40;
+                    angleValue <<= 1;
+                    angleValue += r6Value;
+                    /* Keep the signed table load on r1 as in the original. */
+                    asm("movs r1, #0\n\tldrsh %0, [%1, r1]" : "=r"(trig) : "r"(angleValue) : "r1");
+                }
+                r5Value = 0x100;
+                inverse = FixedInverse(r5Value);
+                sprite->affinePA = FixedMul(trig, inverse);
+
+                {
+                    register u8 *angleRead asm("r2");
+
+                    angleRead = workPtr;
+                    sinIndex = *angleRead;
+                }
+                sinIndex <<= 1;
+                sinIndex += r6Value;
+                {
+                    register u32 zero asm("r1");
+
+                    zero = 0;
+                    /* agbcc otherwise selects r2 for this signed table load. */
+                    asm("ldrsh %0, [%1, %2]" : "=r"(trig) : "r"(sinIndex), "r"(zero));
+                }
+                inverse = FixedInverse(r5Value);
+                sprite->affinePB = FixedMul(trig, inverse);
+
+                {
+                    register u8 *angleRead asm("r2");
+
+                    angleRead = workPtr;
+                    sinIndex = *angleRead;
+                }
+                sinIndex <<= 1;
+                sinIndex += r6Value;
+                {
+                    /* agbcc otherwise selects r2 for this signed table load. */
+                    asm("movs r1, #0\n\tldrsh %0, [%1, r1]" : "=r"(trig) : "r"(sinIndex) : "r1");
+                    trig = -trig;
+                }
+                inverse = FixedInverse(r5Value);
+                sprite->affinePC = FixedMul(trig, inverse);
+
+                {
+                    register u8 *angleRead asm("r2");
+
+                    angleRead = workPtr;
+                    sinIndex = *angleRead;
+                }
+                sinIndex += 0x40;
+                sinIndex <<= 1;
+                sinIndex += r6Value;
+                {
+                    register u32 zero asm("r1");
+
+                    zero = 0;
+                    /* agbcc otherwise selects r2 for this signed table load. */
+                    asm("ldrsh %0, [%1, %2]" : "=r"(trig) : "r"(sinIndex), "r"(zero));
+                }
+                inverse = FixedInverse(r5Value);
+                sprite->affinePD = FixedMul(trig, inverse);
+            }
+            break;
+        }
+        default:
+            sprite->status = 0;
+            break;
+        }
+    }
+}
+
+void SpriteCuckooCondorPendulumPart(void)
+{
+    register u32 base asm("r0");
+    register u32 roomSlot asm("r1");
+    register struct PrimarySpriteData *sprite asm("r2");
+
+    base = (u32)&gCurrentSprite;
+    roomSlot = *(u8 *)(base + 0x18);
+    sprite = (struct PrimarySpriteData *)base;
+    if (roomSlot != 0)
+        sprite->disableWarioCollisionTimer = 1;
+
+    switch (sprite->pose) {
+    case 0:
+        InitCuckooCondorPendulumPart();
+        break;
+    case 16:
+        UpdateCuckooCondorPendulumPart();
+        break;
+    case 33:
+        CuckooCondorPendulumStartClockwiseSwing();
+    case 34:
+        CuckooCondorPendulumSwingClockwise();
+        break;
+    case 31:
+        CuckooCondorPendulumStartCounterclockwiseSwing();
+    case 32:
+        CuckooCondorPendulumSwingCounterclockwise();
+        break;
+    case 24:
+        CuckooCondorPendulumPause();
+        break;
+    case 18:
+        CuckooCondorPendulumReturnCounterclockwise();
+        break;
+    case 20:
+        CuckooCondorPendulumReturnClockwise();
+        break;
+    case 39:
+        CuckooCondorPendulumFallRight();
+    case 40:
+        SpriteUtilFallOffscreenRight();
+        break;
+    case 41:
+        CuckooCondorPendulumFallLeft();
+    case 42:
+        SpriteUtilFallOffscreenLeft();
+        break;
+    default:
+        sprite->pose = 16;
+        break;
+    }
+}
+
+void SpriteCuckooCondorHead(void)
+{
+    register struct PrimarySpriteData *sprite asm("r1");
+    register u32 pose asm("r0");
+    register struct PrimarySpriteData *current asm("r2");
+    register u32 slot asm("r1");
+    register struct PrimarySpriteData *sprites asm("r3");
+    register u32 size asm("r0");
+    register u32 base asm("r3");
+    register u32 out asm("r0");
+    register u32 yoff asm("r3");
+
+    sprite = &gCurrentSprite;
+    sprite->disableWarioCollisionTimer = 1;
+    pose = sprite->pose;
+    if (pose == 20)
+        goto pose20;
+    if ((s32)pose > 20)
+        goto greater20;
+    if (pose == 16)
+        goto pose16;
+    if ((s32)pose > 16)
+        goto greater16;
+    if (pose == 0)
+        goto pose0;
+    goto copyParent;
+
+greater16:
+    if (pose == 18)
+        goto pose18;
+    goto copyParent;
+
+greater20:
+    if (pose == 22)
+        goto pose22;
+    /* agbcc otherwise emits longer inverted range checks here; these two
+     * compiler-boundary comparisons preserve the original dispatcher shape. */
+    asm volatile("cmp r0, #22\n\tblt 1f" : : : "cc");
+    if ((s32)pose > 106)
+        goto copyParent;
+    asm volatile("cmp r0, #105\n\tblt 1f" : : : "cc");
+    CuckooCondorHeadAttack();
+    goto pose20;
+
+pose0:
+    InitCuckooCondorHead();
+    goto copyParent;
+pose16:
+    UpdateCuckooCondorHead();
+    goto copyParent;
+pose18:
+    CuckooCondorHeadStartAttack();
+    goto copyParent;
+pose20:
+    CuckooCondorHeadRecover();
+    goto copyParent;
+pose22:
+    CuckooCondorHeadSpawnDebris();
+
+copyParent:
+    /* Local target for the two compiler-boundary branches above. */
+    asm volatile("1:");
+    current = &gCurrentSprite;
+    size = (u32)current;
+    size += 0x2A;
+    slot = *(u8 *)size;
+    sprites = gSpriteData;
+    size = sizeof(struct PrimarySpriteData);
+    slot *= size;
+    slot += (u32)sprites;
+    base = 0xFF68;
+    asm("" : "+r"(base));
+    out = base;
+    yoff = *(u16 *)(slot + 8);
+    out += yoff;
+    current->yPosition = out;
+    out = *(u16 *)(slot + 10);
+    current->xPosition = out;
+}
+
+void SpriteCuckooCondorClockBody(void)
+{
+    register struct PrimarySpriteData *sprite asm("r1");
+    register u32 pose asm("r0");
+    register struct PrimarySpriteData *current asm("r3");
+    register u32 parentSlot asm("r1");
+    register struct PrimarySpriteData *parent asm("r2");
+    register u32 size asm("r0");
+    register u32 threshold asm("r0");
+
+    sprite = &gCurrentSprite;
+    sprite->disableWarioCollisionTimer = 1;
+    pose = sprite->pose;
+    if (pose == 0x27)
+        goto pose27;
+    if ((s32)pose > 0x27)
+        goto greater;
+    if (pose == 0)
+        goto pose0;
+    goto updatePosition;
+
+greater:
+    if (pose == 0x28)
+        goto fall;
+    goto updatePosition;
+
+pose0:
+    InitCuckooCondorClockBody();
+    goto updatePosition;
+
+pose27:
+    CuckooCondorClockBodyStartFall();
+fall:
+    SpriteUtilFallOffscreenRight();
+    return;
+
+updatePosition:
+    current = &gCurrentSprite;
+    pose = (u32)current;
+    pose += 0x2A;
+    parentSlot = *(u8 *)pose;
+    parent = gSpriteData;
+    size = sizeof(struct PrimarySpriteData);
+    size *= parentSlot;
+    parent = (struct PrimarySpriteData *)(size + (u32)parent);
+    parentSlot = parent->health;
+    threshold = gBossInitialHealth;
+    threshold >>= 1;
+    threshold += 1;
+    if ((s32)parentSlot >= (s32)threshold) {
+        current->yPosition = parent->yPosition;
+        current->xPosition = parent->xPosition;
+    }
+}
+
+void SpriteCuckooCondorSmallDebris(void)
+{
+    u8 pose;
+
+    pose = gCurrentSprite.pose;
+    if (pose == 0)
+        goto pose0;
+    if (pose == 0x1C)
+        goto pose1C;
+    UpdateCuckooCondorSmallDebris();
+    goto end;
+pose0:
+    InitCuckooCondorSmallDebris();
+    goto end;
+pose1C:
+    UpdateCuckooCondorSmallDebrisFall();
+end:
+    return;
+}
+
+void SpriteCuckooCondorLargeDebris(void)
+{
+    register const s16 *table asm("r8");
+    register s32 trig asm("r4");
+    register s32 scale asm("r5");
+    struct PrimarySpriteData *sprite;
+    u8 *anglePtr;
+    register u32 sinIndex asm("r0");
+    s32 inverse;
+
+    switch (gCurrentSprite.pose) {
+    case 0:
+        InitCuckooCondorLargeDebris();
+    case 0x1C:
+        UpdateCuckooCondorLargeDebrisFall();
+        break;
+    default:
+        UpdateCuckooCondorLargeDebris();
+        break;
+    }
+
+    table = sSinCosTable;
+    sprite = &gCurrentSprite;
+    anglePtr = &sprite->work0;
+
+    sinIndex = *anglePtr;
+    sinIndex += 0x40;
+    sinIndex <<= 1;
+    sinIndex += (u32)table;
+    trig = *(const s16 *)sinIndex;
+    scale = 0x100;
+    inverse = FixedInverse(scale);
+    sprite->affinePA = FixedMul(trig, inverse);
+
+    trig = table[*anglePtr];
+    inverse = FixedInverse(scale);
+    sprite->affinePB = FixedMul(trig, inverse);
+
+    trig = -table[*anglePtr];
+    inverse = FixedInverse(scale);
+    sprite->affinePC = FixedMul(trig, inverse);
+
+    sinIndex = *anglePtr;
+    sinIndex += 0x40;
+    sinIndex <<= 1;
+    sinIndex += (u32)table;
+    trig = *(const s16 *)sinIndex;
+    inverse = FixedInverse(scale);
+    sprite->affinePD = FixedMul(trig, inverse);
+}
+
+void SpriteCuckooCondorEgg(void)
+{
+    register u32 base asm("r0");
+    u32 pose;
+    register struct PrimarySpriteData *sprite asm("r2");
+
+    base = (u32)&gCurrentSprite;
+    pose = *(u8 *)(base + 0x1C);
+    sprite = (struct PrimarySpriteData *)base;
+    switch (pose) {
+    case 0:
+        InitCuckooCondorEgg();
+        break;
+    case 29:
+        CuckooCondorEggStartFall();
+    case 30:
+        func_8023FA8();
+        break;
+    case 31:
+    case 79:
+        SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition - 0x20, 6);
+    case 106:
+        CuckooCondorEggFallOffscreenRight();
+    case 32:
+        SpriteUtilFallOffscreenRight();
+        break;
+    case 33:
+    case 80:
+        SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition + 0x20, 6);
+    case 105:
+        CuckooCondorEggFallOffscreenLeft();
+    case 34:
+        SpriteUtilFallOffscreenLeft();
+        break;
+    case 49:
+    case 107:
+        SpriteUtilDie();
+        break;
+    case 35:
+    case 51:
+        CuckooCondorEggStartSlideRight();
+    case 52:
+        func_8024A3C();
+        break;
+    case 37:
+    case 53:
+        CuckooCondorEggStartSlideLeft();
+    case 54:
+        func_8024820();
+        break;
+    case 67:
+        func_8024AC0();
+        goto call_8024AD4;
+    case 69:
+        func_8024BEC();
+        goto call_8024C00;
+    case 71:
+        CuckooCondorEggBounceRight();
+call_8024AD4:
+    case 68:
+    case 72:
+        func_8024AD4();
+        break;
+    case 73:
+        CuckooCondorEggBounceLeft();
+call_8024C00:
+    case 70:
+    case 74:
+        func_8024C00();
+        break;
+    case 81:
+        CuckooCondorEggLiftRight();
+        break;
+    case 82:
+        SpriteUtilLiftingSpriteRight();
+        break;
+    case 83:
+        CuckooCondorEggLiftLeft();
+        break;
+    case 84:
+        SpriteUtilLiftingSpriteLeft();
+        break;
+    case 87:
+        CuckooCondorEggCarryRight();
+        break;
+    case 88:
+        SpriteUtilCarryingSpriteRight();
+        break;
+    case 85:
+        CuckooCondorEggCarryLeft();
+        break;
+    case 86:
+        SpriteUtilCarryingSpriteLeft();
+        break;
+    case 89:
+        sprite->pose = 0x5A;
+    case 90:
+        SpriteUtilThrownLeftSoft();
+        break;
+    case 93:
+        sprite->pose = 0x5E;
+    case 94:
+        SpriteUtilThrownLeftHard();
+        break;
+    case 97:
+        sprite->pose = 0x62;
+    case 98:
+        SpriteUtilThrownUpLeftSoft();
+        break;
+    case 101:
+        sprite->pose = 0x66;
+    case 102:
+        SpriteUtilThrownUpLeftHard();
+        break;
+    case 91:
+        sprite->pose = 0x5C;
+    case 92:
+        SpriteUtilThrownRightSoft();
+        break;
+    case 95:
+        sprite->pose = 0x60;
+    case 96:
+        SpriteUtilThrownRightHard();
+        break;
+    case 99:
+        sprite->pose = 0x64;
+    case 100:
+        SpriteUtilThrownUpRightSoft();
+        break;
+    case 103:
+        sprite->pose = 0x68;
+    case 104:
+        SpriteUtilThrownUpRightHard();
+        break;
+    case 123:
+        CuckooCondorEggHatch();
+        break;
+    default:
+        CuckooCondorEggStartHatching();
+        break;
+    }
+}
+
+void SpriteCuckooCondorChick(void)
+{
+    register struct PrimarySpriteData *sprite asm("r5");
+    register const s16 *table asm("r8");
+    u8 *anglePtr;
+    register s32 trig asm("r4");
+    register s32 scale asm("r6");
+    register u32 sinIndex asm("r0");
+    s32 inverse;
+    struct PrimarySpriteData *current;
+    u8 *timer;
+
+    switch (gCurrentSprite.pose) {
+    case 0:
+        InitCuckooCondorChick();
+        break;
+    case 28:
+        func_8023D48();
+        break;
+    case 23:
+        CuckooCondorChickWaitToMove();
+        break;
+    case 16:
+        UpdateCuckooCondorChickWalk();
+        break;
+    case 35:
+        CuckooCondorChickStartDashRight();
+    case 36:
+        UpdateCuckooCondorChickDashRight();
+        break;
+    case 37:
+        CuckooCondorChickStartDashLeft();
+    case 38:
+        UpdateCuckooCondorChickDashLeft();
+        break;
+    case 51:
+        CuckooCondorChickFallRight();
+        break;
+    case 31:
+    case 106:
+        CuckooCondorChickKnockbackRight();
+    case 32:
+        SpriteUtilFallOffscreenRight();
+        sprite = &gCurrentSprite;
+        sprite->currentAnimationFrame = 0;
+        sprite->animationTimer = 0;
+        table = sSinCosTable;
+        anglePtr = &sprite->work0;
+        sinIndex = *anglePtr;
+        sinIndex += 0x40;
+        sinIndex <<= 1;
+        sinIndex += (u32)table;
+        trig = *(const s16 *)sinIndex;
+        scale = 0x100;
+        inverse = FixedInverse(scale);
+        sprite->affinePA = FixedMul(trig, inverse);
+        trig = table[*anglePtr];
+        inverse = FixedInverse(scale);
+        sprite->affinePB = FixedMul(trig, inverse);
+        trig = -table[*anglePtr];
+        inverse = FixedInverse(scale);
+        sprite->affinePC = FixedMul(trig, inverse);
+        sinIndex = *anglePtr;
+        sinIndex += 0x40;
+        sinIndex <<= 1;
+        sinIndex += (u32)table;
+        trig = *(const s16 *)sinIndex;
+        inverse = FixedInverse(scale);
+        sprite->affinePD = FixedMul(trig, inverse);
+        *anglePtr += 8;
+        break;
+    case 53:
+        CuckooCondorChickFallLeft();
+        break;
+    case 33:
+    case 105:
+        CuckooCondorChickKnockbackLeft();
+    case 34:
+        SpriteUtilFallOffscreenLeft();
+        sprite = &gCurrentSprite;
+        sprite->currentAnimationFrame = 0;
+        sprite->animationTimer = 0;
+        table = sSinCosTable;
+        anglePtr = &sprite->work0;
+        sinIndex = *anglePtr;
+        sinIndex += 0x40;
+        sinIndex <<= 1;
+        sinIndex += (u32)table;
+        trig = *(const s16 *)sinIndex;
+        scale = 0x100;
+        inverse = FixedInverse(scale);
+        sprite->affinePA = FixedMul(trig, inverse);
+        trig = table[*anglePtr];
+        inverse = FixedInverse(scale);
+        sprite->affinePB = FixedMul(trig, inverse);
+        trig = -table[*anglePtr];
+        inverse = FixedInverse(scale);
+        sprite->affinePC = FixedMul(trig, inverse);
+        sinIndex = *anglePtr;
+        sinIndex += 0x40;
+        sinIndex <<= 1;
+        sinIndex += (u32)table;
+        trig = *(const s16 *)sinIndex;
+        inverse = FixedInverse(scale);
+        sprite->affinePD = FixedMul(trig, inverse);
+        *anglePtr -= 8;
+        break;
+    case 110:
+        CuckooCondorChickStartChase();
+    case 111:
+        UpdateCuckooCondorChickChase();
+        break;
+    case 112:
+        CuckooCondorChickStartExplosion();
+    case 113:
+        UpdateCuckooCondorChickExplosion();
+        break;
+    default:
+        gCurrentSprite.work1 = 0;
+        SpriteUtilDie();
+        break;
+    }
+
+    current = &gCurrentSprite;
+    timer = &current->work1;
+    if (*timer != 0) {
+        (*timer)--;
+        if (*timer == 0)
+            current->pose = 0x6E;
+    }
+}

@@ -887,7 +887,7 @@ func_803F7CC:
 .L_3f88c:
 	.4byte	gCurrentRoom
 .L_3f890:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_3f894:
 	.4byte	sUnk_83C55EA
 .L_3f898:

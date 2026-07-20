@@ -315,7 +315,7 @@ func_8033494:
 	b	.L_33538
 	.align	2, 0
 .L_334f4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_334f8:
 	.4byte	sUnk_83BB704
 .L_334fc:
@@ -340,7 +340,7 @@ func_8033494:
 	add	r0, r0, r1
 	b	.L_33536
 .L_33524:
-	.4byte	sUnk_8352ADC
+	.4byte	sSharedDebrisYVelocity
 .L_33528:
 	.4byte	0x7FFF
 .L_3352c:

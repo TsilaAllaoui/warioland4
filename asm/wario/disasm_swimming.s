@@ -2347,7 +2347,7 @@ func_8016B58:
 	mov	r0, #155	@ 0x9b
 	mov	r1, #0
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_16de2
 .L_16ddc:
 	mov	r0, #4
@@ -2877,7 +2877,7 @@ func_8016FF4:
 	mov	r0, #155	@ 0x9b
 	mov	r1, #0
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	mov	r0, #182	@ 0xb6
 	lsl	r0, r0, #1
 	bl	m4aSongNumStart

@@ -165,7 +165,7 @@ func_8036D80:
 .L_36db8:
 	.4byte	gUnk_30000A0
 .L_36dbc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_36dc0:
 	mov	r6, #42	@ 0x2a
 	add	r6, r6, r4
@@ -188,7 +188,7 @@ func_8036D80:
 	add	r0, r0, r1
 	b	.L_36dfa
 .L_36de8:
-	.4byte	sUnk_8352ADC
+	.4byte	sSharedDebrisYVelocity
 .L_36dec:
 	.4byte	0x7FFF
 .L_36df0:
@@ -333,7 +333,7 @@ func_8036EBC:
 	mov	r0, #64	@ 0x40
 	str	r0, [sp, #4]
 	mov	r0, #158	@ 0x9e
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_36efc
 .L_36ee0:
 	.4byte	gCurrentSprite
@@ -348,7 +348,7 @@ func_8036EBC:
 	mov	r0, #0
 	str	r0, [sp, #4]
 	mov	r0, #158	@ 0x9e
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_36efc:
 	add	sp, #8
 	pop	{r4}

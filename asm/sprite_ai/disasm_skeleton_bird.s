@@ -127,7 +127,7 @@ func_802C894:
 	str	r5, [sp, #4]
 .L_2c97e:
 	mov	r0, #152	@ 0x98
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_2c9a4
 .L_2c986:
 	ldr	r0, .L_2c9ac
@@ -570,7 +570,7 @@ func_802CBF8:
 	str	r0, [sp, #0]
 	str	r5, [sp, #4]
 	mov	r0, #153	@ 0x99
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_2ccc8
 .L_2ccb2:
 	mov	r2, ip
@@ -582,7 +582,7 @@ func_802CBF8:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #153	@ 0x99
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_2ccc8:
 	add	sp, #8
 	pop	{r4, r5}
@@ -1064,7 +1064,7 @@ func_802CFBC:
 	b	.L_2cff6
 	.align	2, 0
 .L_2cfd8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_2cfdc:
 	.4byte	gCurrentSprite
 .L_2cfe0:
@@ -1278,7 +1278,7 @@ func_802D12C:
 .L_2d158:
 	.4byte	gUnk_30000A0
 .L_2d15c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_2d160:
 	ldrh	r1, [r4, #0]
 	mov	r0, #64	@ 0x40

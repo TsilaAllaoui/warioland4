@@ -51,7 +51,7 @@ func_803AB4C:
 	strb	r2, [r4, #22]
 	strh	r3, [r4, #20]
 	bl	SpriteUtilTurnTowardWario
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	add	r1, r4, #0
 	add	r1, #39	@ 0x27
 	mov	r0, #60	@ 0x3c
@@ -59,7 +59,7 @@ func_803AB4C:
 	mov	r0, #131	@ 0x83
 	mov	r1, #8
 	mov	r2, #1
-	bl	func_8070964
+	bl	LoadBossSpriteGraphics
 	pop	{r4}
 	pop	{r0}
 	bx	r0
@@ -119,7 +119,7 @@ func_803ABD8:
 .L_3ac28:
 	.4byte	gCurrentSprite
 .L_3ac2c:
-	.4byte	gUnk_30000F4
+	.4byte	gColorFadingState
 .L_3ac30:
 	.4byte	gCurrentShopItem
 .L_3ac34:
@@ -434,9 +434,9 @@ func_803AE30:
 .L_3aea4:
 	.4byte	gCurrentSprite
 .L_3aea8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_3aeac:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_3aeb0:
 	ldrh	r0, [r2, #10]
 	add	r0, #1
@@ -485,9 +485,9 @@ func_803AE30:
 	strb	r0, [r4, #28]
 	b	.L_3af40
 .L_3af0c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_3af10:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_3af14:
 	ldr	r0, .L_3af24
 	ldrb	r1, [r0, #30]
@@ -1063,7 +1063,7 @@ func_803B2EC:
 	beq	.L_3b34a
 	sub	r0, #1
 	strb	r0, [r4, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	mov	r0, #122	@ 0x7a
 	bl	m4aSongNumStart
 .L_3b34a:
@@ -1121,7 +1121,7 @@ func_803B36C:
 	beq	.L_3b3b6
 	sub	r0, r3, #1
 	strb	r0, [r2, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	mov	r0, #122	@ 0x7a
 	bl	m4aSongNumStart
 .L_3b3b6:
@@ -1306,7 +1306,7 @@ func_803B49C:
 	strb	r0, [r1, #0]
 	bl	SpriteUtilSetWarioBossVictoryPose
 .L_3b50a:
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 .L_3b50e:
 	ldr	r0, .L_3b520
 	ldrb	r0, [r0, #29]
@@ -1372,7 +1372,7 @@ func_803B538:
 .L_3b584:
 	.4byte	gWarioData
 .L_3b588:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_3b58c:
 	ldrh	r0, [r4, #8]
 	sub	r0, #32
@@ -1410,7 +1410,7 @@ func_803B538:
 	b	.L_3b5dc
 	.align	2, 0
 .L_3b5d0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_3b5d4:
 	.4byte	gCurrentSprite
 .L_3b5d8:

@@ -75,7 +75,7 @@ const u16 sUnk_8352AD4[] = {
     S16_MAX,
 };
 
-const s16 sUnk_8352ADC[] = {
+const s16 sSharedDebrisYVelocity[] = {
     4,
     4,
     4,
@@ -257,9 +257,9 @@ u32 func_8023944(u16 y, u16 x)
 
     temp = func_806D5C0(y, x);
     if (temp & 0x01000000) {
-        gUnk_3000A50 = 0x11;
+        gSpriteCollisionResult = 0x11;
     } else {
-        gUnk_3000A50 = 0;
+        gSpriteCollisionResult = 0;
     }
 
     temp &= 0xFF;
@@ -268,44 +268,44 @@ u32 func_8023944(u16 y, u16 x)
             tempY = y & 0xFFC0;
             tempX = (x & 0x3F) - 0x3F;
             result = tempY - tempX;
-            gUnk_3000A50 = 5;
+            gSpriteCollisionResult = 5;
             break;
 
         case 4:
             tempY = y & 0xFFC0;
             tempX = ((x & 0x3F) >> 1) - 0x3F;
             result = tempY - tempX;
-            gUnk_3000A50 = 3;
+            gSpriteCollisionResult = 3;
             break;
 
         case 5:
             tempY = 0xFFC0 & y;
             tempX = ((x & 0x3F) >> 1) - 0x1F;
             result = tempY - tempX;
-            gUnk_3000A50 = 3;
+            gSpriteCollisionResult = 3;
             break;
 
         case 0:
             result = (y & 0xFFC0) | (0x3F & x);
-            gUnk_3000A50 = 4;
+            gSpriteCollisionResult = 4;
             break;
 
         case 3:
             tempX = y & 0xFFC0;
             tempY = ((x & 0x3F) >> 1) + 0x1F;
             result = tempX | tempY;
-            gUnk_3000A50 = 2;
+            gSpriteCollisionResult = 2;
             break;
 
         case 2:
             tempX = y & 0xFFC0;
             tempY = (x & 0x3F) >> 1;
             result = tempX | tempY;
-            gUnk_3000A50 = 2;
+            gSpriteCollisionResult = 2;
             break;
 
         case 10:
-            gUnk_3000A50 = 0x10;
+            gSpriteCollisionResult = 0x10;
         default:
             result = y & 0xFFC0;
             break;
@@ -381,15 +381,15 @@ u32 func_8023A60(u16 y, u16 x)
 
     if (temp1 == 12) {
         if (y - result <= 25u) {
-            gUnk_3000A50 = temp2;
+            gSpriteCollisionResult = temp2;
         } else {
-            gUnk_3000A50 = 0;
+            gSpriteCollisionResult = 0;
         }
     } else {
         if (y >= result) {
-            gUnk_3000A50 = temp2;
+            gSpriteCollisionResult = temp2;
         } else {
-            gUnk_3000A50 = 0;
+            gSpriteCollisionResult = 0;
         }
     }
     return result;
@@ -405,19 +405,19 @@ void func_8023B88(void)
     xPosition = gCurrentSprite.xPosition;
 
     temp = func_8023944(yPosition - 4, xPosition);
-    if ((gUnk_3000A50 & 0xF) > 1) {
+    if ((gSpriteCollisionResult & 0xF) > 1) {
         gCurrentSprite.yPosition = temp;
         return;
     }
 
     temp = func_8023944(yPosition, xPosition);
-    if ((gUnk_3000A50 & 0xF) > 1) {
+    if ((gSpriteCollisionResult & 0xF) > 1) {
         gCurrentSprite.yPosition = temp;
         return;
     }
 
     temp = func_8023944(yPosition + 4, xPosition);
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         gCurrentSprite.yPosition = temp;
         return;
     }
@@ -431,38 +431,38 @@ void func_8023BFC(u16 y, u16 x)
     temp1 = func_806D5C0(y, x);
     temp2 = 0x01000000 & temp1;
     if (temp2 != 0) {
-        gUnk_3000A51 = 0x11;
+        gSpriteCollisionTileType = 0x11;
     } else {
-        gUnk_3000A51 = temp2;
+        gSpriteCollisionTileType = temp2;
     }
 
     switch ((temp1 & 0xFF) - 2) {
         case 1:
-            gUnk_3000A51 = 5;
+            gSpriteCollisionTileType = 5;
             break;
 
         case 4:
-            gUnk_3000A51 = 3;
+            gSpriteCollisionTileType = 3;
             break;
 
         case 5:
-            gUnk_3000A51 = 3;
+            gSpriteCollisionTileType = 3;
             break;
 
         case 0:
-            gUnk_3000A51 = 4;
+            gSpriteCollisionTileType = 4;
             break;
 
         case 3:
-            gUnk_3000A51 = 2;
+            gSpriteCollisionTileType = 2;
             break;
 
         case 2:
-            gUnk_3000A51 = 2;
+            gSpriteCollisionTileType = 2;
             break;
 
         case 10:
-            gUnk_3000A51 = 0x10;
+            gSpriteCollisionTileType = 0x10;
             break;
     }
 }
@@ -471,7 +471,7 @@ void func_8023C94(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -486,7 +486,7 @@ void func_8023CD8(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = SPOSE_1D;
         return;
     }
@@ -517,7 +517,7 @@ void func_8023D48(void)
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = temp;
         gCurrentSprite.pose = SPOSE_17;
         return;
@@ -534,7 +534,7 @@ void func_8023E00(void)
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = temp;
         if (gCurrentSprite.xPosition > gWarioData.xPosition) {
             if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
@@ -563,7 +563,7 @@ void func_8023EE0(void)
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = temp;
         if (gCurrentSprite.xPosition > gWarioData.xPosition) {
             gCurrentSprite.pose = SPOSE_33;
@@ -573,7 +573,7 @@ void func_8023EE0(void)
         return;
     }
 
-    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sUnk_8352ADC);
+    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sSharedDebrisYVelocity);
 }
 
 void func_8023FA8(void)
@@ -584,13 +584,13 @@ void func_8023FA8(void)
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = temp;
         gCurrentSprite.pose = SPOSE_6C;
         return;
     }
 
-    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sUnk_8352ADC);
+    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sSharedDebrisYVelocity);
 }
 
 void SpriteUtilFallOffscreenRight(void)
@@ -613,12 +613,12 @@ void func_8024180(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         if (gCurrentSprite.work2 < 4) {
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.work2--;
             }
         } else {
@@ -631,15 +631,15 @@ void func_8024180(void)
 
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
     func_8023B88();
-    if (!(gUnk_3000A50 & 0xE)) {
-        if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
+    if (!(gSpriteCollisionResult & 0xE)) {
+        if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
             gCurrentSprite.pose = SPOSE_43;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 == 0) {
+            if (gSpriteCollisionTileType == 0) {
                 gCurrentSprite.pose = SPOSE_47;
                 return;
             }
@@ -653,7 +653,7 @@ void func_8024180(void)
                 gCurrentSprite.work2--;
             }
         }
-    } else if ((gUnk_3000A50 & 0xF1) == 1) {
+    } else if ((gSpriteCollisionResult & 0xF1) == 1) {
         if (gCurrentSprite.pose != SPOSE_2C) {
             gCurrentSprite.pose = SPOSE_47;
         }
@@ -672,12 +672,12 @@ void func_80242C8(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         if (gCurrentSprite.work2 < 4) {
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.work2--;
             }
         } else {
@@ -690,15 +690,15 @@ void func_80242C8(void)
 
     gCurrentSprite.xPosition += gCurrentSprite.work2;
     func_8023B88();
-    if (!(gUnk_3000A50 & 0xE)) {
-        if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
+    if (!(gSpriteCollisionResult & 0xE)) {
+        if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
             gCurrentSprite.pose = SPOSE_45;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (gUnk_3000A51 == 0) {
+            if (gSpriteCollisionTileType == 0) {
                 gCurrentSprite.pose = SPOSE_49;
                 return;
             }
@@ -712,7 +712,7 @@ void func_80242C8(void)
                 gCurrentSprite.work2--;
             }
         }
-    } else if (!(0xF1 & gUnk_3000A50)) {
+    } else if (!(0xF1 & gSpriteCollisionResult)) {
         if (gCurrentSprite.pose != SPOSE_2E) {
             gCurrentSprite.pose = SPOSE_49;
         }
@@ -786,7 +786,7 @@ void func_80244E0(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = SPOSE_1D;
         return;
     }
@@ -824,9 +824,9 @@ void func_8024570(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
-    if ((gUnk_3000A51 == 0x11) ||
+    if ((gSpriteCollisionTileType == 0x11) ||
         (func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition),
-         ((0xF & gUnk_3000A51) != 0))) {
+         ((0xF & gSpriteCollisionTileType) != 0))) {
         pose = SPOSE_45;
         m4aSongNumStart(SOUND_37);
     } else {
@@ -848,9 +848,9 @@ void func_80245FC(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
-    if ((gUnk_3000A51 == 0x11) ||
+    if ((gSpriteCollisionTileType == 0x11) ||
         (func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition),
-         ((0xF & gUnk_3000A51) != 0))) {
+         ((0xF & gSpriteCollisionTileType) != 0))) {
         pose = SPOSE_43;
         m4aSongNumStart(SOUND_37);
     } else {
@@ -978,14 +978,14 @@ void func_8024AD4(void)
     u32 timer;
     u32 temp;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sUnk_8352ADC);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSharedDebrisYVelocity);
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
     temp = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
 
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         gCurrentSprite.yPosition = temp;
         if (gCurrentSprite.work2 > 7) {
             gCurrentSprite.work2 -= 4;
@@ -1007,7 +1007,7 @@ void func_8024AD4(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         gCurrentSprite.pose = SPOSE_45;
         m4aSongNumStart(SOUND_37);
     }
@@ -1025,14 +1025,14 @@ void func_8024C00(void)
     u32 timer;
     u32 temp;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sUnk_8352ADC);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSharedDebrisYVelocity);
     gCurrentSprite.xPosition += gCurrentSprite.work2;
     temp = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
 
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         gCurrentSprite.yPosition = temp;
         if (gCurrentSprite.work2 > 7) {
             gCurrentSprite.work2 -= 4;
@@ -1054,7 +1054,7 @@ void func_8024C00(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         gCurrentSprite.pose = SPOSE_43;
         m4aSongNumStart(SOUND_37);
     }
@@ -1091,11 +1091,11 @@ void SpriteUtilLiftingSpriteRight(void)
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 clipCheck = 1;
             }
             func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 clipCheck = 2;
             }
             if (clipCheck == 0) {
@@ -1165,11 +1165,11 @@ void SpriteUtilLiftingSpriteLeft(void)
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 clipCheck = 1;
             }
             func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 clipCheck = 2;
             }
             if (clipCheck == 0) {
@@ -1230,7 +1230,7 @@ void SpriteUtilCarryingSpriteRight(void)
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.work2 = 8;
                 gCurrentSprite.pose = SPOSE_47;
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
@@ -1242,7 +1242,7 @@ void SpriteUtilCarryingSpriteRight(void)
 
             if (gWarioData.yVelocity >= 0) {
                 func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
-                if (!(0xF & gUnk_3000A51)) {
+                if (!(0xF & gSpriteCollisionTileType)) {
                     return;
                 }
                 gCurrentSprite.work2 = 8;
@@ -1258,7 +1258,7 @@ void SpriteUtilCarryingSpriteRight(void)
             if (gUnk_30000A0.unk_02 == 1) {
                 gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
             }
-            if (!(0xF & gUnk_3000A50)) {
+            if (!(0xF & gSpriteCollisionResult)) {
                 return;
             }
 
@@ -1289,7 +1289,7 @@ void SpriteUtilCarryingSpriteRight(void)
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.yPosition = yPositionBackup;
                 gCurrentSprite.xPosition = xPositionBackup;
                 gCurrentSprite.work2 = 8;
@@ -1364,7 +1364,7 @@ void SpriteUtilCarryingSpriteLeft(void)
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.work2 = 8;
                 gCurrentSprite.pose = SPOSE_49;
                 gCurrentSprite.disableWarioCollisionTimer = CONVERT_SECONDS(0.5) + DELTA_TIME;
@@ -1376,7 +1376,7 @@ void SpriteUtilCarryingSpriteLeft(void)
 
             if (gWarioData.yVelocity >= 0) {
                 func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
-                if (!(0xF & gUnk_3000A51)) {
+                if (!(0xF & gSpriteCollisionTileType)) {
                     return;
                 }
                 gCurrentSprite.work2 = 8;
@@ -1392,7 +1392,7 @@ void SpriteUtilCarryingSpriteLeft(void)
             if (gUnk_30000A0.unk_02 == 1) {
                 gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
             }
-            if (!(0xF & gUnk_3000A50)) {
+            if (!(0xF & gSpriteCollisionResult)) {
                 return;
             }
 
@@ -1423,7 +1423,7 @@ void SpriteUtilCarryingSpriteLeft(void)
             func_8023BFC(
                 gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
             );
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.yPosition = yPositionBackup;
                 gCurrentSprite.xPosition = xPositionBackup;
                 gCurrentSprite.work2 = 8;
@@ -1486,9 +1486,9 @@ void func_80254E8(void)
         if (gUnk_30000A0.unk_02 == 1) {
             gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
         }
-        if (gUnk_3000A50 != 0) {
+        if (gSpriteCollisionResult != 0) {
             func_8023BFC(gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition);
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.xPosition += gCurrentSprite.hitboxExtentLeft;
             } else {
                 gCurrentSprite.yPosition = temp;
@@ -1508,7 +1508,7 @@ void func_80254E8(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         if ((gCurrentSprite.pose == SPOSE_THROWN_LEFT_SOFT) || (gCurrentSprite.pose == SPOSE_THROWN_UP_LEFT_SOFT) ||
             (gCurrentSprite.work0 == 2)) {
             gCurrentSprite.pose = SPOSE_49;
@@ -1521,7 +1521,7 @@ void func_80254E8(void)
 
     gUnk_3000028 = 1;
     func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
-    if (0xF & gUnk_3000A51) {
+    if (0xF & gSpriteCollisionTileType) {
         if ((gCurrentSprite.pose == SPOSE_THROWN_LEFT_HARD) || (gCurrentSprite.pose == SPOSE_THROWN_UP_LEFT_HARD)) {
             gCurrentSprite.pose = SPOSE_6B;
         } else {
@@ -1608,9 +1608,9 @@ void func_80258B4(void)
         if (gUnk_30000A0.unk_02 == 1) {
             gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
         }
-        if (gUnk_3000A50 != 0) {
+        if (gSpriteCollisionResult != 0) {
             func_8023BFC(gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition);
-            if (gUnk_3000A51 == 0x11) {
+            if (gSpriteCollisionTileType == 0x11) {
                 gCurrentSprite.xPosition -= gCurrentSprite.hitboxExtentRight;
             } else {
                 gCurrentSprite.yPosition = temp;
@@ -1630,7 +1630,7 @@ void func_80258B4(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         if ((gCurrentSprite.pose == SPOSE_THROWN_RIGHT_SOFT) || (gCurrentSprite.pose == SPOSE_THROWN_UP_RIGHT_SOFT) ||
             (gCurrentSprite.work0 == 2)) {
             gCurrentSprite.pose = SPOSE_47;
@@ -1643,7 +1643,7 @@ void func_80258B4(void)
 
     gUnk_3000028 = 1;
     func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
-    if (0xF & gUnk_3000A51) {
+    if (0xF & gSpriteCollisionTileType) {
         if ((gCurrentSprite.pose == SPOSE_THROWN_RIGHT_HARD) || (gCurrentSprite.pose == SPOSE_THROWN_UP_RIGHT_HARD)) {
             gCurrentSprite.pose = SPOSE_6B;
         } else {
@@ -1725,22 +1725,22 @@ void func_8025C80(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
-    if (gUnk_3000A51 != 0x11) {
+    if (gSpriteCollisionTileType != 0x11) {
         gCurrentSprite.xPosition += gCurrentSprite.work2;
         func_8023B88();
-        if (!(0xE & gUnk_3000A50)) {
-            if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
+        if (!(0xE & gSpriteCollisionResult)) {
+            if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
                 gCurrentSprite.pose = SPOSE_45;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 == 0) {
+            if (gSpriteCollisionTileType == 0) {
                 func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-                if (gUnk_3000A51 == 0) {
+                if (gSpriteCollisionTileType == 0) {
                     gCurrentSprite.pose = SPOSE_49;
                 }
             }
-        } else if (0xF1 & gUnk_3000A50) {
+        } else if (0xF1 & gSpriteCollisionResult) {
             gCurrentSprite.pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
         }
     } else {
@@ -1753,22 +1753,22 @@ void func_8025D34(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
-    if (gUnk_3000A51 != 0x11) {
+    if (gSpriteCollisionTileType != 0x11) {
         gCurrentSprite.xPosition -= gCurrentSprite.work2;
         func_8023B88();
-        if (!(0xE & gUnk_3000A50)) {
-            if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
+        if (!(0xE & gSpriteCollisionResult)) {
+            if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
                 gCurrentSprite.pose = SPOSE_43;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (gUnk_3000A51 == 0) {
+            if (gSpriteCollisionTileType == 0) {
                 func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-                if (gUnk_3000A51 == 0) {
+                if (gSpriteCollisionTileType == 0) {
                     gCurrentSprite.pose = SPOSE_47;
                 }
             }
-        } else if ((0xF1 & gUnk_3000A50) != 1) {
+        } else if ((0xF1 & gSpriteCollisionResult) != 1) {
             gCurrentSprite.pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
         }
     } else {
@@ -1781,24 +1781,24 @@ void func_8025DE8(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         gCurrentSprite.pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
         return;
     }
 
     gCurrentSprite.xPosition += gCurrentSprite.work2;
     func_8023B88();
-    if (!(0xE & gUnk_3000A50)) {
-        if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
+    if (!(0xE & gSpriteCollisionResult)) {
+        if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
             gCurrentSprite.pose = SPOSE_45;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-        if (gUnk_3000A51) {
+        if (gSpriteCollisionTileType) {
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-        if (gUnk_3000A51) {
+        if (gSpriteCollisionTileType) {
             return;
         }
         gCurrentSprite.pose = SPOSE_49;
@@ -1810,24 +1810,24 @@ void func_8025E98(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         gCurrentSprite.pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
         return;
     }
 
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
     func_8023B88();
-    if (!(0xE & gUnk_3000A50)) {
-        if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
+    if (!(0xE & gSpriteCollisionResult)) {
+        if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
             gCurrentSprite.pose = SPOSE_43;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-        if (gUnk_3000A51) {
+        if (gSpriteCollisionTileType) {
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-        if (gUnk_3000A51) {
+        if (gSpriteCollisionTileType) {
             return;
         }
         gCurrentSprite.pose = SPOSE_47;
@@ -1840,14 +1840,14 @@ void func_8025F48(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - (BLOCK_SIZE - EIGHTH_BLOCK_SIZE)
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         if (gCurrentSprite.work2 > 3) {
             gCurrentSprite.work2 -= 1;
         }
         func_8023BFC(
             gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + (BLOCK_SIZE - EIGHTH_BLOCK_SIZE)
         );
-        if (gUnk_3000A51 == 0x11) {
+        if (gSpriteCollisionTileType == 0x11) {
             gCurrentSprite.work2 = 0;
             gCurrentSprite.pose = SPOSE_2F;
         } else {
@@ -1859,15 +1859,15 @@ void func_8025F48(void)
 
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
     func_8023B88();
-    if (!(0xE & gUnk_3000A50)) {
-        if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
+    if (!(0xE & gSpriteCollisionResult)) {
+        if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2C)) {
             gCurrentSprite.pose = SPOSE_43;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 == 0) {
+            if (gSpriteCollisionTileType == 0) {
                 gCurrentSprite.pose = SPOSE_47;
                 return;
             }
@@ -1881,7 +1881,7 @@ void func_8025F48(void)
                 gCurrentSprite.work2 -= 1;
             }
         }
-    } else if ((0xF1 & gUnk_3000A50) == 1) {
+    } else if ((0xF1 & gSpriteCollisionResult) == 1) {
         if (gCurrentSprite.pose != SPOSE_2C) {
             gCurrentSprite.pose = SPOSE_47;
         }
@@ -1900,14 +1900,14 @@ void func_802608C(void)
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + (BLOCK_SIZE - EIGHTH_BLOCK_SIZE)
     );
-    if (gUnk_3000A51 == 0x11) {
+    if (gSpriteCollisionTileType == 0x11) {
         if (gCurrentSprite.work2 > 3) {
             gCurrentSprite.work2 -= 1;
         }
         func_8023BFC(
             gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - (BLOCK_SIZE - EIGHTH_BLOCK_SIZE)
         );
-        if (gUnk_3000A51 == 0x11) {
+        if (gSpriteCollisionTileType == 0x11) {
             gCurrentSprite.work2 = 0;
             gCurrentSprite.pose = SPOSE_2F;
         } else {
@@ -1919,15 +1919,15 @@ void func_802608C(void)
 
     gCurrentSprite.xPosition += gCurrentSprite.work2;
     func_8023B88();
-    if (!(0xE & gUnk_3000A50)) {
-        if ((gUnk_3000A50 == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
+    if (!(0xE & gSpriteCollisionResult)) {
+        if ((gSpriteCollisionResult == 0) && (gCurrentSprite.pose == SPOSE_2E)) {
             gCurrentSprite.pose = SPOSE_45;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (gUnk_3000A51 == 0) {
+            if (gSpriteCollisionTileType == 0) {
                 gCurrentSprite.pose = SPOSE_49;
                 return;
             }
@@ -1941,7 +1941,7 @@ void func_802608C(void)
                 gCurrentSprite.work2 -= 1;
             }
         }
-    } else if ((0xF1 & gUnk_3000A50) == 0) {
+    } else if ((0xF1 & gSpriteCollisionResult) == 0) {
         if (gCurrentSprite.pose != SPOSE_2E) {
             gCurrentSprite.pose = SPOSE_49;
         }
@@ -2101,7 +2101,7 @@ void func_8026374(void)
 {
     u16 xVelocity;
 
-    switch (gUnk_3000A50) {
+    switch (gSpriteCollisionResult) {
         case 2:
         case 3:
             xVelocity = 2;
@@ -2126,7 +2126,7 @@ void func_80263AC(void)
 {
     u16 xVelocity;
 
-    switch (gUnk_3000A50) {
+    switch (gSpriteCollisionResult) {
         case 4:
         case 5:
             xVelocity = 1;
@@ -2147,7 +2147,7 @@ void func_80263E0(void)
 {
     u16 xVelocity;
 
-    switch (gUnk_3000A50) {
+    switch (gSpriteCollisionResult) {
         case 2:
         case 3:
             xVelocity = 3;
@@ -2172,7 +2172,7 @@ void func_8026418(void)
 {
     u16 xVelocity;
 
-    switch (gUnk_3000A50) {
+    switch (gSpriteCollisionResult) {
         case 2:
         case 3:
             xVelocity = 7;

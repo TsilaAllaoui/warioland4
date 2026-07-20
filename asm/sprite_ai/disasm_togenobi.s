@@ -49,7 +49,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #212	@ 0xd4
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -58,7 +58,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #213	@ 0xd5
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -67,7 +67,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #212	@ 0xd4
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -76,7 +76,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #213	@ 0xd5
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -85,7 +85,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #212	@ 0xd4
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -94,7 +94,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #213	@ 0xd5
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -103,7 +103,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #212	@ 0xd4
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -112,7 +112,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #213	@ 0xd5
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r6, #24]
 	ldrb	r2, [r6, #25]
 	ldrh	r3, [r6, #8]
@@ -120,7 +120,7 @@ func_805A178:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #214	@ 0xd6
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	add	sp, #8
 	pop	{r4, r5, r6}
 	pop	{r0}

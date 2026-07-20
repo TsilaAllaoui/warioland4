@@ -138,7 +138,7 @@ func_8060ACC:
 	bl	func_8023BFC
 	b	.L_60b38
 .L_60b1c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_60b20:
 	.4byte	gCurrentSprite
 .L_60b24:
@@ -161,7 +161,7 @@ func_8060ACC:
 	strb	r0, [r1, #28]
 	b	.L_60c28
 .L_60b48:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_60b4c:
 	.4byte	gCurrentSprite
 .L_60b50:
@@ -209,7 +209,7 @@ func_8060ACC:
 .L_60ba4:
 	.4byte	gCurrentSprite
 .L_60ba8:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_60bac:
 	cmp	r5, #4
 	bne	.L_60bb6
@@ -246,7 +246,7 @@ func_8060ACC:
 	strb	r0, [r4, #28]
 	b	.L_60c28
 .L_60bec:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_60bf0:
 	ldrh	r0, [r4, #8]
 	sub	r0, #32
@@ -384,7 +384,7 @@ func_8060CC8:
 	b	.L_60d44
 	.align	2, 0
 .L_60ce4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_60ce8:
 	.4byte	gCurrentSprite
 .L_60cec:
@@ -1092,7 +1092,7 @@ func_8061180:
 .L_611b8:
 	.4byte	gCurrentSprite
 .L_611bc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_611c0:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

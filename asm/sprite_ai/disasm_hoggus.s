@@ -307,7 +307,7 @@ func_8056F64:
 	bx	r0
 	.align	2, 0
 .L_56fd0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 
 
 thumb_func_start func_8056FD4
@@ -502,7 +502,7 @@ func_80570C0:
 .L_57124:
 	.4byte	gCurrentSprite
 .L_57128:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_5712c:
 	mov	r0, #107	@ 0x6b
 	bl	m4aSongNumStart

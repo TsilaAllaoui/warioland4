@@ -121,7 +121,7 @@ func_804C6AC:
 	str	r0, [sp, #0]
 	str	r5, [sp, #4]
 	mov	r0, #184	@ 0xb8
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	ldrb	r1, [r4, #24]
 	ldrb	r2, [r4, #25]
 	ldrh	r3, [r4, #8]
@@ -131,7 +131,7 @@ func_804C6AC:
 	mov	r0, #64	@ 0x40
 	str	r0, [sp, #4]
 	mov	r0, #184	@ 0xb8
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	mov	r0, #220	@ 0xdc
 	strb	r0, [r6, #0]
 	mov	r0, #15
@@ -255,7 +255,7 @@ func_804C78C:
 .L_4c7d4:
 	.4byte	gUnk_30000A0
 .L_4c7d8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4c7dc:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

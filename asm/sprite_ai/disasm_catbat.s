@@ -56,7 +56,7 @@ func_8047F1C:
 	mov	r0, #0
 	b	.L_47f9a
 .L_47f40:
-	.4byte	gUnk_3000A5B
+	.4byte	gCuckooCondorHasCapturedWario
 .L_47f44:
 	.4byte	sUnk_83CF920
 .L_47f48:
@@ -170,7 +170,7 @@ func_8047FB4:
 	bx	r0
 	.align	2, 0
 .L_48010:
-	.4byte	gUnk_3000A5E
+	.4byte	gBossInitialHealth
 .L_48014:
 	.4byte	0x40000D4
 .L_48018:
@@ -406,7 +406,7 @@ func_8048134:
 	bl	func_8047F1C
 	bl	SpriteUtilTurnTowardWario
 	bl	func_8048104
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	add	r1, r4, #0
 	add	r1, #41	@ 0x29
 	mov	r0, #60	@ 0x3c
@@ -414,7 +414,7 @@ func_8048134:
 	mov	r0, #131	@ 0x83
 	mov	r1, #8
 	mov	r2, #4
-	bl	func_8070964
+	bl	LoadBossSpriteGraphics
 	ldrh	r3, [r4, #8]
 	mov	r0, #176	@ 0xb0
 	lsl	r0, r0, #1
@@ -444,19 +444,19 @@ func_8048134:
 	bx	r0
 	.align	2, 0
 .L_48218:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_4821c:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_48220:
-	.4byte	gUnk_3000A5A
+	.4byte	gCuckooCondorMoveRight
 .L_48224:
-	.4byte	gUnk_3000A5B
+	.4byte	gCuckooCondorHasCapturedWario
 .L_48228:
-	.4byte	gUnk_3000A5C
+	.4byte	gBossHurtState
 .L_4822c:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossHurtTimer
 .L_48230:
-	.4byte	gUnk_3000A5E
+	.4byte	gBossInitialHealth
 .L_48234:
 	.4byte	gUnk_3000A5F
 .L_48238:
@@ -538,7 +538,7 @@ func_804824C:
 .L_482c4:
 	.4byte	0x7FFF
 .L_482c8:
-	.4byte	gUnk_30000F4
+	.4byte	gColorFadingState
 .L_482cc:
 	.4byte	gCurrentShopItem
 
@@ -983,9 +983,9 @@ func_8048528:
 .L_48600:
 	.4byte	0x7FFF
 .L_48604:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48608:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_4860c:
 	.4byte	gSpriteData
 .L_48610:
@@ -1017,7 +1017,7 @@ func_8048528:
 	b	.L_48654
 	.align	2, 0
 .L_48648:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_4864c:
 	.4byte	0xFFFB
 .L_48650:
@@ -1100,9 +1100,9 @@ func_8048528:
 	b	.L_48780
 	.align	2, 0
 .L_486e8:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_486ec:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_486f0:
 	.4byte	gSpriteData
 .L_486f4:
@@ -1134,7 +1134,7 @@ func_8048528:
 	b	.L_48738
 	.align	2, 0
 .L_4872c:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_48730:
 	.4byte	0xFFFB
 .L_48734:
@@ -1161,7 +1161,7 @@ func_8048528:
 	mov	r0, #227	@ 0xe3
 	mov	r1, #1
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_48780
 	.align	2, 0
 .L_48768:
@@ -1202,7 +1202,7 @@ func_8048528:
 .L_487a8:
 	.4byte	gCurrentSprite
 .L_487ac:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_487b0:
 	ldrh	r0, [r4, #8]
 	ldrh	r1, [r4, #10]
@@ -1228,7 +1228,7 @@ func_8048528:
 	bx	r0
 	.align	2, 0
 .L_487dc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 
 
 thumb_func_start func_80487E0
@@ -1350,14 +1350,14 @@ func_8048808:
 	str	r6, [sp, #4]
 	mov	r0, #225	@ 0xe1
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_4891e
 .L_488d0:
 	.4byte	gCurrentSprite
 .L_488d4:
 	.4byte	gUnk_30000A0
 .L_488d8:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 .L_488dc:
 	ldrh	r0, [r4, #8]
 	add	r0, #128	@ 0x80
@@ -1387,7 +1387,7 @@ func_8048808:
 	str	r5, [sp, #4]
 	mov	r0, #225	@ 0xe1
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_4891e:
 	ldr	r1, .L_48930
 	ldrb	r0, [r1, #0]
@@ -1400,7 +1400,7 @@ func_8048808:
 	bx	r0
 	.align	2, 0
 .L_48930:
-	.4byte	gUnk_3000A58
+	.4byte	gBossTookDamage
 
 
 thumb_func_start func_8048934
@@ -1466,7 +1466,7 @@ func_8048980:
 	strb	r0, [r1, #0]
 	bl	SpriteUtilSetWarioBossVictoryPose
 .L_489a4:
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 .L_489a8:
 	ldr	r1, .L_489f0
 	mov	r0, #1
@@ -1501,7 +1501,7 @@ func_8048980:
 .L_489ec:
 	.4byte	gTimerState
 .L_489f0:
-	.4byte	gUnk_3000A5A
+	.4byte	gCuckooCondorMoveRight
 .L_489f4:
 	.4byte	sUnk_83CE490
 .L_489f8:
@@ -1559,7 +1559,7 @@ func_80489FC:
 .L_48a58:
 	.4byte	gBg1YPosition
 .L_48a5c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48a60:
 	ldrh	r0, [r4, #8]
 	ldrh	r1, [r4, #10]
@@ -1596,7 +1596,7 @@ func_80489FC:
 	b	.L_48ac6
 	.align	2, 0
 .L_48aa4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48aa8:
 	.4byte	gCurrentSprite
 .L_48aac:
@@ -1631,7 +1631,7 @@ func_8048ACC:
 	beq	.L_48ade
 	sub	r0, #1
 	strb	r0, [r4, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 .L_48ade:
 	ldr	r0, .L_48b28
 	mov	r2, #1
@@ -1671,11 +1671,11 @@ func_8048ACC:
 .L_48b24:
 	.4byte	gCurrentSprite
 .L_48b28:
-	.4byte	gUnk_3000A5A
+	.4byte	gCuckooCondorMoveRight
 .L_48b2c:
 	.4byte	sUnk_83CD35C
 .L_48b30:
-	.4byte	gUnk_3000A5C
+	.4byte	gBossHurtState
 .L_48b34:
 	.4byte	gUnk_3000A60
 .L_48b38:
@@ -1827,7 +1827,7 @@ func_8048B58:
 	b	.L_48c74
 	.align	2, 0
 .L_48c54:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48c58:
 	ldrh	r0, [r6, #8]
 	ldrh	r1, [r6, #10]
@@ -1863,7 +1863,7 @@ func_8048B58:
 	b	.L_48cb4
 	.align	2, 0
 .L_48c9c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48ca0:
 	.4byte	gCurrentSprite
 .L_48ca4:
@@ -2057,7 +2057,7 @@ func_8048D78:
 	mov	r1, #4
 .L_48df8:
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_48e08
 .L_48e00:
 	mov	r0, #15
@@ -2070,7 +2070,7 @@ func_8048D78:
 	pop	{r0}
 	bx	r0
 .L_48e10:
-	.4byte	gUnk_3000A5A
+	.4byte	gCuckooCondorMoveRight
 
 
 thumb_func_start func_8048E14
@@ -2144,7 +2144,7 @@ func_8048E40:
 .L_48e94:
 	.4byte	gCurrentSprite
 .L_48e98:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48e9c:
 	.4byte	gBg1YPosition
 .L_48ea0:
@@ -2245,7 +2245,7 @@ func_8048EF8:
 .L_48f4c:
 	.4byte	gCurrentSprite
 .L_48f50:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_48f54:
 	.4byte	gBg1YPosition
 .L_48f58:
@@ -2355,7 +2355,7 @@ func_8048FBC:
 	mov	r0, #227	@ 0xe3
 	mov	r1, #0
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_49020
 .L_4901c:
 	mov	r0, #15
@@ -2813,7 +2813,7 @@ func_80493B8:
 	beq	.L_49442
 	sub	r0, #1
 	strb	r0, [r2, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	mov	r0, #122	@ 0x7a
 	bl	m4aSongNumStart
 .L_49442:
@@ -2826,7 +2826,7 @@ func_80493B8:
 .L_49450:
 	.4byte	sUnk_83CE490
 .L_49454:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossHurtTimer
 
 
 thumb_func_start func_8049458
@@ -2856,7 +2856,7 @@ func_8049458:
 	b	.L_49542
 	.align	2, 0
 .L_49488:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossHurtTimer
 .L_4948c:
 	.4byte	gCurrentSprite
 .L_49490:
@@ -2932,7 +2932,7 @@ func_8049458:
 	bl	func_8047F1C
 	b	.L_49542
 .L_49520:
-	.4byte	gUnk_3000A5C
+	.4byte	gBossHurtState
 .L_49524:
 	.4byte	sUnk_83CE468
 .L_49528:
@@ -2944,7 +2944,7 @@ func_8049458:
 	beq	.L_49542
 	sub	r0, r4, #1
 	strb	r0, [r1, #29]
-	bl	func_80747D8
+	bl	UpdateBossHealthGauge
 	mov	r0, #122	@ 0x7a
 	bl	m4aSongNumStart
 .L_49542:
@@ -3127,7 +3127,7 @@ func_804964C:
 .L_4967c:
 	.4byte	gCurrentSprite
 .L_49680:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_49684:
 	ldrh	r0, [r4, #8]
 	ldrh	r1, [r4, #10]
@@ -3144,7 +3144,7 @@ func_804964C:
 	b	.L_496b0
 	.align	2, 0
 .L_496a0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_496a4:
 	add	r0, r4, #0
 	add	r0, #41	@ 0x29
@@ -3650,7 +3650,7 @@ func_8049850:
 .L_49a38:
 	.4byte	gCurrentSprite
 .L_49a3c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteCollisionTileType
 .L_49a40:
 	.4byte	sUnk_83CFA7C
 .L_49a44:
@@ -3844,7 +3844,7 @@ func_8049B1C:
 	str	r5, [sp, #4]
 	mov	r0, #228	@ 0xe4
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_49bc6
 .L_49ba8:
 	.4byte	gCurrentSprite
@@ -3860,7 +3860,7 @@ func_8049B1C:
 	str	r2, [sp, #4]
 	mov	r0, #228	@ 0xe4
 	mov	r2, #0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_49bc6:
 	add	sp, #8
 	pop	{r4, r5}
@@ -4389,11 +4389,11 @@ SpriteCatbat:
 	b	.L_49f94
 	.align	2, 0
 .L_49f80:
-	.4byte	gUnk_3000A59
+	.4byte	gCuckooCondorPendulumLength
 .L_49f84:
 	.4byte	gCurrentSprite
 .L_49f88:
-	.4byte	gUnk_3000A5B
+	.4byte	gCuckooCondorHasCapturedWario
 .L_49f8c:
 	.4byte	gWarioData
 .L_49f90:

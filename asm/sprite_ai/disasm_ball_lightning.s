@@ -72,7 +72,7 @@ func_8037508:
 	str	r0, [sp, #0]
 	str	r4, [sp, #4]
 	mov	r0, #159	@ 0x9f
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	mov	r0, #200	@ 0xc8
 	strb	r0, [r6, #0]
 	ldrh	r1, [r5, #0]
@@ -288,7 +288,7 @@ func_803766C:
 .L_376ac:
 	.4byte	gUnk_30000A0
 .L_376b0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_376b4:
 	bl	func_803764C
 .L_376b8:
@@ -325,7 +325,7 @@ func_803766C:
 	add	r0, r0, r1
 	b	.L_3770a
 .L_376f8:
-	.4byte	sUnk_8352ADC
+	.4byte	sSharedDebrisYVelocity
 .L_376fc:
 	.4byte	0x7FFF
 .L_37700:
@@ -599,7 +599,7 @@ SpriteUnknown9F:
 	str	r0, [sp, #0]
 	str	r5, [sp, #4]
 	mov	r0, #160	@ 0xa0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 	b	.L_378f8
 .L_378dc:
 	.4byte	gCurrentSprite
@@ -614,7 +614,7 @@ SpriteUnknown9F:
 	str	r0, [sp, #0]
 	str	r6, [sp, #4]
 	mov	r0, #160	@ 0xa0
-	bl	func_801E3A8
+	bl	SpawnPrimarySpriteWithStatus
 .L_378f8:
 	ldr	r0, .L_3790c
 	ldrb	r0, [r0, #28]

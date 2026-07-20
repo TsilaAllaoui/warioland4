@@ -1272,7 +1272,7 @@ func_806B864:
 .L_6b980:
 	.4byte	gUnk_3000035
 .L_6b984:
-	.4byte	gUnk_30000F4
+	.4byte	gColorFadingState
 .L_6b988:
 	.4byte	gUnk_30000FC
 .L_6b98c:
