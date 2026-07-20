@@ -414,3 +414,22 @@ python3 tools/decode_oam.py professor --apply
 If the tool reports that `sProfessorProjectileOam` has neither an ASM label nor
 a named Method 3 array, verify that the generated raw array retained the exact
 symbol name and that its range comment uses full ROM addresses.
+
+
+## Notes
+
+- Source autodiscovery now also checks `src/minigames/<module>.c`.
+- `--plan-region` / `--create-region --apply` no longer requires animation tables to already be covered by a Method 3 region during discovery.
+- Linker object lookup now matches by object basename and accepts repository linker entries such as:
+
+```ld
+obj/blob_0x6D36A4-0x78E6CC.o(.rodata);
+```
+
+- The generated replacement preserves the object root, so the example above becomes:
+
+```ld
+obj/data/sprite_data_6D36A4_78E6CC.o(.rodata);
+```
+
+- The lookup also scans `ldscript.in` and `ldscript.txt` in addition to `.ld` / `.lds` files.

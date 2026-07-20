@@ -257,6 +257,7 @@ def infer_module(root: Path) -> str:
 def find_source(root: Path, module: str) -> Path:
     candidates = [
         root / "src" / "sprite_ai" / f"{module}.c",
+        root / "src" / "minigames" / f"{module}.c",
         root / "src" / f"{module}.c",
     ]
     for path in candidates:
@@ -918,37 +919,88 @@ def asm_layout_for_address(layouts: list[AsmBlobLayout], start: int, end: int) -
     return None
 
 
+def linker_candidate_paths(root: Path) -> list[Path]:
+    """Return linker script inputs that may contain explicit object references."""
+    paths: list[Path] = []
+    for pattern in ("*.ld", "*.lds", "ldscript.in", "ldscript.txt"):
+        paths.extend(root.glob(pattern))
+    # Some repositories keep linker scripts in subdirectories.
+    for pattern in ("*.ld", "*.lds"):
+        paths.extend(root.rglob(pattern))
+    unique: list[Path] = []
+    for path in sorted(set(paths)):
+        try:
+            rel = path.relative_to(root)
+        except ValueError:
+            continue
+        if any(part in {"build", ".git"} for part in rel.parts):
+            continue
+        if path.is_file() and path not in unique:
+            unique.append(path)
+    return unique
+
+
+def find_object_tokens(linker_text: str, object_basename: str) -> list[str]:
+    """Find linker object path tokens ending in object_basename.
+
+    This intentionally matches by basename so all of these are accepted:
+      obj/blob_0xAAAA-0xBBBB.o(.rodata)
+      asm/blob_0xAAAA-0xBBBB.o(.rodata)
+      build/us/obj/asm/blob_0xAAAA-0xBBBB.o(.rodata)
+    """
+    token_re = re.compile(
+        rf"(?<![A-Za-z0-9_.$@+~:/\\-])"
+        rf"(?P<token>(?:[A-Za-z0-9_.$@+~:-]+[/\\])*){re.escape(object_basename)}"
+        rf"(?=\s*(?:\(|;|$))"
+    )
+    return [match.group("token") + object_basename for match in token_re.finditer(linker_text)]
+
+
 def find_linker_replacement(root: Path, asm_path: Path, output_path: Path) -> tuple[Path | None, str | None, str | None, list[str]]:
     blockers: list[str] = []
-    old_rel = asm_path.relative_to(root).with_suffix("").as_posix() + ".o"
+    asm_rel = asm_path.relative_to(root).with_suffix("").as_posix() + ".o"
+    asm_parts = asm_path.relative_to(root).with_suffix("").parts
+    asm_without_top = Path(*asm_parts[1:]).as_posix() + ".o" if len(asm_parts) > 1 else Path(asm_rel).name
+    asm_basename = asm_path.with_suffix(".o").name
+
     output_rel = output_path.relative_to(root).with_suffix("")
     # This project maps src/foo.c to build/.../obj/foo.o (the leading src/ is omitted).
     if output_rel.parts and output_rel.parts[0] == "src":
         output_rel = Path(*output_rel.parts[1:])
     new_rel = output_rel.as_posix() + ".o"
+
     candidates: list[tuple[Path, str, str]] = []
-    for linker in sorted([*root.glob("*.ld"), *root.rglob("*.ld")]):
-        if any(part in {"build", ".git"} for part in linker.relative_to(root).parts):
-            continue
+    for linker in linker_candidate_paths(root):
         text = linker.read_text(encoding="utf-8", errors="replace")
-        # Match either exact source-relative object paths or paths with a build prefix.
-        for match in re.finditer(re.escape(old_rel), text):
-            prefix_start = match.start()
-            while prefix_start > 0 and text[prefix_start - 1] not in " \t\r\n([{;":
-                prefix_start -= 1
-            old_token = text[prefix_start:match.end()]
-            prefix = old_token[:-len(old_rel)] if old_token.endswith(old_rel) else ""
-            new_token = prefix + new_rel
-            candidates.append((linker, old_token, new_token))
+        for old_token in find_object_tokens(text, asm_basename):
+            # Prefer preserving the object-root prefix, not necessarily the whole old directory.
+            # Examples:
+            #   build/us/obj/asm/data/blob.o -> build/us/obj/data/sprite_data.o
+            #   obj/blob.o                   -> obj/data/sprite_data.o
+            if old_token.endswith(asm_rel):
+                prefix = old_token[:-len(asm_rel)]
+            elif old_token.endswith(asm_without_top):
+                prefix = old_token[:-len(asm_without_top)]
+            elif old_token.endswith(asm_basename):
+                prefix = old_token[:-len(asm_basename)]
+            else:
+                continue
+            candidates.append((linker, old_token, prefix + new_rel))
+
     # Deduplicate exact matches.
     unique: list[tuple[Path, str, str]] = []
     for item in candidates:
         if item not in unique:
             unique.append(item)
+
     if len(unique) == 1:
         return (*unique[0], blockers)
     if not unique:
-        blockers.append(f"no linker .o reference matching {old_rel} was found")
+        scanned = ", ".join(path.relative_to(root).as_posix() for path in linker_candidate_paths(root)) or "no linker scripts"
+        blockers.append(
+            f"no linker .o reference matching {asm_basename} was found "
+            f"(also tried {asm_rel}; scanned {scanned})"
+        )
     else:
         blockers.append(
             "multiple linker references match the ASM object: "

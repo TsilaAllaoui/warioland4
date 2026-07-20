@@ -785,7 +785,7 @@ SECTIONS {
         obj/data/sprite_data_40F1C8_41000C.o(.rodata);
         obj/blob_0x41000C-0x6D3394.o(.rodata);
         obj/voice_set.o(.rodata);
-        obj/blob_0x6D36A4-0x78E6CC.o(.rodata);
+        obj/data/sprite_data_6D36A4_78E6CC.o(.rodata);
     } > ROM
 
     .data (READONLY) : ALIGN(2) {

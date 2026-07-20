@@ -69,12 +69,28 @@ def main():
         if label:
             suffix_text += [f'.global {label}\n',f'{label}:\n','\n']
         suffix_text += [f'baserom_blob 0x{st:X}, 0x{en:X}\n','\n']
-    old_obj='obj/'+asm.with_suffix('').name+'.o(.rodata);'
-    new_obj='obj/data/'+out.with_suffix('').name+'.o(.rodata);'
+    object_basename = asm.with_suffix('.o').name
+    object_re = re.compile(
+        rf"(?P<object>(?:[A-Za-z0-9_.$(){{}}+-]+[/\\])*{re.escape(object_basename)})"
+        rf"(?P<section>\s*\([^;\n]*\)\s*;)"
+    )
     ltxt=a.linker.read_text() if a.linker.exists() else ''
-    if ltxt.count(old_obj)!=1:
-        raise E(f'Expected exactly one linker token `{old_obj}`, found {ltxt.count(old_obj)}')
-    new_ltxt=ltxt.replace(old_obj,new_obj+'\n        '+old_obj,1)
+    matches=list(object_re.finditer(ltxt))
+    if len(matches)!=1:
+        found=', '.join(m.group('object') for m in matches) or 'none'
+        raise E(f'Expected exactly one linker token matching `{object_basename}`, found {len(matches)}: {found}')
+    match=matches[0]
+    old_obj=match.group('object')+match.group('section')
+    existing_object=match.group('object').replace('\\','/')
+    parts=existing_object.split('/')
+    if 'obj' in parts:
+        obj_root='/'.join(parts[:parts.index('obj')+1])
+        new_object=f"{obj_root}/data/{out.with_suffix('').name}.o"
+    else:
+        new_object=f"obj/data/{out.with_suffix('').name}.o"
+    new_obj=new_object+match.group('section')
+    new_ltxt=ltxt[:match.start('object')]+new_obj+'\n        '+old_obj+ltxt[match.end('section'):]
+
     print(f'ASM prefix: 0x{ROM_BASE+start:08X}-0x{ROM_BASE+split:08X}')
     print(f'ASM suffix: 0x{ROM_BASE+split:08X}-0x{ROM_BASE+end:08X}')
     print(f'Generate: {out}')
