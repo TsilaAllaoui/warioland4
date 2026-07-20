@@ -477,28 +477,28 @@ sUnk_870CE78:
 
 baserom_blob 0x70CE78, 0x70D400
 
-.global sUnk_870D400
-sUnk_870D400:
+.global sWarioHopRollingObjectOam
+sWarioHopRollingObjectOam:
 
 baserom_blob 0x70D400, 0x70D428
 
-.global sUnk_870D428
-sUnk_870D428:
+.global sWarioHopMedalHighlightOam
+sWarioHopMedalHighlightOam:
 
 baserom_blob 0x70D428, 0x70D4A8
 
-.global sUnk_870D4A8
-sUnk_870D4A8:
+.global sWarioHopPlayerOam
+sWarioHopPlayerOam:
 
 baserom_blob 0x70D4A8, 0x70D6C0
 
-.global sUnk_870D6C0
-sUnk_870D6C0:
+.global sWarioHopBonusEffectOam
+sWarioHopBonusEffectOam:
 
 baserom_blob 0x70D6C0, 0x70D700
 
-.global sUnk_870D700
-sUnk_870D700:
+.global sWarioHopMedalEffectOam
+sWarioHopMedalEffectOam:
 
 baserom_blob 0x70D700, 0x70D880
 

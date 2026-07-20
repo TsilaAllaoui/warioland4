@@ -66,11 +66,11 @@ extern const struct AnimationFrame *const sUnk_870CE24[];
 extern const s32 sUnk_870CE40[];
 extern const s32 sUnk_870CE5C[];
 extern const u32 sUnk_870CE78[];
-extern const struct AnimationFrame sUnk_870D400[];
-extern const struct AnimationFrame sUnk_870D428[];
-extern const struct AnimationFrame sUnk_870D4A8[];
-extern const struct AnimationFrame sUnk_870D6C0[];
-extern const struct AnimationFrame sUnk_870D700[];
+extern const struct AnimationFrame sWarioHopRollingObjectOam[];
+extern const struct AnimationFrame sWarioHopMedalHighlightOam[];
+extern const struct AnimationFrame sWarioHopPlayerOam[];
+extern const struct AnimationFrame sWarioHopBonusEffectOam[];
+extern const struct AnimationFrame sWarioHopMedalEffectOam[];
 extern const u16 *sUnk_870D880;
 extern const u16 *sUnk_870D890;
 extern const u8 sUnk_870CC18[];
@@ -1113,10 +1113,10 @@ void WarioHopDrawSprites(void)
     asm("ldrb %0, [%1]" : "=r"(effectActive) : "r"(effectActivePtr));
     if (effectActive != 0) {
         gMinigameUiAnimation[0]++;
-        if (sUnk_870D428[gMinigameUiAnimation[1]].time < gMinigameUiAnimation[0]) {
+        if (sWarioHopMedalHighlightOam[gMinigameUiAnimation[1]].time < gMinigameUiAnimation[0]) {
             gMinigameUiAnimation[0] = 1;
             gMinigameUiAnimation[1]++;
-            if (sUnk_870D428[gMinigameUiAnimation[1]].time == 0) {
+            if (sWarioHopMedalHighlightOam[gMinigameUiAnimation[1]].time == 0) {
                 register u32 resetZero asm("r0");
                 register u8 *resetActivePtr asm("r2");
 
@@ -1141,7 +1141,7 @@ void WarioHopDrawSprites(void)
         register s32 tempPriority asm("r2");
         register s32 drawPriorityMask asm("r8");
 
-        frame = sUnk_870D428[gMinigameUiAnimation[1]].oam;
+        frame = sWarioHopMedalHighlightOam[gMinigameUiAnimation[1]].oam;
         count = *frame;
         total += count;
         frame++;
@@ -1323,7 +1323,7 @@ void WarioHopDrawSprites(void)
         register s32 tempPriorityMask asm("r2");
         register s32 drawPriorityMask asm("r8");
 
-        base = sUnk_870D4A8;
+        base = sWarioHopPlayerOam;
         currentFrame = base[0].oam;
         count = *currentFrame;
         total += count;
@@ -1413,7 +1413,7 @@ void WarioHopDrawSprites(void)
             timer = companion[3];
             timer++;
             companion[3] = timer;
-            companionAnim = sUnk_870D400;
+            companionAnim = sWarioHopRollingObjectOam;
             frameTime = companionAnim[companion[4]].time;
             if (frameTime < timer) {
                 companion[3] = zero;
@@ -1694,7 +1694,7 @@ void WarioHopDrawSprites(void)
         register const u16 *currentFrame asm("r4");
         register struct WarioHopSmallState *drawStateSource asm("r3");
 
-        animBase = sUnk_870D6C0;
+        animBase = sWarioHopBonusEffectOam;
         r2Value = (u32)&gWarioHopBonusEffect;
         frameTime = animBase[((struct WarioHopSmallState *)r2Value)->animFrame].time;
         asm volatile("add %0, %1, #0" : "=r"(r2Value) : "r"(animBase));
@@ -1809,7 +1809,7 @@ warioHopEffectDone:
             timer = effectState->animTimer;
             timer++;
             effectState->animTimer = timer;
-            effectAnim = sUnk_870D700;
+            effectAnim = sWarioHopMedalEffectOam;
             if (effectAnim[effectState->animFrame].time < timer) {
                 effectState->animTimer = 1;
                 effectState->animFrame++;
