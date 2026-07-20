@@ -1,3 +1,7 @@
+/*
+    THERE IS SOME WEIRDS ASM ISLANDS THAT CAN'T BE REPLACED BECAUSE OF AGBCC BOUNDARIES
+*/
+
 #include "gba.h"
 #include "gba/m4a.h"
 #include "fixed_point.h"
@@ -6,14 +10,6 @@
 #include "minigame.h"
 #include "minigames/wario_hop.h"
 #include "oam.h"
-
-/*
- * Assembler-only compiler-boundary helpers. They do not replace the C logic;
- * they only correct agbcc's register choices at isolated instructions.
- */
-asm(".macro WH_FIX_ROLL; .set wh_roll, 0; .macro strh args:vararg; .if wh_roll == 0; .set wh_roll, 1; .hword 0x80c4; .else; .purgem strh; .hword 0x8104; .endif; .endm; .endm");
-asm(".macro WH_FIX_GLOBALS; .set wh_strb, 0; .macro strb args:vararg; .if wh_strb == 0; .set wh_strb, 1; .hword 0x7015; .elseif wh_strb == 1; .set wh_strb, 2; .hword 0x7035; .else; .purgem strb; .hword 0x7005; .endif; .endm; .set wh_ldr, 0; .macro ldr args:vararg; .if wh_ldr == 0; .set wh_ldr, 1; .hword 0x4a4d; .elseif wh_ldr == 1; .set wh_ldr, 2; .hword 0x4b4d; .else; .purgem ldr; .hword 0x4e4d; .endif; .endm; .endm");
-asm(".macro WH_FIX_ITEMS; .set wh_item_h, 0; .macro strh args:vararg; .if wh_item_h == 0; .set wh_item_h, 1; .hword 0x8002; .elseif wh_item_h == 1; .set wh_item_h, 2; .hword 0x80c2; .else; .purgem strh; .hword 0x8102; .endif; .endm; .set wh_item_b, 0; .macro strb args:vararg; .if wh_item_b == 0; .set wh_item_b, 1; .hword 0x7104; .else; .purgem strb; .hword 0x7283; .endif; .endm; .endm");
 
 extern u8 gWarioHopSpeedLevel;
 extern u16 gWarioHopBg0Scroll[2];
@@ -86,51 +82,6 @@ void func_807A428(void);
 void func_807AB8C(u32 value, const void *src, u32 dst);
 void func_8089C98(u16 value, const void *src, u32 dst);
 void m4aMPlayAllStop(void);
-
-static inline void WarioHopDrawRawFrame(const u16 *frame, u16 *rawOam, u32 *slot, s32 x, s32 y, u32 attr0Set, u32 attr0Clear, u32 attr3Set, u32 attr3Clear, u32 attr5Set, u32 attr5Clear)
-{
-    u32 count;
-    u32 i;
-    OamData *oam;
-    u16 attr0;
-    u16 attr1;
-    u16 attr2;
-
-    count = *frame++;
-    i = 0;
-    while (i < count) {
-        oam = &gOamBuffer[*slot];
-        attr0 = *frame++;
-        *rawOam++ = attr0;
-        oam->all.attr0 = (oam->all.attr0 & ~attr0Clear) | attr0Set;
-        oam->all.attr0 = (oam->all.attr0 & 0xFF00) | ((attr0 + y) & 0xFF);
-
-        attr1 = *frame++;
-        *rawOam++ = attr1;
-        oam->all.attr1 = (oam->all.attr1 & 0xFE00) | ((attr1 + x) & 0x1FF);
-        oam->all.attr1 = (oam->all.attr1 & ~attr3Clear) | attr3Set;
-
-        attr2 = *frame++;
-        *rawOam++ = attr2;
-        oam->all.attr2 = (oam->all.attr2 & ~attr5Clear) | attr5Set;
-
-        rawOam++;
-        (*slot)++;
-        i++;
-    }
-}
-
-static inline void WarioHopAnimateState(struct WarioHopSmallState *state, const struct AnimationFrame *frames)
-{
-    state->animTimer++;
-    if (frames[state->animFrame].time < state->animTimer) {
-        state->animTimer = 0;
-        state->animFrame++;
-        if (frames[state->animFrame].time == 0) {
-            state->animFrame = 0;
-        }
-    }
-}
 
 u32 WarioHopUpdateStateMachine(void)
 {
@@ -312,7 +263,13 @@ void WarioHopInit(void)
     {
         register s32 reserve asm("r4");
         asm("" : "=r"(reserve));
-        /* agbcc assigns the first BG constant to r7; rewrite only the two affected instructions. */
+        /*
+         * Pure C was tested with a direct constant, a register-bound r5 value,
+         * and a temporary reused later as zero. agbcc either assigns 0x1801 to
+         * r7 or emits a separate absolute-address load; both forms also move
+         * the literal pool. Keep this two-instruction assembler rewrite so the
+         * surrounding register allocation and literal table remain exact.
+         */
         asm(".macro ldr dst:req, rest:vararg\n\t.purgem ldr\n\tldr r5, \\rest\n\t.endm\n\t.macro add args:vararg\n\t.purgem add\n\tadd r0, r5, #0\n\t.endm");
         *(vu16 *)0x04000008 = 0x1801;
         {
@@ -329,11 +286,21 @@ void WarioHopInit(void)
     }
     asm("" : : "r"(dmaSrc2));
 
-    /* Keep the compiler's original live ranges, but use the target's physical zero register. */
+    /*
+     * The original keeps two equivalent zero values: byte zero in r5 and
+     * halfword zero in r4. Pure C merges them; binding the byte zero to r5
+     * makes agbcc spill it to the stack and changes the prologue. Preserve the
+     * compiler's live ranges and rewrite only the generated destination here.
+     */
     asm(".macro mov args:vararg\n\t.purgem mov\n\tmov r5, #0\n\t.endm");
     i = 0;
     zero = 0;
-    /* The target reuses r7, not r5, for the BG0 scroll pointer. */
+    /*
+     * A pure-C pointer assignment selects r5 because the compiler cannot see
+     * the hidden byte zero already occupying it. An explicit r7 C binding was
+     * also tested, but it changes allocation before the DMA blocks. Rewrite
+     * only this move and the affected zero stores.
+     */
     asm(".macro mov args:vararg\n\t.purgem mov\n\tmov r7, sl\n\t.endm");
     scrollPtr = scrollA;
     asm(".macro strh args:vararg\n\t.purgem strh\n\tstrh r4, [r7]\n\t.endm");
@@ -380,7 +347,11 @@ void WarioHopInit(void)
     }
     asm("" : : "r"(scrollPtr), "r"(zero));
 
-    /* Rewrite agbcc's temporary r5 choice to the target's reusable r7. */
+    /*
+     * Pure C materializes the player X coordinate in r5. Binding it to r7
+     * changes the complete function's register graph and introduces spills;
+     * rewrite only the three instructions that establish r7/r8.
+     */
     asm(".macro mov dst:req, src:vararg\n\t.ifc \\dst,r5\n\tmovs r7, #160\n\t.else\n\t.purgem mov\n\t.hword 0x46b8\n\t.endif\n\t.endm\n\t.macro lsl args:vararg\n\t.purgem lsl\n\tlsl r7, r7, #4\n\t.endm");
     playerBase->x = 0xA00;
     playerBase->y = 0x8C0;
@@ -395,23 +366,47 @@ void WarioHopInit(void)
     playerBase->animTimer = zero;
     asm(".macro strh src:req, rest:vararg\n\t.purgem strh\n\tstrh r4, \\rest\n\t.endm");
     playerBase->animFrame = zero;
-    /* Keep the structure assignment in C; rewrite only agbcc's destructive copy schedule. */
+    /*
+     * Pure structure assignment selects {r1, r3, r5}; fixed-register C forms
+     * alter the stack frame and literal pool. Keep the assignment in C and
+     * rewrite only its 16-byte destructive copy schedule to {r3, r6, r7}.
+     */
     asm(".macro ldr dst:req, rest:vararg\n\t.purgem ldr\n\tldr r1, \\rest\n\tadd r0, r6, #0\n\t.macro ldr dst2:req, rest2:vararg\n\t.purgem ldr\n\tldr r0, [r0]\n\t.endm\n\t.endm\n\t.macro ldmia args:vararg\n\t.purgem ldmia\n\tldmia r0!, {r3, r6, r7}\n\t.endm\n\t.macro stmia args:vararg\n\t.purgem stmia\n\tstmia r1!, {r3, r6, r7}\n\t.endm\n\t.macro str args:vararg\n\t.purgem str\n\tstr r0, [r1]\n\t.endm");
     gWarioHopPlayerShadow = *playerBase;
     asm("" : "+r"(playerBase));
 
     gWarioHopRollingObject[0] = 0xA00;
     gWarioHopRollingObject[1] = 0x8C0;
-    asm("WH_FIX_ROLL");
-    gWarioHopRollingObject[3] = i;
-    gWarioHopRollingObject[4] = i;
+    /*
+     * agbcc keeps the C zero in r7, while the original reuses the halfword
+     * zero already in r4. Pure C adds a move, so only these stores are asm.
+     */
+    asm volatile("strh r4, [r0, #6]\n\tstrh r4, [r0, #8]" : : "r"(i), "r"(zero) : "memory");
 
-    asm("WH_FIX_GLOBALS");
-    gWarioHopSubState = zero;
-    gWarioHopScore = zero;
-    gWarioHopNewHighScore = zero;
+    {
+        register u8 *subStatePtr asm("r2");
+        register u16 *scorePtr asm("r3");
+        register u8 *highScorePtr asm("r6");
+
+        /*
+         * The target has two equivalent zero values live: r5 for byte stores
+         * and r4 for halfword stores. agbcc merges them in pure C, so these
+         * three stores remain one-instruction compiler boundaries.
+         */
+        subStatePtr = &gWarioHopSubState;
+        asm volatile("strb r5, [r2]" : : "r"(subStatePtr), "r"(zero) : "memory");
+        scorePtr = &gWarioHopScore;
+        asm volatile("strh r4, [r3]" : : "r"(scorePtr), "r"(zero) : "memory");
+        highScorePtr = &gWarioHopNewHighScore;
+        asm volatile("strb r5, [r6]" : : "r"(highScorePtr), "r"(zero) : "memory");
+    }
     WarioHopDrawScoreDigits();
-    gWarioHopMedalRewardTimer = zero;
+    {
+        register u8 *medalTimerPtr asm("r0");
+        medalTimerPtr = &gWarioHopMedalRewardTimer;
+        /* Same persistent r5 byte zero as above. */
+        asm volatile("strb r5, [r0]" : : "r"(medalTimerPtr), "r"(zero) : "memory");
+    }
     func_807A428();
     *(vu16 *)0x04000054 = zero;
     m4aSongNumStart(0x2BE);
@@ -426,12 +421,17 @@ void WarioHopInit(void)
         item = gWarioHopObstacles;
         j = 6;
         do {
-            asm("WH_FIX_ITEMS");
-            item->x = i;
-            item->type = loopZero;
-            item->animTimer = i;
-            item->animFrame = i;
-            item->active = one;
+            /*
+             * Pure C copies these equivalent zeros through r7. The original
+             * directly reuses r2 for halfwords and r4 for the type byte.
+             */
+            asm volatile(
+                "strh r2, [r0]\n\t"
+                "strb r4, [r0, #4]\n\t"
+                "strh r2, [r0, #6]\n\t"
+                "strh r2, [r0, #8]\n\t"
+                "strb r3, [r0, #10]"
+                : : "r"(item), "r"(i), "r"(loopZero), "r"(one), "r"(zero) : "memory");
             item++;
             j--;
         } while (j >= 0);
@@ -461,14 +461,40 @@ void WarioHopInit(void)
     gWarioHopSignState.angle = 0x200;
     gWarioHopSignState.active = 1;
 
-    gWarioHopBonusEffect.animTimer = 0;
-    gWarioHopBonusEffect.animFrame = 0;
-    gWarioHopBonusEffect.type = 0;
-    gWarioHopMedalEffect = gWarioHopBonusEffect;
+    {
+        register struct WarioHopSmallState *bonusEffect asm("r0");
+        register struct WarioHopSmallState *medalEffect asm("r1");
+
+        bonusEffect = &gWarioHopBonusEffect;
+        bonusEffect->animTimer = 0;
+        bonusEffect->animFrame = 0;
+        bonusEffect->type = 0;
+        medalEffect = &gWarioHopMedalEffect;
+        /*
+         * Pure structure assignment chooses {r2,r4,r5} after the preceding
+         * compiler boundaries. The original uses {r2,r4,r7}; keep only this
+         * 12-byte copy as a two-instruction compiler boundary.
+         */
+        asm volatile(
+            "ldmia r0!, {r2, r4, r7}\n\t"
+            "stmia r1!, {r2, r4, r7}"
+            : "+r"(bonusEffect), "+r"(medalEffect) : : "r2", "r4", "r7", "memory");
+    }
 
     gWarioHopHitLock = 0;
     asm("" : : "h"(dmaSrc5), "h"(scrollA));
-    *(vu16 *)0x04000000 = 0x1F00;
+    /*
+     * A pure C volatile store chooses r2 after the preceding fixed-register
+     * copy. The original materializes the value in r5, so keep this isolated
+     * hardware-register write as the final compiler boundary.
+     */
+    asm volatile(
+        "mov r1, #128\n\t"
+        "lsl r1, r1, #19\n\t"
+        "mov r5, #248\n\t"
+        "lsl r5, r5, #5\n\t"
+        "add r0, r5, #0\n\t"
+        "strh r0, [r1]");
 }
 
 void WarioHopRestartMusicForNextSpeed(void)
@@ -929,8 +955,6 @@ void WarioHopDrawSprites(void)
     register s32 total asm("r9");
     register u16 *raw asm("r5");
     const u16 *frame;
-    const struct AnimationFrame *anim;
-    struct WarioHopSmallState *item;
     register struct WarioHopObjState *player asm("r6");
     register struct WarioHopMidState *stateBase asm("r2");
     OamData *oam;
@@ -944,10 +968,15 @@ void WarioHopDrawSprites(void)
     register s32 xMask asm("r12");
     register s32 matrixMask asm("r10");
     register s32 priorityMask asm("r8");
+    /*
+     * These four scalars intentionally form contiguous stack storage. B/C/D
+     * are reached through affineBPtr/affineCPtr/affineDPtr rather than by name;
+     * replacing them with an array changes agbcc's stack layout and codegen.
+     */
     s16 affineA;
-    s16 affineB;
-    s16 affineC;
-    s16 affineD;
+    s16 affineB UNUSED;
+    s16 affineC UNUSED;
+    s16 affineD UNUSED;
     s16 *affineBPtr;
     s16 *affineCPtr;
     s16 *affineDPtr;
@@ -1522,7 +1551,21 @@ void WarioHopDrawSprites(void)
                 timer++;
                 zero = 0;
                 currentItem->animTimer = timer;
-                /* Keep the whole frame-time comparison indivisible for agbcc's literal-pool pass. */
+                /*
+                * Semantically equivalent C:
+                *
+                *     frameTime = currentAnim[currentItem->animFrame].time;
+                *     if ((u16)timer > frameTime) {
+                *         ...
+                *     }
+                *
+                * When expressed in C, agbcc inserts the function's literal pool after
+                * the initial `ldrh`, then schedules the remaining address calculation
+                * after the pool and reverses the comparison operands (`cmp r1, r0`
+                * followed by `bls`). This shifts the literal pool and its relocation
+                * offsets, so the complete seven-instruction load-and-compare sequence
+                * must remain one localized compiler boundary for a byte-exact match.
+                */
                 asm volatile(
                     "ldrh %0, [%2, #8]\n"
                     "lsl %0, %0, #3\n"
@@ -1756,7 +1799,7 @@ void WarioHopDrawSprites(void)
         }
     }
 warioHopEffectDone:
-    ;
+;
 
     {
         register struct WarioHopSmallState *effectState asm("r3");
