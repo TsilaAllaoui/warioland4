@@ -70,7 +70,7 @@ void BubbleSpawnerIdle(void)
     timerValue <<= 24;
     timer = (u32)timerValue >> 24;
     if (timer == 0) {
-        func_801E3A8(PSPRITE_9B, sprite->roomSlot, sprite->gfxSlot,
+        SpawnPrimarySpriteWithStatus(PSPRITE_9B, sprite->roomSlot, sprite->gfxSlot,
                      sprite->yPosition, sprite->xPosition, timer);
         *timerPointer = 250;
     }
@@ -157,7 +157,7 @@ void MoveBubble(void)
         if (maskedCollision == 0) {
             func_8023BFC(oldY - 66,
                          movementSprite->xPosition - movementSprite->hitboxExtentLeft);
-            wallCollisionResult = &gUnk_3000A51;
+            wallCollisionResult = &gSpriteCollisionTileType;
             wallCollisionValue = *wallCollisionResult;
             wallCollisionMask = 15;
             maskedCollision = wallCollisionMask;
@@ -224,7 +224,7 @@ wallCollision:
         xValue <<= 16;
         xValue = (u32)xValue >> 16;
         BubbleCollisionCheck(topY, xValue);
-        groundCollisionResult = &gUnk_3000A51;
+        groundCollisionResult = &gSpriteCollisionTileType;
         groundCollisionValue = *groundCollisionResult;
         groundCollisionMask = 15;
         asm("" : "+r"(groundCollisionMask));

@@ -27,7 +27,7 @@ extern const struct AnimationFrame sKaentsuboFireballTravelOam[];
 extern const struct AnimationFrame sKaentsuboDefeatSmokeOam[];
 extern const struct AnimationFrame sKaentsuboFireballSpawnOam[];
 
-void func_801E3A8();
+void SpawnPrimarySpriteWithStatus();
 void func_8023FA8(void);
 
 void InitKaentsubo(void)
@@ -68,7 +68,7 @@ void UpdateKaentsuboIdle(void)
     warioSide = SpriteUtilWaitCheckWarioNearbyLeftRight(0x7F, 0xC0);
     func_80238A4();
     func_8023B88();
-    terrainCollision = gUnk_3000A50;
+    terrainCollision = gSpriteCollisionResult;
 
     if (terrainCollision == 0) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
@@ -78,7 +78,7 @@ void UpdateKaentsuboIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                          gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             gCurrentSprite.pose = 27;
             goto done;
         }
@@ -100,13 +100,13 @@ void UpdateKaentsuboIdle(void)
             ((currentSprite->xPosition & 0x3F) + currentSprite->hitboxExtentRight > 0x3F)) {
             func_8023BFC(currentSprite->yPosition,
                          currentSprite->xPosition + currentSprite->hitboxExtentRight);
-            if ((gUnk_3000A51 & 0xF0) == 0) {
+            if ((gSpriteCollisionTileType & 0xF0) == 0) {
                 currentSprite->pose = 17;
                 goto done;
             }
             func_8023BFC(currentSprite->yPosition - 32,
                          currentSprite->xPosition + currentSprite->hitboxExtentRight);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 currentSprite->pose = 17;
                 goto done;
             }
@@ -125,13 +125,13 @@ void UpdateKaentsuboIdle(void)
             ((currentSprite->xPosition & 0x3F) < currentSprite->hitboxExtentLeft)) {
             func_8023BFC(currentSprite->yPosition,
                          currentSprite->xPosition - currentSprite->hitboxExtentLeft);
-            if ((gUnk_3000A51 & 0xF0) == 0) {
+            if ((gSpriteCollisionTileType & 0xF0) == 0) {
                 currentSprite->pose = 17;
                 goto done;
             }
             func_8023BFC(currentSprite->yPosition - 32,
                          currentSprite->xPosition - currentSprite->hitboxExtentLeft);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 currentSprite->pose = 17;
                 goto done;
             }
@@ -161,17 +161,17 @@ void UpdateKaentsuboSpitWindup(void)
         gCurrentSprite.warioCollision = 5;
         isFacingRight = gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT;
         if (isFacingRight) {
-            func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
                          gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition + 64, 64);
         } else {
-            func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
                          gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition - 63, 0);
         }
     }
 
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 29;
     } else if (--gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 48;
@@ -196,7 +196,7 @@ void UpdateKaentsuboTurnAround(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 27;
     } else if (--gCurrentSprite.work0 == 0) {
         gCurrentSprite.currentAnimationFrame = 0;
@@ -235,7 +235,7 @@ void UpdateKaentsuboRecover(void)
     }
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 29;
     } else if (--gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 17;
@@ -368,10 +368,10 @@ void InitKaentsuboBumpedLeft(void)
 void InitKaentsuboDefeatSmoke(void)
 {
     if (gCurrentSprite.xPosition < gWarioData.xPosition) {
-        func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+        SpawnPrimarySpriteWithStatus(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
                      gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 64);
     } else {
-        func_801E3A8(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+        SpawnPrimarySpriteWithStatus(PSPRITE_93, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
                      gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 0);
     }
     gCurrentSprite.pOamData = sKaentsuboDefeatSmokeOam;
@@ -459,7 +459,7 @@ void UpdateKaentsuboDropped(void)
     if (dropTimer != 0) {
         func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
                       gCurrentSprite.xPosition);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             gCurrentSprite.pose = 29;
         } else {
             SpriteUtilLookupGravity(sUnk_8352B18);
@@ -481,7 +481,7 @@ void UpdateKaentsuboLandAfterDrop(void)
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         gCurrentSprite.yPosition = groundY;
         gCurrentSprite.pose = 17;
         gCurrentSprite.work1 = 7;

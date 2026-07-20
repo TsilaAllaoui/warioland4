@@ -144,7 +144,7 @@ void UpdateDeburinaLeap(void)
         }
         func_80238A4();
         func_8023B88();
-        if (gUnk_3000A50 == 0) {
+        if (gSpriteCollisionResult == 0) {
             gCurrentSprite.pose = 27;
         }
     } else {
@@ -179,7 +179,7 @@ void UpdateDeburinaIdle(void)
 
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
                          (u16)(gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft));
@@ -187,22 +187,22 @@ void UpdateDeburinaIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                          (u16)(gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight));
         }
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             gCurrentSprite.pose = 27;
             return;
         }
     } else {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
-            if ((gUnk_3000A50 & 0xF0) != 0) {
+            if ((gSpriteCollisionResult & 0xF0) != 0) {
                 u16 xPosition;
                 xPosition = gCurrentSprite.xPosition;
                 if (((xPosition & 0x3F) + gCurrentSprite.hitboxExtentRight) > 63) {
                     func_8023BFC(gCurrentSprite.yPosition,
                                  (u16)(xPosition + gCurrentSprite.hitboxExtentRight));
-                    if ((gUnk_3000A51 & 0xF0) != 0) {
+                    if ((gSpriteCollisionTileType & 0xF0) != 0) {
                         func_8023BFC((u16)(gCurrentSprite.yPosition - 32),
                                      (u16)(gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight));
-                        if ((gUnk_3000A51 & 0xF) != 0) {
+                        if ((gSpriteCollisionTileType & 0xF) != 0) {
                             gCurrentSprite.pose = 17;
                             return;
                         }
@@ -213,16 +213,16 @@ void UpdateDeburinaIdle(void)
                 }
             }
         } else {
-            if ((gUnk_3000A50 & 0xF0) != 0) {
+            if ((gSpriteCollisionResult & 0xF0) != 0) {
                 u16 xPosition;
                 xPosition = gCurrentSprite.xPosition;
                 if ((xPosition & 0x3F) < gCurrentSprite.hitboxExtentLeft) {
                     func_8023BFC(gCurrentSprite.yPosition,
                                  (u16)(xPosition - gCurrentSprite.hitboxExtentLeft));
-                    if ((gUnk_3000A51 & 0xF0) != 0) {
+                    if ((gSpriteCollisionTileType & 0xF0) != 0) {
                         func_8023BFC((u16)(gCurrentSprite.yPosition - 32),
                                      (u16)(gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft));
-                        if ((gUnk_3000A51 & 0xF) != 0) {
+                        if ((gSpriteCollisionTileType & 0xF) != 0) {
                             gCurrentSprite.pose = 17;
                             return;
                         }
@@ -252,7 +252,7 @@ void UpdateDeburinaTurn(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 27;
     } else {
         gCurrentSprite.work0--;
@@ -287,7 +287,7 @@ void UpdateDeburinaHopStart(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 29;
     } else {
         gCurrentSprite.work0--;
@@ -564,7 +564,7 @@ void UpdateDeburinaThrownCrash(void)
     currentSprite = sprite;
     func_8023BFC(currentSprite->yPosition - currentSprite->hitboxExtentUp,
                  currentSprite->xPosition);
-    if ((gUnk_3000A51 & 0xF) != 0) {
+    if ((gSpriteCollisionTileType & 0xF) != 0) {
         currentSprite->pose = 29;
     }
     timer = &sprite->work0;

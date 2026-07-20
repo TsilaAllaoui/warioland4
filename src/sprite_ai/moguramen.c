@@ -8,7 +8,7 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
+void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
 extern const struct AnimationFrame sMoguramenBurrowedOam[];
 extern const struct AnimationFrame sMoguramenIdleOam[];
@@ -106,10 +106,10 @@ void UpdateMoguramenAttackWindup(void)
         m4aSongNumStart(SOUND_71);
     } else if (animationState == 0x10004) {
         if (currentSprite->status & SPRITE_STATUS_FACING_RIGHT) {
-            func_801E3A8(PSPRITE_9A, currentSprite->roomSlot, currentSprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_9A, currentSprite->roomSlot, currentSprite->gfxSlot,
                          currentSprite->yPosition - 32, currentSprite->xPosition + 32, 0);
         } else {
-            func_801E3A8(PSPRITE_9A, currentSprite->roomSlot, currentSprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_9A, currentSprite->roomSlot, currentSprite->gfxSlot,
                          currentSprite->yPosition - 32, currentSprite->xPosition - 32,
                          SPRITE_STATUS_FACING_RIGHT);
         }
@@ -130,7 +130,7 @@ void UpdateMoguramenAttackWindup(void)
         frontX = currentSprite->xPosition - currentSprite->hitboxExtentLeft;
     }
     func_8023BFC(frontY, frontX);
-    if (gUnk_3000A51 & 0xF) {
+    if (gSpriteCollisionTileType & 0xF) {
         nextPose = 17;
         /* agbcc otherwise shares this store with the later nextPose update. */
         asm("strb %0, [%1, #28]" : : "r"(nextPose), "r"(currentSprite));
@@ -150,7 +150,7 @@ void UpdateMoguramenIdle(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
                          gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
@@ -158,21 +158,21 @@ void UpdateMoguramenIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                          gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             gCurrentSprite.pose = 27;
             return;
         }
     } else {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
-            if (gUnk_3000A50 & 0xF0) {
+            if (gSpriteCollisionResult & 0xF0) {
                 u16 xPosition;
                 xPosition = gCurrentSprite.xPosition;
                 if (((xPosition & 0x3F) + gCurrentSprite.hitboxExtentRight) > 63) {
                     func_8023BFC(gCurrentSprite.yPosition, xPosition + 28);
-                    if (gUnk_3000A51 & 0xF0) {
+                    if (gSpriteCollisionTileType & 0xF0) {
                         func_8023BFC(gCurrentSprite.yPosition - 32,
                                      gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-                        if ((gUnk_3000A51 & 0xF) != 0) {
+                        if ((gSpriteCollisionTileType & 0xF) != 0) {
                             gCurrentSprite.pose = 17;
                             return;
                         }
@@ -183,15 +183,15 @@ void UpdateMoguramenIdle(void)
                 }
             }
         } else {
-            if (gUnk_3000A50 & 0xF0) {
+            if (gSpriteCollisionResult & 0xF0) {
                 u16 xPosition;
                 xPosition = gCurrentSprite.xPosition;
                 if ((xPosition & 0x3F) < gCurrentSprite.hitboxExtentLeft) {
                     func_8023BFC(gCurrentSprite.yPosition, xPosition - 28);
-                    if (gUnk_3000A51 & 0xF0) {
+                    if (gSpriteCollisionTileType & 0xF0) {
                         func_8023BFC(gCurrentSprite.yPosition - 32,
                                      gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-                        if ((gUnk_3000A51 & 0xF) != 0) {
+                        if ((gSpriteCollisionTileType & 0xF) != 0) {
                             gCurrentSprite.pose = 17;
                             return;
                         }
@@ -224,7 +224,7 @@ void UpdateMoguramenTurnAround(void)
 
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 27;
     } else {
         currentSprite = &gCurrentSprite;
@@ -306,7 +306,7 @@ void UpdateMoguramenBurrowedWait(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 27;
     } else {
         gCurrentSprite.work0--;
@@ -570,7 +570,7 @@ void UpdateMoguramenThrownCrash(void)
     if (gCurrentSprite.work0 != 0) {
         func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
                      gCurrentSprite.xPosition);
-        if ((gUnk_3000A51 & 0xF) != 0) {
+        if ((gSpriteCollisionTileType & 0xF) != 0) {
             gCurrentSprite.pose = 29;
         } else {
             indexPtr = &gCurrentSprite.work3;

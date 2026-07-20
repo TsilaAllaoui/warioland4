@@ -62,7 +62,7 @@ void DendenIdle(void)
     nearby = SpriteUtilCheckWarioNearbyLeftRight(80, 320);
     func_80238A4();
     func_8023B88();
-    collision = gUnk_3000A50;
+    collision = gSpriteCollisionResult;
     if (collision == 0)
     {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
@@ -75,7 +75,7 @@ void DendenIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                          gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (gUnk_3000A51 == 0)
+        if (gSpriteCollisionTileType == 0)
         {
             gCurrentSprite.pose = 27;
             return;
@@ -106,7 +106,7 @@ void DendenIdle(void)
             goto move;
 
         func_8023BFC(gCurrentSprite.yPosition, xPosition + 44);
-        collisionPointer = &gUnk_3000A51;
+        collisionPointer = &gSpriteCollisionTileType;
         if ((*collisionPointer & 0xF0) == 0)
         {
             gCurrentSprite.pose = 17;
@@ -144,7 +144,7 @@ void DendenIdle(void)
             goto move;
 
         func_8023BFC(gCurrentSprite.yPosition, xPosition - 48);
-        collisionPointer = &gUnk_3000A51;
+        collisionPointer = &gSpriteCollisionTileType;
         if ((*collisionPointer & 0xF0) == 0)
         {
             gCurrentSprite.pose = 17;
@@ -176,7 +176,7 @@ void DendenTurnAround(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0)
+    if (gSpriteCollisionResult == 0)
     {
         gCurrentSprite.pose = 27;
     }
@@ -260,14 +260,14 @@ void DendenFall(void)
         m4aSongNumStart(SE_ENTER_WATER);
     }
 
-    if (gUnk_3000A50 != 0)
+    if (gSpriteCollisionResult != 0)
     {
         gCurrentSprite.yPosition = floorY;
         gCurrentSprite.status &= ~SPRITE_STATUS_HIDDEN;
         gCurrentSprite.drawPriority = 2;
-        if (gUnk_3000A50 & 0x10)
+        if (gSpriteCollisionResult & 0x10)
             gCurrentSprite.pose = 23;
-        else if (gUnk_3000A50 & 1)
+        else if (gSpriteCollisionResult & 1)
             gCurrentSprite.pose = 53;
         else
             gCurrentSprite.pose = 51;
@@ -490,7 +490,7 @@ void DendenLifted(void)
     {
         func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
                      gCurrentSprite.xPosition);
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
         {
             gCurrentSprite.pose = 29;
             return;
@@ -516,13 +516,13 @@ void DendenSpawnShell(void)
     {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
         {
-            func_801E3A8(PSPRITE_D1, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_D1, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
                          gCurrentSprite.yPosition, gCurrentSprite.xPosition,
                          SPRITE_STATUS_FACING_RIGHT);
         }
         else
         {
-            func_801E3A8(PSPRITE_D1, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_D1, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
                          gCurrentSprite.yPosition, gCurrentSprite.xPosition, 0);
         }
         gCurrentSprite.status = 0;

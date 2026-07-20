@@ -47,9 +47,9 @@ extern const s16 sUnk_83CFACE[];
 extern const void *const sUnk_878F0E4[];
 extern const void *const sUnk_878F0F8[];
 
-void func_801E3A8(u8, u8, u8, u32, u32, u32);
-void func_80747D8(void);
-void func_8070964(u8, u8, u8);
+void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
+void UpdateBossHealthGauge(void);
+void LoadBossSpriteGraphics(u8, u8, u8);
 void DespawnActiveCatbatProjectile(void)
 {
     register u8 *cursor asm("r2");
@@ -97,7 +97,7 @@ int UpdateCatbatGraphicsAnimation(const u8 *table)
     register u32 control asm("r3");
 
     sequence = table;
-    if (gUnk_3000A5B != 0)
+    if (gCuckooCondorHasCapturedWario != 0)
         sequence = sUnk_83CF920;
 
     wrapped = FALSE;
@@ -325,10 +325,10 @@ void InitCatbat(void)
     register int zeroHalf asm("r3");
     register u8 *ptr asm("r1");
 
-    gUnk_3000A58 = 0;
-    gUnk_3000A59 = 0;
-    gUnk_3000A5A = 0;
-    gUnk_3000A5B = 0;
+    gBossTookDamage = 0;
+    gCuckooCondorPendulumLength = 0;
+    gCuckooCondorMoveRight = 0;
+    gCuckooCondorHasCapturedWario = 0;
     gInitialHealth = 12;
     gPaletteFlashTimer = 0;
     gBgAnimationFrame = 0;
@@ -382,9 +382,9 @@ void InitCatbat(void)
     UpdateCatbatGraphicsAnimation(sUnk_83CF8FC);
     SpriteUtilTurnTowardWario();
     UpdateCatbatHitboxFacing();
-    func_80747D8();
+    UpdateBossHealthGauge();
     sprite->work2 = 60;
-    func_8070964(131, 8, 4);
+    LoadBossSpriteGraphics(131, 8, 4);
     func_801E430(224, 0, 0, sprite->yPosition + 352, sprite->xPosition + 128);
     func_801E430(251, 0, 0, sprite->yPosition - 216, sprite->xPosition - 16);
     sprite->yPosition += 64;
@@ -437,7 +437,7 @@ void UpdateCatbatIntroWaitForShop(void)
             register vu8 *switchState asm("r1");
             u32 switchAddress;
 
-            switchAddress = (u32)&gUnk_30000F4;
+            switchAddress = (u32)&gColorFadingState;
             /* Keep this branch-local store address distinct from the later read. */
             asm volatile("" : "=r"(switchState) : "0"(switchAddress) : "memory");
             *switchState = 7;
@@ -772,12 +772,12 @@ void UpdateCatbatPatrol(void)
         func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition + 100));
         {
             register u8 *collision asm("r5");
-            collision = &gUnk_3000A51;
+            collision = &gSpriteCollisionTileType;
             if (*collision == 17) {
                 register int one asm("r5");
                 register int slot asm("r2");
 
-                gUnk_3000A59 = 1;
+                gCuckooCondorPendulumLength = 1;
                 one = 1;
                 sprite->disableWarioCollisionTimer = one;
                 slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_CATBAT_MINE_SPAWNER);
@@ -801,7 +801,7 @@ void UpdateCatbatPatrol(void)
                 goto finalCheck;
             }
 
-            gUnk_3000A59 = zeroHigh;
+            gCuckooCondorPendulumLength = zeroHigh;
             sprite->status &= ~SPRITE_STATUS_HIDDEN;
             {
                 register int comparison;
@@ -821,7 +821,7 @@ void UpdateCatbatPatrol(void)
                 sprite = &gCurrentSprite;
                 if (sprite->health <= 1 && sprite->work2 == 25) {
                     DespawnActiveCatbatProjectile();
-                    func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 1, 0, sprite->yPosition,
+                    SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 1, 0, sprite->yPosition,
                         sprite->xPosition, SPRITE_STATUS_FACING_RIGHT);
                 }
                         goto finalCheck;
@@ -844,12 +844,12 @@ void UpdateCatbatPatrol(void)
     func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - 100));
     {
         register u8 *collision asm("r5");
-        collision = &gUnk_3000A51;
+        collision = &gSpriteCollisionTileType;
         if (*collision == 17) {
             register int one asm("r5");
             register int slot asm("r2");
 
-            gUnk_3000A59 = 1;
+            gCuckooCondorPendulumLength = 1;
             one = 1;
             sprite->disableWarioCollisionTimer = one;
             slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_CATBAT_MINE_SPAWNER);
@@ -876,7 +876,7 @@ void UpdateCatbatPatrol(void)
         {
             register s8 *flag asm("r0");
             register int clearValue asm("r7");
-            flag = &gUnk_3000A59;
+            flag = &gCuckooCondorPendulumLength;
             clearValue = zeroHigh;
             *flag = clearValue;
         }
@@ -901,7 +901,7 @@ void UpdateCatbatPatrol(void)
             sprite = &gCurrentSprite;
             if (sprite->health <= 1 && sprite->work2 == 25) {
                 DespawnActiveCatbatProjectile();
-                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 1, 0, sprite->yPosition,
+                SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 1, 0, sprite->yPosition,
                     sprite->xPosition, 0);
             }
                 goto finalCheck;
@@ -921,7 +921,7 @@ void UpdateCatbatPatrol(void)
 
 finalCheck:
     sprite = &gCurrentSprite;
-    if (sprite->work2 == 0 && *(vu8 *)&gUnk_3000A59 == 0) {
+    if (sprite->work2 == 0 && *(vu8 *)&gCuckooCondorPendulumLength == 0) {
         register int status asm("r1");
         register int facing asm("r0");
         register int collisionY asm("r0");
@@ -943,7 +943,7 @@ callFinalCollision:
         collisionX <<= 16;
         collisionX = (u32)collisionX >> 16;
         ((void (*)(int, int))func_8023BFC)(collisionY, collisionX);
-        if (gUnk_3000A51 != 17)
+        if (gSpriteCollisionTileType != 17)
             sprite->pose = 17;
     }
 
@@ -1053,16 +1053,16 @@ void UpdateCatbatLandingAttack(void)
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 60, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 4, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 116, 7);
-            func_801E3A8(PSPRITE_CATBAT_LANDING_DEBRIS, gUnk_3000A58, 0, sprite->yPosition + 128,
+            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossTookDamage, 0, sprite->yPosition + 128,
                 sprite->xPosition - 128, facingMask);
         } else {
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 4, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 60, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 116, 7);
-            func_801E3A8(PSPRITE_CATBAT_LANDING_DEBRIS, gUnk_3000A58, 0, sprite->yPosition + 128,
+            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossTookDamage, 0, sprite->yPosition + 128,
                 sprite->xPosition + 128, facing);
         }
-        gUnk_3000A58++;
+        gBossTookDamage++;
     }
 }
 void UpdateCatbatLandingRecovery(void)
@@ -1117,10 +1117,10 @@ void InitCatbatDefeat(void)
             gTimerState = 11;
             SpriteUtilSetWarioBossVictoryPose();
         }
-        func_80747D8();
+        UpdateBossHealthGauge();
     }
 
-    gUnk_3000A5A = 1;
+    gCuckooCondorMoveRight = 1;
     sprite = &gCurrentSprite;
     zero = 0;
     pose = 50;
@@ -1165,11 +1165,11 @@ void UpdateCatbatDefeat(void)
         if (timer > 31) {
             if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
                 func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - 96));
-                if (gUnk_3000A51 != 17)
+                if (gSpriteCollisionTileType != 17)
                     sprite->xPosition -= 4;
             } else {
                 func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition + 96));
-                if (gUnk_3000A51 != 17)
+                if (gSpriteCollisionTileType != 17)
                     sprite->xPosition += 4;
             }
 
@@ -1202,10 +1202,10 @@ void InitCatbatDamaged(void)
     if (health != 0) {
         health--;
         sprite->health = health;
-        func_80747D8();
+        UpdateBossHealthGauge();
     }
 
-    gUnk_3000A5A = 1;
+    gCuckooCondorMoveRight = 1;
     zero = 0;
     sprite->pose = 109;
     sprite->pOamData = sCatbatOam_83CD35C;
@@ -1286,11 +1286,11 @@ move:
     sprite = savedSprite;
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - 96));
-        if (gUnk_3000A51 != 17)
+        if (gSpriteCollisionTileType != 17)
             sprite->xPosition -= 4;
     } else {
         func_8023BFC(savedSprite->yPosition, (u16)(savedSprite->xPosition + 96));
-        if (gUnk_3000A51 != 17)
+        if (gSpriteCollisionTileType != 17)
             savedSprite->xPosition += 4;
     }
 
@@ -1427,20 +1427,20 @@ void UpdateCatbatProjectileAttackRelease(void)
         switch (*timerPtr) {
             case 60:
                 DespawnActiveCatbatProjectile();
-                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facing);
+                SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facing);
                 break;
             case 40:
                 DespawnActiveCatbatProjectile();
-                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 3, 0, sprite->yPosition, sprite->xPosition, facing);
+                SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 3, 0, sprite->yPosition, sprite->xPosition, facing);
                 break;
             case 20:
                 DespawnActiveCatbatProjectile();
-                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 4, 0, sprite->yPosition, sprite->xPosition, facing);
+                SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 4, 0, sprite->yPosition, sprite->xPosition, facing);
                 break;
         }
     } else {
         sprite->pose = 15;
-        gUnk_3000A5A = normalizedTimer;
+        gCuckooCondorMoveRight = normalizedTimer;
     }
 }
 void InitCatbatMoveRight(void)
@@ -1473,7 +1473,7 @@ void UpdateCatbatMoveRight(void)
     if (sprite->work2 != 0) {
         sprite->work2--;
         func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition + 64));
-        if (gUnk_3000A51 != 17)
+        if (gSpriteCollisionTileType != 17)
             sprite->xPosition += 4;
         position = sprite->yPosition;
         if ((u16)((position >> 2) - (gBg1YPosition >> 2)) > 64)
@@ -1516,7 +1516,7 @@ void UpdateCatbatMoveLeft(void)
     if (sprite->work2 != 0) {
         sprite->work2--;
         func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - 64));
-        if (gUnk_3000A51 != 17)
+        if (gSpriteCollisionTileType != 17)
             sprite->xPosition -= 4;
         position = sprite->yPosition;
         if ((u16)((position >> 2) - (gBg1YPosition >> 2)) > 64)
@@ -1572,10 +1572,10 @@ void UpdateCatbatIdleAttack(void)
             facing = ((u32)facingTemp << 16) >> 16;
             if (facing != 0) {
                 DespawnActiveCatbatProjectile();
-                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facingMask);
+                SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facingMask);
             } else {
                 DespawnActiveCatbatProjectile();
-                func_801E3A8(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facing);
+                SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_PROJECTILE, 0, 0, sprite->yPosition, sprite->xPosition, facing);
             }
         }
     } else {
@@ -1725,7 +1725,7 @@ void InitCatbatShopItemHit(void)
         if (health != 0) {
             health--;
             sprite->health = health;
-            func_80747D8();
+            UpdateBossHealthGauge();
             m4aSongNumStart(SOUND_7A);
         }
     }
@@ -1821,7 +1821,7 @@ void UpdateCatbatShopItemHit(void)
             if (healthCopy != 0) {
                 timerValue = health - 1;
                 base->health = timerValue;
-                func_80747D8();
+                UpdateBossHealthGauge();
                 m4aSongNumStart(SOUND_7A);
             }
         }
@@ -1950,7 +1950,7 @@ void UpdateCatbatGroundWaveReturn(void)
     sprite = &gCurrentSprite;
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition + 80));
-        if (gUnk_3000A51 == 17) {
+        if (gSpriteCollisionTileType == 17) {
             sprite->pose = 17;
             return;
         }
@@ -1960,7 +1960,7 @@ void UpdateCatbatGroundWaveReturn(void)
         position += velocity;
     } else {
         func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - 80));
-        if (gUnk_3000A51 == 17) {
+        if (gSpriteCollisionTileType == 17) {
             sprite->pose = 17;
             return;
         }
@@ -2312,7 +2312,7 @@ void UpdateCatbatLandingDebris(void)
             ((void (*)(int, int))func_8023BFC)(collisionY, collisionX);
         }
 
-        if (gUnk_3000A51 == 17) {
+        if (gSpriteCollisionTileType == 17) {
             collisionSprite->disableWarioCollisionTimer = 1;
             collisionSprite->status ^= SPRITE_STATUS_HIDDEN;
         }
@@ -2542,10 +2542,10 @@ void InitCatbatProjectile(void)
         facingTemp <<= 16;
         facing = (u32)facingTemp >> 16;
         if (facing != 0) {
-            func_801E3A8(PSPRITE_CATBAT_ATTACK_EFFECT, sprite->roomSlot, 0,
+            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_ATTACK_EFFECT, sprite->roomSlot, 0,
                 sprite->yPosition, sprite->xPosition, facingMask);
         } else {
-            func_801E3A8(PSPRITE_CATBAT_ATTACK_EFFECT, sprite->roomSlot, 0,
+            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_ATTACK_EFFECT, sprite->roomSlot, 0,
                 sprite->yPosition, sprite->xPosition, facing);
         }
     }
@@ -2837,20 +2837,20 @@ void SpriteCatbatMineSpawner(void)
 }
 void SpriteCatbat(void)
 {
-    if (*(vu8 *)&gUnk_3000A59 != 0) {
+    if (*(vu8 *)&gCuckooCondorPendulumLength != 0) {
         gCurrentSprite.disableWarioCollisionTimer = 1;
         gCurrentSprite.status ^= 4;
     }
 
-    if (gUnk_3000A5B != 0) {
-        if (gUnk_3000A5B == 20 || gUnk_3000A5B == 1) {
+    if (gCuckooCondorHasCapturedWario != 0) {
+        if (gCuckooCondorHasCapturedWario == 20 || gCuckooCondorHasCapturedWario == 1) {
             gCurrentSprite.work0 = 0;
             gCurrentSprite.work1 = 0;
         }
         if (gWarioData.reaction == 8)
-            gUnk_3000A5B = 19;
+            gCuckooCondorHasCapturedWario = 19;
         else
-            gUnk_3000A5B--;
+            gCuckooCondorHasCapturedWario--;
     }
 
     switch (gCurrentSprite.pose) {

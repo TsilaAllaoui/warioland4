@@ -75,14 +75,14 @@ void func_803AB4C(void)
     sprite->animationTimer = zeroHalf;
 
     SpriteUtilTurnTowardWario();
-    func_80747D8();
+    UpdateBossHealthGauge();
 
     field = (u8 *)sprite;
     field += 39;
     value = 60;
     *field = value;
 
-    func_8070964(131, 8, 1);
+    LoadBossSpriteGraphics(131, 8, 1);
 }
 
 void func_803ABD8(void)
@@ -99,10 +99,10 @@ void func_803ABD8(void)
         if (*timer != 0) {
             return;
         }
-        *gUnk_30000F4 = 7;
+        *gColorFadingState = 7;
     }
 
-    if (*gUnk_30000F4 != 0) {
+    if (*gColorFadingState != 0) {
         return;
     }
 
@@ -226,16 +226,16 @@ void func_803AE30(void)
     sprite = &gCurrentSprite;
 
     if (sprite->status & 0x40) {
-        if (gUnk_3000A50 & 0xF0) {
+        if (gSpriteCollisionResult & 0xF0) {
             func_8023BFC(sprite->yPosition, sprite->xPosition + sprite->hitboxExtentRight);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 sprite->pose = 17;
                 return;
             }
 
             func_8023BFC(sprite->yPosition - 32,
                          sprite->xPosition + sprite->hitboxExtentRight + 160);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 sprite->pose = 17;
                 return;
             }
@@ -249,16 +249,16 @@ void func_803AE30(void)
             current->xPosition++;
         }
     } else {
-        if (gUnk_3000A50 & 0xF0) {
+        if (gSpriteCollisionResult & 0xF0) {
             func_8023BFC(sprite->yPosition, sprite->xPosition - sprite->hitboxExtentLeft);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 sprite->pose = 17;
                 return;
             }
 
             func_8023BFC(sprite->yPosition - 32,
                          sprite->xPosition - sprite->hitboxExtentLeft - 160);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 sprite->pose = 17;
                 return;
             }
@@ -593,7 +593,7 @@ void func_803B2EC(void)
 
     if (sprite->health != 0) {
         sprite->health--;
-        func_80747D8();
+        UpdateBossHealthGauge();
         m4aSongNumStart(SOUND_7A);
     }
 
@@ -645,7 +645,7 @@ void func_803B36C(void)
 
                 nextHealth = health - 1;
                 sprite->health = nextHealth;
-                func_80747D8();
+                UpdateBossHealthGauge();
                 m4aSongNumStart(SOUND_7A);
             }
         }
@@ -751,7 +751,7 @@ void func_803B49C(void)
                 gTimerState = 11;
                 SpriteUtilSetWarioBossVictoryPose();
             }
-            func_80747D8();
+            UpdateBossHealthGauge();
         }
     }
 
@@ -774,13 +774,13 @@ void func_803B538(void)
     if (sprite->xPosition > gWarioData.xPosition) {
         func_8023BFC(sprite->yPosition - 32,
                      sprite->xPosition + sprite->hitboxExtentRight);
-        if (!(gUnk_3000A51 & 0xF)) {
+        if (!(gSpriteCollisionTileType & 0xF)) {
             sprite->xPosition += 8;
         }
     } else {
         func_8023BFC(sprite->yPosition - 32,
                      sprite->xPosition - sprite->hitboxExtentLeft);
-        if (!(gUnk_3000A51 & 0xF)) {
+        if (!(gSpriteCollisionTileType & 0xF)) {
             sprite->xPosition -= 8;
         }
     }

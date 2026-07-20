@@ -50,7 +50,7 @@ void RingosukiIdle(void)
     nearby = SpriteUtilWaitCheckWarioNearbyLeftRight(256, 256);
     func_80238A4();
     func_8023B88();
-    collision = gUnk_3000A50;
+    collision = gSpriteCollisionResult;
     if (collision == 0)
     {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
@@ -63,7 +63,7 @@ void RingosukiIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                          gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (gUnk_3000A51 != 0)
+        if (gSpriteCollisionTileType != 0)
             goto move;
         gCurrentSprite.pose = 27;
         return;
@@ -93,7 +93,7 @@ void RingosukiIdle(void)
         if (maskedX + extent <= 0x3F)
             goto move;
         func_8023BFC(gCurrentSprite.yPosition, xPosition + extent);
-        collisionPointer = &gUnk_3000A51;
+        collisionPointer = &gSpriteCollisionTileType;
         if (*collisionPointer == 0)
         {
             gCurrentSprite.pose = 17;
@@ -133,7 +133,7 @@ void RingosukiIdle(void)
         if (maskedX >= extent)
             goto move;
         func_8023BFC(gCurrentSprite.yPosition, xPosition - extent);
-        collisionPointer = &gUnk_3000A51;
+        collisionPointer = &gSpriteCollisionTileType;
         if (*collisionPointer == 0)
         {
             gCurrentSprite.pose = 17;
@@ -166,7 +166,7 @@ void RingosukiTurn(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0)
+    if (gSpriteCollisionResult == 0)
     {
         gCurrentSprite.pose = 27;
     }
@@ -245,13 +245,13 @@ void RingosukiThrowApple(void)
             facingRight = ringosuki->status & SPRITE_STATUS_FACING_RIGHT;
             if (facingRight != 0)
             {
-                func_801E3A8(PSPRITE_RINGOSUKI_APPLE, ringosuki->roomSlot, ringosuki->gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_RINGOSUKI_APPLE, ringosuki->roomSlot, ringosuki->gfxSlot,
                              ringosuki->yPosition - 110, ringosuki->xPosition + 92,
                              SPRITE_STATUS_FACING_RIGHT);
             }
             else
             {
-                func_801E3A8(PSPRITE_RINGOSUKI_APPLE, ringosuki->roomSlot, ringosuki->gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_RINGOSUKI_APPLE, ringosuki->roomSlot, ringosuki->gfxSlot,
                              ringosuki->yPosition - 110, ringosuki->xPosition - 92, facingRight);
             }
             m4aSongNumStart(SE_RINGOSUKI_THROW_APPLE);
@@ -259,7 +259,7 @@ void RingosukiThrowApple(void)
 
         func_80238A4();
         func_8023B88();
-        if (gUnk_3000A50 == 0)
+        if (gSpriteCollisionResult == 0)
             gCurrentSprite.pose = 27;
     }
     else
@@ -318,7 +318,7 @@ void RingosukiEatApple(void)
 {
     func_80238A4();
     func_8023B88();
-    if (gUnk_3000A50 == 0)
+    if (gSpriteCollisionResult == 0)
         gCurrentSprite.pose = 27;
     if (--gCurrentSprite.work0 == 0)
         gCurrentSprite.pose = 17;
@@ -368,7 +368,7 @@ void RingosukiRecover(void)
     {
         func_80238A4();
         func_8023B88();
-        if (gUnk_3000A50 == 0)
+        if (gSpriteCollisionResult == 0)
             gCurrentSprite.pose = 27;
         gCurrentSprite.warioCollision = 1;
     }
@@ -592,7 +592,7 @@ void RingosukiThrown(void)
         goto pose_27;
 
     func_8023BFC(sprite->yPosition - sprite->hitboxExtentUp, sprite->xPosition);
-    if (gUnk_3000A51 & 0xF)
+    if (gSpriteCollisionTileType & 0xF)
     {
         nextPose = 29;
         goto set_pose;
@@ -698,7 +698,7 @@ void RingosukiAppleFly(void)
     u16 workValue;
 
     func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1 || (gUnk_3000A50 & 0xF) != 0)
+    if (gUnk_30000A0.unk_02 == 1 || (gSpriteCollisionResult & 0xF) != 0)
     {
         gCurrentSprite.pose = 107;
         return;
@@ -707,7 +707,7 @@ void RingosukiAppleFly(void)
     if (gCurrentSprite.work3 <= 7)
     {
         func_8023BFC(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition);
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
         {
             gCurrentSprite.pose = 107;
             return;
@@ -731,7 +731,7 @@ void RingosukiAppleFly(void)
     if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
     {
         func_8023BFC(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition + 32);
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             gCurrentSprite.pose = 107;
         else
             gCurrentSprite.xPosition += 8;
@@ -739,7 +739,7 @@ void RingosukiAppleFly(void)
     else
     {
         func_8023BFC(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition - 32);
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             gCurrentSprite.pose = 107;
         else
             gCurrentSprite.xPosition -= 8;

@@ -10,7 +10,7 @@ extern const struct AnimationFrame sSpikeCannonProjectileDespawnOam[];
 extern const struct AnimationFrame sSpikeCannonOam[];
 extern const s16 sSpikeCannonProjectileYVelocity[];
 
-void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
+void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
 void InitSpikeCannon(void);
 void SpikeCannonWait(void);

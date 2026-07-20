@@ -297,7 +297,7 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern u8 gUnk_30000C8;
 extern struct TransparencyState gUnk_30000D8;
-extern u8 gUnk_30000F4[6];
+extern u8 gColorFadingState[6];
 extern u8 gUnk_30000FC;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;

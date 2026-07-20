@@ -101,7 +101,7 @@ void IcicleFall(void)
     if (gUnk_30000A0.unk_02 == 1) {
         sprite->status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         sprite->yPosition = yPosition;
         sprite->pose = 23;
     } else {
@@ -117,7 +117,7 @@ void IcicleFall(void)
         asm("mov %0, #42\n\tadd %0, %0, %1" : "=r"(tempR6) : "r"(sprite));
         indexPointer = (u8 *)tempR6;
         index = *(u8 *)tempR6;
-        velocities = sUnk_8352ADC;
+        velocities = sSharedDebrisYVelocity;
         entry = (const s16 *)((index << 1) + (u32)velocities);
         velocityRaw = *(const u16 *)entry;
         tempR6 = 0;

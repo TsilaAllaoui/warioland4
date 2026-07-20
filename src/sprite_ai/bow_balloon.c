@@ -40,7 +40,7 @@ void BowBalloonIdle(void)
     nearby = SpriteUtilWaitCheckWarioNearbyLeftRight(256, 256);
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
@@ -48,7 +48,7 @@ void BowBalloonIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (!gUnk_3000A51) {
+        if (!gSpriteCollisionTileType) {
             gCurrentSprite.pose = SPOSE_1B;
             return;
         }
@@ -61,17 +61,17 @@ void BowBalloonIdle(void)
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) + gCurrentSprite.hitboxExtentRight > 0x3F)) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
@@ -85,17 +85,17 @@ void BowBalloonIdle(void)
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) < gCurrentSprite.hitboxExtentLeft)) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
@@ -118,7 +118,7 @@ void BowBalloonTurn(void)
 {
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -194,18 +194,18 @@ void BowBalloonAttack(void)
         shifted = (u32)shifted >> 24;
         if (shifted == 22) {
             if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
-                func_801E3A8(PSPRITE_A1, sprite->roomSlot, sprite->gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_A1, sprite->roomSlot, sprite->gfxSlot,
                     sprite->yPosition - 64, sprite->xPosition + 96,
                     SPRITE_STATUS_FACING_RIGHT);
             } else {
-                func_801E3A8(PSPRITE_A1, sprite->roomSlot, sprite->gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_A1, sprite->roomSlot, sprite->gfxSlot,
                     sprite->yPosition - 64, sprite->xPosition - 96, 0);
             }
             m4aSongNumStart(SE_BOW_BALLOON_SHOOT);
         }
         func_80238A4();
         func_8023B88();
-        if (!gUnk_3000A50) {
+        if (!gSpriteCollisionResult) {
             gCurrentSprite.pose = SPOSE_1B;
         }
     } else {
@@ -279,13 +279,13 @@ void BowBalloonGetUp(void)
         if (work0 > 42) {
             func_80238E8();
             func_8023B88();
-            if (!gUnk_3000A50) {
+            if (!gSpriteCollisionResult) {
                 current->pose = SPOSE_1D;
             }
         } else if (work0 <= 23) {
             func_80238A4();
             func_8023B88();
-            if (!gUnk_3000A50) {
+            if (!gSpriteCollisionResult) {
                 current->pose = SPOSE_1B;
             }
             current->warioCollision = 1;
@@ -490,7 +490,7 @@ void BowBalloonAirborne(void)
     if (gCurrentSprite.work0 != 0) {
         func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
             gCurrentSprite.xPosition);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             gCurrentSprite.pose = SPOSE_1D;
         } else {
             indexPointer = &gCurrentSprite.work3;

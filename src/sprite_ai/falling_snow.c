@@ -14,7 +14,7 @@ extern const struct AnimationFrame sFallingSnowResetOam[];
 extern const struct AnimationFrame sFallingSnowFragmentRightOam[];
 extern const struct AnimationFrame sFallingSnowFragmentLeftOam[];
 extern u8 gUnk_3000964[][3];
-extern void func_801E3A8(u8, u8, u8, u32, u32, u32);
+extern void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
 
 void InitFallingSnow(void)
 {
@@ -77,18 +77,18 @@ void FallingSnowFall(void)
     newY = func_8023A60(sprite->yPosition, (*sprite).xPosition);
     if ((double)(gUnk_30000A0.unk_02 == 1))
         sprite->status |= 0x800;
-    if (gUnk_3000A50 != 0)
+    if (gSpriteCollisionResult != 0)
     {
         sprite->yPosition = newY;
         sprite->pose = 23;
         return;
     }
     index = sprite->work3;
-    movement = sUnk_8352ADC[index];
+    movement = sSharedDebrisYVelocity[index];
     if (movement == 0x7FFF)
     {
         new_var = index - 1;
-        new_var2 = ((const u16*)sUnk_8352ADC)[new_var];
+        new_var2 = ((const u16*)sSharedDebrisYVelocity)[new_var];
         sprite->yPosition += new_var2;
     }
     else
@@ -151,9 +151,9 @@ void FallingSnowSpawnFragment(void)
 {
     struct PrimarySpriteData* s = &gCurrentSprite;
     if (s->xPosition > gWarioData.xPosition)
-        func_801E3A8(0x9e, s->roomSlot, s->gfxSlot, s->yPosition, s->xPosition, 64);
+        SpawnPrimarySpriteWithStatus(0x9e, s->roomSlot, s->gfxSlot, s->yPosition, s->xPosition, 64);
     else
-        func_801E3A8(0x9e, s->roomSlot, s->gfxSlot, s->yPosition, s->xPosition, 0);
+        SpawnPrimarySpriteWithStatus(0x9e, s->roomSlot, s->gfxSlot, s->yPosition, s->xPosition, 0);
 }
 
 void FallingSnowResetAfterImpact(void)

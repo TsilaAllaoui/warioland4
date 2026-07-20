@@ -363,7 +363,7 @@ void func_80746C0(void)
     }
 }
 
-void func_80747D8(void)
+void UpdateBossHealthGauge(void)
 {
     u8 health;
 

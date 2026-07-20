@@ -129,7 +129,7 @@ void MagicCarpetWaitForWario(void)
         }
     } else {
         func_8023BFC(sprite->yPosition + 12, sprite->xPosition);
-        if (gUnk_3000A51 == 0)
+        if (gSpriteCollisionTileType == 0)
             SetMagicCarpetMovementState();
     }
 }
@@ -145,7 +145,7 @@ void MagicCarpetHandleStandingWario(void)
   register u16 newStatus asm("r0");
   u8 zero;
   func_8023B88();
-  if (gUnk_3000A50 == 0)
+  if (gSpriteCollisionResult == 0)
   {
     SetMagicCarpetMovementState();
   }
@@ -220,15 +220,15 @@ void MagicCarpetRiseAndMove(void)
         timer = --sprite->work0;
         if (timer != 0) {
             func_8023BFC((u16)(sprite->yPosition - 16), sprite->xPosition);
-            if ((gUnk_3000A51 & 0xF) != 0) {
+            if ((gSpriteCollisionTileType & 0xF) != 0) {
                 SetMagicCarpetMovementState();
             } else {
                 func_8023BFC((u16)(sprite->yPosition - 16), (u16)(sprite->xPosition - 64));
-                if ((gUnk_3000A51 & 0xF) != 0) {
+                if ((gSpriteCollisionTileType & 0xF) != 0) {
                     SetMagicCarpetMovementState();
                 } else {
                     func_8023BFC((u16)(sprite->yPosition - 16), (u16)(sprite->xPosition + 64));
-                    if ((gUnk_3000A51 & 0xF) != 0) {
+                    if ((gSpriteCollisionTileType & 0xF) != 0) {
                         SetMagicCarpetMovementState();
                     } else {
                         index = sprite->work3;
@@ -264,7 +264,7 @@ void MagicCarpetRiseAndMove(void)
                         sprite = &gCurrentSprite;
                         if (sprite->work2 == 1) {
                             func_8023BFC((u16)(sprite->yPosition - 32), (u16)(sprite->xPosition - 80));
-                            if ((gUnk_3000A51 & 0xF) == 0) {
+                            if ((gSpriteCollisionTileType & 0xF) == 0) {
                                 sprite->xPosition--;
                                 if (sprite->status & SPRITE_STATUS_WARIO_STANDING_ON) {
                                     gWarioData.xPosition -= 3;
@@ -272,7 +272,7 @@ void MagicCarpetRiseAndMove(void)
                             }
                         } else if (sprite->work2 == 2) {
                             func_8023BFC((u16)(sprite->yPosition - 32), (u16)((*new_var)->xPosition + 76));
-                            if ((gUnk_3000A51 & 0xF) == 0) {
+                            if ((gSpriteCollisionTileType & 0xF) == 0) {
                                 sprite->xPosition++;
                                 if (sprite->status & SPRITE_STATUS_WARIO_STANDING_ON) {
                                     gWarioData.xPosition += 3;
@@ -305,7 +305,7 @@ void MagicCarpetMoveUnridden(void)
   {
     sprite->status |= SPRITE_STATUS_UNDERWATER;
   }
-  if (gUnk_3000A50 != 0)
+  if (gSpriteCollisionResult != 0)
   {
     register u8 zeroByte asm("r1");
     register u16 zeroHalf asm("r2");
@@ -352,7 +352,7 @@ void MagicCarpetMoveUnridden(void)
   if ((*work2) == 1)
   {
     func_8023BFC((u16) (y - 28), (u16) (sprite->xPosition - 80));
-    if ((gUnk_3000A51 & 0xF) == 0)
+    if ((gSpriteCollisionTileType & 0xF) == 0)
     {
       sprite->xPosition -= 3;
     }
@@ -365,7 +365,7 @@ void MagicCarpetMoveUnridden(void)
   else
   {
     func_8023BFC((u16) (y - 28), (u16) (sprite->xPosition + 76));
-    if ((gUnk_3000A51 & 0xF) == 0)
+    if ((gSpriteCollisionTileType & 0xF) == 0)
     {
       sprite->xPosition += 3;
     }
@@ -403,7 +403,7 @@ void MagicCarpetMoveWithWario(void)
     if (gUnk_30000A0.unk_02 == 1) {
         sprite->status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         sprite->yPosition = groundY;
         sprite->pOamData = sMagicCarpetFlyingOam;
         sprite->currentAnimationFrame = 0;
@@ -443,7 +443,7 @@ void MagicCarpetMoveWithWario(void)
         sprite = loadedSprite;
         if (direction == 1) {
             func_8023BFC((u16)(sprite->yPosition - 32), (u16)(sprite->xPosition - 80));
-            if ((gUnk_3000A51 & 0xF) == 0) {
+            if ((gSpriteCollisionTileType & 0xF) == 0) {
                 sprite->xPosition -= 4;
                 gWarioData.xPosition -= 4;
             }
@@ -462,7 +462,7 @@ void MagicCarpetMoveWithWario(void)
             }
         } else if (direction == 2) {
             func_8023BFC((u16)(sprite->yPosition - 32), (u16)(sprite->xPosition + 76));
-            if ((gUnk_3000A51 & 0xF) == 0) {
+            if ((gSpriteCollisionTileType & 0xF) == 0) {
                 sprite->xPosition += 4;
                 gWarioData.xPosition += 4;
             }

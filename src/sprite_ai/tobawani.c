@@ -88,7 +88,7 @@ void TobawaniPatrol(void)
             }
             func_8023BFC((u16)(sprite->yPosition - 16),
                          (u16)(sprite->xPosition + 110));
-            if ((gUnk_3000A51 & 15) != 0) {
+            if ((gSpriteCollisionTileType & 15) != 0) {
                 goto idle;
             }
             xPosition = sprite->xPosition + 3;
@@ -101,7 +101,7 @@ attack:
         }
         func_8023BFC((u16)(sprite->yPosition - 16),
                      (u16)(sprite->xPosition - 110));
-        if ((gUnk_3000A51 & 15) != 0) {
+        if ((gSpriteCollisionTileType & 15) != 0) {
 idle:
             sprite->pose = 17;
             return;
@@ -183,7 +183,7 @@ void TobawaniCharge(void)
 
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC((u16)(sprite->yPosition - 16), (u16)(sprite->xPosition + 110));
-        if ((gUnk_3000A51 & 15) != 0) {
+        if ((gSpriteCollisionTileType & 15) != 0) {
             goto blocked;
         }
         xPosition = sprite->xPosition + 6;
@@ -191,7 +191,7 @@ void TobawaniCharge(void)
     }
 
     func_8023BFC((u16)(sprite->yPosition - 16), (u16)(sprite->xPosition - 110));
-    if ((gUnk_3000A51 & 15) != 0) {
+    if ((gSpriteCollisionTileType & 15) != 0) {
 blocked:
         sprite->pose = 17;
         return;
@@ -373,7 +373,7 @@ void TobawaniWallFall(void)
     func_8023A60(sprite->yPosition, sprite->xPosition);
     if (gUnk_30000A0.unk_02 == 1) {
         TobawaniEnterWater();
-    } else if ((gUnk_3000A50 & 15) != 0) {
+    } else if ((gSpriteCollisionResult & 15) != 0) {
         if (sprite->pose == 52) {
             sprite->pose = 31;
         } else {
@@ -413,7 +413,7 @@ void TobawaniWallFallRight(void)
     gCurrentSprite.xPosition += 2;
     func_8023BFC(gCurrentSprite.yPosition - 32,
                  gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-    if (gUnk_3000A51 == 17) {
+    if (gSpriteCollisionTileType == 17) {
         gCurrentSprite.pose = 54;
         m4aSongNumStart(SE_WALL_BOUNCE);
     }
@@ -425,7 +425,7 @@ void TobawaniWallFallLeft(void)
     gCurrentSprite.xPosition -= 2;
     func_8023BFC(gCurrentSprite.yPosition - 32,
                  gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-    if (gUnk_3000A51 == 17) {
+    if (gSpriteCollisionTileType == 17) {
         gCurrentSprite.pose = 52;
         m4aSongNumStart(SE_WALL_BOUNCE);
     }

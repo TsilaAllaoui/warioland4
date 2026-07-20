@@ -66,7 +66,7 @@ void BallLightningSpawnerIdle(void)
     timer = --*timerPtr;
     if (timer == 0)
     {
-        func_801E3A8(PSPRITE_BALL_LIGHTNING_BOLT, sprite->roomSlot, sprite->gfxSlot,
+        SpawnPrimarySpriteWithStatus(PSPRITE_BALL_LIGHTNING_BOLT, sprite->roomSlot, sprite->gfxSlot,
             sprite->yPosition, sprite->xPosition, timer);
         *timerPtr = 200;
         if (sprite->status & 2)
@@ -192,7 +192,7 @@ void BallLightningBoltFall(void)
         sprite->status = status;
     }
 
-    if (gUnk_3000A50 != 0)
+    if (gSpriteCollisionResult != 0)
     {
         sprite->yPosition = newY;
         if (sprite->status & SPRITE_STATUS_FACING_RIGHT)
@@ -217,7 +217,7 @@ void BallLightningBoltFall(void)
         asm("mov %0, #42\nadd %0, %1" : "=r"(workPtr) : "r"(sprite));
         savedWorkPtr = workPtr;
         index = *workPtr;
-        table = sUnk_8352ADC;
+        table = sSharedDebrisYVelocity;
         value = index << 1;
         value += (u32)table;
         movement = *(const u16*)value;
@@ -451,10 +451,10 @@ void SpriteBallLightningBolt(void)
     if ((gMainTimer & 31) == 0 && sprite->pose > 18)
     {
         if (sprite->status & SPRITE_STATUS_FACING_RIGHT)
-            func_801E3A8(PSPRITE_BALL_LIGHTNING_TRAIL, sprite->roomSlot, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_BALL_LIGHTNING_TRAIL, sprite->roomSlot, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition - 16, 0);
         else
-            func_801E3A8(PSPRITE_BALL_LIGHTNING_TRAIL, sprite->roomSlot, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(PSPRITE_BALL_LIGHTNING_TRAIL, sprite->roomSlot, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition + 16, 64);
     }
 

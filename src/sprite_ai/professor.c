@@ -86,17 +86,17 @@ void ProfessorPatrolAndSpawnProjectiles(void)
     facingRightTest = facingRightMask;
     if (facingRightTest & spriteStatus) {
         func_8023BFC(sprite->yPosition - 32, sprite->xPosition + 48);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
             return;
         }
         if ((gMainTimer & 0x3F) == 0) {
-            func_801E3A8(PSPRITE_PROFESSOR_PROJECTILE, 0, 0, sprite->yPosition - 60,
+            SpawnPrimarySpriteWithStatus(PSPRITE_PROFESSOR_PROJECTILE, 0, 0, sprite->yPosition - 60,
                 sprite->xPosition + 16, 0);
         }
     } else {
         func_8023BFC(sprite->yPosition - 32, sprite->xPosition - 48);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             register u32 updatedStatus asm("r0");
             register u32 facingRightFlag asm("r1");
 
@@ -107,7 +107,7 @@ void ProfessorPatrolAndSpawnProjectiles(void)
             return;
         }
         if ((gMainTimer & 0x3F) == 0) {
-            func_801E3A8(PSPRITE_PROFESSOR_PROJECTILE, 0, 0, sprite->yPosition - 60,
+            SpawnPrimarySpriteWithStatus(PSPRITE_PROFESSOR_PROJECTILE, 0, 0, sprite->yPosition - 60,
                 sprite->xPosition - 16, facingRightMask);
         }
     }
@@ -168,7 +168,7 @@ void ProfessorWalk(void)
 
     func_80238E8();
     func_8023B88();
-    floorCollision = gUnk_3000A50;
+    floorCollision = gSpriteCollisionResult;
     if (floorCollision == 0) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
@@ -177,7 +177,7 @@ void ProfessorWalk(void)
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             gCurrentSprite.pose = 27;
             goto end;
         }
@@ -199,7 +199,7 @@ void ProfessorWalk(void)
             goto moveForward;
 
         func_8023BFC(sprite->yPosition, sprite->xPosition + 70);
-        probeCollisionPointer = &gUnk_3000A51;
+        probeCollisionPointer = &gSpriteCollisionTileType;
         probeCollision = *probeCollisionPointer;
         maskedCollision = collisionMask;
         maskedCollision &= probeCollision;
@@ -224,7 +224,7 @@ void ProfessorWalk(void)
             goto moveForward;
 
         func_8023BFC(sprite->yPosition, sprite->xPosition - 70);
-        probeCollisionPointer = &gUnk_3000A51;
+        probeCollisionPointer = &gSpriteCollisionTileType;
         probeCollision = *probeCollisionPointer;
         maskedCollision = collisionMask;
         maskedCollision &= probeCollision;
@@ -261,7 +261,7 @@ void ProfessorTurnAround(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 27;
         return;
     }
@@ -352,7 +352,7 @@ void ProfessorWait(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 27;
     } else if (--gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 15;
@@ -489,7 +489,7 @@ void ProfessorLifted(void)
     if (--*liftTimerPointer != 0) {
         func_8023BFC(sprite->yPosition - sprite->hitboxExtentUp,
             sprite->xPosition);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             sprite->pose = 29;
         } else {
             gravityIndexPointer = &sprite->work3;

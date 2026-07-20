@@ -160,7 +160,7 @@ void HoggusIdle(void)
         else
         {
             func_8023BFC((u16)(sprite->yPosition - 32), (u16)(sprite->xPosition + 96));
-        if ((gUnk_3000A51 & 0xF) == 0)
+        if ((gSpriteCollisionTileType & 0xF) == 0)
         {
             count = SpriteUtilCountSpriteType(PSPRITE_DENDEN);
             count += SpriteUtilCountSpriteType(PSPRITE_BUTATABI);
@@ -292,7 +292,7 @@ void HoggusSpawn(void)
 
     sprite = &gCurrentSprite;
     func_8023BFC((u16)(sprite->yPosition - 32), (u16)(sprite->xPosition + 96));
-    collisionState = gUnk_3000A51;
+    collisionState = gSpriteCollisionTileType;
     pose = 15;
     maskedState = pose;
     maskedState &= collisionState;

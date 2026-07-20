@@ -47,13 +47,13 @@ void MenhammerWalk(void)
     nearby = SpriteUtilWaitCheckWarioNearbyLeftRight(136, 322);
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - 40);
         } else {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + 36);
         }
-        if (!gUnk_3000A51) {
+        if (!gSpriteCollisionTileType) {
             gCurrentSprite.pose = SPOSE_1B;
             return;
         }
@@ -66,16 +66,16 @@ void MenhammerWalk(void)
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) + gCurrentSprite.hitboxExtentRight > 0x3F)) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + 36);
-            if (!gUnk_3000A51) {
+            if (!gSpriteCollisionTileType) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 == 17) {
+            if (gSpriteCollisionTileType == 17) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
@@ -89,16 +89,16 @@ void MenhammerWalk(void)
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) < gCurrentSprite.hitboxExtentLeft)) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - 40);
-            if (!gUnk_3000A51) {
+            if (!gSpriteCollisionTileType) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (gUnk_3000A51 == 17) {
+            if (gSpriteCollisionTileType == 17) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
@@ -126,7 +126,7 @@ void MenhammerTurn(void)
 {
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -186,7 +186,7 @@ void MenhammerAttack(void)
 
         if (sprite->work3 <= 9) {
             func_8023BFC(sprite->yPosition - sprite->hitboxExtentUp, sprite->xPosition);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 sprite->pose = SPOSE_1D;
                 return;
             }
@@ -197,7 +197,7 @@ void MenhammerAttack(void)
             if (gUnk_30000A0.unk_02 == 1) {
                 sprite->status |= SPRITE_STATUS_UNDERWATER;
             }
-            if (gUnk_3000A50) {
+            if (gSpriteCollisionResult) {
                 sprite->yPosition = yPosition;
                 sprite->pose = SPOSE_18;
                 sprite->pOamData = sMenhammerLandingAttackOam;
@@ -269,7 +269,7 @@ void MenhammerAttack(void)
             ((struct PrimarySpriteData *) r5Value)->xPosition = xPosition;
             func_8023BFC(((struct PrimarySpriteData *) r5Value)->yPosition - 32,
                 xPosition + ((struct PrimarySpriteData *) r5Value)->hitboxExtentRight);
-            if (gUnk_3000A51 == 17) {
+            if (gSpriteCollisionTileType == 17) {
                 ((struct PrimarySpriteData *) r5Value)->pose = SPOSE_47;
                 m4aSongNumStart(SE_WALL_BOUNCE);
             }
@@ -281,7 +281,7 @@ void MenhammerAttack(void)
             ((struct PrimarySpriteData *) r4Value)->xPosition = xPosition;
             func_8023BFC(((struct PrimarySpriteData *) r4Value)->yPosition - 32,
                 xPosition - ((struct PrimarySpriteData *) r4Value)->hitboxExtentLeft);
-            if (gUnk_3000A51 == 17) {
+            if (gSpriteCollisionTileType == 17) {
                 ((struct PrimarySpriteData *) r4Value)->pose = SPOSE_45;
                 m4aSongNumStart(SE_WALL_BOUNCE);
             }
@@ -518,7 +518,7 @@ void MenhammerAirborne(void)
     if (gCurrentSprite.work0 != 0) {
         func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
             gCurrentSprite.xPosition);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             gCurrentSprite.pose = SPOSE_1D;
         } else {
             indexPointer = &gCurrentSprite.work3;

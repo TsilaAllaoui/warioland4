@@ -152,143 +152,143 @@ sKaentsuboFireballSpawnOam:
 
 baserom_blob 0x3B8884, 0x3B889C
 
-.global sUnk_83B889C
-sUnk_83B889C:
+.global sCuckooCondorBattleGfx
+sCuckooCondorBattleGfx:
 
 baserom_blob 0x3B889C, 0x3B9AB8
 
-.global sUnk_83B9AB8
-sUnk_83B9AB8:
+.global sCuckooCondorHurtOam
+sCuckooCondorHurtOam:
 
 baserom_blob 0x3B9AB8, 0x3B9AD0
 
-.global sUnk_83B9AD0
-sUnk_83B9AD0:
+.global sCuckooCondorClockIntroOam
+sCuckooCondorClockIntroOam:
 
 baserom_blob 0x3B9AD0, 0x3B9AF0
 
-.global sUnk_83B9AF0
-sUnk_83B9AF0:
+.global sCuckooCondorClockBodyFallingOam
+sCuckooCondorClockBodyFallingOam:
 
 baserom_blob 0x3B9AF0, 0x3B9B00
 
-.global sUnk_83B9B00
-sUnk_83B9B00:
+.global sCuckooCondorClockBodyOam
+sCuckooCondorClockBodyOam:
 
 baserom_blob 0x3B9B00, 0x3B9B40
 
-.global sUnk_83B9B40
-sUnk_83B9B40:
+.global sCuckooCondorClockIdleOam
+sCuckooCondorClockIdleOam:
 
 baserom_blob 0x3B9B40, 0x3B9C90
 
-.global sUnk_83B9C90
-sUnk_83B9C90:
+.global sCuckooCondorHeadIdleOam
+sCuckooCondorHeadIdleOam:
 
 baserom_blob 0x3B9C90, 0x3B9CD8
 
-.global sUnk_83B9CD8
-sUnk_83B9CD8:
+.global sCuckooCondorHeadBlinkOam
+sCuckooCondorHeadBlinkOam:
 
 baserom_blob 0x3B9CD8, 0x3B9D20
 
-.global sUnk_83B9D20
-sUnk_83B9D20:
+.global sCuckooCondorHeadHurtOam
+sCuckooCondorHeadHurtOam:
 
 baserom_blob 0x3B9D20, 0x3B9D38
 
-.global sUnk_83B9D38
-sUnk_83B9D38:
+.global sCuckooCondorHeadAttackOam
+sCuckooCondorHeadAttackOam:
 
 baserom_blob 0x3B9D38, 0x3B9DF8
 
-.global sUnk_83B9DF8
-sUnk_83B9DF8:
+.global sCuckooCondorPendulumRetractedOam
+sCuckooCondorPendulumRetractedOam:
 
 baserom_blob 0x3B9DF8, 0x3B9E18
 
-.global sUnk_83B9E18
-sUnk_83B9E18:
+.global sCuckooCondorPendulumLinkOam
+sCuckooCondorPendulumLinkOam:
 
 baserom_blob 0x3B9E18, 0x3B9E40
 
-.global sUnk_83B9E40
-sUnk_83B9E40:
+.global sCuckooCondorClawIdleOam
+sCuckooCondorClawIdleOam:
 
 baserom_blob 0x3B9E40, 0x3B9E50
 
-.global sUnk_83B9E50
-sUnk_83B9E50:
+.global sCuckooCondorClawOpenOam
+sCuckooCondorClawOpenOam:
 
 baserom_blob 0x3B9E50, 0x3B9E60
 
-.global sUnk_83B9E60
-sUnk_83B9E60:
+.global sCuckooCondorClawGrabOam
+sCuckooCondorClawGrabOam:
 
 baserom_blob 0x3B9E60, 0x3B9E70
 
-.global sUnk_83B9E70
-sUnk_83B9E70:
+.global sCuckooCondorClawCloseOam
+sCuckooCondorClawCloseOam:
 
 baserom_blob 0x3B9E70, 0x3B9EC4
 
-.global sUnk_83B9EC4
-sUnk_83B9EC4:
+.global sCuckooCondorClockPieceTopOam
+sCuckooCondorClockPieceTopOam:
 
 baserom_blob 0x3B9EC4, 0x3B9ED4
 
-.global sUnk_83B9ED4
-sUnk_83B9ED4:
+.global sCuckooCondorClockPieceUpperRightOam
+sCuckooCondorClockPieceUpperRightOam:
 
 baserom_blob 0x3B9ED4, 0x3B9EE4
 
-.global sUnk_83B9EE4
-sUnk_83B9EE4:
+.global sCuckooCondorClockPieceLowerRightOam
+sCuckooCondorClockPieceLowerRightOam:
 
 baserom_blob 0x3B9EE4, 0x3BA0BC
 
-.global sUnk_83BA0BC
-sUnk_83BA0BC:
+.global sCuckooCondorClockPieceLowerLeftOam
+sCuckooCondorClockPieceLowerLeftOam:
 
 baserom_blob 0x3BA0BC, 0x3BA0DC
 
-.global sUnk_83BA0DC
-sUnk_83BA0DC:
+.global sCuckooCondorClockPieceUpperLeftWindupOam
+sCuckooCondorClockPieceUpperLeftWindupOam:
 
 baserom_blob 0x3BA0DC, 0x3BA0FC
 
-.global sUnk_83BA0FC
-sUnk_83BA0FC:
+.global sCuckooCondorClockPieceUpperLeftDrop1Oam
+sCuckooCondorClockPieceUpperLeftDrop1Oam:
 
 baserom_blob 0x3BA0FC, 0x3BA10C
 
-.global sUnk_83BA10C
-sUnk_83BA10C:
+.global sCuckooCondorClockPieceUpperLeftDrop2Oam
+sCuckooCondorClockPieceUpperLeftDrop2Oam:
 
 baserom_blob 0x3BA10C, 0x3BA12C
 
-.global sUnk_83BA12C
-sUnk_83BA12C:
+.global sCuckooCondorSmallDebrisOam
+sCuckooCondorSmallDebrisOam:
 
 baserom_blob 0x3BA12C, 0x3BA14C
 
-.global sUnk_83BA14C
-sUnk_83BA14C:
+.global sCuckooCondorClockPieceUpperLeftOam
+sCuckooCondorClockPieceUpperLeftOam:
 
 baserom_blob 0x3BA14C, 0x3BA578
 
-.global sUnk_83BA578
-sUnk_83BA578:
+.global sCuckooCondorBodyOam
+sCuckooCondorBodyOam:
 
 baserom_blob 0x3BA578, 0x3BA5C0
 
-.global sUnk_83BA5C0
-sUnk_83BA5C0:
+.global sCuckooCondorHeadPhase2Oam
+sCuckooCondorHeadPhase2Oam:
 
 baserom_blob 0x3BA5C0, 0x3BA7A4
 
-.global sUnk_83BA7A4
-sUnk_83BA7A4:
+.global sCuckooCondorChickWalkOam
+sCuckooCondorChickWalkOam:
 
 baserom_blob 0x3BA7A4, 0x3BA7BC
 
@@ -297,53 +297,53 @@ sUnk_83BA7BC:
 
 baserom_blob 0x3BA7BC, 0x3BA7EC
 
-.global sUnk_83BA7EC
-sUnk_83BA7EC:
+.global sCuckooCondorChickExplodeOam
+sCuckooCondorChickExplodeOam:
 
 baserom_blob 0x3BA7EC, 0x3BA81C
 
-.global sUnk_83BA81C
-sUnk_83BA81C:
+.global sCuckooCondorChickDashOam
+sCuckooCondorChickDashOam:
 
 baserom_blob 0x3BA81C, 0x3BA834
 
-.global sUnk_83BA834
-sUnk_83BA834:
+.global sCuckooCondorChickChaseOam
+sCuckooCondorChickChaseOam:
 
 baserom_blob 0x3BA834, 0x3BA84C
 
-.global sUnk_83BA84C
-sUnk_83BA84C:
+.global sCuckooCondorChickAttackOam
+sCuckooCondorChickAttackOam:
 
 baserom_blob 0x3BA84C, 0x3BA864
 
-.global sUnk_83BA864
-sUnk_83BA864:
+.global sCuckooCondorChickAttackEndOam
+sCuckooCondorChickAttackEndOam:
 
 baserom_blob 0x3BA864, 0x3BA960
 
-.global sUnk_83BA960
-sUnk_83BA960:
+.global sCuckooCondorEggOam
+sCuckooCondorEggOam:
 
 baserom_blob 0x3BA960, 0x3BA978
 
-.global sUnk_83BA978
-sUnk_83BA978:
+.global sCuckooCondorEggHatchOam
+sCuckooCondorEggHatchOam:
 
 baserom_blob 0x3BA978, 0x3BA9C8
 
-.global sUnk_83BA9C8
-sUnk_83BA9C8:
+.global sCuckooCondorChickYVelocity
+sCuckooCondorChickYVelocity:
 
 baserom_blob 0x3BA9C8, 0x3BA9EA
 
-.global sUnk_83BA9EA
-sUnk_83BA9EA:
+.global sCuckooCondorFlightYVelocity
+sCuckooCondorFlightYVelocity:
 
 baserom_blob 0x3BA9EA, 0x3BAA3C
 
-.global sUnk_83BAA3C
-sUnk_83BAA3C:
+.global sCuckooCondorClockYVelocity
+sCuckooCondorClockYVelocity:
 
 baserom_blob 0x3BAA3C, 0x3BB0E8
 

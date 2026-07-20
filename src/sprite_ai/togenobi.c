@@ -26,23 +26,23 @@ void InitTogenobi(void)
     gCurrentSprite.pose = 16;
     gCurrentSprite.work0 = 0;
 
-    func_801E3A8(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition, gCurrentSprite.xPosition + 192, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition, gCurrentSprite.xPosition + 192, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition - 192, gCurrentSprite.xPosition, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition - 192, gCurrentSprite.xPosition, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition, gCurrentSprite.xPosition - 192, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition, gCurrentSprite.xPosition - 192, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_OUTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition + 192, gCurrentSprite.xPosition, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_INNER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition + 192, gCurrentSprite.xPosition, 0);
-    func_801E3A8(PSPRITE_TOGENOBI_CENTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+    SpawnPrimarySpriteWithStatus(PSPRITE_TOGENOBI_CENTER_PART, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
         gCurrentSprite.yPosition, gCurrentSprite.xPosition, 0);
 }
 

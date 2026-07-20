@@ -568,12 +568,12 @@ void AerodentInit(void)
     sprite->xPosition -= 96;
     SpriteUtilTurnTowardWario();
     sprite->health = 16;
-    func_80747D8();
+    UpdateBossHealthGauge();
     func_801E430(203, sprite->roomSlot, sprite->gfxSlot,
         sprite->yPosition - 64, sprite->xPosition + 224);
     func_801E430(204, sprite->roomSlot, sprite->gfxSlot,
         sprite->yPosition + 240, sprite->xPosition + 128);
-    func_8070964(131, 8, 4);
+    LoadBossSpriteGraphics(131, 8, 4);
 }
 void AerodentEnterArena(void)
 {
@@ -801,11 +801,11 @@ void AerodentSpawnShot(void)
 
     direction = gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT;
     if (direction != 0) {
-        func_801E3A8(206, 0, gCurrentSprite.gfxSlot,
+        SpawnPrimarySpriteWithStatus(206, 0, gCurrentSprite.gfxSlot,
             gCurrentSprite.yPosition, gCurrentSprite.xPosition + 56,
             SPRITE_STATUS_FACING_RIGHT);
     } else {
-        func_801E3A8(206, 0, gCurrentSprite.gfxSlot,
+        SpawnPrimarySpriteWithStatus(206, 0, gCurrentSprite.gfxSlot,
             gCurrentSprite.yPosition, gCurrentSprite.xPosition - 56, direction);
     }
     m4aSongNumStart(SOUND_90);
@@ -845,9 +845,9 @@ void AerodentCompanionWaitForBattle(void)
         if (gCurrentSprite.work0 != 0)
             return;
 
-        *(volatile u8 *)&gUnk_30000F4 = 7;
+        *(volatile u8 *)&gColorFadingState = 7;
     }
-    if (gUnk_30000F4[0] == 0 && gCurrentShopItem == 0)
+    if (gColorFadingState[0] == 0 && gCurrentShopItem == 0)
         AerodentCompanionStartIdle();
 }
 void AerodentCompanionDescend(void)
@@ -1154,11 +1154,11 @@ void AerodentCompanionFireProjectile(void)
     SpriteUtilTurnTowardWario();
     direction = gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT;
     if (direction != 0) {
-        func_801E3A8(205, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+        SpawnPrimarySpriteWithStatus(205, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
             gCurrentSprite.yPosition - 40, gCurrentSprite.xPosition + 32,
             SPRITE_STATUS_FACING_RIGHT);
     } else {
-        func_801E3A8(205, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
+        SpawnPrimarySpriteWithStatus(205, gCurrentSprite.roomSlot, gCurrentSprite.gfxSlot,
             gCurrentSprite.yPosition - 40, gCurrentSprite.xPosition - 32, direction);
     }
     m4aSongNumStart(SOUND_8F);
@@ -1589,7 +1589,7 @@ void AerodentCompanionTakeDamage(void)
             gTimerState = 11;
             SpriteUtilSetWarioBossVictoryPose();
         }
-        func_80747D8();
+        UpdateBossHealthGauge();
     }
     VoiceSetPlay(12);
 }
@@ -1737,7 +1737,7 @@ void AerodentCompanionApplyShopItemDamage(void)
     gCurrentSprite.pose = 123;
     if (gCurrentSprite.health != 0) {
         gCurrentSprite.health--;
-        func_80747D8();
+        UpdateBossHealthGauge();
         m4aSongNumStart(SOUND_7A);
     }
     VoiceSetPlay(12);
@@ -1779,7 +1779,7 @@ void AerodentCompanionUpdateShopItemDamage(void)
 
                 reducedHealth = health - 1;
                 sprite->health = reducedHealth;
-                func_80747D8();
+                UpdateBossHealthGauge();
                 m4aSongNumStart(SOUND_7A);
             }
         }
@@ -1828,14 +1828,14 @@ void AerodentThrowablePatrol(void)
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition + sprite->hitboxExtentRight));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition += 2;
     } else {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status |= SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition -= 2;
@@ -1929,14 +1929,14 @@ void AerodentThrowableBounce(void)
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition + sprite->hitboxExtentRight));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition++;
     } else {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status |= SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition--;
@@ -1948,7 +1948,7 @@ void AerodentThrowableBounce(void)
         sprite->status |= 0x800;
         m4aSongNumStart(SE_ENTER_WATER);
     }
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         register int frameZero asm("r1");
         register int timerZero asm("r2");
         register u8 *work asm("r1");
@@ -2040,14 +2040,14 @@ void AerodentThrowableCharge(void)
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition + sprite->hitboxExtentRight));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition += 4;
     } else {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status |= SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition -= 4;
@@ -2139,14 +2139,14 @@ void AerodentThrowableBounceAfterCharge(void)
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition + sprite->hitboxExtentRight));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition += 2;
     } else {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status |= SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition -= 2;
@@ -2158,7 +2158,7 @@ void AerodentThrowableBounceAfterCharge(void)
         sprite->status |= 0x800;
         m4aSongNumStart(SE_ENTER_WATER);
     }
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         register int frameZero asm("r1");
         register int timerZero asm("r2");
         register u8 *work asm("r1");
@@ -2385,7 +2385,7 @@ void AerodentThrowableFall(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0)
+    if (gSpriteCollisionResult == 0)
         gCurrentSprite.pose = 29;
 }
 void AerodentThrowablePrepareFallWithEffect(void)
@@ -2567,14 +2567,14 @@ void AerodentEmitterPatrol(void)
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition + sprite->hitboxExtentRight));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status &= ~SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition++;
     } else {
         func_8023BFC((u16)(sprite->yPosition - 32),
             (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
-        if (gUnk_3000A51 & 0xF)
+        if (gSpriteCollisionTileType & 0xF)
             sprite->status |= SPRITE_STATUS_FACING_RIGHT;
         else
             sprite->xPosition--;
@@ -2584,7 +2584,7 @@ void AerodentEmitterPatrol(void)
     nextY = func_8023A60(sprite->yPosition, sprite->xPosition);
     if (gUnk_30000A0.unk_02 == 1)
         sprite->pose = 107;
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         sprite->yPosition = nextY;
         sprite->pose = 23;
     } else {
@@ -2668,21 +2668,21 @@ void AerodentEmitterBurst(void)
     value = *timer;
     if (value > 10) {
         if (value == 25) {
-            func_801E3A8(206, 1, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(206, 1, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition - 28, 0);
-            func_801E3A8(206, 1, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(206, 1, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition + 28, 0);
         }
         if (value == 20) {
-            func_801E3A8(206, 2, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(206, 2, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition - 56, 0);
-            func_801E3A8(206, 2, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(206, 2, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition + 56, 0);
         }
         if (value == 15) {
-            func_801E3A8(206, 2, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(206, 2, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition - 84, 0);
-            func_801E3A8(206, 2, sprite->gfxSlot,
+            SpawnPrimarySpriteWithStatus(206, 2, sprite->gfxSlot,
                 sprite->yPosition, sprite->xPosition + 84, 0);
         }
         {
@@ -2930,7 +2930,7 @@ void SpriteAerodentWeakPoint(void)
             SpriteUtilCheckCollisionAtPositionOld(yArg, x);
         }
 
-        collisionFlags = &gUnk_3000A51;
+        collisionFlags = &gSpriteCollisionTileType;
         collisionValue = *collisionFlags;
         maskValue = 15;
         collisionMask = maskValue;

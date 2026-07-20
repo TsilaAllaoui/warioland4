@@ -68,7 +68,7 @@ void ShieragutchiRise(void)
     s16 movement;
 
     func_8023BFC((u16)(gCurrentSprite.yPosition - 160), gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 != 1 || (gUnk_3000A51 & 15) != 0)
+    if (gUnk_30000A0.unk_02 != 1 || (gSpriteCollisionTileType & 15) != 0)
     {
         gCurrentSprite.pose = 112;
         return;
@@ -107,7 +107,7 @@ void ShieragutchiFall(void)
 
     sprite = &gCurrentSprite;
     func_8023BFC(sprite->yPosition, sprite->xPosition);
-    if ((gUnk_3000A51 & 15) != 0)
+    if ((gSpriteCollisionTileType & 15) != 0)
     {
         sprite->pose = 15;
         return;
@@ -169,7 +169,7 @@ void ShieragutchiGrabbed(void)
     if (gWarioData.pose == 15)
     {
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-        if ((gUnk_3000A51 & 15) == 0)
+        if ((gSpriteCollisionTileType & 15) == 0)
         {
             gCurrentSprite.yPosition++;
             gWarioData.yPosition = gCurrentSprite.yPosition - 32;

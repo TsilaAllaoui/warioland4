@@ -65,7 +65,7 @@ void ResetToyBlockRound(void)
 void ToyBlockRoundIdle(void)
 {
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
                 (u16)(gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft));
@@ -73,7 +73,7 @@ void ToyBlockRoundIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                 (u16)(gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight));
         }
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteCollisionTileType == 0) {
             gCurrentSprite.pose = 29;
         }
     }
@@ -101,7 +101,7 @@ void ToyBlockRoundFalling(void)
         m4aSongNumStart(SE_ENTER_WATER);
     }
 
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         register u8 zero asm("r2");
         register u8* workPtr asm("r0");
         register u8* workPtr2 asm("r1");
@@ -130,10 +130,10 @@ void ToyBlockRoundFalling(void)
                 sprite->yPosition += movement;
             }
         } else {
-            movement = sUnk_8352ADC[index];
+            movement = sSharedDebrisYVelocity[index];
             if (movement == 0x7FFF) {
                 previousIndex = index - 1;
-                previousMovement = ((const u16*)sUnk_8352ADC)[previousIndex];
+                previousMovement = ((const u16*)sSharedDebrisYVelocity)[previousIndex];
                 sprite->yPosition += previousMovement;
             } else {
                 sprite->work3 = index + 1;

@@ -74,7 +74,7 @@ void ChandelierFall(void)
 
     sprite = &gCurrentSprite;
     yPosition = func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_3000A50 != 0) {
+    if (gSpriteCollisionResult != 0) {
         sprite->yPosition = yPosition;
         sprite->pose = 49;
         if (sprite->status & SPRITE_STATUS_ONSCREEN) {

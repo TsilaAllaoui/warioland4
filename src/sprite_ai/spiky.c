@@ -60,7 +60,7 @@ void SpikyIdleInit(void)
 void SpikyIdle(void)
 {
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
@@ -68,37 +68,37 @@ void SpikyIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (!gUnk_3000A51) {
+        if (!gSpriteCollisionTileType) {
             gCurrentSprite.pose = SPOSE_1B;
             return;
         }
     } else if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) + gCurrentSprite.hitboxExtentRight > 0x3F)) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + 28);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
         }
-    } else if ((gUnk_3000A50 & 0xF0) &&
+    } else if ((gSpriteCollisionResult & 0xF0) &&
         ((gCurrentSprite.xPosition & 0x3F) < gCurrentSprite.hitboxExtentLeft)) {
         func_8023BFC(gCurrentSprite.yPosition,
             gCurrentSprite.xPosition - 32);
-        if (!(gUnk_3000A51 & 0xF0)) {
+        if (!(gSpriteCollisionTileType & 0xF0)) {
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition - 32,
             gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
@@ -120,7 +120,7 @@ void SpikyTurnInit(void)
 void SpikyTurn(void)
 {
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -156,7 +156,7 @@ void SpikyRecover(void)
 {
     SpikyCheckScreenShake();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -197,14 +197,14 @@ void SpikyGetUp(void)
     timerCopy = timer;
     if (timer > 34) {
         func_8023B88();
-        if (!gUnk_3000A50) {
+        if (!gSpriteCollisionResult) {
             gCurrentSprite.pose = SPOSE_1D;
         }
         func_80238E8();
         gCurrentSprite.work0--;
     } else if (timer <= 13) {
         func_8023B88();
-        if (!gUnk_3000A50) {
+        if (!gSpriteCollisionResult) {
             gCurrentSprite.pose = SPOSE_1B;
         } else {
             gCurrentSprite.work0--;

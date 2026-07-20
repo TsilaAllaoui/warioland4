@@ -165,7 +165,7 @@ void PigHeadProjectileFall(void)
         goto landed;
     }
 
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         register u32 zero asm("r1");
         register u32 zero16 asm("r2");
 
@@ -191,7 +191,7 @@ landed:
 
         work3Pointer = &sprite->work3;
         timer = *work3Pointer;
-        yVelocity = sUnk_8352ADC[timer];
+        yVelocity = sSharedDebrisYVelocity[timer];
         if (yVelocity == S16_MAX) {
             register u32 previousTimer asm("r1");
             register const s16* previousEntry asm("r1");
@@ -200,7 +200,7 @@ landed:
 
             /* agbcc otherwise subtracts in r2 instead of materializing the prior index in r1. */
             asm("sub %0, %1, #1" : "=r"(previousTimer) : "r"(timer));
-            previousEntry = &sUnk_8352ADC[previousTimer];
+            previousEntry = &sSharedDebrisYVelocity[previousTimer];
             asm("" : "+r"(previousEntry));
             oldY = sprite->yPosition;
             previousVelocity = *previousEntry;

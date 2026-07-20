@@ -71,7 +71,7 @@ SECTIONS {
         . = 0x00d0; gColorFading = .;
         . = 0x00d8; gUnk_30000D8 = .;
         . = 0x00dc; gUnk_30000DC = .;
-        . = 0x00f4; gUnk_30000F4 = .;
+        . = 0x00f4; gColorFadingState = .;
         . = 0x00fc; gUnk_30000FC = .;
 
         . = 0x0104; gSpriteData = .;
@@ -82,15 +82,15 @@ SECTIONS {
         . = 0x0a24; gCurrentSprite = .;
         . = 0x0a4b; gUnk_3000A4B = .;
         . = 0x0a4d; gUnk_3000A4D = .;
-        . = 0x0a50; gUnk_3000A50 = .;
-        . = 0x0a51; gUnk_3000A51 = .;
+        . = 0x0a50; gSpriteCollisionResult = .;
+        . = 0x0a51; gSpriteCollisionTileType = .;
         . = 0x0a52; gSpriteCollisionFlags = .;
         . = 0x0a53; gIgnoreSpriteCollision = .;
         . = 0x0a54; gUnk_3000A54 = .;
-        . = 0x0a58; gUnk_3000A58 = .;
-        . = 0x0a59; gUnk_3000A59 = .;
-        . = 0x0a5a; gUnk_3000A5A = .;
-        . = 0x0a5b; gUnk_3000A5B = .;
+        . = 0x0a58; gBossTookDamage = .;
+        . = 0x0a59; gCuckooCondorPendulumLength = .;
+        . = 0x0a5a; gCuckooCondorMoveRight = .;
+        . = 0x0a5b; gCuckooCondorHasCapturedWario = .;
         . = 0x0a5c; gInitialHealth = .;
         . = 0x0a5d; gPaletteFlashTimer = .;
         . = 0x0a5e; gBgAnimationFrame = .;
@@ -99,7 +99,7 @@ SECTIONS {
 
         . = 0x0a61; gUnk_3000A61 = .;
         . = 0x0a62; gUnk_3000A62 = .;
-        . = 0x0a64; gUnk_3000A64 = .;
+        . = 0x0a64; gCuckooCondorPendulumRadius = .;
         . = 0x0a68; gCurrentCollection = .;
         . = 0x0b10; gHighScoreTable = .;
 
@@ -637,7 +637,7 @@ SECTIONS {
         obj/sprite_ai/coins.o(.text);
         obj/sprite_ai/skeleton_bird.o(.text);
         obj/sprite_ai/kaentsubo.o(.text);
-        obj/sprite_ai/disasm_cuckoo_condor.o(.text);
+        obj/sprite_ai/cuckoo_condor.o(.text);
         obj/sprite_ai/totsumen.o(.text);
         obj/sprite_ai/pig_head_statue.o(.text);
         obj/sprite_ai/moguramen.o(.text);

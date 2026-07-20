@@ -627,9 +627,9 @@ void func_803F7CC(void)
         persistentIndex += (u32)persistent;
         if (*(const u8 *)persistentIndex == 17) {
         func_8023BFC(sprite->yPosition, sprite->xPosition);
-        if (!(gUnk_3000A51 & 0xF)) {
+        if (!(gSpriteCollisionTileType & 0xF)) {
             func_8023BFC(sprite->yPosition - 64, sprite->xPosition - 128);
-            if (!(gUnk_3000A51 & 0xF)) {
+            if (!(gSpriteCollisionTileType & 0xF)) {
                 func_8023BFC(sprite->yPosition - 64, sprite->xPosition + 128);
                 {
                     register u8 *indexPtr asm("r5");

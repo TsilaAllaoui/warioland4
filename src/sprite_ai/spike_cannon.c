@@ -91,9 +91,9 @@ void SpikeCannonFire(void)
     value = (u32)next >> 24;
     if (value == 0) {
         sprite->status |= SPRITE_STATUS_HIDDEN;
-        func_801E3A8(184, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition,
+        SpawnPrimarySpriteWithStatus(184, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition,
                      sprite->xPosition + 32, value);
-        func_801E3A8(184, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition,
+        SpawnPrimarySpriteWithStatus(184, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition,
                      sprite->xPosition + 32, SPRITE_STATUS_FACING_RIGHT);
         *timer = 220;
         sprite->pose = 15;
@@ -193,7 +193,7 @@ void SpikeCannonProjectileMove(void)
     }
 
     func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1 || (gUnk_3000A50 & 0xF) != 0) {
+    if (gUnk_30000A0.unk_02 == 1 || (gSpriteCollisionResult & 0xF) != 0) {
         sprite->pose = 49;
         return;
     }

@@ -93,7 +93,7 @@ void PistonExtend(void)
     y = func_8023A60((u16)(sprite->yPosition + 128), sprite->xPosition);
     if (gUnk_30000A0.unk_02 == 1)
         sprite->status |= SPRITE_STATUS_UNDERWATER;
-    if (gUnk_3000A50 != 0)
+    if (gSpriteCollisionResult != 0)
     {
         sprite->yPosition = y - 128;
         sprite->pose = 23;

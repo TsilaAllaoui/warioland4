@@ -71,7 +71,7 @@ void TogetogeFall(void)
     y = func_8023A60(sprite->yPosition, sprite->xPosition);
     if (gUnk_30000A0.unk_02 == 1)
         sprite->status |= SPRITE_STATUS_UNDERWATER;
-    if (gUnk_3000A50 != 0)
+    if (gSpriteCollisionResult != 0)
     {
         sprite->yPosition = y;
         sprite->pOamData = sTogetogeFallingOam;
@@ -85,11 +85,11 @@ void TogetogeFall(void)
         return;
     }
     index = sprite->work3;
-    movement = sUnk_8352ADC[index];
+    movement = sSharedDebrisYVelocity[index];
     if (movement == 0x7FFF)
     {
         previousIndex = index - 1;
-        previousMovement = ((const u16*)sUnk_8352ADC)[previousIndex];
+        previousMovement = ((const u16*)sSharedDebrisYVelocity)[previousIndex];
         sprite->yPosition += previousMovement;
     }
     else

@@ -10,7 +10,7 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 y, u32 x, u32 status);
+void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 y, u32 x, u32 status);
 
 int BowlerCheckSwitch(void)
 {
@@ -89,7 +89,7 @@ void BowlerWalking(void)
         func_8023BFC(sprite->yPosition, sprite->xPosition + 120);
         {
             register volatile u8* collision asm("r5");
-            collision = &gUnk_3000A51;
+            collision = &gSpriteCollisionTileType;
             if ((*collision & 0xF0) == 0)
                 goto setWalkPose;
             func_8023BFC(sprite->yPosition - 32, sprite->xPosition + 120);
@@ -128,7 +128,7 @@ setAttackPose:
     func_8023BFC(sprite->yPosition, sprite->xPosition - 116);
     {
         register volatile u8* collision asm("r5");
-        collision = &gUnk_3000A51;
+        collision = &gSpriteCollisionTileType;
         if ((*collision & 0xF0) == 0)
             goto setWalkPose;
         func_8023BFC(sprite->yPosition - 32, sprite->xPosition - 116);
@@ -297,11 +297,11 @@ void BowlerStartThrowingBall(void)
     status = temp >> 16;
     if (status != 0) {
         asm("" : : "r"(direction));
-        func_801E3A8(PSPRITE_BOWLER_BALL, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition + 128,
+        SpawnPrimarySpriteWithStatus(PSPRITE_BOWLER_BALL, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition + 128,
             sprite->xPosition, direction);
     } else {
         asm("" : : "r"(status));
-        func_801E3A8(PSPRITE_BOWLER_BALL, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition + 128,
+        SpawnPrimarySpriteWithStatus(PSPRITE_BOWLER_BALL, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition + 128,
             sprite->xPosition, status);
     }
 }

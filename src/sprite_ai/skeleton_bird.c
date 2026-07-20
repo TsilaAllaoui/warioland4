@@ -9,7 +9,7 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
+void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
 extern const struct AnimationFrame sSkeletonBirdGlideOam[];
 extern const struct AnimationFrame sSkeletonBirdTurnOam[];
@@ -74,11 +74,11 @@ void UpdateSkeletonBirdFacingAndProjectile(void)
             if (gWarioData.reaction != REACTION_ZOMBIE && currentSprite->health > 29
                 && ((*(u32 *)&currentSprite->animationTimer) & 0xFFFFFF) == 0x10008) {
                 if (currentSprite->status & SPRITE_STATUS_FACING_RIGHT) {
-                    func_801E3A8(PSPRITE_SKELETON_BIRD_PROJECTILE, currentSprite->roomSlot,
+                    SpawnPrimarySpriteWithStatus(PSPRITE_SKELETON_BIRD_PROJECTILE, currentSprite->roomSlot,
                                  currentSprite->gfxSlot, currentSprite->yPosition,
                                  currentSprite->xPosition + 64, SPRITE_STATUS_FACING_RIGHT);
                 } else {
-                    func_801E3A8(PSPRITE_SKELETON_BIRD_PROJECTILE, currentSprite->roomSlot,
+                    SpawnPrimarySpriteWithStatus(PSPRITE_SKELETON_BIRD_PROJECTILE, currentSprite->roomSlot,
                                  currentSprite->gfxSlot, currentSprite->yPosition,
                                  currentSprite->xPosition - 64, 0);
                 }
@@ -370,7 +370,7 @@ void UpdateSkeletonBirdAttackWindup(void)
             statusMask <<= 16;
             facingFlag = statusMask >> 16;
             if (facingFlag != 0) {
-                func_801E3A8(PSPRITE_SKELETON_BIRD_DEBRIS, savedSprite->roomSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_SKELETON_BIRD_DEBRIS, savedSprite->roomSlot,
                              savedSprite->gfxSlot, savedSprite->yPosition,
                              savedSprite->xPosition, spawnStatus);
             } else {
@@ -378,7 +378,7 @@ void UpdateSkeletonBirdAttackWindup(void)
                 register u8 roomSlot asm("r1") = idSprite->roomSlot;
                 register u8 gfxSlot asm("r2") = idSprite->gfxSlot;
                 register struct PrimarySpriteData *positionSprite asm("r5") = savedSprite;
-                func_801E3A8(PSPRITE_SKELETON_BIRD_DEBRIS, roomSlot, gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_SKELETON_BIRD_DEBRIS, roomSlot, gfxSlot,
                              positionSprite->yPosition, positionSprite->xPosition,
                              facingFlag);
             }
@@ -582,7 +582,7 @@ void UpdateSkeletonBirdCrashRecover(void)
 {
     func_80238E8();
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = 29;
     } else {
         gCurrentSprite.work0--;
@@ -656,7 +656,7 @@ void InitSkeletonBirdProjectile(void)
 void UpdateSkeletonBirdProjectile(void)
 {
     func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1 || (gUnk_3000A50 & 0xF) != 0) {
+    if (gUnk_30000A0.unk_02 == 1 || (gSpriteCollisionResult & 0xF) != 0) {
         gCurrentSprite.pose = 49;
     } else {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {

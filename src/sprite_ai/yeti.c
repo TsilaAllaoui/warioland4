@@ -77,7 +77,7 @@ void YetiIdle(void)
 
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
@@ -85,7 +85,7 @@ void YetiIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
         }
-        if (!gUnk_3000A51) {
+        if (!gSpriteCollisionTileType) {
             gCurrentSprite.pose = SPOSE_1B;
             return;
         }
@@ -98,17 +98,17 @@ void YetiIdle(void)
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) + gCurrentSprite.hitboxExtentRight > 0x3F)) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
@@ -122,17 +122,17 @@ void YetiIdle(void)
             gCurrentSprite.pose = SPOSE_11;
             return;
         }
-        if ((gUnk_3000A50 & 0xF0) &&
+        if ((gSpriteCollisionResult & 0xF0) &&
             ((gCurrentSprite.xPosition & 0x3F) < gCurrentSprite.hitboxExtentLeft)) {
             func_8023BFC(gCurrentSprite.yPosition,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (!(gUnk_3000A51 & 0xF0)) {
+            if (!(gSpriteCollisionTileType & 0xF0)) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
             func_8023BFC(gCurrentSprite.yPosition - 32,
                 gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
-            if (gUnk_3000A51 & 0xF) {
+            if (gSpriteCollisionTileType & 0xF) {
                 gCurrentSprite.pose = SPOSE_11;
                 return;
             }
@@ -154,7 +154,7 @@ void YetiTurn(void)
 {
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -225,17 +225,17 @@ void YetiAttack(void)
         shifted = (u32)shifted >> 24;
         if (shifted == 50) {
             if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
-                func_801E3A8(PSPRITE_BB, sprite->roomSlot, sprite->gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_BB, sprite->roomSlot, sprite->gfxSlot,
                     sprite->yPosition - 16, sprite->xPosition + 24,
                     SPRITE_STATUS_FACING_RIGHT);
             } else {
-                func_801E3A8(PSPRITE_BB, sprite->roomSlot, sprite->gfxSlot,
+                SpawnPrimarySpriteWithStatus(PSPRITE_BB, sprite->roomSlot, sprite->gfxSlot,
                     sprite->yPosition - 16, sprite->xPosition - 24, 0);
             }
         }
         func_80238A4();
         func_8023B88();
-        if (!gUnk_3000A50) {
+        if (!gSpriteCollisionResult) {
             gCurrentSprite.pose = SPOSE_1B;
         }
     } else {
@@ -277,7 +277,7 @@ void YetiAttackRecover(void)
 
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
     }
     gCurrentSprite.work0--;
@@ -558,7 +558,7 @@ void YetiAirborne(void)
     if (gCurrentSprite.work0 != 0) {
         func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp,
             gCurrentSprite.xPosition);
-        if (gUnk_3000A51 & 0xF) {
+        if (gSpriteCollisionTileType & 0xF) {
             gCurrentSprite.pose = SPOSE_1D;
         } else {
             indexPointer = &gCurrentSprite.work3;
@@ -721,7 +721,7 @@ void YetiSnowballMove(void)
     }
     current = sprite;
     func_8023BFC(current->yPosition, current->xPosition);
-    if (gUnk_3000A51 & 0xF) {
+    if (gSpriteCollisionTileType & 0xF) {
         current->pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
     }
     if (current->status & SPRITE_STATUS_FACING_RIGHT) {

@@ -189,7 +189,7 @@ void ResetToyBlockTriangle(void)
 void ToyBlockTriangleIdle(void)
 {
     func_8023B88();
-    if (gUnk_3000A50 == 0)
+    if (gSpriteCollisionResult == 0)
     {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT)
             func_8023BFC(gCurrentSprite.yPosition,
@@ -198,7 +198,7 @@ void ToyBlockTriangleIdle(void)
             func_8023BFC(gCurrentSprite.yPosition,
                 (u16)(gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight));
 
-        if (gUnk_3000A51 == 0)
+        if (gSpriteCollisionTileType == 0)
             gCurrentSprite.pose = 27;
     }
 }

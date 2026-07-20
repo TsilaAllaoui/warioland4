@@ -233,14 +233,14 @@ void ToyBlockSquareIdle(void)
     sprite->disableWarioCollisionTimer = 1;
     func_8023B88();
 
-    if (gUnk_3000A50 == 0)
+    if (gSpriteCollisionResult == 0)
     {
         if (sprite->status & SPRITE_STATUS_FACING_RIGHT)
             func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition - sprite->hitboxExtentLeft));
         else
             func_8023BFC(sprite->yPosition, (u16)(sprite->xPosition + sprite->hitboxExtentRight));
 
-        if (gUnk_3000A51 == 0)
+        if (gSpriteCollisionTileType == 0)
             gCurrentSprite.pose = 27;
     }
 }
@@ -281,7 +281,7 @@ void ToyBlockSquareFalling(void)
         m4aSongNumStart(SE_ENTER_WATER);
     }
 
-    if (gUnk_3000A50 != 0)
+    if (gSpriteCollisionResult != 0)
     {
         do
         {
