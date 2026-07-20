@@ -216,7 +216,7 @@ MinigameSubroutine:
 	ldr	r1, .L_89acc
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_808CC5C
+	bl	WarioHopInit
 	b	.L_89b10
 	.align	2, 0
 .L_89ac8:
@@ -235,7 +235,7 @@ MinigameSubroutine:
 .L_89ae4:
 	.4byte	gSubGameMode
 .L_89ae8:
-	bl	func_808CB18
+	bl	WarioHopUpdateStateMachine
 	cmp	r0, #0
 	beq	.L_89b6a
 	ldr	r1, .L_89af8
@@ -421,7 +421,7 @@ func_8089BCC:
 	bl	func_808B0E0
 	b	.L_89c60
 .L_89c5c:
-	bl	func_808CC24
+	bl	WarioHopApplyBgScroll
 .L_89c60:
 	pop	{r0}
 	bx	r0
@@ -592,7 +592,7 @@ func_8089D4C:
 	bl	func_808BE4C
 	b	.L_89dc6
 .L_89dbc:
-	bl	func_808D824
+	bl	WarioHopDrawSprites
 	b	.L_89dc6
 .L_89dc2:
 	bl	DrawHomerunDerby
@@ -717,7 +717,7 @@ func_8089E74:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_89e8c:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_89e90:
 	.4byte	.L_89e94
 .L_89e94:
@@ -770,7 +770,7 @@ func_8089E74:
 .L_89ef8:
 	.4byte	0x000015ec
 .L_89efc:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_89f00:
 	ldr	r1, .L_89f2c
 	mov	r0, #1
@@ -802,7 +802,7 @@ func_8089E74:
 .L_89f38:
 	.4byte	0x000015ec
 .L_89f3c:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_89f40:
 	ldr	r1, .L_89f5c
 	ldrh	r0, [r1, #0]
@@ -821,7 +821,7 @@ func_8089E74:
 .L_89f5c:
 	.4byte	gUnk_3004A30
 .L_89f60:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_89f64:
 	bl	func_808A818
 	cmp	r0, #0
@@ -831,7 +831,7 @@ func_8089E74:
 	strb	r0, [r1, #0]
 	b	.L_89fe2
 .L_89f74:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_89f78:
 	ldr	r1, .L_89fac
 	ldrh	r0, [r1, #0]
@@ -899,7 +899,7 @@ func_8089E74:
 .L_89ff0:
 	.4byte	gUnk_30047B8
 .L_89ff4:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_89ff8:
 	.4byte	gHomerunSubstate
 
@@ -1397,7 +1397,7 @@ func_808A33C:
 .L_8a3a8:
 	.4byte	gHomerunSubstate
 .L_8a3ac:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_8a3b0:
 	.4byte	gUnk_30047F4
 .L_8a3b4:
@@ -1472,9 +1472,9 @@ func_808A3C0:
 .L_8a434:
 	.4byte	gHomerunSubstate
 .L_8a438:
-	.4byte	gHomerunState
+	.4byte	gMinigameState
 .L_8a43c:
-	.4byte	gHomerunNewHighScore
+	.4byte	gMinigameNewHighScore
 .L_8a440:
 	.4byte	gUnk_300482C
 .L_8a444:
@@ -2098,7 +2098,7 @@ func_808A818:
 .L_8a8cc:
 	.4byte	gUnk_30047B8
 .L_8a8d0:
-	.4byte	gHomerunNewHighScore
+	.4byte	gMinigameNewHighScore
 .L_8a8d4:
 	.4byte	0x00000251
 .L_8a8d8:

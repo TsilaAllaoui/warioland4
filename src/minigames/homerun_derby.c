@@ -101,16 +101,16 @@ struct HomerunBonusState {
     u8 direction;
 };
 
-extern u8 gHomerunState;
+extern u8 gMinigameState;
 extern u8 gHomerunSubstate;
 extern u8 gHomerunSequenceState;
 extern u16 gHomerunSequenceTimer;
-extern u8 gHomerunNewHighScore;
-extern u16 gHomerunScore;
-extern struct HomerunAnimationCursor gHomerunUiAnimation;
-extern u8 gHomerunMedalHighlight;
-extern u8 gHomerunCamera[];
-extern struct HomerunCameraState gHomerunCameraState;
+extern u8 gMinigameNewHighScore;
+extern u16 gMinigameScore;
+extern struct HomerunAnimationCursor gMinigameUiAnimation;
+extern u8 gMinigameMedalHighlight;
+extern u8 gMinigameCamera[];
+extern struct HomerunCameraState gMinigameCameraState;
 extern u16 gHomerunBgX;
 extern u16 gHomerunBgY;
 extern u16 gHomerunBall[];
@@ -196,7 +196,7 @@ s32 UpdateHomerunDerby(void)
     u8 animationIndex;
     register s32 nextValue asm("r0");
 
-    stateAddress = &gHomerunState;
+    stateAddress = &gMinigameState;
     currentState = *stateAddress;
     savedStateAddress = stateAddress;
 
@@ -206,11 +206,11 @@ s32 UpdateHomerunDerby(void)
             break;
         }
         *(vu16 *)0x04000000 = 0x1800;
-        gHomerunState++;
+        gMinigameState++;
         break;
 
     case 1:
-        cameraData = gHomerunCamera;
+        cameraData = gMinigameCamera;
         nextValue = *(u16 *)(cameraData + 4) + 0xC0;
         *(u16 *)(cameraData + 4) = nextValue;
         *(u16 *)(cameraData + 6) = (*(u16 *)(cameraData + 6) + 0xFE7) & 0xFFF;
@@ -219,14 +219,14 @@ s32 UpdateHomerunDerby(void)
             *(u16 *)(cameraData + 4) = 0x2000;
             nextValue = 0xC00;
             *(u16 *)(cameraData + 6) = nextValue;
-            gHomerunState++;
+            gMinigameState++;
         }
         break;
 
     case 2:
         if (MinigameWaitForFrames(0x28) != 0) {
-            gHomerunState++;
-            gHomerunCamera[12] = 0;
+            gMinigameState++;
+            gMinigameCamera[12] = 0;
             *(vu16 *)0x04000000 = 0x1C00;
         }
         break;
@@ -235,9 +235,9 @@ s32 UpdateHomerunDerby(void)
         if (MinigameWaitForFrames(20) != 0) {
             if (gHomerunPitchResult == 1 || gHomerunPitchResult == 4) {
                 m4aSongNumStart(0x2C5);
-                gHomerunState++;
+                gMinigameState++;
             } else {
-                gHomerunState = 5;
+                gMinigameState = 5;
                 gHomerunPitchResult = 4;
             }
         }
@@ -246,14 +246,14 @@ s32 UpdateHomerunDerby(void)
     case 4:
         UpdateHomerunBatInput();
         if (MinigameWaitForFrames(100) != 0) {
-            gHomerunState++;
+            gMinigameState++;
         }
         break;
 
     case 5:
         UpdateHomerunBatInput();
         if (MinigameWaitForFrames(30) != 0) {
-            gHomerunState++;
+            gMinigameState++;
             pitcherData = gHomerunPitcher;
             pitcherData[5]++;
             difficulty = gDifficulty;
@@ -292,9 +292,9 @@ s32 UpdateHomerunDerby(void)
             if (gHomerunPitchResult == 2) {
                 m4aSongNumStart(0x2C9);
                 gHomerunMissCount++;
-                gHomerunState = 12;
+                gMinigameState = 12;
             } else {
-                gHomerunState++;
+                gMinigameState++;
                 ballState = gHomerunBall;
                 *(u16 *)(ballState + 4) = *(u16 *)(ballState + 8) << 4;
                 *(u16 *)(ballState + 6) = *(u16 *)(ballState + 10) << 4;
@@ -312,7 +312,7 @@ s32 UpdateHomerunDerby(void)
             switch (gHomerunPitchResult) {
             case 1:
                 m4aSongNumStart(0x2C6);
-                gHomerunState = 11;
+                gMinigameState = 11;
                 break;
             case 0:
                 updatedMissCount = gHomerunMissCount + 1;
@@ -320,12 +320,12 @@ s32 UpdateHomerunDerby(void)
                 if ((u8)updatedMissCount > 2) {
                     gHomerunMissCount = 2;
                 }
-                gHomerunState = 12;
+                gMinigameState = 12;
                 m4aSongNumStart(0x2CA);
                 break;
             case 5:
                 m4aSongNumStart(0x235);
-                gHomerunState = 9;
+                gMinigameState = 9;
                 break;
             }
         }
@@ -340,7 +340,7 @@ s32 UpdateHomerunDerby(void)
             if (gHomerunPitchResult == 1) {
                 m4aSongNumStart(0x2C6);
             }
-            gHomerunState++;
+            gMinigameState++;
         }
         break;
 
@@ -352,7 +352,7 @@ s32 UpdateHomerunDerby(void)
         if (MinigameWaitForFrames(80) != 0) {
             *(vu16 *)0x04000000 = 0x1C00;
             if (gHomerunPitchResult == 1) {
-                gHomerunState = 11;
+                gMinigameState = 11;
             } else {
                 updatedMissCount = gHomerunMissCount + 1;
                 gHomerunMissCount = updatedMissCount;
@@ -360,7 +360,7 @@ s32 UpdateHomerunDerby(void)
                     gHomerunMissCount = 2;
                 }
                 m4aSongNumStart(0x2CA);
-                gHomerunState = 12;
+                gMinigameState = 12;
             }
         }
         break;
@@ -369,11 +369,11 @@ s32 UpdateHomerunDerby(void)
         if (UpdateHomerunScoreSequence() != 0) {
             gHomerunMissCount = 0;
             ResetHomerunDerbyPitch();
-            if ((gHomerunScore % 9) != 0) {
-                gHomerunState = 3;
+            if ((gMinigameScore % 9) != 0) {
+                gMinigameState = 3;
             } else {
                 StartHomerunBonusAnimation();
-                gHomerunState = 17;
+                gMinigameState = 17;
             }
         }
         break;
@@ -391,10 +391,10 @@ s32 UpdateHomerunDerby(void)
                     m4aSongNumStart(0x2C8);
                 }
                 gHomerunPitchResult = 3;
-                gHomerunState++;
+                gMinigameState++;
             } else {
                 ResetHomerunDerbyPitch();
-                gHomerunState = 3;
+                gMinigameState = 3;
             }
         }
         break;
@@ -405,15 +405,15 @@ s32 UpdateHomerunDerby(void)
         if (nextValue == 0) {
             break;
         }
-        gHomerunState++;
+        gMinigameState++;
         *(vu16 *)0x04000000 = 0x1800;
-        gHomerunCamera[12] = 2;
+        gMinigameCamera[12] = 2;
         nextValue = 0x200;
-        *(u16 *)(gHomerunCamera + 4) = nextValue;
+        *(u16 *)(gMinigameCamera + 4) = nextValue;
         break;
 
     case 14:
-        cameraDataForExit = gHomerunCamera;
+        cameraDataForExit = gMinigameCamera;
         nextValue = *(u16 *)(cameraDataForExit + 4) + 0xC0;
         *(u16 *)(cameraDataForExit + 4) = nextValue;
         *(u16 *)(cameraDataForExit + 6) = (*(u16 *)(cameraDataForExit + 6) + 25) & 0xFFF;
@@ -426,14 +426,14 @@ s32 UpdateHomerunDerby(void)
 
     case 15:
         if (MinigameWaitForFrames(80) != 0) {
-            gHomerunState = 0;
+            gMinigameState = 0;
             return 1;
         }
         break;
 
     case 16:
         if (MinigameWaitForFrames(30) != 0) {
-            gHomerunState = 0;
+            gMinigameState = 0;
             return 1;
         }
         break;
@@ -441,7 +441,7 @@ s32 UpdateHomerunDerby(void)
     case 17:
         asm(".4byte 0xfa8ef001" : "=r"(nextValue) : : "lr");
         if (nextValue != 0) {
-            gHomerunState = 3;
+            gMinigameState = 3;
         }
         break;
     }
@@ -692,7 +692,7 @@ void InitHomerunDerby(void)
 
     {
         register u8 *cameraData asm("r1");
-        cameraData = gHomerunCamera;
+        cameraData = gMinigameCamera;
         dmaStatus = 0x200;
         *(u16 *)(cameraData + 4) = dmaStatus;
         *(u16 *)(cameraData + 8) = 0x68;
@@ -701,12 +701,12 @@ void InitHomerunDerby(void)
         cameraData[12] = 1;
     }
 
-    gHomerunState = 0;
+    gMinigameState = 0;
     gHomerunSubstate = 0;
     gHomerunSequenceState = 0;
     gHomerunSequenceTimer = 0;
-    gHomerunScore = 0;
-    gHomerunNewHighScore = 0;
+    gMinigameScore = 0;
+    gMinigameNewHighScore = 0;
     DrawHomerunDerbyScore();
     gHomerunMissCount = 0;
     InitMinigameScoreDisplay();
@@ -732,7 +732,7 @@ void ResetHomerunDerbyPitch(void)
     *(vu16 *)0x04000200 ^= 1;
     *(vu16 *)0x04000000 = 0x1C00;
 
-    scoreRemainder = gHomerunScore % 5;
+    scoreRemainder = gMinigameScore % 5;
     if ((scoreRemainder << 16) == 0 && gHomerunPitchResult == 1) {
         gHomerunPitchLevel++;
     }
@@ -1168,13 +1168,13 @@ void DrawHomerunDerbyScore(void)
     const u16 *scoreTiles;
     u32 score;
 
-    if (gHomerunMedalHighlight != 0) {
+    if (gMinigameMedalHighlight != 0) {
         DrawMinigameNumber(gMedalCount, sHomerunHighlightedMedalTiles, 0x3800);
     } else {
         DrawMinigameNumber(gMedalCount, sHomerunMedalTiles, 0x3800);
     }
 
-    score = gHomerunScore;
+    score = gMinigameScore;
     scoreTiles = sHomerunDigitTiles;
     DrawMinigameNumber(score, scoreTiles, 0x4000);
     DrawMinigameHighScore(gMinigameHighScores, scoreTiles + 0x400, 0x4800);
@@ -1308,8 +1308,8 @@ void DrawHomerunDerby(void)
   workingOffset = nextOamIndex * 8;
   oamBuffer = (OamByte *) gOamBuffer;
   oamDataDestination = (OamByte *) (((s32) workingOffset) + ((s32) oamBuffer));
-  byteValue = gHomerunCameraState.oamMode;
-  cameraTransform = &gHomerunCameraState;
+  byteValue = gMinigameCameraState.oamMode;
+  cameraTransform = &gMinigameCameraState;
   if (byteValue != 0)
   {
     if (byteValue == 1)
@@ -1388,9 +1388,9 @@ void DrawHomerunDerby(void)
     *((u16 *) (((u8 *) oamBuffer) + 0x16)) = (u16) (*affinePc);
     *((u16 *) (((u8 *) oamBuffer) + 0x1E)) = affinePdValue;
   }
-  if (((((u32) gHomerunState) > 2U) && (gHomerunState != 0xF)) && (gHomerunState != 0xE))
+  if (((((u32) gMinigameState) > 2U) && (gMinigameState != 0xF)) && (gMinigameState != 0xE))
   {
-    if (((u32) ((u8) (gHomerunState - 8))) <= 1U)
+    if (((u32) ((u8) (gMinigameState - 8))) <= 1U)
     {
       dataPointer = (OamByte *) (&gHomerunBallRenderState);
       frameCounter = (*((u16 *) (((u8 *) dataPointer) + 0))) + 1;
@@ -1475,7 +1475,7 @@ void DrawHomerunDerby(void)
       affinePb = (u16 *) (stackFrame + 2);
       affinePc = (u16 *) (stackFrame + 4);
       affinePd = (u16 *) (stackFrame + 6);
-      if (gHomerunState == 7)
+      if (gMinigameState == 7)
       {
         dataPointer = (OamByte *) (&gHomerunBallRenderState);
         positionValue = (*((u16 *) (((u8 *) dataPointer) + 0))) + 1;
@@ -1593,26 +1593,26 @@ void DrawHomerunDerby(void)
       }
       while (((s32) objectState) < ((s32) oamAttributeMask));
     }
-    if (gHomerunMedalHighlight != 0)
+    if (gMinigameMedalHighlight != 0)
     {
-      uiAnimationTimer = gHomerunUiAnimation.animationTimer + 1;
-      gHomerunUiAnimation.animationTimer = uiAnimationTimer;
-      if (((u32) sHomerunBatAnimation[gHomerunUiAnimation.animationFrame].time) < ((u32) ((u16) uiAnimationTimer)))
+      uiAnimationTimer = gMinigameUiAnimation.animationTimer + 1;
+      gMinigameUiAnimation.animationTimer = uiAnimationTimer;
+      if (((u32) sHomerunBatAnimation[gMinigameUiAnimation.animationFrame].time) < ((u32) ((u16) uiAnimationTimer)))
       {
-        gHomerunUiAnimation.animationTimer = 1U;
-        gHomerunUiAnimation.animationFrame = (u16) (gHomerunUiAnimation.animationFrame + 1);
-        frameTimeC = sHomerunBatAnimation[gHomerunUiAnimation.animationFrame].time;
+        gMinigameUiAnimation.animationTimer = 1U;
+        gMinigameUiAnimation.animationFrame = (u16) (gMinigameUiAnimation.animationFrame + 1);
+        frameTimeC = sHomerunBatAnimation[gMinigameUiAnimation.animationFrame].time;
         if (frameTimeC == 0)
         {
-          gHomerunUiAnimation.animationFrame = (u16) frameTimeC;
-          gHomerunUiAnimation.animationTimer = (u16) frameTimeC;
-          gHomerunMedalHighlight = 0;
+          gMinigameUiAnimation.animationFrame = (u16) frameTimeC;
+          gMinigameUiAnimation.animationTimer = (u16) frameTimeC;
+          gMinigameMedalHighlight = 0;
           DrawHomerunDerbyScore();
         }
       }
     }
     oamXMaskValue = 0x1FF;
-    batFrameData = sHomerunBatAnimation[gHomerunUiAnimation.animationFrame].oam;
+    batFrameData = sHomerunBatAnimation[gMinigameUiAnimation.animationFrame].oam;
     nextOamIndex += *batFrameData;
     frameData = batFrameData + 1;
     cameraTransform = (struct HomerunCameraState *) &gHomerunBatAnimation;
@@ -1827,7 +1827,7 @@ void DrawHomerunDerby(void)
         switch (gHomerunPitcherAnimation.animationFrame)
         {
           case 10:
-            gHomerunState = 7;
+            gMinigameState = 7;
             m4aSongNumStart(sHomerunPitchSounds[gHomerunPitchPath * 2]);
             break;
             pitchSoundId = 0x22BU;
@@ -1933,7 +1933,7 @@ void DrawHomerunDerby(void)
       while (pitcherEntryCount != 0);
       firstOamIndex = nextOamIndex;
     }
-    if (((u32) ((u8) (gHomerunState - 0xB))) <= 2U)
+    if (((u32) ((u8) (gMinigameState - 0xB))) <= 2U)
     {
       resultAnimation = (OamByte *) sHomerunResultAnimations[gHomerunPitchResult];
       resultAnimationTimer = gHomerunResultRender.animationTimer + 1;
@@ -2029,16 +2029,16 @@ stateGt:
 
 state0:
     if (MinigameWaitForFrames(60) != 0) {
-        gHomerunScore++;
-        if ((u16)gHomerunScore > 999) {
-            gHomerunScore = 999;
+        gMinigameScore++;
+        if ((u16)gMinigameScore > 999) {
+            gMinigameScore = 999;
         } else {
             m4aSongNumStart(0x224);
         }
 
-        if (gHomerunScore > gMinigameHighScores) {
-            gHomerunNewHighScore = 1;
-            gMinigameHighScores = gHomerunScore;
+        if (gMinigameScore > gMinigameHighScores) {
+            gMinigameNewHighScore = 1;
+            gMinigameHighScores = gMinigameScore;
         }
         DrawHomerunDerbyScore();
         goto incState;
@@ -2047,13 +2047,13 @@ state0:
 
 state1:
     if (MinigameWaitForFrames(20) != 0) {
-        if ((gHomerunScore % 3U) == 0) {
+        if ((gMinigameScore % 3U) == 0) {
             gMedalCount++;
             if ((u16)gMedalCount > 999) {
                 gMedalCount = 999;
             } else {
                 m4aSongNumStart(0x223);
-                gHomerunMedalHighlight = sequenceState;
+                gMinigameMedalHighlight = sequenceState;
             }
             DrawHomerunDerbyScore();
         }

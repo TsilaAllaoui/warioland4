@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████████░░░░░░░░░░  66.5%   2,709 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  ███████████████░░░░░░░░░░░░░░░  50.5%   308,218 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████████████░░░░░░░░░░  67.0%   2,727 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ███████████████░░░░░░░░░░░░░░░  51.4%   313,522 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,071 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2098,30 +2098,30 @@
 <rect x="682.93" y="397.54" width="12.99" height="6.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_sound_room/func_808708C: 72 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_wario_hop: 0.0% matched, 5,304 bytes</title>
+<title>wario_hop: 100.0% matched, 5,304 bytes</title>
 <rect x="610.55" y="405.01" width="86.11" height="93.36" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip31"><rect x="612.55" y="406.01" width="82.71" height="16.91"/></clipPath>
 <rect x="611.55" y="406.01" width="84.71" height="16.91" fill="#05080d"/>
-<text x="613.05" y="419.01" clip-path="url(#moduleLabelClip31)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_war…</text>
-<text x="694.27" y="418.01" text-anchor="end" clip-path="url(#moduleLabelClip31)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="611.55" y="422.92" width="45.52" height="50.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D824: 1,964 bytes, not matched, size=symbol</title></rect>
-<rect x="611.55" y="474.25" width="45.52" height="23.38" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808CC5C: 908 bytes, not matched, size=symbol</title></rect>
-<rect x="657.42" y="422.92" width="21.65" height="24.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D028: 460 bytes, not matched, size=symbol</title></rect>
-<rect x="679.43" y="422.92" width="16.49" height="24.71" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D44C: 352 bytes, not matched, size=symbol</title></rect>
-<rect x="657.42" y="447.98" width="21.16" height="14.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808CB18: 268 bytes, not matched, size=symbol</title></rect>
-<rect x="678.93" y="447.98" width="16.99" height="14.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D2BC: 216 bytes, not matched, size=symbol</title></rect>
-<rect x="657.42" y="462.92" width="15.24" height="11.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D20C: 160 bytes, not matched, size=symbol</title></rect>
-<rect x="657.42" y="475.22" width="15.24" height="11.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D5AC: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="657.42" y="487.21" width="15.24" height="10.41" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D648: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="673.02" y="462.92" width="11.63" height="13.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D3C4: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="684.99" y="462.92" width="10.92" height="13.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D74C: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="673.02" y="476.53" width="11.28" height="12.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D6D4: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="673.02" y="488.90" width="11.28" height="8.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D7CC: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="684.64" y="476.53" width="11.28" height="6.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808CFE8: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="684.64" y="483.13" width="5.91" height="10.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808CC24: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="690.90" y="483.13" width="5.02" height="10.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D394: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="684.64" y="493.85" width="6.63" height="3.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D1F4: 24 bytes, not matched, size=symbol</title></rect>
-<rect x="691.62" y="493.85" width="4.30" height="3.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_wario_hop/func_808D2AC: 16 bytes, not matched, size=symbol</title></rect>
+<text x="613.05" y="419.01" clip-path="url(#moduleLabelClip31)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">wario_hop</text>
+<text x="694.27" y="418.01" text-anchor="end" clip-path="url(#moduleLabelClip31)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="611.55" y="422.92" width="45.52" height="50.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopDrawSprites: 1,964 bytes, matched, size=symbol</title></rect>
+<rect x="611.55" y="474.25" width="45.52" height="23.38" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopInit: 908 bytes, matched, size=symbol</title></rect>
+<rect x="657.42" y="422.92" width="21.65" height="24.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateGameplay: 460 bytes, matched, size=symbol</title></rect>
+<rect x="679.43" y="422.92" width="16.49" height="24.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateGameOverMusic: 352 bytes, matched, size=symbol</title></rect>
+<rect x="657.42" y="447.98" width="21.16" height="14.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateStateMachine: 268 bytes, matched, size=symbol</title></rect>
+<rect x="678.93" y="447.98" width="16.99" height="14.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopSpawnObstacleIfDue: 216 bytes, matched, size=symbol</title></rect>
+<rect x="657.42" y="462.92" width="15.24" height="11.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateJumpArc: 160 bytes, matched, size=symbol</title></rect>
+<rect x="657.42" y="475.22" width="15.24" height="11.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopScrollBackgrounds: 156 bytes, matched, size=symbol</title></rect>
+<rect x="657.42" y="487.21" width="15.24" height="10.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopCheckPlayerCollision: 140 bytes, matched, size=symbol</title></rect>
+<rect x="673.02" y="462.92" width="11.63" height="13.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateObstacles: 136 bytes, matched, size=symbol</title></rect>
+<rect x="684.99" y="462.92" width="10.92" height="13.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopAddScoreAndCheckMedal: 128 bytes, matched, size=symbol</title></rect>
+<rect x="673.02" y="476.53" width="11.28" height="12.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopDrawScoreDigits: 120 bytes, matched, size=symbol</title></rect>
+<rect x="673.02" y="488.90" width="11.28" height="8.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateMedalReward: 88 bytes, matched, size=symbol</title></rect>
+<rect x="684.64" y="476.53" width="11.28" height="6.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopRestartMusicForNextSpeed: 64 bytes, matched, size=symbol</title></rect>
+<rect x="684.64" y="483.13" width="5.91" height="10.37" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopApplyBgScroll: 56 bytes, matched, size=symbol</title></rect>
+<rect x="690.90" y="483.13" width="5.02" height="10.37" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopAdvancePlayerAnimation: 48 bytes, matched, size=symbol</title></rect>
+<rect x="684.64" y="493.85" width="6.63" height="3.77" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopIsJumpPressed: 24 bytes, matched, size=symbol</title></rect>
+<rect x="691.62" y="493.85" width="4.30" height="3.77" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateWaitingForStart: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_stage_select: 0.0% matched, 5,204 bytes</title>
