@@ -17,7 +17,7 @@ func_808AC90:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_8aca8:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8acac:
 	.4byte	.L_8acb0
 .L_8acb0:
@@ -62,7 +62,7 @@ func_808AC90:
 	b	.L_8ae44
 	.align	2, 0
 .L_8ad18:
-	.4byte	gUnk_30047E4
+	.4byte	gWarioHopSignState
 .L_8ad1c:
 	mov	r0, #60	@ 0x3c
 	bl	func_8089B9C
@@ -312,7 +312,7 @@ func_808AC90:
 	b	.L_8b0d8
 	.align	2, 0
 .L_8aefc:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8af00:
 	.4byte	gUnk_3004866
 .L_8af04:
@@ -401,7 +401,7 @@ func_808AC90:
 	b	.L_8b0d8
 	.align	2, 0
 .L_8afb0:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8afb4:
 	.4byte	gUnk_3004866
 .L_8afb8:
@@ -500,7 +500,7 @@ func_808AC90:
 .L_8b074:
 	.4byte	0x00000246
 .L_8b078:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b07c:
 	ldr	r0, .L_8b0a4
 	bl	m4aSongNumStart
@@ -523,7 +523,7 @@ func_808AC90:
 .L_8b0a4:
 	.4byte	0x00000247
 .L_8b0a8:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b0ac:
 	.4byte	gMPlayTable
 .L_8b0b0:
@@ -539,7 +539,7 @@ func_808AC90:
 	strb	r0, [r1, #0]
 	b	.L_8b0d8
 .L_8b0c8:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b0cc:
 	bl	func_808CA18
 	cmp	r0, #0
@@ -1034,9 +1034,9 @@ func_808B104:
 .L_8b46c:
 	.4byte	0x04000012
 .L_8b470:
-	.4byte	gUnk_30047D6
+	.4byte	gWarioHopScore
 .L_8b474:
-	.4byte	gUnk_30047D4
+	.4byte	gWarioHopNewHighScore
 .L_8b478:
 	.4byte	gUnk_3004868
 .L_8b47c:
@@ -1068,9 +1068,9 @@ func_808B104:
 .L_8b4b0:
 	.4byte	gUnk_3004904
 .L_8b4b4:
-	.4byte	gUnk_30047DC
+	.4byte	gWarioHopMedalAnim
 .L_8b4b8:
-	.4byte	gUnk_30047E4
+	.4byte	gWarioHopSignState
 .L_8b4bc:
 	.4byte	gUnk_30047D8
 .L_8b4c0:
@@ -1078,9 +1078,9 @@ func_808B104:
 .L_8b4c4:
 	.4byte	gUnk_30048A8
 .L_8b4c8:
-	.4byte	gUnk_30047E0
+	.4byte	gWarioHopMedalIconActive
 .L_8b4cc:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b4d0:
 	.4byte	gUnk_30047BA
 .L_8b4d4:
@@ -1250,7 +1250,7 @@ func_808B4EC:
 .L_8b614:
 	.4byte	gUnk_3004868
 .L_8b618:
-	.4byte	gUnk_30047D6
+	.4byte	gWarioHopScore
 .L_8b61c:
 	.4byte	gUnk_30048AA
 .L_8b620:
@@ -1515,7 +1515,7 @@ func_808B674:
 .L_8b808:
 	.4byte	gUnk_3004864
 .L_8b80c:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b810:
 	.4byte	0x00000249
 .L_8b814:
@@ -1591,7 +1591,7 @@ func_808B820:
 .L_8b89c:
 	.4byte	0xffffff00
 .L_8b8a0:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b8a4:
 	cmp	r0, #12
 	beq	.L_8b8be
@@ -1694,7 +1694,7 @@ func_808B820:
 .L_8b95c:
 	.4byte	gUnk_3004858
 .L_8b960:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b964:
 	.4byte	gUnk_300490A
 .L_8b968:
@@ -1736,7 +1736,7 @@ func_808B820:
 .L_8b9ac:
 	.4byte	gUnk_3004830
 .L_8b9b0:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8b9b4:
 	strh	r4, [r0, #0]
 	b	.L_8b9ba
@@ -1783,7 +1783,7 @@ func_808B9EC:
 	b	.L_8ba20
 	.align	2, 0
 .L_8b9fc:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8ba00:
 	ldr	r1, .L_8ba08
 	ldr	r0, .L_8ba0c
@@ -1829,7 +1829,7 @@ func_808BA34:
 	beq	.L_8ba52
 	b	.L_8badc
 .L_8ba48:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8ba4c:
 	cmp	r0, #11
 	beq	.L_8bab8
@@ -2350,7 +2350,7 @@ func_808BDE0:
 	bl	func_807AB8C
 	b	.L_8be10
 .L_8bdf8:
-	.4byte	gUnk_30047E0
+	.4byte	gWarioHopMedalIconActive
 .L_8bdfc:
 	.4byte	gMedalCount
 .L_8be00:
@@ -2385,7 +2385,7 @@ func_808BDE0:
 .L_8be3c:
 	.4byte	sUnk_86F5848
 .L_8be40:
-	.4byte	gUnk_30047D6
+	.4byte	gWarioHopScore
 .L_8be44:
 	.4byte	sUnk_86F5148
 .L_8be48:
@@ -2691,7 +2691,7 @@ func_808BE4C:
 .L_8c090:
 	.4byte	gOamBuffer
 .L_8c094:
-	.4byte	gUnk_30047E4
+	.4byte	gWarioHopSignState
 .L_8c098:
 	.4byte	sUnk_86F4DE0
 .L_8c09c:
@@ -2703,7 +2703,7 @@ func_808BE4C:
 .L_8c0a8:
 	.4byte	sSinCosTable
 .L_8c0ac:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8c0b0:
 	.4byte	gUnk_3004904
 .L_8c0b4:
@@ -2836,7 +2836,7 @@ func_808BE4C:
 .L_8c1b8:
 	.4byte	0x000001ff
 .L_8c1bc:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8c1c0:
 	cmp	r0, #8
 	bls	.L_8c1d4
@@ -3483,7 +3483,7 @@ func_808BE4C:
 .L_8c6d0:
 	.4byte	gOamBuffer
 .L_8c6d4:
-	.4byte	gUnk_30047B9
+	.4byte	gWarioHopSubState
 .L_8c6d8:
 	.4byte	sUnk_86F4BC0
 .L_8c6dc:
@@ -3501,9 +3501,9 @@ func_808BE4C:
 .L_8c6f4:
 	.4byte	gUnk_30048A0
 .L_8c6f8:
-	.4byte	gUnk_30047E0
+	.4byte	gWarioHopMedalIconActive
 .L_8c6fc:
-	.4byte	gUnk_30047DC
+	.4byte	gWarioHopMedalAnim
 .L_8c700:
 	.4byte	sUnk_86F4C48
 .L_8c704:
@@ -3596,7 +3596,7 @@ func_808C730:
 	b	.L_8c7c0
 	.align	2, 0
 .L_8c7b0:
-	.4byte	gUnk_30047D6
+	.4byte	gWarioHopScore
 .L_8c7b4:
 	.4byte	0x000003e7
 .L_8c7b8:
@@ -3620,11 +3620,11 @@ func_808C730:
 	b	.L_8c8c2
 	.align	2, 0
 .L_8c7e0:
-	.4byte	gUnk_30047D6
+	.4byte	gWarioHopScore
 .L_8c7e4:
 	.4byte	gMinigameHighScores
 .L_8c7e8:
-	.4byte	gUnk_30047D4
+	.4byte	gWarioHopNewHighScore
 .L_8c7ec:
 	ldr	r4, .L_8c808
 	ldrh	r0, [r4, #0]
@@ -3663,7 +3663,7 @@ func_808C730:
 	b	.L_8c84c
 	.align	2, 0
 .L_8c834:
-	.4byte	gUnk_30047D6
+	.4byte	gWarioHopScore
 .L_8c838:
 	.4byte	gMedalCount
 .L_8c83c:
@@ -3686,7 +3686,7 @@ func_808C730:
 .L_8c860:
 	.4byte	0x00000223
 .L_8c864:
-	.4byte	gUnk_30047E0
+	.4byte	gWarioHopMedalIconActive
 .L_8c868:
 	.4byte	gUnk_30047BB
 .L_8c86c:
@@ -3964,7 +3964,7 @@ func_808CA18:
 .L_8ca58:
 	.4byte	gUnk_30047BC
 .L_8ca5c:
-	.4byte	gUnk_30047E4
+	.4byte	gWarioHopSignState
 .L_8ca60:
 	ldr	r4, .L_8ca84
 	ldrh	r0, [r4, #4]
@@ -3984,7 +3984,7 @@ func_808CA18:
 	strb	r0, [r6, #0]
 	b	.L_8ca9e
 .L_8ca84:
-	.4byte	gUnk_30047E4
+	.4byte	gWarioHopSignState
 .L_8ca88:
 	.4byte	0x00000236
 .L_8ca8c:
