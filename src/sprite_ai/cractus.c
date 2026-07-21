@@ -19,17 +19,14 @@ extern u8 gUnk_3000A5D;
 extern u8 gUnk_3000A5E;
 extern u8 gUnk_3000A5F;
 extern u8 gUnk_3000A60;
-extern u8 gUnk_3000A59U asm("gUnk_3000A59");
-extern u8 gUnk_3000A58U asm("gUnk_3000A58");
+extern u8 gBossTookDamage;
+extern u8 gCuckooCondorPendulumLength;
 
 extern const void *const sUnk_878F170[];
 
 void func_801E3A8(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 arg5);
 void func_8070964(u32 arg0, u32 arg1, u32 arg2);
 void func_80747D8(void);
-void SpriteUtilFindOwnSlotU32(u32 roomSlot) asm("SpriteUtilFindOwnSlot");
-
-#define CR_SPRITE(slot) (&gSpriteData[(u8)(slot)])
 
 u32 UpdateCractusGraphicsAnimation(const u8 *animation)
 {
@@ -47,7 +44,7 @@ u32 UpdateCractusGraphicsAnimation(const u8 *animation)
     register u32 control asm("r3");
 
     data = animation;
-    if (gUnk_3000A59U != 0)
+    if (gCuckooCondorPendulumLength != 0)
         data = sCractusBossDefaultGraphicsAnimation;
 
     finished = 0;
@@ -114,7 +111,7 @@ void UpdateCractusSegmentHorizontalFollow(void)
     register u32 coordinate asm("r2");
     register u32 index asm("r2");
 
-    if (gUnk_3000A58U == 0) {
+    if (gBossTookDamage  == 0) {
         threshold = 4;
         shift = 1;
     } else {
@@ -217,7 +214,7 @@ void UpdateCractusSegmentVerticalFollow(void)
     register u32 speed asm("r2");
     register u32 index asm("r2");
 
-    value = gUnk_3000A58U;
+    value = gBossTookDamage ;
     shift = 1;
     if (value != 0) {
         shift = 2;
@@ -292,7 +289,7 @@ void UpdateCractusSegmentVerticalSpacing(void)
     register u32 coordinate asm("r2");
     register u32 index asm("r2");
 
-    if (gUnk_3000A58U == 0) {
+    if (gBossTookDamage  == 0) {
         threshold = 4;
         shift = 1;
     } else {
@@ -687,8 +684,8 @@ void InitCractusSpawner(void)
     u16 status;
 
     gUnk_3000A62 = 90;
-    gUnk_3000A58U = 1;
-    gUnk_3000A59U = 0;
+    gBossTookDamage  = 1;
+    gCuckooCondorPendulumLength = 0;
     gUnk_3000A5A = 0;
     gUnk_3000A5B = 0;
     gUnk_3000A5C = 0;
@@ -1060,7 +1057,7 @@ void UpdateCractusBossPose113(void)
     sprite->work3 = 0;
     sprite->work2 = 0;
     sprite->pose = 112;
-    gUnk_3000A58U = 2;
+    gBossTookDamage  = 2;
     return;
   }
   index++;
@@ -1113,7 +1110,7 @@ void UpdateCractusBossPose113(void)
       childX += 128;
       *(u16 *)(address + 10) = childX;
     }
-    gUnk_3000A58U = 0;
+    gBossTookDamage  = 0;
   }
   else
     if (value == 74)
@@ -1370,7 +1367,7 @@ void UpdateCractusBossPose15(void)
                 *indexPtr = zero;
                 {
                     register u8 *global asm("r0");
-                    global = &gUnk_3000A58U;
+                    global = &gBossTookDamage ;
                     *global = zero;
                 }
                 m4aSongNumStart(SE_CRACTUS_ATTACK_SELECT);
@@ -1414,7 +1411,7 @@ void UpdateCractusBossPose15(void)
                     {
                         register u8 *global asm("r0");
                         register u32 stored asm("r7");
-                        global = &gUnk_3000A58U;
+                        global = &gBossTookDamage ;
                         stored = savedIndex;
                         *global = stored;
                     }
@@ -1428,7 +1425,7 @@ void UpdateCractusBossPose15(void)
                     sprite->pose = 18;
                     {
                         register u8 *global asm("r0");
-                        global = &gUnk_3000A58U;
+                        global = &gBossTookDamage ;
                         *global = zero;
                     }
                     m4aSongNumStart(SE_CRACTUS_SIDE_ATTACK_SELECT);
@@ -1813,7 +1810,7 @@ be50_no_reaction:
                 clearZero = 0;
                 sprite->animationTimer = warioReaction;
                 gUnk_3000A5A = clearZero;
-                gUnk_3000A58U = clearZero;
+                gBossTookDamage  = clearZero;
                 sprites = gSpriteData;
                 stride = sizeof(struct PrimarySpriteData);
                 left = slot220;
@@ -1844,7 +1841,7 @@ be50_no_reaction:
                 asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(warioReaction) : "memory");
                 sprite->animationTimer = warioReaction;
                 gUnk_3000A5A = 1;
-                gUnk_3000A58U = 1;
+                gBossTookDamage  = 1;
                 sprites = gSpriteData;
                 stride = sizeof(struct PrimarySpriteData);
                 leftOffset = slot220;
@@ -1901,7 +1898,7 @@ be50_reaction:
             clearZero = 0;
             sprite->animationTimer = zero;
             gUnk_3000A5A = 1;
-            gUnk_3000A58U = 1;
+            gBossTookDamage  = 1;
             sprites = gSpriteData;
             stride = sizeof(struct PrimarySpriteData);
             left = slot220;
@@ -1992,7 +1989,7 @@ void UpdateCractusBossPose114(void)
         /* Preserve the target order: materialize the byte before copying r9 to r1. */
         asm("mov r0, #255\n\tmov r1, r9\n\tstrb r0, [r1, #0]" : : : "r0", "r1", "memory");
         gUnk_3000A5A = 1;
-        global58 = &gUnk_3000A58U;
+        global58 = &gBossTookDamage ;
         *global58 = 1;
         func_8023BFC(current->yPosition, current->xPosition - 138);
         if (gUnk_3000A51 != 17) {
@@ -2137,7 +2134,7 @@ void UpdateCractusBossPose116(void)
         } else {
             gCurrentSprite.pose = 19;
             gCurrentSprite.work3 = 0;
-            gUnk_3000A58U = 0;
+            gBossTookDamage  = 0;
         }
     }
 }
@@ -2449,7 +2446,7 @@ void UpdateCractusBossPose22(void)
         target->yPosition -= 5;
     } else {
         gUnk_3000A5A = timerValue;
-        gUnk_3000A58U = timerValue;
+        gBossTookDamage  = timerValue;
         sprite->pose = 15;
     }
 }
@@ -2492,7 +2489,7 @@ void UpdateCractusBossPose49(void)
     global = &gUnk_3000A5A;
     zeroR1 = 0;
     *global = zeroR1;
-    global = &gUnk_3000A58U;
+    global = &gBossTookDamage ;
     *global = zeroR1;
     sprite = &gCurrentSprite;
     sprite->pOamData = sCractusBossDamagedOam;
@@ -3080,7 +3077,7 @@ void InitCractusStemSegment(void)
         else {
             roomSlot = bytePtr[24];
             roomSlot--;
-            SpriteUtilFindOwnSlotU32(roomSlot);
+            ((void (*)(u32))SpriteUtilFindOwnSlot)(roomSlot);(roomSlot);
         }
     }
 }
@@ -4542,7 +4539,7 @@ void SpriteCractusBoss(void)
     register u8 *globalTimer asm("r3");
     register struct PrimarySpriteData *sprite asm("r2");
 
-    globalBase = &gUnk_3000A59U;
+    globalBase = &gCuckooCondorPendulumLength;
     timerValue = *globalBase;
     globalTimer = globalBase;
     sprite = &gCurrentSprite;
