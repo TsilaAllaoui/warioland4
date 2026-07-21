@@ -87,8 +87,8 @@ SECTIONS {
         . = 0x0a52; gSpriteCollisionFlags = .;
         . = 0x0a53; gIgnoreSpriteCollision = .;
         . = 0x0a54; gUnk_3000A54 = .;
-        . = 0x0a58; gUnk_3000A58 = .;
-        . = 0x0a59; gUnk_3000A59 = .;
+        . = 0x0a58; gUnk_3000A58 = .; gBossTookDamage = .;
+        . = 0x0a59; gUnk_3000A59 = .; gCuckooCondorPendulumLength = .;
         . = 0x0a5a; gUnk_3000A5A = .;
         . = 0x0a5b; gUnk_3000A5B = .;
         . = 0x0a5c; gUnk_3000A5C = .;
