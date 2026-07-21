@@ -2555,263 +2555,263 @@ sUnk_83DE590:
 
 baserom_blob 0x3DE590, 0x3DF0B0
 
-.global sUnk_83DF0B0
-sUnk_83DF0B0:
+.global sCractusProjectileFallingOam
+sCractusProjectileFallingOam:
 
 baserom_blob 0x3DF0B0, 0x3DF0C0
 
-.global sUnk_83DF0C0
-sUnk_83DF0C0:
+.global sCractusProjectileActiveOam
+sCractusProjectileActiveOam:
 
 baserom_blob 0x3DF0C0, 0x3DF0D0
 
-.global sUnk_83DF0D0
-sUnk_83DF0D0:
+.global sCractusProjectileLandedOam
+sCractusProjectileLandedOam:
 
 baserom_blob 0x3DF0D0, 0x3DF108
 
-.global sUnk_83DF108
-sUnk_83DF108:
+.global sCractusProjectileDespawnOam
+sCractusProjectileDespawnOam:
 
 baserom_blob 0x3DF108, 0x3DF278
 
-.global sUnk_83DF278
-sUnk_83DF278:
+.global sCractusSpawnerDefeatOam
+sCractusSpawnerDefeatOam:
 
 baserom_blob 0x3DF278, 0x3DF2D0
 
-.global sUnk_83DF2D0
-sUnk_83DF2D0:
+.global sCractusSpawnerIdleOam
+sCractusSpawnerIdleOam:
 
 baserom_blob 0x3DF2D0, 0x3DF724
 
-.global sUnk_83DF724
-sUnk_83DF724:
+.global sCractusBossReadyOam
+sCractusBossReadyOam:
 
 baserom_blob 0x3DF724, 0x3DF754
 
-.global sUnk_83DF754
-sUnk_83DF754:
+.global sCractusBossDamagedOam
+sCractusBossDamagedOam:
 
 baserom_blob 0x3DF754, 0x3DF77C
 
-.global sUnk_83DF77C
-sUnk_83DF77C:
+.global sCractusBossImpactOam
+sCractusBossImpactOam:
 
 baserom_blob 0x3DF77C, 0x3DF7B4
 
-.global sUnk_83DF7B4
-sUnk_83DF7B4:
+.global sCractusBossIntroOam
+sCractusBossIntroOam:
 
 baserom_blob 0x3DF7B4, 0x3DF80C
 
-.global sUnk_83DF80C
-sUnk_83DF80C:
+.global sCractusBossInitialOam
+sCractusBossInitialOam:
 
 baserom_blob 0x3DF80C, 0x3DF948
 
-.global sUnk_83DF948
-sUnk_83DF948:
+.global sCractusBossArmExtendedOam
+sCractusBossArmExtendedOam:
 
 baserom_blob 0x3DF948, 0x3DF998
 
-.global sUnk_83DF998
-sUnk_83DF998:
+.global sCractusStemSegment4Oam
+sCractusStemSegment4Oam:
 
 baserom_blob 0x3DF998, 0x3DF9A8
 
-.global sUnk_83DF9A8
-sUnk_83DF9A8:
+.global sCractusStemSegment1Oam
+sCractusStemSegment1Oam:
 
 baserom_blob 0x3DF9A8, 0x3DF9B8
 
-.global sUnk_83DF9B8
-sUnk_83DF9B8:
+.global sCractusStemSegment2Oam
+sCractusStemSegment2Oam:
 
 baserom_blob 0x3DF9B8, 0x3DF9C8
 
-.global sUnk_83DF9C8
-sUnk_83DF9C8:
+.global sCractusStemSegment3Oam
+sCractusStemSegment3Oam:
 
 baserom_blob 0x3DF9C8, 0x3DF9D8
 
-.global sUnk_83DF9D8
-sUnk_83DF9D8:
+.global sCractusStemSegment0Oam
+sCractusStemSegment0Oam:
 
 baserom_blob 0x3DF9D8, 0x3DF9E8
 
-.global sUnk_83DF9E8
+.global sUnk_83DF9E8  @ Shared compatibility alias used by boss treasure.
 sUnk_83DF9E8:
 
 baserom_blob 0x3DF9E8, 0x3DFA38
 
-.global sUnk_83DFA38
-sUnk_83DFA38:
+.global sCractusArmSegmentB1Oam
+sCractusArmSegmentB1Oam:
 
 baserom_blob 0x3DFA38, 0x3DFA48
 
-.global sUnk_83DFA48
-sUnk_83DFA48:
+.global sCractusArmSegmentB2Oam
+sCractusArmSegmentB2Oam:
 
 baserom_blob 0x3DFA48, 0x3DFA58
 
-.global sUnk_83DFA58
-sUnk_83DFA58:
+.global sCractusArmSegmentB3Oam
+sCractusArmSegmentB3Oam:
 
 baserom_blob 0x3DFA58, 0x3DFA68
 
-.global sUnk_83DFA68
-sUnk_83DFA68:
+.global sCractusArmSegmentBRootOam
+sCractusArmSegmentBRootOam:
 
 baserom_blob 0x3DFA68, 0x3DFA78
 
-.global sUnk_83DFA78
-sUnk_83DFA78:
+.global sCractusArmSegmentA1Oam
+sCractusArmSegmentA1Oam:
 
 baserom_blob 0x3DFA78, 0x3DFA88
 
-.global sUnk_83DFA88
-sUnk_83DFA88:
+.global sCractusArmSegmentA2Oam
+sCractusArmSegmentA2Oam:
 
 baserom_blob 0x3DFA88, 0x3DFA98
 
-.global sUnk_83DFA98
-sUnk_83DFA98:
+.global sCractusArmSegmentA3Oam
+sCractusArmSegmentA3Oam:
 
 baserom_blob 0x3DFA98, 0x3DFAA8
 
-.global sUnk_83DFAA8
-sUnk_83DFAA8:
+.global sCractusArmSegmentARootOam
+sCractusArmSegmentARootOam:
 
 baserom_blob 0x3DFAA8, 0x3DFB70
 
-.global sUnk_83DFB70
-sUnk_83DFB70:
+.global sCractusDefeatPieceOam
+sCractusDefeatPieceOam:
 
 baserom_blob 0x3DFB70, 0x3DFB98
 
-.global sUnk_83DFB98
-sUnk_83DFB98:
+.global sCractusSegmentOam
+sCractusSegmentOam:
 
 baserom_blob 0x3DFB98, 0x3DFCD0
 
-.global sUnk_83DFCD0
-sUnk_83DFCD0:
+.global sCractusImpactEffectOam
+sCractusImpactEffectOam:
 
 baserom_blob 0x3DFCD0, 0x3DFD10
 
-.global sUnk_83DFD10
-sUnk_83DFD10:
+.global sCractusBossPose113GraphicsAnimation
+sCractusBossPose113GraphicsAnimation:
 
 baserom_blob 0x3DFD10, 0x3DFD18
 
-.global sUnk_83DFD18
-sUnk_83DFD18:
+.global sCractusBossPose112GraphicsAnimation
+sCractusBossPose112GraphicsAnimation:
 
 baserom_blob 0x3DFD18, 0x3DFD28
 
-.global sUnk_83DFD28
-sUnk_83DFD28:
+.global sCractusBossIntroGraphicsAnimation
+sCractusBossIntroGraphicsAnimation:
 
 baserom_blob 0x3DFD28, 0x3DFD3C
 
-.global sUnk_83DFD3C
-sUnk_83DFD3C:
+.global sCractusBossPose111GraphicsAnimation
+sCractusBossPose111GraphicsAnimation:
 
 baserom_blob 0x3DFD3C, 0x3DFD68
 
-.global sUnk_83DFD68
-sUnk_83DFD68:
+.global sCractusBossAttackGraphicsAnimation
+sCractusBossAttackGraphicsAnimation:
 
 baserom_blob 0x3DFD68, 0x3DFD8C
 
-.global sUnk_83DFD8C
-sUnk_83DFD8C:
+.global sCractusBossDefaultGraphicsAnimation
+sCractusBossDefaultGraphicsAnimation:
 
 baserom_blob 0x3DFD8C, 0x3DFD9C
 
-.global sUnk_83DFD9C
-sUnk_83DFD9C:
+.global sCractusBossHurtGraphicsAnimation
+sCractusBossHurtGraphicsAnimation:
 
 baserom_blob 0x3DFD9C, 0x3DFDA4
 
-.global sUnk_83DFDA4
-sUnk_83DFDA4:
+.global sCractusBossDamageGraphicsAnimation
+sCractusBossDamageGraphicsAnimation:
 
 baserom_blob 0x3DFDA4, 0x3DFDAC
 
-.global sUnk_83DFDAC
-sUnk_83DFDAC:
+.global sCractusProjectileYVelocity
+sCractusProjectileYVelocity:
 
 baserom_blob 0x3DFDAC, 0x3DFDCC
 
-.global sUnk_83DFDCC
-sUnk_83DFDCC:
+.global sCractusBossPose50LeftYVelocity
+sCractusBossPose50LeftYVelocity:
 
 baserom_blob 0x3DFDCC, 0x3DFECE
 
-.global sUnk_83DFECE
-sUnk_83DFECE:
+.global sCractusBossPose50RightYVelocity
+sCractusBossPose50RightYVelocity:
 
 baserom_blob 0x3DFECE, 0x3DFFD0
 
-.global sUnk_83DFFD0
-sUnk_83DFFD0:
+.global sCractusDefeatPieceYVelocity
+sCractusDefeatPieceYVelocity:
 
 baserom_blob 0x3DFFD0, 0x3E0042
 
-.global sUnk_83E0042
-sUnk_83E0042:
+.global sCractusBossPose18YVelocity
+sCractusBossPose18YVelocity:
 
 baserom_blob 0x3E0042, 0x3E0116
 
-.global sUnk_83E0116
-sUnk_83E0116:
+.global sCractusBossPose113YVelocity
+sCractusBossPose113YVelocity:
 
 baserom_blob 0x3E0116, 0x3E0258
 
-.global sUnk_83E0258
-sUnk_83E0258:
+.global sCractusBossPose19YVelocity
+sCractusBossPose19YVelocity:
 
 baserom_blob 0x3E0258, 0x3E028A
 
-.global sUnk_83E028A
-sUnk_83E028A:
+.global sCractusBossIntroYVelocity
+sCractusBossIntroYVelocity:
 
 baserom_blob 0x3E028A, 0x3E036C
 
-.global sUnk_83E036C
-sUnk_83E036C:
+.global sCractusBossPose15YVelocity
+sCractusBossPose15YVelocity:
 
 baserom_blob 0x3E036C, 0x3E03BE
 
-.global sUnk_83E03BE
-sUnk_83E03BE:
+.global sCractusArmPose15LeftYVelocity
+sCractusArmPose15LeftYVelocity:
 
 baserom_blob 0x3E03BE, 0x3E0410
 
-.global sUnk_83E0410
-sUnk_83E0410:
+.global sCractusArmPose15RightYVelocity
+sCractusArmPose15RightYVelocity:
 
 baserom_blob 0x3E0410, 0x3E0462
 
-.global sUnk_83E0462
-sUnk_83E0462:
+.global sCractusArmPose15LeftXVelocity
+sCractusArmPose15LeftXVelocity:
 
 baserom_blob 0x3E0462, 0x3E04C4
 
-.global sUnk_83E04C4
-sUnk_83E04C4:
+.global sCractusArmPose15RightXVelocity
+sCractusArmPose15RightXVelocity:
 
 baserom_blob 0x3E04C4, 0x3E0526
 
-.global sUnk_83E0526
-sUnk_83E0526:
+.global sCractusArmPose24XVelocityA
+sCractusArmPose24XVelocityA:
 
 baserom_blob 0x3E0526, 0x3E05B8
 
-.global sUnk_83E05B8
-sUnk_83E05B8:
+.global sCractusArmPose24XVelocityB
+sCractusArmPose24XVelocityB:
 
 baserom_blob 0x3E05B8, 0x3E0D68
 

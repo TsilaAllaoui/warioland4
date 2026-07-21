@@ -87,7 +87,7 @@ void IcicleWaitToFall(void)
         sprite->pose = 28;
         work3Pointer = &sprite->work3;
         *work3Pointer = zero;
-        m4aSongNumStart(SE_ICICLE_FALL);
+        m4aSongNumStart(SE_FALLING);
     }
 }
 

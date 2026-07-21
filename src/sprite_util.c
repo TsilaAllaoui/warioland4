@@ -2751,7 +2751,7 @@ void func_8026E78(void)
             break;
 
         case PASSAGE_EMERALD:
-            SpriteUtilFindSpriteSlotWork3(PSPRITE_D8);
+            SpriteUtilFindSpriteSlotWork3(PSPRITE_CRACTUS_BOSS);
             gSpriteData[gCurrentSprite.work3].pose = SPOSE_7A;
             break;
 

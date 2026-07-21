@@ -1528,7 +1528,7 @@ void CuckooCondorTakeShopItemHit(void)
     if (sprite->health != 0) {
         sprite->health--;
         UpdateBossHealthGauge();
-        m4aSongNumStart(SOUND_7A);
+        m4aSongNumStart(SE_DAMAGE);
     }
     VoiceSetPlay(13);
 }
@@ -1601,7 +1601,7 @@ void CuckooCondorHandleShopItemHit(void)
     temp = health - 1;
     *(u8 *)(sprite + 0x1D) = temp;
     UpdateBossHealthGauge();
-    temp = SOUND_7A;
+    temp = SE_DAMAGE;
     m4aSongNumStart(temp);
 }
 
@@ -2246,7 +2246,7 @@ loop:
     ydiff -= value;
     ydiff = (s32)ydiff >> 1;
     *dst = ydiff;
-    m4aSongNumStart(SOUND_A3);
+    m4aSongNumStart(SE_CRACTUS_ARM_AIM);
 }
 
 void CuckooCondorPendulumSwingClockwise(void)
@@ -2343,7 +2343,7 @@ loop:
     ydiff -= value;
     ydiff = (s32)ydiff >> 1;
     *dst = ydiff;
-    m4aSongNumStart(SOUND_A3);
+    m4aSongNumStart(SE_CRACTUS_ARM_AIM);
 }
 
 void CuckooCondorPendulumSwingCounterclockwise(void)

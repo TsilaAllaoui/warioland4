@@ -594,7 +594,7 @@ void func_803B2EC(void)
     if (sprite->health != 0) {
         sprite->health--;
         UpdateBossHealthGauge();
-        m4aSongNumStart(SOUND_7A);
+        m4aSongNumStart(SE_DAMAGE);
     }
 
     if (sprite->health > 2) {
@@ -646,7 +646,7 @@ void func_803B36C(void)
                 nextHealth = health - 1;
                 sprite->health = nextHealth;
                 UpdateBossHealthGauge();
-                m4aSongNumStart(SOUND_7A);
+                m4aSongNumStart(SE_DAMAGE);
             }
         }
     }

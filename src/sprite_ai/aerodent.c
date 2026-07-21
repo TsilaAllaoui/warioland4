@@ -1738,7 +1738,7 @@ void AerodentCompanionApplyShopItemDamage(void)
     if (gCurrentSprite.health != 0) {
         gCurrentSprite.health--;
         UpdateBossHealthGauge();
-        m4aSongNumStart(SOUND_7A);
+        m4aSongNumStart(SE_DAMAGE);
     }
     VoiceSetPlay(12);
 }
@@ -1780,7 +1780,7 @@ void AerodentCompanionUpdateShopItemDamage(void)
                 reducedHealth = health - 1;
                 sprite->health = reducedHealth;
                 UpdateBossHealthGauge();
-                m4aSongNumStart(SOUND_7A);
+                m4aSongNumStart(SE_DAMAGE);
             }
         }
     }

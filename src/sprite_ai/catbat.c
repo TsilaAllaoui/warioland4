@@ -1726,7 +1726,7 @@ void InitCatbatShopItemHit(void)
             health--;
             sprite->health = health;
             UpdateBossHealthGauge();
-            m4aSongNumStart(SOUND_7A);
+            m4aSongNumStart(SE_DAMAGE);
         }
     }
     VoiceSetPlay(14);
@@ -1822,7 +1822,7 @@ void UpdateCatbatShopItemHit(void)
                 timerValue = health - 1;
                 base->health = timerValue;
                 UpdateBossHealthGauge();
-                m4aSongNumStart(SOUND_7A);
+                m4aSongNumStart(SE_DAMAGE);
             }
         }
     }
