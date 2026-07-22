@@ -210,7 +210,7 @@ func_8042E90:
 .L_42f04:
 	.4byte	gCurrentSprite
 .L_42f08:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 
 
 thumb_func_start func_8042F0C
@@ -272,7 +272,7 @@ func_8042F0C:
 .L_42f80:
 	.4byte	gCurrentSprite
 .L_42f84:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 
 
 thumb_func_start func_8042F88
@@ -367,7 +367,7 @@ func_8043000:
 .L_43034:
 	.4byte	gCurrentSprite
 .L_43038:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_4303c:
 	ldrh	r0, [r4, #8]
 	add	r1, r4, #0
@@ -391,7 +391,7 @@ func_8043000:
 	pop	{r0}
 	bx	r0
 .L_43064:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_43068:
 	.4byte	gCurrentSprite
 
@@ -469,7 +469,7 @@ func_804308C:
 .L_430f4:
 	.4byte	gUnk_30000A0
 .L_430f8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_430fc:
 	ldrb	r2, [r6, #0]
 	ldr	r5, .L_43120

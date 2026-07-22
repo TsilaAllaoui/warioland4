@@ -157,7 +157,7 @@ func_804DA24:
 	b	.L_4db38
 	.align	2, 0
 .L_4dab0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_4dab4:
 	add	r2, r4, #0
 	add	r2, #40	@ 0x28
@@ -224,7 +224,7 @@ func_804DA24:
 	b	.L_4db3a
 	.align	2, 0
 .L_4db30:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_4db34:
 	ldrh	r0, [r4, #10]
 	sub	r0, #2

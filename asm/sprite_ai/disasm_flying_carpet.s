@@ -263,7 +263,7 @@ func_8038174:
 	bx	r0
 	.align	2, 0
 .L_381f0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 
 
 thumb_func_start func_80381F4
@@ -277,7 +277,7 @@ func_80381F4:
 	bl	func_80380DC
 	b	.L_38280
 .L_38208:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_3820c:
 	ldr	r3, .L_3823c
 	ldrh	r4, [r3, #0]
@@ -457,7 +457,7 @@ func_803828C:
 	bl	func_80380DC
 	b	.L_38440
 .L_38360:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_38364:
 	add	r6, r4, #0
 	add	r6, #42	@ 0x2a
@@ -529,7 +529,7 @@ func_803828C:
 .L_383e8:
 	.4byte	gCurrentSprite
 .L_383ec:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_383f0:
 	.4byte	gWarioData
 .L_383f4:
@@ -565,7 +565,7 @@ func_803828C:
 	strh	r0, [r1, #18]
 	b	.L_38440
 .L_38434:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_38438:
 	.4byte	gWarioData
 .L_3843c:
@@ -618,7 +618,7 @@ func_8038448:
 .L_38490:
 	.4byte	gUnk_30000A0
 .L_38494:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_38498:
 	.4byte	sUnk_83BE1D4
 .L_3849c:
@@ -698,7 +698,7 @@ func_8038448:
 	strh	r0, [r4, #10]
 	b	.L_38578
 .L_38530:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_38534:
 	add	r0, r4, #0
 	add	r0, #39	@ 0x27
@@ -727,7 +727,7 @@ func_8038448:
 	strh	r0, [r4, #10]
 	b	.L_38578
 .L_38568:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_3856c:
 	add	r0, r4, #0
 	add	r0, #39	@ 0x27
@@ -799,7 +799,7 @@ func_80385A4:
 .L_385e4:
 	.4byte	gUnk_30000A0
 .L_385e8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_385ec:
 	.4byte	sUnk_83BE19C
 .L_385f0:
@@ -897,7 +897,7 @@ func_80385A4:
 .L_386a0:
 	.4byte	gCurrentSprite
 .L_386a4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_386a8:
 	.4byte	gWarioData
 .L_386ac:
@@ -936,7 +936,7 @@ func_80385A4:
 	b	.L_38702
 	.align	2, 0
 .L_386f0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_386f4:
 	.4byte	gWarioData
 .L_386f8:

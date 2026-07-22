@@ -196,7 +196,7 @@ func_8035370:
 	b	.L_35440
 	.align	2, 0
 .L_35414:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_35418:
 	ldrh	r0, [r5, #8]
 	sub	r0, #64	@ 0x40
@@ -271,7 +271,7 @@ func_8035370:
 .L_354a4:
 	.4byte	gCurrentSprite
 .L_354a8:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_354ac:
 	ldrh	r0, [r4, #8]
 	sub	r0, #40	@ 0x28

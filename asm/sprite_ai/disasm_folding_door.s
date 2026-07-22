@@ -92,7 +92,7 @@ func_8059834:
 .L_598f0:
 	.4byte	gCurrentSprite
 .L_598f4:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 
 
 thumb_func_start func_80598F8
@@ -186,7 +186,7 @@ func_80598F8:
 .L_599b4:
 	.4byte	gCurrentSprite
 .L_599b8:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 
 
 thumb_func_start func_80599BC

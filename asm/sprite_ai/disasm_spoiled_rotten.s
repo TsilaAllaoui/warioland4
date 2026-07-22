@@ -119,7 +119,7 @@ func_803ABD8:
 .L_3ac28:
 	.4byte	gCurrentSprite
 .L_3ac2c:
-	.4byte	gUnk_30000F4
+	.4byte	gGoldenDivaDefeatTimer
 .L_3ac30:
 	.4byte	gCurrentShopItem
 .L_3ac34:
@@ -434,9 +434,9 @@ func_803AE30:
 .L_3aea4:
 	.4byte	gCurrentSprite
 .L_3aea8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_3aeac:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_3aeb0:
 	ldrh	r0, [r2, #10]
 	add	r0, #1
@@ -485,9 +485,9 @@ func_803AE30:
 	strb	r0, [r4, #28]
 	b	.L_3af40
 .L_3af0c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_3af10:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_3af14:
 	ldr	r0, .L_3af24
 	ldrb	r1, [r0, #30]
@@ -1004,11 +1004,11 @@ func_803B2A0:
 	bx	lr
 	.align	2, 0
 .L_3b2dc:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_3b2e0:
 	.4byte	gSubGameMode
 .L_3b2e4:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_3b2e8:
 	.4byte	gStageExitType
 
@@ -1372,7 +1372,7 @@ func_803B538:
 .L_3b584:
 	.4byte	gWarioData
 .L_3b588:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_3b58c:
 	ldrh	r0, [r4, #8]
 	sub	r0, #32
@@ -1410,7 +1410,7 @@ func_803B538:
 	b	.L_3b5dc
 	.align	2, 0
 .L_3b5d0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_3b5d4:
 	.4byte	gCurrentSprite
 .L_3b5d8:

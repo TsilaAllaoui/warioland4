@@ -288,7 +288,7 @@ func_803766C:
 .L_376ac:
 	.4byte	gUnk_30000A0
 .L_376b0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_376b4:
 	bl	func_803764C
 .L_376b8:

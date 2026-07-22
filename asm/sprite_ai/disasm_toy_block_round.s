@@ -94,7 +94,7 @@ func_8043204:
 	bl	func_8023BFC
 	b	.L_43250
 .L_43234:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_43238:
 	.4byte	gCurrentSprite
 .L_4323c:
@@ -120,7 +120,7 @@ func_8043204:
 	bx	r0
 	.align	2, 0
 .L_43264:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_43268:
 	.4byte	gCurrentSprite
 
@@ -179,7 +179,7 @@ func_8043280:
 .L_432c8:
 	.4byte	gUnk_30000A0
 .L_432cc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_432d0:
 	.4byte	gWarioData
 .L_432d4:

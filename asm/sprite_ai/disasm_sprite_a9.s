@@ -113,7 +113,7 @@ func_805FBB8:
 	bl	func_8023BFC
 	b	.L_5fc14
 .L_5fbf8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_5fbfc:
 	.4byte	gCurrentSprite
 .L_5fc00:
@@ -136,7 +136,7 @@ func_805FBB8:
 	strb	r0, [r1, #28]
 	b	.L_5fcfc
 .L_5fc24:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5fc28:
 	.4byte	gCurrentSprite
 .L_5fc2c:
@@ -186,7 +186,7 @@ func_805FBB8:
 .L_5fc84:
 	.4byte	gCurrentSprite
 .L_5fc88:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5fc8c:
 	cmp	r5, #4
 	bne	.L_5fc96
@@ -243,7 +243,7 @@ func_805FBB8:
 	b	.L_5fcfc
 	.align	2, 0
 .L_5fcf4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5fcf8:
 	bl	func_8026374
 .L_5fcfc:
@@ -292,7 +292,7 @@ func_805FD2C:
 	b	.L_5fda4
 	.align	2, 0
 .L_5fd48:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_5fd4c:
 	.4byte	gCurrentSprite
 .L_5fd50:
@@ -461,7 +461,7 @@ func_805FE34:
 .L_5fe6c:
 	.4byte	gCurrentSprite
 .L_5fe70:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_5fe74:
 	ldr	r0, .L_5fe8c
 	str	r0, [r4, #4]
@@ -524,9 +524,9 @@ func_805FE90:
 .L_5fee4:
 	.4byte	gCurrentSprite
 .L_5fee8:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5feec:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_5fef0:
 	ldr	r4, .L_5ff24
 	ldrh	r0, [r4, #8]
@@ -556,7 +556,7 @@ func_805FE90:
 .L_5ff24:
 	.4byte	gCurrentSprite
 .L_5ff28:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5ff2c:
 	ldrh	r0, [r4, #10]
 	add	r0, #12
@@ -596,9 +596,9 @@ func_805FE90:
 	b	.L_5ffca
 	.align	2, 0
 .L_5ff78:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5ff7c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_5ff80:
 	ldr	r4, .L_5ffb8
 	ldrh	r0, [r4, #8]
@@ -630,7 +630,7 @@ func_805FE90:
 .L_5ffb8:
 	.4byte	gCurrentSprite
 .L_5ffbc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_5ffc0:
 	mov	r0, #53	@ 0x35
 	strb	r0, [r4, #28]
@@ -782,7 +782,7 @@ func_806002C:
 .L_600c4:
 	.4byte	gUnk_30000A0
 .L_600c8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_600cc:
 	mov	r0, #52	@ 0x34
 .L_600ce:
@@ -841,7 +841,7 @@ func_806002C:
 	b	.L_60142
 	.align	2, 0
 .L_6013c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_60140:
 	mov	r0, #69	@ 0x45
 .L_60142:
@@ -1482,7 +1482,7 @@ func_806052C:
 .L_60564:
 	.4byte	gCurrentSprite
 .L_60568:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_6056c:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

@@ -43,7 +43,7 @@ void GameScreenDebugSubroutine(void)
             }
         }
         gSubGameMode = 6;
-        gUnk_3000021 = 0;
+        gSpriteAiDropTimer = 0;
         gStageExitType = 2;
         AutosaveStageClear();
         return;

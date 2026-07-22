@@ -255,7 +255,7 @@ func_804C78C:
 .L_4c7d4:
 	.4byte	gUnk_30000A0
 .L_4c7d8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_4c7dc:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

@@ -250,7 +250,7 @@ func_8042384:
 	bl	func_8023BFC
 	b	.L_423d0
 .L_423b4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_423b8:
 	.4byte	gCurrentSprite
 .L_423bc:
@@ -276,7 +276,7 @@ func_8042384:
 	bx	r0
 	.align	2, 0
 .L_423e4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_423e8:
 	.4byte	gCurrentSprite
 

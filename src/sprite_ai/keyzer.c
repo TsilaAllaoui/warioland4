@@ -378,7 +378,7 @@ void SpriteKeyzer(void)
     }
 
     func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_3000A51 & 15) {
+    if (gSpriteAiCollisionFlags & 15) {
         gCurrentSprite.status |= SPRITE_STATUS_HIDDEN;
     } else {
         gCurrentSprite.status &= ~SPRITE_STATUS_HIDDEN;

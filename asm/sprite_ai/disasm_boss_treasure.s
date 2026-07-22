@@ -477,7 +477,7 @@ SpriteUnknownCF:
 .L_56cb4:
 	.4byte	0x7FFF
 .L_56cb8:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_56cbc:
 	ldrh	r1, [r4, #0]
 	mov	r0, #2
@@ -604,6 +604,6 @@ SpriteUnknownCF:
 .L_56da4:
 	.4byte	gSubGameMode
 .L_56da8:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_56dac:
 	.4byte	gStageExitType

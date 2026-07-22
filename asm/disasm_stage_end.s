@@ -32,7 +32,7 @@ func_80720E8:
 	mov	pc, r0
 	.align	2, 0
 .L_72120:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_72124:
 	.4byte	.L_72128
 .L_72128:
@@ -329,7 +329,7 @@ func_80720E8:
 .L_72378:
 	.4byte	gUnk_3000025
 .L_7237c:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_72380:
 	ldr	r0, .L_72394
 	strb	r4, [r0, #0]
@@ -345,7 +345,7 @@ func_80720E8:
 	bx	r1
 	.align	2, 0
 .L_72394:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_72398:
 	.4byte	gUnk_300188E
 
@@ -392,7 +392,7 @@ func_80723CC:
 	mov	pc, r0
 	.align	2, 0
 .L_723e8:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_723ec:
 	.4byte	.L_723f0
 .L_723f0:
@@ -591,7 +591,7 @@ func_80723CC:
 .L_72570:
 	.4byte	gUnk_300188E
 .L_72574:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_72578:
 	ldr	r1, .L_725a8
 	ldrh	r0, [r1, #0]

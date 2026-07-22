@@ -205,7 +205,7 @@ func_8047BEC:
 .L_47c44:
 	.4byte	gUnk_30000A0
 .L_47c48:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_47c4c:
 	.4byte	gWarioData
 .L_47c50:

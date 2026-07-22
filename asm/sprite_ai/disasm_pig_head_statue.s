@@ -315,7 +315,7 @@ func_8033494:
 	b	.L_33538
 	.align	2, 0
 .L_334f4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_334f8:
 	.4byte	sUnk_83BB704
 .L_334fc:

@@ -318,7 +318,7 @@ func_803962C:
 	bl	ScoreGiveOrDropCoins
 	b	.L_397ae
 .L_39774:
-	.4byte	gUnk_3000044
+	.4byte	gGoldenDivaShopItemState
 .L_39778:
 	.4byte	sWarioPoseRequestFuncTable
 .L_3977c:

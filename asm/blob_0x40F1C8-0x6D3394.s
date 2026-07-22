@@ -428,8 +428,8 @@ sUnk_8414614:
 
 baserom_blob 0x414614, 0x41463C
 
-.global sUnk_841463C
-sUnk_841463C:
+.global sGoldenDivaBlackChickFinalOam
+sGoldenDivaBlackChickFinalOam:
 
 baserom_blob 0x41463C, 0x414824
 
@@ -438,13 +438,13 @@ sUnk_8414824:
 
 baserom_blob 0x414824, 0x41488C
 
-.global sUnk_841488C
-sUnk_841488C:
+.global sGoldenDivaDebrisOam
+sGoldenDivaDebrisOam:
 
 baserom_blob 0x41488C, 0x41489C
 
-.global sUnk_841489C
-sUnk_841489C:
+.global sGoldenDivaAttackEffectOam
+sGoldenDivaAttackEffectOam:
 
 baserom_blob 0x41489C, 0x41497C
 

@@ -92,7 +92,7 @@ func_804173C:
 	bl	func_8023BFC
 	b	.L_4178c
 .L_41770:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_41774:
 	.4byte	gCurrentSprite
 .L_41778:
@@ -115,7 +115,7 @@ func_804173C:
 	strb	r0, [r1, #28]
 	b	.L_4185c
 .L_4179c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_417a0:
 	.4byte	gCurrentSprite
 .L_417a4:
@@ -161,7 +161,7 @@ func_804173C:
 .L_417f4:
 	.4byte	gCurrentSprite
 .L_417f8:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_417fc:
 	mov	r7, #240	@ 0xf0
 	add	r0, r7, #0
@@ -208,7 +208,7 @@ func_804173C:
 	strb	r0, [r4, #28]
 	b	.L_4185c
 .L_41854:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_41858:
 	bl	SpriteUtilMoveForward1Subpixel
 .L_4185c:
@@ -253,7 +253,7 @@ func_8041884:
 	b	.L_418f8
 	.align	2, 0
 .L_418a0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_418a4:
 	.4byte	gCurrentSprite
 .L_418a8:
@@ -439,7 +439,7 @@ func_80419A4:
 	pop	{r0}
 	bx	r0
 .L_419e0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_419e4:
 	.4byte	gCurrentSprite
 
@@ -975,7 +975,7 @@ func_8041D48:
 .L_41d80:
 	.4byte	gCurrentSprite
 .L_41d84:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_41d88:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

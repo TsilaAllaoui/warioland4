@@ -1939,29 +1939,29 @@ func_8075F44:
 .L_760c0:
 	.4byte	gGoldenTreasureCount
 .L_760c4:
-	.4byte	gUnk_3000A58
+	.4byte	gSpriteAiAttackPhase
 .L_760c8:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_760cc:
-	.4byte	gUnk_3000A5A
+	.4byte	gSpriteAiMaskGraphicsTimer
 .L_760d0:
-	.4byte	gUnk_3000A5B
+	.4byte	gSpriteAiHealth
 .L_760d4:
-	.4byte	gUnk_3000A5C
+	.4byte	gGoldenDivaFaceGraphicsOverrideTimer
 .L_760d8:
-	.4byte	gUnk_3000A5D
+	.4byte	gGoldenDivaDefeatState
 .L_760dc:
-	.4byte	gUnk_3000A5E
+	.4byte	gGoldenDivaShopItemFlashTimer
 .L_760e0:
-	.4byte	gUnk_3000A5F
+	.4byte	gGoldenDivaDynamicGraphicsFrame
 .L_760e4:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_760e8:
-	.4byte	gUnk_3000A61
+	.4byte	gGoldenDivaShopItemHealthTarget
 .L_760ec:
 	.4byte	gUnk_3000A62
 .L_760f0:
-	.4byte	gUnk_3000A64
+	.4byte	gGoldenDivaOrbitRadius
 .L_760f4:
 	.4byte	gUnk_3000C04
 .L_760f8:

@@ -153,7 +153,7 @@ func_8045064:
 	b	.L_4513e
 	.align	2, 0
 .L_450f0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_450f4:
 	ldrh	r0, [r4, #10]
 	add	r0, r0, r5
@@ -204,7 +204,7 @@ func_8045064:
 	bx	r0
 	.align	2, 0
 .L_4514c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 
 
 thumb_func_start func_8045150
@@ -313,7 +313,7 @@ func_8045174:
 	pop	{r0}
 	bx	r0
 .L_45210:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 
 
 thumb_func_start func_8045214
@@ -428,7 +428,7 @@ func_8045238:
 .L_452dc:
 	.4byte	gUnk_30000A0
 .L_452e0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 
 
 thumb_func_start func_80452E4
@@ -564,7 +564,7 @@ func_8045350:
 .L_453d8:
 	.4byte	0x7FFF
 .L_453dc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_453e0:
 	cmp	r6, #1
 	bne	.L_453ea
@@ -597,7 +597,7 @@ func_8045350:
 .L_45414:
 	.4byte	gUnk_30000A0
 .L_45418:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_4541c:
 	ldrh	r0, [r4, #8]
 	sub	r0, r0, r5
@@ -711,7 +711,7 @@ func_8045454:
 	b	.L_45530
 	.align	2, 0
 .L_454e4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_454e8:
 	ldrh	r0, [r5, #8]
 	sub	r0, #56	@ 0x38
@@ -757,7 +757,7 @@ func_8045454:
 .L_45538:
 	.4byte	gUnk_30000A0
 .L_4553c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_45540:
 	.4byte	gCurrentSprite
 
@@ -833,7 +833,7 @@ func_8045584:
 .L_455bc:
 	.4byte	gCurrentSprite
 .L_455c0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_455c4:
 	ldrh	r0, [r4, #8]
 	add	r0, #8
@@ -865,7 +865,7 @@ func_8045584:
 .L_455f8:
 	.4byte	gUnk_30000A0
 .L_455fc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_45600:
 	ldrh	r0, [r4, #8]
 	sub	r0, #8
@@ -892,7 +892,7 @@ func_8045584:
 	mov	r0, #19
 	b	.L_4567c
 .L_45630:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_45634:
 	ldrh	r0, [r4, #10]
 	add	r0, #8
@@ -915,7 +915,7 @@ func_8045584:
 	b	.L_4567c
 	.align	2, 0
 .L_4565c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_45660:
 	ldrh	r0, [r4, #10]
 	sub	r0, #8

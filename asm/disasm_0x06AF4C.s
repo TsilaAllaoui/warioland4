@@ -1250,7 +1250,7 @@ func_806B864:
 	b	.L_6baa2
 	.align	2, 0
 .L_6b958:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_6b95c:
 	.4byte	gStageExitType
 .L_6b960:
@@ -1258,7 +1258,7 @@ func_806B864:
 .L_6b964:
 	.4byte	gColorFading
 .L_6b968:
-	.4byte	gUnk_3000044
+	.4byte	gGoldenDivaShopItemState
 .L_6b96c:
 	.4byte	gBldCnt
 .L_6b970:
@@ -1272,11 +1272,11 @@ func_806B864:
 .L_6b980:
 	.4byte	gUnk_3000035
 .L_6b984:
-	.4byte	gUnk_30000F4
+	.4byte	gGoldenDivaDefeatTimer
 .L_6b988:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_6b98c:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 .L_6b990:
 	.4byte	gHasTemporarySave
 .L_6b994:
@@ -2112,9 +2112,9 @@ func_806BF3C:
 .L_6bf7c:
 	.4byte	gCurrentPassage
 .L_6bf80:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_6bf84:
-	.4byte	gUnk_3000045
+	.4byte	gGoldenDivaShopItemTimer
 
 
 thumb_func_start func_806BF88
@@ -2640,11 +2640,11 @@ func_806C330:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_6c35c:
-	.4byte	gUnk_3000045
+	.4byte	gGoldenDivaShopItemTimer
 .L_6c360:
 	.4byte	gUnk_300188E
 .L_6c364:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_6c368:
 	.4byte	.L_6c36c
 .L_6c36c:
@@ -2951,7 +2951,7 @@ func_806C330:
 .L_6c5b4:
 	.4byte	gUnk_300188E
 .L_6c5b8:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 
 
 thumb_func_start func_806C5BC
@@ -3059,7 +3059,7 @@ BackgroundProcessMain:
 .L_6c67c:
 	.4byte	gTimerState
 .L_6c680:
-	.4byte	gUnk_3000044
+	.4byte	gGoldenDivaShopItemState
 .L_6c684:
 	.4byte	gUnk_300001B
 .L_6c688:
@@ -3087,7 +3087,7 @@ func_806C694:
 	strb	r0, [r1, #0]
 	b	.L_6c756
 .L_6c6b0:
-	.4byte	gUnk_3000044
+	.4byte	gGoldenDivaShopItemState
 .L_6c6b4:
 	.4byte	gUnk_30037BF
 .L_6c6b8:

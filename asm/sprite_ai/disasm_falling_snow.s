@@ -165,7 +165,7 @@ func_8036D80:
 .L_36db8:
 	.4byte	gUnk_30000A0
 .L_36dbc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_36dc0:
 	mov	r6, #42	@ 0x2a
 	add	r6, r6, r4

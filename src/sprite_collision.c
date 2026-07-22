@@ -1007,9 +1007,9 @@ void SpriteCollisionProcess(void)
                             } else {
                                 if (!(gSpriteCollisionFlags & SPRITE_COLLISION_BELOW)) {
                                     func_8023BFC(spriteY - 0xA0, spriteX);
-                                    if (gUnk_3000A51 & 0xF) {
+                                    if (gSpriteAiCollisionFlags & 0xF) {
                                         func_8023BFC(warioY - 0x60, warioX);
-                                        if (!(0xF & gUnk_3000A51) || ((gWarioData.pose < 5) || (gWarioData.pose > 9))) {
+                                        if (!(0xF & gSpriteAiCollisionFlags) || ((gWarioData.pose < 5) || (gWarioData.pose > 9))) {
                                             func_8020B10(slot, warioDirection);
                                         }
                                     } else {
@@ -1988,7 +1988,7 @@ NAKED void SpriteCollisionProcess(void)
 .L_1fa48: \n\
 	.4byte	gCurrentCarriedSprite \n\
 .L_1fa4c: \n\
-	.4byte	gUnk_3000A51 \n\
+	.4byte	gSpriteAiCollisionFlags \n\
 .L_1fa50: \n\
 	add	r0, r7, #0 \n\
 	add	r1, r4, #0 \n\
@@ -4048,15 +4048,15 @@ void func_8021500(s32 slot)
         if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
             if (gWarioData.damageTimer == 0) {
                 SpriteCollisionTakeDamageRight();
-                gUnk_3000A59 = 0x3C;
+                gSpriteAiMasksRemaining = 0x3C;
             }
         } else if (gSpriteCollisionFlags & SPRITE_COLLISION_RIGHT) {
             if (gWarioData.damageTimer == 0) {
                 SpriteCollisionTakeDamageLeft();
-                gUnk_3000A59 = 0x3C;
+                gSpriteAiMasksRemaining = 0x3C;
             }
         }
-        gUnk_3000A5B = 0;
+        gSpriteAiHealth = 0;
     }
 }
 
@@ -4236,9 +4236,9 @@ void func_8021784(
             return;
         }
 
-        gUnk_3000A51 = 0;
+        gSpriteAiCollisionFlags = 0;
         func_8023BFC(spriteBottom + 0x64, gSpriteData[slot].xPosition);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteAiCollisionFlags == 0) {
             gWarioData.yPosition = spriteBottom + 1 - gWarioData.hitboxOffsetTop;
         }
         if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
@@ -4502,9 +4502,9 @@ void func_8021E6C(s32 slot, u16 bottom, u16 left, u16 right)
         gWarioData.yVelocity = 0x40;
         gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(0.25);
     } else if (gSpriteCollisionFlags & SPRITE_COLLISION_BELOW) {
-        gUnk_3000A51 = 0;
+        gSpriteAiCollisionFlags = 0;
         func_8023BFC(bottom + 0x64, gSpriteData[slot].xPosition);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteAiCollisionFlags == 0) {
             gWarioData.yPosition = bottom + 1 - gWarioData.hitboxOffsetTop;
         }
         WarioRequestPose(WPOSE_NORMAL_LANDING_ON_ENEMY);
@@ -4696,9 +4696,9 @@ void func_80222D8(s32 slot, u16 bottom, u16 left, u16 right)
         return;
     }
     if (gSpriteCollisionFlags & COLLISION_BELOW) {
-        gUnk_3000A51 = 0;
+        gSpriteAiCollisionFlags = 0;
         func_8023BFC(bottom + 0x64, gSpriteData[slot].xPosition);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteAiCollisionFlags == 0) {
             gWarioData.yPosition = bottom + 1 - gWarioData.hitboxOffsetTop;
         }
         if (gWarioData.unk_1A) {
@@ -4873,7 +4873,7 @@ NAKED void func_80222D8(s32 slot, u16 bottom, u16 left, u16 right)
 	strh	r5, [r4, #24] \n\
 	b	.L_22510 \n\
 .L_2238c: \n\
-	.4byte	gUnk_3000A51 \n\
+	.4byte	gSpriteAiCollisionFlags \n\
 .L_22390: \n\
 	.4byte	gWarioData \n\
 .L_22394: \n\
@@ -5097,13 +5097,13 @@ void func_8022524(s32 slot, u16 spriteTop, u16 spriteBottom, u16 warioTop, u16 w
         !(gSpriteCollisionFlags & SPRITE_COLLISION_ABOVE) && (spriteTop <= warioTop)) {
         if (gSpriteCollisionFlags & SPRITE_COLLISION_BELOW) {
             WarioRequestPose(WPOSE_BOUNCY_HITTING_CEILING);
-            func_8062C78();
+            AdvanceGoldenDivaMaskGraphics();
             SpriteSpawnSecondary(warioTop, warioX, SSPRITE_40);
             SpriteSpawnAsChild(PSPRITE_0B, 0, 0, gSpriteData[slot].yPosition, gSpriteData[slot].xPosition);
             VoiceSetPlay(VS_WARIO_TREASURE);
             gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(0.25);
         } else {
-            func_8062C78();
+            AdvanceGoldenDivaMaskGraphics();
             SpriteSpawnAsChild(PSPRITE_0B, 0, 0, gSpriteData[slot].yPosition, gSpriteData[slot].xPosition);
             VoiceSetPlay(VS_WARIO_TREASURE);
             gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(1);
@@ -5133,9 +5133,9 @@ void func_8022524(s32 slot, u16 spriteTop, u16 spriteBottom, u16 warioTop, u16 w
         }
         gWarioData.yVelocity = 0x40;
     } else if (gSpriteCollisionFlags & SPRITE_COLLISION_BELOW) {
-        gUnk_3000A51 = 0;
+        gSpriteAiCollisionFlags = 0;
         func_8023BFC(spriteBottom + 0x64, gSpriteData[slot].xPosition);
-        if (gUnk_3000A51 == 0) {
+        if (gSpriteAiCollisionFlags == 0) {
             gWarioData.yPosition = spriteBottom + 1 - gWarioData.hitboxOffsetTop;
         }
         if (gWarioData.unk_1A != 0) {
@@ -5186,7 +5186,7 @@ void func_8022724(s32 slot, u16 direction)
         gWarioData.yVelocity = 0;
         gWarioData.yPosition = gSpriteData[slot].yPosition - gWarioData.hitboxOffsetTop;
         gWarioData.xPosition = gSpriteData[slot].xPosition;
-        gUnk_3000A5B = 1;
+        gSpriteAiHealth = 1;
         gSpriteData[slot].pOamData = sUnk_83B9E50;
         gSpriteData[slot].currentAnimationFrame = 0;
         gSpriteData[slot].animationTimer = 0;
@@ -5211,7 +5211,7 @@ void func_8022724(s32 slot, u16 direction)
                 }
                 if (gSpriteData[slot].warioCollision == 0x44) {
                     gSpriteData[slot].pose = SPOSE_TACKLED_RIGHT_INIT;
-                    gUnk_3000A58 = 1;
+                    gSpriteAiAttackPhase = 1;
                 }
                 WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                 gWarioData.xVelocity = -0x20;
@@ -5220,7 +5220,7 @@ void func_8022724(s32 slot, u16 direction)
             } else if (direction & DPAD_LEFT) {
                 if (gSpriteData[slot].warioCollision == 0x44) {
                     gSpriteData[slot].pose = SPOSE_TACKLED_LEFT_INIT;
-                    gUnk_3000A58 = 1;
+                    gSpriteAiAttackPhase = 1;
                 }
                 WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                 gWarioData.xVelocity = 0x20;
@@ -5261,7 +5261,7 @@ void func_8022948(s32 slot, u16 top)
                 case 0x1C:
                     m4aSongNumStart(SOUND_2B);
                 case 0x1B:
-                    if (gUnk_3000A5A == 0) {
+                    if (gSpriteAiMaskGraphicsTimer == 0) {
                         gSpriteData[slot].pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
                     }
                     SpriteCollisionLandOnEnemy();
@@ -5285,13 +5285,13 @@ void func_8022948(s32 slot, u16 top)
             case WPOSE_NORMAL_SHOULDER_BASH_JUMP:
             case WPOSE_NORMAL_DASH_ATTACK_JUMP:
                 if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
-                    if (!(gSpriteData[slot].status & SPRITE_STATUS_FACING_RIGHT) && (gUnk_3000A5A == 0)) {
+                    if (!(gSpriteData[slot].status & SPRITE_STATUS_FACING_RIGHT) && (gSpriteAiMaskGraphicsTimer == 0)) {
                         gSpriteData[slot].pose = SPOSE_TACKLED_RIGHT_INIT;
                     }
                     WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                     gWarioData.xVelocity = -0x30;
                 } else {
-                    if ((gSpriteData[slot].status & SPRITE_STATUS_FACING_RIGHT) && (gUnk_3000A5A == 0)) {
+                    if ((gSpriteData[slot].status & SPRITE_STATUS_FACING_RIGHT) && (gSpriteAiMaskGraphicsTimer == 0)) {
                         gSpriteData[slot].pose = SPOSE_TACKLED_LEFT_INIT;
                     }
                     WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
@@ -5344,7 +5344,7 @@ void func_8022AE8(s32 slot, u16 left, u16 right)
                     gSpriteData[slot].yPosition, gSpriteData[slot].xPosition + HALF_BLOCK_SIZE, SSPRITE_06
                 );
             }
-            if (gUnk_3000A5A == 0) {
+            if (gSpriteAiMaskGraphicsTimer == 0) {
                 gSpriteData[childSlot].pose = SPOSE_6C;
             }
             m4aSongNumStart(SOUND_38);
@@ -5356,7 +5356,7 @@ void func_8022AE8(s32 slot, u16 left, u16 right)
                 func_801EF50();
                 gWarioData.xVelocity = -0x20;
                 gWarioData.yVelocity = 0x50;
-                if (gUnk_3000A5A == 0) {
+                if (gSpriteAiMaskGraphicsTimer == 0) {
                     gSpriteData[childSlot].pose = SPOSE_TACKLED_RIGHT_INIT;
                 }
             } else {
@@ -5364,7 +5364,7 @@ void func_8022AE8(s32 slot, u16 left, u16 right)
                 func_801EF94();
                 gWarioData.xVelocity = 0x20;
                 gWarioData.yVelocity = 0x50;
-                if (gUnk_3000A5A == 0) {
+                if (gSpriteAiMaskGraphicsTimer == 0) {
                     gSpriteData[childSlot].pose = SPOSE_TACKLED_LEFT_INIT;
                 }
             }
@@ -5386,7 +5386,7 @@ void func_8022C64(s32 slot)
             return;
         }
 
-        if (gUnk_3000A60) {
+        if (gSpriteAiDynamicGraphicsTimer) {
             if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
                 SpriteCollisionTakeDamageRight();
             } else {
@@ -5397,7 +5397,7 @@ void func_8022C64(s32 slot)
         }
 
         gSpriteData[slot].pose = SPOSE_CRUSHED_OR_COLLECTED_INIT;
-        gUnk_3000A5B = 0x14;
+        gSpriteAiHealth = 0x14;
         return;
     }
 
@@ -5969,8 +5969,8 @@ void func_80237E4(s32 slot)
     } else if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
         if (gWarioData.damageTimer == 0) {
             SpriteCollisionTakeDamageRight();
-            gUnk_3000A59 = 0x3C;
-            gUnk_3000A5B = 0;
+            gSpriteAiMasksRemaining = 0x3C;
+            gSpriteAiHealth = 0;
         }
     }
 }

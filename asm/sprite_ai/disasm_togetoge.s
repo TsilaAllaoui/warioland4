@@ -177,7 +177,7 @@ func_803EDE4:
 .L_3ee34:
 	.4byte	gUnk_30000A0
 .L_3ee38:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_3ee3c:
 	.4byte	sUnk_83C4F20
 .L_3ee40:

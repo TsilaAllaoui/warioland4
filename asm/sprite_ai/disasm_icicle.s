@@ -147,7 +147,7 @@ func_805AA40:
 .L_5aa78:
 	.4byte	gUnk_30000A0
 .L_5aa7c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_5aa80:
 	mov	r6, #42	@ 0x2a
 	add	r6, r6, r4

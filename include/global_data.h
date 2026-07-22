@@ -161,14 +161,14 @@ extern u8 gUnk_300001B;
 // gUnk_300001D
 extern u8 gDisableSoftReset;
 extern u8 gUnk_3000020;
-extern u8 gUnk_3000021;
+extern u8 gSpriteAiDropTimer;
 extern u8 gUnk_3000022;
 // gUnk_3000023
 extern u8 gCurrentRoom;
 extern u8 gUnk_3000025;
 // gUnk_3000026
 // gUnk_3000027
-extern s8 gUnk_3000028;
+extern s8 gSpriteAiCollisionOffset;
 extern u16 gBldAlpha;
 extern u16 gBldCnt;
 extern u8 gSwitchStates[SWITCH_COUNT];

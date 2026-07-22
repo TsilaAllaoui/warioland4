@@ -811,7 +811,7 @@ func_806E01C:
 .L_6e068:
 	.4byte	gSubGameMode
 .L_6e06c:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_6e070:
 	.4byte	gStageExitType
 .L_6e074:

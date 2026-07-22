@@ -33,14 +33,14 @@ SECTIONS {
         . = 0x001d; gUnk_300001D = .;
         . = 0x001e; gDisableSoftReset = .;
         . = 0x0020; gUnk_3000020 = .;
-        . = 0x0021; gUnk_3000021 = .;
+        . = 0x0021; gSpriteAiDropTimer = .;
         . = 0x0022; gUnk_3000022 = .;
         . = 0x0023; gUnk_3000023 = .;
         . = 0x0024; gCurrentRoom = .;
         . = 0x0025; gUnk_3000025 = .;
         . = 0x0026; gUnk_3000026 = .;
         . = 0x0027; gUnk_3000027 = .;
-        . = 0x0028; gUnk_3000028 = .;
+        . = 0x0028; gSpriteAiCollisionOffset = .;
         . = 0x002a; gBldAlpha = .;
         . = 0x002c; gBldCnt = .;
         . = 0x002e; gSwitchStates = .;
@@ -53,8 +53,8 @@ SECTIONS {
         . = 0x003c; gUnk_300003C = .;
         . = 0x003e; gUnk_300003E = .;
         . = 0x0040; gUnk_3000040 = .;
-        . = 0x0044; gUnk_3000044 = .;
-        . = 0x0045; gUnk_3000045 = .;
+        . = 0x0044; gGoldenDivaShopItemState = .;
+        . = 0x0045; gGoldenDivaShopItemTimer = .;
         . = 0x0046; gUnk_3000046 = .;
         . = 0x0047; gTimerState = .;
         . = 0x0048; gStageExitType = .;
@@ -71,8 +71,8 @@ SECTIONS {
         . = 0x00d0; gColorFading = .;
         . = 0x00d8; gUnk_30000D8 = .;
         . = 0x00dc; gUnk_30000DC = .;
-        . = 0x00f4; gUnk_30000F4 = .;
-        . = 0x00fc; gUnk_30000FC = .;
+        . = 0x00f4; gGoldenDivaDefeatTimer = .;
+        . = 0x00fc; gGoldenDivaRoomTimer = .;
 
         . = 0x0104; gSpriteData = .;
         . = 0x0524; gUnk_3000524 = .;
@@ -82,24 +82,24 @@ SECTIONS {
         . = 0x0a24; gCurrentSprite = .;
         . = 0x0a4b; gUnk_3000A4B = .;
         . = 0x0a4d; gUnk_3000A4D = .;
-        . = 0x0a50; gUnk_3000A50 = .;
-        . = 0x0a51; gUnk_3000A51 = .;
+        . = 0x0a50; gSpriteAiCollisionResult = .;
+        . = 0x0a51; gSpriteAiCollisionFlags = .;
         . = 0x0a52; gSpriteCollisionFlags = .;
         . = 0x0a53; gIgnoreSpriteCollision = .;
         . = 0x0a54; gUnk_3000A54 = .;
-        . = 0x0a58; gUnk_3000A58 = .;
-        . = 0x0a59; gUnk_3000A59 = .;
-        . = 0x0a5a; gUnk_3000A5A = .;
-        . = 0x0a5b; gUnk_3000A5B = .;
-        . = 0x0a5c; gUnk_3000A5C = .;
-        . = 0x0a5d; gUnk_3000A5D = .;
-        . = 0x0a5e; gUnk_3000A5E = .;
-        . = 0x0a5f; gUnk_3000A5F = .;
-        . = 0x0a60; gUnk_3000A60 = .;
+        . = 0x0a58; gSpriteAiAttackPhase = .;
+        . = 0x0a59; gSpriteAiMasksRemaining = .;
+        . = 0x0a5a; gSpriteAiMaskGraphicsTimer = .;
+        . = 0x0a5b; gSpriteAiHealth = .;
+        . = 0x0a5c; gGoldenDivaFaceGraphicsOverrideTimer = .;
+        . = 0x0a5d; gGoldenDivaDefeatState = .;
+        . = 0x0a5e; gGoldenDivaShopItemFlashTimer = .;
+        . = 0x0a5f; gGoldenDivaDynamicGraphicsFrame = .;
+        . = 0x0a60; gSpriteAiDynamicGraphicsTimer = .;
 
-        . = 0x0a61; gUnk_3000A61 = .;
+        . = 0x0a61; gGoldenDivaShopItemHealthTarget = .;
         . = 0x0a62; gUnk_3000A62 = .;
-        . = 0x0a64; gUnk_3000A64 = .;
+        . = 0x0a64; gGoldenDivaOrbitRadius = .;
         . = 0x0a68; gCurrentCollection = .;
         . = 0x0b10; gHighScoreTable = .;
 
@@ -703,7 +703,7 @@ SECTIONS {
         obj/sprite_ai/disasm_cat.o(.text);
         obj/sprite_ai/disasm_petbottom.o(.text);
         obj/sprite_ai/disasm_glass_bird.o(.text);
-        obj/sprite_ai/disasm_golden_diva.o(.text);
+        obj/sprite_ai/golden_diva.o(.text);
         obj/sprite_ai/disasm_chandelier.o(.text);
         obj/sprite_ai/disasm_crumbling_block.o(.text);
         obj/sprite_ai/disasm_professor.o(.text);

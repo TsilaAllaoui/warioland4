@@ -56,7 +56,7 @@ func_8047F1C:
 	mov	r0, #0
 	b	.L_47f9a
 .L_47f40:
-	.4byte	gUnk_3000A5B
+	.4byte	gSpriteAiHealth
 .L_47f44:
 	.4byte	sUnk_83CF920
 .L_47f48:
@@ -131,7 +131,7 @@ func_8047FB4:
 	b	.L_48008
 	.align	2, 0
 .L_47fc8:
-	.4byte	gUnk_3000A5F
+	.4byte	gGoldenDivaDynamicGraphicsFrame
 .L_47fcc:
 	ldr	r4, .L_48010
 	ldrb	r0, [r4, #0]
@@ -170,7 +170,7 @@ func_8047FB4:
 	bx	r0
 	.align	2, 0
 .L_48010:
-	.4byte	gUnk_3000A5E
+	.4byte	gGoldenDivaShopItemFlashTimer
 .L_48014:
 	.4byte	0x40000D4
 .L_48018:
@@ -444,23 +444,23 @@ func_8048134:
 	bx	r0
 	.align	2, 0
 .L_48218:
-	.4byte	gUnk_3000A58
+	.4byte	gSpriteAiAttackPhase
 .L_4821c:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_48220:
-	.4byte	gUnk_3000A5A
+	.4byte	gSpriteAiMaskGraphicsTimer
 .L_48224:
-	.4byte	gUnk_3000A5B
+	.4byte	gSpriteAiHealth
 .L_48228:
-	.4byte	gUnk_3000A5C
+	.4byte	gGoldenDivaFaceGraphicsOverrideTimer
 .L_4822c:
-	.4byte	gUnk_3000A5D
+	.4byte	gGoldenDivaDefeatState
 .L_48230:
-	.4byte	gUnk_3000A5E
+	.4byte	gGoldenDivaShopItemFlashTimer
 .L_48234:
-	.4byte	gUnk_3000A5F
+	.4byte	gGoldenDivaDynamicGraphicsFrame
 .L_48238:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_4823c:
 	.4byte	gCurrentSprite
 .L_48240:
@@ -538,7 +538,7 @@ func_804824C:
 .L_482c4:
 	.4byte	0x7FFF
 .L_482c8:
-	.4byte	gUnk_30000F4
+	.4byte	gGoldenDivaDefeatTimer
 .L_482cc:
 	.4byte	gCurrentShopItem
 
@@ -827,7 +827,7 @@ func_804849C:
 	b	.L_48502
 	.align	2, 0
 .L_484dc:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_484e0:
 	.4byte	sUnk_83CE4A8
 .L_484e4:
@@ -843,7 +843,7 @@ func_804849C:
 	ldr	r0, .L_484fc
 	b	.L_48502
 .L_484f8:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_484fc:
 	.4byte	sUnk_83CE468
 .L_48500:
@@ -983,9 +983,9 @@ func_8048528:
 .L_48600:
 	.4byte	0x7FFF
 .L_48604:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48608:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_4860c:
 	.4byte	gSpriteData
 .L_48610:
@@ -1017,7 +1017,7 @@ func_8048528:
 	b	.L_48654
 	.align	2, 0
 .L_48648:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_4864c:
 	.4byte	0xFFFB
 .L_48650:
@@ -1100,9 +1100,9 @@ func_8048528:
 	b	.L_48780
 	.align	2, 0
 .L_486e8:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_486ec:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_486f0:
 	.4byte	gSpriteData
 .L_486f4:
@@ -1134,7 +1134,7 @@ func_8048528:
 	b	.L_48738
 	.align	2, 0
 .L_4872c:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_48730:
 	.4byte	0xFFFB
 .L_48734:
@@ -1202,7 +1202,7 @@ func_8048528:
 .L_487a8:
 	.4byte	gCurrentSprite
 .L_487ac:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_487b0:
 	ldrh	r0, [r4, #8]
 	ldrh	r1, [r4, #10]
@@ -1228,7 +1228,7 @@ func_8048528:
 	bx	r0
 	.align	2, 0
 .L_487dc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 
 
 thumb_func_start func_80487E0
@@ -1357,7 +1357,7 @@ func_8048808:
 .L_488d4:
 	.4byte	gUnk_30000A0
 .L_488d8:
-	.4byte	gUnk_3000A58
+	.4byte	gSpriteAiAttackPhase
 .L_488dc:
 	ldrh	r0, [r4, #8]
 	add	r0, #128	@ 0x80
@@ -1400,7 +1400,7 @@ func_8048808:
 	bx	r0
 	.align	2, 0
 .L_48930:
-	.4byte	gUnk_3000A58
+	.4byte	gSpriteAiAttackPhase
 
 
 thumb_func_start func_8048934
@@ -1501,7 +1501,7 @@ func_8048980:
 .L_489ec:
 	.4byte	gTimerState
 .L_489f0:
-	.4byte	gUnk_3000A5A
+	.4byte	gSpriteAiMaskGraphicsTimer
 .L_489f4:
 	.4byte	sUnk_83CE490
 .L_489f8:
@@ -1559,7 +1559,7 @@ func_80489FC:
 .L_48a58:
 	.4byte	gBg1YPosition
 .L_48a5c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48a60:
 	ldrh	r0, [r4, #8]
 	ldrh	r1, [r4, #10]
@@ -1596,7 +1596,7 @@ func_80489FC:
 	b	.L_48ac6
 	.align	2, 0
 .L_48aa4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48aa8:
 	.4byte	gCurrentSprite
 .L_48aac:
@@ -1671,13 +1671,13 @@ func_8048ACC:
 .L_48b24:
 	.4byte	gCurrentSprite
 .L_48b28:
-	.4byte	gUnk_3000A5A
+	.4byte	gSpriteAiMaskGraphicsTimer
 .L_48b2c:
 	.4byte	sUnk_83CD35C
 .L_48b30:
-	.4byte	gUnk_3000A5C
+	.4byte	gGoldenDivaFaceGraphicsOverrideTimer
 .L_48b34:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_48b38:
 	.4byte	gSpriteData
 .L_48b3c:
@@ -1755,7 +1755,7 @@ func_8048B58:
 .L_48bc8:
 	.4byte	gBg1YPosition
 .L_48bcc:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_48bd0:
 	cmp	r5, #80	@ 0x50
 	bne	.L_48bde
@@ -1827,7 +1827,7 @@ func_8048B58:
 	b	.L_48c74
 	.align	2, 0
 .L_48c54:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48c58:
 	ldrh	r0, [r6, #8]
 	ldrh	r1, [r6, #10]
@@ -1863,7 +1863,7 @@ func_8048B58:
 	b	.L_48cb4
 	.align	2, 0
 .L_48c9c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48ca0:
 	.4byte	gCurrentSprite
 .L_48ca4:
@@ -1900,7 +1900,7 @@ func_8048CBC:
 .L_48cd4:
 	.4byte	gCurrentSprite
 .L_48cd8:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_48cdc:
 	.4byte	sUnk_83CE4D0
 .L_48ce0:
@@ -1969,7 +1969,7 @@ func_8048D38:
 .L_48d4c:
 	.4byte	gCurrentSprite
 .L_48d50:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_48d54:
 	.4byte	sUnk_83CE4A8
 .L_48d58:
@@ -2070,7 +2070,7 @@ func_8048D78:
 	pop	{r0}
 	bx	r0
 .L_48e10:
-	.4byte	gUnk_3000A5A
+	.4byte	gSpriteAiMaskGraphicsTimer
 
 
 thumb_func_start func_8048E14
@@ -2144,7 +2144,7 @@ func_8048E40:
 .L_48e94:
 	.4byte	gCurrentSprite
 .L_48e98:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48e9c:
 	.4byte	gBg1YPosition
 .L_48ea0:
@@ -2245,7 +2245,7 @@ func_8048EF8:
 .L_48f4c:
 	.4byte	gCurrentSprite
 .L_48f50:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_48f54:
 	.4byte	gBg1YPosition
 .L_48f58:
@@ -2290,7 +2290,7 @@ func_8048F84:
 .L_48f98:
 	.4byte	gCurrentSprite
 .L_48f9c:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_48fa0:
 	.4byte	sUnk_83CE4A8
 .L_48fa4:
@@ -2826,7 +2826,7 @@ func_80493B8:
 .L_49450:
 	.4byte	sUnk_83CE490
 .L_49454:
-	.4byte	gUnk_3000A5D
+	.4byte	gGoldenDivaDefeatState
 
 
 thumb_func_start func_8049458
@@ -2856,7 +2856,7 @@ func_8049458:
 	b	.L_49542
 	.align	2, 0
 .L_49488:
-	.4byte	gUnk_3000A5D
+	.4byte	gGoldenDivaDefeatState
 .L_4948c:
 	.4byte	gCurrentSprite
 .L_49490:
@@ -2932,7 +2932,7 @@ func_8049458:
 	bl	func_8047F1C
 	b	.L_49542
 .L_49520:
-	.4byte	gUnk_3000A5C
+	.4byte	gGoldenDivaFaceGraphicsOverrideTimer
 .L_49524:
 	.4byte	sUnk_83CE468
 .L_49528:
@@ -3127,7 +3127,7 @@ func_804964C:
 .L_4967c:
 	.4byte	gCurrentSprite
 .L_49680:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_49684:
 	ldrh	r0, [r4, #8]
 	ldrh	r1, [r4, #10]
@@ -3144,7 +3144,7 @@ func_804964C:
 	b	.L_496b0
 	.align	2, 0
 .L_496a0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_496a4:
 	add	r0, r4, #0
 	add	r0, #41	@ 0x29
@@ -3650,7 +3650,7 @@ func_8049850:
 .L_49a38:
 	.4byte	gCurrentSprite
 .L_49a3c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_49a40:
 	.4byte	sUnk_83CFA7C
 .L_49a44:
@@ -3950,7 +3950,7 @@ func_8049BEC:
 .L_49c5c:
 	.4byte	sUnk_83CF478
 .L_49c60:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 
 
 thumb_func_start func_8049C64
@@ -4280,7 +4280,7 @@ func_8049EB0:
 	bl	SpriteSpawnSecondary
 	b	.L_49eee
 .L_49ecc:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_49ed0:
 	.4byte	gCurrentSprite
 .L_49ed4:
@@ -4389,11 +4389,11 @@ SpriteCatbat:
 	b	.L_49f94
 	.align	2, 0
 .L_49f80:
-	.4byte	gUnk_3000A59
+	.4byte	gSpriteAiMasksRemaining
 .L_49f84:
 	.4byte	gCurrentSprite
 .L_49f88:
-	.4byte	gUnk_3000A5B
+	.4byte	gSpriteAiHealth
 .L_49f8c:
 	.4byte	gWarioData
 .L_49f90:

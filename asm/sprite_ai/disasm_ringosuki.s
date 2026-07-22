@@ -107,7 +107,7 @@ func_8046AF4:
 	bl	func_8023BFC
 	b	.L_46b50
 .L_46b34:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_46b38:
 	.4byte	gCurrentSprite
 .L_46b3c:
@@ -133,7 +133,7 @@ func_8046AF4:
 	b	.L_46c54
 	.align	2, 0
 .L_46b64:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_46b68:
 	.4byte	gCurrentSprite
 .L_46b6c:
@@ -190,7 +190,7 @@ func_8046AF4:
 	b	.L_46c3e
 	.align	2, 0
 .L_46bd4:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_46bd8:
 	cmp	r5, #4
 	bne	.L_46bf6
@@ -238,7 +238,7 @@ func_8046AF4:
 	strb	r0, [r4, #28]
 	b	.L_46c54
 .L_46c2c:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_46c30:
 	ldrh	r0, [r4, #8]
 	sub	r0, #32
@@ -300,7 +300,7 @@ func_8046C7C:
 	b	.L_46ce8
 	.align	2, 0
 .L_46c98:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_46c9c:
 	.4byte	gCurrentSprite
 .L_46ca0:
@@ -488,7 +488,7 @@ func_8046D6C:
 	strb	r0, [r1, #28]
 	b	.L_46df4
 .L_46de8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_46dec:
 	.4byte	gCurrentSprite
 .L_46df0:
@@ -631,7 +631,7 @@ func_8046EA8:
 	bx	r0
 	.align	2, 0
 .L_46edc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_46ee0:
 	.4byte	gCurrentSprite
 
@@ -761,7 +761,7 @@ func_8046F2C:
 	b	.L_46fe0
 	.align	2, 0
 .L_46fc4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_46fc8:
 	.4byte	gWarioData
 .L_46fcc:
@@ -1217,7 +1217,7 @@ func_8047280:
 .L_472b8:
 	.4byte	gCurrentSprite
 .L_472bc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_472c0:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4
@@ -1475,9 +1475,9 @@ func_8047404:
 .L_4747c:
 	.4byte	gUnk_30000A0
 .L_47480:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_47484:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_47488:
 	.4byte	sUnk_83CA47E
 .L_4748c:
@@ -1516,7 +1516,7 @@ func_8047404:
 	strh	r0, [r4, #10]
 	b	.L_47506
 .L_474d0:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_474d4:
 	ldrh	r0, [r4, #8]
 	sub	r0, #32
@@ -1539,7 +1539,7 @@ func_8047404:
 	b	.L_47506
 	.align	2, 0
 .L_474fc:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_47500:
 	ldrh	r0, [r5, #10]
 	sub	r0, #8

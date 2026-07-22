@@ -138,7 +138,7 @@ func_804AD48:
 	bl	func_8023BFC
 	b	.L_4ad98
 .L_4ad7c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteAiCollisionResult
 .L_4ad80:
 	.4byte	gCurrentSprite
 .L_4ad84:
@@ -164,7 +164,7 @@ func_804AD48:
 	bx	r0
 	.align	2, 0
 .L_4adac:
-	.4byte	gUnk_3000A51
+	.4byte	gSpriteAiCollisionFlags
 .L_4adb0:
 	.4byte	gCurrentSprite
 
