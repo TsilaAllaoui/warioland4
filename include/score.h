@@ -159,18 +159,14 @@ extern u16 gVortexXPosition;
 #define gHasBossChest55sec gCollectedNEJewelPiece
 #define gHasBossChest35sec gCollectedSEJewelPiece
 #define gHasBossChest15sec gCollectedSWJewelPiece
-#define gHasGoldenDivaChest1 gCollectedNEJewelPiece
-#define gHasGoldenDivaChest2 gCollectedSEJewelPiece
-#define gHasGoldenDivaChest3 gCollectedSWJewelPiece
-#define gHasGoldenDivaChest4 gCollectedNWJewelPiece
-extern u8 gHasGoldenDivaChest5;
-extern u8 gHasGoldenDivaChest6;
-extern u8 gHasGoldenDivaChest7;
-extern u8 gHasGoldenDivaChest8;
-extern u8 gHasGoldenDivaChest9;
-extern u8 gHasGoldenDivaChest10;
-extern u8 gHasGoldenDivaChest11;
-extern u8 gHasGoldenDivaChest12;
+extern u8 gHasBossTreasure5;
+extern u8 gHasBossTreasure6;
+extern u8 gHasBossTreasure7;
+extern u8 gHasBossTreasure8;
+extern u8 gHasBossTreasure9;
+extern u8 gHasBossTreasure10;
+extern u8 gHasBossTreasure11;
+extern u8 gHasBossTreasure12;
 
 void ProcessSecondarySprites(void);
 void func_8075F44(void);

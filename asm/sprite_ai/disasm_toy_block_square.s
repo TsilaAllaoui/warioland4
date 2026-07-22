@@ -367,7 +367,7 @@ func_8043000:
 .L_43034:
 	.4byte	gCurrentSprite
 .L_43038:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4303c:
 	ldrh	r0, [r4, #8]
 	add	r1, r4, #0
@@ -469,7 +469,7 @@ func_804308C:
 .L_430f4:
 	.4byte	gUnk_30000A0
 .L_430f8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_430fc:
 	ldrb	r2, [r6, #0]
 	ldr	r5, .L_43120

@@ -177,7 +177,7 @@ func_803EDE4:
 .L_3ee34:
 	.4byte	gUnk_30000A0
 .L_3ee38:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_3ee3c:
 	.4byte	sUnk_83C4F20
 .L_3ee40:
@@ -206,7 +206,7 @@ func_803EDE4:
 	b	.L_3ee82
 	.align	2, 0
 .L_3ee70:
-	.4byte	sUnk_8352ADC
+	.4byte	sSpriteGravityVelocityTable
 .L_3ee74:
 	.4byte	0x7FFF
 .L_3ee78:

@@ -469,18 +469,19 @@ extern u8 gPersistentSpriteData[16][MAX_SPRITE_SLOTS_PER_ROOM];
 #define MAKE_PERSISTENT_DATA(pose, status) (((pose) << 4) | (status))
 extern struct PrimarySpriteData gCurrentSprite;
 
-extern u8 gUnk_3000A50;
+extern u8 gSpriteCollisionResult;
 extern u8 gUnk_3000A51;
 extern u8 gSpriteCollisionFlags;
 extern u8 gIgnoreSpriteCollision;
-extern s8 gUnk_3000A58;
+extern s8 gBossInteractionState;
+extern u8 gBossDefeatState;
 extern s8 gUnk_3000A59;
 extern u8 gUnk_3000A5A;
 extern u8 gUnk_3000A5B;
 extern u8 gUnk_3000A60;
 
 extern const u16 sUnk_83B35F8[][2];
-extern const u16 sUnk_83B37FC[][2];
+extern const u16 sSpriteAffineScaleTable[][2];
 
 void SpriteSpawnAsChild(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
 void func_801D684(void);

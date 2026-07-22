@@ -118,7 +118,7 @@ func_80438E4:
 	b	.L_43936
 	.align	2, 0
 .L_43920:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_43924:
 	.4byte	gCurrentSprite
 .L_43928:
@@ -289,7 +289,7 @@ func_8043A44:
 	b	.L_43abc
 	.align	2, 0
 .L_43a60:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_43a64:
 	.4byte	gCurrentSprite
 .L_43a68:
@@ -452,7 +452,7 @@ func_8043AEC:
 .L_43b8c:
 	.4byte	gUnk_30000A0
 .L_43b90:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_43b94:
 	.4byte	sUnk_83C7F08
 .L_43b98:

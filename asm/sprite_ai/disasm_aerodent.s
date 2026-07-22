@@ -1391,7 +1391,7 @@ func_8054578:
 .L_545b0:
 	.4byte	gCurrentSprite
 .L_545b4:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_545b8:
 	.4byte	gCurrentShopItem
 
@@ -3248,7 +3248,7 @@ func_8055218:
 .L_55308:
 	.4byte	gUnk_30000A0
 .L_5530c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55310:
 	.4byte	sUnk_83DB4AC
 .L_55314:
@@ -3595,7 +3595,7 @@ func_80554AC:
 .L_55590:
 	.4byte	gUnk_30000A0
 .L_55594:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55598:
 	.4byte	sUnk_83DB4AC
 .L_5559c:
@@ -3989,7 +3989,7 @@ func_8055824:
 	pop	{r0}
 	bx	r0
 .L_55840:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55844:
 	.4byte	gCurrentSprite
 
@@ -4561,7 +4561,7 @@ func_8055B5C:
 .L_55c18:
 	.4byte	gUnk_30000A0
 .L_55c1c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_55c20:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

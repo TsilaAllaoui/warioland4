@@ -195,7 +195,7 @@ func_8069868:
 .L_69898:
 	.4byte	gCurrentSprite
 .L_6989c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_698a0:
 	mov	r0, #42	@ 0x2a
 	add	r0, r0, r4

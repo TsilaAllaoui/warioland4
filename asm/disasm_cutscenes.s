@@ -15140,21 +15140,21 @@ func_800B280:
 .L_b318:
 	.4byte	gCollectedNWJewelPiece
 .L_b31c:
-	.4byte	gHasGoldenDivaChest5
+	.4byte	gHasBossTreasure5
 .L_b320:
-	.4byte	gHasGoldenDivaChest6
+	.4byte	gHasBossTreasure6
 .L_b324:
-	.4byte	gHasGoldenDivaChest7
+	.4byte	gHasBossTreasure7
 .L_b328:
-	.4byte	gHasGoldenDivaChest8
+	.4byte	gHasBossTreasure8
 .L_b32c:
-	.4byte	gHasGoldenDivaChest9
+	.4byte	gHasBossTreasure9
 .L_b330:
-	.4byte	gHasGoldenDivaChest10
+	.4byte	gHasBossTreasure10
 .L_b334:
-	.4byte	gHasGoldenDivaChest11
+	.4byte	gHasBossTreasure11
 .L_b338:
-	.4byte	gHasGoldenDivaChest12
+	.4byte	gHasBossTreasure12
 .L_b33c:
 	.4byte	gUnk_3002C80
 .L_b340:

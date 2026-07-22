@@ -770,7 +770,7 @@ func_8076FEC:
 .L_77010:
 	.4byte	gCurrentSecondarySprite
 .L_77014:
-	.4byte	sUnk_83D84D4
+	.4byte	sShopEffectShortAOam
 
 
 thumb_func_start func_8077018
@@ -796,7 +796,7 @@ func_8077018:
 .L_7703c:
 	.4byte	gCurrentSecondarySprite
 .L_77040:
-	.4byte	sUnk_83D853C
+	.4byte	sShopEffectLongOam
 
 
 thumb_func_start func_8077044
@@ -993,31 +993,31 @@ func_807714C:
 	bl	func_8076A0C
 	b	.L_771da
 .L_771a0:
-	.4byte	sUnk_83D8B40
+	.4byte	sPurchasedAppleBombOam
 .L_771a4:
 	ldr	r0, .L_771ac
 	bl	func_8076A0C
 	b	.L_771da
 .L_771ac:
-	.4byte	sUnk_83D8E3C
+	.4byte	sPurchasedBlastCannonOam
 .L_771b0:
 	ldr	r0, .L_771b8
 	bl	func_8076A0C
 	b	.L_771da
 .L_771b8:
-	.4byte	sUnk_83D9994
+	.4byte	sPurchasedBlackDogOam
 .L_771bc:
 	ldr	r0, .L_771c4
 	bl	func_8076A0C
 	b	.L_771da
 .L_771c4:
-	.4byte	sUnk_83D9BC0
+	.4byte	sPurchasedBigFistOam
 .L_771c8:
 	ldr	r0, .L_771d0
 	bl	func_8076A0C
 	b	.L_771da
 .L_771d0:
-	.4byte	sUnk_83D9DB4
+	.4byte	sPurchasedBlackDragonOam
 .L_771d4:
 	ldr	r1, .L_771f0
 	mov	r0, #0

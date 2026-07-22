@@ -756,7 +756,7 @@ func_8046194:
 	strb	r0, [r4, #28]
 	b	.L_46218
 .L_461d0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_461d4:
 	mov	r0, #33	@ 0x21
 	strb	r0, [r4, #28]

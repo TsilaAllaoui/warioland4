@@ -58,7 +58,7 @@ void RockIdle(void)
 {
     func_80238E8();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
         } else {

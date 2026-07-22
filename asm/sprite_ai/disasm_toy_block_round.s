@@ -94,7 +94,7 @@ func_8043204:
 	bl	func_8023BFC
 	b	.L_43250
 .L_43234:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_43238:
 	.4byte	gCurrentSprite
 .L_4323c:
@@ -179,7 +179,7 @@ func_8043280:
 .L_432c8:
 	.4byte	gUnk_30000A0
 .L_432cc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_432d0:
 	.4byte	gWarioData
 .L_432d4:
@@ -243,7 +243,7 @@ func_8043280:
 	add	r0, r0, r1
 	b	.L_43356
 .L_43344:
-	.4byte	sUnk_8352ADC
+	.4byte	sSpriteGravityVelocityTable
 .L_43348:
 	.4byte	0x7FFF
 .L_4334c:

@@ -969,21 +969,21 @@ func_809329C:
 .L_93704:
 	.4byte	gCollectedNWJewelPiece
 .L_93708:
-	.4byte	gHasGoldenDivaChest5
+	.4byte	gHasBossTreasure5
 .L_9370c:
-	.4byte	gHasGoldenDivaChest6
+	.4byte	gHasBossTreasure6
 .L_93710:
-	.4byte	gHasGoldenDivaChest7
+	.4byte	gHasBossTreasure7
 .L_93714:
-	.4byte	gHasGoldenDivaChest8
+	.4byte	gHasBossTreasure8
 .L_93718:
-	.4byte	gHasGoldenDivaChest9
+	.4byte	gHasBossTreasure9
 .L_9371c:
-	.4byte	gHasGoldenDivaChest10
+	.4byte	gHasBossTreasure10
 .L_93720:
-	.4byte	gHasGoldenDivaChest11
+	.4byte	gHasBossTreasure11
 .L_93724:
-	.4byte	gHasGoldenDivaChest12
+	.4byte	gHasBossTreasure12
 .L_93728:
 	.4byte	gDifficulty
 .L_9372c:

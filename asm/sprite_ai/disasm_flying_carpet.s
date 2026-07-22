@@ -277,7 +277,7 @@ func_80381F4:
 	bl	func_80380DC
 	b	.L_38280
 .L_38208:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_3820c:
 	ldr	r3, .L_3823c
 	ldrh	r4, [r3, #0]
@@ -618,7 +618,7 @@ func_8038448:
 .L_38490:
 	.4byte	gUnk_30000A0
 .L_38494:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_38498:
 	.4byte	sUnk_83BE1D4
 .L_3849c:
@@ -799,7 +799,7 @@ func_80385A4:
 .L_385e4:
 	.4byte	gUnk_30000A0
 .L_385e8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_385ec:
 	.4byte	sUnk_83BE19C
 .L_385f0:

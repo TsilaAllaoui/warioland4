@@ -147,7 +147,7 @@ func_805AA40:
 .L_5aa78:
 	.4byte	gUnk_30000A0
 .L_5aa7c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_5aa80:
 	mov	r6, #42	@ 0x2a
 	add	r6, r6, r4
@@ -170,7 +170,7 @@ func_805AA40:
 	add	r0, r0, r1
 	b	.L_5aaba
 .L_5aaa8:
-	.4byte	sUnk_8352ADC
+	.4byte	sSpriteGravityVelocityTable
 .L_5aaac:
 	.4byte	0x7FFF
 .L_5aab0:

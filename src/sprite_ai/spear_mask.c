@@ -736,7 +736,7 @@ void SpearMaskWalkYellow(void)
 {
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
         } else {
@@ -748,7 +748,7 @@ void SpearMaskWalkYellow(void)
         }
     } else {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
-            if ((gUnk_3000A50 & 0xF0) &&
+            if ((gSpriteCollisionResult & 0xF0) &&
                 (gCurrentSprite.xPosition % BLOCK_SIZE + gCurrentSprite.hitboxExtentRight >= BLOCK_SIZE)) {
                 func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
                 if (!(gUnk_3000A51 & 0xF0)) {
@@ -765,7 +765,7 @@ void SpearMaskWalkYellow(void)
                 }
             }
         } else {
-            if ((gUnk_3000A50 & 0xF0) && (gCurrentSprite.xPosition % BLOCK_SIZE < gCurrentSprite.hitboxExtentLeft)) {
+            if ((gSpriteCollisionResult & 0xF0) && (gCurrentSprite.xPosition % BLOCK_SIZE < gCurrentSprite.hitboxExtentLeft)) {
                 func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
                 if (!(gUnk_3000A51 & 0xF0)) {
                     gCurrentSprite.pose = SPOSE_11;
@@ -800,7 +800,7 @@ void SpearMaskTurn(void)
 {
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -1287,7 +1287,7 @@ void SpearMaskPose4D(void)
     if (gUnk_30000A0.unk_02 == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = yPosition;
         gCurrentSprite.pOamData = sSpearMaskOam_83B4334;
         gCurrentSprite.animationTimer = 0;
@@ -1305,7 +1305,7 @@ void SpearMaskPose4E(void)
     TIMER_COUNT_DOWN(gCurrentSprite.work0);
     if (gCurrentSprite.work0) {
         func_8023B88();
-        if (!gUnk_3000A50) {
+        if (!gSpriteCollisionResult) {
             gCurrentSprite.pose = SPOSE_1B;
         }
     } else {
@@ -1367,7 +1367,7 @@ void SpearMaskStartChase(void)
 {
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         gCurrentSprite.pose = SPOSE_1B;
         return;
     }
@@ -1388,7 +1388,7 @@ void SpearMaskWalkBlueOrRed(void)
 
     func_80238A4();
     func_8023B88();
-    if (!gUnk_3000A50) {
+    if (!gSpriteCollisionResult) {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
             func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
         } else {
@@ -1400,7 +1400,7 @@ void SpearMaskWalkBlueOrRed(void)
         }
     } else {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {
-            if ((gUnk_3000A50 & 0xF0) &&
+            if ((gSpriteCollisionResult & 0xF0) &&
                 (gCurrentSprite.xPosition % BLOCK_SIZE + gCurrentSprite.hitboxExtentRight >= BLOCK_SIZE)) {
                 func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight);
                 if (!gUnk_3000A51) {
@@ -1423,7 +1423,7 @@ void SpearMaskWalkBlueOrRed(void)
                 }
             }
         } else {
-            if ((gUnk_3000A50 & 0xF0) && (gCurrentSprite.xPosition % BLOCK_SIZE < gCurrentSprite.hitboxExtentLeft)) {
+            if ((gSpriteCollisionResult & 0xF0) && (gCurrentSprite.xPosition % BLOCK_SIZE < gCurrentSprite.hitboxExtentLeft)) {
                 func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft);
                 if (!gUnk_3000A51) {
                     gCurrentSprite.pose = SPOSE_11;

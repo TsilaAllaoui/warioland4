@@ -180,7 +180,7 @@ extern u8 gEnableHBlank;
 // gUnk_300003C
 // gUnk_300003E
 // gUnk_3000040
-// gUnk_3000044
+extern u8 gShopkeeperItemState;
 // gUnk_3000045
 // gUnk_3000046
 extern u8 gTimerState;
@@ -193,5 +193,7 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+
+extern u8 gBossDefeatTimer;
 
 #endif  // GLOBAL_DATA_H

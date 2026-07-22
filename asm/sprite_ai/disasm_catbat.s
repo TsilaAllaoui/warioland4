@@ -444,7 +444,7 @@ func_8048134:
 	bx	r0
 	.align	2, 0
 .L_48218:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_4821c:
 	.4byte	gUnk_3000A59
 .L_48220:
@@ -454,7 +454,7 @@ func_8048134:
 .L_48228:
 	.4byte	gUnk_3000A5C
 .L_4822c:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossDefeatState
 .L_48230:
 	.4byte	gUnk_3000A5E
 .L_48234:
@@ -538,7 +538,7 @@ func_804824C:
 .L_482c4:
 	.4byte	0x7FFF
 .L_482c8:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_482cc:
 	.4byte	gCurrentShopItem
 
@@ -1357,7 +1357,7 @@ func_8048808:
 .L_488d4:
 	.4byte	gUnk_30000A0
 .L_488d8:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_488dc:
 	ldrh	r0, [r4, #8]
 	add	r0, #128	@ 0x80
@@ -1400,7 +1400,7 @@ func_8048808:
 	bx	r0
 	.align	2, 0
 .L_48930:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 
 
 thumb_func_start func_8048934
@@ -2826,7 +2826,7 @@ func_80493B8:
 .L_49450:
 	.4byte	sUnk_83CE490
 .L_49454:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossDefeatState
 
 
 thumb_func_start func_8049458
@@ -2856,7 +2856,7 @@ func_8049458:
 	b	.L_49542
 	.align	2, 0
 .L_49488:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossDefeatState
 .L_4948c:
 	.4byte	gCurrentSprite
 .L_49490:

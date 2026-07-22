@@ -138,7 +138,7 @@ func_804AD48:
 	bl	func_8023BFC
 	b	.L_4ad98
 .L_4ad7c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4ad80:
 	.4byte	gCurrentSprite
 .L_4ad84:

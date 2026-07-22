@@ -882,7 +882,7 @@ func_8040720:
 .L_4077c:
 	.4byte	gUnk_30000A0
 .L_40780:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_40784:
 	ldrb	r0, [r5, #0]
 	add	r0, #1

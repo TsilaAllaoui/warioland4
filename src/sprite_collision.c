@@ -5211,7 +5211,7 @@ void func_8022724(s32 slot, u16 direction)
                 }
                 if (gSpriteData[slot].warioCollision == 0x44) {
                     gSpriteData[slot].pose = SPOSE_TACKLED_RIGHT_INIT;
-                    gUnk_3000A58 = 1;
+                    gBossInteractionState = 1;
                 }
                 WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                 gWarioData.xVelocity = -0x20;
@@ -5220,7 +5220,7 @@ void func_8022724(s32 slot, u16 direction)
             } else if (direction & DPAD_LEFT) {
                 if (gSpriteData[slot].warioCollision == 0x44) {
                     gSpriteData[slot].pose = SPOSE_TACKLED_LEFT_INIT;
-                    gUnk_3000A58 = 1;
+                    gBossInteractionState = 1;
                 }
                 WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                 gWarioData.xVelocity = 0x20;

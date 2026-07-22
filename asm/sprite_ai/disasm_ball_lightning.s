@@ -288,7 +288,7 @@ func_803766C:
 .L_376ac:
 	.4byte	gUnk_30000A0
 .L_376b0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_376b4:
 	bl	func_803764C
 .L_376b8:
@@ -325,7 +325,7 @@ func_803766C:
 	add	r0, r0, r1
 	b	.L_3770a
 .L_376f8:
-	.4byte	sUnk_8352ADC
+	.4byte	sSpriteGravityVelocityTable
 .L_376fc:
 	.4byte	0x7FFF
 .L_37700:

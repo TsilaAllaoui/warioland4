@@ -134,7 +134,7 @@ func_80573B8:
 	bl	func_8023BFC
 	b	.L_57414
 .L_573f8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_573fc:
 	.4byte	gCurrentSprite
 .L_57400:
@@ -309,7 +309,7 @@ func_8057524:
 	b	.L_575a8
 	.align	2, 0
 .L_57540:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_57544:
 	.4byte	gCurrentSprite
 .L_57548:
@@ -506,7 +506,7 @@ func_805764C:
 .L_5769c:
 	.4byte	gUnk_30000A0
 .L_576a0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_576a4:
 	.4byte	0xFFFB
 .L_576a8:

@@ -1258,7 +1258,7 @@ func_806B864:
 .L_6b964:
 	.4byte	gColorFading
 .L_6b968:
-	.4byte	gUnk_3000044
+	.4byte	gShopkeeperItemState
 .L_6b96c:
 	.4byte	gBldCnt
 .L_6b970:
@@ -1272,7 +1272,7 @@ func_806B864:
 .L_6b980:
 	.4byte	gUnk_3000035
 .L_6b984:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_6b988:
 	.4byte	gUnk_30000FC
 .L_6b98c:
@@ -3059,7 +3059,7 @@ BackgroundProcessMain:
 .L_6c67c:
 	.4byte	gTimerState
 .L_6c680:
-	.4byte	gUnk_3000044
+	.4byte	gShopkeeperItemState
 .L_6c684:
 	.4byte	gUnk_300001B
 .L_6c688:
@@ -3087,7 +3087,7 @@ func_806C694:
 	strb	r0, [r1, #0]
 	b	.L_6c756
 .L_6c6b0:
-	.4byte	gUnk_3000044
+	.4byte	gShopkeeperItemState
 .L_6c6b4:
 	.4byte	gUnk_30037BF
 .L_6c6b8:

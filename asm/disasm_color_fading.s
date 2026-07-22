@@ -405,7 +405,7 @@ ColorFadingProcess:
 	mov	r0, #253	@ 0xfd
 	b	.L_70524
 .L_704dc:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_704e0:
 	.4byte	0x040000d4
 .L_704e4:
@@ -490,7 +490,7 @@ func_807053C:
 	b	.L_705c0
 	.align	2, 0
 .L_70578:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_7057c:
 	.4byte	0x040000d4
 .L_70580:
@@ -1092,7 +1092,7 @@ func_8070964:
 	b	.L_709fa
 	.align	2, 0
 .L_709c8:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_709cc:
 	.4byte	gSubGameMode
 .L_709d0:
@@ -1419,7 +1419,7 @@ func_8070BB8:
 	b	.L_70c32
 	.align	2, 0
 .L_70c1c:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_70c20:
 	.4byte	gMainTimer
 .L_70c24:

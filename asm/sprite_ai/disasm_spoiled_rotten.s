@@ -119,7 +119,7 @@ func_803ABD8:
 .L_3ac28:
 	.4byte	gCurrentSprite
 .L_3ac2c:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_3ac30:
 	.4byte	gCurrentShopItem
 .L_3ac34:
@@ -434,7 +434,7 @@ func_803AE30:
 .L_3aea4:
 	.4byte	gCurrentSprite
 .L_3aea8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_3aeac:
 	.4byte	gUnk_3000A51
 .L_3aeb0:
@@ -485,7 +485,7 @@ func_803AE30:
 	strb	r0, [r4, #28]
 	b	.L_3af40
 .L_3af0c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_3af10:
 	.4byte	gUnk_3000A51
 .L_3af14:

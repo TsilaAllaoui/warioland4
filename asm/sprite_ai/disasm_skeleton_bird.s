@@ -1064,7 +1064,7 @@ func_802CFBC:
 	b	.L_2cff6
 	.align	2, 0
 .L_2cfd8:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_2cfdc:
 	.4byte	gCurrentSprite
 .L_2cfe0:
@@ -1278,7 +1278,7 @@ func_802D12C:
 .L_2d158:
 	.4byte	gUnk_30000A0
 .L_2d15c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_2d160:
 	ldrh	r1, [r4, #0]
 	mov	r0, #64	@ 0x40

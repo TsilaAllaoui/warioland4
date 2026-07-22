@@ -130,7 +130,7 @@ func_804CC58:
 .L_4ccac:
 	.4byte	gCurrentSprite
 .L_4ccb0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4ccb4:
 	ldrh	r0, [r4, #8]
 	add	r1, r4, #0
@@ -301,7 +301,7 @@ func_804CDD4:
 	b	.L_4ce40
 	.align	2, 0
 .L_4cdf0:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4cdf4:
 	.4byte	gCurrentSprite
 .L_4cdf8:
@@ -487,7 +487,7 @@ func_804CEC4:
 	b	.L_4cf48
 	.align	2, 0
 .L_4cf3c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4cf40:
 	.4byte	gCurrentSprite
 .L_4cf44:
@@ -575,7 +575,7 @@ func_804CF74:
 	bx	r0
 	.align	2, 0
 .L_4cfd4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_4cfd8:
 	.4byte	gCurrentSprite
 

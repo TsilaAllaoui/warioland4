@@ -68,7 +68,7 @@ extern const u16 sUnk_8352AB2[];
 extern const u16 sUnk_8352ABE[];
 extern const u16 sUnk_8352AC6[];
 extern const u16 sUnk_8352AD4[];
-extern const s16 sUnk_8352ADC[];
+extern const s16 sSpriteGravityVelocityTable[];
 extern const s16 sUnk_8352AFC[];
 extern const s16 sUnk_8352B18[];
 extern const s16 sUnk_8352B2C[];

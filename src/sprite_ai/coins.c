@@ -523,8 +523,8 @@ void func_802BADC(void)
     } else {
         gCurrentSprite.xPosition -= gCurrentSprite.work2;
         func_8023B88();
-        if ((gUnk_3000A50 & 14) == 0) {
-            if (gUnk_3000A50 == 0 && gCurrentSprite.pose == SPOSE_2C) {
+        if ((gSpriteCollisionResult & 14) == 0) {
+            if (gSpriteCollisionResult == 0 && gCurrentSprite.pose == SPOSE_2C) {
                 gCurrentSprite.pose = SPOSE_43;
             } else {
                 if ((func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft),
@@ -546,7 +546,7 @@ void func_802BADC(void)
                     }
                 }
             }
-        } else if ((gUnk_3000A50 & 0xF1) == 1) {
+        } else if ((gSpriteCollisionResult & 0xF1) == 1) {
             if (gCurrentSprite.pose != SPOSE_2C) {
                 gCurrentSprite.pose = SPOSE_47;
             }
@@ -579,8 +579,8 @@ void func_802BC24(void)
     } else {
         gCurrentSprite.xPosition += gCurrentSprite.work2;
         func_8023B88();
-        if ((gUnk_3000A50 & 14) == 0) {
-            if (gUnk_3000A50 == 0 && gCurrentSprite.pose == SPOSE_2E) {
+        if ((gSpriteCollisionResult & 14) == 0) {
+            if (gSpriteCollisionResult == 0 && gCurrentSprite.pose == SPOSE_2E) {
                 gCurrentSprite.pose = SPOSE_45;
             } else {
                 if ((func_8023BFC(
@@ -602,7 +602,7 @@ void func_802BC24(void)
                     }
                 }
             }
-        } else if ((gUnk_3000A50 & 0xF1) == 0) {
+        } else if ((gSpriteCollisionResult & 0xF1) == 0) {
             if (gCurrentSprite.pose != SPOSE_2E) {
                 gCurrentSprite.pose = SPOSE_49;
             }
@@ -620,7 +620,7 @@ void CoinPose44(void)
     s16 yVelocity;
     u32 timer;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sUnk_8352ADC);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSpriteGravityVelocityTable);
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
 
     unk_r2 = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
@@ -628,7 +628,7 @@ void CoinPose44(void)
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
 
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = unk_r2;
         if (gCurrentSprite.work2 > 3) {
             gCurrentSprite.work2 -= 2;
@@ -659,7 +659,7 @@ void CoinPose46(void)
     s16 yVelocity;
     u32 timer;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sUnk_8352ADC);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSpriteGravityVelocityTable);
     gCurrentSprite.xPosition += gCurrentSprite.work2;
 
     unk_r2 = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
@@ -667,7 +667,7 @@ void CoinPose46(void)
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
 
-    if (gUnk_3000A50) {
+    if (gSpriteCollisionResult) {
         gCurrentSprite.yPosition = unk_r2;
         if (gCurrentSprite.work2 > 3) {
             gCurrentSprite.work2 -= 2;
@@ -818,7 +818,7 @@ void CoinPose30(void)
         }
     }
     func_8023B88();
-    if (gUnk_3000A50 == 0) {
+    if (gSpriteCollisionResult == 0) {
         gCurrentSprite.pose = SPOSE_1D;
     }
 }

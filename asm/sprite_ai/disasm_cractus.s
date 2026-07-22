@@ -96,7 +96,7 @@ func_805AD5C:
 	mov	r7, #1
 	b	.L_5ad74
 .L_5ad6c:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5ad70:
 	mov	r6, #8
 	mov	r7, #2
@@ -247,7 +247,7 @@ func_805AE20:
 	sub	r0, r4, r1
 	b	.L_5ae7e
 .L_5ae70:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5ae74:
 	.4byte	gCurrentSprite
 .L_5ae78:
@@ -300,7 +300,7 @@ func_805AEB4:
 	mov	r7, #1
 	b	.L_5aecc
 .L_5aec4:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5aec8:
 	mov	r6, #8
 	mov	r7, #2
@@ -1059,7 +1059,7 @@ func_805B24C:
 .L_5b444:
 	.4byte	gUnk_3000A62
 .L_5b448:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5b44c:
 	.4byte	gUnk_3000A59
 .L_5b450:
@@ -1069,7 +1069,7 @@ func_805B24C:
 .L_5b458:
 	.4byte	gUnk_3000A5C
 .L_5b45c:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossDefeatState
 .L_5b460:
 	.4byte	gUnk_3000A5E
 .L_5b464:
@@ -1133,7 +1133,7 @@ func_805B480:
 .L_5b4cc:
 	.4byte	gCurrentSprite
 .L_5b4d0:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_5b4d4:
 	.4byte	gCurrentShopItem
 .L_5b4d8:
@@ -1382,7 +1382,7 @@ func_805B644:
 .L_5b6a0:
 	.4byte	0x7FFF
 .L_5b6a4:
-	.4byte	gUnk_30000F4
+	.4byte	gBossDefeatTimer
 .L_5b6a8:
 	.4byte	sUnk_83DF7B4
 
@@ -1554,7 +1554,7 @@ func_805B784:
 .L_5b7e0:
 	.4byte	sUnk_83DFD18
 .L_5b7e4:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5b7e8:
 	add	r0, r2, #1
 	lsl	r0, r0, #24
@@ -1627,7 +1627,7 @@ func_805B784:
 .L_5b874:
 	.4byte	sUnk_83DF948
 .L_5b878:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5b87c:
 	cmp	r0, #74	@ 0x4a
 	bne	.L_5b886
@@ -2033,7 +2033,7 @@ func_805BAF8:
 .L_5bb7c:
 	.4byte	sUnk_83DFD68
 .L_5bb80:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5bb84:
 	ldr	r0, .L_5bbdc
 	bl	func_805ACC4
@@ -2086,7 +2086,7 @@ func_805BAF8:
 .L_5bbe8:
 	.4byte	0x13F0000
 .L_5bbec:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5bbf0:
 	ldrh	r0, [r5, #8]
 	add	r1, r4, #0
@@ -2117,7 +2117,7 @@ func_805BAF8:
 .L_5bc28:
 	.4byte	gUnk_3000A51
 .L_5bc2c:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 
 
 thumb_func_start func_805BC30
@@ -2599,7 +2599,7 @@ func_805BE50:
 .L_5bfcc:
 	.4byte	gUnk_3000A5A
 .L_5bfd0:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5bfd4:
 	.4byte	gSpriteData
 .L_5bfd8:
@@ -2648,7 +2648,7 @@ func_805BE50:
 .L_5c02c:
 	.4byte	gUnk_3000A5A
 .L_5c030:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5c034:
 	.4byte	gSpriteData
 .L_5c038:
@@ -2734,7 +2734,7 @@ func_805BE50:
 .L_5c0d4:
 	.4byte	gUnk_3000A5A
 .L_5c0d8:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5c0dc:
 	.4byte	gSpriteData
 .L_5c0e0:
@@ -2882,7 +2882,7 @@ func_805C0E4:
 .L_5c1fc:
 	.4byte	gUnk_3000A5A
 .L_5c200:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5c204:
 	.4byte	gUnk_3000A51
 .L_5c208:
@@ -3114,7 +3114,7 @@ func_805C264:
 	pop	{r0}
 	bx	r0
 .L_5c3c4:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 
 
 thumb_func_start func_805C3C8
@@ -3587,7 +3587,7 @@ func_805C6A8:
 .L_5c750:
 	.4byte	gUnk_3000A5A
 .L_5c754:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 
 
 thumb_func_start func_805C758
@@ -3674,7 +3674,7 @@ func_805C758:
 .L_5c800:
 	.4byte	gUnk_3000A5A
 .L_5c804:
-	.4byte	gUnk_3000A58
+	.4byte	gBossInteractionState
 .L_5c808:
 	.4byte	sUnk_83DF754
 .L_5c80c:
@@ -4458,7 +4458,7 @@ func_805CD4C:
 .L_5cdf0:
 	.4byte	sUnk_83DF754
 .L_5cdf4:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossDefeatState
 
 
 thumb_func_start func_805CDF8
@@ -4493,7 +4493,7 @@ func_805CDF8:
 .L_5ce30:
 	.4byte	sUnk_83DFDA4
 .L_5ce34:
-	.4byte	gUnk_3000A5D
+	.4byte	gBossDefeatState
 .L_5ce38:
 	.4byte	gCurrentSprite
 .L_5ce3c:
@@ -6412,7 +6412,7 @@ func_805DB98:
 .L_5dbf8:
 	.4byte	sUnk_83DF0C0
 .L_5dbfc:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_5dc00:
 	.4byte	sUnk_83DF0D0
 .L_5dc04:

@@ -138,7 +138,7 @@ func_8060ACC:
 	bl	func_8023BFC
 	b	.L_60b38
 .L_60b1c:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_60b20:
 	.4byte	gCurrentSprite
 .L_60b24:
@@ -384,7 +384,7 @@ func_8060CC8:
 	b	.L_60d44
 	.align	2, 0
 .L_60ce4:
-	.4byte	gUnk_3000A50
+	.4byte	gSpriteCollisionResult
 .L_60ce8:
 	.4byte	gCurrentSprite
 .L_60cec:

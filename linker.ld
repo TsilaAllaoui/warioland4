@@ -53,7 +53,7 @@ SECTIONS {
         . = 0x003c; gUnk_300003C = .;
         . = 0x003e; gUnk_300003E = .;
         . = 0x0040; gUnk_3000040 = .;
-        . = 0x0044; gUnk_3000044 = .;
+        . = 0x0044; gShopkeeperItemState = .;
         . = 0x0045; gUnk_3000045 = .;
         . = 0x0046; gUnk_3000046 = .;
         . = 0x0047; gTimerState = .;
@@ -71,7 +71,7 @@ SECTIONS {
         . = 0x00d0; gColorFading = .;
         . = 0x00d8; gUnk_30000D8 = .;
         . = 0x00dc; gUnk_30000DC = .;
-        . = 0x00f4; gUnk_30000F4 = .;
+        . = 0x00f4; gBossDefeatTimer = .;
         . = 0x00fc; gUnk_30000FC = .;
 
         . = 0x0104; gSpriteData = .;
@@ -82,17 +82,17 @@ SECTIONS {
         . = 0x0a24; gCurrentSprite = .;
         . = 0x0a4b; gUnk_3000A4B = .;
         . = 0x0a4d; gUnk_3000A4D = .;
-        . = 0x0a50; gUnk_3000A50 = .;
+        . = 0x0a50; gSpriteCollisionResult = .;
         . = 0x0a51; gUnk_3000A51 = .;
         . = 0x0a52; gSpriteCollisionFlags = .;
         . = 0x0a53; gIgnoreSpriteCollision = .;
         . = 0x0a54; gUnk_3000A54 = .;
-        . = 0x0a58; gUnk_3000A58 = .;
+        . = 0x0a58; gBossInteractionState = .;
         . = 0x0a59; gUnk_3000A59 = .;
         . = 0x0a5a; gUnk_3000A5A = .;
         . = 0x0a5b; gUnk_3000A5B = .;
         . = 0x0a5c; gUnk_3000A5C = .;
-        . = 0x0a5d; gUnk_3000A5D = .;
+        . = 0x0a5d; gBossDefeatState = .;
         . = 0x0a5e; gUnk_3000A5E = .;
         . = 0x0a5f; gUnk_3000A5F = .;
         . = 0x0a60; gUnk_3000A60 = .;
@@ -136,14 +136,14 @@ SECTIONS {
         . = 0x0c28; gVortexXPosition = .;
         . = 0x0c2a; gUnk_3000C2A = .;
         . = 0x0c2b; gUnk_3000C2B = .;
-        . = 0x0c2c; gHasGoldenDivaChest5 = .;
-        . = 0x0c2d; gHasGoldenDivaChest6 = .;
-        . = 0x0c2e; gHasGoldenDivaChest7 = .;
-        . = 0x0c2f; gHasGoldenDivaChest8 = .;
-        . = 0x0c30; gHasGoldenDivaChest9 = .;
-        . = 0x0c31; gHasGoldenDivaChest10 = .;
-        . = 0x0c32; gHasGoldenDivaChest11 = .;
-        . = 0x0c33; gHasGoldenDivaChest12 = .;
+        . = 0x0c2c; gHasBossTreasure5 = .;
+        . = 0x0c2d; gHasBossTreasure6 = .;
+        . = 0x0c2e; gHasBossTreasure7 = .;
+        . = 0x0c2f; gHasBossTreasure8 = .;
+        . = 0x0c30; gHasBossTreasure9 = .;
+        . = 0x0c31; gHasBossTreasure10 = .;
+        . = 0x0c32; gHasBossTreasure11 = .;
+        . = 0x0c33; gHasBossTreasure12 = .;
         . = 0x0c34; obj/main.o(iwram_data);
         obj/init_helpers.o(iwram_data);
 
@@ -682,7 +682,7 @@ SECTIONS {
         obj/sprite_ai/disasm_bowler.o(.text);
         obj/sprite_ai/disasm_magma.o(.text);
         obj/sprite_ai/disasm_boss_door.o(.text);
-        obj/sprite_ai/disasm_shopkeeper.o(.text);
+        obj/sprite_ai/shopkeeper.o(.text);
         obj/sprite_ai/disasm_aerodent.o(.text);
         obj/sprite_ai/disasm_boss_treasure.o(.text);
         obj/sprite_ai/disasm_hoggus.o(.text);
