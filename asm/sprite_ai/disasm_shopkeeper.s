@@ -8123,7 +8123,7 @@ func_8052590:
 .L_5270c:
 	.4byte	gCurrentSprite
 .L_52710:
-	.4byte	gUnk_3000044
+	.4byte	gGoldenDivaShopItemState
 .L_52714:
 	.4byte	sSinCosTable
 

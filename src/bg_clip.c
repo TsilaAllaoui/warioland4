@@ -624,7 +624,7 @@ void StartRoomTransitionFade(u8 type)
         gColorFading.type = 2;
         func_80701F4();
         gSubGameMode = 6;
-        gUnk_3000021 = 0;
+        gSpriteAiDropTimer = 0;
         gStageExitType = 0x80;
     }
     else

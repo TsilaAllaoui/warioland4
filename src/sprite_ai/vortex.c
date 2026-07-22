@@ -463,7 +463,7 @@ void SpriteWarioEnteringVortex(void)
             gCurrentSprite.status = SPRITE_STATUS_NONE;
             if (gCollectedKeyzer != 1) {
                 gSubGameMode = 6;
-                gUnk_3000021 = 0;
+                gSpriteAiDropTimer = 0;
                 gStageExitType = 2;
             }
             break;
@@ -509,7 +509,7 @@ void SpriteKeyzerEnteringVortex(void)
             gCurrentSprite.status = SPRITE_STATUS_NONE;
             if (gCollectedKeyzer == 1) {
                 gSubGameMode = 6;
-                gUnk_3000021 = 0;
+                gSpriteAiDropTimer = 0;
                 gStageExitType = 2;
             }
             break;

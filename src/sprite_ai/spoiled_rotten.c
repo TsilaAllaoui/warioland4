@@ -549,7 +549,7 @@ void func_803B2A0(void)
         register u8 *flagPtr asm("r0");
         u8 flagValue;
 
-        flagPtr = &gUnk_30000FC;
+        flagPtr = &gGoldenDivaRoomTimer;
         flagValue = *flagPtr;
         if (flagValue != 0) {
             return;
@@ -559,7 +559,7 @@ void func_803B2A0(void)
     }
 
     gSubGameMode = 6;
-    gUnk_3000021 = 0;
+    gSpriteAiDropTimer = 0;
     gStageExitType = 5;
 }
 

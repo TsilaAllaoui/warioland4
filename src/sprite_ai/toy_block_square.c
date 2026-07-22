@@ -117,19 +117,19 @@ void ToyBlockSquareSetPassableTiles(void)
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
-    blockType = &gUnk_3000028;
+    blockType = &gSpriteAiCollisionOffset;
     value = 2;
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     yTop = y - 4;
     xLeft = x - 4;
     func_806D5C0(yTop, xLeft);
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     x += 4;
     func_806D5C0(yTop, x);
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     y -= 68;
     func_806D5C0(y, x);
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     func_806D5C0(y, xLeft);
 }
 
@@ -144,19 +144,19 @@ void ToyBlockSquareSetSolidTiles(void)
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
-    blockType = &gUnk_3000028;
+    blockType = &gSpriteAiCollisionOffset;
     value = 3;
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     yTop = y - 4;
     xLeft = x - 4;
     func_806D5C0(yTop, xLeft);
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     x += 4;
     func_806D5C0(yTop, x);
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     y -= 68;
     func_806D5C0(y, x);
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     func_806D5C0(y, xLeft);
 }
 

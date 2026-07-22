@@ -333,7 +333,7 @@ void InitCatbat(void)
     gPaletteFlashTimer = 0;
     gBgAnimationFrame = 0;
     gBgAnimationTimer = 0;
-    gUnk_3000A60 = 0;
+    gSpriteAiDynamicGraphicsTimer = 0;
 
     sprite = &gCurrentSprite;
     {
@@ -665,12 +665,12 @@ void InitCatbatPatrol(void)
         current->work2 = 120;
     current->pose = 16;
     if (current->health <= 1) {
-        if (gUnk_3000A60 != 0)
+        if (gSpriteAiDynamicGraphicsTimer != 0)
             animation = sCatbatOam_83CE4A8;
         else
             animation = sCatbatOam_83CD374;
     } else {
-        if (gUnk_3000A60 != 0)
+        if (gSpriteAiDynamicGraphicsTimer != 0)
             animation = sCatbatOam_83CE468;
         else
             animation = sCatbatOam_83CD334;
@@ -1213,7 +1213,7 @@ void InitCatbatDamaged(void)
     asm("strb r5, [r4, #22]");
     sprite->animationTimer = zero;
     if (sprite->health < ((gInitialHealth >> 1) + 1)) {
-        gUnk_3000A60 = 1;
+        gSpriteAiDynamicGraphicsTimer = 1;
         slot = SpriteUtilFindSpriteSlotOrU8Max(PSPRITE_CATBAT_MINE_SPAWNER);
         if (slot != 0xFF)
             gSpriteData[slot].status = zero;
@@ -1259,7 +1259,7 @@ void UpdateCatbatDamaged(void)
     asm volatile("" : "+r"(timerValue));
     timer = (u32)timerValue >> 24;
 
-    if (gUnk_3000A60 != 0) {
+    if (gSpriteAiDynamicGraphicsTimer != 0) {
         if ((s8)timer < 0)
             goto move;
 
@@ -1331,7 +1331,7 @@ void InitCatbatProjectileAttack(void)
 
     sprite = &gCurrentSprite;
     sprite->pose = 111;
-    alternate = gUnk_3000A60;
+    alternate = gSpriteAiDynamicGraphicsTimer;
     current = sprite;
     if (alternate != 0)
         animation = sCatbatOam_83CE4D0;
@@ -1384,7 +1384,7 @@ void InitCatbatProjectileAttackRelease(void)
 
     sprite = &gCurrentSprite;
     sprite->pose = 113;
-    if (gUnk_3000A60 != 0)
+    if (gSpriteAiDynamicGraphicsTimer != 0)
         animation = sCatbatOam_83CE4A8;
     else
         animation = sCatbatOam_83CD374;
@@ -1535,7 +1535,7 @@ void InitCatbatIdleAttack(void)
 
     sprite = &gCurrentSprite;
     sprite->pose = 22;
-    if (gUnk_3000A60 != 0)
+    if (gSpriteAiDynamicGraphicsTimer != 0)
         sprite->pOamData = sCatbatOam_83CE4A8;
     else
         sprite->pOamData = sCatbatOam_83CD374;
@@ -2611,7 +2611,7 @@ void InitCatbatAttackEffect(void)
     base->pose = sixteen;
     base->drawPriority = 1;
     sprite->work3 = zeroByte;
-    if (gUnk_3000A60 != 0)
+    if (gSpriteAiDynamicGraphicsTimer != 0)
         base->palette = 2;
 }
 void UpdateCatbatAttackEffect(void)
@@ -2789,7 +2789,7 @@ void InitCatbatAttackEffectDespawn(void)
     register int zero asm("r0");
     register int zeroPalette asm("r2");
 
-    value = gUnk_3000A60;
+    value = gSpriteAiDynamicGraphicsTimer;
     if (value != 0) {
         sprite = &gCurrentSprite;
         zero = 0;

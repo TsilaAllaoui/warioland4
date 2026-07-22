@@ -33,14 +33,14 @@ SECTIONS {
         . = 0x001d; gUnk_300001D = .;
         . = 0x001e; gDisableSoftReset = .;
         . = 0x0020; gUnk_3000020 = .;
-        . = 0x0021; gUnk_3000021 = .;
+        . = 0x0021; gSpriteAiDropTimer = .;
         . = 0x0022; gUnk_3000022 = .;
         . = 0x0023; gUnk_3000023 = .;
         . = 0x0024; gCurrentRoom = .;
         . = 0x0025; gUnk_3000025 = .;
         . = 0x0026; gUnk_3000026 = .;
         . = 0x0027; gUnk_3000027 = .;
-        . = 0x0028; gUnk_3000028 = .;
+        . = 0x0028; gSpriteAiCollisionOffset = .;
         . = 0x002a; gBldAlpha = .;
         . = 0x002c; gBldCnt = .;
         . = 0x002e; gSwitchStates = .;
@@ -53,8 +53,8 @@ SECTIONS {
         . = 0x003c; gUnk_300003C = .;
         . = 0x003e; gUnk_300003E = .;
         . = 0x0040; gUnk_3000040 = .;
-        . = 0x0044; gUnk_3000044 = .;
-        . = 0x0045; gUnk_3000045 = .;
+        . = 0x0044; gGoldenDivaShopItemState = .;
+        . = 0x0045; gGoldenDivaShopItemTimer = .;
         . = 0x0046; gUnk_3000046 = .;
         . = 0x0047; gTimerState = .;
         . = 0x0048; gStageExitType = .;
@@ -72,7 +72,7 @@ SECTIONS {
         . = 0x00d8; gUnk_30000D8 = .;
         . = 0x00dc; gUnk_30000DC = .;
         . = 0x00f4; gColorFadingState = .;
-        . = 0x00fc; gUnk_30000FC = .;
+        . = 0x00fc; gGoldenDivaRoomTimer = .;
 
         . = 0x0104; gSpriteData = .;
         . = 0x0524; gUnk_3000524 = .;
@@ -95,11 +95,11 @@ SECTIONS {
         . = 0x0a5d; gPaletteFlashTimer = .;
         . = 0x0a5e; gBgAnimationFrame = .;
         . = 0x0a5f; gBgAnimationTimer = .;
-        . = 0x0a60; gUnk_3000A60 = .;
+        . = 0x0a60; gSpriteAiDynamicGraphicsTimer = .;
 
-        . = 0x0a61; gUnk_3000A61 = .;
+        . = 0x0a61; gGoldenDivaShopItemHealthTarget = .;
         . = 0x0a62; gUnk_3000A62 = .;
-        . = 0x0a64; gCuckooCondorPendulumRadius = .;
+        . = 0x0a64; gSpriteAiRadius = .;
         . = 0x0a68; gCurrentCollection = .;
         . = 0x0b10; gHighScoreTable = .;
 
@@ -703,7 +703,7 @@ SECTIONS {
         obj/sprite_ai/boss_corridor_cat.o(.text);
         obj/sprite_ai/petbottom.o(.text);
         obj/sprite_ai/glass_bird.o(.text);
-        obj/sprite_ai/disasm_golden_diva.o(.text);
+        obj/sprite_ai/golden_diva.o(.text);
         obj/sprite_ai/chandelier.o(.text);
         obj/sprite_ai/crumbling_block.o(.text);
         obj/sprite_ai/professor.o(.text);
@@ -783,7 +783,7 @@ SECTIONS {
         obj/disasm_save_file.o(.rodata);
         obj/hud.o(.rodata);
         obj/data/sprite_data_40F1C8_41000C.o(.rodata);
-        obj/blob_0x41000C-0x6D3394.o(.rodata);
+        obj/data/sprite_data_41000C_6D3394.o(.rodata);
         obj/voice_set.o(.rodata);
         obj/data/sprite_data_6D36A4_78E6CC.o(.rodata);
     } > ROM

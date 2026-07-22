@@ -17,7 +17,7 @@ extern u8 gUnk_3000A62;
 extern u8 gPaletteFlashTimer;
 extern u8 gBgAnimationFrame;
 extern u8 gBgAnimationTimer;
-extern u8 gUnk_3000A60;
+extern u8 gSpriteAiDynamicGraphicsTimer;
 
 extern const void *const sUnk_878F170[];
 
@@ -689,7 +689,7 @@ void InitCractusSpawner(void)
     gPaletteFlashTimer = 0;
     gBgAnimationFrame = 32;
     gBgAnimationTimer = 16;
-    gUnk_3000A60 = 12;
+    gSpriteAiDynamicGraphicsTimer = 12;
 
     sprite = &gCurrentSprite;
     {
@@ -2571,7 +2571,7 @@ void HandleCractusBossDamage(void)
             globalR1 = &gBgAnimationTimer;
             value = 20;
             *globalR1 = value;
-            globalR0 = &gUnk_3000A60;
+            globalR0 = &gSpriteAiDynamicGraphicsTimer;
             *globalR0 = extent;
         }
         globalR0 = &gInitialHealth;
@@ -2995,7 +2995,7 @@ void UpdateCractusBossPose123(void)
         if (sprite->health <= 5) {
             gBgAnimationFrame = 16;
             gBgAnimationTimer = 20;
-            gUnk_3000A60 = 16;
+            gSpriteAiDynamicGraphicsTimer = 16;
         }
     } else {
         gPaletteFlashTimer = 32;
@@ -3628,8 +3628,8 @@ void UpdateCractusArmSegmentPose15(void)
     }
 
     delta = (u16)(spriteX - warioX) >> 4;
-    if (delta > gUnk_3000A60)
-        gCurrentSprite.work2 = gUnk_3000A60;
+    if (delta > gSpriteAiDynamicGraphicsTimer)
+        gCurrentSprite.work2 = gSpriteAiDynamicGraphicsTimer;
     else
         gCurrentSprite.work2 = delta;
 
@@ -3641,8 +3641,8 @@ void UpdateCractusArmSegmentPose15(void)
         shifted <<= 16;
         /* agbcc otherwise keeps this shifted Y delta in r1. */
         asm("lsr %0, %1, #20" : "=r"(yDelta) : "r"(shifted));
-        if (yDelta > gUnk_3000A60)
-            gCurrentSprite.work3 = gUnk_3000A60;
+        if (yDelta > gSpriteAiDynamicGraphicsTimer)
+            gCurrentSprite.work3 = gSpriteAiDynamicGraphicsTimer;
         else {
             /* agbcc otherwise uses r0 for this field pointer instead of r1. */
             asm("add r1, r3, #0\n"
@@ -3663,8 +3663,8 @@ void UpdateCractusArmSegmentPose15(void)
         shifted <<= 16;
         /* agbcc otherwise keeps this shifted Y delta in r1. */
         asm("lsr %0, %1, #20" : "=r"(yDelta) : "r"(shifted));
-        if (yDelta > gUnk_3000A60)
-            gCurrentSprite.work3 = gUnk_3000A60;
+        if (yDelta > gSpriteAiDynamicGraphicsTimer)
+            gCurrentSprite.work3 = gSpriteAiDynamicGraphicsTimer;
         else {
             /* agbcc otherwise uses r0 for this field pointer instead of r1. */
             asm("add r1, r3, #0\n"

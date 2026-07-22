@@ -496,7 +496,7 @@ func_8090A40:
 .L_90d84:
 	.4byte	0x06015800
 .L_90d88:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_90d8c:
 	.4byte	0x0400000c
 .L_90d90:
@@ -1629,7 +1629,7 @@ func_80915A8:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_915c4:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_915c8:
 	.4byte	.L_915cc
 .L_915cc:
@@ -1659,7 +1659,7 @@ func_80915A8:
 .L_91604:
 	.4byte	gUnk_300188E
 .L_91608:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_9160c:
 	ldr	r4, .L_91630
 	ldrh	r0, [r4, #0]
@@ -1732,7 +1732,7 @@ func_80915A8:
 .L_9168c:
 	.4byte	sUnk_8742976
 .L_91690:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_91694:
 	.4byte	gUnk_300188E
 .L_91698:
@@ -1856,7 +1856,7 @@ func_80915A8:
 .L_9177c:
 	.4byte	0x81000200
 .L_91780:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_91784:
 	.4byte	gUnk_300188E
 .L_91788:

@@ -333,7 +333,7 @@ void SpriteBossTreasure(void)
             newY = originalY + movement;
             sprite->yPosition = newY;
 
-            if (gUnk_30000FC != 0) {
+            if (gGoldenDivaRoomTimer != 0) {
                 break;
             }
             timer = &sprite->work0;
@@ -429,7 +429,7 @@ void SpriteBossTreasure(void)
             }
             sprite->status = SPRITE_STATUS_NONE;
             gSubGameMode = 6;
-            gUnk_3000021 = 0;
+            gSpriteAiDropTimer = 0;
             gStageExitType = 5;
             break;
         }

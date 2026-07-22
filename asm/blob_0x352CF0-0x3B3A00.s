@@ -9,13 +9,13 @@ sUnk_8352CF0:
 
 baserom_blob 0x352CF0, 0x3B0CF0
 
-.global sUnk_83B0CF0
-sUnk_83B0CF0:
+.global sGoldenDivaTreasureReleaseOrder
+sGoldenDivaTreasureReleaseOrder:
 
 baserom_blob 0x3B0CF0, 0x3B2C70
 
-.global sUnk_83B2C70
-sUnk_83B2C70:
+.global sGoldenDivaDefeatPalette
+sGoldenDivaDefeatPalette:
 
 baserom_blob 0x3B2C70, 0x3B2C90
 

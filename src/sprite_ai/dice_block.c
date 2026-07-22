@@ -18,7 +18,7 @@ void SetDiceBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gUnk_3000028;
+    blockAction = &gSpriteAiCollisionOffset;
     action = 3;
     *blockAction = action;
     upperY = (u16) (yPosition - 4);
@@ -72,7 +72,7 @@ void ClearDiceBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gUnk_3000028;
+    blockAction = &gSpriteAiCollisionOffset;
     action = 2;
     *blockAction = action;
     upperY = (u16) (yPosition - 4);

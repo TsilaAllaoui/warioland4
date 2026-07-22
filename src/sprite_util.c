@@ -1481,7 +1481,7 @@ void func_80254E8(void)
     u32 temp;
 
     if (gCurrentSprite.work0 != 0) {
-        gUnk_3000028 = 1;
+        gSpriteAiCollisionOffset = 1;
         temp = func_8023A60(gCurrentSprite.yPosition - PIXEL_SIZE, gCurrentSprite.xPosition);
         if (gUnk_30000A0.unk_02 == 1) {
             gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
@@ -1504,7 +1504,7 @@ void func_80254E8(void)
         }
     }
 
-    gUnk_3000028 = 1;
+    gSpriteAiCollisionOffset = 1;
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition - gCurrentSprite.hitboxExtentLeft
     );
@@ -1519,7 +1519,7 @@ void func_80254E8(void)
         return;
     }
 
-    gUnk_3000028 = 1;
+    gSpriteAiCollisionOffset = 1;
     func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
     if (0xF & gSpriteCollisionTileType) {
         if ((gCurrentSprite.pose == SPOSE_THROWN_LEFT_HARD) || (gCurrentSprite.pose == SPOSE_THROWN_UP_LEFT_HARD)) {
@@ -1603,7 +1603,7 @@ void func_80258B4(void)
     u32 temp;
 
     if (gCurrentSprite.work0 != 0) {
-        gUnk_3000028 = 1;
+        gSpriteAiCollisionOffset = 1;
         temp = func_8023A60(gCurrentSprite.yPosition - PIXEL_SIZE, gCurrentSprite.xPosition);
         if (gUnk_30000A0.unk_02 == 1) {
             gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
@@ -1626,7 +1626,7 @@ void func_80258B4(void)
         }
     }
 
-    gUnk_3000028 = 1;
+    gSpriteAiCollisionOffset = 1;
     func_8023BFC(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition + gCurrentSprite.hitboxExtentRight
     );
@@ -1641,7 +1641,7 @@ void func_80258B4(void)
         return;
     }
 
-    gUnk_3000028 = 1;
+    gSpriteAiCollisionOffset = 1;
     func_8023BFC(gCurrentSprite.yPosition - gCurrentSprite.hitboxExtentUp, gCurrentSprite.xPosition);
     if (0xF & gSpriteCollisionTileType) {
         if ((gCurrentSprite.pose == SPOSE_THROWN_RIGHT_HARD) || (gCurrentSprite.pose == SPOSE_THROWN_UP_RIGHT_HARD)) {
@@ -2524,13 +2524,13 @@ void func_80269EC(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     func_806D5C0(yPosition, xPosition);
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     func_806D5C0(yPosition - PIXEL_SIZE, xPosition);
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     func_806D5C0(yPosition - PIXEL_SIZE, xPosition - PIXEL_SIZE);
-    gUnk_3000028 = 3;
+    gSpriteAiCollisionOffset = 3;
     func_806D5C0(yPosition, xPosition - PIXEL_SIZE);
 }
 
@@ -2541,13 +2541,13 @@ void func_8026A54(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     func_806D5C0(yPosition, xPosition);
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     func_806D5C0(yPosition - PIXEL_SIZE, xPosition);
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     func_806D5C0(yPosition - PIXEL_SIZE, xPosition - PIXEL_SIZE);
-    gUnk_3000028 = 2;
+    gSpriteAiCollisionOffset = 2;
     func_806D5C0(yPosition, xPosition - PIXEL_SIZE);
 }
 

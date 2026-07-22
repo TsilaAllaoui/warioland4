@@ -450,7 +450,7 @@ ColorFadingProcess:
 	bx	r0
 	.align	2, 0
 .L_70530:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_70534:
 	.4byte	0x040000d4
 .L_70538:
@@ -535,7 +535,7 @@ func_807053C:
 	bx	r0
 	.align	2, 0
 .L_705cc:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_705d0:
 	.4byte	0x040000d4
 .L_705d4:
@@ -1262,7 +1262,7 @@ func_8070A84:
 	b	.L_70b2a
 	.align	2, 0
 .L_70afc:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_70b00:
 	.4byte	gSubGameMode
 .L_70b04:
@@ -1490,7 +1490,7 @@ func_8070C38:
 	b	.L_70cb2
 	.align	2, 0
 .L_70c9c:
-	.4byte	gUnk_30000FC
+	.4byte	gGoldenDivaRoomTimer
 .L_70ca0:
 	.4byte	gMainTimer
 .L_70ca4:

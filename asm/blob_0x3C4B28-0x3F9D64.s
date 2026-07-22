@@ -3225,323 +3225,323 @@ sUnk_83E4818:
 
 baserom_blob 0x3E4818, 0x3EDC88
 
-.global sUnk_83EDC88
-sUnk_83EDC88:
+.global sGoldenDivaFanDamageTiles0
+sGoldenDivaFanDamageTiles0:
 
 baserom_blob 0x3EDC88, 0x3EE088
 
-.global sUnk_83EE088
-sUnk_83EE088:
+.global sGoldenDivaFanDamageTiles1
+sGoldenDivaFanDamageTiles1:
 
 baserom_blob 0x3EE088, 0x3EE488
 
-.global sUnk_83EE488
-sUnk_83EE488:
+.global sGoldenDivaFanDamageTiles2
+sGoldenDivaFanDamageTiles2:
 
 baserom_blob 0x3EE488, 0x3EE888
 
-.global sUnk_83EE888
-sUnk_83EE888:
+.global sGoldenDivaFanDamageTiles3
+sGoldenDivaFanDamageTiles3:
 
 baserom_blob 0x3EE888, 0x3EECA8
 
-.global sUnk_83EECA8
-sUnk_83EECA8:
+.global sGoldenDivaMaskFaceOam
+sGoldenDivaMaskFaceOam:
 
 baserom_blob 0x3EECA8, 0x3EECB8
 
-.global sUnk_83EECB8
-sUnk_83EECB8:
+.global sGoldenDivaMaskAttackOam
+sGoldenDivaMaskAttackOam:
 
 baserom_blob 0x3EECB8, 0x3EECD8
 
-.global sUnk_83EECD8
-sUnk_83EECD8:
+.global sGoldenDivaMaskSpinOam
+sGoldenDivaMaskSpinOam:
 
 baserom_blob 0x3EECD8, 0x3EED64
 
-.global sUnk_83EED64
-sUnk_83EED64:
+.global sGoldenDivaBodyMoveOam
+sGoldenDivaBodyMoveOam:
 
 baserom_blob 0x3EED64, 0x3EED74
 
-.global sUnk_83EED74
-sUnk_83EED74:
+.global sGoldenDivaBodyIdleOam
+sGoldenDivaBodyIdleOam:
 
 baserom_blob 0x3EED74, 0x3EF2CC
 
-.global sUnk_83EF2CC
-sUnk_83EF2CC:
+.global sGoldenDivaBodyFaceStartOam
+sGoldenDivaBodyFaceStartOam:
 
 baserom_blob 0x3EF2CC, 0x3EF2F4
 
-.global sUnk_83EF2F4
-sUnk_83EF2F4:
+.global sGoldenDivaBodyPhaseStartOam
+sGoldenDivaBodyPhaseStartOam:
 
 baserom_blob 0x3EF2F4, 0x3EF314
 
-.global sUnk_83EF314
-sUnk_83EF314:
+.global sGoldenDivaLowerBodyOam
+sGoldenDivaLowerBodyOam:
 
 baserom_blob 0x3EF314, 0x3EF33C
 
-.global sUnk_83EF33C
-sUnk_83EF33C:
+.global sGoldenDivaBodyFaceLoopOam
+sGoldenDivaBodyFaceLoopOam:
 
 baserom_blob 0x3EF33C, 0x3EF364
 
-.global sUnk_83EF364
-sUnk_83EF364:
+.global sGoldenDivaFanOam
+sGoldenDivaFanOam:
 
 baserom_blob 0x3EF364, 0x3EF374
 
-.global sUnk_83EF374
-sUnk_83EF374:
+.global sGoldenDivaBodyAttackOam
+sGoldenDivaBodyAttackOam:
 
 baserom_blob 0x3EF374, 0x3EF520
 
-.global sUnk_83EF520
-sUnk_83EF520:
+.global sGoldenDivaRobeOam
+sGoldenDivaRobeOam:
 
 baserom_blob 0x3EF520, 0x3EF770
 
-.global sUnk_83EF770
-sUnk_83EF770:
+.global sGoldenDivaExplosiveBallFallOam
+sGoldenDivaExplosiveBallFallOam:
 
 baserom_blob 0x3EF770, 0x3EF780
 
-.global sUnk_83EF780
-sUnk_83EF780:
+.global sGoldenDivaExplosiveBallIdleOam
+sGoldenDivaExplosiveBallIdleOam:
 
 baserom_blob 0x3EF780, 0x3EF790
 
-.global sUnk_83EF790
-sUnk_83EF790:
+.global sGoldenDivaExplosiveBallBounceOam
+sGoldenDivaExplosiveBallBounceOam:
 
 baserom_blob 0x3EF790, 0x3EF7E0
 
-.global sUnk_83EF7E0
-sUnk_83EF7E0:
+.global sGoldenDivaBlackEggIdleOam
+sGoldenDivaBlackEggIdleOam:
 
 baserom_blob 0x3EF7E0, 0x3EF808
 
-.global sUnk_83EF808
-sUnk_83EF808:
+.global sGoldenDivaGreenEnemyTransformOam
+sGoldenDivaGreenEnemyTransformOam:
 
 baserom_blob 0x3EF808, 0x3EF830
 
-.global sUnk_83EF830
-sUnk_83EF830:
+.global sGoldenDivaBlackEggLandingOam
+sGoldenDivaBlackEggLandingOam:
 
 baserom_blob 0x3EF830, 0x3EF850
 
-.global sUnk_83EF850
-sUnk_83EF850:
+.global sGoldenDivaBlackEggSlopeOam
+sGoldenDivaBlackEggSlopeOam:
 
 baserom_blob 0x3EF850, 0x3EF8F0
 
-.global sUnk_83EF8F0
-sUnk_83EF8F0:
+.global sGoldenDivaBlackEggCarryOam
+sGoldenDivaBlackEggCarryOam:
 
 baserom_blob 0x3EF8F0, 0x3EF900
 
-.global sUnk_83EF900
-sUnk_83EF900:
+.global sGoldenDivaGreenEnemyIdleOam
+sGoldenDivaGreenEnemyIdleOam:
 
 baserom_blob 0x3EF900, 0x3EF918
 
-.global sUnk_83EF918
-sUnk_83EF918:
+.global sGoldenDivaGreenEnemyActiveOam
+sGoldenDivaGreenEnemyActiveOam:
 
 baserom_blob 0x3EF918, 0x3EF968
 
-.global sUnk_83EF968
-sUnk_83EF968:
+.global sGoldenDivaBlackChickIdleOam
+sGoldenDivaBlackChickIdleOam:
 
 baserom_blob 0x3EF968, 0x3EF980
 
-.global sUnk_83EF980
-sUnk_83EF980:
+.global sGoldenDivaBlackChickAttackOam
+sGoldenDivaBlackChickAttackOam:
 
 baserom_blob 0x3EF980, 0x3EF998
 
-.global sUnk_83EF998
-sUnk_83EF998:
+.global sGoldenDivaBlackChickPose110Oam
+sGoldenDivaBlackChickPose110Oam:
 
 baserom_blob 0x3EF998, 0x3EF9B0
 
-.global sUnk_83EF9B0
-sUnk_83EF9B0:
+.global sGoldenDivaBlackChickPose111Oam
+sGoldenDivaBlackChickPose111Oam:
 
 baserom_blob 0x3EF9B0, 0x3EF9C8
 
-.global sUnk_83EF9C8
-sUnk_83EF9C8:
+.global sGoldenDivaBlackChickPose111AltOam
+sGoldenDivaBlackChickPose111AltOam:
 
 baserom_blob 0x3EF9C8, 0x3EF9E0
 
-.global sUnk_83EF9E0
-sUnk_83EF9E0:
+.global sGoldenDivaHammerIdleOam
+sGoldenDivaHammerIdleOam:
 
 baserom_blob 0x3EF9E0, 0x3EF9F0
 
-.global sUnk_83EF9F0
-sUnk_83EF9F0:
+.global sGoldenDivaHammerActiveOam
+sGoldenDivaHammerActiveOam:
 
 baserom_blob 0x3EF9F0, 0x3EFA18
 
-.global sUnk_83EFA18
-sUnk_83EFA18:
+.global sGoldenDivaBlackEggFallOam
+sGoldenDivaBlackEggFallOam:
 
 baserom_blob 0x3EFA18, 0x3EFF08
 
-.global sUnk_83EFF08
-sUnk_83EFF08:
+.global sGoldenDivaBodyDamagedOam
+sGoldenDivaBodyDamagedOam:
 
 baserom_blob 0x3EFF08, 0x3EFF40
 
-.global sUnk_83EFF40
-sUnk_83EFF40:
+.global sGoldenDivaBodyDamagedAltOam
+sGoldenDivaBodyDamagedAltOam:
 
 baserom_blob 0x3EFF40, 0x3EFFAC
 
-.global sUnk_83EFFAC
-sUnk_83EFFAC:
+.global sGoldenDivaFaceIdleOam
+sGoldenDivaFaceIdleOam:
 
 baserom_blob 0x3EFFAC, 0x3F02BC
 
-.global sUnk_83F02BC
-sUnk_83F02BC:
+.global sGoldenDivaRedMaskOam
+sGoldenDivaRedMaskOam:
 
 baserom_blob 0x3F02BC, 0x3F02EC
 
-.global sUnk_83F02EC
-sUnk_83F02EC:
+.global sGoldenDivaGreenMaskOam
+sGoldenDivaGreenMaskOam:
 
 baserom_blob 0x3F02EC, 0x3F031C
 
-.global sUnk_83F031C
-sUnk_83F031C:
+.global sGoldenDivaBlueMaskOam
+sGoldenDivaBlueMaskOam:
 
 baserom_blob 0x3F031C, 0x3F034C
 
-.global sUnk_83F034C
-sUnk_83F034C:
+.global sGoldenDivaWhiteMaskOam
+sGoldenDivaWhiteMaskOam:
 
 baserom_blob 0x3F034C, 0x3F037C
 
-.global sUnk_83F037C
-sUnk_83F037C:
+.global sGoldenDivaFaceStartGraphicsSequence
+sGoldenDivaFaceStartGraphicsSequence:
 
 baserom_blob 0x3F037C, 0x3F0388
 
-.global sUnk_83F0388
-sUnk_83F0388:
+.global sGoldenDivaRecoveryGraphicsSequence
+sGoldenDivaRecoveryGraphicsSequence:
 
 baserom_blob 0x3F0388, 0x3F03BC
 
-.global sUnk_83F03BC
-sUnk_83F03BC:
+.global sGoldenDivaHitGraphicsSequence
+sGoldenDivaHitGraphicsSequence:
 
 baserom_blob 0x3F03BC, 0x3F03C8
 
-.global sUnk_83F03C8
-sUnk_83F03C8:
+.global sGoldenDivaMovementGraphicsSequence
+sGoldenDivaMovementGraphicsSequence:
 
 baserom_blob 0x3F03C8, 0x3F03D4
 
-.global sUnk_83F03D4
-sUnk_83F03D4:
+.global sGoldenDivaAttackGraphicsSequence
+sGoldenDivaAttackGraphicsSequence:
 
 baserom_blob 0x3F03D4, 0x3F03E0
 
-.global sUnk_83F03E0
-sUnk_83F03E0:
+.global sGoldenDivaDefaultGraphicsSequence
+sGoldenDivaDefaultGraphicsSequence:
 
 baserom_blob 0x3F03E0, 0x3F040C
 
-.global sUnk_83F040C
-sUnk_83F040C:
+.global sGoldenDivaIntroGraphicsSequence
+sGoldenDivaIntroGraphicsSequence:
 
 baserom_blob 0x3F040C, 0x3F0414
 
-.global sUnk_83F0414
-sUnk_83F0414:
+.global sGoldenDivaLowHealthGraphicsSequence
+sGoldenDivaLowHealthGraphicsSequence:
 
 baserom_blob 0x3F0414, 0x3F04A0
 
-.global sUnk_83F04A0
-sUnk_83F04A0:
+.global sGoldenDivaHitMotion
+sGoldenDivaHitMotion:
 
 baserom_blob 0x3F04A0, 0x3F04D4
 
-.global sUnk_83F04D4
-sUnk_83F04D4:
+.global sGoldenDivaHammerOrbitMotion
+sGoldenDivaHammerOrbitMotion:
 
 baserom_blob 0x3F04D4, 0x3F0514
 
-.global sUnk_83F0514
-sUnk_83F0514:
+.global sGoldenDivaBlackChickFallMotion
+sGoldenDivaBlackChickFallMotion:
 
 baserom_blob 0x3F0514, 0x3F0536
 
-.global sUnk_83F0536
-sUnk_83F0536:
+.global sGoldenDivaBlackEggBounceMotion
+sGoldenDivaBlackEggBounceMotion:
 
 baserom_blob 0x3F0536, 0x3F0598
 
-.global sUnk_83F0598
-sUnk_83F0598:
+.global sGoldenDivaBlackEggBounceAngles
+sGoldenDivaBlackEggBounceAngles:
 
 baserom_blob 0x3F0598, 0x3F065A
 
-.global sUnk_83F065A
-sUnk_83F065A:
+.global sGoldenDivaMaskAttackXMotion
+sGoldenDivaMaskAttackXMotion:
 
 baserom_blob 0x3F065A, 0x3F068A
 
-.global sUnk_83F068A
-sUnk_83F068A:
+.global sGoldenDivaMaskAttackYMotion
+sGoldenDivaMaskAttackYMotion:
 
 baserom_blob 0x3F068A, 0x3F06CA
 
-.global sUnk_83F06CA
-sUnk_83F06CA:
+.global sGoldenDivaMaskAttackPoseMotion
+sGoldenDivaMaskAttackPoseMotion:
 
 baserom_blob 0x3F06CA, 0x3F06E6
 
-.global sUnk_83F06E6
-sUnk_83F06E6:
+.global sGoldenDivaIntroMotion
+sGoldenDivaIntroMotion:
 
 baserom_blob 0x3F06E6, 0x3F0738
 
-.global sUnk_83F0738
-sUnk_83F0738:
+.global sGoldenDivaAttackMotion
+sGoldenDivaAttackMotion:
 
 baserom_blob 0x3F0738, 0x3F07B2
 
-.global sUnk_83F07B2
-sUnk_83F07B2:
+.global sGoldenDivaMaskBounceMotion
+sGoldenDivaMaskBounceMotion:
 
 baserom_blob 0x3F07B2, 0x3F07D4
 
-.global sUnk_83F07D4
-sUnk_83F07D4:
+.global sGoldenDivaPhaseTransitionXMotion
+sGoldenDivaPhaseTransitionXMotion:
 
 baserom_blob 0x3F07D4, 0x3F0886
 
-.global sUnk_83F0886
-sUnk_83F0886:
+.global sGoldenDivaPhaseTransitionYMotion
+sGoldenDivaPhaseTransitionYMotion:
 
 baserom_blob 0x3F0886, 0x3F0938
 
-.global sUnk_83F0938
-sUnk_83F0938:
+.global sGoldenDivaExplosiveBallOrbitMotion
+sGoldenDivaExplosiveBallOrbitMotion:
 
 baserom_blob 0x3F0938, 0x3F096A
 
-.global sUnk_83F096A
-sUnk_83F096A:
+.global sGoldenDivaDefeatSpawnSchedule
+sGoldenDivaDefeatSpawnSchedule:
 
 baserom_blob 0x3F096A, 0x3F0E4C
 

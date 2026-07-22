@@ -16,7 +16,7 @@ void SetCrumblingBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gUnk_3000028;
+    blockAction = &gSpriteAiCollisionOffset;
     action = 3;
     *blockAction = action;
     lowerY = (u16)(yPosition + 4);
@@ -64,7 +64,7 @@ void ClearCrumblingBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gUnk_3000028;
+    blockAction = &gSpriteAiCollisionOffset;
     action = 2;
     *blockAction = action;
     lowerY = (u16)(yPosition + 4);

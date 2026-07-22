@@ -16,7 +16,7 @@ void SetFoldingDoorCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gUnk_3000028;
+    blockAction = &gSpriteAiCollisionOffset;
     action = 3;
     *blockAction = action;
     leftX = 64;
@@ -103,7 +103,7 @@ void ClearFoldingDoorCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gUnk_3000028;
+    blockAction = &gSpriteAiCollisionOffset;
     action = 2;
     *blockAction = action;
     leftX = 64;

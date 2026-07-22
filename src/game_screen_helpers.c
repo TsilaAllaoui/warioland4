@@ -650,7 +650,7 @@ void InitializeRoomState(void)
     s32 switchStateStart;
     u32 roomIndex;
 
-    gUnk_3000021 = 0;
+    gSpriteAiDropTimer = 0;
     gStageExitType = 0;
     gUnk_300001A = 0;
     colorBase = &gColorFading;
@@ -659,7 +659,7 @@ void InitializeRoomState(void)
     colorBase->unk_3 = 0;
     colorBase->unk_4 = 0;
     colorBase->unk_5 = 0;
-    gUnk_3000044 = 0;
+    gGoldenDivaShopItemState = 0;
     gBldCnt = 0;
     gUnk_30037BE = 0;
     initialize = gUnk_3000C3F;
@@ -679,13 +679,13 @@ void InitializeRoomState(void)
         gColorFadingState[3] = 0;
         gColorFadingState[4] = 0;
         gColorFadingState[5] = 0;
-        ((u8 *)&gUnk_30000FC)[0] = 0;
-        ((u8 *)&gUnk_30000FC)[1] = 0;
-        ((u8 *)&gUnk_30000FC)[2] = 0;
-        ((u8 *)&gUnk_30000FC)[3] = 0;
-        ((u8 *)&gUnk_30000FC)[4] = 0;
-        ((u8 *)&gUnk_30000FC)[5] = 0;
-        gUnk_3000028 = 0;
+        ((u8 *)&gGoldenDivaRoomTimer)[0] = 0;
+        ((u8 *)&gGoldenDivaRoomTimer)[1] = 0;
+        ((u8 *)&gGoldenDivaRoomTimer)[2] = 0;
+        ((u8 *)&gGoldenDivaRoomTimer)[3] = 0;
+        ((u8 *)&gGoldenDivaRoomTimer)[4] = 0;
+        ((u8 *)&gGoldenDivaRoomTimer)[5] = 0;
+        gSpriteAiCollisionOffset = 0;
         if (gHasTemporarySave == 0) {
             if ((gUnk_3000020 & 0x80) == 0)
                 gUnk_3000025 = 0;
@@ -1322,8 +1322,8 @@ void UpdateBossRoomState(void)
             gUnk_300001B = 2;
             if (gCurrentPassage == PASSAGE_GOLDEN) {
                 gUnk_300001B = 3;
-                gUnk_3000021 = 0;
-                gUnk_3000045 = 0;
+                gSpriteAiDropTimer = 0;
+                gGoldenDivaShopItemTimer = 0;
             }
         }
     }
@@ -1528,7 +1528,7 @@ void ProcessGoldenPassageBossTransition(void)
         register u8 *temporaryPointer asm("r0");
         u32 temporaryValue;
 
-        temporaryPointer = &gUnk_3000045;
+        temporaryPointer = &gGoldenDivaShopItemTimer;
         temporaryValue = *temporaryPointer;
         transitionFlag = temporaryPointer;
         if (temporaryValue != 0)
@@ -1538,7 +1538,7 @@ void ProcessGoldenPassageBossTransition(void)
         register u8 *temporaryPointer asm("r0");
         u32 temporaryValue;
 
-        temporaryPointer = &gUnk_3000021;
+        temporaryPointer = &gSpriteAiDropTimer;
         temporaryValue = *temporaryPointer;
         transitionState = temporaryPointer;
         switch (temporaryValue) {
@@ -1635,7 +1635,7 @@ void ProcessGoldenPassageBossTransition(void)
     }
     if (advanceState != 0) {
 increment_state:
-        gUnk_3000021++;
+        gSpriteAiDropTimer++;
         gUnk_300188E = 0;
     }
     UpdateGoldenPassageBossTransitionTimer();
@@ -1666,7 +1666,7 @@ void ProcessRoomBackgrounds(void)
         func_8070E24();
     func_8070BB8();
     func_8070C38();
-    if (gUnk_3000044 != 0)
+    if (gGoldenDivaShopItemState != 0)
         ProcessRoomWindowEffect();
     if (gUnk_300001B > 1) {
         func_806F684();
@@ -1686,7 +1686,7 @@ void ProcessRoomWindowEffect(void)
     register u8 *statePointer asm("r6");
     register u32 state asm("r4");
 
-    statePointer = &gUnk_3000044;
+    statePointer = &gGoldenDivaShopItemState;
     state = *statePointer;
     {
         register u32 value asm("r0");

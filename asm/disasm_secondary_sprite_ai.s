@@ -718,7 +718,7 @@ func_8076F94:
 .L_76fb8:
 	.4byte	gCurrentSecondarySprite
 .L_76fbc:
-	.4byte	sUnk_841463C
+	.4byte	sGoldenDivaBlackChickFinalOam
 
 
 thumb_func_start func_8076FC0
@@ -4313,7 +4313,7 @@ func_80782A4:
 .L_78958:
 	.4byte	gSubGameMode
 .L_7895c:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_78960:
 	.4byte	gStageExitType
 .L_78964:
@@ -4330,7 +4330,7 @@ func_80782A4:
 .L_78978:
 	.4byte	gSubGameMode
 .L_7897c:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_78980:
 	.4byte	gStageExitType
 .L_78984:
@@ -6190,7 +6190,7 @@ func_8079574:
 .L_7976c:
 	.4byte	gSubGameMode
 .L_79770:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_79774:
 	.4byte	gStageExitType
 .L_79778:
@@ -6205,7 +6205,7 @@ func_8079574:
 .L_79788:
 	.4byte	gSubGameMode
 .L_7978c:
-	.4byte	gUnk_3000021
+	.4byte	gSpriteAiDropTimer
 .L_79790:
 	.4byte	gStageExitType
 .L_79794:

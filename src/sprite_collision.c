@@ -5099,13 +5099,13 @@ void func_8022524(s32 slot, u16 spriteTop, u16 spriteBottom, u16 warioTop, u16 w
         !(gSpriteCollisionFlags & SPRITE_COLLISION_ABOVE) && (spriteTop <= warioTop)) {
         if (gSpriteCollisionFlags & SPRITE_COLLISION_BELOW) {
             WarioRequestPose(WPOSE_BOUNCY_HITTING_CEILING);
-            func_8062C78();
+            AdvanceGoldenDivaMaskGraphics();
             SpriteSpawnSecondary(warioTop, warioX, SSPRITE_40);
             SpriteSpawnAsChild(PSPRITE_0B, 0, 0, gSpriteData[slot].yPosition, gSpriteData[slot].xPosition);
             VoiceSetPlay(VS_WARIO_TREASURE);
             gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(0.25);
         } else {
-            func_8062C78();
+            AdvanceGoldenDivaMaskGraphics();
             SpriteSpawnAsChild(PSPRITE_0B, 0, 0, gSpriteData[slot].yPosition, gSpriteData[slot].xPosition);
             VoiceSetPlay(VS_WARIO_TREASURE);
             gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(1);
@@ -5388,7 +5388,7 @@ void func_8022C64(s32 slot)
             return;
         }
 
-        if (gUnk_3000A60) {
+        if (gSpriteAiDynamicGraphicsTimer) {
             if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
                 SpriteCollisionTakeDamageRight();
             } else {

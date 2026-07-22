@@ -183,7 +183,7 @@ void ApplyChanceWheelReward(void)
             }
             break;
         case 4:
-            gUnk_3000044 = 5;
+            gGoldenDivaShopItemState = 5;
             WarioRequestPose(19);
             ScoreGiveOrDropCoins(-40);
             break;

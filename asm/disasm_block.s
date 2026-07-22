@@ -357,7 +357,7 @@ func_806D5C0:
 	strh	r5, [r6, #2]
 	b	.L_6d66c
 .L_6d660:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 .L_6d664:
 	.4byte	gBackgroundInfo
 .L_6d668:

@@ -1955,13 +1955,13 @@ func_8075F44:
 .L_760e0:
 	.4byte	gBgAnimationTimer
 .L_760e4:
-	.4byte	gUnk_3000A60
+	.4byte	gSpriteAiDynamicGraphicsTimer
 .L_760e8:
-	.4byte	gUnk_3000A61
+	.4byte	gGoldenDivaShopItemHealthTarget
 .L_760ec:
 	.4byte	gUnk_3000A62
 .L_760f0:
-	.4byte	gCuckooCondorPendulumRadius
+	.4byte	gSpriteAiRadius
 .L_760f4:
 	.4byte	gUnk_3000C04
 .L_760f8:

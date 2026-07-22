@@ -1266,7 +1266,7 @@ func_806F524:
 .L_6f56c:
 	.4byte	gUnk_30031F4
 .L_6f570:
-	.4byte	gUnk_3000028
+	.4byte	gSpriteAiCollisionOffset
 .L_6f574:
 	cmp	r0, #3
 	beq	.L_6f5e2

@@ -31,7 +31,7 @@ extern u8 gCuckooCondorHasCapturedWario;
 extern u8 gInitialHealth;
 extern u8 gPaletteFlashTimer;
 extern u8 gBgAnimationFrame;
-extern u16 gCuckooCondorPendulumRadius;
+extern u16 gSpriteAiRadius;
 extern const s16 sSharedDebrisYVelocity[];
 
 void UpdateCuckooCondorPendulumOrbit(void)
@@ -70,7 +70,7 @@ void UpdateCuckooCondorPendulumOrbit(void)
     angle += 0x40;
     angle &= 0xFF;
     slot = SpriteUtilFindSpriteSlot(0xE5);
-    radius = gCuckooCondorPendulumRadius;
+    radius = gSpriteAiRadius;
 
     switch (sprite->roomSlot) {
     case 0:
@@ -107,7 +107,7 @@ radiusReady:
     index *= sizeof(struct PrimarySpriteData);
     index += (u32)parentBase;
     parent = (struct PrimarySpriteData *)index;
-    temp = gCuckooCondorPendulumRadius;
+    temp = gSpriteAiRadius;
     temp += parent->yPosition;
     temp <<= 16;
     baseY = temp >> 16;
@@ -2236,7 +2236,7 @@ loop:
     sprite->animationTimer = status;
     value = 0xE5;
     value = SpriteUtilFindSpriteSlot(value);
-    dst = &gCuckooCondorPendulumRadius;
+    dst = &gSpriteAiRadius;
     ydiff = sprite->yPosition;
     scan = gSpriteData;
     status = sizeof(struct PrimarySpriteData);
@@ -2333,7 +2333,7 @@ loop:
     sprite->animationTimer = status;
     value = 0xE5;
     value = SpriteUtilFindSpriteSlot(value);
-    dst = &gCuckooCondorPendulumRadius;
+    dst = &gSpriteAiRadius;
     ydiff = sprite->yPosition;
     scan = gSpriteData;
     status = sizeof(struct PrimarySpriteData);

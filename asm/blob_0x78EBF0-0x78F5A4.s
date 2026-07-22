@@ -41,18 +41,18 @@ sUnk_878F170:
 
 baserom_blob 0x78F170, 0x78F188
 
-.global sUnk_878F188
-sUnk_878F188:
+.global sGoldenDivaMaskGraphicsPointers
+sGoldenDivaMaskGraphicsPointers:
 
 baserom_blob 0x78F188, 0x78F1BC
 
-.global sUnk_878F1BC
-sUnk_878F1BC:
+.global sGoldenDivaFanDamageGraphicsPointers
+sGoldenDivaFanDamageGraphicsPointers:
 
 baserom_blob 0x78F1BC, 0x78F1D4
 
-.global sUnk_878F1D4
-sUnk_878F1D4:
+.global sGoldenDivaDynamicGraphicsPointers
+sGoldenDivaDynamicGraphicsPointers:
 
 baserom_blob 0x78F1D4, 0x78F21C
 

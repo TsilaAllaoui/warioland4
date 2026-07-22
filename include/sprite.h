@@ -477,7 +477,7 @@ extern s8 gBossTookDamage;
 extern s8 gCuckooCondorPendulumLength;
 extern u8 gCuckooCondorMoveRight;
 extern u8 gCuckooCondorHasCapturedWario;
-extern u8 gUnk_3000A60;
+extern u8 gSpriteAiDynamicGraphicsTimer;
 
 extern const u16 sUnk_83B35F8[][2];
 extern const u16 sUnk_83B37FC[][2];
