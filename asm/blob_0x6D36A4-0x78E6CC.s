@@ -294,113 +294,113 @@ baserom_blob 0x6F401C, 0x6F4A98
 
 @ Wario's Roulette data
 
-.global sUnk_86F4A98
-sUnk_86F4A98:
+.global sRouletteItemOamFrames
+sRouletteItemOamFrames:
 
 baserom_blob 0x6F4A98, 0x6F4BB8
 
-.global sUnk_86F4BB8
-sUnk_86F4BB8:
+.global sRouletteAffineTableA
+sRouletteAffineTableA:
 
 baserom_blob 0x6F4BB8, 0x6F4BC0
 
-.global sUnk_86F4BC0
-sUnk_86F4BC0:
+.global sRouletteAffineTableB
+sRouletteAffineTableB:
 
 baserom_blob 0x6F4BC0, 0x6F4BC8
 
-.global sUnk_86F4BC8
-sUnk_86F4BC8:
+.global sRouletteAffineTableC
+sRouletteAffineTableC:
 
 baserom_blob 0x6F4BC8, 0x6F4C30
 
-.global sUnk_86F4C30
-sUnk_86F4C30:
+.global sRouletteSideResultOam
+sRouletteSideResultOam:
 
 baserom_blob 0x6F4C30, 0x6F4C48
 
-.global sUnk_86F4C48
-sUnk_86F4C48:
+.global sRouletteCenterResultOam
+sRouletteCenterResultOam:
 
 baserom_blob 0x6F4C48, 0x6F4DD0
 
-.global sUnk_86F4DD0
-sUnk_86F4DD0:
+.global sRouletteMainState2Oam
+sRouletteMainState2Oam:
 
 baserom_blob 0x6F4DD0, 0x6F4DE0
 
-.global sUnk_86F4DE0
-sUnk_86F4DE0:
+.global sRouletteMainState1Oam
+sRouletteMainState1Oam:
 
 baserom_blob 0x6F4DE0, 0x6F4E00
 
-.global sUnk_86F4E00
-sUnk_86F4E00:
+.global sRoulettePromptOam
+sRoulettePromptOam:
 
 baserom_blob 0x6F4E00, 0x6F4E28
 
-.global sUnk_86F4E28
-sUnk_86F4E28:
+.global sRouletteBgPalette
+sRouletteBgPalette:
 
 baserom_blob 0x6F4E28, 0x6F5028
 
-.global sUnk_86F5028
-sUnk_86F5028:
+.global sRouletteBgTiles
+sRouletteBgTiles:
 
 baserom_blob 0x6F5028, 0x6F5148
 
-.global sUnk_86F5148
-sUnk_86F5148:
+.global sRouletteScoreTiles
+sRouletteScoreTiles:
 
 baserom_blob 0x6F5148, 0x6F5848
 
-.global sUnk_86F5848
-sUnk_86F5848:
+.global sRouletteMedalTiles
+sRouletteMedalTiles:
 
 baserom_blob 0x6F5848, 0x6F61A8
 
-.global sUnk_86F61A8
-sUnk_86F61A8:
+.global sRouletteAwardMedalTiles
+sRouletteAwardMedalTiles:
 
 baserom_blob 0x6F61A8, 0x6FB828
 
-.global sUnk_86FB828
-sUnk_86FB828:
+.global sRouletteObjPalette
+sRouletteObjPalette:
 
 baserom_blob 0x6FB828, 0x6FBA28
 
-.global sUnk_86FBA28
-sUnk_86FBA28:
+.global sRouletteObjTiles
+sRouletteObjTiles:
 
 baserom_blob 0x6FBA28, 0x6FEA28
 
-.global sUnk_86FEA28
-sUnk_86FEA28:
+.global sRouletteTopResultTiles
+sRouletteTopResultTiles:
 
 baserom_blob 0x6FEA28, 0x702A28
 
-.global sUnk_8702A28
-sUnk_8702A28:
+.global sRouletteBottomResultTiles
+sRouletteBottomResultTiles:
 
 baserom_blob 0x702A28, 0x706A28
 
-.global sUnk_8706A28
-sUnk_8706A28:
+.global sRouletteMiddleResultTiles
+sRouletteMiddleResultTiles:
 
 baserom_blob 0x706A28, 0x70AA28
 
-.global sUnk_870AA28
-sUnk_870AA28:
+.global sRouletteResultFlashTiles
+sRouletteResultFlashTiles:
 
 baserom_blob 0x70AA28, 0x70BA28
 
-.global sUnk_870BA28
-sUnk_870BA28:
+.global sRouletteExtraBgTiles
+sRouletteExtraBgTiles:
 
 baserom_blob 0x70BA28, 0x70C228
 
-.global sUnk_870C228
-sUnk_870C228:
+.global sRouletteExtraObjTiles
+sRouletteExtraObjTiles:
 
 baserom_blob 0x70C228, 0x70CA28
 

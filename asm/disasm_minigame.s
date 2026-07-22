@@ -253,7 +253,7 @@ MinigameSubroutine:
 	ldr	r1, .L_89b24
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_808B104
+	bl	InitRouletteGame
 .L_89b10:
 	ldr	r1, .L_89b28
 	ldrh	r0, [r1, #0]
@@ -281,7 +281,7 @@ MinigameSubroutine:
 .L_89b40:
 	.4byte	gSubGameMode
 .L_89b44:
-	bl	func_808AC90
+	bl	UpdateRouletteGame
 	cmp	r0, #0
 	beq	.L_89b6a
 	ldr	r1, .L_89b54
@@ -418,7 +418,7 @@ func_8089BCC:
 	bl	func_808A46C
 	b	.L_89c60
 .L_89c56:
-	bl	func_808B0E0
+	bl	ApplyRouletteBlend
 	b	.L_89c60
 .L_89c5c:
 	bl	WarioHopApplyBgScroll
@@ -589,7 +589,7 @@ func_8089D4C:
 	bl	func_808A8E4
 	b	.L_89dc6
 .L_89db6:
-	bl	func_808BE4C
+	bl	DrawRoulette
 	b	.L_89dc6
 .L_89dbc:
 	bl	WarioHopDrawSprites
@@ -901,7 +901,7 @@ func_8089E74:
 .L_89ff4:
 	.4byte	gMinigameState
 .L_89ff8:
-	.4byte	gHomerunSubstate
+	.4byte	gMinigameSubstate
 
 
 thumb_func_start func_8089FFC
@@ -1299,9 +1299,9 @@ func_8089FFC:
 .L_8a2ec:
 	.4byte	0x04000012
 .L_8a2f0:
-	.4byte	gHomerunSequenceState
+	.4byte	gMinigameSequenceState
 .L_8a2f4:
-	.4byte	gHomerunSequenceTimer
+	.4byte	gMinigameSequenceTimer
 .L_8a2f8:
 	.4byte	gUnk_3003C4C
 .L_8a2fc:
@@ -1395,7 +1395,7 @@ func_808A33C:
 .L_8a3a4:
 	.4byte	gUnk_30047B8
 .L_8a3a8:
-	.4byte	gHomerunSubstate
+	.4byte	gMinigameSubstate
 .L_8a3ac:
 	.4byte	gMinigameState
 .L_8a3b0:
@@ -1470,7 +1470,7 @@ func_808A3C0:
 	mov	r0, #10
 	b	.L_8a448
 .L_8a434:
-	.4byte	gHomerunSubstate
+	.4byte	gMinigameSubstate
 .L_8a438:
 	.4byte	gMinigameState
 .L_8a43c:
@@ -1853,7 +1853,7 @@ func_808A6E8:
 	beq	.L_8a70a
 	b	.L_8a810
 .L_8a6fc:
-	.4byte	gHomerunSequenceState
+	.4byte	gMinigameSequenceState
 .L_8a700:
 	cmp	r0, #2
 	beq	.L_8a774
@@ -1905,7 +1905,7 @@ func_808A6E8:
 .L_8a75c:
 	.4byte	gTotalScore
 .L_8a760:
-	.4byte	gHomerunSequenceTimer
+	.4byte	gMinigameSequenceTimer
 .L_8a764:
 	.4byte	0x00000222
 .L_8a768:
@@ -2012,7 +2012,7 @@ func_808A818:
 	beq	.L_8a88c
 	b	.L_8a8dc
 .L_8a828:
-	.4byte	gHomerunSequenceState
+	.4byte	gMinigameSequenceState
 .L_8a82c:
 	ldr	r4, .L_8a884
 	ldr	r3, .L_8a888

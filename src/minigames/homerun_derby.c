@@ -102,9 +102,9 @@ struct HomerunBonusState {
 };
 
 extern u8 gMinigameState;
-extern u8 gHomerunSubstate;
-extern u8 gHomerunSequenceState;
-extern u16 gHomerunSequenceTimer;
+extern u8 gMinigameSubstate;
+extern u8 gMinigameSequenceState;
+extern u16 gMinigameSequenceTimer;
 extern u8 gMinigameNewHighScore;
 extern u16 gMinigameScore;
 extern struct HomerunAnimationCursor gMinigameUiAnimation;
@@ -702,9 +702,9 @@ void InitHomerunDerby(void)
     }
 
     gMinigameState = 0;
-    gHomerunSubstate = 0;
-    gHomerunSequenceState = 0;
-    gHomerunSequenceTimer = 0;
+    gMinigameSubstate = 0;
+    gMinigameSequenceState = 0;
+    gMinigameSequenceTimer = 0;
     gMinigameScore = 0;
     gMinigameNewHighScore = 0;
     DrawHomerunDerbyScore();
@@ -1754,7 +1754,7 @@ void DrawHomerunDerby(void)
         if ((byteValue = bonusAnimation[gHomerunBonusRender.animationFrame].time) == 0)
         {
           gHomerunBonusRender.animationFrame = 0;
-          animationType = gHomerunSequenceState;
+          animationType = gMinigameSequenceState;
           if (animationType == 1)
           {
             if (!(animationType & ((u32 (*)(void)) MinigameRandom)()))
@@ -1768,7 +1768,7 @@ void DrawHomerunDerby(void)
             m4aSongNumStart(0x2CCU);
             gHomerunBonusRender.animationIndex = (u8) gHomerunBonusRender.nextAnimationIndex;
             gHomerunBonusRender.animationTimer = 0U;
-            gHomerunSequenceState += 1;
+            gMinigameSequenceState += 1;
           }
         }
       }
@@ -2007,7 +2007,7 @@ s32 UpdateHomerunScoreSequence(void)
     register u8 *sequenceStatePointer asm("r5");
     register s32 sequenceState asm("r4");
 
-    sequenceStatePointer = &gHomerunSequenceState;
+    sequenceStatePointer = &gMinigameSequenceState;
     sequenceState = *sequenceStatePointer;
 
     if (sequenceState == 1) {
@@ -2058,13 +2058,13 @@ state1:
             DrawHomerunDerbyScore();
         }
 incState:
-        gHomerunSequenceState++;
+        gMinigameSequenceState++;
     }
     goto ret0;
 
 state2:
     if (MinigameWaitForFrames(30) != 0) {
-        gHomerunSequenceTimer = 0;
+        gMinigameSequenceTimer = 0;
         *sequenceStatePointer = 0;
         return 1;
     }
@@ -2084,7 +2084,7 @@ s32 UpdateHomerunBonusAnimation(void)
     s32 sequenceState;
     s32 minimumAnimation;
 
-    sequenceStatePointer = &gHomerunSequenceState;
+    sequenceStatePointer = &gMinigameSequenceState;
     sequenceState = *sequenceStatePointer;
     sequenceStatePointerReload = sequenceStatePointer;
 
@@ -2149,7 +2149,7 @@ s32 UpdateHomerunBonusAnimation(void)
             returningBonusState->yPosition = nextYPosition;
             yPosition = returningBonusState->yPosition;
             if (yPosition > sHomerunBonusYLimits[returningBonusState->direction - 1]) {
-                timerOutput = &gHomerunSequenceTimer;
+                timerOutput = &gMinigameSequenceTimer;
                 *timerOutput = 0;
                 *sequenceStatePointer = direction;
                 returningBonusState->animationIndex = direction;
@@ -2163,7 +2163,7 @@ s32 UpdateHomerunBonusAnimation(void)
             returningBonusState->yPosition = nextYPosition;
             yPosition = returningBonusState->yPosition;
             if (yPosition < sHomerunBonusYLimits[returningBonusState->direction + 1]) {
-                gHomerunSequenceTimer = direction;
+                gMinigameSequenceTimer = direction;
                 *sequenceStatePointer = zeroValue;
                 returningBonusState->animationIndex = zeroValue;
                 return 1;
