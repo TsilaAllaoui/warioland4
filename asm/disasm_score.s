@@ -1367,7 +1367,7 @@ func_8075B50:
 .L_75c98:
 	.4byte	gCollectedNWJewelPiece
 .L_75c9c:
-	.4byte	gHasGoldenDivaChest5
+	.4byte	gHasBossTreasure5
 .L_75ca0:
 	.4byte	gGoldenTreasureCount
 .L_75ca4:
@@ -1393,9 +1393,9 @@ func_8075B50:
 	b	.L_75cdc
 	.align	2, 0
 .L_75ccc:
-	.4byte	gHasGoldenDivaChest5
+	.4byte	gHasBossTreasure5
 .L_75cd0:
-	.4byte	gHasGoldenDivaChest6
+	.4byte	gHasBossTreasure6
 .L_75cd4:
 	.4byte	gGoldenTreasureCount
 .L_75cd8:
@@ -1419,9 +1419,9 @@ func_8075B50:
 	b	.L_75d0c
 	.align	2, 0
 .L_75cfc:
-	.4byte	gHasGoldenDivaChest6
+	.4byte	gHasBossTreasure6
 .L_75d00:
-	.4byte	gHasGoldenDivaChest7
+	.4byte	gHasBossTreasure7
 .L_75d04:
 	.4byte	gGoldenTreasureCount
 .L_75d08:
@@ -1447,9 +1447,9 @@ func_8075B50:
 	b	.L_75d40
 	.align	2, 0
 .L_75d30:
-	.4byte	gHasGoldenDivaChest7
+	.4byte	gHasBossTreasure7
 .L_75d34:
-	.4byte	gHasGoldenDivaChest8
+	.4byte	gHasBossTreasure8
 .L_75d38:
 	.4byte	gGoldenTreasureCount
 .L_75d3c:
@@ -1475,9 +1475,9 @@ func_8075B50:
 	b	.L_75d74
 	.align	2, 0
 .L_75d64:
-	.4byte	gHasGoldenDivaChest8
+	.4byte	gHasBossTreasure8
 .L_75d68:
-	.4byte	gHasGoldenDivaChest9
+	.4byte	gHasBossTreasure9
 .L_75d6c:
 	.4byte	gGoldenTreasureCount
 .L_75d70:
@@ -1501,9 +1501,9 @@ func_8075B50:
 	b	.L_75da4
 	.align	2, 0
 .L_75d94:
-	.4byte	gHasGoldenDivaChest9
+	.4byte	gHasBossTreasure9
 .L_75d98:
-	.4byte	gHasGoldenDivaChest10
+	.4byte	gHasBossTreasure10
 .L_75d9c:
 	.4byte	gGoldenTreasureCount
 .L_75da0:
@@ -1529,9 +1529,9 @@ func_8075B50:
 	b	.L_75dd8
 	.align	2, 0
 .L_75dc8:
-	.4byte	gHasGoldenDivaChest10
+	.4byte	gHasBossTreasure10
 .L_75dcc:
-	.4byte	gHasGoldenDivaChest11
+	.4byte	gHasBossTreasure11
 .L_75dd0:
 	.4byte	gGoldenTreasureCount
 .L_75dd4:
@@ -1557,9 +1557,9 @@ func_8075B50:
 	b	.L_75e0c
 	.align	2, 0
 .L_75dfc:
-	.4byte	gHasGoldenDivaChest11
+	.4byte	gHasBossTreasure11
 .L_75e00:
-	.4byte	gHasGoldenDivaChest12
+	.4byte	gHasBossTreasure12
 .L_75e04:
 	.4byte	gGoldenTreasureCount
 .L_75e08:
@@ -1571,7 +1571,7 @@ func_8075B50:
 	strb	r2, [r1, #0]
 	b	.L_75f34
 .L_75e14:
-	.4byte	gHasGoldenDivaChest12
+	.4byte	gHasBossTreasure12
 .L_75e18:
 	.4byte	gCollectedCD
 .L_75e1c:
@@ -1939,7 +1939,7 @@ func_8075F44:
 .L_760c0:
 	.4byte	gGoldenTreasureCount
 .L_760c4:
-	.4byte	gBossTookDamage
+	.4byte	gBossState
 .L_760c8:
 	.4byte	gCuckooCondorPendulumLength
 .L_760cc:
@@ -1949,7 +1949,7 @@ func_8075F44:
 .L_760d4:
 	.4byte	gInitialHealth
 .L_760d8:
-	.4byte	gPaletteFlashTimer
+	.4byte	gBossSequenceState
 .L_760dc:
 	.4byte	gBgAnimationFrame
 .L_760e0:

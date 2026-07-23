@@ -217,7 +217,7 @@ void BallLightningBoltFall(void)
         asm("mov %0, #42\nadd %0, %1" : "=r"(workPtr) : "r"(sprite));
         savedWorkPtr = workPtr;
         index = *workPtr;
-        table = sSharedDebrisYVelocity;
+        table = sSpriteGravityVelocityTable;
         value = index << 1;
         value += (u32)table;
         movement = *(const u16*)value;

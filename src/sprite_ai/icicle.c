@@ -117,7 +117,7 @@ void IcicleFall(void)
         asm("mov %0, #42\n\tadd %0, %0, %1" : "=r"(tempR6) : "r"(sprite));
         indexPointer = (u8 *)tempR6;
         index = *(u8 *)tempR6;
-        velocities = sSharedDebrisYVelocity;
+        velocities = sSpriteGravityVelocityTable;
         entry = (const s16 *)((index << 1) + (u32)velocities);
         velocityRaw = *(const u16 *)entry;
         tempR6 = 0;

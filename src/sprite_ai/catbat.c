@@ -325,12 +325,12 @@ void InitCatbat(void)
     register int zeroHalf asm("r3");
     register u8 *ptr asm("r1");
 
-    gBossTookDamage = 0;
+    gBossState = 0;
     gCuckooCondorPendulumLength = 0;
     gCuckooCondorMoveRight = 0;
     gCuckooCondorHasCapturedWario = 0;
     gInitialHealth = 12;
-    gPaletteFlashTimer = 0;
+    gBossSequenceState = 0;
     gBgAnimationFrame = 0;
     gBgAnimationTimer = 0;
     gSpriteAiDynamicGraphicsTimer = 0;
@@ -437,7 +437,7 @@ void UpdateCatbatIntroWaitForShop(void)
             register vu8 *switchState asm("r1");
             u32 switchAddress;
 
-            switchAddress = (u32)&gColorFadingState;
+            switchAddress = (u32)&gBossDefeatTimer;
             /* Keep this branch-local store address distinct from the later read. */
             asm volatile("" : "=r"(switchState) : "0"(switchAddress) : "memory");
             *switchState = 7;
@@ -1053,16 +1053,16 @@ void UpdateCatbatLandingAttack(void)
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 60, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 4, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 116, 7);
-            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossTookDamage, 0, sprite->yPosition + 128,
+            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossState, 0, sprite->yPosition + 128,
                 sprite->xPosition - 128, facingMask);
         } else {
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 4, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 60, 7);
             SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 116, 7);
-            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossTookDamage, 0, sprite->yPosition + 128,
+            SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossState, 0, sprite->yPosition + 128,
                 sprite->xPosition + 128, facing);
         }
-        gBossTookDamage++;
+        gBossState++;
     }
 }
 void UpdateCatbatLandingRecovery(void)
@@ -1717,7 +1717,7 @@ void InitCatbatShopItemHit(void)
     /* agbcc otherwise copies the existing r1 zero before this byte store. */
     asm("strb r1, [r2, #22]");
     sprite->animationTimer = zero;
-    gPaletteFlashTimer = 32;
+    gBossSequenceState = 32;
     sprite->pose = 123;
     {
         register int health asm("r0");
@@ -1736,7 +1736,7 @@ void UpdateCatbatShopItemHit(void)
     register u8 *globalTimer asm("r5");
     register int timerValue asm("r0");
 
-    globalTimer = &gPaletteFlashTimer;
+    globalTimer = &gBossSequenceState;
     timerValue = *globalTimer;
     if (timerValue != 0) {
         register int timer asm("r1");

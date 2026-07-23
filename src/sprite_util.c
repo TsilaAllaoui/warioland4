@@ -75,7 +75,7 @@ const u16 sUnk_8352AD4[] = {
     S16_MAX,
 };
 
-const s16 sSharedDebrisYVelocity[] = {
+const s16 sSpriteGravityVelocityTable[] = {
     4,
     4,
     4,
@@ -573,7 +573,7 @@ void func_8023EE0(void)
         return;
     }
 
-    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sSharedDebrisYVelocity);
+    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sSpriteGravityVelocityTable);
 }
 
 void func_8023FA8(void)
@@ -590,7 +590,7 @@ void func_8023FA8(void)
         return;
     }
 
-    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sSharedDebrisYVelocity);
+    SpriteUtilLookupGravityByWeight(sUnk_8352AFC, sSpriteGravityVelocityTable);
 }
 
 void SpriteUtilFallOffscreenRight(void)
@@ -978,7 +978,7 @@ void func_8024AD4(void)
     u32 timer;
     u32 temp;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSharedDebrisYVelocity);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSpriteGravityVelocityTable);
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
     temp = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
     if (gUnk_30000A0.unk_02 == 1) {
@@ -1025,7 +1025,7 @@ void func_8024C00(void)
     u32 timer;
     u32 temp;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSharedDebrisYVelocity);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSpriteGravityVelocityTable);
     gCurrentSprite.xPosition += gCurrentSprite.work2;
     temp = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
     if (gUnk_30000A0.unk_02 == 1) {
@@ -2243,12 +2243,12 @@ void func_802650C(void)
     u32 timer;
 
     timer = gCurrentSprite.work3;
-    yVelocity = sUnk_83B37FC[timer][0];
+    yVelocity = sSpriteAffineScaleTable[timer][0];
     if (yVelocity == S16_MAX) {
         timer = 0;
-        yVelocity = sUnk_83B37FC[0][0];
+        yVelocity = sSpriteAffineScaleTable[0][0];
     }
-    xVelocity = sUnk_83B37FC[timer][1];
+    xVelocity = sSpriteAffineScaleTable[timer][1];
     gCurrentSprite.work3 = timer + 1;
     gCurrentSprite.yPosition += yVelocity;
     gCurrentSprite.xPosition += xVelocity;
@@ -2261,12 +2261,12 @@ void func_802655C(void)
     u32 timer;
 
     timer = gCurrentSprite.work3;
-    yVelocity = sUnk_83B37FC[timer][0];
+    yVelocity = sSpriteAffineScaleTable[timer][0];
     if (yVelocity == S16_MAX) {
         timer = 0;
-        yVelocity = sUnk_83B37FC[0][0];
+        yVelocity = sSpriteAffineScaleTable[0][0];
     }
-    xVelocity = sUnk_83B37FC[timer][1];
+    xVelocity = sSpriteAffineScaleTable[timer][1];
 
     gCurrentSprite.work3 = timer + 1;
     gCurrentSprite.yPosition += yVelocity;

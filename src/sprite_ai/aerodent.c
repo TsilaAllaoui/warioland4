@@ -845,9 +845,9 @@ void AerodentCompanionWaitForBattle(void)
         if (gCurrentSprite.work0 != 0)
             return;
 
-        *(volatile u8 *)&gColorFadingState = 7;
+        *(volatile u8 *)&gBossDefeatTimer = 7;
     }
-    if (gColorFadingState[0] == 0 && gCurrentShopItem == 0)
+    if (gBossDefeatTimer[0] == 0 && gCurrentShopItem == 0)
         AerodentCompanionStartIdle();
 }
 void AerodentCompanionDescend(void)

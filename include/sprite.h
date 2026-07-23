@@ -473,14 +473,15 @@ extern u8 gSpriteCollisionResult;
 extern u8 gSpriteCollisionTileType;
 extern u8 gSpriteCollisionFlags;
 extern u8 gIgnoreSpriteCollision;
-extern s8 gBossTookDamage;
+extern s8 gBossState;
+extern u8 gBossSequenceState;
 extern s8 gCuckooCondorPendulumLength;
 extern u8 gCuckooCondorMoveRight;
 extern u8 gCuckooCondorHasCapturedWario;
 extern u8 gSpriteAiDynamicGraphicsTimer;
 
 extern const u16 sUnk_83B35F8[][2];
-extern const u16 sUnk_83B37FC[][2];
+extern const u16 sSpriteAffineScaleTable[][2];
 
 void SpriteSpawnAsChild(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
 void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);

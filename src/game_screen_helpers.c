@@ -659,7 +659,7 @@ void InitializeRoomState(void)
     colorBase->unk_3 = 0;
     colorBase->unk_4 = 0;
     colorBase->unk_5 = 0;
-    gGoldenDivaShopItemState = 0;
+    gShopItemState = 0;
     gBldCnt = 0;
     gUnk_30037BE = 0;
     initialize = gUnk_3000C3F;
@@ -673,12 +673,12 @@ void InitializeRoomState(void)
         gGameMusicState.previousSongId = 0;
         gGameMusicState.playerId = 0;
         gUnk_3000035 = 0;
-        gColorFadingState[0] = 0;
-        gColorFadingState[1] = 0;
-        gColorFadingState[2] = 0;
-        gColorFadingState[3] = 0;
-        gColorFadingState[4] = 0;
-        gColorFadingState[5] = 0;
+        gBossDefeatTimer[0] = 0;
+        gBossDefeatTimer[1] = 0;
+        gBossDefeatTimer[2] = 0;
+        gBossDefeatTimer[3] = 0;
+        gBossDefeatTimer[4] = 0;
+        gBossDefeatTimer[5] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[0] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[1] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[2] = 0;
@@ -1323,7 +1323,7 @@ void UpdateBossRoomState(void)
             if (gCurrentPassage == PASSAGE_GOLDEN) {
                 gUnk_300001B = 3;
                 gSpriteAiDropTimer = 0;
-                gGoldenDivaShopItemTimer = 0;
+                gShopItemTimer = 0;
             }
         }
     }
@@ -1528,7 +1528,7 @@ void ProcessGoldenPassageBossTransition(void)
         register u8 *temporaryPointer asm("r0");
         u32 temporaryValue;
 
-        temporaryPointer = &gGoldenDivaShopItemTimer;
+        temporaryPointer = &gShopItemTimer;
         temporaryValue = *temporaryPointer;
         transitionFlag = temporaryPointer;
         if (temporaryValue != 0)
@@ -1666,7 +1666,7 @@ void ProcessRoomBackgrounds(void)
         func_8070E24();
     func_8070BB8();
     func_8070C38();
-    if (gGoldenDivaShopItemState != 0)
+    if (gShopItemState != 0)
         ProcessRoomWindowEffect();
     if (gUnk_300001B > 1) {
         func_806F684();
@@ -1686,7 +1686,7 @@ void ProcessRoomWindowEffect(void)
     register u8 *statePointer asm("r6");
     register u32 state asm("r4");
 
-    statePointer = &gGoldenDivaShopItemState;
+    statePointer = &gShopItemState;
     state = *statePointer;
     {
         register u32 value asm("r0");

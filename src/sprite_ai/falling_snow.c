@@ -84,11 +84,11 @@ void FallingSnowFall(void)
         return;
     }
     index = sprite->work3;
-    movement = sSharedDebrisYVelocity[index];
+    movement = sSpriteGravityVelocityTable[index];
     if (movement == 0x7FFF)
     {
         new_var = index - 1;
-        new_var2 = ((const u16*)sSharedDebrisYVelocity)[new_var];
+        new_var2 = ((const u16*)sSpriteGravityVelocityTable)[new_var];
         sprite->yPosition += new_var2;
     }
     else

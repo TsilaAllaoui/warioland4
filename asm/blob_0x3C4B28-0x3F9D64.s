@@ -1455,43 +1455,43 @@ sUnk_83D32CC:
 
 baserom_blob 0x3D32CC, 0x3D6ADC
 
-.global sUnk_83D6ADC
-sUnk_83D6ADC:
+.global sShopkeeperItemTiles
+sShopkeeperItemTiles:
 
 baserom_blob 0x3D6ADC, 0x3D7AEC
 
-.global sUnk_83D7AEC
-sUnk_83D7AEC:
+.global sSelectedShopItemOam
+sSelectedShopItemOam:
 
 baserom_blob 0x3D7AEC, 0x3D84D4
 
-.global sUnk_83D84D4
-sUnk_83D84D4:
+.global sShopEffectShortAOam
+sShopEffectShortAOam:
 
 baserom_blob 0x3D84D4, 0x3D84FC
 
-.global sUnk_83D84FC
-sUnk_83D84FC:
+.global sBossTreasureChestOpeningOam
+sBossTreasureChestOpeningOam:
 
 baserom_blob 0x3D84FC, 0x3D853C
 
-.global sUnk_83D853C
-sUnk_83D853C:
+.global sShopEffectLongOam
+sShopEffectLongOam:
 
 baserom_blob 0x3D853C, 0x3D857C
 
-.global sUnk_83D857C
-sUnk_83D857C:
+.global sShopEffectShortBOam
+sShopEffectShortBOam:
 
 baserom_blob 0x3D857C, 0x3D85FC
 
-.global sUnk_83D85FC
-sUnk_83D85FC:
+.global sBossTreasureChestDespawnOam
+sBossTreasureChestDespawnOam:
 
 baserom_blob 0x3D85FC, 0x3D8644
 
-.global sUnk_83D8644
-sUnk_83D8644:
+.global sBossTreasureChestInitialOam
+sBossTreasureChestInitialOam:
 
 baserom_blob 0x3D8644, 0x3D86C4
 
@@ -1500,83 +1500,83 @@ sUnk_83D86C4:
 
 baserom_blob 0x3D86C4, 0x3D873C
 
-.global sUnk_83D873C
-sUnk_83D873C:
+.global sBossTreasureRewardOam
+sBossTreasureRewardOam:
 
 baserom_blob 0x3D873C, 0x3D8AD0
 
-.global sUnk_83D8AD0
-sUnk_83D8AD0:
+.global sAppleBombIdleOam
+sAppleBombIdleOam:
 
 baserom_blob 0x3D8AD0, 0x3D8AE0
 
-.global sUnk_83D8AE0
-sUnk_83D8AE0:
+.global sAppleBombFuseOam
+sAppleBombFuseOam:
 
 baserom_blob 0x3D8AE0, 0x3D8B20
 
-.global sUnk_83D8B20
-sUnk_83D8B20:
+.global sAppleBombExplosionOam
+sAppleBombExplosionOam:
 
 baserom_blob 0x3D8B20, 0x3D8B40
 
-.global sUnk_83D8B40
-sUnk_83D8B40:
+.global sPurchasedAppleBombOam
+sPurchasedAppleBombOam:
 
 baserom_blob 0x3D8B40, 0x3D8DEC
 
-.global sUnk_83D8DEC
-sUnk_83D8DEC:
+.global sBlastCannonCountdownOam
+sBlastCannonCountdownOam:
 
 baserom_blob 0x3D8DEC, 0x3D8E3C
 
-.global sUnk_83D8E3C
-sUnk_83D8E3C:
+.global sPurchasedBlastCannonOam
+sPurchasedBlastCannonOam:
 
 baserom_blob 0x3D8E3C, 0x3D8E5C
 
-.global sUnk_83D8E5C
-sUnk_83D8E5C:
+.global sBlastCannonballOam
+sBlastCannonballOam:
 
 baserom_blob 0x3D8E5C, 0x3D8E9C
 
-.global sUnk_83D8E9C
-sUnk_83D8E9C:
+.global sBlastCannonIdleOam
+sBlastCannonIdleOam:
 
 baserom_blob 0x3D8E9C, 0x3D95B8
 
-.global sUnk_83D95B8
-sUnk_83D95B8:
+.global sVizormanIdleOam
+sVizormanIdleOam:
 
 baserom_blob 0x3D95B8, 0x3D95E0
 
-.global sUnk_83D95E0
-sUnk_83D95E0:
+.global sVizormanBeamCoreInitialOam
+sVizormanBeamCoreInitialOam:
 
 baserom_blob 0x3D95E0, 0x3D9608
 
-.global sUnk_83D9608
-sUnk_83D9608:
+.global sVizormanBeamCoreEndOam
+sVizormanBeamCoreEndOam:
 
 baserom_blob 0x3D9608, 0x3D9660
 
-.global sUnk_83D9660
-sUnk_83D9660:
+.global sVizormanBeamGlowInitialOam
+sVizormanBeamGlowInitialOam:
 
 baserom_blob 0x3D9660, 0x3D96A0
 
-.global sUnk_83D96A0
-sUnk_83D96A0:
+.global sVizormanBeamCoreActiveOam
+sVizormanBeamCoreActiveOam:
 
 baserom_blob 0x3D96A0, 0x3D96C8
 
-.global sUnk_83D96C8
-sUnk_83D96C8:
+.global sVizormanBeamGlowStartOam
+sVizormanBeamGlowStartOam:
 
 baserom_blob 0x3D96C8, 0x3D9718
 
-.global sUnk_83D9718
-sUnk_83D9718:
+.global sVizormanBeamGlowActiveOam
+sVizormanBeamGlowActiveOam:
 
 baserom_blob 0x3D9718, 0x3D9792
 
@@ -1630,373 +1630,373 @@ sUnk_83D97DA:
 
 baserom_blob 0x3D97DA, 0x3D97E4
 
-.global sUnk_83D97E4
-sUnk_83D97E4:
+.global sBugleIdleOam
+sBugleIdleOam:
 
 baserom_blob 0x3D97E4, 0x3D97F4
 
-.global sUnk_83D97F4
-sUnk_83D97F4:
+.global sBugleAttackOam
+sBugleAttackOam:
 
 baserom_blob 0x3D97F4, 0x3D981C
 
-.global sUnk_83D981C
-sUnk_83D981C:
+.global sBugleNote1Oam
+sBugleNote1Oam:
 
 baserom_blob 0x3D981C, 0x3D982C
 
-.global sUnk_83D982C
-sUnk_83D982C:
+.global sBugleNote2Oam
+sBugleNote2Oam:
 
 baserom_blob 0x3D982C, 0x3D983C
 
-.global sUnk_83D983C
-sUnk_83D983C:
+.global sBugleNote3Oam
+sBugleNote3Oam:
 
 baserom_blob 0x3D983C, 0x3D984C
 
-.global sUnk_83D984C
-sUnk_83D984C:
+.global sBugleNote4Oam
+sBugleNote4Oam:
 
 baserom_blob 0x3D984C, 0x3D985C
 
-.global sUnk_83D985C
-sUnk_83D985C:
+.global sBugleNote5Oam
+sBugleNote5Oam:
 
 baserom_blob 0x3D985C, 0x3D986C
 
-.global sUnk_83D986C
-sUnk_83D986C:
+.global sBugleNote6Oam
+sBugleNote6Oam:
 
 baserom_blob 0x3D986C, 0x3D987C
 
-.global sUnk_83D987C
-sUnk_83D987C:
+.global sBugleNote7Oam
+sBugleNote7Oam:
 
 baserom_blob 0x3D987C, 0x3D988C
 
-.global sUnk_83D988C
-sUnk_83D988C:
+.global sBugleNote8Oam
+sBugleNote8Oam:
 
 baserom_blob 0x3D988C, 0x3D989C
 
-.global sUnk_83D989C
-sUnk_83D989C:
+.global sBugleNote9Oam
+sBugleNote9Oam:
 
 baserom_blob 0x3D989C, 0x3D98AC
 
-.global sUnk_83D98AC
-sUnk_83D98AC:
+.global sBugleNote10Oam
+sBugleNote10Oam:
 
 baserom_blob 0x3D98AC, 0x3D996C
 
-.global sUnk_83D996C
-sUnk_83D996C:
+.global sBlackDogIdleOam
+sBlackDogIdleOam:
 
 baserom_blob 0x3D996C, 0x3D9994
 
-.global sUnk_83D9994
-sUnk_83D9994:
+.global sPurchasedBlackDogOam
+sPurchasedBlackDogOam:
 
 baserom_blob 0x3D9994, 0x3D9A9C
 
-.global sUnk_83D9A9C
-sUnk_83D9A9C:
+.global sLargeLipsIdleOam
+sLargeLipsIdleOam:
 
 baserom_blob 0x3D9A9C, 0x3D9AEC
 
-.global sUnk_83D9AEC
-sUnk_83D9AEC:
+.global sLargeLipsKissEffectAOam
+sLargeLipsKissEffectAOam:
 
 baserom_blob 0x3D9AEC, 0x3D9AFC
 
-.global sUnk_83D9AFC
-sUnk_83D9AFC:
+.global sLargeLipsKissEffectBOam
+sLargeLipsKissEffectBOam:
 
 baserom_blob 0x3D9AFC, 0x3D9B0C
 
-.global sUnk_83D9B0C
-sUnk_83D9B0C:
+.global sLargeLipsKissEffectCOam
+sLargeLipsKissEffectCOam:
 
 baserom_blob 0x3D9B0C, 0x3D9B1C
 
-.global sUnk_83D9B1C
-sUnk_83D9B1C:
+.global sLargeLipsMoveOam
+sLargeLipsMoveOam:
 
 baserom_blob 0x3D9B1C, 0x3D9B3C
 
-.global sUnk_83D9B3C
-sUnk_83D9B3C:
+.global sLargeLipsKissOam
+sLargeLipsKissOam:
 
 baserom_blob 0x3D9B3C, 0x3D9B98
 
-.global sUnk_83D9B98
-sUnk_83D9B98:
+.global sBigFistIdleOam
+sBigFistIdleOam:
 
 baserom_blob 0x3D9B98, 0x3D9BC0
 
-.global sUnk_83D9BC0
-sUnk_83D9BC0:
+.global sPurchasedBigFistOam
+sPurchasedBigFistOam:
 
 baserom_blob 0x3D9BC0, 0x3D9D6C
 
-.global sUnk_83D9D6C
-sUnk_83D9D6C:
+.global sBlackDragonAttackOam
+sBlackDragonAttackOam:
 
 baserom_blob 0x3D9D6C, 0x3D9D94
 
-.global sUnk_83D9D94
-sUnk_83D9D94:
+.global sBlackDragonFireOam
+sBlackDragonFireOam:
 
 baserom_blob 0x3D9D94, 0x3D9DB4
 
-.global sUnk_83D9DB4
-sUnk_83D9DB4:
+.global sPurchasedBlackDragonOam
+sPurchasedBlackDragonOam:
 
 baserom_blob 0x3D9DB4, 0x3D9DD4
 
-.global sUnk_83D9DD4
-sUnk_83D9DD4:
+.global sBlackDragonIdleOam
+sBlackDragonIdleOam:
 
 baserom_blob 0x3D9DD4, 0x3D9DFC
 
-.global sUnk_83D9DFC
-sUnk_83D9DFC:
+.global sBlackDragonMoveOam
+sBlackDragonMoveOam:
 
 baserom_blob 0x3D9DFC, 0x3DA03C
 
-.global sUnk_83DA03C
-sUnk_83DA03C:
+.global sShopkeeperIdleOam
+sShopkeeperIdleOam:
 
 baserom_blob 0x3DA03C, 0x3DA05C
 
-.global sUnk_83DA05C
-sUnk_83DA05C:
+.global sShopkeeperTransitionLandingOam
+sShopkeeperTransitionLandingOam:
 
 baserom_blob 0x3DA05C, 0x3DA07C
 
-.global sUnk_83DA07C
-sUnk_83DA07C:
+.global sShopkeeperTransitionRunOam
+sShopkeeperTransitionRunOam:
 
 baserom_blob 0x3DA07C, 0x3DA0AC
 
-.global sUnk_83DA0AC
-sUnk_83DA0AC:
+.global sShopkeeperSmileJumpOam
+sShopkeeperSmileJumpOam:
 
 baserom_blob 0x3DA0AC, 0x3DA0BC
 
-.global sUnk_83DA0BC
-sUnk_83DA0BC:
+.global sShopkeeperSmileWaitOam
+sShopkeeperSmileWaitOam:
 
 baserom_blob 0x3DA0BC, 0x3DA0CC
 
-.global sUnk_83DA0CC
-sUnk_83DA0CC:
+.global sShopkeeperSmileDropOam
+sShopkeeperSmileDropOam:
 
 baserom_blob 0x3DA0CC, 0x3DA12C
 
-.global sUnk_83DA12C
-sUnk_83DA12C:
+.global sShopkeeperTransitionDepartureOam
+sShopkeeperTransitionDepartureOam:
 
 baserom_blob 0x3DA12C, 0x3DA144
 
-.global sUnk_83DA144
-sUnk_83DA144:
+.global sShopkeeperSmileFinishOam
+sShopkeeperSmileFinishOam:
 
 baserom_blob 0x3DA144, 0x3DA164
 
-.global sUnk_83DA164
-sUnk_83DA164:
+.global sShopkeeperTransitionWaitOam
+sShopkeeperTransitionWaitOam:
 
 baserom_blob 0x3DA164, 0x3DA17C
 
-.global sUnk_83DA17C
-sUnk_83DA17C:
+.global sShopkeeperTransitionInitialOam
+sShopkeeperTransitionInitialOam:
 
 baserom_blob 0x3DA17C, 0x3DA18C
 
-.global sUnk_83DA18C
-sUnk_83DA18C:
+.global sShopkeeperSmilePoseOam
+sShopkeeperSmilePoseOam:
 
 baserom_blob 0x3DA18C, 0x3DA1A4
 
-.global sUnk_83DA1A4
-sUnk_83DA1A4:
+.global sShopkeeperTransitionImpactOam
+sShopkeeperTransitionImpactOam:
 
 baserom_blob 0x3DA1A4, 0x3DA1B4
 
-.global sUnk_83DA1B4
-sUnk_83DA1B4:
+.global sShopkeeperSmilePositionedOam
+sShopkeeperSmilePositionedOam:
 
 baserom_blob 0x3DA1B4, 0x3DA1D4
 
-.global sUnk_83DA1D4
-sUnk_83DA1D4:
+.global sShopkeeperSmileExitOam
+sShopkeeperSmileExitOam:
 
 baserom_blob 0x3DA1D4, 0x3DA1F4
 
-.global sUnk_83DA1F4
-sUnk_83DA1F4:
+.global sShopkeeperDefaultGraphicsScript
+sShopkeeperDefaultGraphicsScript:
 
 baserom_blob 0x3DA1F4, 0x3DA238
 
-.global sUnk_83DA238
-sUnk_83DA238:
+.global sShopkeeperAppleBombGraphicsScript
+sShopkeeperAppleBombGraphicsScript:
 
 baserom_blob 0x3DA238, 0x3DA24C
 
-.global sUnk_83DA24C
-sUnk_83DA24C:
+.global sShopkeeperVizormanGraphicsScript
+sShopkeeperVizormanGraphicsScript:
 
 baserom_blob 0x3DA24C, 0x3DA260
 
-.global sUnk_83DA260
-sUnk_83DA260:
+.global sShopkeeperCarryItemGraphicsScript
+sShopkeeperCarryItemGraphicsScript:
 
 baserom_blob 0x3DA260, 0x3DA274
 
-.global sUnk_83DA274
-sUnk_83DA274:
+.global sShopkeeperItemApproachGraphicsScript
+sShopkeeperItemApproachGraphicsScript:
 
 baserom_blob 0x3DA274, 0x3DA288
 
-.global sUnk_83DA288
-sUnk_83DA288:
+.global sVizormanFollowGraphicsScript
+sVizormanFollowGraphicsScript:
 
 baserom_blob 0x3DA288, 0x3DA29C
 
-.global sUnk_83DA29C
-sUnk_83DA29C:
+.global sShopkeeperTransformationGraphicsScript
+sShopkeeperTransformationGraphicsScript:
 
 baserom_blob 0x3DA29C, 0x3DA2B0
 
-.global sUnk_83DA2B0
-sUnk_83DA2B0:
+.global sAppleBombPresentationGraphicsScript
+sAppleBombPresentationGraphicsScript:
 
 baserom_blob 0x3DA2B0, 0x3DA2C8
 
-.global sUnk_83DA2C8
-sUnk_83DA2C8:
+.global sShopkeeperItemReadyGraphicsScript
+sShopkeeperItemReadyGraphicsScript:
 
 baserom_blob 0x3DA2C8, 0x3DA2E4
 
-.global sUnk_83DA2E4
-sUnk_83DA2E4:
+.global sShopkeeperAttackGraphicsScript
+sShopkeeperAttackGraphicsScript:
 
 baserom_blob 0x3DA2E4, 0x3DA2F0
 
-.global sUnk_83DA2F0
-sUnk_83DA2F0:
+.global sShopkeeperSmileVelocityTable
+sShopkeeperSmileVelocityTable:
 
 baserom_blob 0x3DA2F0, 0x3DA2FA
 
-.global sUnk_83DA2FA
-sUnk_83DA2FA:
+.global sShopkeeperTransitionFallVelocityTable
+sShopkeeperTransitionFallVelocityTable:
 
 baserom_blob 0x3DA2FA, 0x3DA332
 
-.global sUnk_83DA332
-sUnk_83DA332:
+.global sAppleBombPassage1FlightPath
+sAppleBombPassage1FlightPath:
 
 baserom_blob 0x3DA332, 0x3DA372
 
-.global sUnk_83DA372
-sUnk_83DA372:
+.global sAppleBombPassage2FlightPath
+sAppleBombPassage2FlightPath:
 
 baserom_blob 0x3DA372, 0x3DA3B2
 
-.global sUnk_83DA3B2
-sUnk_83DA3B2:
+.global sAppleBombPassage3FlightPath
+sAppleBombPassage3FlightPath:
 
 baserom_blob 0x3DA3B2, 0x3DA3F2
 
-.global sUnk_83DA3F2
-sUnk_83DA3F2:
+.global sAppleBombPassage4FlightPath
+sAppleBombPassage4FlightPath:
 
 baserom_blob 0x3DA3F2, 0x3DA432
 
-.global sUnk_83DA432
-sUnk_83DA432:
+.global sAppleBombPassage5FlightPath
+sAppleBombPassage5FlightPath:
 
 baserom_blob 0x3DA432, 0x3DA472
 
-.global sUnk_83DA472
-sUnk_83DA472:
+.global sAppleBombDefaultFlightPath
+sAppleBombDefaultFlightPath:
 
 baserom_blob 0x3DA472, 0x3DA4B2
 
-.global sUnk_83DA4B2
-sUnk_83DA4B2:
+.global sBlastCannonballPassage1FlightPath
+sBlastCannonballPassage1FlightPath:
 
 baserom_blob 0x3DA4B2, 0x3DA4F2
 
-.global sUnk_83DA4F2
-sUnk_83DA4F2:
+.global sBlastCannonballPassage2FlightPath
+sBlastCannonballPassage2FlightPath:
 
 baserom_blob 0x3DA4F2, 0x3DA532
 
-.global sUnk_83DA532
-sUnk_83DA532:
+.global sBlastCannonballPassage3FlightPath
+sBlastCannonballPassage3FlightPath:
 
 baserom_blob 0x3DA532, 0x3DA572
 
-.global sUnk_83DA572
-sUnk_83DA572:
+.global sBlastCannonballPassage4FlightPath
+sBlastCannonballPassage4FlightPath:
 
 baserom_blob 0x3DA572, 0x3DA5B2
 
-.global sUnk_83DA5B2
-sUnk_83DA5B2:
+.global sBlastCannonballPassage5FlightPath
+sBlastCannonballPassage5FlightPath:
 
 baserom_blob 0x3DA5B2, 0x3DA5F2
 
-.global sUnk_83DA5F2
-sUnk_83DA5F2:
+.global sBlastCannonballDefaultFlightPath
+sBlastCannonballDefaultFlightPath:
 
 baserom_blob 0x3DA5F2, 0x3DA632
 
-.global sUnk_83DA632
-sUnk_83DA632:
+.global sVizormanBeamPaletteFrames
+sVizormanBeamPaletteFrames:
 
 baserom_blob 0x3DA632, 0x3DA712
 
-.global sUnk_83DA712
-sUnk_83DA712:
+.global sBugleNoteAffineAngleTable
+sBugleNoteAffineAngleTable:
 
 baserom_blob 0x3DA712, 0x3DA72A
 
-.global sUnk_83DA72A
-sUnk_83DA72A:
+.global sBlackDogMovementPath
+sBlackDogMovementPath:
 
 baserom_blob 0x3DA72A, 0x3DA772
 
-.global sUnk_83DA772
-sUnk_83DA772:
+.global sLargeLipsMovementPath
+sLargeLipsMovementPath:
 
 baserom_blob 0x3DA772, 0x3DA7BC
 
-.global sUnk_83DA7BC
-sUnk_83DA7BC:
+.global sBigFistMovementPath
+sBigFistMovementPath:
 
 baserom_blob 0x3DA7BC, 0x3DA7F4
 
-.global sUnk_83DA7F4
-sUnk_83DA7F4:
+.global sBlackDragonBobPath
+sBlackDragonBobPath:
 
 baserom_blob 0x3DA7F4, 0x3DA83E
 
-.global sUnk_83DA83E
-sUnk_83DA83E:
+.global sBlackDragonAttackReturnPath
+sBlackDragonAttackReturnPath:
 
 baserom_blob 0x3DA83E, 0x3DA960
 
-.global sUnk_83DA960
-sUnk_83DA960:
+.global sBossTreasureOpeningVelocityTable
+sBossTreasureOpeningVelocityTable:
 
 baserom_blob 0x3DA960, 0x3DA9D2
 
-.global sUnk_83DA9D2
-sUnk_83DA9D2:
+.global sBossTreasureRiseVelocityTable
+sBossTreasureRiseVelocityTable:
 
 baserom_blob 0x3DA9D2, 0x3DAB28
 

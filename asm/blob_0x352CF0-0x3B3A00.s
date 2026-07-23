@@ -69,7 +69,7 @@ sUnk_83B35F8:
 
 baserom_blob 0x3B35F8, 0x3B37FC
 
-.global sUnk_83B37FC
-sUnk_83B37FC:
+.global sSpriteAffineScaleTable
+sSpriteAffineScaleTable:
 
 baserom_blob 0x3B37FC, 0x3B3A00

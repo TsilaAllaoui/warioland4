@@ -99,10 +99,10 @@ void func_803ABD8(void)
         if (*timer != 0) {
             return;
         }
-        *gColorFadingState = 7;
+        *gBossDefeatTimer = 7;
     }
 
-    if (*gColorFadingState != 0) {
+    if (*gBossDefeatTimer != 0) {
         return;
     }
 

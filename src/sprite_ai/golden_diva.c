@@ -32,16 +32,14 @@ struct GoldenDivaDmaRegs {
 
 extern u8 gSpriteAiDropTimer;
 extern s8 gSpriteAiCollisionOffset;
-extern u8 gGoldenDivaShopItemState;
-extern u8 gGoldenDivaShopItemTimer;
+extern u8 gShopItemState;
+extern u8 gShopItemTimer;
 extern u8 gGoldenDivaRoomTimer;
 extern u8 gSpriteCollisionResult;
-extern s8 gBossTookDamage;
 extern s8 gCuckooCondorPendulumLength;
 extern u8 gCuckooCondorMoveRight;
 extern u8 gCuckooCondorHasCapturedWario;
 extern u8 gInitialHealth;
-extern u8 gPaletteFlashTimer;
 extern u8 gBgAnimationFrame;
 extern u8 gBgAnimationTimer;
 extern u8 gSpriteAiDynamicGraphicsTimer;
@@ -513,7 +511,7 @@ s32 ChooseGoldenDivaPhaseTwoAttack(void)
     struct PrimarySpriteData *sprite;
 
     result = 1;
-    switch ((u8)gBossTookDamage) {
+    switch ((u8)gBossState) {
     case 8:
         result = SpriteUtilCountSpriteType(PSPRITE_F2);
         if (result != 0)
@@ -703,12 +701,12 @@ void InitGoldenDivaSpawner(void)
     counter = &gSpriteAiRadius;
     byteZero = 0;
     *counter = zero;
-    gBossTookDamage = byteZero;
+    gBossState = byteZero;
     gCuckooCondorPendulumLength = 4;
     gCuckooCondorMoveRight = 12;
     gCuckooCondorHasCapturedWario = health;
     gInitialHealth = byteZero;
-    gPaletteFlashTimer = byteZero;
+    gBossSequenceState = byteZero;
     gBgAnimationFrame = byteZero;
     gGoldenDivaShopItemHealthTarget = byteZero;
     gBgAnimationTimer = byteZero;
@@ -787,7 +785,7 @@ void InitGoldenDivaBody(void)
         *(u8 *)status = zeroByte;
         UpdateGoldenDivaDynamicGraphics(sGoldenDivaIntroGraphicsSequence);
     }
-    gGoldenDivaShopItemTimer = 1;
+    gShopItemTimer = 1;
 
     {
         register u32 index asm("r0");
@@ -1140,7 +1138,7 @@ void UpdateGoldenDivaBodyPose118(void)
         m4aSongNumStart(SOUND_C2);
         break;
     case 70:
-        gGoldenDivaShopItemState = 3;
+        gShopItemState = 3;
         m4aSongNumStart(SOUND_C3);
         break;
     case 80:
@@ -1189,7 +1187,7 @@ void BeginGoldenDivaIntro(void)
     timer += 39;
     value = *timer;
     if (value == 0) {
-        value = gGoldenDivaShopItemTimer;
+        value = gShopItemTimer;
         if (value != 2)
             return;
         m4aSongNumStart(SOUND_C1);
@@ -1279,14 +1277,14 @@ void UpdateGoldenDivaIntro(void)
         *(u8 *)temp = value;
         value <<= 24;
         if (value == 0) {
-            temp = (u32)&gGoldenDivaShopItemTimer;
+            temp = (u32)&gShopItemTimer;
             value = 3;
             *(u8 *)temp = value;
         }
     } else {
-        zero = gGoldenDivaShopItemTimer;
+        zero = gShopItemTimer;
         if (zero == 0) {
-            temp = (u32)&gBossTookDamage;
+            temp = (u32)&gBossState;
             value = 1;
             *(u8 *)temp = value;
             value = 112;
@@ -1357,7 +1355,7 @@ void FinishGoldenDivaIntro(void)
     register const s16 *table asm("r5");
     register u32 velocity asm("r3");
 
-    state = (u8 *)&gBossTookDamage;
+    state = (u8 *)&gBossState;
     switch (*state) {
     case 3:
         value = (u32)&gCurrentSprite;
@@ -1531,7 +1529,7 @@ void UpdateGoldenDivaFirstPhase(void)
         *timer = value;
         value <<= 24;
         if (value == 0) {
-            gBossTookDamage = 6;
+            gBossState = 6;
             value = sprite->status;
             index = 0x80;
             index <<= 6;
@@ -1745,7 +1743,7 @@ void BeginGoldenDivaAttackSelection(void)
         value = SpriteUtilFindSpriteSlot(PSPRITE_ED);
         work1 = &sprite->work1;
         *work1 = value;
-        gBossTookDamage = 7;
+        gBossState = 7;
     }
 }
 
@@ -1906,7 +1904,7 @@ void UpdateGoldenDivaFaceAnimation(void)
                 value += 42;
                 *(u8 *)value = zero6;
                 sprite->pose = 21;
-                temp = (u32)&gBossTookDamage;
+                temp = (u32)&gBossState;
                 value = 12;
                 *(u8 *)temp = value;
 
@@ -1941,7 +1939,7 @@ void UpdateGoldenDivaFaceAnimation(void)
                 value = 48;
                 *(u8 *)temp = value;
 
-                temp = (u32)&gBossTookDamage;
+                temp = (u32)&gBossState;
                 value = *(u8 *)temp;
                 if (value == 7) {
                     value = 9;
@@ -2024,7 +2022,7 @@ void UpdateGoldenDivaPhaseTransition(void)
             if (value != 0) {
                 *work3 = 48;
             } else if (gCuckooCondorMoveRight <= 4) {
-                temp = (u32)&gBossTookDamage;
+                temp = (u32)&gBossState;
                 value = *(u8 *)temp;
                 if (value == 9) {
                     value = 11;
@@ -2573,7 +2571,7 @@ void UpdateGoldenDivaBodyMovement(void)
         sprite->pose = value;
         value = 60;
         *(u8 *)work0 = value;
-        temp = (u32)&gBossTookDamage;
+        temp = (u32)&gBossState;
         value = 13;
         *(u8 *)temp = value;
         temp = (u32)gSwitchStates;
@@ -2788,7 +2786,7 @@ void UpdateGoldenDivaDefeatSequence(void)
         initialSprite = &gCurrentSprite;
         value = 1;
         initialSprite->disableWarioCollisionTimer = value;
-        initialState = &gPaletteFlashTimer;
+        initialState = &gBossSequenceState;
         state = *initialState;
         sprite = initialSprite;
         statePointer = initialState;
@@ -2831,7 +2829,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest7;
+            statePointer = &gHasBossTreasure7;
             if (*statePointer != 2)
                 goto waitOne;
             value = 6;
@@ -2845,7 +2843,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest10;
+            statePointer = &gHasBossTreasure10;
             if (*statePointer != 2)
                 goto waitOne;
             value = 9;
@@ -2873,7 +2871,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest5;
+            statePointer = &gHasBossTreasure5;
             if (*statePointer != 2)
                 goto waitOne;
             value = 4;
@@ -2887,7 +2885,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest8;
+            statePointer = &gHasBossTreasure8;
             if (*statePointer != 2)
                 goto waitOne;
             value = 7;
@@ -2901,7 +2899,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest11;
+            statePointer = &gHasBossTreasure11;
             if (*statePointer != 2)
                 goto waitOne;
             value = 10;
@@ -2929,7 +2927,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest6;
+            statePointer = &gHasBossTreasure6;
             if (*statePointer != 2)
                 goto waitOne;
             value = 5;
@@ -2943,7 +2941,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest9;
+            statePointer = &gHasBossTreasure9;
             if (*statePointer != 2)
                 goto waitOne;
             value = 8;
@@ -2957,7 +2955,7 @@ void UpdateGoldenDivaDefeatSequence(void)
             if (value != 0)
                 break;
             (*statePointer)++;
-            statePointer = &gHasGoldenDivaChest12;
+            statePointer = &gHasBossTreasure12;
             if (*statePointer != 2)
                 goto waitOne;
             value = 11;
@@ -3045,7 +3043,7 @@ waitOne:
             pointer += 41;
             value = *(u8 *)pointer;
             if (value > 10) {
-                pointer = (u32)&gPaletteFlashTimer;
+                pointer = (u32)&gBossSequenceState;
                 value = *(u8 *)pointer;
                 value++;
                 asm("" : "+r"(value), "+r"(pointer));
@@ -3082,7 +3080,7 @@ storeCase14:
             WarioRequestPose(67);
             value = 160;
             *work = value;
-            temp = (u32)&gPaletteFlashTimer;
+            temp = (u32)&gBossSequenceState;
             value = *(u8 *)temp;
             value++;
             *(u8 *)temp = value;
@@ -3118,7 +3116,7 @@ storeCase14:
             value = *work;
             value |= mask;
             *work = value;
-            temp = (u32)&gPaletteFlashTimer;
+            temp = (u32)&gBossSequenceState;
             value = *(u8 *)temp;
             value++;
             *(u8 *)temp = value;
@@ -3188,9 +3186,9 @@ finishPhase17:
             value = *work;
             value--;
             *work = value;
-            if (gGoldenDivaRoomTimer != 0 || *gColorFadingState != 0)
+            if (gGoldenDivaRoomTimer != 0 || *gBossDefeatTimer != 0)
                 break;
-            temp = (u32)&gPaletteFlashTimer;
+            temp = (u32)&gBossSequenceState;
             value = *(u8 *)temp;
             value++;
             *(u8 *)temp = value;
@@ -3638,7 +3636,7 @@ void InitGoldenDivaMask(void)
             break;
     }
 
-    if (*(u8 *)&gBossTookDamage == 13) {
+    if (*(u8 *)&gBossState == 13) {
         *(u16 *)constant &= 0xDFFB;
         switch (*(u8 *)(constant + 24)) {
             case 1:
@@ -3659,10 +3657,10 @@ void InitGoldenDivaMask(void)
 
 void BeginGoldenDivaMaskOrbit(void)
 {
-    if (*(u8 *)&gBossTookDamage == 6)
+    if (*(u8 *)&gBossState == 6)
         gCurrentSprite.status &= 0xFFFB;
 
-    if (*(u8 *)&gBossTookDamage == 13) {
+    if (*(u8 *)&gBossState == 13) {
         if ((s16)gSpriteAiRadius > 160)
             gCurrentSprite.work0--;
     } else {
@@ -3671,7 +3669,7 @@ void BeginGoldenDivaMaskOrbit(void)
     }
 
     OrbitGoldenDivaChild();
-    if (*(u8 *)&gBossTookDamage == 7)
+    if (*(u8 *)&gBossState == 7)
         gCurrentSprite.pose = 111;
 }
 
@@ -6972,7 +6970,7 @@ void UpdateGoldenDivaDebrisShrink(void)
     register u32 work3 asm("r5");
     register u32 current asm("ip");
 
-    value = (u8)gBossTookDamage;
+    value = (u8)gBossState;
     if (value == 4) {
         sprite = (u32)&gCurrentSprite;
         pointer = sprite;
@@ -7167,7 +7165,7 @@ updateProjectile:
             break;
     }
 
-    value = (u8)gBossTookDamage;
+    value = (u8)gBossState;
     if (value <= 11) {
         spriteData = (u32)gSpriteData;
         sprite = (u32)&gCurrentSprite;
@@ -7266,7 +7264,7 @@ void SpriteGoldenDivaLowerBody(void)
     value += spriteData;
     value = *(u16 *)(value + 10);
     *(u16 *)(sprite + 10) = value;
-    value = (u8)gBossTookDamage;
+    value = (u8)gBossState;
     value -= 6;
     value <<= 24;
     value >>= 24;

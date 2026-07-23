@@ -14,7 +14,6 @@
 
 extern u8 gInitialHealth;
 extern u8 gUnk_3000A62;
-extern u8 gPaletteFlashTimer;
 extern u8 gBgAnimationFrame;
 extern u8 gBgAnimationTimer;
 extern u8 gSpriteAiDynamicGraphicsTimer;
@@ -108,7 +107,7 @@ void UpdateCractusSegmentHorizontalFollow(void)
     register u32 coordinate asm("r2");
     register u32 index asm("r2");
 
-    if (*(u8*)&gBossTookDamage == 0) {
+    if (*(u8*)&gBossState == 0) {
         threshold = 4;
         shift = 1;
     } else {
@@ -211,7 +210,7 @@ void UpdateCractusSegmentVerticalFollow(void)
     register u32 speed asm("r2");
     register u32 index asm("r2");
 
-    value = *(u8*)&gBossTookDamage;
+    value = *(u8*)&gBossState;
     shift = 1;
     if (value != 0) {
         shift = 2;
@@ -286,7 +285,7 @@ void UpdateCractusSegmentVerticalSpacing(void)
     register u32 coordinate asm("r2");
     register u32 index asm("r2");
 
-    if (*(u8*)&gBossTookDamage == 0) {
+    if (*(u8*)&gBossState == 0) {
         threshold = 4;
         shift = 1;
     } else {
@@ -681,12 +680,12 @@ void InitCractusSpawner(void)
     u16 status;
 
     gUnk_3000A62 = 90;
-    *(u8*)&gBossTookDamage = 1;
+    *(u8*)&gBossState = 1;
     *(u8*)&gCuckooCondorPendulumLength = 0;
     gCuckooCondorMoveRight = 0;
     gCuckooCondorHasCapturedWario = 0;
     gInitialHealth = 0;
-    gPaletteFlashTimer = 0;
+    gBossSequenceState = 0;
     gBgAnimationFrame = 32;
     gBgAnimationTimer = 16;
     gSpriteAiDynamicGraphicsTimer = 12;
@@ -768,9 +767,9 @@ void CractusSpawnerWaitForBattle(void)
         *timer = value;
         if ((value << 24) != 0)
             return;
-        *gColorFadingState = 7;
+        *gBossDefeatTimer = 7;
     }
-    if (*gColorFadingState != 0)
+    if (*gBossDefeatTimer != 0)
         return;
     if (gCurrentShopItem == 0) {
         if (--gUnk_3000A62 != 0)
@@ -943,7 +942,7 @@ void UpdateCractusBossPose1(void)
     store = indexPtr;
     *store = next;
     sprite->yPosition += velocity;
-    if (*gColorFadingState == 0) {
+    if (*gBossDefeatTimer == 0) {
         sprite->pOamData = sCractusBossIntroOam;
         sprite->currentAnimationFrame = 0;
         sprite->animationTimer = 0;
@@ -1054,7 +1053,7 @@ void UpdateCractusBossPose113(void)
     sprite->work3 = 0;
     sprite->work2 = 0;
     sprite->pose = 112;
-    *(u8*)&gBossTookDamage = 2;
+    *(u8*)&gBossState = 2;
     return;
   }
   index++;
@@ -1107,7 +1106,7 @@ void UpdateCractusBossPose113(void)
       childX += 128;
       *(u16 *)(address + 10) = childX;
     }
-    *(u8*)&gBossTookDamage = 0;
+    *(u8*)&gBossState = 0;
   }
   else
     if (value == 74)
@@ -1364,7 +1363,7 @@ void UpdateCractusBossPose15(void)
                 *indexPtr = zero;
                 {
                     register u8 *global asm("r0");
-                    global = (u8*)&gBossTookDamage;
+                    global = (u8*)&gBossState;
                     *global = zero;
                 }
                 m4aSongNumStart(SE_CRACTUS_ATTACK_SELECT);
@@ -1408,7 +1407,7 @@ void UpdateCractusBossPose15(void)
                     {
                         register u8 *global asm("r0");
                         register u32 stored asm("r7");
-                        global = (u8*)&gBossTookDamage;
+                        global = (u8*)&gBossState;
                         stored = savedIndex;
                         *global = stored;
                     }
@@ -1422,7 +1421,7 @@ void UpdateCractusBossPose15(void)
                     sprite->pose = 18;
                     {
                         register u8 *global asm("r0");
-                        global = (u8*)&gBossTookDamage;
+                        global = (u8*)&gBossState;
                         *global = zero;
                     }
                     m4aSongNumStart(SE_CRACTUS_SIDE_ATTACK_SELECT);
@@ -1807,7 +1806,7 @@ be50_no_reaction:
                 clearZero = 0;
                 sprite->animationTimer = warioReaction;
                 gCuckooCondorMoveRight = clearZero;
-                *(u8*)&gBossTookDamage = clearZero;
+                *(u8*)&gBossState = clearZero;
                 sprites = gSpriteData;
                 stride = sizeof(struct PrimarySpriteData);
                 left = slot220;
@@ -1838,7 +1837,7 @@ be50_no_reaction:
                 asm("strb %1, [%0, #22]" : : "r"(sprite), "r"(warioReaction) : "memory");
                 sprite->animationTimer = warioReaction;
                 gCuckooCondorMoveRight = 1;
-                *(u8*)&gBossTookDamage = 1;
+                *(u8*)&gBossState = 1;
                 sprites = gSpriteData;
                 stride = sizeof(struct PrimarySpriteData);
                 leftOffset = slot220;
@@ -1895,7 +1894,7 @@ be50_reaction:
             clearZero = 0;
             sprite->animationTimer = zero;
             gCuckooCondorMoveRight = 1;
-            *(u8*)&gBossTookDamage = 1;
+            *(u8*)&gBossState = 1;
             sprites = gSpriteData;
             stride = sizeof(struct PrimarySpriteData);
             left = slot220;
@@ -1986,7 +1985,7 @@ void UpdateCractusBossPose114(void)
         /* Preserve the target order: materialize the byte before copying r9 to r1. */
         asm("mov r0, #255\n\tmov r1, r9\n\tstrb r0, [r1, #0]" : : : "r0", "r1", "memory");
         gCuckooCondorMoveRight = 1;
-        global58 = (u8*)&gBossTookDamage;
+        global58 = (u8*)&gBossState;
         *global58 = 1;
         func_8023BFC(current->yPosition, current->xPosition - 138);
         if (gSpriteCollisionTileType != 17) {
@@ -2131,7 +2130,7 @@ void UpdateCractusBossPose116(void)
         } else {
             gCurrentSprite.pose = 19;
             gCurrentSprite.work3 = 0;
-            *(u8*)&gBossTookDamage = 0;
+            *(u8*)&gBossState = 0;
         }
     }
 }
@@ -2443,7 +2442,7 @@ void UpdateCractusBossPose22(void)
         target->yPosition -= 5;
     } else {
         gCuckooCondorMoveRight = timerValue;
-        *(u8*)&gBossTookDamage = timerValue;
+        *(u8*)&gBossState = timerValue;
         sprite->pose = 15;
     }
 }
@@ -2486,7 +2485,7 @@ void UpdateCractusBossPose49(void)
     global = &gCuckooCondorMoveRight;
     zeroR1 = 0;
     *global = zeroR1;
-    global = (u8*)&gBossTookDamage;
+    global = (u8*)&gBossState;
     *global = zeroR1;
     sprite = &gCurrentSprite;
     sprite->pOamData = sCractusBossDamagedOam;
@@ -2952,7 +2951,7 @@ void UpdateCractusBossPose122(void)
     sprite->animationTimer = zero;
     sprite->work0 = 0;
     sprite->work1 = 0;
-    gPaletteFlashTimer = 32;
+    gBossSequenceState = 32;
     sprite->pose = 123;
     value = sprite->health;
     if (value == 0)
@@ -2971,8 +2970,8 @@ void UpdateCractusBossPose123(void)
     u8 value;
 
     UpdateCractusGraphicsAnimation((const u8 *)sCractusBossDamageGraphicsAnimation);
-    if (gPaletteFlashTimer != 0) {
-        value = --gPaletteFlashTimer;
+    if (gBossSequenceState != 0) {
+        value = --gBossSequenceState;
         if ((value & 7) == 0) {
             if ((value & 8) != 0)
                 gCurrentSprite.palette = 3;
@@ -2998,7 +2997,7 @@ void UpdateCractusBossPose123(void)
             gSpriteAiDynamicGraphicsTimer = 16;
         }
     } else {
-        gPaletteFlashTimer = 32;
+        gBossSequenceState = 32;
         if (sprite->health != 0) {
             sprite->health--;
             UpdateBossHealthGauge();

@@ -20,19 +20,17 @@ extern void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPo
 extern void SpriteUtilFindOwnSlotU32(u32 roomSlot) asm("SpriteUtilFindOwnSlot");
 
 /* Scalar view of the first byte of the six-byte fading-state array. */
-extern u8 gCuckooCondorColorFadingState asm("gColorFadingState");
+extern u8 gCuckooCondorColorFadingState asm("gBossDefeatTimer");
 
 extern u8 gSpriteCollisionResult;
 extern u8 gSpriteCollisionTileType;
-extern s8 gBossTookDamage;
 extern s8 gCuckooCondorPendulumLength;
 extern u8 gCuckooCondorMoveRight;
 extern u8 gCuckooCondorHasCapturedWario;
 extern u8 gInitialHealth;
-extern u8 gPaletteFlashTimer;
 extern u8 gBgAnimationFrame;
 extern u16 gSpriteAiRadius;
-extern const s16 sSharedDebrisYVelocity[];
+extern const s16 sSpriteGravityVelocityTable[];
 
 void UpdateCuckooCondorPendulumOrbit(void)
 {
@@ -372,13 +370,13 @@ void InitCuckooCondor(void)
     register u32 value asm("r0");
     register u32 four asm("r1");
 
-    gBossTookDamage = 0;
+    gBossState = 0;
     horizontalOffset = &gCuckooCondorPendulumLength;
     *horizontalOffset = 0x10;
     gCuckooCondorMoveRight = 0;
     gCuckooCondorHasCapturedWario = 0;
     gInitialHealth = 0;
-    gPaletteFlashTimer = 0;
+    gBossSequenceState = 0;
     gBgAnimationFrame = 0x0E;
 
     sprite = &gCurrentSprite;
@@ -733,7 +731,7 @@ void CuckooCondorLowerPendulum(void)
     if (gCuckooCondorHasCapturedWario != 0)
         goto setDone;
 
-    value = *(u8 *)&gBossTookDamage;
+    value = *(u8 *)&gBossState;
     if (value != 0) {
         gCurrentSprite.pose = 0x11;
         return;
@@ -817,7 +815,7 @@ void CuckooCondorRaisePendulum(void)
     temp = *(u8 *)value;
     flag = (u8 *)value;
     if (temp == 0) {
-        zero = (u8)gBossTookDamage;
+        zero = (u8)gBossState;
         if (zero != 0) {
             gCurrentSprite.pose = 0x11;
             return;
@@ -1522,7 +1520,7 @@ void CuckooCondorTakeShopItemHit(void)
     sprite->pOamData = sCuckooCondorHurtOam;
     sprite->currentAnimationFrame = 0;
     sprite->animationTimer = 0;
-    gPaletteFlashTimer = 0x20;
+    gBossSequenceState = 0x20;
     gInitialHealth = 0x21;
     sprite->pose = 0x7B;
     if (sprite->health != 0) {
@@ -1542,7 +1540,7 @@ void CuckooCondorHandleShopItemHit(void)
     register u32 sprite asm("r3");
     register u32 healthCopy asm("r4");
 
-    timerPtr = (u32)&gPaletteFlashTimer;
+    timerPtr = (u32)&gBossSequenceState;
     temp = *(u8 *)timerPtr;
     value = temp;
     if (value != 0) {
@@ -1767,7 +1765,7 @@ room1:
         goto end;
     if (gCuckooCondorHasCapturedWario != 0)
         goto end;
-    if (*(u8 *)&gBossTookDamage != 0)
+    if (*(u8 *)&gBossState != 0)
         goto end;
     timer = &sprite->work1;
     if (*timer != 0) {
@@ -1814,7 +1812,7 @@ room4:
         goto end;
     if (gCuckooCondorHasCapturedWario != 0)
         goto end;
-    if (*(u8 *)&gBossTookDamage != 0)
+    if (*(u8 *)&gBossState != 0)
         goto end;
     timer = &sprite->work1;
     if (*timer != 0) {
@@ -1889,7 +1887,7 @@ storeWork0:
         return;
     }
 
-    if (gCuckooCondorHasCapturedWario == 0 && *(u8 *)&gBossTookDamage == 0) {
+    if (gCuckooCondorHasCapturedWario == 0 && *(u8 *)&gBossState == 0) {
         temp = *(volatile u8 *)&sprite->work0;
         y = sprite->yPosition;
         SpriteSpawnAsChild(0xC8, temp, 0, y, sprite->xPosition);
@@ -2396,7 +2394,7 @@ void CuckooCondorPendulumReturnCounterclockwise(void)
     if (gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 0x10;
         gCurrentSprite.status &= 0xFF7F;
-        gBossTookDamage = 0;
+        gBossState = 0;
     } else
         gCurrentSprite.work0 -= 4;
 }
@@ -2408,7 +2406,7 @@ void CuckooCondorPendulumReturnClockwise(void)
     if (gCurrentSprite.work0 == 0) {
         gCurrentSprite.pose = 0x10;
         gCurrentSprite.status &= 0xFF7F;
-        gBossTookDamage = 0;
+        gBossState = 0;
     } else
         gCurrentSprite.work0 += 4;
 }
@@ -2896,7 +2894,7 @@ void UpdateCuckooCondorSmallDebrisFall(void)
     } else {
         work3Ptr = &sprite->work3;
         index = *work3Ptr;
-        table = sSharedDebrisYVelocity;
+        table = sSpriteGravityVelocityTable;
         addr = index << 1;
         addr += (u32)table;
         delta = *(const u16 *)addr;
@@ -3048,7 +3046,7 @@ void UpdateCuckooCondorLargeDebrisFall(void)
     } else {
         work3Ptr = &sprite->work3;
         index = *work3Ptr;
-        table = sSharedDebrisYVelocity;
+        table = sSpriteGravityVelocityTable;
         addr = index << 1;
         addr += (u32)table;
         delta = *(const u16 *)addr;
@@ -3874,7 +3872,7 @@ void SpriteCuckooCondor(void)
     }
 
     if (gCurrentSprite.health >= ((gBgAnimationFrame >> 1) + 1)
-        && *(u8 *)&gBossTookDamage == 0)
+        && *(u8 *)&gBossState == 0)
         UpdateCuckooCondorCapturedWario();
 }
 

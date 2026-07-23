@@ -31,8 +31,8 @@ sUnk_878F0F8:
 
 baserom_blob 0x78F0F8, 0x78F104
 
-.global sUnk_878F104
-sUnk_878F104:
+.global sShopkeeperGraphicsFramePointers
+sShopkeeperGraphicsFramePointers:
 
 baserom_blob 0x78F104, 0x78F170
 

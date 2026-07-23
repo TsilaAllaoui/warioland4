@@ -130,10 +130,10 @@ void ToyBlockRoundFalling(void)
                 sprite->yPosition += movement;
             }
         } else {
-            movement = sSharedDebrisYVelocity[index];
+            movement = sSpriteGravityVelocityTable[index];
             if (movement == 0x7FFF) {
                 previousIndex = index - 1;
-                previousMovement = ((const u16*)sSharedDebrisYVelocity)[previousIndex];
+                previousMovement = ((const u16*)sSpriteGravityVelocityTable)[previousIndex];
                 sprite->yPosition += previousMovement;
             } else {
                 sprite->work3 = index + 1;

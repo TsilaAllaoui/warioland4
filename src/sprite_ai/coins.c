@@ -620,7 +620,7 @@ void CoinPose44(void)
     s16 yVelocity;
     u32 timer;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSharedDebrisYVelocity);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSpriteGravityVelocityTable);
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
 
     unk_r2 = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
@@ -659,7 +659,7 @@ void CoinPose46(void)
     s16 yVelocity;
     u32 timer;
 
-    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSharedDebrisYVelocity);
+    SPRITE_UTIL_LOOKUP_GRAVITY_BY_WEIGHT(sUnk_8352AFC, sSpriteGravityVelocityTable);
     gCurrentSprite.xPosition += gCurrentSprite.work2;
 
     unk_r2 = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);

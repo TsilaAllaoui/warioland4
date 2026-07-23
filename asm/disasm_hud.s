@@ -1053,7 +1053,7 @@ func_8074FAC:
 	mov	r0, #6
 	b	.L_7506a
 .L_74fdc:
-	.4byte	gHasGoldenDivaChest7
+	.4byte	gHasBossTreasure7
 .L_74fe0:
 	ldr	r4, .L_74fec
 	ldrb	r0, [r4, #0]
@@ -1062,7 +1062,7 @@ func_8074FAC:
 	mov	r0, #9
 	b	.L_7506a
 .L_74fec:
-	.4byte	gHasGoldenDivaChest10
+	.4byte	gHasBossTreasure10
 .L_74ff0:
 	ldr	r4, .L_74ffc
 	ldrb	r0, [r4, #0]
@@ -1080,7 +1080,7 @@ func_8074FAC:
 	mov	r0, #4
 	b	.L_7506a
 .L_7500c:
-	.4byte	gHasGoldenDivaChest5
+	.4byte	gHasBossTreasure5
 .L_75010:
 	ldr	r4, .L_7501c
 	ldrb	r0, [r4, #0]
@@ -1089,7 +1089,7 @@ func_8074FAC:
 	mov	r0, #7
 	b	.L_7506a
 .L_7501c:
-	.4byte	gHasGoldenDivaChest8
+	.4byte	gHasBossTreasure8
 .L_75020:
 	ldr	r4, .L_7502c
 	ldrb	r0, [r4, #0]
@@ -1098,7 +1098,7 @@ func_8074FAC:
 	mov	r0, #10
 	b	.L_7506a
 .L_7502c:
-	.4byte	gHasGoldenDivaChest11
+	.4byte	gHasBossTreasure11
 .L_75030:
 	ldr	r4, .L_7503c
 	ldrb	r0, [r4, #0]
@@ -1116,7 +1116,7 @@ func_8074FAC:
 	mov	r0, #5
 	b	.L_7506a
 .L_7504c:
-	.4byte	gHasGoldenDivaChest6
+	.4byte	gHasBossTreasure6
 .L_75050:
 	ldr	r4, .L_7505c
 	ldrb	r0, [r4, #0]
@@ -1125,7 +1125,7 @@ func_8074FAC:
 	mov	r0, #8
 	b	.L_7506a
 .L_7505c:
-	.4byte	gHasGoldenDivaChest9
+	.4byte	gHasBossTreasure9
 .L_75060:
 	ldr	r4, .L_75078
 	ldrb	r0, [r4, #0]
@@ -1141,7 +1141,7 @@ func_8074FAC:
 	pop	{r0}
 	bx	r0
 .L_75078:
-	.4byte	gHasGoldenDivaChest12
+	.4byte	gHasBossTreasure12
 
 
 thumb_func_start func_807507C
