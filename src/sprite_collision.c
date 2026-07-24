@@ -9,10 +9,11 @@
 #include "sprite_ai/golden_diva.h"
 #include "voice_set.h"
 #include "wario.h"
+#include "wario/normal.h"
 
 #define SpriteCollisionTransformWario(react)                                   \
 {                                                                              \
-    if (!WarioCheckReaction(react)) {                                          \
+    if (!CheckWarioReactionCollision(react)) {                                          \
         gWarioData.reaction = react;                                           \
         WarioRequestPose(0);                                                   \
     }                                                                          \

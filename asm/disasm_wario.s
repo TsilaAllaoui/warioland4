@@ -54,7 +54,7 @@ func_800FD28:
 .L_fd88:
 	.4byte	gWarioData
 .L_fd8c:
-	.4byte	gUnk_3001938
+	.4byte	gWarioDashAfterimage
 
 
 thumb_func_start func_800FD90
@@ -204,9 +204,9 @@ func_800FE58:
 .L_fe90:
 	.4byte	gWarioData
 .L_fe94:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionPointTable
 .L_fe98:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_fe9c:
 	.4byte	gUnk_30031C8
 .L_fea0:
@@ -356,17 +356,17 @@ func_800FF64:
 	b	.L_ffcc
 	.align	2, 0
 .L_ffa8:
-	.4byte	gUnk_3001938
+	.4byte	gWarioDashAfterimage
 .L_ffac:
-	.4byte	gUnk_30031B8
+	.4byte	gWarioAfterimageHistoryIndex
 .L_ffb0:
-	.4byte	gUnk_3003138
+	.4byte	gWarioAfterimageHistory
 .L_ffb4:
 	.4byte	gPreviousXPosition
 .L_ffb8:
 	.4byte	gPreviousYPosition
 .L_ffbc:
-	.4byte	gUnk_30031BA
+	.4byte	gWarioAfterimageHistoryWrapped
 .L_ffc0:
 	strb	r2, [r1, #0]
 	ldr	r0, .L_ffd4
@@ -380,9 +380,9 @@ func_800FF64:
 	bx	r0
 	.align	2, 0
 .L_ffd4:
-	.4byte	gUnk_30031B8
+	.4byte	gWarioAfterimageHistoryIndex
 .L_ffd8:
-	.4byte	gUnk_30031BA
+	.4byte	gWarioAfterimageHistoryWrapped
 
 
 thumb_func_start WarioProcessControls
@@ -458,13 +458,13 @@ WarioProcessControls:
 	bx	r0
 	.align	2, 0
 .L_1006c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_10070:
 	.4byte	gSubGameMode
 .L_10074:
 	.4byte	gWarioData
 .L_10078:
-	.4byte	gUnk_3001930
+	.4byte	gWarioMotionAfterimage
 .L_1007c:
 	.4byte	gUnk_30019F1
 .L_10080:
@@ -512,9 +512,9 @@ WarioProcessCollision:
 	ldr	r0, .L_100e0
 	b	.L_1010c
 .L_100d0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_100d4:
-	.4byte	gUnk_30031BB
+	.4byte	gWarioCollisionDamageFlag
 .L_100d8:
 	.4byte	gWarioData
 .L_100dc:
@@ -739,9 +739,9 @@ func_8010230:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_10268:
-	.4byte	gUnk_3001930
+	.4byte	gWarioMotionAfterimage
 .L_1026c:
-	.4byte	sUnk_82DD0EC
+	.4byte	sEmptyWarioAfterimage
 .L_10270:
 	.4byte	gCurrentWarioEffect
 .L_10274:

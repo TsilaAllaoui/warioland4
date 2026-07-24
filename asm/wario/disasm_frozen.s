@@ -257,7 +257,7 @@ func_80188A8:
 	b	.L_1891e
 	.align	2, 0
 .L_18910:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_18914:
 	.4byte	sUnk_82DD920
 .L_18918:
@@ -323,11 +323,11 @@ func_8018938:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_1899c
-	bl	func_8014C4C
+	bl	ResolveWarioFloorCollision
 	b	.L_189cc
 	.align	2, 0
 .L_18990:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_18994:
 	.4byte	sUnk_82DD920
 .L_18998:
@@ -337,7 +337,7 @@ func_8018938:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_189aa
-	bl	func_8014930
+	bl	ResolveWarioCeilingCollision
 	b	.L_189cc
 .L_189aa:
 	ldrh	r0, [r4, #0]
@@ -346,16 +346,16 @@ func_8018938:
 	ldrb	r0, [r4, #17]
 	cmp	r0, #2
 	bne	.L_189bc
-	bl	func_8014930
+	bl	ResolveWarioCeilingCollision
 	b	.L_189cc
 .L_189bc:
-	bl	func_80143D8
+	bl	ResolveWarioStandardCollision
 	b	.L_189cc
 .L_189c2:
 	ldrb	r0, [r4, #17]
 	cmp	r0, #0
 	bne	.L_189d0
-	bl	func_8014758
+	bl	ResolveWarioLandingCollision
 .L_189cc:
 	lsl	r0, r0, #24
 	lsr	r6, r0, #24
@@ -405,7 +405,7 @@ func_8018938:
 	pop	{r0}
 	bx	r0
 .L_18a24:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 
 
 thumb_func_start func_8018A28
@@ -465,7 +465,7 @@ func_8018A28:
 .L_18a94:
 	.4byte	gWarioPaletteSize
 .L_18a98:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 .L_18a9c:
 	.4byte	sUnk_82DE818
 
@@ -528,7 +528,7 @@ func_8018AA0:
 	bx	r0
 	.align	2, 0
 .L_18b1c:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_18b20:
 	.4byte	gMPlayTable
 .L_18b24:
@@ -576,7 +576,7 @@ func_8018B28:
 .L_18b70:
 	.4byte	gWarioData
 .L_18b74:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_18b78:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

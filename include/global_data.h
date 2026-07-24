@@ -2,6 +2,7 @@
 #define GLOBAL_DATA_H
 
 #include "gba.h"
+#include "oam.h"
 
 enum Passage {
     PASSAGE_ENTRY,
@@ -131,6 +132,59 @@ struct Window {
     u8 content;
 };
 
+
+struct WarioCollisionData {
+    u16 unk_00;
+    u16 flags;
+    u8 unk_04;
+    u8 unk_05;
+    u16 unk_06;
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 unk_0B;
+    u8 unk_0C;
+    u8 unk_0D;
+    u8 unk_0E;
+    u8 unk_0F;
+    u8 unk_10;
+    u8 unk_11;
+    u8 unk_12;
+    u8 unk_13;
+    u8 unk_14;
+};
+
+struct WarioPoseProperty {
+    u8 unk_00;
+    u8 unk_01;
+    u8 unk_02;
+    u8 unk_03;
+    u8 unk_04;
+    u8 unk_05;
+    u8 unk_06;
+    u8 unk_07;
+};
+
+struct WarioAnimationFrame {
+    const u8 *objData;
+    const u16 *oamData;
+    u8 time;
+    u8 padding[3];
+};
+
+struct WarioHitbox {
+    s16 left;
+    s16 top;
+    s16 right;
+    s16 bottom;
+};
+
+struct WarioEffectFrame {
+    const void *data;
+    u16 time;
+    u16 pad;
+};
+
 struct ScreenShakeParameters {
     u8 duration;
     u8 frameTimer;
@@ -193,5 +247,15 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+
+
+extern struct WarioData gWarioData;
+extern s8 gWarioMusicState;
+extern struct WarioCollisionData gWarioCollisionData;
+
+extern const s16 sWarioHitboxes[][4];
+extern const struct WarioEffectFrame sWarioAfterimageFrames[];
+extern const struct WarioAnimationFrame *const sUnk_82DDB10[][2];
+extern const struct WarioPoseProperty sUnk_82DDB60[];
 
 #endif  // GLOBAL_DATA_H

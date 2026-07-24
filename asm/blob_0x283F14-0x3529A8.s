@@ -4526,8 +4526,8 @@ sStartingHeartGauge:
 
 baserom_blob 0x2DD0E8, 0x2DD0EC
 
-.global sUnk_82DD0EC
-sUnk_82DD0EC:
+.global sEmptyWarioAfterimage
+sEmptyWarioAfterimage:
 
 baserom_blob 0x2DD0EC, 0x2DD0F4
 
@@ -4546,33 +4546,33 @@ sEmptyDustEffect:
 
 baserom_blob 0x2DD104, 0x2DD110
 
-.global sUnk_82DD110
-sUnk_82DD110:
+.global sWarioPoseAnimationTable
+sWarioPoseAnimationTable:
 
 baserom_blob 0x2DD110, 0x2DD388
 
-.global sUnk_82DD388
-sUnk_82DD388:
+.global sWarioCarryingAnimationTable
+sWarioCarryingAnimationTable:
 
 baserom_blob 0x2DD388, 0x2DD3D0
 
-.global sUnk_82DD3D0
-sUnk_82DD3D0:
+.global sWarioUpwardThrowAnimationTable
+sWarioUpwardThrowAnimationTable:
 
 baserom_blob 0x2DD3D0, 0x2DD3F8
 
-.global sUnk_82DD3F8
-sUnk_82DD3F8:
+.global sWarioAirborneAnimationTable
+sWarioAirborneAnimationTable:
 
 baserom_blob 0x2DD3F8, 0x2DD428
 
-.global sUnk_82DD428
-sUnk_82DD428:
+.global sWarioIdleInputAnimationTable
+sWarioIdleInputAnimationTable:
 
 baserom_blob 0x2DD428, 0x2DD430
 
-.global sUnk_82DD430
-sUnk_82DD430:
+.global sWarioNormalPoseProperties
+sWarioNormalPoseProperties:
 
 baserom_blob 0x2DD430, 0x2DD6A8
 
@@ -4706,68 +4706,68 @@ sWarioEffectsGfx:
 
 baserom_blob 0x2DDD20, 0x2DDDA0
 
-.global sUnk_82DDDA0
-sUnk_82DDDA0:
+.global sWarioDefaultPalette
+sWarioDefaultPalette:
 
 baserom_blob 0x2DDDA0, 0x2DDDC0
 
-.global sUnk_82DDDC0
-sUnk_82DDDC0:
+.global sWarioGroundPoundPalette
+sWarioGroundPoundPalette:
 
 baserom_blob 0x2DDDC0, 0x2DDDE0
 
-.global sUnk_82DDDE0
-sUnk_82DDDE0:
+.global sWarioShoulderBashPalette
+sWarioShoulderBashPalette:
 
 baserom_blob 0x2DDDE0, 0x2DDFE0
 
-.global sUnk_82DDFE0
-sUnk_82DDFE0:
+.global sWarioDashAttackPaletteFrames
+sWarioDashAttackPaletteFrames:
 
 baserom_blob 0x2DDFE0, 0x2DE3A0
 
-.global sUnk_82DE3A0
-sUnk_82DE3A0:
+.global sWarioDamageFlashPalette
+sWarioDamageFlashPalette:
 
 baserom_blob 0x2DE3A0, 0x2DE3C0
 
-.global sUnk_82DE3C0
-sUnk_82DE3C0:
+.global sWarioUnusedPose76AlternatePalette
+sWarioUnusedPose76AlternatePalette:
 
 baserom_blob 0x2DE3C0, 0x2DE4A0
 
-.global sUnk_82DE4A0
-sUnk_82DE4A0:
+.global sWarioGroundPoundSecondaryPalette
+sWarioGroundPoundSecondaryPalette:
 
 baserom_blob 0x2DE4A0, 0x2DE4C0
 
-.global sUnk_82DE4C0
-sUnk_82DE4C0:
+.global sWarioGroundPoundPaletteFrames
+sWarioGroundPoundPaletteFrames:
 
 baserom_blob 0x2DE4C0, 0x2DE4D8
 
-.global sUnk_82DE4D8
-sUnk_82DE4D8:
+.global sWarioUnusedPose76Palette
+sWarioUnusedPose76Palette:
 
 baserom_blob 0x2DE4D8, 0x2DE4F8
 
-.global sUnk_82DE4F8
-sUnk_82DE4F8:
+.global sWarioChargedThrowPaletteFrames
+sWarioChargedThrowPaletteFrames:
 
 baserom_blob 0x2DE4F8, 0x2DE558
 
-.global sUnk_82DE558
-sUnk_82DE558:
+.global sWarioDumbbellSecondaryPalette
+sWarioDumbbellSecondaryPalette:
 
 baserom_blob 0x2DE558, 0x2DE578
 
-.global sUnk_82DE578
-sUnk_82DE578:
+.global sWarioDoorAndBarbellSecondaryPalette
+sWarioDoorAndBarbellSecondaryPalette:
 
 baserom_blob 0x2DE578, 0x2DE598
 
-.global sUnk_82DE598
-sUnk_82DE598:
+.global sWarioFlexingPalette
+sWarioFlexingPalette:
 
 baserom_blob 0x2DE598, 0x2DE5D8
 
@@ -4851,18 +4851,18 @@ sUnk_82DEAF8:
 
 baserom_blob 0x2DEAF8, 0x2DEB18
 
-.global sUnk_82DEB18
-sUnk_82DEB18:
+.global sWarioHitboxes
+sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
-.global sUnk_82DEB60
-sUnk_82DEB60:
+.global sWarioCollisionPointTable
+sWarioCollisionPointTable:
 
 baserom_blob 0x2DEB60, 0x2DEBA2
 
-.global sUnk_82DEBA2
-sUnk_82DEBA2:
+.global sWarioCollisionSideTable
+sWarioCollisionSideTable:
 
 baserom_blob 0x2DEBA2, 0x2DEBC2
 
@@ -4881,43 +4881,43 @@ sUnk_82DEBF2:
 
 baserom_blob 0x2DEBF2, 0x2DEC0A
 
-.global sUnk_82DEC0A
-sUnk_82DEC0A:
+.global sWarioTileHorizontalSpeedTable
+sWarioTileHorizontalSpeedTable:
 
 baserom_blob 0x2DEC0A, 0x2DEC1A
 
-.global sUnk_82DEC1A
-sUnk_82DEC1A:
+.global sWarioTileVerticalSpeedTable
+sWarioTileVerticalSpeedTable:
 
 baserom_blob 0x2DEC1A, 0x2DEC2A
 
-.global sUnk_82DEC2A
-sUnk_82DEC2A:
+.global sWarioLiftingSpriteStateTable
+sWarioLiftingSpriteStateTable:
 
 baserom_blob 0x2DEC2A, 0x2DEC2E
 
-.global sUnk_82DEC2E
-sUnk_82DEC2E:
+.global sWarioLiftingHeavySpriteStateTable
+sWarioLiftingHeavySpriteStateTable:
 
 baserom_blob 0x2DEC2E, 0x2DEC33
 
-.global sUnk_82DEC33
-sUnk_82DEC33:
+.global sWarioChargingThrowStateTable
+sWarioChargingThrowStateTable:
 
 baserom_blob 0x2DEC33, 0x2DEC36
 
-.global sUnk_82DEC36
-sUnk_82DEC36:
+.global sWarioWeakThrowStateTable
+sWarioWeakThrowStateTable:
 
 baserom_blob 0x2DEC36, 0x2DEC39
 
-.global sUnk_82DEC39
-sUnk_82DEC39:
+.global sWarioChargedThrowStateTable
+sWarioChargedThrowStateTable:
 
 baserom_blob 0x2DEC39, 0x2DEC3D
 
-.global sUnk_82DEC3D
-sUnk_82DEC3D:
+.global sWarioTurningThrowStateTable
+sWarioTurningThrowStateTable:
 
 baserom_blob 0x2DEC3D, 0x2DEC40
 
@@ -5037,13 +5037,13 @@ sUnk_82DF094:
 
 baserom_blob 0x2DF094, 0x2E0394
 
-.global sUnk_82E0394
-sUnk_82E0394:
+.global sWarioAfterimageFrames
+sWarioAfterimageFrames:
 
 baserom_blob 0x2E0394, 0x2E03BC
 
-.global sUnk_82E03BC
-sUnk_82E03BC:
+.global sWarioGroundPoundLandingAfterimageFrames
+sWarioGroundPoundLandingAfterimageFrames:
 
 baserom_blob 0x2E03BC, 0x2E04C4
 
@@ -5142,8 +5142,8 @@ sUnk_82E1690:
 
 baserom_blob 0x2E1690, 0x2E6A38
 
-.global sUnk_82E6A38
-sUnk_82E6A38:
+.global sWarioUnusedPose76Animation
+sWarioUnusedPose76Animation:
 
 baserom_blob 0x2E6A38, 0x2E9984
 
@@ -5152,93 +5152,93 @@ sUnk_82E9984:
 
 baserom_blob 0x2E9984, 0x2F1200
 
-.global sUnk_82F1200
-sUnk_82F1200:
+.global sWarioWalkingAnimation
+sWarioWalkingAnimation:
 
 baserom_blob 0x2F1200, 0x2F12F0
 
-.global sUnk_82F12F0
-sUnk_82F12F0:
+.global sWarioJumpingAnimation
+sWarioJumpingAnimation:
 
 baserom_blob 0x2F12F0, 0x2F1344
 
-.global sUnk_82F1344
-sUnk_82F1344:
+.global sWarioUnknown71Animation
+sWarioUnknown71Animation:
 
 baserom_blob 0x2F1344, 0x2F1380
 
-.global sUnk_82F1380
-sUnk_82F1380:
+.global sWarioCrawlingAnimation
+sWarioCrawlingAnimation:
 
 baserom_blob 0x2F1380, 0x2F13EC
 
-.global sUnk_82F13EC
-sUnk_82F13EC:
+.global sWarioCrouchJumpAnimation
+sWarioCrouchJumpAnimation:
 
 baserom_blob 0x2F13EC, 0x2F1428
 
-.global sUnk_82F1428
-sUnk_82F1428:
+.global sWarioStoppingFromDashAnimation
+sWarioStoppingFromDashAnimation:
 
 baserom_blob 0x2F1428, 0x2F144C
 
-.global sUnk_82F144C
-sUnk_82F144C:
+.global sWarioStartingRollAnimation
+sWarioStartingRollAnimation:
 
 baserom_blob 0x2F144C, 0x2F1488
 
-.global sUnk_82F1488
-sUnk_82F1488:
+.global sWarioJumpingOutOfRollAnimation
+sWarioJumpingOutOfRollAnimation:
 
 baserom_blob 0x2F1488, 0x2F14AC
 
-.global sUnk_82F14AC
-sUnk_82F14AC:
+.global sWarioRollingAnimation
+sWarioRollingAnimation:
 
 baserom_blob 0x2F14AC, 0x2F14E8
 
-.global sUnk_82F14E8
-sUnk_82F14E8:
+.global sWarioTakingDamageAnimation
+sWarioTakingDamageAnimation:
 
 baserom_blob 0x2F14E8, 0x2F1518
 
-.global sUnk_82F1518
-sUnk_82F1518:
+.global sWarioRollingMidairAnimation
+sWarioRollingMidairAnimation:
 
 baserom_blob 0x2F1518, 0x2F1578
 
-.global sUnk_82F1578
-sUnk_82F1578:
+.global sWarioUnknown75Animation
+sWarioUnknown75Animation:
 
 baserom_blob 0x2F1578, 0x2F1BC8
 
-.global sUnk_82F1BC8
-sUnk_82F1BC8:
+.global sWarioTurningAnimation
+sWarioTurningAnimation:
 
 baserom_blob 0x2F1BC8, 0x2FBF7C
 
-.global sUnk_82FBF7C
-sUnk_82FBF7C:
+.global sWarioShoulderBashAnimation
+sWarioShoulderBashAnimation:
 
 baserom_blob 0x2FBF7C, 0x2FC000
 
-.global sUnk_82FC000
-sUnk_82FC000:
+.global sWarioShoulderBashJumpAnimation
+sWarioShoulderBashJumpAnimation:
 
 baserom_blob 0x2FC000, 0x2FC084
 
-.global sUnk_82FC084
-sUnk_82FC084:
+.global sWarioGroundPoundAnimation
+sWarioGroundPoundAnimation:
 
 baserom_blob 0x2FC084, 0x2FC0D8
 
-.global sUnk_82FC0D8
-sUnk_82FC0D8:
+.global sWarioGroundPoundLandingAnimation
+sWarioGroundPoundLandingAnimation:
 
 baserom_blob 0x2FC0D8, 0x2FC0F0
 
-.global sUnk_82FC0F0
-sUnk_82FC0F0:
+.global sWarioSuperGroundPoundLandingAnimation
+sWarioSuperGroundPoundLandingAnimation:
 
 baserom_blob 0x2FC0F0, 0x2FC108
 
@@ -5262,8 +5262,8 @@ sUnk_82FC27C:
 
 baserom_blob 0x2FC27C, 0x2FC2C4
 
-.global sUnk_82FC2C4
-sUnk_82FC2C4:
+.global sWarioDashAttackAnimation
+sWarioDashAttackAnimation:
 
 baserom_blob 0x2FC2C4, 0x2FC2F4
 
@@ -5272,108 +5272,108 @@ sUnk_82FC2F4:
 
 baserom_blob 0x2FC2F4, 0x306E38
 
-.global sUnk_8306E38
-sUnk_8306E38:
+.global sWarioLiftingSpriteAnimation
+sWarioLiftingSpriteAnimation:
 
 baserom_blob 0x306E38, 0x306E74
 
-.global sUnk_8306E74
-sUnk_8306E74:
+.global sWarioLiftingHeavySpriteAnimation
+sWarioLiftingHeavySpriteAnimation:
 
 baserom_blob 0x306E74, 0x306EBC
 
-.global sUnk_8306EBC
-sUnk_8306EBC:
+.global sWarioChargingThrowAnimation
+sWarioChargingThrowAnimation:
 
 baserom_blob 0x306EBC, 0x306F04
 
-.global sUnk_8306F04
-sUnk_8306F04:
+.global sWarioWeakThrowAnimation
+sWarioWeakThrowAnimation:
 
 baserom_blob 0x306F04, 0x306F34
 
-.global sUnk_8306F34
-sUnk_8306F34:
+.global sWarioChargedThrowAnimation
+sWarioChargedThrowAnimation:
 
 baserom_blob 0x306F34, 0x306F70
 
-.global sUnk_8306F70
-sUnk_8306F70:
+.global sWarioWeakThrowUpwardsAnimation
+sWarioWeakThrowUpwardsAnimation:
 
 baserom_blob 0x306F70, 0x306FA0
 
-.global sUnk_8306FA0
-sUnk_8306FA0:
+.global sWarioTurningThrowAnimation
+sWarioTurningThrowAnimation:
 
 baserom_blob 0x306FA0, 0x307048
 
-.global sUnk_8307048
-sUnk_8307048:
+.global sWarioFastWalkingAnimation
+sWarioFastWalkingAnimation:
 
 baserom_blob 0x307048, 0x315EA4
 
-.global sUnk_8315EA4
-sUnk_8315EA4:
+.global sWarioVerticalClimbingAnimation
+sWarioVerticalClimbingAnimation:
 
 baserom_blob 0x315EA4, 0x315F10
 
-.global sUnk_8315F10
-sUnk_8315F10:
+.global sWarioHorizontalFenceAnimation
+sWarioHorizontalFenceAnimation:
 
 baserom_blob 0x315F10, 0x315FE8
 
-.global sUnk_8315FE8
-sUnk_8315FE8:
+.global sWarioDoorAnimation
+sWarioDoorAnimation:
 
 baserom_blob 0x315FE8, 0x316048
 
-.global sUnk_8316048
-sUnk_8316048:
+.global sWarioEnteringDoorAnimation
+sWarioEnteringDoorAnimation:
 
 baserom_blob 0x316048, 0x316078
 
-.global sUnk_8316078
-sUnk_8316078:
+.global sWarioEnteringPipeAnimation
+sWarioEnteringPipeAnimation:
 
 baserom_blob 0x316078, 0x316294
 
-.global sUnk_8316294
-sUnk_8316294:
+.global sWarioFlexingAnimation
+sWarioFlexingAnimation:
 
 baserom_blob 0x316294, 0x31651C
 
-.global sUnk_831651C
-sUnk_831651C:
+.global sWarioUnknown66Animation
+sWarioUnknown66Animation:
 
 baserom_blob 0x31651C, 0x316558
 
-.global sUnk_8316558
-sUnk_8316558:
+.global sWarioUnknown67Animation
+sWarioUnknown67Animation:
 
 baserom_blob 0x316558, 0x31663C
 
-.global sUnk_831663C
-sUnk_831663C:
+.global sWarioUnknown68Animation
+sWarioUnknown68Animation:
 
 baserom_blob 0x31663C, 0x3170DC
 
-.global sUnk_83170DC
-sUnk_83170DC:
+.global sWarioUnusedPose77Animation
+sWarioUnusedPose77Animation:
 
 baserom_blob 0x3170DC, 0x31D888
 
-.global sUnk_831D888
-sUnk_831D888:
+.global sWarioDumbbellAnimation
+sWarioDumbbellAnimation:
 
 baserom_blob 0x31D888, 0x31D8F4
 
-.global sUnk_831D8F4
-sUnk_831D8F4:
+.global sWarioJumpRopeAnimation
+sWarioJumpRopeAnimation:
 
 baserom_blob 0x31D8F4, 0x31D9C0
 
-.global sUnk_831D9C0
-sUnk_831D9C0:
+.global sWarioUnknown60Animation
+sWarioUnknown60Animation:
 
 baserom_blob 0x31D9C0, 0x32504C
 
@@ -5652,33 +5652,33 @@ sUnk_834B264:
 
 baserom_blob 0x34B264, 0x34F04C
 
-.global sUnk_834F04C
-sUnk_834F04C:
+.global sWarioStandingAnimation
+sWarioStandingAnimation:
 
 baserom_blob 0x34F04C, 0x34F0A0
 
-.global sUnk_834F0A0
-sUnk_834F0A0:
+.global sWarioUnknown69Animation
+sWarioUnknown69Animation:
 
 baserom_blob 0x34F0A0, 0x34F190
 
-.global sUnk_834F190
-sUnk_834F190:
+.global sWarioUnknown70Animation
+sWarioUnknown70Animation:
 
 baserom_blob 0x34F190, 0x34F1B4
 
-.global sUnk_834F1B4
-sUnk_834F1B4:
+.global sWarioUnknown53Animation
+sWarioUnknown53Animation:
 
 baserom_blob 0x34F1B4, 0x3528A0
 
-.global sUnk_83528A0
-sUnk_83528A0:
+.global sWarioBarbellAnimation
+sWarioBarbellAnimation:
 
 baserom_blob 0x3528A0, 0x352930
 
-.global sUnk_8352930
-sUnk_8352930:
+.global sWarioBarbellEndingAnimation
+sWarioBarbellEndingAnimation:
 
 baserom_blob 0x352930, 0x35299C
 

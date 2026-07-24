@@ -68,7 +68,7 @@ func_806EC50:
 .L_6eccc:
 	.4byte	gUnk_30031F4
 .L_6ecd0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_6ecd4:
 	.4byte	gWarioData
 .L_6ecd8:
@@ -209,7 +209,7 @@ func_806ED74:
 .L_6ede8:
 	.4byte	gUnk_30031F4
 .L_6edec:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_6edf0:
 	mov	r0, #1
 .L_6edf2:
@@ -283,7 +283,7 @@ func_806EDFC:
 .L_6ee70:
 	.4byte	gUnk_30031F4
 .L_6ee74:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_6ee78:
 	.4byte	gWarioData
 .L_6ee7c:
@@ -1163,7 +1163,7 @@ func_806F424:
 .L_6f4b0:
 	.4byte	gSwitchStates
 .L_6f4b4:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_6f4b8:
 	.4byte	gWarioData
 

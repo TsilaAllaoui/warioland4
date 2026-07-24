@@ -203,7 +203,7 @@ func_801B6D8:
 	pop	{r0}
 	bx	r0
 .L_1b734:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1b738:
 	.4byte	sUnk_82DDCC0
 .L_1b73c:
@@ -246,11 +246,11 @@ func_801B740:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_1b798
-	bl	func_8014C4C
+	bl	ResolveWarioFloorCollision
 	b	.L_1b7a4
 	.align	2, 0
 .L_1b78c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1b790:
 	.4byte	sUnk_82DDCC0
 .L_1b794:
@@ -260,7 +260,7 @@ func_801B740:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_1b7a8
-	bl	func_8014930
+	bl	ResolveWarioCeilingCollision
 .L_1b7a4:
 	lsl	r0, r0, #24
 	lsr	r5, r0, #24
@@ -293,7 +293,7 @@ func_801B740:
 	mov	r0, #96	@ 0x60
 	strb	r0, [r4, #4]
 	mov	r0, #47	@ 0x2f
-	bl	func_8012BAC
+	bl	ApplyNormalWarioPoseTransition
 .L_1b7e6:
 	pop	{r4, r5}
 	pop	{r0}
@@ -403,7 +403,7 @@ func_801B85C:
 .L_1b8a4:
 	.4byte	gWarioData
 .L_1b8a8:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_1b8ac:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

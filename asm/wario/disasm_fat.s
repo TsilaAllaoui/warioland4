@@ -375,9 +375,9 @@ func_80181F2:
 	bx	lr
 	.align	2, 0
 .L_18234:
-	.4byte	gUnk_3001930
+	.4byte	gWarioMotionAfterimage
 .L_18238:
-	.4byte	sUnk_82E03BC
+	.4byte	sWarioGroundPoundLandingAfterimageFrames
 
 
 thumb_func_start func_801823C
@@ -683,7 +683,7 @@ func_8018370:
 .L_1844c:
 	.4byte	gWarioData
 .L_18450:
-	.4byte	gUnk_3001930
+	.4byte	gWarioMotionAfterimage
 .L_18454:
 	ldr	r1, .L_18464
 	mov	r0, #1
@@ -754,7 +754,7 @@ func_8018468:
 	b	.L_184de
 	.align	2, 0
 .L_184d0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_184d4:
 	.4byte	sUnk_82DD8A8
 .L_184d8:
@@ -821,10 +821,10 @@ func_80184F8:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_1855c
-	bl	func_8014C4C
+	bl	ResolveWarioFloorCollision
 	b	.L_1858c
 .L_18550:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_18554:
 	.4byte	sUnk_82DD8A8
 .L_18558:
@@ -834,7 +834,7 @@ func_80184F8:
 	and	r0, r1
 	cmp	r0, #0
 	beq	.L_1856a
-	bl	func_8014930
+	bl	ResolveWarioCeilingCollision
 	b	.L_1858c
 .L_1856a:
 	ldrh	r0, [r4, #0]
@@ -843,16 +843,16 @@ func_80184F8:
 	ldrb	r0, [r4, #17]
 	cmp	r0, #2
 	bne	.L_1857c
-	bl	func_8014930
+	bl	ResolveWarioCeilingCollision
 	b	.L_1858c
 .L_1857c:
-	bl	func_80143D8
+	bl	ResolveWarioStandardCollision
 	b	.L_1858c
 .L_18582:
 	ldrb	r0, [r4, #17]
 	cmp	r0, #0
 	bne	.L_18590
-	bl	func_8014758
+	bl	ResolveWarioLandingCollision
 .L_1858c:
 	lsl	r0, r0, #24
 	lsr	r6, r0, #24
@@ -895,7 +895,7 @@ func_80184F8:
 	lsl	r1, r1, #16
 	lsr	r1, r1, #16
 	mov	r2, sp
-	bl	func_8014268
+	bl	CheckWarioPointCollision
 	cmp	r0, #0
 	beq	.L_185ee
 	ldrb	r4, [r4, #16]
@@ -913,7 +913,7 @@ func_80184F8:
 	pop	{r0}
 	bx	r0
 .L_18600:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 
 
 thumb_func_start func_8018604
@@ -969,7 +969,7 @@ func_8018604:
 .L_18668:
 	.4byte	gWarioPaletteSize
 .L_1866c:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 
 
 thumb_func_start func_8018670
@@ -1028,7 +1028,7 @@ func_8018670:
 	bx	r0
 	.align	2, 0
 .L_186e8:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_186ec:
 	.4byte	gMPlayTable
 .L_186f0:
@@ -1078,7 +1078,7 @@ func_80186F8:
 .L_18740:
 	.4byte	gWarioData
 .L_18744:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxes
 .L_18748:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

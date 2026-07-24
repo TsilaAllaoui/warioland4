@@ -174,8 +174,8 @@ SECTIONS {
         . = 0x188b; gUnk_300188B = .;
         . = 0x188c; gUnk_300188C = .;
         . = 0x188e; gUnk_300188E = .;
-        . = 0x1890; gUnk_3001890 = .;
-        . = 0x1892; gUnk_3001892 = .;
+        . = 0x1890; gWarioSubgameXPosition = .;
+        . = 0x1892; gWarioSubgameYPosition = .;
 
         . = 0x1894; obj/demo_input.o(iwram_data);
 
@@ -183,14 +183,14 @@ SECTIONS {
         . = 0x18D4; gWarioDataCopy = .;
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
-        . = 0x1918; gUnk_3001918 = .;
-        . = 0x1930; gUnk_3001930 = .;
-        . = 0x1938; gUnk_3001938 = .;
+        . = 0x1918; gWarioCollisionData = .;
+        . = 0x1930; gWarioMotionAfterimage = .;
+        . = 0x1938; gWarioDashAfterimage = .;
         . = 0x1940; gCurrentWarioEffect = .;
         . = 0x1948; gCurrentCarriedSprite = .;
         . = 0x1950; gWarioDustEffect1 = .;
         . = 0x195C; gWarioDustEffect2 = .;
-        . = 0x19f0; gUnk_30019F0 = .;
+        . = 0x19f0; gWarioDamagePaletteActive = .;
         . = 0x19f1; gUnk_30019F1 = .;
         . = 0x19f2; gPreviousXPosition = .;
         . = 0x19f4; gPreviousYPosition = .;
@@ -258,16 +258,16 @@ SECTIONS {
         . = 0x30d0; gWarioPalette = .;
         . = 0x3130; gWarioPaletteSize = .;
 
-        . = 0x3138; gUnk_3003138 = .;
-        . = 0x31b8; gUnk_30031B8 = .;
-        . = 0x31ba; gUnk_30031BA = .;
-        . = 0x31bb; gUnk_30031BB = .;
-        . = 0x31bc; gUnk_30031BC = .;
+        . = 0x3138; gWarioAfterimageHistory = .;
+        . = 0x31b8; gWarioAfterimageHistoryIndex = .;
+        . = 0x31ba; gWarioAfterimageHistoryWrapped = .;
+        . = 0x31bb; gWarioCollisionDamageFlag = .;
+        . = 0x31bc; gWarioMusicEffectState = .;
         . = 0x31bd; gUnk_30031BD = .;
-        . = 0x31be; gUnk_30031BE = .;
+        . = 0x31be; gWarioCanEnterDoor = .;
         . = 0x31c8; gUnk_30031C8 = .;
-        . = 0x31ca; gUnk_30031CA = .;
-        . = 0x31cc; gUnk_30031CC = .;
+        . = 0x31ca; gWarioTileHorizontalSpeed = .;
+        . = 0x31cc; gWarioTileVerticalSpeed = .;
         . = 0x31f4; gUnk_30031F4 = .;
         . = 0x3200; gUnk_3003200 = .;
         . = 0x320c; gUnk_300320C = .;
@@ -610,7 +610,7 @@ SECTIONS {
         obj/cutscenes/disasm_0x00F9E0.o(.text);
         obj/disasm_wario.o(.text);
         obj/demo_input.o(.text);
-        obj/wario/disasm_normal.o(.text);
+        obj/wario/normal.o(.text);
         obj/wario/disasm_swimming.o(.text);
         obj/wario/disasm_flaming.o(.text);
         obj/wario/disasm_fat.o(.text);
