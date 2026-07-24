@@ -26,10 +26,10 @@ void GameScreenDrawWario(void)
 
     if (gWarioData.reaction > 1) {
         gWarioData.damageTimer = 0;
-        gUnk_30019F0 = 0;
+        gWarioDamagePaletteActive = 0;
     }
 
-    if ((gUnk_30019F0 != 0) && (gMainTimer & 2)) {
+    if ((gWarioDamagePaletteActive != 0) && (gMainTimer & 2)) {
         return;
     }
 
@@ -47,16 +47,16 @@ void GameScreenDrawWario(void)
     }
     palette = 2;
 
-    if (gUnk_3001930.unk0) {
+    if (gWarioAfterimage.unk0) {
         if (gWarioData.horizontalDirection & DPAD_RIGHT) {
-            pAnimation = sUnk_82DDCD0[gUnk_3001930.unk0 - 1].left;
+            pAnimation = sUnk_82DDCD0[gWarioAfterimage.unk0 - 1].left;
         } else {
-            pAnimation = sUnk_82DDCD0[gUnk_3001930.unk0 - 1].right;
+            pAnimation = sUnk_82DDCD0[gWarioAfterimage.unk0 - 1].right;
         }
-        pAnimation += gUnk_3001930.unk2;
-        gUnk_3001930.unk4 = pAnimation->oam;
+        pAnimation += gWarioAfterimage.unk2;
+        gWarioAfterimage.unk4 = pAnimation->oam;
 
-        src = gUnk_3001930.unk4;
+        src = gWarioAfterimage.unk4;
         nextSlot += *(src++);
         for (; currentSlot < nextSlot; currentSlot++) {
             attr = *(src++);
@@ -91,22 +91,22 @@ void GameScreenDrawWario(void)
         dest++;
     }
 
-    if (!(gUnk_3001938.unk0) || (gMainTimer & 2)) {
+    if (!(gWarioSecondaryAfterimage.unk0) || (gMainTimer & 2)) {
         gOamSlotsUsed = nextSlot;
         return;
     }
 
-    afterimage = gUnk_30031B8 - 4;
+    afterimage = gWarioAfterimageHistoryCounter - 4;
     i = 0;
-    while ((gUnk_30031BA != 0) || (afterimage >= 0)) {
+    while ((gWarioAfterimageHistoryFilled != 0) || (afterimage >= 0)) {
         src = gWarioData.pOamData;
         nextSlot += *(src++);
 
         afterimage &= 0x1F;
         xOffset =
-            PIXELS_FROM_SUBPIXELS(gUnk_3003138.previousXPositions[afterimage]) - PIXELS_FROM_SUBPIXELS(gBg1XPosition);
+            PIXELS_FROM_SUBPIXELS(gWarioAfterimageHistory.previousXPositions[afterimage]) - PIXELS_FROM_SUBPIXELS(gBg1XPosition);
         yOffset =
-            PIXELS_FROM_SUBPIXELS(gUnk_3003138.previousYPositions[afterimage]) - PIXELS_FROM_SUBPIXELS(gBg1YPosition);
+            PIXELS_FROM_SUBPIXELS(gWarioAfterimageHistory.previousYPositions[afterimage]) - PIXELS_FROM_SUBPIXELS(gBg1YPosition);
 
         for (; currentSlot < nextSlot; currentSlot++) {
             attr = *(src++);

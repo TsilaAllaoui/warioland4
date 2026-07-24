@@ -136,7 +136,7 @@ func_8035370:
 	b	.L_353ac
 	.align	2, 0
 .L_353a0:
-	.4byte	sUnk_82DEBC2
+	.4byte	sBubbleWarioHorizontalOffsets
 .L_353a4:
 	.4byte	gCurrentSprite
 .L_353a8:

@@ -1052,7 +1052,7 @@ func_8010C04:
 	b	.L_10c9c
 	.align	2, 0
 .L_10c38:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_10c3c:
 	.4byte	gCurrentCarriedSprite
 .L_10c40:
@@ -1129,7 +1129,7 @@ func_8010CA0:
 	mov	r0, #12
 	b	.L_10d14
 .L_10cc0:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_10cc4:
 	.4byte	gWarioData
 .L_10cc8:
@@ -1207,7 +1207,7 @@ func_8010D1C:
 .L_10d44:
 	.4byte	gWarioData
 .L_10d48:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_10d4c:
 	ldr	r0, .L_10d60
 	ldrh	r1, [r0, #0]
@@ -1400,7 +1400,7 @@ func_8010E48:
 .L_10ea8:
 	.4byte	gButtonsHeld
 .L_10eac:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_10eb0:
 	ldr	r0, .L_10edc
 	ldr	r2, .L_10ee0
@@ -1500,7 +1500,7 @@ func_8010F14:
 	mov	r0, #22
 	b	.L_10fa2
 .L_10f60:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_10f64:
 	ldr	r2, .L_10f98
 	ldr	r3, .L_10f9c
@@ -2181,7 +2181,7 @@ func_80113DC:
 .L_11414:
 	.4byte	gWarioData
 .L_11418:
-	.4byte	sUnk_82F14E8
+	.4byte	sWarioDamageOam
 
 
 thumb_func_start func_801141C
@@ -2773,7 +2773,7 @@ func_8011780:
 	strb	r0, [r2, #31]
 	b	.L_11844
 .L_11830:
-	.4byte	sUnk_82FC084
+	.4byte	sWarioSuperGroundPoundOam
 .L_11834:
 	ldrb	r0, [r4, #1]
 	cmp	r0, #27
@@ -2825,9 +2825,9 @@ func_8011780:
 .L_1188c:
 	.4byte	gWarioData
 .L_11890:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_11894:
-	.4byte	sUnk_82E0394
+	.4byte	sWarioSuperGroundPoundAfterimageOam
 
 
 thumb_func_start func_8011898
@@ -2841,7 +2841,7 @@ func_8011898:
 .L_118a4:
 	.4byte	gWarioData
 .L_118a8:
-	.4byte	sUnk_82FC0D8
+	.4byte	sWarioSuperGroundPoundLandingOam
 .L_118ac:
 	ldr	r3, .L_118e0
 .L_118ae:
@@ -2900,9 +2900,9 @@ func_8011898:
 	bx	lr
 	.align	2, 0
 .L_11914:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_11918:
-	.4byte	sUnk_82E03BC
+	.4byte	sWarioLoopingAfterimageOam
 
 
 thumb_func_start func_801191C
@@ -5685,9 +5685,9 @@ func_8012BAC:
 	strh	r0, [r1, #24]
 	b	.L_12cc0
 .L_12bf0:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_12bf4:
-	.4byte	sUnk_82DD0EC
+	.4byte	sEmptyWarioAfterimage
 .L_12bf8:
 	.4byte	gCurrentWarioEffect
 .L_12bfc:
@@ -6256,7 +6256,7 @@ func_8012E5C:
 .L_130e0:
 	.4byte	gWarioData
 .L_130e4:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_130e8:
 	ldr	r1, .L_1310c
 	mov	r0, #30
@@ -6276,7 +6276,7 @@ func_8012E5C:
 .L_1310c:
 	.4byte	gWarioData
 .L_13110:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_13114:
 	ldr	r1, .L_1311c
 	mov	r0, #62	@ 0x3e
@@ -6343,7 +6343,7 @@ func_8012E5C:
 .L_13184:
 	.4byte	gCurrentCarriedSprite
 .L_13188:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 
 
 thumb_func_start func_801318C
@@ -6555,7 +6555,7 @@ func_801318C:
 	b	.L_1388a
 	.align	2, 0
 .L_13408:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_1340c:
 	.4byte	gWarioData
 .L_13410:
@@ -6820,7 +6820,7 @@ func_801318C:
 .L_135f8:
 	.4byte	gWarioData
 .L_135fc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_13600:
 	mov	r0, #96	@ 0x60
 .L_13602:
@@ -7227,7 +7227,7 @@ func_8013894:
 	mov	pc, r0
 	.align	2, 0
 .L_138dc:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_138e0:
 	.4byte	sUnk_82DD430
 .L_138e4:
@@ -7489,7 +7489,7 @@ func_8013A98:
 	mov	pc, r0
 	.align	2, 0
 .L_13af4:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13af8:
 	.4byte	sUnk_82DD430
 .L_13afc:
@@ -7560,7 +7560,7 @@ func_8013A98:
 	bl	func_8014C4C
 	b	.L_13c32
 .L_13bb0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13bb4:
 	mov	r0, #128	@ 0x80
 	and	r0, r1
@@ -7672,7 +7672,7 @@ func_8013A98:
 	strb	r0, [r6, #8]
 	b	.L_13cf0
 .L_13cac:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13cb0:
 	ldr	r0, .L_13cbc
 	ldrb	r0, [r0, #18]
@@ -7681,7 +7681,7 @@ func_8013A98:
 	mov	r4, #2
 	b	.L_13cf0
 .L_13cbc:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13cc0:
 	cmp	r4, #252	@ 0xfc
 	bne	.L_13cf0
@@ -7728,10 +7728,10 @@ func_8013A98:
 	cmp	r0, #28
 	bne	.L_13d28
 	mov	r0, #7
-	bl	func_8016614
+	bl	SetWarioWaterPose
 	b	.L_13d5c
 .L_13d20:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13d24:
 	.4byte	gWarioData
 .L_13d28:
@@ -7744,7 +7744,7 @@ func_8013A98:
 	strb	r0, [r5, #4]
 .L_13d36:
 	mov	r0, #0
-	bl	func_8016614
+	bl	SetWarioWaterPose
 	b	.L_13d5c
 .L_13d3e:
 	ldr	r0, .L_13d64
@@ -7768,7 +7768,7 @@ func_8013A98:
 	pop	{r0}
 	bx	r0
 .L_13d64:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_13d68:
 	.4byte	gWarioData
 
@@ -8180,11 +8180,11 @@ func_8013EFC:
 	pop	{r1}
 	bx	r1
 .L_14080:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14084:
 	.4byte	gWarioData
 .L_14088:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_1408c:
 	.4byte	0xFFC0
 
@@ -8419,7 +8419,7 @@ func_8014090:
 	bx	r1
 	.align	2, 0
 .L_14258:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1425c:
 	.4byte	gPreviousYPosition
 .L_14260:
@@ -8482,11 +8482,11 @@ func_8014268:
 	add	r6, #1
 	b	.L_142e8
 .L_142d0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_142d4:
 	.4byte	gWarioData
 .L_142d8:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_142dc:
 	mov	r0, #255	@ 0xff
 	and	r0, r1
@@ -8535,9 +8535,9 @@ func_8014268:
 .L_14334:
 	.4byte	gWarioData
 .L_14338:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_1433c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14340:
 	mov	r0, #255	@ 0xff
 	and	r0, r1
@@ -8588,11 +8588,11 @@ func_8014268:
 	b	.L_143c0
 	.align	2, 0
 .L_143a0:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_143a4:
 	.4byte	gWarioData
 .L_143a8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_143ac:
 	mov	r0, #255	@ 0xff
 	and	r0, r1
@@ -8667,7 +8667,7 @@ func_80143D8:
 	b	.L_1473e
 	.align	2, 0
 .L_14430:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14434:
 	.4byte	gWarioData
 .L_14438:
@@ -8690,7 +8690,7 @@ func_80143D8:
 .L_14458:
 	.4byte	gWarioData
 .L_1445c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14460:
 	cmp	r1, #1
 	bne	.L_14466
@@ -8756,9 +8756,9 @@ func_80143D8:
 	strb	r1, [r2, #26]
 	b	.L_1473c
 .L_144d8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_144dc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_144e0:
 	.4byte	gWarioData
 .L_144e4:
@@ -8825,7 +8825,7 @@ func_80143D8:
 .L_14560:
 	.4byte	gWarioData
 .L_14564:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14568:
 	ldr	r1, [sp, #20]
 	add	r0, r5, r1
@@ -8961,7 +8961,7 @@ func_80143D8:
 .L_14668:
 	.4byte	gWarioData
 .L_1466c:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14670:
 	ldrh	r0, [r5, #0]
 	add	r0, #63	@ 0x3f
@@ -9009,7 +9009,7 @@ func_80143D8:
 	b	.L_1473c
 	.align	2, 0
 .L_146c8:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_146cc:
 	ldrh	r0, [r5, #0]
 	cmp	r0, #0
@@ -9052,7 +9052,7 @@ func_80143D8:
 	b	.L_14730
 	.align	2, 0
 .L_1471c:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14720:
 	add	r0, sp, #4
 	ldr	r1, .L_14750
@@ -9082,7 +9082,7 @@ func_80143D8:
 	bx	r1
 	.align	2, 0
 .L_14750:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14754:
 	.4byte	gWarioData
 
@@ -9130,9 +9130,9 @@ func_8014758:
 	b	.L_147e0
 	.align	2, 0
 .L_147a8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_147ac:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_147b0:
 	.4byte	gWarioData
 .L_147b4:
@@ -9211,7 +9211,7 @@ func_8014758:
 .L_14840:
 	.4byte	0xFFC0
 .L_14844:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14848:
 	ldrh	r7, [r6, #0]
 	add	r0, r4, #1
@@ -9376,7 +9376,7 @@ func_8014930:
 	strb	r0, [r4, #18]
 	b	.L_149f4
 .L_1497c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14980:
 	.4byte	gWarioData
 .L_14984:
@@ -9433,7 +9433,7 @@ func_8014930:
 	b	.L_14b50
 	.align	2, 0
 .L_149e8:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_149ec:
 	.4byte	gPreviousYPosition
 .L_149f0:
@@ -9493,7 +9493,7 @@ func_8014930:
 .L_14a58:
 	.4byte	gWarioData
 .L_14a5c:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14a60:
 	ldr	r5, .L_14a90
 	ldrh	r0, [r5, #0]
@@ -9582,7 +9582,7 @@ func_8014930:
 	strh	r2, [r0, #22]
 	b	.L_14c38
 .L_14b04:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14b08:
 	ldr	r1, [sp, #16]
 	mov	r0, r8
@@ -9677,7 +9677,7 @@ func_8014930:
 .L_14bb8:
 	.4byte	gWarioData
 .L_14bbc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14bc0:
 	ldr	r1, .L_14be8
 	ldrh	r0, [r1, #0]
@@ -9737,7 +9737,7 @@ func_8014930:
 	strh	r0, [r6, #20]
 	b	.L_14ae0
 .L_14c30:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14c34:
 	.4byte	gPreviousYPosition
 .L_14c38:
@@ -9786,11 +9786,11 @@ func_8014C4C:
 	strb	r0, [r1, #0]
 	b	.L_14c9c
 .L_14c88:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14c8c:
 	.4byte	gWarioData
 .L_14c90:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14c94:
 	.4byte	gUnk_30031BB
 .L_14c98:
@@ -9841,9 +9841,9 @@ func_8014C4C:
 .L_14cf0:
 	.4byte	gUnk_30031BB
 .L_14cf4:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14cf8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14cfc:
 	.4byte	gWarioData
 .L_14d00:
@@ -9952,7 +9952,7 @@ func_8014C4C:
 .L_14dc4:
 	.4byte	gButtonsHeld
 .L_14dc8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14dcc:
 	cmp	r0, #10
 	bne	.L_14de0
@@ -10004,11 +10004,11 @@ func_8014C4C:
 	strh	r2, [r7, #28]
 	b	.L_14e68
 .L_14e2c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14e30:
 	.4byte	gWarioData
 .L_14e34:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_14e38:
 	add	r0, sp, #4
 	ldrh	r0, [r0, #0]
@@ -10063,7 +10063,7 @@ func_8014C4C:
 .L_14e9c:
 	.4byte	gWarioData
 .L_14ea0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14ea4:
 	cmp	r0, #1
 	beq	.L_14eae
@@ -10098,7 +10098,7 @@ func_8014C4C:
 	neg	r0, r1
 	b	.L_14eea
 .L_14ee0:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14ee4:
 	.4byte	gWarioData
 .L_14ee8:
@@ -10185,7 +10185,7 @@ func_8014F00:
 .L_14f7c:
 	.4byte	gPreviousXPosition
 .L_14f80:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_14f84:
 	mov	r0, #32
 	and	r0, r3
@@ -10262,11 +10262,11 @@ func_8014FAC:
 	strh	r0, [r7, #20]
 	b	.L_150c0
 .L_1500c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_15010:
 	.4byte	gWarioData
 .L_15014:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_15018:
 	ldrh	r1, [r7, #18]
 	add	r0, r5, #0
@@ -10350,7 +10350,7 @@ func_8014FAC:
 	mov	r0, #254	@ 0xfe
 	b	.L_150c2
 .L_150bc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_150c0:
 	mov	r0, #255	@ 0xff
 .L_150c2:
@@ -10409,11 +10409,11 @@ func_80150D0:
 	b	.L_15150
 	.align	2, 0
 .L_15128:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1512c:
 	.4byte	gWarioData
 .L_15130:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_15134:
 	.4byte	0xFFC0
 .L_15138:
@@ -10488,7 +10488,7 @@ func_8015194:
 	mov	r0, #255	@ 0xff
 	b	.L_1520e
 .L_151b8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_151bc:
 	.4byte	gWarioData
 .L_151c0:
@@ -10528,7 +10528,7 @@ func_8015194:
 	b	.L_1520e
 	.align	2, 0
 .L_15208:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_1520c:
 	mov	r0, #254	@ 0xfe
 .L_1520e:
@@ -10564,7 +10564,7 @@ func_8015216:
 .L_15240:
 	.4byte	gWarioData
 .L_15244:
-	.4byte	gUnk_30019F0
+	.4byte	gWarioDamagePaletteActive
 .L_15248:
 	ldr	r1, .L_15264
 	mov	r0, #0
@@ -10584,7 +10584,7 @@ func_8015216:
 	mov	pc, r0
 	.align	2, 0
 .L_15264:
-	.4byte	gUnk_30019F0
+	.4byte	gWarioDamagePaletteActive
 .L_15268:
 	.4byte	.L_1526c
 .L_1526c:
@@ -10704,20 +10704,20 @@ func_8015216:
 	b	.L_153a0
 	.align	2, 0
 .L_15380:
-	.4byte	gUnk_3001938
+	.4byte	gWarioSecondaryAfterimage
 .L_15384:
 	.4byte	gWarioData
 .L_15388:
-	.4byte	gUnk_30031B8
+	.4byte	gWarioAfterimageHistoryCounter
 .L_1538c:
-	.4byte	gUnk_3003138
+	.4byte	gWarioAfterimageHistory
 .L_15390:
 	.4byte	gPreviousXPosition
 .L_15394:
 	add	r4, r6, r7
 	lsl	r0, r0, #12
 .L_15398:
-	.4byte	gUnk_30031BA
+	.4byte	gWarioAfterimageHistoryFilled
 .L_1539c:
 	bl	func_800FF64
 .L_153a0:
@@ -11035,13 +11035,13 @@ func_8015216:
 .L_15624:
 	.4byte	sUnk_82DD110
 .L_15628:
-	.4byte	gUnk_30019F0
+	.4byte	gWarioDamagePaletteActive
 .L_1562c:
 	.4byte	gMainTimer
 .L_15630:
 	.4byte	gWarioPaletteSize
 .L_15634:
-	.4byte	sUnk_82DE3A0
+	.4byte	sWarioDamagePalette
 .L_15638:
 	ldrb	r0, [r3, #1]
 	sub	r0, #22
@@ -11204,11 +11204,11 @@ func_8015216:
 .L_157c4:
 	.4byte	gWarioPaletteSize
 .L_157c8:
-	.4byte	sUnk_82DE4C0
+	.4byte	sWarioSuperGroundPoundPaletteTable
 .L_157cc:
-	.4byte	sUnk_82DE4A0
+	.4byte	sWarioSuperGroundPoundPalette
 .L_157d0:
-	.4byte	sUnk_82DDDC0
+	.4byte	sWarioEffectPalette
 .L_157d4:
 	ldr	r0, .L_157f8
 	mov	r1, #32
@@ -11250,7 +11250,7 @@ func_8015216:
 .L_15818:
 	.4byte	gWarioPaletteSize
 .L_1581c:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 .L_15820:
 	.4byte	sUnk_82DE558
 .L_15824:
@@ -11268,7 +11268,7 @@ func_8015216:
 .L_1583c:
 	.4byte	gWarioPaletteSize
 .L_15840:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 .L_15844:
 	.4byte	sUnk_82DE578
 .L_15848:
@@ -11312,7 +11312,7 @@ func_8015216:
 .L_15894:
 	.4byte	gWarioPaletteSize
 .L_15898:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 .L_1589c:
 	.4byte	gMainTimer
 .L_158a0:
@@ -11335,7 +11335,7 @@ func_8015216:
 .L_158c0:
 	.4byte	gWarioPaletteSize
 .L_158c4:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 
 
 thumb_func_start func_80158C8
@@ -11412,7 +11412,7 @@ func_80158C8:
 .L_1595c:
 	.4byte	gSwitchPressed
 .L_15960:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_15964:
 	.4byte	gMPlayTable
 .L_15968:
@@ -11488,7 +11488,7 @@ func_80158C8:
 	b	.L_15b30
 	.align	2, 0
 .L_15a58:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_15a5c:
 	.4byte	gMPlayTable
 .L_15a60:
@@ -11511,7 +11511,7 @@ func_80158C8:
 	b	.L_15b30
 	.align	2, 0
 .L_15a88:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_15a8c:
 	.4byte	gMPlayTable
 .L_15a90:
@@ -11544,7 +11544,7 @@ func_80158C8:
 	b	.L_15b2e
 	.align	2, 0
 .L_15ad0:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_15ad4:
 	.4byte	gMPlayTable
 .L_15ad8:
@@ -11595,7 +11595,7 @@ func_80158C8:
 	pop	{r0}
 	bx	r0
 .L_15b3c:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_15b40:
 	.4byte	gMPlayTable
 .L_15b44:
@@ -11643,7 +11643,7 @@ func_8015B48:
 .L_15b90:
 	.4byte	gWarioData
 .L_15b94:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxTable
 .L_15b98:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1
@@ -11681,14 +11681,14 @@ WarioCheckReaction:
 	b	.L_15be4
 	.align	2, 0
 .L_15bd0:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_15bd4:
 	ldr	r0, .L_15bdc
 	ldrh	r1, [r0, #16]
 	b	.L_15be4
 	.align	2, 0
 .L_15bdc:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_15be0:
 	ldr	r0, .L_15bf0
 	ldrh	r1, [r0, #58]	@ 0x3a
@@ -11699,7 +11699,7 @@ WarioCheckReaction:
 	b	.L_15c00
 	.align	2, 0
 .L_15bf0:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 .L_15bf4:
 	ldr	r0, .L_15c04
 	ldrh	r1, [r0, #10]
@@ -11710,7 +11710,7 @@ WarioCheckReaction:
 	pop	{r1}
 	bx	r1
 .L_15c04:
-	.4byte	sUnk_82DEB60
+	.4byte	sWarioCollisionProbeTable
 
 
 thumb_func_start func_8015C08
@@ -11745,11 +11745,11 @@ func_8015C08:
 .L_15c40:
 	.4byte	gWarioData
 .L_15c44:
-	.4byte	gUnk_30031CA
+	.4byte	gWarioWaterCurrentXVelocity
 .L_15c48:
 	.4byte	sUnk_82DEC0A
 .L_15c4c:
-	.4byte	gUnk_30031CC
+	.4byte	gWarioWaterCurrentYVelocity
 .L_15c50:
 	.4byte	sUnk_82DEC1A
 .L_15c54:
@@ -11763,9 +11763,9 @@ func_8015C08:
 	bx	r0
 	.align	2, 0
 .L_15c64:
-	.4byte	gUnk_30031CA
+	.4byte	gWarioWaterCurrentXVelocity
 .L_15c68:
-	.4byte	gUnk_30031CC
+	.4byte	gWarioWaterCurrentYVelocity
 
 
 thumb_func_start func_8015C6C
@@ -11790,7 +11790,7 @@ func_8015C6C:
 .L_15c90:
 	.4byte	gWarioData
 .L_15c94:
-	.4byte	gUnk_30031CC
+	.4byte	gWarioWaterCurrentYVelocity
 .L_15c98:
 	mov	r0, #128	@ 0x80
 	and	r0, r1
@@ -11805,7 +11805,7 @@ func_8015C6C:
 	b	.L_15cf2
 	.align	2, 0
 .L_15cb0:
-	.4byte	gUnk_30031CC
+	.4byte	gWarioWaterCurrentYVelocity
 .L_15cb4:
 	ldr	r0, .L_15cd4
 	ldrh	r1, [r0, #14]
@@ -11826,7 +11826,7 @@ func_8015C6C:
 .L_15cd4:
 	.4byte	gWarioData
 .L_15cd8:
-	.4byte	gUnk_30031CA
+	.4byte	gWarioWaterCurrentXVelocity
 .L_15cdc:
 	ldr	r0, .L_15cec
 	mov	r1, #0
@@ -11837,7 +11837,7 @@ func_8015C6C:
 	b	.L_15cf2
 	.align	2, 0
 .L_15cec:
-	.4byte	gUnk_30031CA
+	.4byte	gWarioWaterCurrentXVelocity
 .L_15cf0:
 	mov	r0, #255	@ 0xff
 .L_15cf2:

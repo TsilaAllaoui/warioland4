@@ -4526,8 +4526,8 @@ sStartingHeartGauge:
 
 baserom_blob 0x2DD0E8, 0x2DD0EC
 
-.global sUnk_82DD0EC
-sUnk_82DD0EC:
+.global sEmptyWarioAfterimage
+sEmptyWarioAfterimage:
 
 baserom_blob 0x2DD0EC, 0x2DD0F4
 
@@ -4576,18 +4576,18 @@ sUnk_82DD430:
 
 baserom_blob 0x2DD430, 0x2DD6A8
 
-.global sUnk_82DD6A8
-sUnk_82DD6A8:
+.global sWarioWaterOamTable
+sWarioWaterOamTable:
 
 baserom_blob 0x2DD6A8, 0x2DD728
 
-.global sUnk_82DD728
-sUnk_82DD728:
+.global sWarioWaterVerticalOamTable
+sWarioWaterVerticalOamTable:
 
 baserom_blob 0x2DD728, 0x2DD730
 
-.global sUnk_82DD730
-sUnk_82DD730:
+.global sWarioWaterPoseData
+sWarioWaterPoseData:
 
 baserom_blob 0x2DD730, 0x2DD7B0
 
@@ -4706,13 +4706,13 @@ sWarioEffectsGfx:
 
 baserom_blob 0x2DDD20, 0x2DDDA0
 
-.global sUnk_82DDDA0
-sUnk_82DDDA0:
+.global sWarioDefaultPalette
+sWarioDefaultPalette:
 
 baserom_blob 0x2DDDA0, 0x2DDDC0
 
-.global sUnk_82DDDC0
-sUnk_82DDDC0:
+.global sWarioEffectPalette
+sWarioEffectPalette:
 
 baserom_blob 0x2DDDC0, 0x2DDDE0
 
@@ -4726,8 +4726,8 @@ sUnk_82DDFE0:
 
 baserom_blob 0x2DDFE0, 0x2DE3A0
 
-.global sUnk_82DE3A0
-sUnk_82DE3A0:
+.global sWarioDamagePalette
+sWarioDamagePalette:
 
 baserom_blob 0x2DE3A0, 0x2DE3C0
 
@@ -4736,13 +4736,13 @@ sUnk_82DE3C0:
 
 baserom_blob 0x2DE3C0, 0x2DE4A0
 
-.global sUnk_82DE4A0
-sUnk_82DE4A0:
+.global sWarioSuperGroundPoundPalette
+sWarioSuperGroundPoundPalette:
 
 baserom_blob 0x2DE4A0, 0x2DE4C0
 
-.global sUnk_82DE4C0
-sUnk_82DE4C0:
+.global sWarioSuperGroundPoundPaletteTable
+sWarioSuperGroundPoundPaletteTable:
 
 baserom_blob 0x2DE4C0, 0x2DE4D8
 
@@ -4771,13 +4771,13 @@ sUnk_82DE598:
 
 baserom_blob 0x2DE598, 0x2DE5D8
 
-.global sUnk_82DE5D8
-sUnk_82DE5D8:
+.global sBubbleWarioPalette
+sBubbleWarioPalette:
 
 baserom_blob 0x2DE5D8, 0x2DE5F8
 
-.global sUnk_82DE5F8
-sUnk_82DE5F8:
+.global sWarioSecondaryPalette
+sWarioSecondaryPalette:
 
 baserom_blob 0x2DE5F8, 0x2DE618
 
@@ -4851,13 +4851,13 @@ sUnk_82DEAF8:
 
 baserom_blob 0x2DEAF8, 0x2DEB18
 
-.global sUnk_82DEB18
-sUnk_82DEB18:
+.global sWarioHitboxTable
+sWarioHitboxTable:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
-.global sUnk_82DEB60
-sUnk_82DEB60:
+.global sWarioCollisionProbeTable
+sWarioCollisionProbeTable:
 
 baserom_blob 0x2DEB60, 0x2DEBA2
 
@@ -4866,8 +4866,8 @@ sUnk_82DEBA2:
 
 baserom_blob 0x2DEBA2, 0x2DEBC2
 
-.global sUnk_82DEBC2
-sUnk_82DEBC2:
+.global sBubbleWarioHorizontalOffsets
+sBubbleWarioHorizontalOffsets:
 
 baserom_blob 0x2DEBC2, 0x2DEBDA
 
@@ -5037,13 +5037,13 @@ sUnk_82DF094:
 
 baserom_blob 0x2DF094, 0x2E0394
 
-.global sUnk_82E0394
-sUnk_82E0394:
+.global sWarioSuperGroundPoundAfterimageOam
+sWarioSuperGroundPoundAfterimageOam:
 
 baserom_blob 0x2E0394, 0x2E03BC
 
-.global sUnk_82E03BC
-sUnk_82E03BC:
+.global sWarioLoopingAfterimageOam
+sWarioLoopingAfterimageOam:
 
 baserom_blob 0x2E03BC, 0x2E04C4
 
@@ -5147,8 +5147,8 @@ sUnk_82E6A38:
 
 baserom_blob 0x2E6A38, 0x2E9984
 
-.global sUnk_82E9984
-sUnk_82E9984:
+.global sBubbleWarioOam
+sBubbleWarioOam:
 
 baserom_blob 0x2E9984, 0x2F1200
 
@@ -5197,8 +5197,8 @@ sUnk_82F14AC:
 
 baserom_blob 0x2F14AC, 0x2F14E8
 
-.global sUnk_82F14E8
-sUnk_82F14E8:
+.global sWarioDamageOam
+sWarioDamageOam:
 
 baserom_blob 0x2F14E8, 0x2F1518
 
@@ -5227,13 +5227,13 @@ sUnk_82FC000:
 
 baserom_blob 0x2FC000, 0x2FC084
 
-.global sUnk_82FC084
-sUnk_82FC084:
+.global sWarioSuperGroundPoundOam
+sWarioSuperGroundPoundOam:
 
 baserom_blob 0x2FC084, 0x2FC0D8
 
-.global sUnk_82FC0D8
-sUnk_82FC0D8:
+.global sWarioSuperGroundPoundLandingOam
+sWarioSuperGroundPoundLandingOam:
 
 baserom_blob 0x2FC0D8, 0x2FC0F0
 
@@ -5242,23 +5242,23 @@ sUnk_82FC0F0:
 
 baserom_blob 0x2FC0F0, 0x2FC108
 
-.global sUnk_82FC108
-sUnk_82FC108:
+.global sWarioSwimmingHorizontalOam
+sWarioSwimmingHorizontalOam:
 
 baserom_blob 0x2FC108, 0x2FC168
 
-.global sUnk_82FC168
-sUnk_82FC168:
+.global sWarioSwimmingFreelyOam
+sWarioSwimmingFreelyOam:
 
 baserom_blob 0x2FC168, 0x2FC1D4
 
-.global sUnk_82FC1D4
-sUnk_82FC1D4:
+.global sWarioFloatingOam
+sWarioFloatingOam:
 
 baserom_blob 0x2FC1D4, 0x2FC27C
 
-.global sUnk_82FC27C
-sUnk_82FC27C:
+.global sWarioJumpingOutOfWaterOam
+sWarioJumpingOutOfWaterOam:
 
 baserom_blob 0x2FC27C, 0x2FC2C4
 
@@ -5267,8 +5267,8 @@ sUnk_82FC2C4:
 
 baserom_blob 0x2FC2C4, 0x2FC2F4
 
-.global sUnk_82FC2F4
-sUnk_82FC2F4:
+.global sWarioSwimmingVerticalOam
+sWarioSwimmingVerticalOam:
 
 baserom_blob 0x2FC2F4, 0x306E38
 

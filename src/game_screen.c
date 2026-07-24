@@ -369,8 +369,8 @@ void GameScreenInitAndLoadGenerics(void)
 
     DmaCopy16(3, sUnk_82DF094, 0x06010B00, 0x100);
     func_80746C0();
-    DmaCopy16(3, sUnk_82DDDA0, OBJ_PLTT, 0x20);
-    DmaCopy16(3, sUnk_82DDDC0, OBJ_PLTT + 0x40, 0x20);
+    DmaCopy16(3, sWarioDefaultPalette, OBJ_PLTT, 0x20);
+    DmaCopy16(3, sWarioEffectPalette, OBJ_PLTT + 0x40, 0x20);
     DmaCopy16(3, sCommonSpritesPal, OBJ_PLTT + 0x80, 0x80) GameScreenInitWario();
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
@@ -437,11 +437,11 @@ void GameScreenInitAndLoadGenerics(void)
 void GameScreenInitWario(void)
 {
     if (!gPauseFlag) {
-        gUnk_30031B8 = 0;
-        gUnk_30031BA = 0;
-        gUnk_30031BD = 0;
+        gWarioAfterimageHistoryCounter = 0;
+        gWarioAfterimageHistoryFilled = 0;
+        gWarioWaterCollisionActive = 0;
         if (!gHasTemporarySave) {
-            gUnk_3001938 = sUnk_82DD0EC;
+            gWarioSecondaryAfterimage = sEmptyWarioAfterimage;
             gCurrentCarriedSprite = sEmptyCarriedSprite;
         }
     }
@@ -471,7 +471,7 @@ void GameScreenInitWario(void)
         memcpy(&gWarioData, &sStartingWarioData, sizeof(struct WarioData));
         gHeartMeter = sStartingHeartMeter;
         gHeartGauge = sStartingHeartGauge;
-        gUnk_3001930 = sUnk_82DD0EC;
+        gWarioAfterimage = sEmptyWarioAfterimage;
         gCurrentWarioEffect = sStartingWarioEffect;
         gWarioDustEffect1 = sEmptyDustEffect;
         gWarioDustEffect2 = sEmptyDustEffect;
@@ -486,5 +486,5 @@ void GameScreenInitWario(void)
             gHeartMeter.current = 1;
         }
     }
-    gUnk_30031BC = 0;
+    gWarioMusicEffectState = 0;
 }

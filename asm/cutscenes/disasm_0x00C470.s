@@ -619,7 +619,7 @@ func_800C87C:
 .L_c890:
 	.4byte	0x40000D4
 .L_c894:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 .L_c898:
 	.4byte	0x5000200
 .L_c89c:

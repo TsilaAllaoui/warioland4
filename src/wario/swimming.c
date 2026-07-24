@@ -1,0 +1,2090 @@
+#include "wario/swimming.h"
+
+#include "bg_clip.h"
+#include "door.h"
+#include "gba/m4a.h"
+#include "global_data.h"
+#include "input.h"
+#include "main.h"
+#include "score.h"
+#include "screen_shake.h"
+#include "sound.h"
+#include "voice_set.h"
+#include "wario_palette.h"
+
+extern void func_800FD28(void);
+extern void func_800FD90(const u16 *source, u16 destinationIndex, u16 count);
+extern void func_800FF64(void);
+extern void func_8015C08(void);
+extern u8 func_8015C6C(void);
+extern u32 func_8014090(u8 index, u16 offset, u8 mode);
+extern s32 func_8014268(u8 index, u16 position, u16 *result);
+extern u32 func_8013D6C();
+extern u32 func_8013EFC(u8 index, u16 *position, s32 velocity);
+extern void func_801E3A8(u8 id, u8 roomSlot, u8 status, u16 x, u16 y, u16 flags);
+
+u8 UpdateWarioWaterPose(void)
+{
+    return sWarioWaterPoseTable[gWarioData.pose]();
+}
+
+u8 UpdateWarioWaterLanding(void)
+{
+    if (gWarioData.yVelocity >= 0)
+        return 5;
+    return 0xFF;
+}
+
+u8 UpdateWarioSwimmingHorizontal(void)
+{
+    struct WarioData *wario;
+    const struct WarioAnimationFrame *animation;
+    register u8 frame asm("r2");
+
+    if (!(gButtonsHeld & 2))
+        return 5;
+
+    wario = &gWarioData;
+    if (wario->horizontalDirection & 0x10) {
+        wario->xVelocity -= 4;
+        if (wario->xVelocity <= 0)
+            return 5;
+    } else {
+        wario->xVelocity += 4;
+        if (wario->xVelocity >= 0)
+            return 5;
+    }
+
+    if (gWarioDustEffect2.unk0 == 0)
+        gWarioDustEffect2.unk0 = 3;
+
+    animation = sWarioSwimmingHorizontalOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F--;
+    }
+
+    frame = wario->unk_1F;
+    if (frame > 5)
+        gCurrentWarioEffect.type = 0;
+    else
+        gCurrentWarioEffect.unk_3 = frame;
+
+    return 0xFF;
+}
+
+u8 UpdateWarioSwimmingVertical(void)
+{
+    struct WarioData *wario;
+    const struct WarioAnimationFrame *animation;
+    register u8 frame asm("r2");
+
+    if (!(gButtonsHeld & 3))
+        return 5;
+
+    wario = &gWarioData;
+    if (wario->verticalDirection & 0x40) {
+        wario->yVelocity -= 4;
+        if (wario->yVelocity <= 0)
+            return 5;
+    } else {
+        wario->yVelocity += 4;
+        if (wario->yVelocity >= 0)
+            return 5;
+    }
+
+    if (gWarioDustEffect2.unk0 == 0)
+        gWarioDustEffect2.unk0 = 3;
+
+    animation = sWarioSwimmingVerticalOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F--;
+    }
+
+    frame = wario->unk_1F;
+    if (frame > 5)
+        gCurrentWarioEffect.type = 0;
+    else
+        gCurrentWarioEffect.unk_3 = frame;
+
+    return 0xFF;
+}
+
+u8 UpdateWarioSwimmingFreely(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register struct WarioData *wario asm("r2");
+    register u16 *heldPointer asm("r3");
+    register u32 opposite asm("r4");
+    register u32 zero asm("r5");
+    register const struct WarioAnimationFrame *animation asm("r3");
+
+    temp = (u32)&gButtonsPressed;
+    value = *(u16 *)temp;
+    temp = 1;
+    temp &= value;
+    if (temp != 0) {
+        value = (u32)&gWarioData;
+        temp = 0x40;
+        ((struct WarioData *)value)->verticalDirection = temp;
+        return 2;
+    }
+
+    temp = 2;
+    temp &= value;
+    temp <<= 16;
+    zero = temp >> 16;
+    if (zero != 0) {
+        wario = &gWarioData;
+        temp = (u32)&gButtonsHeld;
+        value = *(u16 *)temp;
+        temp = 0xC0;
+        temp &= value;
+        wario->verticalDirection = temp;
+        temp = 0x30;
+        temp &= value;
+        if (temp != 0)
+            return 1;
+        return 2;
+    }
+
+    heldPointer = &gButtonsHeld;
+    wario = &gWarioData;
+    value = wario->horizontalDirection;
+    asm("" : "+r"(value));
+    temp = 0x30;
+    opposite = value;
+    opposite ^= temp;
+    value = *heldPointer;
+    temp = opposite;
+    temp &= value;
+    if (temp != 0) {
+        wario->horizontalDirection = opposite;
+        wario->xVelocity = zero;
+    } else {
+        temp = 0xF0;
+        temp &= value;
+        if (temp == 0)
+            return 5;
+    }
+
+    value = *heldPointer;
+    temp = 0x10;
+    temp &= value;
+    if (temp != 0) {
+        temp = 0x20;
+    } else {
+        temp = 0x20;
+        temp &= value;
+        temp <<= 16;
+        temp >>= 16;
+        if (temp != 0)
+            temp = 0xFFE0;
+    }
+    wario->xVelocity = temp;
+
+    value = *heldPointer;
+    temp = 0x40;
+    temp &= value;
+    if (temp != 0) {
+        temp = 0x20;
+    } else {
+        temp = 0x80;
+        temp &= value;
+        temp <<= 16;
+        temp >>= 16;
+        if (temp != 0)
+            temp = 0xFFE0;
+    }
+    wario->yVelocity = temp;
+
+    temp = *heldPointer;
+    value = 0xC0;
+    value &= temp;
+    opposite = 0;
+    wario->verticalDirection = value;
+    value = (u32)&gWarioDustEffect2;
+    temp = *(u8 *)value;
+    if (temp == 0) {
+        temp = 3;
+        *(u8 *)value = temp;
+    }
+
+    animation = sWarioSwimmingFreelyOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = opposite;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F = opposite;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioFloating(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register u32 buttons asm("r2");
+    register u32 direction asm("r3");
+    register u32 moving asm("r4");
+    register struct WarioData *wario asm("r5");
+    register const struct WarioAnimationFrame *animation asm("r0");
+    register u32 frame asm("r2");
+    register u32 zero asm("r1");
+
+    temp = (u32)&gButtonsPressed;
+    value = *(u16 *)temp;
+    temp = 1;
+    temp &= value;
+    if (temp != 0) {
+        value = (u32)&gWarioData;
+        buttons = 0;
+        *(u8 *)value = buttons;
+        temp = 2;
+        ((struct WarioData *)value)->unk_08 = temp;
+        ((struct WarioData *)value)->xVelocity = buttons;
+        temp = 0x80;
+        ((struct WarioData *)value)->yVelocity = temp;
+        value = (u32)&gWarioDustEffect1;
+        temp = 3;
+        *(u8 *)value = temp;
+        m4aSongNumStart(SE_WARIO_JUMP_OUT_OF_WATER);
+        return 0xFE;
+    }
+
+    temp = 2;
+    temp &= value;
+    if (temp != 0) {
+        value = (u32)&gWarioData;
+        temp = ((struct WarioData *)value)->yPosition;
+        temp += 0x10;
+        ((struct WarioData *)value)->yPosition = temp;
+        return 1;
+    }
+
+    value = (u32)&gButtonsHeld;
+    buttons = *(u16 *)value;
+    temp = 0x80;
+    temp &= buttons;
+    if (temp != 0) {
+        value = (u32)&gWarioData;
+        temp = ((struct WarioData *)value)->yPosition;
+        temp += 0x10;
+        ((struct WarioData *)value)->yPosition = temp;
+        return 3;
+    }
+
+    temp = (u32)&gWarioData;
+    direction = ((struct WarioData *)temp)->horizontalDirection;
+    moving = buttons;
+    moving &= direction;
+    wario = (struct WarioData *)temp;
+    if (moving != 0) {
+        temp = 0x10;
+        temp &= direction;
+        if (temp != 0) {
+            temp = 0x20;
+            wario->xVelocity = temp;
+        } else {
+            temp = 0xFFE0;
+            wario->xVelocity = temp;
+        }
+    } else {
+        temp = 0x30;
+        direction ^= temp;
+        temp = direction;
+        temp &= buttons;
+        temp <<= 16;
+        if (temp != 0)
+            wario->horizontalDirection = direction;
+        wario->xVelocity = moving;
+    }
+
+    value = *(u16 *)value;
+    temp = 0x30;
+    temp &= value;
+    if (temp != 0) {
+        temp = wario->unk_1F;
+        if (temp > 5)
+            return 4;
+        temp = 0;
+        wario->unk_0A = temp;
+    }
+
+    /* Prevent agbcc from hoisting the animation-frame load across the state update. */
+    asm volatile("" ::: "memory");
+    animation = sWarioFloatingOam;
+    frame = wario->unk_1F;
+    value = frame << 1;
+    value += frame;
+    value <<= 2;
+    value += (u32)animation;
+    temp = wario->unk_1E;
+    value = *(u8 *)(value + 8);
+    if (temp >= value) {
+        if (frame == 0)
+            m4aSongNumStart(SE_WARIO_WATER_PADDLE);
+        zero = 0;
+        wario->unk_1E = zero;
+        temp = wario->unk_1F;
+        temp++;
+        wario->unk_1F = temp;
+        temp <<= 24;
+        temp >>= 24;
+        if (temp == 6) {
+            temp = wario->unk_0A;
+            if (temp <= 3) {
+                temp++;
+                wario->unk_0A = temp;
+                wario->unk_1F = zero;
+            }
+        }
+        direction = (u32)sWarioFloatingOam;
+        buttons = (u32)&gWarioData;
+        value = ((struct WarioData *)buttons)->unk_1F;
+        temp = value << 1;
+        temp += value;
+        temp <<= 2;
+        temp += direction;
+        temp = *(u8 *)(temp + 8);
+        wario = (struct WarioData *)buttons;
+        if (temp == 0) {
+            temp = 6;
+            wario->unk_1F = temp;
+        }
+    }
+
+    moving = (u32)wario;
+    value = *(u8 *)(moving + 31);
+    if (value <= 5) {
+        temp = (u32)&gCurrentWarioEffect;
+        *(u8 *)(temp + 3) = value;
+    } else {
+        temp = *(u16 *)(moving + 12);
+        if (temp == 0)
+            m4aSongNumStart(SE_WARIO_WATER_IDLE);
+        temp = *(u16 *)(moving + 12);
+        if (temp <= 0x4F) {
+            temp++;
+            *(u16 *)(moving + 12) = temp;
+        } else {
+            temp = 0;
+            wario->unk_0C = temp;
+        }
+        value = (u32)&gCurrentWarioEffect;
+        temp = 0;
+        *(u8 *)value = temp;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioJumpingOutOfWater(void)
+{
+    register u32 temp asm("r0");
+    register u32 buttons asm("r1");
+    register u32 value asm("r2");
+    register struct WarioData *callWario asm("r4");
+    register struct WarioData *wario asm("r2");
+    register const struct WarioAnimationFrame *animation asm("r3");
+
+    temp = (u32)&gButtonsPressed;
+    buttons = *(u16 *)temp;
+    value = 1;
+    value &= buttons;
+    if (value != 0) {
+        buttons = (u32)&gWarioData;
+        temp = 0x40;
+        ((struct WarioData *)buttons)->verticalDirection = temp;
+        return 2;
+    }
+
+    temp = 2;
+    temp &= buttons;
+    if (temp != 0) {
+        temp = (u32)&gWarioData;
+        ((struct WarioData *)temp)->yVelocity = value;
+        return 1;
+    }
+
+    temp = 0x40;
+    temp &= buttons;
+    if (temp != 0) {
+        callWario = &gWarioData;
+        temp = func_806DAC0(callWario->yPosition, callWario->xPosition);
+        temp = (s32)temp >> 16;
+        if (temp == 1) {
+            temp = callWario->yPosition;
+            temp -= 0x3E;
+            temp <<= 16;
+            temp >>= 16;
+            temp = func_806DAC0(temp, callWario->xPosition);
+            temp = (s32)temp >> 16;
+            if (temp == 1)
+                return 11;
+        }
+    }
+
+    temp = (u32)&gButtonsHeld;
+    temp = *(u16 *)temp;
+    buttons = 0x30;
+    buttons &= temp;
+    if (buttons != 0) {
+        temp = (u32)&gWarioData;
+        ((struct WarioData *)temp)->horizontalDirection = buttons;
+        return 3;
+    }
+
+    buttons = 0xC0;
+    buttons &= temp;
+    if (buttons != 0) {
+        temp = (u32)&gWarioData;
+        ((struct WarioData *)temp)->verticalDirection = buttons;
+        return 3;
+    }
+
+    temp = (u32)&gWarioData;
+    buttons = ((struct WarioData *)temp)->unk_1F;
+    wario = (struct WarioData *)temp;
+    if (buttons != 0) {
+        temp = 0x20;
+        wario->yVelocity = temp;
+        temp = 0x40;
+        wario->verticalDirection = temp;
+    } else {
+        wario->yVelocity = buttons;
+    }
+
+    animation = sWarioJumpingOutOfWaterOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F = 1;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterDamage(void)
+{
+    struct WarioData *wario;
+    const struct WarioAnimationFrame *animation;
+    u8 zero;
+
+    wario = &gWarioData;
+    if (wario->unk_0A > 0x50) {
+        wario->damageTimer = 0x60;
+        return 5;
+    }
+    wario->unk_0A++;
+    zero = 0;
+    wario->yVelocity = 0x20;
+    animation = sWarioDamageOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = zero;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F = zero;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterSuperGroundPound(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register struct WarioData *wario asm("r3");
+    register u32 held asm("r4");
+    register u32 direction asm("r2");
+    register u32 moving asm("r5");
+    register const struct WarioAnimationFrame *animation asm("r2");
+    register struct WarioAfterimage *afterimage asm("r2");
+    register const struct AnimationFrameU16 *afterimageAnimation asm("r3");
+    u8 afterimageFrame;
+
+    temp = (u32)&gButtonsHeld;
+    value = (u32)&gWarioData;
+    held = *(u16 *)temp;
+    direction = ((struct WarioData *)value)->horizontalDirection;
+    moving = held;
+    moving &= direction;
+    wario = (struct WarioData *)value;
+    if (moving != 0) {
+        value = 0x10;
+        temp = value;
+        temp &= direction;
+        if (temp != 0)
+            wario->xVelocity = value;
+        else
+            wario->xVelocity = -0x10;
+    } else {
+        temp = 0x30;
+        value = direction;
+        value ^= temp;
+        temp = value;
+        temp &= held;
+        temp <<= 16;
+        asm("" : "+r"(temp));
+        if (temp != 0)
+            wario->horizontalDirection = value;
+        wario->xVelocity = moving;
+    }
+
+    animation = sWarioSuperGroundPoundOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F = 1;
+    }
+
+    afterimage = &gWarioAfterimage;
+    if (afterimage->unk0 != 0) {
+        afterimageAnimation = sWarioSuperGroundPoundAfterimageOam;
+        if (afterimage->unk1 >= afterimageAnimation[afterimage->unk2].time) {
+            afterimage->unk1 = 0;
+            afterimage->unk2++;
+            afterimageFrame = afterimage->unk2;
+            if (afterimageAnimation[afterimageFrame].time == 0)
+                afterimage->unk2 = afterimageFrame - 1;
+        }
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterSuperGroundPoundLanding(void)
+{
+    register struct WarioData *wario asm("r2");
+    register const struct WarioAnimationFrame *animation asm("r3");
+    register struct WarioAfterimage *afterimage asm("r2");
+    register const struct AnimationFrameU16 *afterimageAnimation asm("r3");
+
+    wario = &gWarioData;
+    animation = sWarioSuperGroundPoundLandingOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            return 5;
+    }
+
+    afterimage = &gWarioAfterimage;
+    afterimageAnimation = sWarioLoopingAfterimageOam;
+    if (afterimage->unk1 >= afterimageAnimation[afterimage->unk2].time) {
+        afterimage->unk1 = 0;
+        afterimage->unk2++;
+        if (afterimageAnimation[afterimage->unk2].time == 0)
+            afterimage->unk2 = 0;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterHorizontalBonk(void)
+{
+    struct WarioData *wario;
+
+    wario = &gWarioData;
+    if (wario->horizontalDirection & 0x10) {
+        wario->xVelocity += 2;
+        if (wario->xVelocity >= 0)
+            return 5;
+    } else {
+        wario->xVelocity -= 2;
+        if (wario->xVelocity <= 0)
+            return 5;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterVerticalBonk(void)
+{
+    struct WarioData *wario;
+
+    wario = &gWarioData;
+    if (wario->verticalDirection & 0x40) {
+        wario->yVelocity += 2;
+        if (wario->yVelocity >= 0)
+            return 5;
+    } else {
+        wario->yVelocity -= 2;
+        if (wario->yVelocity <= 0)
+            return 5;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterTransition(void)
+{
+    if (gWarioData.unk_1E > 3) {
+        gSubGameMode = 2;
+        return 5;
+    }
+    return 0xFF;
+}
+
+u8 UpdateFatWarioFallingInWater(void)
+{
+    register u32 temp asm("r0");
+    register struct WarioData *wario asm("r4");
+    register u32 held asm("r2");
+    register u32 direction asm("r1");
+    register u32 moving asm("r3");
+
+    if (gWarioDustEffect2.unk0 == 0)
+        gWarioDustEffect2.unk0 = 1;
+
+    temp = (u32)&gButtonsHeld;
+    wario = &gWarioData;
+    held = *(u16 *)temp;
+    direction = wario->horizontalDirection;
+    moving = held;
+    moving &= direction;
+    if (moving != 0) {
+        held = 0x10;
+        temp = held;
+        temp &= direction;
+        if (temp != 0)
+            wario->xVelocity = held;
+        else
+            wario->xVelocity = -0x10;
+    } else {
+        temp = 0x30;
+        direction ^= temp;
+        temp = direction;
+        temp &= held;
+        temp <<= 16;
+        if (temp != 0)
+            wario->horizontalDirection = direction;
+        wario->xVelocity = moving;
+    }
+    return 0xFF;
+}
+
+u8 UpdateFatWarioLandingInWater(void)
+{
+    register struct WarioAfterimage *afterimage asm("r2");
+    register const struct AnimationFrameU16 *animation asm("r3");
+
+    if (gWarioData.unk_1E > 0x1D) {
+        gWarioData.damageTimer = 0x60;
+        return 5;
+    }
+
+    afterimage = &gWarioAfterimage;
+    animation = sWarioLoopingAfterimageOam;
+    if (afterimage->unk1 >= animation[afterimage->unk2].time) {
+        afterimage->unk1 = 0;
+        afterimage->unk2++;
+        if (animation[afterimage->unk2].time == 0)
+            afterimage->unk2 = 0;
+    }
+    return 0xFF;
+}
+
+u8 UpdateBubbleWarioInWater(void)
+{
+    register u32 temp asm("r0");
+    register u32 value asm("r1");
+    register struct WarioData *wario asm("r2");
+    register u32 aux asm("r3");
+    register struct WarioData *initialWario asm("r4");
+    register const struct WarioAnimationFrame *animation asm("r3");
+
+    initialWario = &gWarioData;
+    value = (u32)initialWario;
+    value += 0x3B;
+    temp = *(u8 *)value;
+    if (temp != 0) {
+        temp--;
+        *(u8 *)value = temp;
+    } else {
+        wario = (struct WarioData *)&gButtonsHeld;
+        value = initialWario->horizontalDirection;
+        asm("" : "+r"(value));
+        temp = 0x30;
+        aux = value;
+        aux ^= temp;
+        value = *(u16 *)wario;
+        temp = aux;
+        temp &= value;
+        if (temp != 0) {
+            temp = 0;
+            initialWario->horizontalDirection = aux;
+            value = (u32)initialWario;
+            value += 0x3A;
+            *(u8 *)value = temp;
+            m4aSongNumStart(SE_BUBBLE_WARIO_TURN);
+        }
+    }
+
+    wario = &gWarioData;
+    value = wario->horizontalDirection;
+    temp = 0x10;
+    temp &= value;
+    if (temp != 0) {
+        value = (u32)sBubbleWarioHorizontalOffsets;
+        temp = (u32)wario;
+        temp += 0x3A;
+        temp = *(u8 *)temp;
+        temp >>= 3;
+        temp <<= 1;
+        temp += value;
+        temp = *(u16 *)temp;
+        aux = wario->xPosition;
+        value = temp + aux;
+        wario->xPosition = value;
+        temp = (u32)wario;
+        temp += 0x3B;
+        temp = *(u8 *)temp;
+        if (temp != 0) {
+            temp = value + 1;
+            wario->xPosition = temp;
+        }
+    } else {
+        value = (u32)sBubbleWarioHorizontalOffsets;
+        temp = (u32)wario;
+        temp += 0x3A;
+        temp = *(u8 *)temp;
+        temp >>= 3;
+        temp <<= 1;
+        temp += value;
+        value = wario->xPosition;
+        temp = *(u16 *)temp;
+        value -= temp;
+        wario->xPosition = value;
+        temp = (u32)wario;
+        temp += 0x3B;
+        temp = *(u8 *)temp;
+        if (temp != 0) {
+            temp = value - 1;
+            wario->xPosition = temp;
+        }
+    }
+
+    aux = (u32)wario;
+    aux += 0x3A;
+    temp = *(u8 *)aux;
+    if (temp <= 0x5E) {
+        temp++;
+        *(u8 *)aux = temp;
+    } else {
+        temp = wario->horizontalDirection;
+        value = 0x30;
+        temp ^= value;
+        value = 0;
+        wario->horizontalDirection = temp;
+        *(u8 *)aux = value;
+    }
+
+    temp = wario->unk_0A;
+    if (temp != 0) {
+        temp = 0x20;
+        wario->yVelocity = temp;
+    } else {
+        temp++;
+        wario->unk_0A = temp;
+    }
+
+    animation = sBubbleWarioOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F = 0;
+    }
+    return 0xFF;
+}
+
+u8 UpdateWarioWaterRecovery(void)
+{
+    struct WarioData *wario;
+    const struct WarioAnimationFrame *animation;
+
+    wario = &gWarioData;
+    if (wario->unk_0A > 0x50) {
+        wario->damageTimer = 0x60;
+        return 5;
+    }
+    wario->unk_0A++;
+    if (gWarioDustEffect2.unk0 == 0)
+        gWarioDustEffect2.unk0 = 1;
+
+    animation = sWarioFloatingOam;
+    if (wario->unk_1E >= animation[wario->unk_1F].time) {
+        wario->unk_1E = 0;
+        wario->unk_1F++;
+        if (animation[wario->unk_1F].time == 0)
+            wario->unk_1F = 6;
+    }
+    return 0xFF;
+}
+
+void SetWarioWaterPose(u8 pose)
+{
+    register struct WarioData *wario asm("r4");
+    register struct WarioData *copy asm("r2");
+    register struct WarioData *current asm("r0");
+    register s16 velocity asm("r1");
+
+    func_800FD28();
+    gWarioAfterimage = sEmptyWarioAfterimage;
+    gCurrentWarioEffect = sStartingWarioEffect;
+
+    if (gPreviousReaction == gWarioDataCopy.reaction && gWarioDataCopy.pose == 7) {
+        if (pose == 8) {
+            m4aSongNumStart(SE_WARIO_WATER_GROUND_POUND_LAND);
+            VoiceSetPlay(0);
+        } else {
+            MPlayStop(gMPlayTable[3].info);
+        }
+    }
+
+    current = &gWarioData;
+    current->pose = pose;
+    copy = &gWarioDataCopy;
+    velocity = copy->yVelocity;
+    current->yVelocity = velocity;
+    wario = current;
+
+    switch (pose) {
+        case 0:
+            gCurrentCarriedSprite.state = 0;
+            gWarioDustEffect1.unk0 = 1;
+            if (copy->yVelocity > -0x6C)
+                wario->yVelocity = -0x6C;
+            /* fall through */
+        case 12:
+            m4aSongNumStart(SE_WARIO_WATER_LAND);
+            break;
+        case 1:
+            if (wario->horizontalDirection & 0x10)
+                wario->xVelocity = 0x80;
+            else
+                wario->xVelocity = -0x80;
+            gCurrentWarioEffect.type = 1;
+            m4aSongNumStart(SE_WARIO_SWIM);
+            break;
+        case 2:
+            if (wario->verticalDirection & 0x40)
+                wario->yVelocity = 0x80;
+            else
+                wario->yVelocity = -0x80;
+            gCurrentWarioEffect.type = 1;
+            m4aSongNumStart(SE_WARIO_SWIM);
+            break;
+        case 4:
+            wario->yVelocity = 0;
+            gCurrentWarioEffect.type = 1;
+            break;
+        case 15:
+            wario->unk_1F = 6;
+            gWarioDustEffect2.unk0 = 1;
+            /* fall through */
+        case 6:
+            if (gHeartMeter.unk_2 == 0 && gHeartMeter.current != 0) {
+                gHeartMeter.current--;
+                SpriteSpawnSecondary(gWarioData.yPosition - 0x60, gWarioData.xPosition, 0x30);
+            }
+            gWarioData.damageTimer = 1;
+            m4aSongNumStart(SE_WARIO_WATER_DAMAGE);
+            break;
+        case 7:
+            wario->unk_1F = 1;
+            gWarioAfterimage.unk0 = 2;
+            gCurrentCarriedSprite.state = 0;
+            gWarioDustEffect1.unk0 = 1;
+            break;
+        case 8:
+            wario->yVelocity = 0;
+            gWarioAfterimage.unk0 = 3;
+            gWarioDustEffect2.unk0 = 5;
+            ScreenShakeRequestY(0x40, 0);
+            break;
+        case 9:
+            if (wario->horizontalDirection & 0x10)
+                wario->xVelocity = -0x24;
+            else
+                wario->xVelocity = 0x24;
+            gWarioDustEffect2.unk0 = 5;
+            break;
+        case 10:
+            if (wario->verticalDirection & 0x40)
+                wario->yVelocity = -0x24;
+            else
+                wario->yVelocity = 0x24;
+            gWarioDustEffect2.unk0 = 5;
+            break;
+        case 11:
+            gSubGameMode = 4;
+            gUnk_3001890 = copy->xPosition;
+            gUnk_3001892 = copy->yPosition;
+            break;
+        case 13:
+            gWarioAfterimage.unk0 = 4;
+            gWarioDustEffect2.unk0 = 5;
+            ScreenShakeRequestY(0x40, 0);
+            m4aSongNumStart(SE_WARIO_WATER_GROUND_POUND);
+            break;
+        case 14:
+            wario->yVelocity = 0;
+            m4aSongNumStart(SE_BUBBLE_WARIO_START);
+            break;
+        default:
+            break;
+    }
+}
+
+
+void UpdateWarioWaterPhysics(void)
+{
+    s16 movement;
+    u8 pose;
+    register struct WarioData *wario asm("r4");
+
+    func_8015C08();
+
+    {
+        register const u8 *poseData asm("r1");
+        register struct WarioData *hitboxWario;
+        register u32 hitboxOffset asm("r1");
+        register const u8 *hitboxData asm("r2");
+        register u32 hitboxAddress asm("r0");
+
+        poseData = sWarioWaterPoseData;
+        hitboxWario = &gWarioData;
+        hitboxOffset = poseData[hitboxWario->pose * 8];
+        hitboxData = (const u8 *)sWarioHitboxTable;
+        hitboxOffset <<= 3;
+        hitboxAddress = hitboxOffset + (u32)hitboxData;
+        hitboxWario->hitboxOffsetLeft = *(const u16 *)hitboxAddress;
+        hitboxAddress = (u32)hitboxData + 2;
+        hitboxAddress = hitboxOffset + hitboxAddress;
+        hitboxWario->hitboxOffsetTop = *(const u16 *)hitboxAddress;
+        hitboxAddress = (u32)hitboxData + 4;
+        hitboxAddress = hitboxOffset + hitboxAddress;
+        hitboxWario->hitboxOffsetRight = *(const u16 *)hitboxAddress;
+        hitboxData += 6;
+        hitboxOffset += (u32)hitboxData;
+        hitboxWario->hitboxOffsetBottom = *(const u16 *)hitboxOffset;
+
+        pose = hitboxWario->pose;
+        movement = 0;
+        switch (pose) {
+            case 0:
+                movement = gWarioData.yVelocity >> 3;
+                gWarioData.yVelocity += 0x10;
+                break;
+            case 1:
+            case 3:
+            case 5:
+                if (gWarioWaterCurrentYVelocity == 0x60 || gWarioWaterCurrentYVelocity == -0x60)
+                    movement = gWarioWaterCurrentYVelocity >> 3;
+                else
+                    movement = (gWarioData.yVelocity + gWarioWaterCurrentYVelocity) >> 3;
+                break;
+            case 2:
+                wario = &gWarioData;
+                movement = wario->yVelocity >> 3;
+                if (wario->verticalDirection & 0x40) {
+                    if (gWarioWaterCurrentYVelocity == 0x60) {
+                        movement = gWarioWaterCurrentYVelocity >> 3;
+                    } else if (gWarioWaterCurrentYVelocity == -0x60) {
+                        movement = (wario->yVelocity + gWarioWaterCurrentYVelocity) >> 3;
+                        if (movement > 0)
+                            movement = 0;
+                    } else if (movement > 0xC) {
+                        movement = 0xC;
+                    }
+                } else {
+                    if (gWarioWaterCurrentYVelocity == -0x60) {
+                        movement = gWarioWaterCurrentYVelocity >> 3;
+                    } else if (gWarioWaterCurrentYVelocity == 0x60) {
+                        movement = (wario->yVelocity + gWarioWaterCurrentYVelocity) >> 3;
+                        if (movement < 0)
+                            movement = 0;
+                    } else if (movement < -0xC) {
+                        movement = -0xC;
+                    }
+                }
+                break;
+            case 7:
+            case 12:
+                if (gWarioData.yVelocity < -0x60)
+                    gWarioData.yVelocity = -0x60;
+                movement = gWarioData.yVelocity >> 3;
+                gWarioData.yVelocity -= 8;
+                break;
+            case 6:
+            case 10:
+            case 14:
+                movement = gWarioData.yVelocity >> 3;
+                break;
+        }
+    }
+    {
+        register struct WarioData *updatedWario asm("r1");
+        register s32 currentYVelocity asm("r2");
+        register s32 minimumVelocity asm("r0");
+
+        updatedWario = &gWarioData;
+        updatedWario->yPosition -= movement;
+        currentYVelocity = updatedWario->yVelocity;
+        minimumVelocity = 0x80;
+        minimumVelocity = -minimumVelocity;
+        wario = updatedWario;
+        if (currentYVelocity < minimumVelocity)
+            wario->yVelocity = 0xFF80;
+    }
+
+    movement = 0;
+    switch (wario->pose) {
+        case 1:
+            movement = wario->xVelocity >> 3;
+            if (wario->horizontalDirection & 0x10) {
+                if (gWarioWaterCurrentXVelocity == 0x60) {
+                    movement = gWarioWaterCurrentXVelocity >> 3;
+                } else if (gWarioWaterCurrentXVelocity == -0x60) {
+                    movement = (wario->xVelocity + gWarioWaterCurrentXVelocity) >> 3;
+                    if (movement > 0)
+                        movement = 0;
+                } else if (movement > 0xC) {
+                    movement = 0xC;
+                }
+            } else {
+                if (gWarioWaterCurrentXVelocity == -0x60) {
+                    movement = gWarioWaterCurrentXVelocity >> 3;
+                } else if (gWarioWaterCurrentXVelocity == 0x60) {
+                    movement = (wario->xVelocity + gWarioWaterCurrentXVelocity) >> 3;
+                    if (movement < 0)
+                        movement = 0;
+                } else if (movement < -0xC) {
+                    movement = -0xC;
+                }
+            }
+            break;
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+            if (gWarioWaterCurrentXVelocity == 0x60 || gWarioWaterCurrentXVelocity == -0x60)
+                movement = gWarioWaterCurrentXVelocity >> 3;
+            else
+                movement = (wario->xVelocity + gWarioWaterCurrentXVelocity) >> 3;
+            break;
+        case 14:
+            break;
+        default:
+            movement = wario->xVelocity >> 3;
+            break;
+    }
+    wario->xPosition += movement;
+}
+
+void ProcessWarioWaterCollision(void)
+{
+    register struct WarioCollisionData *collisionData asm("r3");
+    register const u8 *poseData asm("r2");
+    register const u8 *fieldData asm("r1");
+    register u32 poseOffset asm("r0");
+    register struct WarioData *wario asm("r5");
+    u16 collisionResult;
+    register s32 checkResult asm("r0");
+    u8 result;
+    register struct WarioData *updatedWario asm("r0");
+    register struct WarioData *filterWario asm("r0");
+    register s32 poseValue asm("r1");
+    register struct WarioData *collisionWario asm("r4");
+    u32 groundResult;
+    u32 activePose;
+    register struct WarioData *alignWario asm("r0");
+    register u32 alignedY asm("r1");
+    register u32 alignMask asm("r2");
+    register s32 negativeMask asm("r3");
+    register s32 holdR1 asm("r1");
+    register s32 holdR2 asm("r2");
+
+    collisionData = &gWarioCollisionData;
+    poseData = sWarioWaterPoseData;
+    wario = &gWarioData;
+    poseOffset = wario->pose * 8;
+    fieldData = poseData + 1;
+    poseOffset += (u32)fieldData;
+    collisionData->collisionIndex = *(const u8 *)poseOffset;
+    poseOffset = wario->pose * 8;
+    fieldData = poseData + 2;
+    poseOffset += (u32)fieldData;
+    collisionData->surfaceStatus = *(const u8 *)poseOffset;
+    poseOffset = wario->pose * 8;
+    fieldData = poseData + 3;
+    poseOffset += (u32)fieldData;
+    collisionData->poseField3 = *(const u8 *)poseOffset;
+    poseOffset = wario->pose * 8;
+    fieldData = poseData + 4;
+    poseOffset += (u32)fieldData;
+    collisionData->poseField4 = *(const u8 *)poseOffset;
+    poseOffset = wario->pose * 8;
+    fieldData = poseData + 5;
+    poseOffset += (u32)fieldData;
+    collisionData->verticalCollisionEnabled = *(const u8 *)poseOffset;
+    poseOffset = wario->pose * 8;
+    fieldData = poseData + 6;
+    poseOffset += (u32)fieldData;
+    collisionData->poseField6 = *(const u8 *)poseOffset;
+    poseOffset = wario->pose * 8;
+    poseData += 7;
+    poseOffset += (u32)poseData;
+    collisionData->poseFlags = *(const u8 *)poseOffset;
+
+    if (wario->yVelocity <= 0x2F)
+        collisionData->verticalCollisionEnabled = 0;
+
+    if (collisionData->horizontalDirection == 0)
+        collisionData->horizontalDirection = wario->horizontalDirection & 0x30;
+
+    if (collisionData->environmentFlags & 0x40) {
+        result = ResolveWarioWaterSurfaceCollision();
+    } else if (*(s8 *)&gWarioWaterCollisionActive == 0) {
+        result = ResolveWarioWaterCollision();
+    } else {
+        wario->yPosition = gPreviousYPosition;
+        result = ResolveWarioWaterCollisionContinuation();
+        if (wario->pose == 3 && *(u16 *)&wario->unk_1C == 0 && (gButtonsHeld & 0x80)) {
+            if (func_8014090(0, 1, 1) == 0) {
+                wario->xPosition = (wario->xPosition & 0xFFC0) + 0x20;
+                wario->yPosition++;
+                result = 0xFF;
+            }
+        }
+    }
+
+    updatedWario = &gWarioData;
+    asm("" : "+r"(updatedWario));
+    *(u16 *)&updatedWario->unk_1C &= 0x7FFF;
+    wario = updatedWario;
+    if (result == 0xFD)
+        gWarioWaterCollisionActive = 1;
+    else
+        gWarioWaterCollisionActive = 0;
+
+    switch (wario->pose) {
+        case 12:
+            if (result == 0xFD) {
+                checkResult = func_8014268(gWarioCollisionData.collisionIndex, gWarioData.yPosition + 1, &collisionResult);
+                if (checkResult != 0 && checkResult > gWarioCollisionData.minimumGroundDistance)
+                    SetWarioWaterPose(13);
+            }
+            goto stateHandled;
+        case 7:
+            if (result == 0xFD) {
+                checkResult = func_8014268(gWarioCollisionData.collisionIndex, gWarioData.yPosition + 1, &collisionResult);
+                if (checkResult != 0 && checkResult > gWarioCollisionData.minimumGroundDistance)
+                    SetWarioWaterPose(8);
+            }
+            goto stateHandled;
+        case 1:
+        case 2:
+        case 3:
+        case 5:
+            if (result == 0xFF) {
+                asm volatile("" : "=r"(holdR1), "=r"(holdR2));
+                if (gWarioWaterCurrentXVelocity == 0) {
+                    asm volatile("" : : "r"(holdR1), "r"(holdR2));
+                    if (gWarioWaterCurrentYVelocity == 0)
+                        result = func_8015C6C();
+                }
+            }
+            goto handleStateResult;
+        default:
+handleStateResult:
+            if (result != 0xFF && result != 0xFD)
+                SetWarioWaterPose(result);
+            break;
+    }
+
+stateHandled:
+    asm("" : "=r"(wario));
+    filterWario = &gWarioData;
+    poseValue = filterWario->pose;
+    wario = filterWario;
+    if (poseValue == 4)
+        goto collisionDone;
+    if (poseValue > 4)
+        goto greaterPose;
+    if (poseValue == 0)
+        goto collisionDone;
+    goto processCollision;
+
+greaterPose:
+    if (poseValue == 7 || poseValue == 12)
+        goto collisionDone;
+
+processCollision:
+    asm("" : "=r"(collisionWario));
+    collisionWario = wario;
+    groundResult = func_806DAC0(collisionWario->yPosition - 0x30, collisionWario->xPosition);
+    groundResult &= 0xFF;
+    if (groundResult != 0)
+        goto collisionDone;
+
+    activePose = collisionWario->pose;
+    if (activePose == 6) {
+        collisionWario->yVelocity = groundResult;
+    } else if (activePose == 14) {
+        SetWarioWaterPose(0);
+        wario->damageTimer = 0x60;
+        m4aSongNumStart(SE_BUBBLE_WARIO_BOUNCE);
+        func_801E3A8(0x9B, 0, 0, wario->yPosition, wario->xPosition, 0x40);
+    } else {
+        SetWarioWaterPose(4);
+    }
+
+    alignWario = &gWarioData;
+    asm("" : "+r"(alignWario));
+    alignedY = alignWario->yPosition;
+    alignedY -= 0x30;
+    negativeMask = 0x40;
+    negativeMask = -negativeMask;
+    asm("" : "+r"(negativeMask));
+    alignMask = negativeMask;
+    asm("" : "+r"(alignMask), "+r"(negativeMask));
+    alignedY &= alignMask;
+    alignedY += 0x60;
+    alignWario->yPosition = alignedY;
+
+collisionDone:
+}
+
+
+u8 ResolveWarioWaterCollision(void)
+{
+    register struct WarioCollisionData *collisionData asm("r4");
+    register struct WarioData *wario asm("r8");
+    unsigned short secondProbeX;
+    u16 newX;
+    u16 newY;
+    int wallCheckVelocity;
+    u16 *newYPointer;
+    u16 collision;
+    u32 result;
+    s16 offset;
+    register u32 index asm("r5");
+    struct WarioData **warioPointer;
+    register u32 point asm("r6");
+    register u32 indexOffset asm("r9");
+    int firstProbeX;
+    register s32 probeOffset asm("r10");
+    register u32 tableOffset asm("r0");
+    register u32 rawIndexOffset asm("r1");
+    u8 alternatePoint;
+    register unsigned short storedY asm("r0");
+    register struct WarioData *storedWarioR2 asm("r2");
+    register struct WarioData *storedWarioR1 asm("r1");
+    collisionData = &gWarioCollisionData;
+    index = collisionData->collisionIndex;
+    point = collisionData->primaryProbe;
+    alternatePoint = collisionData->secondaryProbe;
+    offset = collisionData->xCorrection;
+    if (collisionData->horizontalDirection != 0)
+    {
+        wallCheckVelocity = -22;
+        result = func_8013EFC(index, &newX, wallCheckVelocity);
+        if (result != 0)
+        {
+            register struct WarioData *initialWario asm("r2");
+            initialWario = &gWarioData;
+            initialWario->xPosition = newX;
+            initialWario->xVelocity = 0;
+            collisionData->wallCollisionCount++;
+            if (initialWario->pose == 1)
+            {
+                return 9;
+            }
+        }
+    }
+    wario = &gWarioData;
+    tableOffset = point << 1;
+    rawIndexOffset = index << 1;
+    rawIndexOffset += index;
+    rawIndexOffset <<= 1;
+    indexOffset = rawIndexOffset;
+    tableOffset += indexOffset;
+    probeOffset = *((const u16 *) (((const u8 *) sWarioCollisionProbeTable) + tableOffset));
+    tableOffset = wario->xPosition;
+    tableOffset += probeOffset;
+    tableOffset <<= 16;
+    index = tableOffset >> 16;
+    point = wario->yPosition;
+    asm volatile("" : : "r"(index));
+    firstProbeX = index;
+    newYPointer = &newY;
+    result = func_8013D6C(firstProbeX, point, &newX, newYPointer, &collision);
+    if (collision != 0)
+    {
+        if (result != 0)
+        {
+            wario->unk_1C = result;
+            storedY = newY;
+            storedWarioR2 = wario;
+            goto storeYWithR2;
+        }
+        if (gPreviousYPosition < newY)
+        {
+            point = gPreviousYPosition;
+            asm volatile("" : : "r"(point));
+            result = func_8013D6C(firstProbeX, point, &newX, &newY, &collision);
+            if (result != 0)
+            {
+                storedY = newY;
+                storedWarioR1 = wario;
+                goto storeYWithR1;
+            }
+            wario->yPosition = newY + 0x3F;
+            asm volatile("" : : "r"(wario), "r"(result));
+            goto returnFD;
+        }
+        if (collision == 0x10)
+        {
+            goto collisionType16;
+        }
+        wario->xPosition = (newX - probeOffset) + offset;
+        index = wario->xPosition;
+        asm volatile("" : : "r"(index));
+        result = func_8013D6C(index, point, &newX, &newY, &collision);
+        wario->unk_1C = result;
+        if (result != 0)
+        {
+            storedY = newY;
+            storedWarioR2 = wario;
+            goto storeYWithR2;
+        }
+        if (collision == 0)
+        {
+            register struct WarioData *poseWario asm("r2");
+            poseWario = wario;
+            poseWario->xVelocity = 0;
+            gWarioCollisionData.wallCollisionCount++;
+            if (poseWario->pose == 1)
+            {
+                return 9;
+            }
+            return 0xFF;
+        }
+        goto storeNewYMinusOne;
+    }
+    goto secondProbe;
+collisionType16:
+    storedY = newY - 1;
+
+    storedWarioR1 = wario;
+    goto storeYWithR1;
+secondProbe:
+    {
+        register u32 secondValue asm("r2");
+        register const u8 *tableBase asm("r1");
+        register struct WarioData *positionWario asm("r0");
+        secondValue = alternatePoint;
+        asm volatile("" : "+r"(secondValue));
+        tableOffset = secondValue << 1;
+        tableOffset += indexOffset;
+        /* Preserve the original pointer lifetime across the second collision probe. */
+        warioPointer = &wario;
+        tableBase = (const u8 *) sWarioCollisionProbeTable;
+        tableOffset += (u32) tableBase;
+        tableOffset = *((const u16 *) tableOffset);
+        {
+            register struct WarioData *xWario asm("r2");
+            xWario = wario;
+            asm volatile("" : "+r"(xWario));
+            secondValue = xWario->xPosition;
+        }
+        tableOffset += secondValue;
+        tableOffset <<= 16;
+        index = tableOffset >> 16;
+        positionWario = wario;
+        asm volatile("" : "+r"(positionWario));
+        point = positionWario->yPosition;
+    }
+
+    result = func_8013D6C(index, point, &newX, &newY, &collision);
+    if (collision != 0)
+    {
+        secondProbeX = index;
+        if (result != 0)
+        {
+            register struct WarioData *resultWario asm("r2");
+            resultWario = wario;
+            resultWario->unk_1C = result;
+            storedY = newY;
+            storedWarioR2 = resultWario;
+            goto storeYWithR2;
+        }
+        {
+            register u16 *previousYPointer asm("r1");
+            register u32 previousY asm("r0");
+            previousYPointer = &gPreviousYPosition;
+            previousY = *previousYPointer;
+            if (previousY < newY)
+            {
+                point = previousY;
+                result = func_8013D6C(secondProbeX, point, &newX, &newY, &collision);
+                wario->unk_1C = result;
+                if (result != 0)
+                {
+                    storedY = newY;
+                    storedWarioR1 = *warioPointer;
+                    goto storeYWithR1;
+                }
+                storedY = newY + 0x3F;
+                storedWarioR2 = wario;
+storeYWithR2:
+                storedWarioR2->yPosition = storedY;
+
+                goto returnFD;
+            }
+        }
+    }
+    else
+        if ((*((const s16 *) ((((const u8 *) sWarioCollisionProbeTable) + indexOffset) + 2))) > 0x1F)
+        {
+            index = wario->xPosition;
+            result = func_8013D6C(index, point, &newX, &newY, &collision);
+            if (collision != 0)
+            {
+                wario->unk_1C = result;
+                goto storeNewYMinusOne;
+            }
+        }
+    goto returnFF;
+storeNewYMinusOne:
+    storedY = newY - 1;
+
+    storedWarioR1 = wario;
+storeYWithR1:
+    storedWarioR1->yPosition = storedY;
+
+    goto returnFD;
+returnFD:
+    return 0xFD;
+
+returnFF:
+    return 0xFF;
+
+}
+
+u8 ResolveWarioWaterSurfaceCollision(void)
+{
+    u16 newX;
+    u16 newY;
+    u16 collision;
+    u32 result;
+    register u32 index asm("r9");
+    register u32 point asm("r8");
+    {
+        struct WarioCollisionData *collisionData;
+        register const u8 *offsetData asm("r6");
+        register u32 tableOffset asm("r4");
+        register u32 tableIndex asm("r1");
+        const u8 *entry;
+        register s32 offset asm("r5");
+        register u32 status asm("r0");
+        collisionData = &gWarioCollisionData;
+        index = collisionData->collisionIndex;
+        status = collisionData->surfaceStatus;
+        asm volatile("" : : "r"(status));
+        point = collisionData->primaryProbe;
+        offsetData = (const u8 *) sWarioCollisionProbeTable;
+        tableIndex = index << 1;
+        tableIndex += index;
+        tableOffset = tableIndex << 1;
+        entry = offsetData + 4;
+        entry = ((const u8 *) tableOffset) - (-((u32) entry));
+        offset = *((const u16 *) entry);
+        result = func_8014090(status, offset, 0);
+        if (0 == collisionData->forceGroundSnap)
+        {
+            if (result == 1)
+            {
+                register struct WarioData *wario asm("r2");
+                register const u8 *probe asm("r0");
+                register u32 probeOffset asm("r1");
+                register u32 sum asm("r0");
+                register u32 xPosition asm("r3");
+                wario = &gWarioData;
+                probe = (const u8 *) (tableOffset + ((u32) offsetData));
+                probeOffset = *((const u16 *) probe);
+                xPosition = wario->xPosition;
+                sum = probeOffset + xPosition;
+                xPosition = (u16) sum;
+                xPosition &= 0x0000FFC0;
+                wario->xPosition = (xPosition - probeOffset) + 0x40;
+            }
+            else
+                if (result == 8)
+                {
+                    register struct WarioData *wario asm("r2");
+                    register const u8 *probe asm("r0");
+                    register u32 probeOffset asm("r1");
+                    register u32 sum asm("r0");
+                    register u32 xPosition asm("r3");
+                    wario = &gWarioData;
+                    probe = offsetData + 2;
+                    probe = ((const u8 *)tableOffset) - (-((u32)probe));
+                    probeOffset = *((const u16 *) probe);
+                    xPosition = wario->xPosition;
+                    sum = probeOffset + xPosition;
+                    xPosition = (u16) sum;
+                    xPosition &= 0x0000FFC0;
+                    wario->xPosition = (xPosition - probeOffset) - 1;
+                }
+                else
+                    if ((result & 6) != 0)
+                    {
+                        register struct WarioData *wario asm("r1");
+                        register u32 sum asm("r0");
+                        register u32 aligned asm("r4");
+                        register u32 output asm("r0");
+                        wario = &gWarioData;
+                        sum = wario->yPosition + offset;
+                        aligned = (u16) sum;
+                        aligned &= 0x0000FFC0;
+                        output = aligned - offset;
+                        output += 0x40;
+                        wario->yPosition = output;
+                        collisionData->groundCollision = 1;
+                    }
+        }
+        else
+        {
+            register struct WarioData *wario asm("r1");
+            register u32 sum asm("r0");
+            register u32 aligned asm("r4");
+            register u32 output asm("r0");
+            wario = &gWarioData;
+            sum = wario->yPosition + offset;
+            aligned = (u16) sum;
+            aligned &= 0x0000FFC0;
+            output = aligned - offset;
+            output += 0x40;
+            wario->yPosition = output;
+            collisionData->groundCollision = 1;
+        }
+    }
+    {
+        struct WarioCollisionData *collisionData;
+        struct WarioData *wario;
+        u32 x;
+        register u32 y asm("r4");
+        {
+            register struct WarioCollisionData *address asm("r0");
+            address = &gWarioCollisionData;
+            asm("" : : "r"(address));
+            collisionData = address;
+        }
+        if (collisionData->horizontalDirection != 0)
+        {
+            do
+            {
+                wario = &gWarioData;
+                {
+                    register const s16 *table asm("r1");
+                    register u32 indexTemp asm("r2");
+                    register u32 tableIndex asm("r0");
+                    table = sWarioCollisionProbeTable;
+                    asm("" : : "r"(table));
+                    indexTemp = index;
+                    asm("" : : "r"(indexTemp));
+                    tableIndex = indexTemp << 1;
+                    tableIndex += index;
+                    tableIndex += point;
+                    tableIndex <<= 1;
+                    tableIndex += (u32)table;
+                    point = *(u16 *)tableIndex;
+                }
+                { register u32 xTemp asm("r0"); xTemp = wario->xPosition + point; xTemp <<= 16; xTemp >>= 16; x = xTemp; }
+                y = wario->yPosition;
+                asm volatile("" : "+r"(collisionData), "+r"(wario) : "r"(y));
+                asm volatile("" : : : "r0", "r1", "r2", "r5");
+                result = func_8013D6C(x, y, &newX, &newY, &collision);
+                if (collision != 0)
+                {
+                    do
+                    {
+                    }
+                    while (0);
+                    do
+                    {
+                        if (result != 0)
+                        {
+                            wario->unk_1C = result;
+                        }
+                        else
+                        {
+                            {
+                                register u32 value asm("r0");
+                                register u32 oldPoint asm("r3");
+                                register struct WarioCollisionData *data asm("r1");
+                                value = newX;
+                                asm("" : : "r"(value));
+                                oldPoint = point;
+                                asm("" : : "r"(oldPoint));
+                                value -= oldPoint;
+                                data = collisionData;
+                                asm("" : : "r"(data));
+                                value += data->xCorrection;
+                                point = (u16)value;
+                            }
+                            {
+                                register u32 secondX asm("r3");
+                                secondX = wario->xPosition;
+                                result = func_8013D6C(secondX, y, &newX, &newY, &collision);
+                            }
+                            if (result != 0)
+                            {
+                                register u32 pointOut asm("r2");
+                                wario->unk_1C = result;
+                                pointOut = point;
+                                wario->xPosition = pointOut;
+                            }
+                            else
+                            {
+                                goto noCollision;
+                            }
+                        }
+                        asm volatile("" : : "r"(&collision));
+                        wario->yPosition = newY;
+                        return 0xFD;
+                    }
+                    while (0);
+                }
+noCollision:
+                result = func_8013EFC(index, &newX, 0);
+            }
+            while (0);
+            if (result != 0)
+            {
+                struct WarioData *wario2;
+                wario2 = &gWarioData;
+                wario2->xPosition = newX;
+                wario2->xVelocity = 0;
+                if (wario2->pose == 1)
+                {
+                    return 9;
+                }
+                if (wario2->pose == 14)
+                {
+                    wario2->horizontalDirection ^= 0x30;
+                    wario2->unk_3A = 0;
+                    wario2->unk_3B = 0x10;
+                    m4aSongNumStart(SE_BUBBLE_WARIO_TURN);
+                }
+            }
+        }
+    }
+    {
+        struct WarioCollisionData *collisionData;
+        collisionData = &gWarioCollisionData;
+        if (collisionData->groundCollision != 0)
+        {
+            struct WarioData *wario;
+            wario = &gWarioData;
+            if (((u8) (wario->pose - 1)) <= 1)
+            {
+                register u32 reserve asm("r2");
+                s32 velocity;
+                asm("" : "=r"(reserve));
+                velocity = wario->yVelocity;
+                asm("" : : "r"(reserve));
+                if (velocity > 0xF)
+                    return 10;
+            }
+            if (wario->pose == 14)
+            {
+                func_801E3A8(0x9B, 0, 0, wario->yPosition, wario->xPosition, 0x40);
+                m4aSongNumStart(SE_BUBBLE_WARIO_BOUNCE);
+                return 5;
+            }
+        }
+    }
+    return 0xFF;
+}
+
+u8 ResolveWarioWaterCollisionContinuation(void)
+{
+    struct WarioCollisionData *collisionData;
+    register struct WarioData *initialWario asm("r4");
+    struct WarioData *wario;
+    u16 newX;
+    u16 newY;
+    u16 collision;
+    u16 x;
+    u16 y;
+    u32 result;
+    register u32 pointOffset asm("r1");
+    register u32 indexOffset asm("r9");
+    register const u8 *offsetData asm("r10");
+    register u32 flagValue asm("r0");
+    register s32 movement asm("r2");
+    u16 directionMask;
+    register u32 collisionFlags asm("r6");
+    register u32 index asm("r5");
+    u32 point;
+    u8 alternatePoint;
+
+    collisionData = &gWarioCollisionData;
+    directionMask = collisionData->horizontalDirection;
+    index = collisionData->collisionIndex;
+    point = collisionData->primaryProbe;
+    alternatePoint = collisionData->secondaryProbe;
+    initialWario = &gWarioData;
+    flagValue = *(u16 *)&initialWario->unk_1C;
+    asm("" : "+r"(flagValue));
+    collisionFlags = flagValue;
+
+    if (collisionFlags == 0) {
+        movement = -0x3E;
+        asm volatile("" : "+r"(movement));
+        result = func_8013EFC(index, &newX, movement);
+        if (result != 0) {
+            initialWario->xPosition = newX;
+            initialWario->xVelocity = collisionFlags;
+            if (initialWario->pose == 1)
+                return 9;
+        }
+
+        wario = &gWarioData;
+        offsetData = (const u8 *)sWarioCollisionProbeTable;
+        pointOffset = point * 2;
+        indexOffset = index * 6;
+        pointOffset += indexOffset;
+        pointOffset += (u32)offsetData;
+        x = wario->xPosition + *(const s16 *)pointOffset;
+        y = wario->yPosition;
+        result = func_8013D6C(x, y, &newX, &newY, &collision);
+        if (collision != 0) {
+            if (result != 0) {
+                wario->unk_1C = result;
+                return (wario->yPosition = newY, 0xFD);
+            }
+            wario->xPosition = newX;
+            return 0xFD;
+        }
+
+        flagValue = alternatePoint;
+        flagValue <<= 1;
+        flagValue += indexOffset;
+        flagValue += (u32)offsetData;
+        x = wario->xPosition + *(const s16 *)flagValue;
+        y++;
+        result = func_8013D6C(x, y, &newX, &newY, &collision);
+        if (collision != 0 && result == 0) {
+            if (collision == 0x10)
+                wario->unk_1C = 0x8000;
+            return 0xFD;
+        }
+    } else if ((directionMask & flagValue) != 0) {
+        movement = -0x3E;
+        asm volatile("" : "+r"(movement));
+        result = func_8013EFC(index, &newX, movement);
+        if (result != 0) {
+            initialWario->xPosition = newX;
+            initialWario->xVelocity = 0;
+            if (initialWario->pose == 1)
+                return 9;
+        }
+
+        wario = &gWarioData;
+        x = wario->xPosition + sWarioCollisionProbeTable[index * 3 + point];
+        y = wario->yPosition;
+        result = func_8013D6C(x, y, &newX, &newY, &collision);
+        if (result != 0) {
+            wario->unk_1C = result;
+            wario->yPosition = newY;
+            return 0xFD;
+        }
+        if (collision != 0) {
+            y -= 0x40;
+            result = func_8013D6C(x, y, &newX, &newY, &collision);
+            wario->unk_1C = result;
+            if (result != 0)
+                wario->yPosition = newY;
+            else
+                wario->yPosition = newY + 0x3F;
+        }
+        return 0xFD;
+    }
+
+    return 0xFF;
+}
+
+void UpdateWarioWaterAnimation(u8 direction)
+{
+    register u32 directionValue asm("r6");
+    register u8 *damageFlag asm("r2");
+    register struct WarioData *earlyWario asm("r1");
+    register struct WarioData *loadedWario asm("r0");
+    register struct WarioData *wario asm("r3");
+    register const struct WarioAnimationFrame *animation asm("r2");
+    register const u8 *graphics asm("r1");
+    register const u16 *palette asm("r1");
+    register u16 *historyCounter asm("r5");
+    register struct WarioAfterimageData *history asm("r3");
+    register u32 counterValue asm("r2");
+    register u32 historyIndex asm("r0");
+    register u32 historyDestination asm("r4");
+    register u32 tempR0 asm("r0");
+    register u32 tempR1 asm("r1");
+    register u32 tempR2 asm("r2");
+    register u32 poseValue asm("r1");
+    register s32 palettePose asm("r0");
+    u8 damageTimer;
+
+    directionValue = direction;
+    damageFlag = &gWarioDamagePaletteActive;
+    *damageFlag = 0;
+    earlyWario = &gWarioData;
+    if (earlyWario->pose != 6 && earlyWario->pose != 15) {
+        damageTimer = earlyWario->damageTimer;
+        if (damageTimer != 0) {
+            damageTimer--;
+            earlyWario->damageTimer = damageTimer;
+            *damageFlag = 1;
+        }
+    }
+
+    if (gWarioData.pose == 7) {
+        gWarioSecondaryAfterimage.unk0 = 2;
+        gWarioSecondaryAfterimage.unk1 = 0x10;
+        historyCounter = &gWarioAfterimageHistoryCounter;
+        counterValue = *historyCounter;
+        historyIndex = 0x1F;
+        history = &gWarioAfterimageHistory;
+        historyIndex &= counterValue;
+        historyIndex <<= 1;
+        historyDestination = historyIndex;
+        historyDestination += (u32)history;
+        *(u16 *)historyDestination = gPreviousXPosition;
+        history = (struct WarioAfterimageData *)((u8 *)history + 0x40);
+        historyIndex += (u32)history;
+        *(u16 *)historyIndex = gPreviousYPosition;
+        counterValue++;
+        *historyCounter = counterValue;
+        if ((s16)counterValue > 0x1F)
+            gWarioAfterimageHistoryFilled = 1;
+    } else {
+        func_800FF64();
+    }
+
+    loadedWario = &gWarioData;
+    poseValue = loadedWario->pose;
+    wario = loadedWario;
+    if (poseValue == 2)
+        goto poseTwo;
+    if (poseValue == 10)
+        goto poseTen;
+    goto defaultAnimation;
+
+poseTwo:
+    if (wario->verticalDirection & 0x80) {
+        tempR0 = (u32)sWarioWaterOamTable;
+        tempR1 = directionValue << 2;
+        tempR0 += 8;
+        tempR1 += tempR0;
+        goto loadAnimationR1;
+    }
+    tempR1 = (u32)sWarioWaterOamTable;
+    tempR0 = directionValue << 2;
+    tempR0 += 16;
+    goto loadAnimationR0;
+
+poseTen:
+    if (wario->yVelocity >= 0)
+        goto defaultAnimation;
+    tempR1 = (u32)sWarioWaterVerticalOamTable;
+    tempR0 = directionValue << 2;
+
+loadAnimationR0:
+    tempR0 += tempR1;
+    animation = *(const struct WarioAnimationFrame **)tempR0;
+    goto animationSelected;
+
+defaultAnimation:
+    tempR2 = (u32)sWarioWaterOamTable;
+    tempR1 = directionValue << 2;
+    tempR0 = wario->pose;
+    tempR0 <<= 3;
+    tempR1 += tempR0;
+    tempR1 += tempR2;
+
+loadAnimationR1:
+    animation = *(const struct WarioAnimationFrame **)tempR1;
+
+animationSelected:
+    animation += wario->unk_1F;
+    graphics = (const u8 *)animation->graphics;
+    wario->objData1Size = *graphics << 5;
+    graphics++;
+    wario->objData2Size = *graphics << 5;
+    graphics++;
+    wario->pObjData1 = (u8 *)graphics;
+    wario->pObjData2 = (u8 *)graphics + wario->objData1Size;
+    wario->pOamData = animation->oam;
+    asm("" ::: "memory");
+
+    palettePose = *(volatile u8 *)&wario->pose;
+    if (palettePose == 6 && (gMainTimer & 7) <= 3) {
+        gWarioPaletteSize = 0x20;
+        palette = sWarioDamagePalette;
+        func_800FD90(palette, 0, 0x10);
+    } else {
+        switch (wario->pose) {
+            case 7:
+            case 8:
+                gWarioPaletteSize = 0x60;
+                palette = sWarioSuperGroundPoundPaletteTable[wario->unk_1F];
+                func_800FD90(palette, 0, 0x10);
+                palette = sWarioSuperGroundPoundPalette;
+                func_800FD90(palette, 0x10, 0x10);
+                palette = sWarioEffectPalette;
+                func_800FD90(palette, 0x20, 0x10);
+                break;
+            case 15:
+                gWarioPaletteSize = 0x40;
+                palette = ((gMainTimer & 7) <= 3) ? sWarioDefaultPalette : sBubbleWarioPalette;
+                func_800FD90(palette, 0, 0x10);
+                palette = sWarioSecondaryPalette;
+                func_800FD90(palette, 0x10, 0x10);
+                break;
+            default:
+                gWarioPaletteSize = 0x40;
+                palette = sWarioDefaultPalette;
+                func_800FD90(palette, 0, 0x10);
+                palette = sWarioSecondaryPalette;
+                func_800FD90(palette, 0x10, 0x10);
+                break;
+        }
+    }
+}
+
+void UpdateBubbleWarioMusic(void)
+{
+    register u32 tableOrMask asm("r4");
+    struct MusicPlayerInfo *player0;
+    struct MusicPlayerInfo *player1;
+    register struct MusicPlayerInfo *normalPlayer0 asm("r8");
+    register struct MusicPlayerInfo *callPlayer asm("r0");
+    register u32 callMask asm("r1");
+    s8 *state;
+    u16 tempo;
+
+    if (gWarioData.pose == 14) {
+        state = &gWarioMusicEffectState;
+        if (*state == 5)
+            return;
+
+        tableOrMask = (u32)gMPlayTable;
+        player0 = ((const struct MusicPlayer *)tableOrMask)[0].info;
+        m4aMPlayTempoControl(player0, 200);
+        player1 = ((const struct MusicPlayer *)tableOrMask)[1].info;
+        m4aMPlayTempoControl(player1, 200);
+        tableOrMask = 0xFFFF;
+        callPlayer = player0;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayPitchControl(callPlayer, callMask, 150);
+        callPlayer = player1;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayPitchControl(callPlayer, callMask, 150);
+        callPlayer = player0;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayModDepthSet(callPlayer, callMask, 30);
+        callPlayer = player1;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayModDepthSet(callPlayer, callMask, 30);
+        callPlayer = player0;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayLFOSpeedSet(callPlayer, callMask, 20);
+        callPlayer = player1;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayLFOSpeedSet(callPlayer, callMask, 20);
+        *state = 5;
+    } else {
+        state = &gWarioMusicEffectState;
+        if (*state == 4)
+            return;
+
+        tableOrMask = (u32)gMPlayTable;
+        normalPlayer0 = ((const struct MusicPlayer *)tableOrMask)[0].info;
+        tempo = 0x100;
+        m4aMPlayTempoControl(normalPlayer0, tempo);
+        player1 = ((const struct MusicPlayer *)tableOrMask)[1].info;
+        m4aMPlayTempoControl(player1, tempo);
+        tableOrMask = 0xFFFF;
+        callPlayer = normalPlayer0;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayPitchControl(callPlayer, callMask, 0);
+        callPlayer = player1;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayPitchControl(callPlayer, callMask, 0);
+        callPlayer = normalPlayer0;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayModDepthSet(callPlayer, callMask, 0);
+        callPlayer = player1;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayModDepthSet(callPlayer, callMask, 0);
+        callPlayer = normalPlayer0;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayLFOSpeedSet(callPlayer, callMask, 20);
+        callPlayer = player1;
+        asm volatile("" : "+r"(callPlayer));
+        callMask = tableOrMask;
+        m4aMPlayLFOSpeedSet(callPlayer, callMask, 20);
+        *state = 4;
+    }
+}
+
+void UpdateWarioWaterHitbox(void)
+{
+    register const u8 *poseData asm("r4");
+    register struct WarioData *wario asm("r3");
+    register u32 offset asm("r1");
+    register const u8 *hitboxData asm("r2");
+    register u32 address asm("r0");
+
+    poseData = sWarioWaterPoseData;
+    wario = &gWarioData;
+    offset = poseData[wario->pose * 8];
+    hitboxData = (const u8 *)sWarioHitboxTable;
+    asm volatile("" : "+r"(hitboxData));
+    offset <<= 3;
+    address = offset + (u32)hitboxData;
+    wario->hitboxOffsetLeft = *(const u16 *)address;
+    address = (u32)hitboxData + 2;
+    address = offset + address;
+    wario->hitboxOffsetTop = *(const u16 *)address;
+    address = (u32)hitboxData + 4;
+    address = offset + address;
+    wario->hitboxOffsetRight = *(const u16 *)address;
+    hitboxData += 6;
+    offset += (u32)hitboxData;
+    wario->hitboxOffsetBottom = *(const u16 *)offset;
+    address = wario->pose;
+    address <<= 3;
+    poseData += 7;
+    address += (u32)poseData;
+    wario->unk_1A = *(const u8 *)address;
+}

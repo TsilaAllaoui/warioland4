@@ -446,9 +446,9 @@ func_801ABCC:
 	strb	r0, [r2, #0]
 	b	.L_1ac70
 .L_1ac54:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_1ac58:
-	.4byte	sUnk_82DD0EC
+	.4byte	sEmptyWarioAfterimage
 .L_1ac5c:
 	.4byte	gCurrentWarioEffect
 .L_1ac60:
@@ -510,7 +510,7 @@ func_801AC7C:
 	sub	r0, #8
 	b	.L_1acd6
 .L_1acc8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1accc:
 	.4byte	sUnk_82DDC18
 .L_1acd0:
@@ -601,7 +601,7 @@ func_801AD20:
 	b	.L_1ada4
 	.align	2, 0
 .L_1ad6c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_1ad70:
 	.4byte	sUnk_82DDC18
 .L_1ad74:
@@ -648,7 +648,7 @@ func_801AD20:
 	mov	r0, #96	@ 0x60
 	strb	r0, [r4, #4]
 	mov	r0, #0
-	bl	func_8016614
+	bl	SetWarioWaterPose
 	b	.L_1ade6
 .L_1add0:
 	.4byte	gWarioData
@@ -666,7 +666,7 @@ func_801AD20:
 	pop	{r0}
 	bx	r0
 .L_1adec:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 
 
 thumb_func_start func_801ADF0
@@ -790,7 +790,7 @@ func_801AE68:
 	pop	{r0}
 	bx	r0
 .L_1aee0:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_1aee4:
 	.4byte	gMPlayTable
 .L_1aee8:
@@ -838,7 +838,7 @@ func_801AEEC:
 .L_1af34:
 	.4byte	gWarioData
 .L_1af38:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxTable
 .L_1af3c:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1

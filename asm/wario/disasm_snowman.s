@@ -359,7 +359,7 @@ func_801961A:
 	bx	lr
 	.align	2, 0
 .L_1965c:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_19660:
 	.4byte	sUnk_82E04C4
 
@@ -942,7 +942,7 @@ func_801996C:
 .L_19a4c:
 	.4byte	gWarioData
 .L_19a50:
-	.4byte	gUnk_3001930
+	.4byte	gWarioAfterimage
 .L_19a54:
 	cmp	r0, #9
 	bls	.L_19aae
@@ -1067,7 +1067,7 @@ func_8019AD0:
 	b	.L_19b46
 	.align	2, 0
 .L_19b38:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19b3c:
 	.4byte	sUnk_82DDA90
 .L_19b40:
@@ -1137,7 +1137,7 @@ func_8019B60:
 	bl	func_8014C4C
 	b	.L_19bf4
 .L_19bb8:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19bbc:
 	.4byte	sUnk_82DDA90
 .L_19bc0:
@@ -1186,7 +1186,7 @@ func_8019B60:
 	mov	r0, #96	@ 0x60
 	strb	r0, [r4, #4]
 	mov	r0, #0
-	bl	func_8016614
+	bl	SetWarioWaterPose
 	b	.L_19c6e
 .L_19c20:
 	.4byte	gWarioData
@@ -1204,7 +1204,7 @@ func_8019B60:
 	mov	r5, #3
 	b	.L_19c64
 .L_19c3c:
-	.4byte	gUnk_3001918
+	.4byte	gWarioCollisionData
 .L_19c40:
 	ldr	r1, .L_19c78
 	ldrb	r0, [r1, #1]
@@ -1294,7 +1294,7 @@ func_8019C7C:
 .L_19ce8:
 	.4byte	gWarioPaletteSize
 .L_19cec:
-	.4byte	sUnk_82DDDA0
+	.4byte	sWarioDefaultPalette
 .L_19cf0:
 	.4byte	sUnk_82DE878
 
@@ -1355,7 +1355,7 @@ func_8019CF4:
 	bx	r0
 	.align	2, 0
 .L_19d6c:
-	.4byte	gUnk_30031BC
+	.4byte	gWarioMusicEffectState
 .L_19d70:
 	.4byte	gMPlayTable
 .L_19d74:
@@ -1405,7 +1405,7 @@ func_8019D7C:
 .L_19dc4:
 	.4byte	gWarioData
 .L_19dc8:
-	.4byte	sUnk_82DEB18
+	.4byte	sWarioHitboxTable
 .L_19dcc:
 	ldrb	r0, [r4, #26]
 	cmp	r0, #1
