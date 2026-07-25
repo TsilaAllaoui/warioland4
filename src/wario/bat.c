@@ -5,13 +5,13 @@
  * narrower convenience prototypes in wario.h alter agbcc call-site output.
  */
 #define CopyWarioPalette BatHeader_CopyWarioPalette
-#define func_8014930 BatHeader_func_8014930
-#define func_8014C4C BatHeader_func_8014C4C
+#define ResolveWarioCeilingCollision BatHeader_ResolveWarioCeilingCollision
+#define ResolveWarioFloorCollision BatHeader_ResolveWarioFloorCollision
 #define func_8016614 BatHeader_func_8016614
 #include "wario.h"
 #undef CopyWarioPalette
-#undef func_8014930
-#undef func_8014C4C
+#undef ResolveWarioCeilingCollision
+#undef ResolveWarioFloorCollision
 #undef func_8016614
 
 #include "bg_clip.h"
@@ -265,7 +265,7 @@ transforming:
     m4aSongNumStart(SE_BAT_WARIO_TRANSFORM);
     VoiceSetPlay(4);
 resetEffects:
-    gUnk_3001930 = sUnk_82DD0EC;
+    gWarioMotionAfterimage = sEmptyWarioAfterimage;
     gCurrentWarioEffect = sStartingWarioEffect;
     gWarioData.pose = value;
     gCurrentWarioEffect.type = 4;
@@ -385,27 +385,27 @@ void ProcessBatWarioCollision(void)
     result = 0xFF;
     flags = *(u16*)(hitbox + 2);
     if (flags & 0x40) {
-        callResult = func_8014C4C();
+        callResult = ResolveWarioFloorCollision();
         goto normalize;
     }
     mask = 0x80;
     mask &= flags;
     if (mask != 0) {
-        callResult = func_8014930();
+        callResult = ResolveWarioCeilingCollision();
         /* Prevent agbcc from merging this collision call with the next arm. */
         asm("");
         goto normalize;
     }
     if (*(u16*)hitbox != 0) {
         if (collisionType == 2) {
-            callResult = func_8014930();
+            callResult = ResolveWarioCeilingCollision();
         } else {
-            callResult = func_80143D8();
+            callResult = ResolveWarioStandardCollision();
         }
         goto normalize;
     }
     if (collisionType == 0) {
-        callResult = func_8014758();
+        callResult = ResolveWarioLandingCollision();
     normalize:
         callResult <<= 24;
         result = (u32)callResult >> 24;

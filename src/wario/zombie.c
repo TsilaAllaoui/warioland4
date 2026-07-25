@@ -465,16 +465,16 @@ void ProcessZombieWarioCollision(void)
         if (result == 0xFE) result = 0xFF;
     } else {
         flags = collision->flags;
-        if (flags & 0x40) result = func_8014C4C();
+        if (flags & 0x40) result = ResolveWarioFloorCollision();
         else {
             register u16 mask asm("r0");
             mask = 0x80;
             mask &= flags;
-            if (mask != 0) result = func_8014930();
+            if (mask != 0) result = ResolveWarioCeilingCollision();
             else if (collision->unk_00 != 0) {
-                if (collision->unk_11 == 2) result = func_8014930();
-                else result = func_80143D8();
-            } else if (collision->unk_11 == 0) result = func_8014758();
+                if (collision->unk_11 == 2) result = ResolveWarioCeilingCollision();
+                else result = ResolveWarioStandardCollision();
+            } else if (collision->unk_11 == 0) result = ResolveWarioLandingCollision();
         }
     }
     {
@@ -538,7 +538,7 @@ int CheckZombieWarioFloor(void)
     yValue += 1;
     yValue <<= 16;
     yPosition = yValue >> 16;
-    result = func_8014268(collisionOffset, yPosition, &local);
+    result = CheckWarioPointCollision(collisionOffset, yPosition, &local);
     if (result != 0) {
         if (result > local) {
             wario->yPosition = (yPosition & 0xFFC0) - 1;

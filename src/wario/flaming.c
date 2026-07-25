@@ -652,21 +652,21 @@ void ProcessFlamingWarioCollision(void)
     movementResult = 0xFF;
     flags = collision->flags;
     if (flags & 0x40) {
-        movementResult = func_8014C4C();
+        movementResult = ResolveWarioFloorCollision();
     } else {
         register u16 mask asm("r0");
         mask = 0x80;
         mask &= flags;
         if (mask != 0) {
-            movementResult = func_8014930();
+            movementResult = ResolveWarioCeilingCollision();
         } else if (collision->unk_00 != 0) {
             if (collision->unk_11 == 2) {
-                movementResult = func_8014930();
+                movementResult = ResolveWarioCeilingCollision();
             } else {
-                movementResult = func_80143D8();
+                movementResult = ResolveWarioStandardCollision();
             }
         } else if (collision->unk_11 == 0) {
-            movementResult = func_8014758();
+            movementResult = ResolveWarioLandingCollision();
         }
     }
 

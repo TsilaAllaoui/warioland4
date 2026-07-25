@@ -168,7 +168,7 @@ void SetBouncyWarioPose(u8 result)
     if (gWarioData.pose == WPOSE_BOUNCY_FINAL_BOUNCE && result == 0xFD) {
         gWarioData.reaction = REACTION_NORMAL;
         gWarioData.damageTimer = 0x60;
-        func_8012BAC(2);
+        ApplyNormalWarioPoseTransition(2);
         return;
     }
 
@@ -318,16 +318,16 @@ void ProcessBouncyWarioCollision(void)
 
         result = 0xFF;
         if ((collision->flags & 0x40) != 0)
-            result = func_8014C4C();
+            result = ResolveWarioFloorCollision();
         else if ((collision->flags & 0x80) != 0)
-            result = func_8014930();
+            result = ResolveWarioCeilingCollision();
         else if (collision->unk_00 != 0) {
             if (collision->unk_11 == 2)
-                result = func_8014930();
+                result = ResolveWarioCeilingCollision();
             else
-                result = func_80143D8();
+                result = ResolveWarioStandardCollision();
         } else if (collision->unk_11 == 0) {
-            result = func_8014758();
+            result = ResolveWarioLandingCollision();
         }
     }
 
@@ -350,7 +350,7 @@ void ProcessBouncyWarioCollision(void)
         if (wario->pose == WPOSE_BOUNCY_FINAL_BOUNCE && result == 0xFD) {
             wario->reaction = REACTION_NORMAL;
             wario->damageTimer = 0x60;
-            func_8012BAC(2);
+            ApplyNormalWarioPoseTransition(2);
             return;
         }
 

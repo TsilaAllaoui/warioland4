@@ -179,13 +179,13 @@ void ProcessMaskWarioCollision(void)
     movementResult = 0xFF;
     flags = collision->flags;
     if (flags & 0x40) {
-        movementResult = func_8014C4C();
+        movementResult = ResolveWarioFloorCollision();
     } else {
         register u16 mask asm("r0");
         mask = 0x80;
         mask &= flags;
         if (mask != 0) {
-            movementResult = func_8014930();
+            movementResult = ResolveWarioCeilingCollision();
         }
     }
 
@@ -198,7 +198,7 @@ void ProcessMaskWarioCollision(void)
     } else if (movementResult == 0xFD) {
         gWarioData.reaction = 0;
         gWarioData.damageTimer = 0x60;
-        func_8012BAC(0x2F);
+        ApplyNormalWarioPoseTransition(0x2F);
     }
 }
 

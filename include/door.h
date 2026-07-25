@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-extern u16 gUnk_3001890;
-extern u16 gUnk_3001892;
+extern u16 gWarioSubgameXPosition;
+extern u16 gWarioSubgameYPosition;
 
 #endif  // DOOR_H

@@ -195,8 +195,8 @@ u8 FatWarioLanding(void)
         return 9;
     }
 
-    effect = &gUnk_3001930;
-    frames = sWarioAfterimageFrames;
+    effect = &gWarioMotionAfterimage;
+    frames = sWarioGroundPoundLandingAfterimageFrames;
     if (effect->unk1 >= frames[effect->unk2].time) {
         effect->unk1 = 0;
         effect->unk2++;
@@ -394,7 +394,7 @@ pose_fd:
             wario->pose = 6;
             wario->unk_0A++;
         }
-        gUnk_3001930.unk0 = 4;
+        gWarioMotionAfterimage.unk0 = 4;
         ScreenShakeRequestY(0x40, 0);
         m4aSongNumStart(SE_FAT_WARIO_LAND);
     }
@@ -559,21 +559,21 @@ void ProcessFatWarioCollision(void)
     movementResult = 0xFF;
     flags = collision->flags;
     if (flags & 0x40) {
-        movementResult = func_8014C4C();
+        movementResult = ResolveWarioFloorCollision();
     } else {
         register u16 mask asm("r0");
         mask = 0x80;
         mask &= flags;
         if (mask != 0) {
-            movementResult = func_8014930();
+            movementResult = ResolveWarioCeilingCollision();
         } else if (collision->unk_00 != 0) {
             if (collision->unk_11 == 2) {
-                movementResult = func_8014930();
+                movementResult = ResolveWarioCeilingCollision();
             } else {
-                movementResult = func_80143D8();
+                movementResult = ResolveWarioStandardCollision();
             }
         } else if (collision->unk_11 == 0) {
-            movementResult = func_8014758();
+            movementResult = ResolveWarioLandingCollision();
         }
     }
 
@@ -592,7 +592,7 @@ void ProcessFatWarioCollision(void)
             if (collision2->unk_11 != 0xFF) {
                 if (currentWario->pose == 5 && movementResult == 0xFD) {
                     register int result asm("r0");
-                    result = func_8014268(collision2->unk_08, currentWario->yPosition + 1, &local);
+                    result = CheckWarioPointCollision(collision2->unk_08, (u16)(currentWario->yPosition + 1), &local);
                     if (result != 0 && result <= collision2->unk_10) {
                         movementResult = 0xFF;
                     }

@@ -1,13 +1,13 @@
 #include "types.h"
 
 #define CopyWarioPalette FrozenHeader_CopyWarioPalette
-#define func_8014930 FrozenHeader_func_8014930
-#define func_8014C4C FrozenHeader_func_8014C4C
+#define ResolveWarioCeilingCollision FrozenHeader_ResolveWarioCeilingCollision
+#define ResolveWarioFloorCollision FrozenHeader_ResolveWarioFloorCollision
 #define func_8016614 FrozenHeader_func_8016614
 #include "wario.h"
 #undef CopyWarioPalette
-#undef func_8014930
-#undef func_8014C4C
+#undef ResolveWarioCeilingCollision
+#undef ResolveWarioFloorCollision
 #undef func_8016614
 
 #include "bg_clip.h"
@@ -216,26 +216,26 @@ void ProcessFrozenWarioCollision(void)
     result = 0xFF;
     flags = *(u16*)(hitbox + 2);
     if (flags & 0x40) {
-        callResult = func_8014C4C();
+        callResult = ResolveWarioFloorCollision();
         goto normalize;
     }
     mask = 0x80;
     mask &= flags;
     if (mask != 0) {
-        callResult = func_8014930();
+        callResult = ResolveWarioCeilingCollision();
         asm("");
         goto normalize;
     }
     if (*(u16*)hitbox != 0) {
         if (hitbox[17] == 2) {
-            callResult = func_8014930();
+            callResult = ResolveWarioCeilingCollision();
         } else {
-            callResult = func_80143D8();
+            callResult = ResolveWarioStandardCollision();
         }
         goto normalize;
     }
     if (hitbox[17] == 0) {
-        callResult = func_8014758();
+        callResult = ResolveWarioLandingCollision();
     normalize:
         result = (u8)callResult;
     }

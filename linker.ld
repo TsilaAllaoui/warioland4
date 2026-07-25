@@ -174,8 +174,8 @@ SECTIONS {
         . = 0x188b; gVideoMode = .;
         . = 0x188c; gVideoPage = .;
         . = 0x188e; gUnk_300188E = .;
-        . = 0x1890; gUnk_3001890 = .;
-        . = 0x1892; gUnk_3001892 = .;
+        . = 0x1890; gWarioSubgameXPosition = .;
+        . = 0x1892; gWarioSubgameYPosition = .;
 
         . = 0x1894; obj/demo_input.o(iwram_data);
 
@@ -184,13 +184,13 @@ SECTIONS {
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
         . = 0x1918; gWarioCollisionData = .;
-        . = 0x1930; gUnk_3001930 = .;
-        . = 0x1938; gUnk_3001938 = .;
+        . = 0x1930; gWarioMotionAfterimage = .;
+        . = 0x1938; gWarioDashAfterimage = .;
         . = 0x1940; gCurrentWarioEffect = .;
         . = 0x1948; gCurrentCarriedSprite = .;
         . = 0x1950; gWarioDustEffect1 = .;
         . = 0x195C; gWarioDustEffect2 = .;
-        . = 0x19f0; gUnk_30019F0 = .;
+        . = 0x19f0; gWarioDamagePaletteActive = .;
         . = 0x19f1; gPreviousReaction = .;
         . = 0x19f2; gPreviousXPosition = .;
         . = 0x19f4; gPreviousYPosition = .;
@@ -258,16 +258,16 @@ SECTIONS {
         . = 0x30d0; gWarioPalette = .;
         . = 0x3130; gWarioPaletteSize = .;
 
-        . = 0x3138; gUnk_3003138 = .;
-        . = 0x31b8; gUnk_30031B8 = .;
-        . = 0x31ba; gUnk_30031BA = .;
-        . = 0x31bb; gUnk_30031BB = .;
+        . = 0x3138; gWarioAfterimageHistory = .;
+        . = 0x31b8; gWarioAfterimageHistoryIndex = .;
+        . = 0x31ba; gWarioAfterimageHistoryWrapped = .;
+        . = 0x31bb; gWarioCollisionDamageFlag = .;
         . = 0x31bc; gWarioMusicState = .;
         . = 0x31bd; gUnk_30031BD = .;
-        . = 0x31be; gUnk_30031BE = .;
+        . = 0x31be; gWarioCanEnterDoor = .;
         . = 0x31c8; gWarioHorizontalCollisionOffset = .;
-        . = 0x31ca; gUnk_30031CA = .;
-        . = 0x31cc; gUnk_30031CC = .;
+        . = 0x31ca; gWarioTileHorizontalSpeed = .;
+        . = 0x31cc; gWarioTileVerticalSpeed = .;
         . = 0x31f4; gUnk_30031F4 = .;
         . = 0x3200; gGameMusicState = .;
         . = 0x320c; gUnk_300320C = .;
@@ -610,7 +610,7 @@ SECTIONS {
         obj/cutscenes/cutscene_title_screen_oam_anim.o(.text);
         obj/wario.o(.text);
         obj/demo_input.o(.text);
-        obj/wario/disasm_normal.o(.text);
+        obj/wario/normal.o(.text);
         obj/wario/disasm_swimming.o(.text);
         obj/wario/flaming.o(.text);
         obj/wario/fat.o(.text);
@@ -779,7 +779,8 @@ SECTIONS {
         obj/m4a_tables.o(.rodata);
         obj/blob_0x0956E4-0x283EF8.o(.rodata);
         obj/sram.o(.rodata);
-        obj/blob_0x283F14-0x3529A8.o(.rodata);
+        obj/blob_0x283F14-0x2DF094.o(.rodata);
+        obj/data/sprite_data_2DF094_3529A8.o(.rodata);
         obj/sprite_util.o(.rodata);
         obj/blob_0x352CF0-0x3B3A00.o(.rodata);
         obj/sprite_ai/spear_mask.o(.rodata);

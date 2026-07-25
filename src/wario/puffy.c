@@ -1,10 +1,10 @@
 #include "types.h"
 
 #define CopyWarioPalette PuffyHeader_CopyWarioPalette
-#define func_8014C4C PuffyHeader_func_8014C4C
+#define ResolveWarioFloorCollision PuffyHeader_ResolveWarioFloorCollision
 #include "wario.h"
 #undef CopyWarioPalette
-#undef func_8014C4C
+#undef ResolveWarioFloorCollision
 
 #include "gba/m4a.h"
 #include "global_data.h"
@@ -15,7 +15,7 @@
 #include "wario_palette.h"
 
 /* ABI-sensitive declarations required by the original matched source. */
-void func_8014C4C(void);
+void ResolveWarioFloorCollision(void);
 void CopyWarioPalette(const void* source, u32 destination, u32 size);
 
 u8 UpdatePuffyWario(void)
@@ -244,7 +244,7 @@ void UpdatePuffyWarioCollision(void)
     data += 7;
     index += (u32)data;
     hitbox[17] = *(const u8*)index;
-    func_8014C4C();
+    ResolveWarioFloorCollision();
     if (wario->pose != 3 && hitbox[19] != 0) {
         SetPuffyWarioPose(3);
     }

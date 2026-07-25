@@ -16,10 +16,10 @@ extern void ResetWarioState(void);
 extern int GetAdjustedWarioXVelocity(void);
 extern void UpdateWarioHorizontalCollisionOffset(void);
 extern void UpdateWarioPositionHistory(void);
-extern u8 func_80143D8(void);
-extern u8 func_8014758(void);
-extern u8 func_8014930(void);
-extern u8 func_8014C4C(void);
+extern u8 ResolveWarioStandardCollision(void);
+extern u8 ResolveWarioLandingCollision(void);
+extern u8 ResolveWarioCeilingCollision(void);
+extern u8 ResolveWarioFloorCollision(void);
 extern void func_8016614(u8 value);
 
 u8 UpdateFlatWario(void)
@@ -372,17 +372,17 @@ void ProcessFlatWarioCollision(void)
 
     result = 0xFF;
     if (collision->flags & 0x40) {
-        result = func_8014C4C();
+        result = ResolveWarioFloorCollision();
     } else if (collision->flags & 0x80) {
-        result = func_8014930();
+        result = ResolveWarioCeilingCollision();
     } else if (collision->unk_00 != 0) {
         if (collision->unk_11 == 2) {
-            result = func_8014930();
+            result = ResolveWarioCeilingCollision();
         } else {
-            result = func_80143D8();
+            result = ResolveWarioStandardCollision();
         }
     } else if (collision->unk_11 == 0) {
-        result = func_8014758();
+        result = ResolveWarioLandingCollision();
     }
 
     collisionResult = GetBackgroundCollisionAtPosition(gWarioData.yPosition - 0x30, gWarioData.xPosition);

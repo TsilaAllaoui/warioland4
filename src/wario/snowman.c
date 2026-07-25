@@ -15,11 +15,11 @@ extern s32 GetAdjustedWarioXVelocity(void);
 extern void UpdateWarioHorizontalCollisionOffset(void);
 extern void UpdateWarioPositionHistory(void);
 extern void ResetWarioState(void);
-extern s32 func_8014268(u8, u16, void*);
-extern u8 func_80143D8(void);
-extern u8 func_8014758(void);
-extern u8 func_8014930(void);
-extern u8 func_8014C4C(void);
+extern s32 CheckWarioPointCollision(u8, u16, void*);
+extern u8 ResolveWarioStandardCollision(void);
+extern u8 ResolveWarioLandingCollision(void);
+extern u8 ResolveWarioCeilingCollision(void);
+extern u8 ResolveWarioFloorCollision(void);
 extern void func_8016614(u8);
 extern u32 func_806D4C0(u16, u16);
 
@@ -176,11 +176,11 @@ u8 SnowmanWarioLanding(void)
     if (gWarioData.unk_1E > 29)
         return WPOSE_SNOWMAN_UNKNOWN_8;
 
-    if (gUnk_3001930.unk1 >= sUnk_82E04C4[gUnk_3001930.unk2].time) {
-        gUnk_3001930.unk1 = 0;
-        gUnk_3001930.unk2++;
-        if (sUnk_82E04C4[gUnk_3001930.unk2].time == 0)
-            gUnk_3001930.unk2 = 0;
+    if (gWarioMotionAfterimage.unk1 >= sUnk_82E04C4[gWarioMotionAfterimage.unk2].time) {
+        gWarioMotionAfterimage.unk1 = 0;
+        gWarioMotionAfterimage.unk2++;
+        if (sUnk_82E04C4[gWarioMotionAfterimage.unk2].time == 0)
+            gWarioMotionAfterimage.unk2 = 0;
     }
     return 0xFF;
 }
@@ -364,7 +364,7 @@ void SetSnowmanWarioPose(u8 result)
                 gWarioData.pose = WPOSE_SNOWMAN_LANDING_AFTER_MIDAIR_SNOW_CONTACT;
             } else if (gWarioDataCopy.pose == WPOSE_SNOWMAN_FALLING) {
                 gWarioData.pose = WPOSE_SNOWMAN_LANDING;
-                gUnk_3001930.unk0 = 4;
+                gWarioMotionAfterimage.unk0 = 4;
                 ScreenShakeRequestY(64, 0);
                 m4aSongNumStart(SE_SNOWMAN_WARIO_LAND);
             } else if (gWarioDataCopy.pose > WPOSE_SNOWMAN_TURNING) {
@@ -499,16 +499,16 @@ void ProcessSnowmanWarioCollision(void)
 
         result = 0xFF;
         if ((collision->flags & 0x40) != 0)
-            result = func_8014C4C();
+            result = ResolveWarioFloorCollision();
         else if ((collision->flags & 0x80) != 0)
-            result = func_8014930();
+            result = ResolveWarioCeilingCollision();
         else if (collision->unk_00 != 0) {
             if (collision->unk_11 == 2)
-                result = func_8014930();
+                result = ResolveWarioCeilingCollision();
             else
-                result = func_80143D8();
+                result = ResolveWarioStandardCollision();
         } else if (collision->unk_11 == 0) {
-            result = func_8014758();
+            result = ResolveWarioLandingCollision();
         }
     }
 
@@ -548,7 +548,7 @@ void ProcessSnowmanWarioCollision(void)
                 u8 property;
 
                 property = collision->unk_08;
-                if (func_8014268(property, collisionWario->yPosition + 1, &temp) <= collision->unk_10)
+                if (CheckWarioPointCollision(property, collisionWario->yPosition + 1, &temp) <= collision->unk_10)
                     result = 0xFF;
             }
         }

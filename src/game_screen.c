@@ -76,7 +76,7 @@ u32 GameScreenSubroutine(void)
 
             if (gSubGameMode == 2) {
                 if (!CHECK_KEYS_ALL(gButtonsHeld, DPAD_UP)) {
-                    gUnk_30031BE = 1;
+                    gWarioCanEnterDoor = 1;
                 }
                 if (gWarioPauseTimer != 0) {
                     gWarioPauseTimer -= 1;
@@ -102,7 +102,7 @@ u32 GameScreenSubroutine(void)
         case 4:
             WarioProcessControls();
             if (gSubGameMode == 2) {
-                CheckRoomTransitionAtPosition(gUnk_3001892, gUnk_3001890);
+                CheckRoomTransitionAtPosition(gWarioSubgameYPosition, gWarioSubgameXPosition);
             }
             break;
 
@@ -370,7 +370,7 @@ void GameScreenInitAndLoadGenerics(void)
     DmaCopy16(3, sUnk_82DF094, 0x06010B00, 0x100);
     func_80746C0();
     DmaCopy16(3, sWarioDefaultObjPalette, OBJ_PLTT, 0x20);
-    DmaCopy16(3, sUnk_82DDDC0, OBJ_PLTT + 0x40, 0x20);
+    DmaCopy16(3, sWarioGroundPoundPalette, OBJ_PLTT + 0x40, 0x20);
     DmaCopy16(3, sCommonSpritesPal, OBJ_PLTT + 0x80, 0x80) GameScreenInitWario();
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
@@ -437,18 +437,18 @@ void GameScreenInitAndLoadGenerics(void)
 void GameScreenInitWario(void)
 {
     if (!gPauseFlag) {
-        gUnk_30031B8 = 0;
-        gUnk_30031BA = 0;
+        gWarioAfterimageHistoryIndex = 0;
+        gWarioAfterimageHistoryWrapped = 0;
         gUnk_30031BD = 0;
         if (!gHasTemporarySave) {
-            gUnk_3001938 = sUnk_82DD0EC;
+            gWarioDashAfterimage = sEmptyWarioAfterimage;
             gCurrentCarriedSprite = sEmptyCarriedSprite;
         }
     }
     if (gWarioData.reaction == 0 && gWarioData.pose == WPOSE_NORMAL_ENTERING_DOOR) {
         gWarioData.pose = WPOSE_NORMAL_EXITING_DOOR;
         gWarioData.unk_1F = 0;
-        gUnk_30031BE = 0;
+        gWarioCanEnterDoor = 0;
     }
     if (gWarioData.unk_1A == 1) {
         gWarioData.unk_1A = 2;
@@ -471,11 +471,11 @@ void GameScreenInitWario(void)
         memcpy(&gWarioData, &sStartingWarioData, sizeof(struct WarioData));
         gHeartMeter = sStartingHeartMeter;
         gHeartGauge = sStartingHeartGauge;
-        gUnk_3001930 = sUnk_82DD0EC;
+        gWarioMotionAfterimage = sEmptyWarioAfterimage;
         gCurrentWarioEffect = sStartingWarioEffect;
         gWarioDustEffect1 = sEmptyDustEffect;
         gWarioDustEffect2 = sEmptyDustEffect;
-        gUnk_30031BE = 0;
+        gWarioCanEnterDoor = 0;
         if ((gCurrentPassage == PASSAGE_GOLDEN) || (gCurrentStageNumber == STAGE_BOSS)) {
             if (gDifficulty == DIFFICULTY_NORMAL) {
                 gHeartMeter.current = 8;

@@ -38,7 +38,7 @@ void PrepareWarioUpdate(void)
     wario->unk_3A = 0;
     wario->unk_3B = 0;
 
-    if (wario->reaction != REACTION_NORMAL && gUnk_3001938.unk0 == 1) {
+    if (wario->reaction != REACTION_NORMAL && gWarioDashAfterimage.unk0 == 1) {
         m4aSongNumStart(SOUND_2B);
     }
 }
@@ -147,7 +147,7 @@ void UpdateWarioHorizontalCollisionOffset(void)
     s32 result;
 
     wario = &gWarioData;
-    offsets = sWarioHorizontalCollisionProbeOffsets;
+    offsets = sWarioCollisionPointTable;
     collision = &gWarioCollisionData;
 
     {
@@ -238,17 +238,17 @@ void UpdateWarioPositionHistory(void)
     register u32 offset asm("r0");
     register u16 position asm("r1");
 
-    afterimage = &gUnk_3001938;
+    afterimage = &gWarioDashAfterimage;
     timer = afterimage->unk1;
     index = timer;
     if (index != 0) {
         timer--;
         afterimage->unk1 = timer;
-        indexPtr = &gUnk_30031B8;
+        indexPtr = &gWarioAfterimageHistoryIndex;
         index = *indexPtr;
         offset = 0x1F;
         offset &= index;
-        history = gUnk_3003138.previousXPositions;
+        history = gWarioAfterimageHistory.previousXPositions;
         offset <<= 1;
         slot = (u16 *)(offset + (u32)history);
         position = gPreviousXPosition;
@@ -260,12 +260,12 @@ void UpdateWarioPositionHistory(void)
         index++;
         *indexPtr = index;
         if ((s16)index > 31) {
-            gUnk_30031BA = 1;
+            gWarioAfterimageHistoryWrapped = 1;
         }
     } else {
         afterimage->unk0 = 0;
-        gUnk_30031B8 = 0;
-        gUnk_30031BA = 0;
+        gWarioAfterimageHistoryIndex = 0;
+        gWarioAfterimageHistoryWrapped = 0;
     }
 }
 
@@ -289,7 +289,7 @@ void WarioProcessControls(void)
     wario = &gWarioData;
     if (mode > 1) {
         wario->unk_1E++;
-        gUnk_3001930.unk1++;
+        gWarioMotionAfterimage.unk1++;
     }
 
     previousReaction = &gPreviousReaction;
@@ -334,7 +334,7 @@ void WarioProcessCollision(void)
     initialCollision->unk_12 = zero;
     initialCollision->unk_13 = zero;
     initialCollision->unk_14 = zero;
-    gUnk_30031BB = zero;
+    gWarioCollisionDamageFlag = zero;
 
     initialWario = &gWarioData;
     previousXPointer = &gPreviousXPosition;
@@ -451,7 +451,7 @@ void ResetWarioState(void)
     u8 pose;
 
     PrepareWarioUpdate();
-    gUnk_3001930 = sUnk_82DD0EC;
+    gWarioMotionAfterimage = sEmptyWarioAfterimage;
     gCurrentWarioEffect = sStartingWarioEffect;
     gCurrentCarriedSprite.state = 0;
 
