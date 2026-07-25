@@ -4576,18 +4576,18 @@ sWarioNormalPoseProperties:
 
 baserom_blob 0x2DD430, 0x2DD6A8
 
-.global sUnk_82DD6A8
-sUnk_82DD6A8:
+.global sWarioWaterAnimationTable
+sWarioWaterAnimationTable:
 
 baserom_blob 0x2DD6A8, 0x2DD728
 
-.global sUnk_82DD728
-sUnk_82DD728:
+.global sWarioWaterVerticalAnimationTable
+sWarioWaterVerticalAnimationTable:
 
 baserom_blob 0x2DD728, 0x2DD730
 
-.global sUnk_82DD730
-sUnk_82DD730:
+.global sWarioWaterPoseProperties
+sWarioWaterPoseProperties:
 
 baserom_blob 0x2DD730, 0x2DD7B0
 
@@ -4771,13 +4771,13 @@ sWarioFlexingPalette:
 
 baserom_blob 0x2DE598, 0x2DE5D8
 
-.global sUnk_82DE5D8
-sUnk_82DE5D8:
+.global sBubbleWarioPalette
+sBubbleWarioPalette:
 
 baserom_blob 0x2DE5D8, 0x2DE5F8
 
-.global sUnk_82DE5F8
-sUnk_82DE5F8:
+.global sWarioSecondaryPalette
+sWarioSecondaryPalette:
 
 baserom_blob 0x2DE5F8, 0x2DE618
 

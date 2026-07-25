@@ -15,6 +15,5 @@ s32 ResolveWarioStandardCollision(void);
 s32 ResolveWarioLandingCollision(void);
 s32 ResolveWarioCeilingCollision(void);
 s32 ResolveWarioFloorCollision(void);
-void func_8016614(int value);
 
 #endif  // WARIO_MATCHED_HELPERS_H

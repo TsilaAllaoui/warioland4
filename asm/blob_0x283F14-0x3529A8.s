@@ -4576,18 +4576,18 @@ sWarioNormalPoseProperties:
 
 baserom_blob 0x2DD430, 0x2DD6A8
 
-.global sUnk_82DD6A8
-sUnk_82DD6A8:
+.global sWarioWaterOamTable
+sWarioWaterOamTable:
 
 baserom_blob 0x2DD6A8, 0x2DD728
 
-.global sUnk_82DD728
-sUnk_82DD728:
+.global sWarioWaterVerticalOamTable
+sWarioWaterVerticalOamTable:
 
 baserom_blob 0x2DD728, 0x2DD730
 
-.global sUnk_82DD730
-sUnk_82DD730:
+.global sWarioWaterPoseData
+sWarioWaterPoseData:
 
 baserom_blob 0x2DD730, 0x2DD7B0
 
@@ -4711,8 +4711,8 @@ sWarioDefaultObjPalette:
 
 baserom_blob 0x2DDDA0, 0x2DDDC0
 
-.global sWarioGroundPoundPalette
-sWarioGroundPoundPalette:
+.global sWarioEffectPalette
+sWarioEffectPalette:
 
 baserom_blob 0x2DDDC0, 0x2DDDE0
 
@@ -4726,8 +4726,8 @@ sWarioDashAttackPaletteFrames:
 
 baserom_blob 0x2DDFE0, 0x2DE3A0
 
-.global sWarioDamageFlashPalette
-sWarioDamageFlashPalette:
+.global sWarioDamagePalette
+sWarioDamagePalette:
 
 baserom_blob 0x2DE3A0, 0x2DE3C0
 
@@ -4736,13 +4736,13 @@ sWarioUnusedPose76AlternatePalette:
 
 baserom_blob 0x2DE3C0, 0x2DE4A0
 
-.global sWarioGroundPoundSecondaryPalette
-sWarioGroundPoundSecondaryPalette:
+.global sWarioSuperGroundPoundPalette
+sWarioSuperGroundPoundPalette:
 
 baserom_blob 0x2DE4A0, 0x2DE4C0
 
-.global sWarioGroundPoundPaletteFrames
-sWarioGroundPoundPaletteFrames:
+.global sWarioSuperGroundPoundPaletteTable
+sWarioSuperGroundPoundPaletteTable:
 
 baserom_blob 0x2DE4C0, 0x2DE4D8
 
@@ -4771,13 +4771,13 @@ sWarioFlexingPalette:
 
 baserom_blob 0x2DE598, 0x2DE5D8
 
-.global sUnk_82DE5D8
-sUnk_82DE5D8:
+.global sBubbleWarioPalette
+sBubbleWarioPalette:
 
 baserom_blob 0x2DE5D8, 0x2DE5F8
 
-.global sUnk_82DE5F8
-sUnk_82DE5F8:
+.global sWarioSecondaryPalette
+sWarioSecondaryPalette:
 
 baserom_blob 0x2DE5F8, 0x2DE618
 
@@ -4858,8 +4858,8 @@ sWarioHitboxes:
 
 baserom_blob 0x2DEB18, 0x2DEB60
 
-.global sWarioCollisionPointTable
-sWarioCollisionPointTable:
+.global sWarioCollisionProbeTable
+sWarioCollisionProbeTable:
 
 baserom_blob 0x2DEB60, 0x2DEBA2
 
@@ -5039,8 +5039,8 @@ sUnk_82DF094:
 
 baserom_blob 0x2DF094, 0x2E0394
 
-.global sWarioAfterimageFrames
-sWarioAfterimageFrames:
+.global sWarioSuperGroundPoundAfterimageOam
+sWarioSuperGroundPoundAfterimageOam:
 
 baserom_blob 0x2E0394, 0x2E03BC
 
@@ -5149,8 +5149,8 @@ sWarioUnusedPose76Animation:
 
 baserom_blob 0x2E6A38, 0x2E9984
 
-.global sUnk_82E9984
-sUnk_82E9984:
+.global sBubbleWarioOam
+sBubbleWarioOam:
 
 baserom_blob 0x2E9984, 0x2F1200
 
@@ -5199,8 +5199,8 @@ sWarioRollingAnimation:
 
 baserom_blob 0x2F14AC, 0x2F14E8
 
-.global sWarioTakingDamageAnimation
-sWarioTakingDamageAnimation:
+.global sWarioDamageOam
+sWarioDamageOam:
 
 baserom_blob 0x2F14E8, 0x2F1518
 
@@ -5229,13 +5229,13 @@ sWarioShoulderBashJumpAnimation:
 
 baserom_blob 0x2FC000, 0x2FC084
 
-.global sWarioGroundPoundAnimation
-sWarioGroundPoundAnimation:
+.global sWarioSuperGroundPoundOam
+sWarioSuperGroundPoundOam:
 
 baserom_blob 0x2FC084, 0x2FC0D8
 
-.global sWarioGroundPoundLandingAnimation
-sWarioGroundPoundLandingAnimation:
+.global sWarioSuperGroundPoundLandingOam
+sWarioSuperGroundPoundLandingOam:
 
 baserom_blob 0x2FC0D8, 0x2FC0F0
 
@@ -5244,23 +5244,23 @@ sWarioSuperGroundPoundLandingAnimation:
 
 baserom_blob 0x2FC0F0, 0x2FC108
 
-.global sUnk_82FC108
-sUnk_82FC108:
+.global sWarioSwimmingHorizontalOam
+sWarioSwimmingHorizontalOam:
 
 baserom_blob 0x2FC108, 0x2FC168
 
-.global sUnk_82FC168
-sUnk_82FC168:
+.global sWarioSwimmingFreelyOam
+sWarioSwimmingFreelyOam:
 
 baserom_blob 0x2FC168, 0x2FC1D4
 
-.global sUnk_82FC1D4
-sUnk_82FC1D4:
+.global sWarioFloatingOam
+sWarioFloatingOam:
 
 baserom_blob 0x2FC1D4, 0x2FC27C
 
-.global sUnk_82FC27C
-sUnk_82FC27C:
+.global sWarioJumpingOutOfWaterOam
+sWarioJumpingOutOfWaterOam:
 
 baserom_blob 0x2FC27C, 0x2FC2C4
 
@@ -5269,8 +5269,8 @@ sWarioDashAttackAnimation:
 
 baserom_blob 0x2FC2C4, 0x2FC2F4
 
-.global sUnk_82FC2F4
-sUnk_82FC2F4:
+.global sWarioSwimmingVerticalOam
+sWarioSwimmingVerticalOam:
 
 baserom_blob 0x2FC2F4, 0x306E38
 

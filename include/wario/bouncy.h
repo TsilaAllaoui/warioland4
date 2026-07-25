@@ -14,8 +14,6 @@ extern const struct WarioAnimationFrame sBouncyWarioHoppingAnimation[];
 
 extern u8 func_80143D8(void);
 extern u8 func_8014758(void);
-extern void func_8016614(u8);
-
 u8 UpdateBouncyWario(void);
 u8 BouncyWarioTransforming(void);
 u8 BouncyWarioUnknown1(void);

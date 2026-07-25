@@ -7,6 +7,7 @@
 #include "sound.h"
 #include "voice_set.h"
 #include "wario.h"
+#include "wario/swimming.h"
 #include "wario_palette.h"
 
 #include "gba/m4a.h"
@@ -522,7 +523,7 @@ void ProcessSnowmanWarioCollision(void)
         if ((collisionResult & 0xFF) == 1) {
             wario->reaction = REACTION_WATER;
             wario->damageTimer = 0x60;
-            func_8016614(0);
+            SetWarioWaterPose(0);
             return;
         }
 

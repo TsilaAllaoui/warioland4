@@ -263,7 +263,7 @@ SECTIONS {
         . = 0x31ba; gWarioAfterimageHistoryWrapped = .;
         . = 0x31bb; gWarioCollisionDamageFlag = .;
         . = 0x31bc; gWarioMusicState = .;
-        . = 0x31bd; gUnk_30031BD = .;
+        . = 0x31bd; gWarioWaterCollisionActive = .;
         . = 0x31be; gWarioCanEnterDoor = .;
         . = 0x31c8; gWarioHorizontalCollisionOffset = .;
         . = 0x31ca; gWarioTileHorizontalSpeed = .;
@@ -611,7 +611,7 @@ SECTIONS {
         obj/wario.o(.text);
         obj/demo_input.o(.text);
         obj/wario/normal.o(.text);
-        obj/wario/disasm_swimming.o(.text);
+        obj/wario/swimming.o(.text);
         obj/wario/flaming.o(.text);
         obj/wario/fat.o(.text);
         obj/wario/frozen.o(.text);

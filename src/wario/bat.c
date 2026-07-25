@@ -9,6 +9,7 @@
 #define ResolveWarioFloorCollision BatHeader_ResolveWarioFloorCollision
 #define func_8016614 BatHeader_func_8016614
 #include "wario.h"
+#include "wario/swimming.h"
 #undef CopyWarioPalette
 #undef ResolveWarioCeilingCollision
 #undef ResolveWarioFloorCollision
@@ -418,7 +419,7 @@ void ProcessBatWarioCollision(void)
     if (floorResult == 1) {
         floorWario->reaction = floorResult;
         floorWario->damageTimer = 96;
-        func_8016614(0);
+        SetWarioWaterPose(0);
     } else {
         finalHitbox = &gWarioCollisionData;
         if (finalHitbox[17] != 0xFF && result != 0xFF) {

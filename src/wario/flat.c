@@ -6,6 +6,7 @@
 #include "gba/m4a.h"
 #include "oam.h"
 #include "wario.h"
+#include "wario/swimming.h"
 #include "wario_palette.h"
 
 #include "wario/flat.h"
@@ -392,7 +393,7 @@ void ProcessFlatWarioCollision(void)
     if (maskedResult == 1) {
         gWarioData.reaction = maskedResult;
         gWarioData.damageTimer = 0x60;
-        func_8016614(0);
+        SetWarioWaterPose(0);
     } else if (gWarioCollisionData.unk_11 != 0xFF) {
         if (gWarioCollisionData.unk_12 != 0) {
             pose = gWarioData.pose;

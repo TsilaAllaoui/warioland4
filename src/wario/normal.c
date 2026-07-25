@@ -13,6 +13,7 @@
 #define GetAdjustedWarioXVelocity NormalHeader_GetAdjustedWarioXVelocity
 #define func_8016614 NormalHeader_func_8016614
 #include "wario/normal.h"
+#include "wario/swimming.h"
 #undef CopyWarioPalette
 #undef UpdateWarioPositionHistory
 #undef PrepareWarioUpdate
@@ -5269,12 +5270,12 @@ void ResolveNormalWarioCollision(void)
         if ((collisionResult & 0xFF) == 1) {
             gWarioData.reaction = 1;
             if (gWarioData.pose == 28) {
-                func_8016614(7);
+                SetWarioWaterPose(7);
             } else {
                 if ((u8)(gWarioData.pose - 19) <= 1) {
                     gWarioData.damageTimer = 0x60;
                 }
-                func_8016614(0);
+                SetWarioWaterPose(0);
             }
             return;
         }
@@ -8839,4 +8840,3 @@ u8 CheckWarioTileMovement(void)
     }
     return 0xFF;
 }
-

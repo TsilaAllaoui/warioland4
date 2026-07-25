@@ -5,6 +5,7 @@
 #define ResolveWarioFloorCollision FrozenHeader_ResolveWarioFloorCollision
 #define func_8016614 FrozenHeader_func_8016614
 #include "wario.h"
+#include "wario/swimming.h"
 #undef CopyWarioPalette
 #undef ResolveWarioCeilingCollision
 #undef ResolveWarioFloorCollision
