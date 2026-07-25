@@ -176,11 +176,11 @@ u8 SnowmanWarioLanding(void)
     if (gWarioData.unk_1E > 29)
         return WPOSE_SNOWMAN_UNKNOWN_8;
 
-    if (gUnk_3001930.unk1 >= sUnk_82E04C4[gUnk_3001930.unk2].time) {
-        gUnk_3001930.unk1 = 0;
-        gUnk_3001930.unk2++;
-        if (sUnk_82E04C4[gUnk_3001930.unk2].time == 0)
-            gUnk_3001930.unk2 = 0;
+    if (gWarioAfterimage.unk1 >= sUnk_82E04C4[gWarioAfterimage.unk2].time) {
+        gWarioAfterimage.unk1 = 0;
+        gWarioAfterimage.unk2++;
+        if (sUnk_82E04C4[gWarioAfterimage.unk2].time == 0)
+            gWarioAfterimage.unk2 = 0;
     }
     return 0xFF;
 }
@@ -364,7 +364,7 @@ void SetSnowmanWarioPose(u8 result)
                 gWarioData.pose = WPOSE_SNOWMAN_LANDING_AFTER_MIDAIR_SNOW_CONTACT;
             } else if (gWarioDataCopy.pose == WPOSE_SNOWMAN_FALLING) {
                 gWarioData.pose = WPOSE_SNOWMAN_LANDING;
-                gUnk_3001930.unk0 = 4;
+                gWarioAfterimage.unk0 = 4;
                 ScreenShakeRequestY(64, 0);
                 m4aSongNumStart(SE_SNOWMAN_WARIO_LAND);
             } else if (gWarioDataCopy.pose > WPOSE_SNOWMAN_TURNING) {

@@ -265,7 +265,7 @@ transforming:
     m4aSongNumStart(SE_BAT_WARIO_TRANSFORM);
     VoiceSetPlay(4);
 resetEffects:
-    gUnk_3001930 = sUnk_82DD0EC;
+    gWarioAfterimage = sEmptyWarioAfterimage;
     gCurrentWarioEffect = sStartingWarioEffect;
     gWarioData.pose = value;
     gCurrentWarioEffect.type = 4;

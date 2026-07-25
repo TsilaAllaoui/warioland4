@@ -195,7 +195,7 @@ u8 FatWarioLanding(void)
         return 9;
     }
 
-    effect = &gUnk_3001930;
+    effect = &gWarioAfterimage;
     frames = sWarioAfterimageFrames;
     if (effect->unk1 >= frames[effect->unk2].time) {
         effect->unk1 = 0;
@@ -394,7 +394,7 @@ pose_fd:
             wario->pose = 6;
             wario->unk_0A++;
         }
-        gUnk_3001930.unk0 = 4;
+        gWarioAfterimage.unk0 = 4;
         ScreenShakeRequestY(0x40, 0);
         m4aSongNumStart(SE_FAT_WARIO_LAND);
     }
