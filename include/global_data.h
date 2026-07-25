@@ -361,6 +361,7 @@ extern struct WarioCollisionData gWarioCollisionData;
 /* ROM data */
 extern const s16 sWarioHitboxes[][4];
 extern const struct WarioEffectFrame sWarioAfterimageFrames[];
+extern const struct WarioEffectFrame sWarioGroundPoundLandingAfterimageFrames[];
 extern const struct WarioAnimationFrame *const sUnk_82DDB10[][2];
 extern const struct WarioPoseProperty sUnk_82DDB60[];
 extern const u16 sBouncyWarioPalette[];

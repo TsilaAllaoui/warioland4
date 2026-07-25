@@ -1,60 +1,20 @@
 #ifndef WARIO_SWIMMING_H
 #define WARIO_SWIMMING_H
 
+#include "global_data.h"
 #include "wario.h"
 
-struct WarioCollisionData {
-    u16 horizontalDirection;
-    u16 environmentFlags;
-    u8 primaryProbe;
-    u8 secondaryProbe;
-    u16 xCorrection;
-    u8 collisionIndex;
-    u8 surfaceStatus;
-    u8 poseField3;
-    u8 poseField4;
-    u8 verticalCollisionEnabled;
-    u8 poseField6;
-    u8 reserved0E;
-    u8 forceGroundSnap;
-    u8 minimumGroundDistance;
-    u8 poseFlags;
-    u8 wallCollisionCount;
-    u8 groundCollision;
-};
-
-struct WarioAnimationFrame {
-    const u16 *graphics;
-    const u16 *oam;
-    u8 time;
-};
-
-extern struct WarioCollisionData gWarioCollisionData;
-extern s16 gWarioWaterCurrentXVelocity;
-extern s16 gWarioWaterCurrentYVelocity;
-
-extern const struct WarioAnimationFrame sWarioSwimmingHorizontalOam[];
-extern const struct WarioAnimationFrame sWarioSwimmingVerticalOam[];
-extern const struct WarioAnimationFrame sWarioSwimmingFreelyOam[];
-extern const struct WarioAnimationFrame sWarioFloatingOam[];
-extern const struct WarioAnimationFrame sWarioJumpingOutOfWaterOam[];
-extern const struct WarioAnimationFrame sWarioDamageOam[];
-extern const struct WarioAnimationFrame sWarioSuperGroundPoundOam[];
-extern const struct AnimationFrameU16 sWarioSuperGroundPoundAfterimageOam[];
-extern const struct WarioAnimationFrame sWarioSuperGroundPoundLandingOam[];
-extern const struct AnimationFrameU16 sWarioAfterimageFrames[];
-extern const struct WarioAnimationFrame sBubbleWarioOam[];
-extern const s16 sHorizontalOscillationVelocity[];
-extern const struct WarioAnimationFrame *const sWarioWaterOamTable[];
-extern const struct WarioAnimationFrame *const sWarioWaterVerticalOamTable[];
-extern const u8 sWarioWaterPoseData[];
-extern const u16 sWarioDamagePalette[];
-extern const u16 sWarioSuperGroundPoundPalette[];
-extern const u16 *const sWarioSuperGroundPoundPaletteTable[];
+extern const struct WarioAnimationFrame sWarioSwimmingHorizontalAnimation[];
+extern const struct WarioAnimationFrame sWarioSwimmingVerticalAnimation[];
+extern const struct WarioAnimationFrame sWarioSwimmingFreelyAnimation[];
+extern const struct WarioAnimationFrame sWarioFloatingAnimation[];
+extern const struct WarioAnimationFrame sWarioJumpingOutOfWaterAnimation[];
+extern const struct WarioAnimationFrame sBubbleWarioAnimation[];
+extern const struct WarioAnimationFrame *const sWarioWaterAnimationTable[];
+extern const struct WarioAnimationFrame *const sWarioWaterVerticalAnimationTable[];
+extern const u8 sWarioWaterPoseProperties[];
 extern const u16 sBubbleWarioPalette[];
 extern const u16 sWarioSecondaryPalette[];
-extern const s16 sWarioHitboxes[];
-extern const s16 sWarioCollisionProbeTable[];
 
 u8 UpdateWarioWaterPose(void);
 u8 UpdateWarioWaterLanding(void);

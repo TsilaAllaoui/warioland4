@@ -174,8 +174,8 @@ SECTIONS {
         . = 0x188b; gVideoMode = .;
         . = 0x188c; gVideoPage = .;
         . = 0x188e; gUnk_300188E = .;
-        . = 0x1890; gUnk_3001890 = .;
-        . = 0x1892; gUnk_3001892 = .;
+        . = 0x1890; gWarioSubgameXPosition = .;
+        . = 0x1892; gWarioSubgameYPosition = .;
 
         . = 0x1894; obj/demo_input.o(iwram_data);
 
@@ -184,8 +184,8 @@ SECTIONS {
         . = 0x1910; gHeartMeter = .;
         . = 0x1914; gHeartGauge = .;
         . = 0x1918; gWarioCollisionData = .;
-        . = 0x1930; gWarioAfterimage = .;
-        . = 0x1938; gWarioSecondaryAfterimage = .;
+        . = 0x1930; gWarioMotionAfterimage = .;
+        . = 0x1938; gWarioDashAfterimage = .;
         . = 0x1940; gCurrentWarioEffect = .;
         . = 0x1948; gCurrentCarriedSprite = .;
         . = 0x1950; gWarioDustEffect1 = .;
@@ -259,15 +259,15 @@ SECTIONS {
         . = 0x3130; gWarioPaletteSize = .;
 
         . = 0x3138; gWarioAfterimageHistory = .;
-        . = 0x31b8; gWarioAfterimageHistoryCounter = .;
-        . = 0x31ba; gWarioAfterimageHistoryFilled = .;
-        . = 0x31bb; gUnk_30031BB = .;
+        . = 0x31b8; gWarioAfterimageHistoryIndex = .;
+        . = 0x31ba; gWarioAfterimageHistoryWrapped = .;
+        . = 0x31bb; gWarioCollisionDamageFlag = .;
         . = 0x31bc; gWarioMusicState = .;
         . = 0x31bd; gWarioWaterCollisionActive = .;
-        . = 0x31be; gUnk_30031BE = .;
+        . = 0x31be; gWarioCanEnterDoor = .;
         . = 0x31c8; gWarioHorizontalCollisionOffset = .;
-        . = 0x31ca; gWarioWaterCurrentXVelocity = .;
-        . = 0x31cc; gWarioWaterCurrentYVelocity = .;
+        . = 0x31ca; gWarioTileHorizontalSpeed = .;
+        . = 0x31cc; gWarioTileVerticalSpeed = .;
         . = 0x31f4; gUnk_30031F4 = .;
         . = 0x3200; gGameMusicState = .;
         . = 0x320c; gUnk_300320C = .;
@@ -610,7 +610,7 @@ SECTIONS {
         obj/cutscenes/cutscene_title_screen_oam_anim.o(.text);
         obj/wario.o(.text);
         obj/demo_input.o(.text);
-        obj/wario/disasm_normal.o(.text);
+        obj/wario/normal.o(.text);
         obj/wario/swimming.o(.text);
         obj/wario/flaming.o(.text);
         obj/wario/fat.o(.text);
@@ -779,7 +779,8 @@ SECTIONS {
         obj/m4a_tables.o(.rodata);
         obj/blob_0x0956E4-0x283EF8.o(.rodata);
         obj/sram.o(.rodata);
-        obj/blob_0x283F14-0x3529A8.o(.rodata);
+        obj/blob_0x283F14-0x2DF094.o(.rodata);
+        obj/data/sprite_data_2DF094_3529A8.o(.rodata);
         obj/sprite_util.o(.rodata);
         obj/blob_0x352CF0-0x3B3A00.o(.rodata);
         obj/sprite_ai/spear_mask.o(.rodata);

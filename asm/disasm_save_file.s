@@ -925,11 +925,11 @@ func_8072FB0:
 .L_73348:
 	.4byte	gWarioData
 .L_7334c:
-	.4byte	gWarioSecondaryAfterimage
+	.4byte	gWarioDashAfterimage
 .L_73350:
 	.4byte	gCurrentCarriedSprite
 .L_73354:
-	.4byte	gWarioAfterimage
+	.4byte	gWarioMotionAfterimage
 .L_73358:
 	.4byte	gCurrentWarioEffect
 .L_7335c:
@@ -1548,11 +1548,11 @@ func_807345C:
 .L_737d8:
 	.4byte	gWarioData
 .L_737dc:
-	.4byte	gWarioSecondaryAfterimage
+	.4byte	gWarioDashAfterimage
 .L_737e0:
 	.4byte	gCurrentCarriedSprite
 .L_737e4:
-	.4byte	gWarioAfterimage
+	.4byte	gWarioMotionAfterimage
 .L_737e8:
 	.4byte	gCurrentWarioEffect
 .L_737ec:

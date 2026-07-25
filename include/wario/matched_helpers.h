@@ -11,10 +11,8 @@
 void CopyWarioPalette(const void *source, u32 destination, u32 size);
 void UpdateWarioHorizontalCollisionOffset(void);
 s32 GetAdjustedWarioXVelocity(void);
-s32 func_80143D8(void);
-s32 func_8014758(void);
-s32 func_8014930(void);
-s32 func_8014C4C(void);
-void func_8016614(int value);
-
+s32 ResolveWarioStandardCollision(void);
+s32 ResolveWarioLandingCollision(void);
+s32 ResolveWarioCeilingCollision(void);
+s32 ResolveWarioFloorCollision(void);
 #endif  // WARIO_MATCHED_HELPERS_H
