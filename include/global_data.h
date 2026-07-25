@@ -138,6 +138,19 @@ struct ScreenShakeParameters {
     u8 direction;
 };
 
+struct BackgroundPositionState {
+    u16 x;
+    u16 y;
+    s8 xOffset;
+    s8 yOffset;
+};
+
+struct RoomEffectState {
+    u8 type;
+    u8 timer;
+    u16 value;
+};
+
 // gUnk_3000000
 extern u8 gCurrentPassage;
 extern u8 gCurrentStageNumber;
@@ -163,7 +176,7 @@ extern u8 gDisableSoftReset;
 extern u8 gUnk_3000020;
 extern u8 gUnk_3000021;
 extern u8 gUnk_3000022;
-// gUnk_3000023
+extern u8 gUnk_3000023;
 extern u8 gCurrentRoom;
 extern u8 gUnk_3000025;
 // gUnk_3000026
@@ -176,8 +189,8 @@ extern u8 gDrawWarioOverBackground;
 // gUnk_3000034
 // gUnk_3000035
 extern u8 gEnableHBlank;
-// gUnk_300003A
-// gUnk_300003C
+extern u16 gUnk_300003A;
+extern u16 gUnk_300003C;
 // gUnk_300003E
 // gUnk_3000040
 // gUnk_3000044
@@ -193,5 +206,8 @@ extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern struct ScreenShakeParameters gScreenShakeY;
 extern struct ScreenShakeParameters gScreenShakeX;
+extern u16 gRoomCameraBounds[4];
+extern struct RoomEffectState gBg0ScrollEffect;
+extern struct BackgroundPositionState gCameraPositionState;
 
 #endif  // GLOBAL_DATA_H

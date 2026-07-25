@@ -197,7 +197,7 @@ func_80930B8:
 .L_93138:
 	.4byte	gBldy
 .L_9313c:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_93140:
 	.4byte	0x000001ff
 .L_93144:
@@ -209,7 +209,7 @@ func_80930B8:
 .L_93150:
 	.4byte	0x04000012
 .L_93154:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_93158:
 	.4byte	0x04000016
 
@@ -335,7 +335,7 @@ func_809315C:
 .L_93244:
 	.4byte	gUnk_3001872
 .L_93248:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_9324c:
 	.4byte	0x000001ff
 .L_93250:
@@ -347,7 +347,7 @@ func_809315C:
 .L_9325c:
 	.4byte	0x04000012
 .L_93260:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_93264:
 	.4byte	0x04000016
 
@@ -379,7 +379,7 @@ func_8093268:
 .L_93290:
 	.4byte	0x04000004
 .L_93294:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_93298:
 	.4byte	0x04000014
 
@@ -1187,17 +1187,17 @@ func_809329C:
 .L_938b4:
 	.4byte	gUnk_3004B1C
 .L_938b8:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_938bc:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_938c0:
 	.4byte	gBg1XPosition
 .L_938c4:
 	.4byte	gBg1YPosition
 .L_938c8:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_938cc:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_938d0:
 	.4byte	gUnk_3001882
 .L_938d4:

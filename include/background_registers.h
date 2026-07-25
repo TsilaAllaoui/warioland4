@@ -19,12 +19,12 @@ extern u16 gBg2PD;
 extern u16 gBldy;
 extern u16 gUnk_3001872;
 extern u16 gUnk_3001874;
-extern u16 gUnk_3001876;
-extern u16 gUnk_3001878;
+extern u16 gBg0XPosition;
+extern u16 gBg0YPosition;
 extern u16 gBg1XPosition;
 extern u16 gBg1YPosition;
-extern u16 gUnk_300187E;
-extern u16 gUnk_3001880;
+extern u16 gBg2XPosition;
+extern u16 gBg2YPosition;
 extern u16 gUnk_3001882;
 extern u16 gUnk_3001884;
 

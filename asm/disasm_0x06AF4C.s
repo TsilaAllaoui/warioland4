@@ -743,7 +743,7 @@ func_806B410:
 	ldrb	r0, [r0, #0]
 	cmp	r0, #0
 	bne	.L_6b594
-	bl	func_806E7F8
+	bl	UpdateCamera
 	ldr	r1, .L_6b618
 	ldr	r2, .L_6b61c
 	ldrh	r0, [r2, #2]
@@ -751,7 +751,7 @@ func_806B410:
 	ldr	r1, .L_6b620
 	ldrh	r0, [r2, #0]
 	strh	r0, [r1, #0]
-	bl	func_806E7F8
+	bl	UpdateCamera
 .L_6b594:
 	bl	func_806AF4C
 	bl	func_806C828
@@ -816,7 +816,7 @@ func_806B410:
 .L_6b618:
 	.4byte	gBg1YPosition
 .L_6b61c:
-	.4byte	gUnk_3003224
+	.4byte	gCameraPositionState
 .L_6b620:
 	.4byte	gBg1XPosition
 .L_6b624:
@@ -1349,7 +1349,7 @@ func_806B864:
 	strh	r0, [r4, #20]
 	b	.L_6ba5a
 .L_6ba18:
-	.4byte	gUnk_3003224
+	.4byte	gCameraPositionState
 .L_6ba1c:
 	.4byte	0x2039F00
 .L_6ba20:
@@ -1438,9 +1438,9 @@ func_806B864:
 .L_6babc:
 	.4byte	gBg1XPosition
 .L_6bac0:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_6bac4:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_6bac8:
 	.4byte	gUnk_300342C
 .L_6bacc:
@@ -1454,7 +1454,7 @@ func_806BAD0:
 	ldrb	r0, [r5, #24]
 	cmp	r0, #3
 	bne	.L_6bade
-	bl	func_806E598
+	bl	LoadCurrentRoomCameraControlData
 .L_6bade:
 	ldr	r1, .L_6bb14
 	mov	r4, #0
@@ -1485,7 +1485,7 @@ func_806BAD0:
 .L_6bb10:
 	.4byte	gCurrentRoomHeader
 .L_6bb14:
-	.4byte	gUnk_300320C
+	.4byte	gRoomCameraBounds
 .L_6bb18:
 	.4byte	gUnk_3000023
 .L_6bb1c:
@@ -1507,7 +1507,7 @@ func_806BAD0:
 	b	.L_6bb46
 	.align	2, 0
 .L_6bb3c:
-	.4byte	gUnk_3003218
+	.4byte	gBg0ScrollEffect
 .L_6bb40:
 	.4byte	gCurrentRoomHeader
 .L_6bb44:
@@ -1541,9 +1541,9 @@ func_806BB4C:
 .L_6bb70:
 	.4byte	gCurrentRoomHeader
 .L_6bb74:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_6bb78:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_6bb7c:
 	ldr	r0, [sp, #0]
 	cmp	r0, #1
@@ -1783,9 +1783,9 @@ func_806BB4C:
 .L_6bd3c:
 	.4byte	gCurrentRoomHeader
 .L_6bd40:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_6bd44:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_6bd48:
 	.4byte	gBackgroundInfo
 .L_6bd4c:
@@ -3278,6 +3278,6 @@ GameScreenDraw:
 .L_6c81c:
 	.4byte	gUnk_30037BE
 .L_6c820:
-	.4byte	gUnk_3003224
+	.4byte	gCameraPositionState
 .L_6c824:
 	.4byte	gSubGameMode

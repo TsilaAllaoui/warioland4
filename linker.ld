@@ -70,7 +70,7 @@ SECTIONS {
 
         . = 0x00d0; gColorFading = .;
         . = 0x00d8; gUnk_30000D8 = .;
-        . = 0x00dc; gUnk_30000DC = .;
+        . = 0x00dc; gCameraControlAreas = .;
         . = 0x00f4; gUnk_30000F4 = .;
         . = 0x00fc; gUnk_30000FC = .;
 
@@ -163,12 +163,12 @@ SECTIONS {
         . = 0x1870; gBldy = .;
         . = 0x1872; gUnk_3001872 = .;
         . = 0x1874; gUnk_3001874 = .;
-        . = 0x1876; gUnk_3001876 = .;
-        . = 0x1878; gUnk_3001878 = .;
+        . = 0x1876; gBg0XPosition = .;
+        . = 0x1878; gBg0YPosition = .;
         . = 0x187a; gBg1XPosition = .;
         . = 0x187c; gBg1YPosition = .;
-        . = 0x187e; gUnk_300187E = .;
-        . = 0x1880; gUnk_3001880 = .;
+        . = 0x187e; gBg2XPosition = .;
+        . = 0x1880; gBg2YPosition = .;
         . = 0x1882; gUnk_3001882 = .;
         . = 0x1884; gUnk_3001884 = .;
         . = 0x188b; gUnk_300188B = .;
@@ -270,11 +270,11 @@ SECTIONS {
         . = 0x31cc; gUnk_30031CC = .;
         . = 0x31f4; gUnk_30031F4 = .;
         . = 0x3200; gUnk_3003200 = .;
-        . = 0x320c; gUnk_300320C = .;
+        . = 0x320c; gRoomCameraBounds = .;
         . = 0x3214; gUnk_3003214 = .;
-        . = 0x3218; gUnk_3003218 = .;
+        . = 0x3218; gBg0ScrollEffect = .;
         . = 0x321c; gUnk_300321C = .;
-        . = 0x3224; gUnk_3003224 = .;
+        . = 0x3224; gCameraPositionState = .;
         . = 0x322c; gUnk_300322C = .;
         . = 0x342c; gUnk_300342C = .;
         . = 0x342e; gUnk_300342E = .;
@@ -284,7 +284,7 @@ SECTIONS {
         . = 0x37c0; gUnk_30037C0 = .;
         . = 0x3928; gUnk_3003928 = .;
         . = 0x3b08; gUnk_3003B08 = .;
-        . = 0x3bc8; gUnk_3003BC8 = .;
+        . = 0x3bc8; gCurrentRoomCameraControlData = .;
         . = 0x3bcc; gUnk_3003BCC = .;
         . = 0x3bd0; gUnk_3003BD0 = .;
         . = 0x3bdc; gUnk_3003BDC = .;
@@ -714,7 +714,7 @@ SECTIONS {
         obj/disasm_block.o(.text);
         obj/disasm_bg_clip.o(.text);
         obj/disasm_animated_graphics.o(.text);
-        obj/disasm_0x06E3BC.o(.text);
+        obj/camera.o(.text);
         obj/disasm_0x06EC50.o(.text);
         obj/disasm_color_fading.o(.text);
         obj/disasm_hblank.o(.text);
