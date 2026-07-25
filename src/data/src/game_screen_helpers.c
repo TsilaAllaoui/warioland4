@@ -17,7 +17,7 @@
 /* Neighboring modules still use these original ABI symbols on the main base. */
 void TransparencyProcessTiles();
 void func_806D3A4();
-void func_806E7F8();
+void UpdateCamera();
 void func_806C828();
 void func_806F7CC();
 void InitAnimatedGraphics();
@@ -27,7 +27,7 @@ void ApplyRoomTransitionTileOffset();
 void SetRoomTransitionTileValues();
 void func_8000D18();
 void StopDemo();
-void func_806E598();
+void LoadCurrentRoomCameraControlData();
 void func_8071600();
 void TransparencyProcessWater();
 void func_8070E24();
@@ -485,10 +485,10 @@ void LoadRoom(void)
     gPreviousXPosition = gWarioData.xPosition;
     gPreviousYPosition = gWarioData.yPosition;
     if (gPauseFlag == 0 && gHasTemporarySave == 0) {
-        func_806E7F8();
-        gBg1YPosition = gUnk_3003224.y;
-        gBg1XPosition = gUnk_3003224.x;
-        func_806E7F8();
+        UpdateCamera();
+        gBg1YPosition = gCameraPositionState.y;
+        gBg1XPosition = gCameraPositionState.x;
+        UpdateCamera();
     }
     ConfigureRoomDisplay();
     func_806C828();
@@ -723,10 +723,10 @@ void InitializeRoomState(void)
         return;
     }
 
-    gUnk_3003224.x = 0;
-    gUnk_3003224.y = 0;
-    gUnk_3003224.xOffset = 0;
-    gUnk_3003224.yOffset = 0;
+    gCameraPositionState.x = 0;
+    gCameraPositionState.y = 0;
+    gCameraPositionState.xOffset = 0;
+    gCameraPositionState.yOffset = 0;
 
     {
         register u16 *tile asm("r2");
@@ -798,8 +798,8 @@ void InitializeRoomState(void)
     gScreenShakeX.amplitude = 0;
     gBg1YPosition = 0;
     gBg1XPosition = 0;
-    gUnk_3001876 = 0;
-    gUnk_3001878 = 0;
+    gBg0XPosition = 0;
+    gBg0YPosition = 0;
     gUnk_300342C = 0;
     gUnk_3000038 = 0;
 }
@@ -811,14 +811,14 @@ void InitializeRoomEffects(void)
 
     roomHeader = &gCurrentRoomHeader;
     if (roomHeader->cameraControl == 3)
-        func_806E598();
+        LoadCurrentRoomCameraControlData();
 
     {
         register u16 *effectValues asm("r1");
         register u32 zeroValue asm("r3");
         register u32 defaultValue asm("r2");
 
-        effectValues = gUnk_300320C;
+        effectValues = gRoomCameraBounds;
         zeroType = 0;
         zeroValue = 0;
         defaultValue = 128;
@@ -845,7 +845,7 @@ void InitializeRoomEffects(void)
         register u32 zeroType2 asm("r2");
         register u32 zeroValue2 asm("r0");
 
-        effect = &gUnk_3003218;
+        effect = &gBg0ScrollEffect;
         zeroType2 = 0;
         zeroValue2 = 0;
         effect->value = zeroValue2;
@@ -895,16 +895,16 @@ void DrawRoomBackgroundLayer(u8 layer)
 
                 if (layer == 0) {
                     backgroundParameter = gCurrentRoomHeader.bg0Param;
-                    yPosition = gUnk_3001878;
-                    xPosition = gUnk_3001876;
+                    yPosition = gBg0YPosition;
+                    xPosition = gBg0XPosition;
                 } else if (layerValue == 1) {
                     backgroundParameter = gCurrentRoomHeader.bg1Param;
                     yPosition = gBg1YPosition;
                     xPosition = gBg1XPosition;
                 } else {
                     backgroundParameter = gCurrentRoomHeader.bg2Param;
-                    yPosition = gUnk_3001880;
-                    xPosition = gUnk_300187E;
+                    yPosition = gBg2YPosition;
+                    xPosition = gBg2XPosition;
                 }
 
                 {
@@ -1772,13 +1772,13 @@ void DrawGameScreen(void)
 {
     func_806C828();
     gUnk_30037BE++;
-    if ((gUnk_30037BE & 1) != 0 || gUnk_3003224.xOffset < -28 || gUnk_3003224.xOffset > 28) {
+    if ((gUnk_30037BE & 1) != 0 || gCameraPositionState.xOffset < -28 || gCameraPositionState.xOffset > 28) {
         func_806CF28(16);
         func_806D218();
         func_806CF28(-2);
         func_806D218();
     }
-    if ((gUnk_30037BE & 1) == 0 || gUnk_3003224.yOffset < -28 || gUnk_3003224.yOffset > 28) {
+    if ((gUnk_30037BE & 1) == 0 || gCameraPositionState.yOffset < -28 || gCameraPositionState.yOffset > 28) {
         func_806CA00(11);
         func_806CCE4();
         func_806CA00(-2);

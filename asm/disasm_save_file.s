@@ -989,19 +989,19 @@ func_8072FB0:
 .L_733c8:
 	.4byte	gUnk_30000D8
 .L_733cc:
-	.4byte	gUnk_3003224
+	.4byte	gCameraPositionState
 .L_733d0:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_733d4:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_733d8:
 	.4byte	gBg1XPosition
 .L_733dc:
 	.4byte	gBg1YPosition
 .L_733e0:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_733e4:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_733e8:
 	.4byte	gUnk_3001882
 .L_733ec:
@@ -1612,19 +1612,19 @@ func_807345C:
 .L_73858:
 	.4byte	gUnk_30000D8
 .L_7385c:
-	.4byte	gUnk_3003224
+	.4byte	gCameraPositionState
 .L_73860:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_73864:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_73868:
 	.4byte	gBg1XPosition
 .L_7386c:
 	.4byte	gBg1YPosition
 .L_73870:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_73874:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_73878:
 	.4byte	gUnk_3001882
 .L_7387c:

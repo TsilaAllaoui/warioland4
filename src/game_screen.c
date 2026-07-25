@@ -18,7 +18,7 @@
 #include "oam.h"
 #include "save_file.h"
 #include "score.h"
-#include "scrolling.h"
+#include "camera.h"
 #include "shop.h"
 #include "sound.h"
 #include "sprite.h"
@@ -145,7 +145,7 @@ u32 GameScreenSubroutine(void)
         UpdateRoomAnimatedGraphics();
         func_801D684();
         if (!gDisableWario) {
-            func_806E7F8();
+            UpdateCamera();
             ProcessWarioInteraction();
         }
         func_8074808();

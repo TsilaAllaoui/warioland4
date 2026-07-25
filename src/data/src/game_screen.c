@@ -145,7 +145,7 @@ u32 GameScreenSubroutine(void)
         UpdateRoomAnimatedGraphics();
         func_801D684();
         if (!gDisableWario) {
-            func_806E7F8();
+            UpdateCamera();
             ProcessWarioInteraction();
         }
         func_8074808();

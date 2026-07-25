@@ -58,17 +58,17 @@ func_80909C0:
 .L_90a14:
 	.4byte	0x84000100
 .L_90a18:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_90a1c:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_90a20:
 	.4byte	gBg1XPosition
 .L_90a24:
 	.4byte	gBg1YPosition
 .L_90a28:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_90a2c:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 
 
 thumb_func_start func_8090A30
@@ -522,17 +522,17 @@ func_8090A40:
 .L_90db8:
 	.4byte	gUnk_300188E
 .L_90dbc:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_90dc0:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_90dc4:
 	.4byte	gBg1XPosition
 .L_90dc8:
 	.4byte	gBg1YPosition
 .L_90dcc:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_90dd0:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_90dd4:
 	.4byte	gOamSlotsUsed
 .L_90dd8:

@@ -71,7 +71,7 @@ sUnk_878F2E4:
 
 baserom_blob 0x78F2E4, 0x78F540
 
-.global sUnk_878F540
-sUnk_878F540:
+.global sRoomCameraControlDataTable
+sRoomCameraControlDataTable:
 
 baserom_blob 0x78F540, 0x78F5A4

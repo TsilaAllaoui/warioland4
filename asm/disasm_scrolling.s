@@ -78,15 +78,15 @@ func_806C828:
 .L_6c8c0:
 	.4byte	gBackgroundScroll
 .L_6c8c4:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_6c8c8:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_6c8cc:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_6c8d0:
-	.4byte	gUnk_3003218
+	.4byte	gBg0ScrollEffect
 .L_6c8d4:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_6c8d8:
 	.4byte	gUnk_3001882
 .L_6c8dc:
@@ -156,7 +156,7 @@ func_806C8E4:
 .L_6c950:
 	.4byte	gUnk_3001882
 .L_6c954:
-	.4byte	gUnk_300320C
+	.4byte	gRoomCameraBounds
 .L_6c958:
 	cmp	r2, #1
 	bne	.L_6c970
@@ -198,7 +198,7 @@ func_806C8E4:
 .L_6c99c:
 	.4byte	gUnk_3001884
 .L_6c9a0:
-	.4byte	gUnk_300320C
+	.4byte	gRoomCameraBounds
 .L_6c9a4:
 	cmp	r3, #1
 	bne	.L_6c9bc
@@ -312,9 +312,9 @@ func_806CA00:
 .L_6ca64:
 	.4byte	gUnk_3003928
 .L_6ca68:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_6ca6c:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_6ca70:
 	cmp	r5, #1
 	bne	.L_6ca84
@@ -635,9 +635,9 @@ func_806CA00:
 	bx	r0
 	.align	2, 0
 .L_6ccd4:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_6ccd8:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_6ccdc:
 	.4byte	gBackgroundInfo
 .L_6cce0:
@@ -1008,9 +1008,9 @@ func_806CF28:
 .L_6cf8c:
 	.4byte	gUnk_30037C0
 .L_6cf90:
-	.4byte	gUnk_3001878
+	.4byte	gBg0YPosition
 .L_6cf94:
-	.4byte	gUnk_3001876
+	.4byte	gBg0XPosition
 .L_6cf98:
 	cmp	r5, #1
 	bne	.L_6cfac
@@ -1337,9 +1337,9 @@ func_806CF28:
 	bx	r0
 	.align	2, 0
 .L_6d208:
-	.4byte	gUnk_3001880
+	.4byte	gBg2YPosition
 .L_6d20c:
-	.4byte	gUnk_300187E
+	.4byte	gBg2XPosition
 .L_6d210:
 	.4byte	gBackgroundInfo
 .L_6d214:

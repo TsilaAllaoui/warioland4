@@ -329,11 +329,11 @@ extern u32 gUnk_3002C74;
 /* 0x030031F4 */
 extern struct BackgroundTileTables gUnk_30031F4;
 extern struct GameMusicState gGameMusicState;
-extern u16 gUnk_300320C[4];
+extern u16 gRoomCameraBounds[4];
 extern struct RoomEffectState gUnk_3003214;
-extern struct RoomEffectState gUnk_3003218;
+extern struct RoomEffectState gBg0ScrollEffect;
 extern u16 gUnk_300321C[2];
-extern struct BackgroundPositionState gUnk_3003224;
+extern struct BackgroundPositionState gCameraPositionState;
 
 /* 0x0300342C */
 extern u8 gUnk_300342C;

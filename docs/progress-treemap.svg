@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  82.8%   3,373 / 4,072</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████░░░░░░░░░  69.9%   426,276 / 609,840 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  83.2%   3,386 / 4,072</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████░░░░░░░░░  70.3%   428,472 / 609,840 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,072 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3972,25 +3972,25 @@
 <rect x="1206.13" y="486.86" width="5.85" height="3.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tobawani/TobawaniStartWallFallRight: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_0x06E3BC: 0.0% matched, 2,196 bytes</title>
+<title>camera: 100.0% matched, 2,196 bytes</title>
 <rect x="1213.33" y="435.09" width="59.07" height="55.94" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip82"><rect x="1215.33" y="436.09" width="55.67" height="10.18"/></clipPath>
 <rect x="1214.33" y="436.09" width="57.67" height="10.18" fill="#05080d"/>
-<text x="1215.83" y="443.26" clip-path="url(#moduleLabelClip82)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_0…</text>
-<text x="1270.00" y="443.26" text-anchor="end" clip-path="url(#moduleLabelClip82)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="1214.33" y="446.26" width="20.66" height="24.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E904: 456 bytes, not matched, size=symbol</title></rect>
-<rect x="1214.33" y="471.55" width="20.66" height="18.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E5D4: 344 bytes, not matched, size=symbol</title></rect>
-<rect x="1235.34" y="446.26" width="19.30" height="15.54" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E7F8: 268 bytes, not matched, size=symbol</title></rect>
-<rect x="1254.99" y="446.26" width="16.66" height="15.54" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E420: 232 bytes, not matched, size=symbol</title></rect>
-<rect x="1235.34" y="462.15" width="13.56" height="14.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806EACC: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="1235.34" y="476.55" width="13.56" height="13.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806EBA8: 168 bytes, not matched, size=symbol</title></rect>
-<rect x="1249.25" y="462.15" width="12.06" height="10.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E780: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1261.66" y="462.15" width="9.99" height="10.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E3BC: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1249.25" y="473.42" width="10.75" height="8.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E72C: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="1249.25" y="482.23" width="10.75" height="8.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E548: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="1260.36" y="473.42" width="11.29" height="6.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E508: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="1260.36" y="479.82" width="6.12" height="10.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806E598: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="1266.82" y="479.82" width="4.83" height="10.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06E3BC/func_806EB78: 48 bytes, not matched, size=symbol</title></rect>
+<text x="1215.83" y="443.26" clip-path="url(#moduleLabelClip82)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">camera</text>
+<text x="1270.00" y="443.26" text-anchor="end" clip-path="url(#moduleLabelClip82)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="1214.33" y="446.26" width="20.66" height="24.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/UpdateStandardCamera: 456 bytes, matched, size=symbol</title></rect>
+<rect x="1214.33" y="471.55" width="20.66" height="18.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/BuildCurrentRoomCameraControlAreas: 344 bytes, matched, size=symbol</title></rect>
+<rect x="1235.34" y="446.26" width="19.30" height="15.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/UpdateCamera: 268 bytes, matched, size=symbol</title></rect>
+<rect x="1254.99" y="446.26" width="16.66" height="15.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/MoveCameraTowardTarget: 232 bytes, matched, size=symbol</title></rect>
+<rect x="1235.34" y="462.15" width="13.56" height="14.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/UpdateBg0CameraPosition: 172 bytes, matched, size=symbol</title></rect>
+<rect x="1235.34" y="476.55" width="13.56" height="13.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/SetCameraPositionClampedToRoom: 168 bytes, matched, size=symbol</title></rect>
+<rect x="1249.25" y="462.15" width="12.06" height="10.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/BuildBottomRoomCameraControlAreas: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1261.66" y="462.15" width="9.99" height="10.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/UpdateCameraFromControlAreas: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1249.25" y="473.42" width="10.75" height="8.46" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/UpdateBottomRoomCamera: 84 bytes, matched, size=symbol</title></rect>
+<rect x="1249.25" y="482.23" width="10.75" height="8.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/GetCameraYForControlArea: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1260.36" y="473.42" width="11.29" height="6.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/GetCameraXForControlArea: 64 bytes, matched, size=symbol</title></rect>
+<rect x="1260.36" y="479.82" width="6.12" height="10.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/LoadCurrentRoomCameraControlData: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1266.82" y="479.82" width="4.83" height="10.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>camera/UpdateBg0ScrollEffect: 48 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>swinging_platform: 100.0% matched, 2,188 bytes</title>
