@@ -1,7 +1,7 @@
 #include "minigames/roulette.h"
 
 #define ROULETTE_TARGET_ADD(value, base) \
-    asm volatile("add %0, %0, %1" : "+r"(value) : "r"(base))
+    asm("add %0, %0, %1" : "+r"(value) : "r"(base))
 
 void UpdateRouletteWheel(void)
 {
@@ -46,7 +46,7 @@ void UpdateRouletteWheel(void)
 
                     correction = -8160;
                     /* agbcc reverses the target's sum/correction register assignment here. */
-                    asm volatile("add %0, %1, %2" : "=r"(corrected) : "r"(sum), "r"(correction));
+                    asm("add %0, %1, %2" : "=r"(corrected) : "r"(sum), "r"(correction));
                     current->angle = corrected;
                 }
             }
@@ -76,7 +76,7 @@ void UpdateRouletteWheel(void)
 
                 sample = sinTable[index];
                 index = 256;
-                asm volatile("" : "+r"(index));
+                asm("" : "+r"(index));
                 sample += index;
                 product = (u32)sample >> 31;
                 sample += product;
@@ -96,7 +96,7 @@ void UpdateRouletteWheel(void)
         accumulatorValue = (s32)&gRouletteAngularAcceleration;
         zeroOffset = 0;
         /* Keep the target's r1 zero offset for the signed halfword read. */
-        asm volatile("ldrsh %0, [%0, %1]" : "+r"(accumulatorValue) : "r"(zeroOffset));
+        asm("ldrsh %0, [%0, %1]" : "+r"(accumulatorValue) : "r"(zeroOffset));
         if (accumulatorValue == 0) {
         register volatile u8 *selectedIndex asm("r3");
         register const s16 *selectedSin asm("r4");
@@ -214,7 +214,7 @@ void UpdateRouletteWheel(void)
         accumulatorPtr = &gRouletteAngularAcceleration;
         speedPtr2 = &gRouletteAngularSpeed;
         /* agbcc otherwise swaps the accumulator pointer/value registers. */
-        asm volatile(
+        asm(
             "ldrh r0, [r0]\n\t"
             "ldrh r1, [r2]\n\t"
             "add r0, r0, r1\n\t"
@@ -231,7 +231,7 @@ void UpdateRouletteWheel(void)
 
         zero = 0;
         /* r2 still holds &gRouletteAngularAcceleration; agbcc otherwise rematerializes zero in r0. */
-        asm volatile("strh r4, [r2]" : : : "memory");
+        asm("strh r4, [r2]" : : : "memory");
         selectedPtr = &gRouletteSelectedItemIndex;
         selectedValue = *selectedPtr;
         selectedValue++;
@@ -249,7 +249,7 @@ void UpdateRouletteWheel(void)
             register u32 limit asm("r1");
 
             limitPtr = &gRouletteValueCount;
-            asm volatile("" : "+r"(limitPtr));
+            asm("" : "+r"(limitPtr));
             currentSequence = *sequencePtr;
             limit = *limitPtr;
             if (currentSequence >= limit)
