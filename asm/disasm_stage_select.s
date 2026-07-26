@@ -495,7 +495,7 @@ StageSelectSubroutine:
 .L_79de8:
 	bl	func_807FFD8
 	bl	func_80800EC
-	bl	func_8080A6C
+	bl	UpdateStageResults
 	cmp	r0, #0
 	bne	.L_79dfa
 	b	.L_7a36a

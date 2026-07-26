@@ -14,8 +14,8 @@ void InitMinigameScoreDisplay(void);
 // func_807A528()
 // func_807A668()
 // func_807A700()
-// func_807A824()
-// func_807AA4C()
+void func_807A824(s32 value, const void *tiles, u32 destination);
+void func_807AA4C(s32 value, const void *tiles, u32 destination);
 void DrawMinigameNumber(u32 value, const u16 *tiles, u32 destination);
 // func_807ACCC()
 // func_807ACDC()

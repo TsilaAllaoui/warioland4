@@ -129,6 +129,8 @@ extern s32 gUnk_3000BEC;
 // gUnk_3000BF0
 extern s32 gTotalScore;
 extern s32 gStageScore;
+extern s32 gTotalScoreTemp;
+extern u8 gNewHighScore;
 extern s8 gScoreDigits[];
 extern s8 gUnk_3000C01;
 // gUnk_3000C02

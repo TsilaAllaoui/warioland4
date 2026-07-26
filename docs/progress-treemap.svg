@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  83.2%   3,386 / 4,072</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████░░░░░░░░░  70.3%   428,472 / 609,840 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  83.4%   3,395 / 4,072</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████░░░░░░░░░  70.6%   430,316 / 609,840 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,069 / 4,072 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -4181,20 +4181,20 @@
 <rect x="1109.24" y="534.92" width="3.28" height="8.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>ball_lightning/StartBallLightningBoltRollRight: 28 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_stage_results: 0.0% matched, 1,844 bytes</title>
+<title>stage_results: 100.0% matched, 1,844 bytes</title>
 <rect x="1113.87" y="491.62" width="52.71" height="52.53" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip92"><rect x="1115.87" y="492.62" width="49.31" height="10.00"/></clipPath>
 <rect x="1114.87" y="492.62" width="51.31" height="10.00" fill="#05080d"/>
-<text x="1116.37" y="499.62" clip-path="url(#moduleLabelClip92)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_…</text>
-<rect x="1114.87" y="502.62" width="20.13" height="40.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8080A6C: 736 bytes, not matched, size=symbol</title></rect>
-<rect x="1135.35" y="502.62" width="15.86" height="22.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8080D4C: 328 bytes, not matched, size=symbol</title></rect>
-<rect x="1151.56" y="502.62" width="14.28" height="22.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8080ED4: 296 bytes, not matched, size=symbol</title></rect>
-<rect x="1135.35" y="525.79" width="9.59" height="17.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_80810C0: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="1145.29" y="525.79" width="10.35" height="10.35" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8080FFC: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="1145.29" y="536.48" width="10.35" height="6.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_808115C: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="1155.99" y="525.79" width="9.84" height="6.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8080E94: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="1155.99" y="532.97" width="9.84" height="6.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8081080: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="1155.99" y="540.16" width="9.84" height="3.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_results/func_8081060: 32 bytes, not matched, size=symbol</title></rect>
+<text x="1116.37" y="499.62" clip-path="url(#moduleLabelClip92)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">stage_r…</text>
+<rect x="1114.87" y="502.62" width="20.13" height="40.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/UpdateStageResults: 736 bytes, matched, size=symbol</title></rect>
+<rect x="1135.35" y="502.62" width="15.86" height="22.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/InitStageResults: 328 bytes, matched, size=symbol</title></rect>
+<rect x="1151.56" y="502.62" width="14.28" height="22.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/AdvanceStageResultsTreasure: 296 bytes, matched, size=symbol</title></rect>
+<rect x="1135.35" y="525.79" width="9.59" height="17.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/TransferStageScoreToTotal: 156 bytes, matched, size=symbol</title></rect>
+<rect x="1145.29" y="525.79" width="10.35" height="10.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/ShrinkStageResultsTreasure: 100 bytes, matched, size=symbol</title></rect>
+<rect x="1145.29" y="536.48" width="10.35" height="6.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/ConvertStageResultsHeartToScore: 68 bytes, matched, size=symbol</title></rect>
+<rect x="1155.99" y="525.79" width="9.84" height="6.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/CheckStageResultsJewelSet: 64 bytes, matched, size=symbol</title></rect>
+<rect x="1155.99" y="532.97" width="9.84" height="6.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/DrawStageResultsScores: 64 bytes, matched, size=symbol</title></rect>
+<rect x="1155.99" y="540.16" width="9.84" height="3.24" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_results/StageResultsTimerExpired: 32 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>bouncy: 100.0% matched, 1,836 bytes</title>

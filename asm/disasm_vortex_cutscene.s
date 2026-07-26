@@ -227,7 +227,7 @@ func_807F924:
 .L_7fa78:
 	.4byte	gUnk_3003C39
 .L_7fa7c:
-	.4byte	gUnk_3003DD2
+	.4byte	gStageResultsTimer
 .L_7fa80:
 	.4byte	0x80002000
 .L_7fa84:
@@ -636,7 +636,7 @@ func_807FB20:
 .L_7fd78:
 	.4byte	gUnk_3003D70
 .L_7fd7c:
-	.4byte	gUnk_3003DC8
+	.4byte	gStageResultsNewHighScoreIcon
 .L_7fd80:
 	.4byte	gUnk_3003D78
 .L_7fd84:
@@ -1704,11 +1704,11 @@ func_808018C:
 .L_8058c:
 	.4byte	gUnk_3003C39
 .L_80590:
-	.4byte	gUnk_3003DE0
+	.4byte	gStageResultsAnimationFinished
 .L_80594:
 	.4byte	sUnk_863A47C
 .L_80598:
-	.4byte	gUnk_3003D98
+	.4byte	gStageResultsTreasure
 .L_8059c:
 	blt	.L_804be
 .L_8059e:
@@ -2055,13 +2055,13 @@ func_808018C:
 	str	r0, [r7, r4]
 	lsr	r1, r1, #32
 .L_80840:
-	.4byte	gUnk_3003D98
+	.4byte	gStageResultsTreasure
 .L_80844:
 	.4byte	gOamBuffer
 .L_80848:
-	.4byte	gUnk_3003DD0
+	.4byte	gStageResultsAllJewelPieces
 .L_8084c:
-	.4byte	gUnk_3003DA0
+	.4byte	gStageResultsTreasureIcons
 .L_80850:
 	.4byte	sUnk_863DB7C
 .L_80854:
@@ -2069,7 +2069,7 @@ func_808018C:
 .L_80858:
 	.4byte	0x1FF
 .L_8085c:
-	.4byte	sUnk_863A490
+	.4byte	sStageResultsTreasureXPositions
 .L_80860:
 	.4byte	0xFFFFFE00
 .L_80864:
@@ -2079,7 +2079,7 @@ func_808018C:
 .L_8086c:
 	.4byte	gUnk_3003C39
 .L_80870:
-	.4byte	gUnk_3003DE4
+	.4byte	gStageResultsScoreRank
 .L_80874:
 	.4byte	sUnk_863DCCC
 .L_80878:
@@ -2255,7 +2255,7 @@ func_808018C:
 .L_809b4:
 	.4byte	0xFFFFFE00
 .L_809b8:
-	.4byte	gUnk_3003DC8
+	.4byte	gStageResultsNewHighScoreIcon
 .L_809bc:
 	.4byte	sUnk_863DCB4
 .L_809c0:
@@ -2348,6 +2348,6 @@ func_808018C:
 .L_80a60:
 	.4byte	0xFFFFFE00
 .L_80a64:
-	.4byte	gUnk_3003DDC
+	.4byte	gStageResultsRemainingHearts
 .L_80a68:
 	.4byte	gOamSlotsUsed

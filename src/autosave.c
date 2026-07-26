@@ -4,7 +4,6 @@
 #include "save_file.h"
 #include "score.h"
 #include "types.h"
-#include "vortex_cutscene.h"
 #include "wario.h"
 
 void AutosaveStageClear(void)
