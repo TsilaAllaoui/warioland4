@@ -5,11 +5,12 @@
 #define SUBGAME_MODE_DELAYED_RETURN 46
 #define SUBGAME_MODE_RETURN_TARGET 17
 #define SUBGAME_INIT_DELAY_FRAMES 0x15
+#define DMA_FILL_32(count) (((DMA_ENABLE | DMA_32BIT | DMA_SRC_FIXED) << 16) | (count))
 
 
 void SubGameInitAndDispatch(u32 subGameMode)
 {
-    u32 value;
+    u32 fillValue;
 
     func_800B580(subGameMode);
     REG_DISPCNT = 0;
@@ -18,13 +19,15 @@ void SubGameInitAndDispatch(u32 subGameMode)
     gUnk_3002C6C = 0;
     gUnk_3002C70 = gOamBuffer;
 
-    value = 0xA0;
+    fillValue = 0xA0;
     {
-        register vu32 *dmaRegs asm("r1") = (vu32 *)REG_ADDR_DMA3SAD;
-        dmaRegs[0] = (u32)&value;
-        dmaRegs[1] = 0x07000000;
-        dmaRegs[2] = 0x85000100;
-        dmaRegs[2];
+        vu32 *dma3;
+
+        dma3 = (vu32 *)REG_ADDR_DMA3SAD;
+        dma3[0] = (u32)&fillValue;
+        dma3[1] = OAM;
+        dma3[2] = DMA_FILL_32(0x100);
+        dma3[2];
     }
 
     func_80033BC();
@@ -104,33 +107,35 @@ void SubGameInitAndDispatch(u32 subGameMode)
 
 void SubGameClearGraphicsMemory(void)
 {
-    u32 value;
+    u32 fillValue;
 
-    value = 0;
+    fillValue = 0;
     {
-        register vu32 *dmaRegs asm("r0") = (vu32 *)REG_ADDR_DMA3SAD;
-        dmaRegs[0] = (u32)&value;
-        dmaRegs[1] = 0x05000000;
-        dmaRegs[2] = 0x85000100;
-        dmaRegs[2];
+        vu32 *dma3;
 
-        value = -1;
-        dmaRegs[0] = (u32)&value;
-        dmaRegs[1] = 0x06007F80;
-        dmaRegs[2] = 0x85000010;
-        dmaRegs[2];
+        dma3 = (vu32 *)REG_ADDR_DMA3SAD;
+        dma3[0] = (u32)&fillValue;
+        dma3[1] = BG_PLTT;
+        dma3[2] = DMA_FILL_32(0x100);
+        dma3[2];
 
-        value = 0;
-        dmaRegs[0] = (u32)&value;
-        dmaRegs[1] = 0x06007FC0;
-        dmaRegs[2] = 0x85000010;
-        dmaRegs[2];
+        fillValue = -1;
+        dma3[0] = (u32)&fillValue;
+        dma3[1] = VRAM + 0x7F80;
+        dma3[2] = DMA_FILL_32(0x10);
+        dma3[2];
 
-        value = 0x03FF03FF;
-        dmaRegs[0] = (u32)&value;
-        dmaRegs[1] = 0x06008000;
-        dmaRegs[2] = 0x85001000;
-        dmaRegs[2];
+        fillValue = 0;
+        dma3[0] = (u32)&fillValue;
+        dma3[1] = VRAM + 0x7FC0;
+        dma3[2] = DMA_FILL_32(0x10);
+        dma3[2];
+
+        fillValue = 0x03FF03FF;
+        dma3[0] = (u32)&fillValue;
+        dma3[1] = VRAM + 0x8000;
+        dma3[2] = DMA_FILL_32(0x1000);
+        dma3[2];
     }
 
     REG_BLDCNT = 0;

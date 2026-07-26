@@ -7,10 +7,14 @@ Outputs, by default:
   docs/progress.html
   report.json
 
-This replacement keeps the old command-line interface but fixes inline asm
-parsing so statements/macros such as `asm(...)`, `asm volatile(...)`,
-`asm_unified(...)`, and `asm_volatile(...)` are not reported as fake C
-functions named `asm` or `volatile`.
+INLINE ASM FIX 2026-07-26:
+  Inline asm statements/macros such as `asm(...)`, `asm volatile(...)`,
+  `asm_unified(...)`, and `asm_volatile(...)` are ignored by the C function
+  parser so they do not appear as fake functions named `asm` or `volatile`.
+
+HTML CONTROL FIX 2026-07-26:
+  docs/progress.html keeps the CI-required control IDs:
+    search, module, sort, reset
 """
 
 from __future__ import annotations
@@ -18,7 +22,6 @@ from __future__ import annotations
 import argparse
 import html
 import json
-import math
 import os
 import re
 import subprocess
@@ -43,7 +46,12 @@ ASSIGN_SYMBOL_RE = re.compile(r"^\s*([A-Za-z_]\w*)\s*=\s*0x([0-9A-Fa-f]+)\s*;?\s
 MAP_SYMBOL_RE = re.compile(r"\b0x([0-9A-Fa-f]{7,8})\b\s+([A-Za-z_]\w*)\b")
 NM_SYMBOL_RE = re.compile(r"^\s*([0-9A-Fa-f]{7,8})\s+[A-Za-z]\s+([A-Za-z_]\w*)\b")
 ASM_INCLUDE_RE = re.compile(r"asm_(?:unified|volatile)\s*\(\s*[\"']\.include\s+[\"']([^\"']+)[\"']")
+
+# INLINE ASM FIX 2026-07-26:
+# Detect normal inline asm statements/macros before they can be glued to the
+# next real function signature by the simple C parser.
 INLINE_ASM_RE = re.compile(r"^\s*(?:asm|__asm|__asm__|asm_unified|asm_volatile)\b")
+
 CONTRIB_RE = re.compile(
     r"^\s+(\.\S+)\s+(0x[0-9a-fA-F]+)\s+(?:0x[0-9a-fA-F]+\s+)?(0x[0-9a-fA-F]+)\s+(\S.*\S|\S)\s*$"
 )
@@ -51,6 +59,8 @@ MAP_NESTED_SYMBOL_RE = re.compile(r"^\s+(0x[0-9a-fA-F]+)\s+([A-Za-z_.$][\w.$]*)\
 SECTION_TOTAL_RE = re.compile(r"^(\.\S+)\s+0x[0-9a-fA-F]+\s+0x[0-9a-fA-F]+\s*$")
 NAKED_DEF_RE = re.compile(r"\bNAKED\b[^;{}()]*?\b(\w+)\s*\([^;]*?\)\s*\{")
 
+# INLINE ASM FIX 2026-07-26:
+# asm/volatile are not function names. They are control-ish parser tokens here.
 CONTROL_WORDS = {
     "if",
     "for",
@@ -353,11 +363,29 @@ def collect_map_functions(root: Path) -> list[FunctionInfo]:
             ordered = sorted(set(contrib.symbols), key=lambda item: item[0])
             if not ordered:
                 if contrib.size > 0:
-                    rows.append(FunctionInfo(f"({clean_module_label(contrib.objpath)})", module, contrib.size, base_status, f"{contrib.source}:{contrib.objpath}", "symbol"))
+                    rows.append(
+                        FunctionInfo(
+                            f"({clean_module_label(contrib.objpath)})",
+                            module,
+                            contrib.size,
+                            base_status,
+                            f"{contrib.source}:{contrib.objpath}",
+                            "symbol",
+                        )
+                    )
                 continue
             end_addr = contrib.addr + contrib.size
             if ordered[0][0] > contrib.addr:
-                rows.append(FunctionInfo("(unnamed)", module, ordered[0][0] - contrib.addr, base_status, f"{contrib.source}:{contrib.objpath}", "symbol"))
+                rows.append(
+                    FunctionInfo(
+                        "(unnamed)",
+                        module,
+                        ordered[0][0] - contrib.addr,
+                        base_status,
+                        f"{contrib.source}:{contrib.objpath}",
+                        "symbol",
+                    )
+                )
             for index, (addr, name) in enumerate(ordered):
                 next_addr = ordered[index + 1][0] if index + 1 < len(ordered) else end_addr
                 size = next_addr - addr
@@ -368,6 +396,16 @@ def collect_map_functions(root: Path) -> list[FunctionInfo]:
         if rows:
             return rows
     return []
+
+
+def map_object_module(line: str) -> str | None:
+    for token in reversed(line.replace("(", " (").replace(")", ") ").split()):
+        if ".o" not in token:
+            continue
+        cleaned = token.strip()
+        if cleaned.endswith(".o") or ".o)" in cleaned:
+            return module_from_object_path(cleaned)
+    return None
 
 
 def collect_symbol_info(root: Path) -> dict[str, SymbolInfo]:
@@ -404,16 +442,6 @@ def collect_symbol_info(root: Path) -> dict[str, SymbolInfo]:
     return out
 
 
-def map_object_module(line: str) -> str | None:
-    for token in reversed(line.replace("(", " (").replace(")", ") ").split()):
-        if ".o" not in token:
-            continue
-        cleaned = token.strip()
-        if cleaned.endswith(".o") or ".o)" in cleaned:
-            return module_from_object_path(cleaned)
-    return None
-
-
 def remove_comments(line: str, in_block: bool) -> tuple[str, bool]:
     out: list[str] = []
     i = 0
@@ -437,6 +465,7 @@ def remove_comments(line: str, in_block: bool) -> tuple[str, bool]:
 
 
 def strip_string_literals(text: str) -> str:
+    """INLINE ASM FIX 2026-07-26: remove strings before signature regex."""
     out: list[str] = []
     i = 0
     quote: str | None = None
@@ -541,15 +570,19 @@ def collect_macro_generated_function_names(root: Path) -> set[str]:
 
 
 def find_c_function_name(signature: str) -> str | None:
+    """INLINE ASM FIX 2026-07-26: choose the last real function-looking token."""
     signature = re.sub(r"\s+", " ", signature.strip())
     if ";" in signature:
         return None
+
     cleaned = strip_string_literals(signature)
+
     matches = list(re.finditer(r"([A-Za-z_]\w*)\s*\([^;{}]*\)\s*\{", cleaned))
     for match in reversed(matches):
         name = match.group(1)
         if name not in CONTROL_WORDS and is_probably_function_name(name):
             return name
+
     return None
 
 
@@ -564,22 +597,33 @@ def collect_c_functions(root: Path) -> dict[str, FunctionInfo]:
         pending_start = 0
         for lineno, raw in enumerate(read_text(path).splitlines(), start=1):
             line, in_block_comment = remove_comments(raw, in_block_comment)
+
+            # Keep the special asm include behavior: these are real unmatched asm
+            # wrappers and should still appear in progress.
             include = ASM_INCLUDE_RE.search(line)
             if include:
                 inc = include.group(1)
                 name = Path(inc).stem
                 if is_probably_function_name(name):
-                    funcs[name] = FunctionInfo(name, module_from_path(root, path), 2, STATUS_UNMATCHED, f"{rel}:{lineno}", "asm include")
+                    funcs[name] = FunctionInfo(
+                        name,
+                        module_from_path(root, path),
+                        2,
+                        STATUS_UNMATCHED,
+                        f"{rel}:{lineno}",
+                        "asm include",
+                    )
 
             stripped = line.strip()
             if not stripped:
                 continue
+
             if stripped.endswith("\\"):
                 stripped = stripped[:-1].rstrip()
 
-            # This is the important fix: normal inline asm statements and macro
-            # bodies are never C function definitions. Keeping this before the
-            # pending-signature collector prevents fake `asm`/`volatile` rows.
+            # INLINE ASM FIX 2026-07-26:
+            # Normal inline asm statements and macro body lines are never C
+            # function definitions. Skip them before pending-signature collection.
             if INLINE_ASM_RE.match(stripped):
                 pending = ""
                 continue
@@ -591,7 +635,14 @@ def collect_c_functions(root: Path) -> dict[str, FunctionInfo]:
             if "{" in pending:
                 name = find_c_function_name(pending)
                 if name:
-                    funcs[name] = FunctionInfo(name, module_from_path(root, path), max(2, len(pending) // 4), STATUS_MATCHED, f"{rel}:{pending_start}", "source estimate")
+                    funcs[name] = FunctionInfo(
+                        name,
+                        module_from_path(root, path),
+                        max(2, len(pending) // 4),
+                        STATUS_MATCHED,
+                        f"{rel}:{pending_start}",
+                        "source estimate",
+                    )
                 pending = ""
             elif ";" in pending or len(pending) > 1000:
                 pending = ""
@@ -626,20 +677,19 @@ def merge_functions(root: Path) -> list[FunctionInfo]:
         sym = symbol_infos.get(name)
         base = c_info or asm_info
         if base is None:
-            base = FunctionInfo(name, sym.module if sym else "unknown", 2, STATUS_UNMATCHED, sym.source if sym else "symbols", "source estimate")
+            base = FunctionInfo(
+                name,
+                sym.module if sym else "unknown",
+                2,
+                STATUS_UNMATCHED,
+                sym.source if sym else "symbols",
+                "source estimate",
+            )
         size = sym.size if sym else max(c_info.size if c_info else 0, asm_info.size if asm_info else 0, 2)
         size_source = "symbol" if sym else base.size_source
         status = STATUS_MATCHED if c_info and c_info.status == STATUS_MATCHED else base.status
         rows.append(FunctionInfo(name, base.module, size, status, base.source, size_source))
     return rows
-
-
-def visual_weight(size: int) -> float:
-    return max(1.0, float(size))
-
-
-def module_visual_weight(rows: list[FunctionInfo]) -> float:
-    return max(28.0, sum(visual_weight(row.size) for row in rows))
 
 
 def progress_bar(label: str, done: int, total: int, suffix: str = "") -> str:
@@ -654,7 +704,10 @@ def summarize(rows: list[FunctionInfo]) -> tuple[str, str]:
     matched_functions = sum(1 for row in rows if row.matched)
     total_size = sum(row.size for row in rows)
     matched_size = sum(row.size for row in rows if row.matched)
-    return progress_bar("Functions", matched_functions, total_functions), progress_bar("Code size", matched_size, total_size, " bytes")
+    return (
+        progress_bar("Functions", matched_functions, total_functions),
+        progress_bar("Code size", matched_size, total_size, " bytes"),
+    )
 
 
 def stats(rows: list[FunctionInfo]) -> dict[str, int | float | str]:
@@ -705,20 +758,190 @@ def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
 
 
 def write_html(rows: list[FunctionInfo], html_path: Path) -> Path:
+    """HTML CONTROL FIX 2026-07-26: keep search/module/sort/reset IDs."""
     html_path.parent.mkdir(parents=True, exist_ok=True)
     info = stats(rows)
-    rows_json = json.dumps([
-        {"module": r.module, "name": r.name, "size": r.size, "status": r.status, "source": r.source}
-        for r in rows
-    ]).replace("</", "<\\/")
+
+    modules = sorted({row.module for row in rows})
+    rows_json = json.dumps(
+        [
+            {
+                "module": row.module,
+                "name": row.name,
+                "size": row.size,
+                "status": row.status,
+                "source": row.source,
+            }
+            for row in rows
+        ]
+    ).replace("</", "<\\/")
+
+    module_options = "\n".join(
+        f'<option value="{html.escape(module)}">{html.escape(module)}</option>'
+        for module in modules
+    )
+
     html_text = f'''<!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Wario Land 4 Progress</title>
-<style>body{{background:#020617;color:#e5e7eb;font-family:system-ui,sans-serif;margin:24px}}table{{border-collapse:collapse;width:100%}}td,th{{border-bottom:1px solid #1e293b;padding:6px 8px;text-align:left}}.matched{{color:#22c55e}}.unmatched{{color:#94a3b8}}</style></head>
-<body><h1>Wario Land 4 Progress</h1><p>Functions: {info['matched_functions']:,} / {info['total_functions']:,}. Code size: {info['matched_size']:,} / {info['total_size']:,} bytes.</p>
-<input id="q" placeholder="Search" style="width:100%;padding:10px;margin:12px 0;background:#0f172a;color:#e5e7eb;border:1px solid #334155">
-<table><thead><tr><th>Module</th><th>Function</th><th>Size</th><th>Status</th><th>Source</th></tr></thead><tbody id="body"></tbody></table>
-<script>const rows={rows_json};const body=document.getElementById('body');const q=document.getElementById('q');function esc(s){{return String(s).replace(/[&<>\"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));}}function draw(){{const needle=q.value.toLowerCase();body.innerHTML=rows.filter(r=>!needle||r.name.toLowerCase().includes(needle)||r.module.toLowerCase().includes(needle)).map(r=>`<tr><td>${{esc(r.module)}}</td><td>${{esc(r.name)}}</td><td>${{r.size}}</td><td class="${{r.status==='matched'?'matched':'unmatched'}}">${{esc(r.status)}}</td><td>${{esc(r.source)}}</td></tr>`).join('');}}q.oninput=draw;draw();</script></body></html>'''
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wario Land 4 Progress</title>
+<style>
+body {{
+  background:#020617;
+  color:#e5e7eb;
+  font-family:system-ui,sans-serif;
+  margin:24px;
+}}
+.controls {{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:10px;
+  margin:12px 0 18px;
+}}
+input, select, button {{
+  padding:10px;
+  background:#0f172a;
+  color:#e5e7eb;
+  border:1px solid #334155;
+  border-radius:8px;
+}}
+button {{
+  cursor:pointer;
+}}
+table {{
+  border-collapse:collapse;
+  width:100%;
+}}
+td, th {{
+  border-bottom:1px solid #1e293b;
+  padding:6px 8px;
+  text-align:left;
+}}
+th {{
+  color:#cbd5e1;
+}}
+.matched {{
+  color:#22c55e;
+}}
+.unmatched {{
+  color:#94a3b8;
+}}
+.summary {{
+  color:#cbd5e1;
+}}
+</style>
+</head>
+<body>
+<h1>Wario Land 4 Progress</h1>
+<p class="summary">
+Functions: {info['matched_functions']:,} / {info['total_functions']:,}.
+Code size: {info['matched_size']:,} / {info['total_size']:,} bytes.
+</p>
+
+<!-- HTML CONTROL FIX 2026-07-26: CI expects these exact IDs. -->
+<div class="controls">
+  <input id="search" placeholder="Search function, module, or source">
+  <select id="module">
+    <option value="">All modules</option>
+    {module_options}
+  </select>
+  <select id="sort">
+    <option value="module">Sort by module</option>
+    <option value="name">Sort by function</option>
+    <option value="size-desc">Sort by size desc</option>
+    <option value="size-asc">Sort by size asc</option>
+    <option value="status">Sort by status</option>
+  </select>
+  <button id="reset" type="button">Reset</button>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Module</th>
+  <th>Function</th>
+  <th>Size</th>
+  <th>Status</th>
+  <th>Source</th>
+</tr>
+</thead>
+<tbody id="body"></tbody>
+</table>
+
+<script>
+const rows = {rows_json};
+const body = document.getElementById('body');
+const search = document.getElementById('search');
+const moduleFilter = document.getElementById('module');
+const sort = document.getElementById('sort');
+const reset = document.getElementById('reset');
+
+function esc(s) {{
+  return String(s).replace(/[&<>"]/g, c => ({{
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;'
+  }}[c]));
+}}
+
+function compareRows(a, b) {{
+  const mode = sort.value;
+  if (mode === 'name') {{
+    return a.name.localeCompare(b.name) || a.module.localeCompare(b.module);
+  }}
+  if (mode === 'size-desc') {{
+    return b.size - a.size || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
+  }}
+  if (mode === 'size-asc') {{
+    return a.size - b.size || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
+  }}
+  if (mode === 'status') {{
+    return a.status.localeCompare(b.status) || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
+  }}
+  return a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
+}}
+
+function draw() {{
+  const needle = search.value.toLowerCase();
+  const selectedModule = moduleFilter.value;
+
+  const filtered = rows
+    .filter(r => !selectedModule || r.module === selectedModule)
+    .filter(r => !needle ||
+      r.name.toLowerCase().includes(needle) ||
+      r.module.toLowerCase().includes(needle) ||
+      r.source.toLowerCase().includes(needle))
+    .sort(compareRows);
+
+  body.innerHTML = filtered.map(r => `
+    <tr>
+      <td>${{esc(r.module)}}</td>
+      <td>${{esc(r.name)}}</td>
+      <td>${{r.size}}</td>
+      <td class="${{r.status === 'matched' ? 'matched' : 'unmatched'}}">${{esc(r.status)}}</td>
+      <td>${{esc(r.source)}}</td>
+    </tr>
+  `).join('');
+}}
+
+search.addEventListener('input', draw);
+moduleFilter.addEventListener('change', draw);
+sort.addEventListener('change', draw);
+reset.addEventListener('click', () => {{
+  search.value = '';
+  moduleFilter.value = '';
+  sort.value = 'module';
+  draw();
+}});
+
+draw();
+</script>
+</body>
+</html>
+'''
     html_path.write_text(html_text, encoding="utf-8")
     return html_path
 
@@ -750,6 +973,7 @@ def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path
         "complete_units": 0,
     }
     report_units: list[dict[str, object]] = []
+
     for module_name in unit_order:
         module_rows = grouped[module_name]
         function_rows = [row for row in module_rows if is_real_function(row)]
@@ -758,6 +982,7 @@ def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path
         total_functions = len(function_rows)
         matched_functions = sum(1 for row in function_rows if row.matched)
         complete_unit = int(total_code == matched_code)
+
         unit_measures = {
             "total_code": total_code,
             "matched_code": matched_code,
@@ -774,15 +999,23 @@ def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path
             "fuzzy_match_percent": percent(matched_code, total_code),
             "complete_data_percent": 0.0,
         }
-        report_units.append({
-            "name": module_name,
-            "measures": unit_measures,
-            "sections": [],
-            "functions": [
-                {"name": row.name, "size": max(0, row.size), "fuzzy_match_percent": 100.0 if row.matched else 0.0}
-                for row in function_rows
-            ],
-        })
+
+        report_units.append(
+            {
+                "name": module_name,
+                "measures": unit_measures,
+                "sections": [],
+                "functions": [
+                    {
+                        "name": row.name,
+                        "size": max(0, row.size),
+                        "fuzzy_match_percent": 100.0 if row.matched else 0.0,
+                    }
+                    for row in function_rows
+                ],
+            }
+        )
+
         report_measures["total_code"] += total_code
         report_measures["matched_code"] += matched_code
         report_measures["complete_code"] += matched_code
@@ -791,14 +1024,26 @@ def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path
         report_measures["total_units"] += 1
         report_measures["complete_units"] += complete_unit
 
-    report_measures.update({
-        "matched_code_percent": percent(int(report_measures["matched_code"]), int(report_measures["total_code"])),
-        "complete_code_percent": percent(int(report_measures["complete_code"]), int(report_measures["total_code"])),
-        "matched_functions_percent": percent(int(report_measures["matched_functions"]), int(report_measures["total_functions"])),
-        "fuzzy_match_percent": percent(int(report_measures["matched_code"]), int(report_measures["total_code"])),
-        "complete_data_percent": 0.0,
-    })
-    report = {"measures": report_measures, "units": report_units, "version": 2, "categories": []}
+    report_measures.update(
+        {
+            "matched_code_percent": percent(int(report_measures["matched_code"]), int(report_measures["total_code"])),
+            "complete_code_percent": percent(int(report_measures["complete_code"]), int(report_measures["total_code"])),
+            "matched_functions_percent": percent(
+                int(report_measures["matched_functions"]),
+                int(report_measures["total_functions"]),
+            ),
+            "fuzzy_match_percent": percent(int(report_measures["matched_code"]), int(report_measures["total_code"])),
+            "complete_data_percent": 0.0,
+        }
+    )
+
+    report = {
+        "measures": report_measures,
+        "units": report_units,
+        "version": 2,
+        "categories": [],
+    }
+
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report_path
@@ -808,16 +1053,24 @@ def infer_pages_url(root: Path, html_rel_path: str) -> str:
     repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
     if not repo:
         try:
-            remote = subprocess.check_output(["git", "config", "--get", "remote.origin.url"], cwd=root, text=True, stderr=subprocess.DEVNULL).strip()
+            remote = subprocess.check_output(
+                ["git", "config", "--get", "remote.origin.url"],
+                cwd=root,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
         except Exception:
             return html_rel_path
+
         remote = remote.removesuffix(".git")
         if remote.startswith("git@github.com:"):
             repo = remote.removeprefix("git@github.com:")
         elif "github.com/" in remote:
             repo = remote.split("github.com/", 1)[1]
+
     if "/" not in repo:
         return html_rel_path
+
     owner, name = repo.split("/", 1)
     html_name = Path(html_rel_path).name
     if name.lower() == f"{owner.lower()}.github.io":
@@ -833,14 +1086,17 @@ def update_readme(readme_path: Path, svg_rel_path: str, html_rel_path: str) -> P
 ![Decompilation progress]({svg_rel_path})
 [Open the interactive progress treemap]({html_url}).
 {README_END}"""
+
     text = readme_path.read_text(encoding="utf-8", errors="ignore") if readme_path.exists() else "# Wario Land 4\n"
     pattern = re.compile(re.escape(README_START) + r".*?" + re.escape(README_END), re.S)
+
     if pattern.search(text):
         text = pattern.sub(block, text)
     elif re.search(r"^##\s+Dependencies\s*$", text, flags=re.M):
         text = re.sub(r"(?=^##\s+Dependencies\s*$)", block + "\n\n", text, count=1, flags=re.M)
     else:
         text = text.rstrip() + "\n\n" + block
+
     readme_path.write_text(text.rstrip() + "\n", encoding="utf-8")
     return readme_path
 
@@ -860,6 +1116,7 @@ def main() -> int:
 
     root = Path(args.root).resolve()
     rows = merge_functions(root)
+
     written_svg = write_svg(rows, root / args.svg)
     written_html = None if args.no_html else write_html(rows, root / args.html)
     written_report = None if args.no_report else write_decomp_dev_report(rows, root / args.report)
@@ -867,6 +1124,7 @@ def main() -> int:
 
     info = stats(rows)
     function_line, size_line = summarize(rows)
+
     print(function_line)
     print(size_line)
     print(f'Byte sizes: {info["byte_label"]} ({fmt_int(info["exact_sizes"])} / {fmt_int(info["total_functions"])} exact)')
@@ -878,6 +1136,7 @@ def main() -> int:
         print(f"Report: {written_report.relative_to(root)}")
     if written_readme is not None:
         print(f"README: {written_readme.relative_to(root)}")
+
     return 0
 
 
