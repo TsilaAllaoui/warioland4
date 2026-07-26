@@ -1,7 +1,7 @@
 #include "cutscenes/cutscene_scroll_anim.h"
 #include "global_data.h"
 
-s32 func_800F7BC(s32 timer, u8 **ppData)
+s32 SelectCutsceneScrollFrameSequence01(s32 timer, u8 **ppData)
 {
     if (timer <= 7) {
         *ppData = &sUnk_82D270C;
@@ -75,7 +75,7 @@ s32 func_800F7BC(s32 timer, u8 **ppData)
     return timer > 0x12A;
 }
 
-s32 func_800F8A4(s32 timer, u8 **ppData)
+s32 SelectCutsceneScrollFrameSequence02(s32 timer, u8 **ppData)
 {
     if (timer <= 7) {
         *ppData = &sUnk_82D2976;
@@ -125,7 +125,7 @@ s32 func_800F8A4(s32 timer, u8 **ppData)
     return timer > 0xFC;
 }
 
-s32 func_800F940(s32 tableIndex, s32 step, s16 *pX, s16 *pY)
+s32 CalculateCutsceneScrollPath01(s32 tableIndex, s32 step, s16 *pX, s16 *pY)
 {
     u16 *table1;
     u16 *table2;
@@ -145,7 +145,7 @@ s32 func_800F940(s32 tableIndex, s32 step, s16 *pX, s16 *pY)
     return step > 178;
 }
 
-s32 func_800F990(s32 tableIndex, s32 step, s16 *pX, s16 *pY)
+s32 CalculateCutsceneScrollPath02(s32 tableIndex, s32 step, s16 *pX, s16 *pY)
 {
     u16 *table1;
     u16 *table2;

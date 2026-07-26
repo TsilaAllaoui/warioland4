@@ -3,7 +3,9 @@
 
 s32 SelectEndingCutsceneOamSequence00(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame000;
@@ -19,7 +21,9 @@ s32 SelectEndingCutsceneOamSequence00(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence01(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame003;
@@ -35,7 +39,6 @@ s32 SelectEndingCutsceneOamSequence01(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence02(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame022;
 
     return timer > 98;
@@ -43,7 +46,9 @@ s32 SelectEndingCutsceneOamSequence02(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence03(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame021;
@@ -59,7 +64,9 @@ s32 SelectEndingCutsceneOamSequence03(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence04(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 20;
+    s32 frame;
+
+    frame = timer % 20;
 
     if (frame <= 9)
         *oamFrame = sEndingCutsceneOamFrame006;
@@ -71,7 +78,9 @@ s32 SelectEndingCutsceneOamSequence04(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence05(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 184;
+    s32 frame;
+
+    frame = timer % 184;
 
     if (frame <= 99)
         *oamFrame = sEndingCutsceneOamFrame010;
@@ -97,7 +106,6 @@ s32 SelectEndingCutsceneOamSequence05(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence06(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame011;
 
     return timer > 98;
@@ -105,7 +113,6 @@ s32 SelectEndingCutsceneOamSequence06(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence07(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame012;
 
     return timer > 98;
@@ -113,7 +120,6 @@ s32 SelectEndingCutsceneOamSequence07(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence08(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 7)
         *oamFrame = sEndingCutsceneOamFrame013;
     else if (timer <= 15)
@@ -140,7 +146,9 @@ s32 SelectEndingCutsceneOamSequence08(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence09(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 16;
+    s32 frame;
+
+    frame = timer % 16;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame019;
@@ -152,7 +160,6 @@ s32 SelectEndingCutsceneOamSequence09(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence10(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame016;
 
     return timer > 2;
@@ -160,7 +167,6 @@ s32 SelectEndingCutsceneOamSequence10(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence11(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 7)
         *oamFrame = sEndingCutsceneOamFrame024;
     else if (timer <= 15)
@@ -177,7 +183,9 @@ s32 SelectEndingCutsceneOamSequence11(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence12(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 24;
+    s32 frame;
+
+    frame = timer % 24;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame028;
@@ -191,7 +199,9 @@ s32 SelectEndingCutsceneOamSequence12(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence13(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 48;
+    s32 frame;
+
+    frame = timer % 48;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame028;
@@ -211,7 +221,6 @@ s32 SelectEndingCutsceneOamSequence13(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence14(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame024;
 
     return timer > 2;
@@ -219,7 +228,6 @@ s32 SelectEndingCutsceneOamSequence14(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence15(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame035;
 
     return timer > 2;
@@ -227,7 +235,6 @@ s32 SelectEndingCutsceneOamSequence15(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence16(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 44)
         *oamFrame = sEndingCutsceneOamFrame024;
     else if (timer <= 106)
@@ -240,7 +247,9 @@ s32 SelectEndingCutsceneOamSequence16(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence17(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 24;
+    s32 frame;
+
+    frame = timer % 24;
 
     if (frame <= 3)
         *oamFrame = sEndingCutsceneOamFrame033;
@@ -260,7 +269,9 @@ s32 SelectEndingCutsceneOamSequence17(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence18(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 30;
+    s32 frame;
+
+    frame = timer % 30;
 
     if (frame <= 5)
         *oamFrame = sEndingCutsceneOamFrame036;
@@ -278,7 +289,9 @@ s32 SelectEndingCutsceneOamSequence18(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence19(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 30;
+    s32 frame;
+
+    frame = timer % 30;
 
     if (frame <= 5)
         *oamFrame = sEndingCutsceneOamFrame040;
@@ -296,7 +309,9 @@ s32 SelectEndingCutsceneOamSequence19(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence20(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 30;
+    s32 frame;
+
+    frame = timer % 30;
 
     if (frame <= 5)
         *oamFrame = sEndingCutsceneOamFrame044;
@@ -314,7 +329,6 @@ s32 SelectEndingCutsceneOamSequence20(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence21(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame048;
 
     return timer == 3;
@@ -322,7 +336,6 @@ s32 SelectEndingCutsceneOamSequence21(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence22(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame049;
 
     return timer == 3;
@@ -330,7 +343,6 @@ s32 SelectEndingCutsceneOamSequence22(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence23(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame050;
 
     return timer == 3;
@@ -338,7 +350,6 @@ s32 SelectEndingCutsceneOamSequence23(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence24(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame051;
 
     return timer == 3;
@@ -360,7 +371,9 @@ s32 SelectEndingCutsceneOamSequence25Frame053(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence26(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 3)
         *oamFrame = sEndingCutsceneOamFrame054;
@@ -384,7 +397,9 @@ s32 SelectEndingCutsceneOamSequence26(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence27(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 72;
+    s32 frame;
+
+    frame = timer % 72;
 
     if (frame <= 11)
         *oamFrame = sEndingCutsceneOamFrame062;
@@ -404,7 +419,6 @@ s32 SelectEndingCutsceneOamSequence27(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence28(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 3)
         *oamFrame = sEndingCutsceneOamFrame068;
     else if (timer <= 7)
@@ -429,7 +443,6 @@ s32 SelectEndingCutsceneOamSequence28(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence29(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -517,7 +530,6 @@ s32 SelectEndingCutsceneOamSequence29(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence30(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -605,7 +617,6 @@ s32 SelectEndingCutsceneOamSequence30(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence31(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -703,7 +714,6 @@ s32 SelectEndingCutsceneOamSequence31(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence32(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -811,7 +821,9 @@ s32 SelectEndingCutsceneOamSequence32(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence33(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 24;
+    s32 frame;
+
+    frame = timer % 24;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame106;
@@ -825,7 +837,9 @@ s32 SelectEndingCutsceneOamSequence33(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence34(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 24;
+    s32 frame;
+
+    frame = timer % 24;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame107;
@@ -839,7 +853,9 @@ s32 SelectEndingCutsceneOamSequence34(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence35(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 16;
+    s32 frame;
+
+    frame = timer % 16;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame108;
@@ -851,7 +867,9 @@ s32 SelectEndingCutsceneOamSequence35(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence36(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 47;
+    s32 frame;
+
+    frame = timer % 47;
 
     if (frame <= 14)
         *oamFrame = sEndingCutsceneOamFrame110;
@@ -869,7 +887,9 @@ s32 SelectEndingCutsceneOamSequence36(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence37(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame119;
@@ -885,7 +905,9 @@ s32 SelectEndingCutsceneOamSequence37(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence38(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame122;
@@ -901,7 +923,9 @@ s32 SelectEndingCutsceneOamSequence38(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence39(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame125;
@@ -917,7 +941,9 @@ s32 SelectEndingCutsceneOamSequence39(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence40(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame128;
@@ -1026,7 +1052,9 @@ s32 SelectEndingCutsceneOamSequence41Variant04(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence42(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame == 0 || frame == 15)
         m4aSongNumStartOrChange(1);
@@ -1053,7 +1081,9 @@ s32 SelectEndingCutsceneOamSequence42(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence43(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 24;
+    s32 frame;
+
+    frame = timer % 24;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame151;
@@ -1067,7 +1097,9 @@ s32 SelectEndingCutsceneOamSequence43(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence44(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame == 0 || frame == 15)
         m4aSongNumStartOrChange(1);
@@ -1094,7 +1126,9 @@ s32 SelectEndingCutsceneOamSequence44(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence45(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 48;
+    s32 frame;
+
+    frame = timer % 48;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame151;
@@ -1114,7 +1148,9 @@ s32 SelectEndingCutsceneOamSequence45(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence46(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame == 0 || frame == 15)
         m4aSongNumStartOrChange(1);
@@ -1141,7 +1177,9 @@ s32 SelectEndingCutsceneOamSequence46(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence47(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 32;
+    s32 frame;
+
+    frame = timer % 32;
 
     if (frame <= 3)
         *oamFrame = sEndingCutsceneOamFrame173;
@@ -1165,7 +1203,9 @@ s32 SelectEndingCutsceneOamSequence47(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence48(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 48;
+    s32 frame;
+
+    frame = timer % 48;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame181;
@@ -1185,7 +1225,9 @@ s32 SelectEndingCutsceneOamSequence48(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence49(s32 timer, u16 **oamFrame)
 {
-    s32 frame = timer % 48;
+    s32 frame;
+
+    frame = timer % 48;
 
     if (frame <= 7)
         *oamFrame = sEndingCutsceneOamFrame184;
@@ -1205,7 +1247,9 @@ s32 SelectEndingCutsceneOamSequence49(s32 timer, u16 **oamFrame)
 
 s32 ReadEndingCutscenePath00(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = 0;
+    s32 frame;
+
+    frame = 0;
 
     if (timer >= 0) {
         frame = 269;
@@ -1223,7 +1267,9 @@ s32 ReadEndingCutscenePath00(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath01(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = 0;
+    s32 frame;
+
+    frame = 0;
 
     if (timer >= 0) {
         frame = 269;
@@ -1241,7 +1287,9 @@ s32 ReadEndingCutscenePath01(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath02(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = 0;
+    s32 frame;
+
+    frame = 0;
 
     if (timer >= 0) {
         frame = 269;
@@ -1259,7 +1307,9 @@ s32 ReadEndingCutscenePath02(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath03(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = 0;
+    s32 frame;
+
+    frame = 0;
 
     if (timer >= 0) {
         frame = 269;
@@ -1277,7 +1327,9 @@ s32 ReadEndingCutscenePath03(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath04(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1292,7 +1344,9 @@ s32 ReadEndingCutscenePath04(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath05(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1307,7 +1361,9 @@ s32 ReadEndingCutscenePath05(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath06(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1322,7 +1378,9 @@ s32 ReadEndingCutscenePath06(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath07(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1337,7 +1395,9 @@ s32 ReadEndingCutscenePath07(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath08(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1352,7 +1412,9 @@ s32 ReadEndingCutscenePath08(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath09(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1367,7 +1429,9 @@ s32 ReadEndingCutscenePath09(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath10(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1382,7 +1446,9 @@ s32 ReadEndingCutscenePath10(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath11(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 279)
         frame = 279;
@@ -1397,7 +1463,9 @@ s32 ReadEndingCutscenePath11(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath12(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1412,7 +1480,9 @@ s32 ReadEndingCutscenePath12(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath13(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1427,7 +1497,9 @@ s32 ReadEndingCutscenePath13(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath14(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1442,7 +1514,9 @@ s32 ReadEndingCutscenePath14(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath15(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1457,7 +1531,9 @@ s32 ReadEndingCutscenePath15(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath16(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1472,7 +1548,9 @@ s32 ReadEndingCutscenePath16(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath17(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1487,7 +1565,9 @@ s32 ReadEndingCutscenePath17(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath18(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1502,7 +1582,9 @@ s32 ReadEndingCutscenePath18(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath19(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1517,7 +1599,9 @@ s32 ReadEndingCutscenePath19(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath20(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1532,7 +1616,9 @@ s32 ReadEndingCutscenePath20(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath21(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1547,7 +1633,9 @@ s32 ReadEndingCutscenePath21(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath22(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1562,7 +1650,9 @@ s32 ReadEndingCutscenePath22(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath23(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1577,7 +1667,9 @@ s32 ReadEndingCutscenePath23(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath24(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1592,7 +1684,9 @@ s32 ReadEndingCutscenePath24(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath25(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1607,7 +1701,9 @@ s32 ReadEndingCutscenePath25(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath26(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1622,7 +1718,9 @@ s32 ReadEndingCutscenePath26(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath27(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1637,7 +1735,9 @@ s32 ReadEndingCutscenePath27(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath28(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1652,7 +1752,9 @@ s32 ReadEndingCutscenePath28(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath29(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1667,7 +1769,9 @@ s32 ReadEndingCutscenePath29(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath30(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1682,7 +1786,9 @@ s32 ReadEndingCutscenePath30(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath31(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1697,7 +1803,9 @@ s32 ReadEndingCutscenePath31(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath32(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1712,7 +1820,9 @@ s32 ReadEndingCutscenePath32(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath33(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1727,7 +1837,9 @@ s32 ReadEndingCutscenePath33(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath34(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1742,7 +1854,9 @@ s32 ReadEndingCutscenePath34(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutscenePath35(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16 *oamFrameOut)
 {
-    s32 frame = timer;
+    s32 frame;
+
+    frame = timer;
 
     if ((u32)timer > 280)
         frame = 280;
@@ -1757,9 +1871,11 @@ s32 ReadEndingCutscenePath35(s32 timer, u16 *xOut, u16 *yOut, u16 *scaleOut, u16
 
 s32 ReadEndingCutsceneIndexedPathPair(s32 pathIndex, u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 0x2BA;
+    u32 maxTimer;
     u16 *xPath;
     u16 *yPath;
+
+    maxTimer = 0x2BA;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1775,7 +1891,9 @@ s32 ReadEndingCutsceneIndexedPathPair(s32 pathIndex, u32 timer, u16 *xOut, u16 *
 
 s32 ReadEndingCutscenePath36(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 0x1D3;
+    u32 maxTimer;
+
+    maxTimer = 0x1D3;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1788,7 +1906,9 @@ s32 ReadEndingCutscenePath36(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath37(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 0x1D3;
+    u32 maxTimer;
+
+    maxTimer = 0x1D3;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1801,7 +1921,9 @@ s32 ReadEndingCutscenePath37(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath38(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 0x1D3;
+    u32 maxTimer;
+
+    maxTimer = 0x1D3;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1814,7 +1936,9 @@ s32 ReadEndingCutscenePath38(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath39(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 0x1D3;
+    u32 maxTimer;
+
+    maxTimer = 0x1D3;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1827,7 +1951,9 @@ s32 ReadEndingCutscenePath39(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath40(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 252;
+    u32 maxTimer;
+
+    maxTimer = 252;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1840,7 +1966,9 @@ s32 ReadEndingCutscenePath40(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath41(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 268;
+    u32 maxTimer;
+
+    maxTimer = 268;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1853,7 +1981,9 @@ s32 ReadEndingCutscenePath41(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath42(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 260;
+    u32 maxTimer;
+
+    maxTimer = 260;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1866,7 +1996,9 @@ s32 ReadEndingCutscenePath42(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath43(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 0x115;
+    u32 maxTimer;
+
+    maxTimer = 0x115;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1879,7 +2011,9 @@ s32 ReadEndingCutscenePath43(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath44(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 256;
+    u32 maxTimer;
+
+    maxTimer = 256;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1892,7 +2026,9 @@ s32 ReadEndingCutscenePath44(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath45(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 272;
+    u32 maxTimer;
+
+    maxTimer = 272;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1905,7 +2041,9 @@ s32 ReadEndingCutscenePath45(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath46(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 264;
+    u32 maxTimer;
+
+    maxTimer = 264;
 
     if (timer > maxTimer)
         timer = maxTimer;
@@ -1918,7 +2056,9 @@ s32 ReadEndingCutscenePath46(u32 timer, u16 *xOut, u16 *yOut)
 
 s32 ReadEndingCutscenePath47(u32 timer, u16 *xOut, u16 *yOut)
 {
-    u32 maxTimer = 280;
+    u32 maxTimer;
+
+    maxTimer = 280;
 
     if (timer > maxTimer)
         timer = maxTimer;

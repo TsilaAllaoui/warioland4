@@ -1,133 +1,99 @@
 #include "cutscenes/cutscene_bg_anim.h"
 
-s32 func_800C264(s32 timer, u8 **ppData)
+s32 SelectCutsceneBgAnimation72Frame(s32 timer, u8 **ppData)
 {
     s32 frame;
 
     frame = timer % 72;
-    if (frame <= 19) {
-        *ppData = &sUnk_829F590;
-        return frame == 71;
-    }
-    if (frame <= 23) {
-        *ppData = &sUnk_829F5D4;
-        return frame == 71;
-    }
-    if (frame <= 27) {
-        *ppData = &sUnk_829F63C;
-        return frame == 71;
-    }
-    if (frame <= 31) {
-        *ppData = &sUnk_829F686;
-        return frame == 71;
-    }
-    if (frame <= 37) {
-        *ppData = &sUnk_829F6B8;
-        return frame == 71;
-    }
-    if (frame <= 43) {
-        *ppData = &sUnk_829F6E4;
-        return frame == 71;
-    }
-    if (frame <= 47) {
-        *ppData = &sUnk_829F738;
-        return frame == 71;
-    }
-    if (frame <= 51) {
-        *ppData = &sUnk_829F764;
-        return frame == 71;
-    }
-    if (frame <= 55) {
-        *ppData = &sUnk_829F790;
-        return frame == 71;
-    }
-    if (frame <= 59) {
-        *ppData = &sUnk_829F7E6;
-        return frame == 71;
-    }
-    if (frame <= 63) {
-        *ppData = &sUnk_829F85A;
-        return frame == 71;
-    }
-    if (frame <= 67) {
-        *ppData = &sUnk_829F8AA;
-        return frame == 71;
-    }
 
-    *ppData = &sUnk_829F8FA;
+    if (frame <= 19)
+        *ppData = &sUnk_829F590;
+    else if (frame <= 23)
+        *ppData = &sUnk_829F5D4;
+    else if (frame <= 27)
+        *ppData = &sUnk_829F63C;
+    else if (frame <= 31)
+        *ppData = &sUnk_829F686;
+    else if (frame <= 37)
+        *ppData = &sUnk_829F6B8;
+    else if (frame <= 43)
+        *ppData = &sUnk_829F6E4;
+    else if (frame <= 47)
+        *ppData = &sUnk_829F738;
+    else if (frame <= 51)
+        *ppData = &sUnk_829F764;
+    else if (frame <= 55)
+        *ppData = &sUnk_829F790;
+    else if (frame <= 59)
+        *ppData = &sUnk_829F7E6;
+    else if (frame <= 63)
+        *ppData = &sUnk_829F85A;
+    else if (frame <= 67)
+        *ppData = &sUnk_829F8AA;
+    else
+        *ppData = &sUnk_829F8FA;
+
     return frame == 71;
 }
 
-s32 func_800C318(s32 timer, u8 **ppData)
+s32 SelectCutsceneBgAnimation28Frame(s32 timer, u8 **ppData)
 {
     s32 frame;
 
     frame = timer % 28;
+
     if (frame <= 7) {
         *ppData = &sUnk_829F4DC;
-         return frame == 27;
-    }
-    if (frame > 13) {
-        if (frame <= 21) {
-            *ppData = &sUnk_829F558;
-             return frame == 27;
+    } else {
+        if (frame > 13) {
+            if (frame <= 21) {
+                *ppData = &sUnk_829F558;
+                return frame == 27;
+            }
         }
+        *ppData = &sUnk_829F520;
     }
-    *ppData = &sUnk_829F520;
+
     return frame == 27;
 }
 
-s32 func_800C358(s32 timer, u8 **ppData)
+s32 SelectCutsceneBgAnimation36Frame(s32 timer, u8 **ppData)
 {
     s32 frame;
 
     frame = timer % 36;
-    if (frame <= 5) {
-        *ppData = &sUnk_829F4D4;
-        return frame == 35;
-    }
-    if (frame <= 11) {
-        *ppData = &sUnk_829F710;
-        return frame == 35;
-    }
-    if (frame <= 17) {
-        *ppData = &sUnk_829F718;
-        return frame == 35;
-    }
-    if (frame <= 23) {
-        *ppData = &sUnk_829F720;
-        return frame == 35;
-    }
-    if (frame <= 29) {
-        *ppData = &sUnk_829F728;
-        goto done;
-    }
-    *ppData = &sUnk_829F730;
 
-done:
+    if (frame <= 5)
+        *ppData = &sUnk_829F4D4;
+    else if (frame <= 11)
+        *ppData = &sUnk_829F710;
+    else if (frame <= 17)
+        *ppData = &sUnk_829F718;
+    else if (frame <= 23)
+        *ppData = &sUnk_829F720;
+    else if (frame <= 29)
+        *ppData = &sUnk_829F728;
+    else
+        *ppData = &sUnk_829F730;
+
     return frame == 35;
 }
 
-s32 func_800C3B8(s32 timer, u8 **ppData)
+s32 SelectCutsceneBgAnimation24Frame(s32 timer, u8 **ppData)
 {
     s32 frame;
 
     frame = timer % 24;
-    if (frame <= 5) {
-        *ppData = &sUnk_829F93E;
-        return frame == 0;
-    }
-    if (frame <= 11) {
-        *ppData = &sUnk_829F946;
-         return frame == 0;
-    }
-    if (frame <= 17) {
-        *ppData = &sUnk_829F94E;
-        goto done;
-    }
-    *ppData = &sUnk_829F956;
 
-done:
+    if (frame <= 5)
+        *ppData = &sUnk_829F93E;
+    else if (frame <= 11)
+        *ppData = &sUnk_829F946;
+    else if (frame <= 17)
+        *ppData = &sUnk_829F94E;
+    else
+        *ppData = &sUnk_829F956;
+
     return frame == 0;
 }
 

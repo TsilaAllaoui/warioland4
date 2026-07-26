@@ -38,9 +38,9 @@ extern u16 *sUnk_878E7D0[];
 extern u16 *sUnk_878E7E0[];
 extern u16 *sUnk_878E7F0[];
 
-s32 func_800F7BC(s32 timer, u8 **ppData);
-s32 func_800F8A4(s32 timer, u8 **ppData);
-s32 func_800F940(s32 tableIndex, s32 step, s16 *pX, s16 *pY);
-s32 func_800F990(s32 tableIndex, s32 step, s16 *pX, s16 *pY);
+s32 SelectCutsceneScrollFrameSequence01(s32 timer, u8 **ppData);
+s32 SelectCutsceneScrollFrameSequence02(s32 timer, u8 **ppData);
+s32 CalculateCutsceneScrollPath01(s32 tableIndex, s32 step, s16 *pX, s16 *pY);
+s32 CalculateCutsceneScrollPath02(s32 tableIndex, s32 step, s16 *pX, s16 *pY);
 
 #endif // CUTSCENE_SCROLL_ANIM_H

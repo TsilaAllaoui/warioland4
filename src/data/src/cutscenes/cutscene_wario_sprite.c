@@ -5,7 +5,6 @@
 s32 CutsceneWarioSelectEffectAAnimOam(s32 timer, u16 **outOam)
 {
     s32 frame;
-    s32 finished;
 
     frame = timer % 329;
 
@@ -47,18 +46,12 @@ s32 CutsceneWarioSelectEffectAAnimOam(s32 timer, u16 **outOam)
         *outOam = sCutsceneWarioEffectAFrame11Oam;
     }
 
-    finished = 0;
-    if (frame == 328) {
-        finished = 1;
-    }
-
-    return finished;
+    return frame == 328;
 }
 
 s32 CutsceneWarioSelectEffectBAnimOam(s32 timer, u16 **outOam)
 {
     s32 frame;
-    s32 finished;
 
     frame = timer % 24;
 
@@ -72,18 +65,12 @@ s32 CutsceneWarioSelectEffectBAnimOam(s32 timer, u16 **outOam)
         *outOam = sCutsceneWarioEffectBFrame3Oam;
     }
 
-    finished = 0;
-    if (frame == 23) {
-        finished = 1;
-    }
-
-    return finished;
+    return frame == 23;
 }
 
 s32 CutsceneWarioSelectEffectCAnimOam(s32 timer, u16 **outOam)
 {
     s32 frame;
-    s32 finished;
 
     frame = timer % 74;
 
@@ -99,18 +86,12 @@ s32 CutsceneWarioSelectEffectCAnimOam(s32 timer, u16 **outOam)
         *outOam = sCutsceneWarioEffectCFrame4Oam;
     }
 
-    finished = 0;
-    if (frame == 73) {
-        finished = 1;
-    }
-
-    return finished;
+    return frame == 73;
 }
 
 s32 CutsceneWarioSelectEffectDAnimOam(s32 timer, u16 **outOam)
 {
     s32 frame;
-    s32 finished;
 
     frame = timer % 30;
 
@@ -126,18 +107,12 @@ s32 CutsceneWarioSelectEffectDAnimOam(s32 timer, u16 **outOam)
         *outOam = sCutsceneWarioEffectDFrame4Oam;
     }
 
-    finished = 0;
-    if (frame == 29) {
-        finished = 1;
-    }
-
-    return finished;
+    return frame == 29;
 }
 
 s32 CutsceneWarioSelectEffectEAnimOam(s32 timer, u16 **outOam)
 {
     s32 frame;
-    s32 finished;
 
     frame = timer % 22;
 
@@ -153,18 +128,12 @@ s32 CutsceneWarioSelectEffectEAnimOam(s32 timer, u16 **outOam)
         *outOam = 0;
     }
 
-    finished = 0;
-    if (frame == 0) {
-        finished = 1;
-    }
-
-    return finished;
+    return frame == 0;
 }
 
 s32 CutsceneWarioSelectEffectFAnimOam(s32 timer, u16 **outOam)
 {
     s32 frame;
-    s32 finished;
 
     frame = timer % 22;
 
@@ -180,12 +149,7 @@ s32 CutsceneWarioSelectEffectFAnimOam(s32 timer, u16 **outOam)
         *outOam = 0;
     }
 
-    finished = 0;
-    if (frame == 0) {
-        finished = 1;
-    }
-
-    return finished;
+    return frame == 0;
 }
 
 void CutsceneWarioGetStaticOam(u16 **outOam)

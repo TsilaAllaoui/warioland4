@@ -33,10 +33,10 @@ extern u8 sUnk_829FA86;
 extern u8 sUnk_829FB76;
 extern u8 sUnk_829FC66;
 
-s32 func_800C264(s32 timer, u8 **ppData);
-s32 func_800C318(s32 timer, u8 **ppData);
-s32 func_800C358(s32 timer, u8 **ppData);
-s32 func_800C3B8(s32 timer, u8 **ppData);
+s32 SelectCutsceneBgAnimation72Frame(s32 timer, u8 **ppData);
+s32 SelectCutsceneBgAnimation28Frame(s32 timer, u8 **ppData);
+s32 SelectCutsceneBgAnimation36Frame(s32 timer, u8 **ppData);
+s32 SelectCutsceneBgAnimation24Frame(s32 timer, u8 **ppData);
 void CutsceneLoadBgObjPalette(u32 paletteFrame);
 
 #endif  // CUTSCENE_BG_ANIM_H

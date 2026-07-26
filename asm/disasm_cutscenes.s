@@ -5058,7 +5058,7 @@ func_8005F1C:
 	add	r1, #1
 	str	r1, [r2, #0]
 	add	r1, sp, #4
-	bl	func_800C098
+	bl	SelectCutsceneOamAnimation08
 	cmp	r0, #0
 	beq	.L_6342
 	ldrh	r0, [r4, #0]
@@ -5089,7 +5089,7 @@ func_8005F1C:
 	cmp	r0, #4
 	bls	.L_638a
 	add	r0, sp, #4
-	bl	func_800C140
+	bl	SetCutsceneOamFrame07
 	ldr	r0, [sp, #4]
 	ldr	r1, .L_63bc
 	mov	r3, #0
@@ -5109,7 +5109,7 @@ func_8005F1C:
 	beq	.L_63c4
 	add	r1, sp, #4
 	add	r0, r6, #0
-	bl	func_800C1AC
+	bl	SelectCutsceneOamAnimation09
 	b	.L_63cc
 .L_63a4:
 	.4byte	gSubGameMode
@@ -5130,7 +5130,7 @@ func_8005F1C:
 .L_63c4:
 	add	r1, sp, #4
 	add	r0, r6, #0
-	bl	func_800BF30
+	bl	SelectCutsceneOamAnimation04
 .L_63cc:
 	ldr	r0, [sp, #4]
 	add	r1, r5, #0
@@ -5150,7 +5150,7 @@ func_8005F1C:
 	beq	.L_6400
 	add	r1, sp, #4
 	add	r0, r6, #0
-	bl	func_800C1E8
+	bl	SelectCutsceneOamAnimation10
 	b	.L_6408
 	.align	2, 0
 .L_63f8:
@@ -5160,7 +5160,7 @@ func_8005F1C:
 .L_6400:
 	add	r1, sp, #4
 	add	r0, r6, #0
-	bl	func_800BF6C
+	bl	SelectCutsceneOamAnimation05
 .L_6408:
 	ldr	r0, [sp, #4]
 	add	r1, r5, #0
@@ -5244,7 +5244,7 @@ func_8006478:
 	bne	.L_64d6
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800C020
+	bl	SelectCutsceneBlinkOamAnimation01
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #84	@ 0x54
@@ -5254,7 +5254,7 @@ func_8006478:
 	add	r6, r0, #0
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800C05C
+	bl	SelectCutsceneBlinkOamAnimation02
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #38	@ 0x26
@@ -5269,7 +5269,7 @@ func_8006478:
 	cmp	r4, #6
 	ble	.L_64ee
 	mov	r0, sp
-	bl	func_800C134
+	bl	SetCutsceneOamFrame06
 	ldr	r0, [sp, #0]
 	add	r1, r6, #0
 	mov	r2, #96	@ 0x60
@@ -5294,7 +5294,7 @@ func_8006478:
 	add	r5, r4, #0
 .L_650c:
 	mov	r0, sp
-	bl	func_800C158
+	bl	SetCutsceneOamFrame09
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #64	@ 0x40
@@ -5312,7 +5312,7 @@ func_8006478:
 	add	r5, r4, #0
 .L_6532:
 	mov	r0, sp
-	bl	func_800C164
+	bl	SetCutsceneOamFrame10
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #64	@ 0x40
@@ -5329,7 +5329,7 @@ func_8006478:
 	add	r5, r4, #0
 .L_6556:
 	mov	r0, sp
-	bl	func_800C170
+	bl	SetCutsceneOamFrame11
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #64	@ 0x40
@@ -5347,7 +5347,7 @@ func_8006478:
 	add	r5, r4, #0
 .L_657c:
 	mov	r0, sp
-	bl	func_800C17C
+	bl	SetCutsceneOamFrame12
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #64	@ 0x40
@@ -5376,7 +5376,7 @@ func_8006478:
 	sub	r5, r1, r0
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800BEC4
+	bl	SelectCutsceneOamAnimation03
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	add	r2, #64	@ 0x40
@@ -5387,7 +5387,7 @@ func_8006478:
 .L_65d2:
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800BFF0
+	bl	SelectCutsceneOamAnimation07
 	ldr	r0, [sp, #0]
 	add	r1, r6, #0
 	add	r2, r5, #0
@@ -5396,7 +5396,7 @@ func_8006478:
 	add	r6, r0, #0
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800BE94
+	bl	SelectCutsceneOamAnimation02
 	ldr	r0, [sp, #0]
 	add	r1, r6, #0
 	add	r2, r5, #0
@@ -5404,7 +5404,7 @@ func_8006478:
 	bl	func_800B5E4
 	add	r6, r0, #0
 	mov	r0, sp
-	bl	func_800C14C
+	bl	SetCutsceneOamFrame08
 	ldr	r0, [sp, #0]
 	add	r2, r5, #0
 	sub	r2, #19
@@ -5423,7 +5423,7 @@ func_8006478:
 	add	r6, r0, #0
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800BE64
+	bl	SelectCutsceneOamAnimation01
 	ldr	r0, [sp, #0]
 	add	r1, r6, #0
 	add	r2, r5, #0
@@ -5917,7 +5917,7 @@ func_80067BC:
 .L_6a02:
 	add	r0, r5, #0
 	mov	r1, sp
-	bl	func_800C3B8
+	bl	SelectCutsceneBgAnimation24Frame
 	cmp	r0, #0
 	beq	.L_6a24
 	ldr	r0, .L_6abc
@@ -5960,7 +5960,7 @@ func_80067BC:
 	bge	.L_6a02
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800C358
+	bl	SelectCutsceneBgAnimation36Frame
 	ldr	r0, [sp, #0]
 	ldr	r1, .L_6acc
 	mov	r3, #0
@@ -6021,7 +6021,7 @@ func_80067BC:
 .L_6ad4:
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800C318
+	bl	SelectCutsceneBgAnimation28Frame
 	ldr	r0, [sp, #0]
 	ldr	r1, .L_6b6c
 	mov	r7, #0
@@ -6133,7 +6133,7 @@ func_80067BC:
 	add	r1, #1
 	str	r1, [r5, #0]
 	mov	r1, sp
-	bl	func_800C264
+	bl	SelectCutsceneBgAnimation72Frame
 	add	r4, r0, #0
 	ldr	r0, [sp, #0]
 	ldr	r1, .L_6bf0
@@ -6172,7 +6172,7 @@ func_80067BC:
 	ldr	r5, .L_6c38
 	ldr	r0, [r5, #0]
 	mov	r1, sp
-	bl	func_800C318
+	bl	SelectCutsceneBgAnimation28Frame
 	ldr	r0, [sp, #0]
 	ldr	r1, .L_6c3c
 	mov	r7, #0
@@ -6255,7 +6255,7 @@ func_80067BC:
 .L_6ca0:
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800C3B8
+	bl	SelectCutsceneBgAnimation24Frame
 	cmp	r0, #0
 	beq	.L_6cc2
 	ldr	r4, .L_6d1c
@@ -6289,7 +6289,7 @@ func_80067BC:
 	strh	r0, [r5, #0]
 	mov	r0, r8
 	mov	r1, sp
-	bl	func_800C358
+	bl	SelectCutsceneBgAnimation36Frame
 	mov	r5, r9
 	add	r5, #4
 	ldr	r0, [sp, #0]
@@ -12286,7 +12286,7 @@ func_8009B38:
 	mov	r1, #0
 	add	r2, r5, #0
 	mov	r3, r8
-	bl	func_800F990
+	bl	CalculateCutsceneScrollPath02
 	mov	r1, #0
 	ldrsh	r0, [r4, r1]
 	ldr	r4, .L_9db8
@@ -12294,7 +12294,7 @@ func_8009B38:
 	mov	r1, #0
 	add	r2, r4, #0
 	add	r3, r6, #0
-	bl	func_800F940
+	bl	CalculateCutsceneScrollPath01
 	ldr	r1, .L_9dc0
 	ldrh	r0, [r5, #0]
 	strh	r0, [r1, #0]
@@ -12598,7 +12598,7 @@ func_8009DD8:
 	add	r1, r7, #0
 	add	r2, r5, #0
 	mov	r3, r8
-	bl	func_800F990
+	bl	CalculateCutsceneScrollPath02
 	mov	r1, #0
 	ldrsh	r0, [r4, r1]
 	ldr	r4, .L_9fb8
@@ -12606,7 +12606,7 @@ func_8009DD8:
 	add	r1, r7, #0
 	add	r2, r4, #0
 	add	r3, r6, #0
-	bl	func_800F940
+	bl	CalculateCutsceneScrollPath01
 	ldr	r1, .L_9fc0
 	ldrh	r0, [r5, #0]
 	strh	r0, [r1, #0]
@@ -12644,7 +12644,7 @@ func_8009DD8:
 	add	r1, #1
 	str	r1, [r2, #0]
 	mov	r1, sp
-	bl	func_800F8A4
+	bl	SelectCutsceneScrollFrameSequence02
 	b	.L_9fe6
 	.align	2, 0
 .L_9fa8:
@@ -12677,7 +12677,7 @@ func_8009DD8:
 	add	r1, #1
 	str	r1, [r2, #0]
 	mov	r1, sp
-	bl	func_800F7BC
+	bl	SelectCutsceneScrollFrameSequence01
 .L_9fe6:
 	strh	r0, [r4, #0]
 	ldr	r0, [sp, #0]
