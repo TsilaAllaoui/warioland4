@@ -758,7 +758,7 @@ def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
 
 
 def write_html(rows: list[FunctionInfo], html_path: Path) -> Path:
-    """HTML CONTROL FIX 2026-07-26: keep search/module/sort/reset IDs."""
+    """HTML CONTROL FIX 2026-07-26: keep search/module/sort/reset IDs and status filters."""
     html_path.parent.mkdir(parents=True, exist_ok=True)
     info = stats(rows)
 
@@ -796,7 +796,7 @@ body {{
 }}
 .controls {{
   display:grid;
-  grid-template-columns:2fr 1fr 1fr auto;
+  grid-template-columns:2fr 1fr 1fr 1fr auto;
   gap:10px;
   margin:12px 0 18px;
 }}
@@ -840,13 +840,17 @@ Functions: {info['matched_functions']:,} / {info['total_functions']:,}.
 Code size: {info['matched_size']:,} / {info['total_size']:,} bytes.
 </p>
 
-<!-- HTML CONTROL FIX 2026-07-26: CI expects these exact IDs. -->
+<!-- HTML CONTROL FIX 2026-07-26:
+     CI expects IDs search/module/sort/reset.
+     CI also expects data-status values all/matched/not matched. -->
 <div class="controls">
   <input id="search" placeholder="Search function, module, or source">
+
   <select id="module">
     <option value="">All modules</option>
     {module_options}
   </select>
+
   <select id="sort">
     <option value="module">Sort by module</option>
     <option value="name">Sort by function</option>
@@ -854,6 +858,13 @@ Code size: {info['matched_size']:,} / {info['total_size']:,} bytes.
     <option value="size-asc">Sort by size asc</option>
     <option value="status">Sort by status</option>
   </select>
+
+  <select id="status">
+    <option value="all" data-status="all">All statuses</option>
+    <option value="matched" data-status="matched">Matched</option>
+    <option value="not matched" data-status="not matched">Not matched</option>
+  </select>
+
   <button id="reset" type="button">Reset</button>
 </div>
 
@@ -876,6 +887,7 @@ const body = document.getElementById('body');
 const search = document.getElementById('search');
 const moduleFilter = document.getElementById('module');
 const sort = document.getElementById('sort');
+const statusFilter = document.getElementById('status');
 const reset = document.getElementById('reset');
 
 function esc(s) {{
@@ -889,27 +901,34 @@ function esc(s) {{
 
 function compareRows(a, b) {{
   const mode = sort.value;
+
   if (mode === 'name') {{
     return a.name.localeCompare(b.name) || a.module.localeCompare(b.module);
   }}
+
   if (mode === 'size-desc') {{
     return b.size - a.size || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
   }}
+
   if (mode === 'size-asc') {{
     return a.size - b.size || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
   }}
+
   if (mode === 'status') {{
     return a.status.localeCompare(b.status) || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
   }}
+
   return a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
 }}
 
 function draw() {{
   const needle = search.value.toLowerCase();
   const selectedModule = moduleFilter.value;
+  const selectedStatus = statusFilter.value;
 
   const filtered = rows
     .filter(r => !selectedModule || r.module === selectedModule)
+    .filter(r => selectedStatus === 'all' || r.status === selectedStatus)
     .filter(r => !needle ||
       r.name.toLowerCase().includes(needle) ||
       r.module.toLowerCase().includes(needle) ||
@@ -930,10 +949,13 @@ function draw() {{
 search.addEventListener('input', draw);
 moduleFilter.addEventListener('change', draw);
 sort.addEventListener('change', draw);
+statusFilter.addEventListener('change', draw);
+
 reset.addEventListener('click', () => {{
   search.value = '';
   moduleFilter.value = '';
   sort.value = 'module';
+  statusFilter.value = 'all';
   draw();
 }});
 
