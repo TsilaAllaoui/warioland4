@@ -3,7 +3,6 @@
 s32 SelectTitleScreenNormalLogoIntroOamFrame(s32 timer, u8 **oamFrame)
 {
     s32 frame;
-    s32 result;
 
     frame = timer % 28;
 
@@ -17,31 +16,20 @@ s32 SelectTitleScreenNormalLogoIntroOamFrame(s32 timer, u8 **oamFrame)
         *oamFrame = &sTitleScreenNormalLogoFrame2Oam;
     }
 
-    result = 0;
-    if (frame == 27) {
-        result = 1;
-    }
-
-    return result;
+    return frame == 27;
 }
 
 s32 SelectTitleScreenNormalLogoIdleOamFrame(s32 timer, u8 **oamFrame)
 {
-    s32 result;
 
     *oamFrame = &sTitleScreenNormalLogoIdleOam;
-    result = 0;
-    if (timer == 30) {
-        result = 1;
-    }
 
-    return result;
+    return timer == 30;
 }
 
 s32 SelectTitleScreenSHardLogoIntroOamFrame(s32 timer, u8 **oamFrame)
 {
     s32 frame;
-    s32 result;
 
     frame = timer % 80;
 
@@ -59,31 +47,20 @@ s32 SelectTitleScreenSHardLogoIntroOamFrame(s32 timer, u8 **oamFrame)
         *oamFrame = &sTitleScreenSHardLogoFrame1Oam;
     }
 
-    result = 0;
-    if (frame == 79) {
-        result = 1;
-    }
-
-    return result;
+    return frame == 79;
 }
 
 s32 SelectTitleScreenSHardLogoIdleOamFrame(s32 timer, u8 **oamFrame)
 {
-    s32 result;
 
     *oamFrame = &sTitleScreenSHardLogoFrame0Oam;
-    result = 0;
-    if (timer == 30) {
-        result = 1;
-    }
 
-    return result;
+    return timer == 30;
 }
 
 s32 SelectTitleScreenOverlayOamFrame(s32 timer, u8 **oamFrame)
 {
     s32 frame;
-    s32 result;
 
     frame = timer % 208;
 
@@ -193,10 +170,5 @@ s32 SelectTitleScreenOverlayOamFrame(s32 timer, u8 **oamFrame)
         *oamFrame = &sTitleScreenOverlayFrame51Oam;
     }
 
-    result = 0;
-    if (frame == 207) {
-        result = 1;
-    }
-
-    return result;
+    return frame == 207;
 }

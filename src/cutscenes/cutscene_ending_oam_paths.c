@@ -35,7 +35,6 @@ s32 SelectEndingCutsceneOamSequence01(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence02(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame022;
 
     return timer > 98;
@@ -97,7 +96,6 @@ s32 SelectEndingCutsceneOamSequence05(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence06(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame011;
 
     return timer > 98;
@@ -105,7 +103,6 @@ s32 SelectEndingCutsceneOamSequence06(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence07(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame012;
 
     return timer > 98;
@@ -113,7 +110,6 @@ s32 SelectEndingCutsceneOamSequence07(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence08(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 7)
         *oamFrame = sEndingCutsceneOamFrame013;
     else if (timer <= 15)
@@ -152,7 +148,6 @@ s32 SelectEndingCutsceneOamSequence09(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence10(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame016;
 
     return timer > 2;
@@ -160,7 +155,6 @@ s32 SelectEndingCutsceneOamSequence10(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence11(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 7)
         *oamFrame = sEndingCutsceneOamFrame024;
     else if (timer <= 15)
@@ -211,7 +205,6 @@ s32 SelectEndingCutsceneOamSequence13(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence14(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame024;
 
     return timer > 2;
@@ -219,7 +212,6 @@ s32 SelectEndingCutsceneOamSequence14(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence15(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame035;
 
     return timer > 2;
@@ -227,7 +219,6 @@ s32 SelectEndingCutsceneOamSequence15(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence16(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 44)
         *oamFrame = sEndingCutsceneOamFrame024;
     else if (timer <= 106)
@@ -314,7 +305,6 @@ s32 SelectEndingCutsceneOamSequence20(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence21(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame048;
 
     return timer == 3;
@@ -322,7 +312,6 @@ s32 SelectEndingCutsceneOamSequence21(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence22(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame049;
 
     return timer == 3;
@@ -330,7 +319,6 @@ s32 SelectEndingCutsceneOamSequence22(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence23(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame050;
 
     return timer == 3;
@@ -338,7 +326,6 @@ s32 SelectEndingCutsceneOamSequence23(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence24(s32 timer, u16 **oamFrame)
 {
-
     *oamFrame = sEndingCutsceneOamFrame051;
 
     return timer == 3;
@@ -404,7 +391,6 @@ s32 SelectEndingCutsceneOamSequence27(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence28(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 3)
         *oamFrame = sEndingCutsceneOamFrame068;
     else if (timer <= 7)
@@ -429,7 +415,6 @@ s32 SelectEndingCutsceneOamSequence28(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence29(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -517,7 +502,6 @@ s32 SelectEndingCutsceneOamSequence29(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence30(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -605,7 +589,6 @@ s32 SelectEndingCutsceneOamSequence30(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence31(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)
@@ -703,7 +686,6 @@ s32 SelectEndingCutsceneOamSequence31(s32 timer, u16 **oamFrame)
 
 s32 SelectEndingCutsceneOamSequence32(s32 timer, u16 **oamFrame)
 {
-
     if (timer <= 1)
         *oamFrame = sEndingCutsceneOamFrame076;
     else if (timer <= 3)

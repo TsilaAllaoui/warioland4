@@ -4,7 +4,6 @@
 s32 func_800BE64(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 9;
-    s32 done;
 
     if (frame <= 5) {
         *ppOamData = sUnk_829A7C0;
@@ -12,18 +11,12 @@ s32 func_800BE64(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829A7E6;
     }
 
-    done = 0;
-    if (frame == 8) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 8;
 }
 
 s32 func_800BE94(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 9;
-    s32 done;
 
     if (frame <= 5) {
         *ppOamData = sUnk_829A80C;
@@ -31,18 +24,12 @@ s32 func_800BE94(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829A850;
     }
 
-    done = 0;
-    if (frame == 8) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 8;
 }
 
 s32 func_800BEC4(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 16;
-    s32 done;
 
     if (frame <= 3) {
         *ppOamData = sUnk_829A894;
@@ -54,12 +41,7 @@ s32 func_800BEC4(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829A8D0;
     }
 
-    done = 0;
-    if (frame == 15) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 15;
 }
 
 void func_800BF0C(u16 **ppOamData)
@@ -80,7 +62,6 @@ void func_800BF24(u16 **ppOamData)
 s32 func_800BF30(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 24;
-    s32 done;
 
     if (frame <= 7) {
         *ppOamData = sUnk_829A926;
@@ -90,18 +71,12 @@ s32 func_800BF30(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829A936;
     }
 
-    done = 0;
-    if (frame == 23) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 23;
 }
 
 s32 func_800BF6C(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 116;
-    s32 done;
 
     if (frame <= 7) {
         *ppOamData = sUnk_829A9A6;
@@ -111,18 +86,12 @@ s32 func_800BF6C(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829A9B6;
     }
 
-    done = 0;
-    if (frame == 115) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 115;
 }
 
 s32 func_800BFA8(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 24;
-    s32 done;
 
     if (frame <= 5) {
         *ppOamData = sUnk_829A9BE;
@@ -134,18 +103,12 @@ s32 func_800BFA8(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829AA0C;
     }
 
-    done = 0;
-    if (frame == 23) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 23;
 }
 
 s32 func_800BFF0(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 9;
-    s32 done;
 
     if (frame <= 5) {
         *ppOamData = sUnk_829AA5E;
@@ -153,18 +116,12 @@ s32 func_800BFF0(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829AA6C;
     }
 
-    done = 0;
-    if (frame == 8) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 8;
 }
 
 s32 func_800C020(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 8;
-    s32 done;
 
     if (frame <= 1) {
         *ppOamData = sUnk_829AA7A;
@@ -176,18 +133,12 @@ s32 func_800C020(s32 timer, u16 **ppOamData)
         *ppOamData = 0;
     }
 
-    done = 0;
-    if (frame == 7) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 7;
 }
 
 s32 func_800C05C(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 4;
-    s32 done;
 
     if (frame <= 0) {
         *ppOamData = sUnk_829AAAE;
@@ -199,18 +150,12 @@ s32 func_800C05C(s32 timer, u16 **ppOamData)
         *ppOamData = 0;
     }
 
-    done = 0;
-    if (frame == 3) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 3;
 }
 
 s32 func_800C098(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 42;
-    s32 done;
 
     if (frame <= 2) {
         *ppOamData = sUnk_829AB84;
@@ -232,12 +177,7 @@ s32 func_800C098(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829ADA4;
     }
 
-    done = 0;
-    if (frame == 41) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 41;
 }
 
 void func_800C11C(u16 **ppOamData)
@@ -303,7 +243,6 @@ void func_800C1A0(u16 **ppOamData)
 s32 func_800C1AC(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 24;
-    s32 done;
 
     if (frame <= 7) {
         *ppOamData = sUnk_829ADEA;
@@ -313,18 +252,12 @@ s32 func_800C1AC(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829AE06;
     }
 
-    done = 0;
-    if (frame == 23) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 23;
 }
 
 s32 func_800C1E8(s32 timer, u16 **ppOamData)
 {
     s32 frame = timer % 116;
-    s32 done;
 
     if (frame <= 7) {
         *ppOamData = sUnk_829AE14;
@@ -334,12 +267,7 @@ s32 func_800C1E8(s32 timer, u16 **ppOamData)
         *ppOamData = sUnk_829AE30;
     }
 
-    done = 0;
-    if (frame == 115) {
-        done = 1;
-    }
-
-    return done;
+    return frame == 115;
 }
 
 void CutsceneLoadObjPalette(u32 paletteFrame)
