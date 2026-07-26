@@ -4748,34 +4748,34 @@
 <clipPath id="moduleLabelClip122"><rect x="1045.90" y="770.17" width="33.09" height="10.00"/></clipPath>
 <rect x="1044.90" y="770.17" width="35.09" height="10.00" fill="#05080d"/>
 <text x="1046.40" y="777.17" clip-path="url(#moduleLabelClip122)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">cuts…</text>
-<rect x="1044.90" y="780.17" width="9.11" height="14.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C098: 132 bytes, matched, size=symbol</title></rect>
-<rect x="1044.90" y="794.72" width="9.11" height="7.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BEC4: 72 bytes, matched, size=symbol</title></rect>
-<rect x="1044.90" y="802.65" width="9.11" height="7.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BFA8: 72 bytes, matched, size=symbol</title></rect>
+<rect x="1044.90" y="780.17" width="9.11" height="14.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation08: 132 bytes, matched, size=symbol</title></rect>
+<rect x="1044.90" y="794.72" width="9.11" height="7.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation03: 72 bytes, matched, size=symbol</title></rect>
+<rect x="1044.90" y="802.65" width="9.11" height="7.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation06: 72 bytes, matched, size=symbol</title></rect>
 <rect x="1054.36" y="780.17" width="8.57" height="7.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/CutsceneLoadObjPalette: 64 bytes, matched, size=symbol</title></rect>
-<rect x="1063.28" y="780.17" width="8.01" height="7.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BF30: 60 bytes, matched, size=symbol</title></rect>
-<rect x="1071.64" y="780.17" width="8.01" height="7.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BF6C: 60 bytes, matched, size=symbol</title></rect>
-<rect x="1054.36" y="787.65" width="7.83" height="7.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C020: 60 bytes, matched, size=symbol</title></rect>
-<rect x="1054.36" y="795.30" width="7.83" height="7.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C05C: 60 bytes, matched, size=symbol</title></rect>
-<rect x="1054.36" y="802.94" width="7.83" height="7.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C1AC: 60 bytes, matched, size=symbol</title></rect>
-<rect x="1062.54" y="787.65" width="9.35" height="6.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C1E8: 60 bytes, matched, size=symbol</title></rect>
-<rect x="1072.24" y="787.65" width="7.41" height="6.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BE64: 48 bytes, matched, size=symbol</title></rect>
-<rect x="1062.54" y="794.10" width="5.72" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BE94: 48 bytes, matched, size=symbol</title></rect>
-<rect x="1062.54" y="802.34" width="5.72" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BFF0: 48 bytes, matched, size=symbol</title></rect>
-<rect x="1068.61" y="794.10" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BF0C: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1072.41" y="794.10" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BF18: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1076.20" y="794.10" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800BF24: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1068.61" y="797.40" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C11C: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1072.41" y="797.40" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C128: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1076.20" y="797.40" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C134: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1068.61" y="800.69" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C140: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1068.61" y="803.99" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C14C: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1068.61" y="807.29" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C158: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1072.41" y="800.69" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C164: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1076.20" y="800.69" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C170: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1072.41" y="803.99" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C17C: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1072.41" y="807.29" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C188: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1076.20" y="803.99" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C194: 12 bytes, matched, size=symbol</title></rect>
-<rect x="1076.20" y="807.29" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/func_800C1A0: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1063.28" y="780.17" width="8.01" height="7.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneBlinkOamAnimation01: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1071.64" y="780.17" width="8.01" height="7.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneBlinkOamAnimation02: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1054.36" y="787.65" width="7.83" height="7.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation04: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1054.36" y="795.30" width="7.83" height="7.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation05: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1054.36" y="802.94" width="7.83" height="7.29" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation09: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1062.54" y="787.65" width="9.35" height="6.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation10: 60 bytes, matched, size=symbol</title></rect>
+<rect x="1072.24" y="787.65" width="7.41" height="6.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation01: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1062.54" y="794.10" width="5.72" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation02: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1062.54" y="802.34" width="5.72" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SelectCutsceneOamAnimation07: 48 bytes, matched, size=symbol</title></rect>
+<rect x="1068.61" y="794.10" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame01: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1072.41" y="794.10" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame02: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1076.20" y="794.10" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame03: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1068.61" y="797.40" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame04: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1072.41" y="797.40" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame05: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1076.20" y="797.40" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame06: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1068.61" y="800.69" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame07: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1068.61" y="803.99" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame08: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1068.61" y="807.29" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame09: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1072.41" y="800.69" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame10: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1076.20" y="800.69" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame11: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1072.41" y="803.99" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame12: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1072.41" y="807.29" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame13: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1076.20" y="803.99" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame14: 12 bytes, matched, size=symbol</title></rect>
+<rect x="1076.20" y="807.29" width="3.44" height="2.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_oam_anim/SetCutsceneOamFrame15: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>init_roulette_game: 100.0% matched, 1,000 bytes</title>
@@ -5096,10 +5096,10 @@
 <clipPath id="moduleLabelClip145"><rect x="1215.50" y="714.71" width="26.42" height="10.00"/></clipPath>
 <rect x="1214.50" y="714.71" width="28.42" height="10.00" fill="#05080d"/>
 <text x="1216.00" y="721.71" clip-path="url(#moduleLabelClip145)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">cu…</text>
-<rect x="1214.50" y="724.71" width="11.68" height="15.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/func_800F7BC: 232 bytes, matched, size=symbol</title></rect>
-<rect x="1226.53" y="724.71" width="7.74" height="15.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/func_800F8A4: 156 bytes, matched, size=symbol</title></rect>
-<rect x="1234.62" y="724.71" width="7.95" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/func_800F940: 80 bytes, matched, size=symbol</title></rect>
-<rect x="1234.62" y="732.55" width="7.95" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/func_800F990: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1214.50" y="724.71" width="11.68" height="15.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/SelectCutsceneScrollFrameSequence01: 232 bytes, matched, size=symbol</title></rect>
+<rect x="1226.53" y="724.71" width="7.74" height="15.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/SelectCutsceneScrollFrameSequence02: 156 bytes, matched, size=symbol</title></rect>
+<rect x="1234.62" y="724.71" width="7.95" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/CalculateCutsceneScrollPath01: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1234.62" y="732.55" width="7.95" height="7.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_scroll_anim/CalculateCutsceneScrollPath02: 80 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>cutscene_bg_anim: 100.0% matched, 524 bytes</title>
@@ -5107,11 +5107,11 @@
 <clipPath id="moduleLabelClip146"><rect x="1245.92" y="714.71" width="25.08" height="10.00"/></clipPath>
 <rect x="1244.92" y="714.71" width="27.08" height="10.00" fill="#05080d"/>
 <text x="1246.42" y="721.71" clip-path="url(#moduleLabelClip146)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">cu…</text>
-<rect x="1244.92" y="724.71" width="8.95" height="15.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/func_800C264: 180 bytes, matched, size=symbol</title></rect>
+<rect x="1244.92" y="724.71" width="8.95" height="15.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/SelectCutsceneBgAnimation72Frame: 180 bytes, matched, size=symbol</title></rect>
 <rect x="1254.22" y="724.71" width="10.40" height="8.09" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/CutsceneLoadBgObjPalette: 112 bytes, matched, size=symbol</title></rect>
-<rect x="1254.22" y="733.15" width="10.40" height="6.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/func_800C358: 96 bytes, matched, size=symbol</title></rect>
-<rect x="1264.97" y="724.71" width="6.68" height="7.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/func_800C3B8: 72 bytes, matched, size=symbol</title></rect>
-<rect x="1264.97" y="733.01" width="6.68" height="7.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/func_800C318: 64 bytes, matched, size=symbol</title></rect>
+<rect x="1254.22" y="733.15" width="10.40" height="6.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/SelectCutsceneBgAnimation36Frame: 96 bytes, matched, size=symbol</title></rect>
+<rect x="1264.97" y="724.71" width="6.68" height="7.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/SelectCutsceneBgAnimation24Frame: 72 bytes, matched, size=symbol</title></rect>
+<rect x="1264.97" y="733.01" width="6.68" height="7.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscene_bg_anim/SelectCutsceneBgAnimation28Frame: 64 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>utsuboanko: 100.0% matched, 496 bytes</title>
