@@ -917,8 +917,8 @@ sUnk_863A47C:
 
 baserom_blob 0x63A47C, 0x63A490
 
-.global sUnk_863A490
-sUnk_863A490:
+.global sStageResultsTreasureXPositions
+sStageResultsTreasureXPositions:
 
 baserom_blob 0x63A490, 0x63A498
 
@@ -1997,8 +1997,8 @@ sUnk_868681C:
 
 baserom_blob 0x68681C, 0x6872DC
 
-.global sUnk_86872DC
-sUnk_86872DC:
+.global sStageResultsDigitGfx
+sStageResultsDigitGfx:
 
 baserom_blob 0x6872DC, 0x68901C
 
@@ -2027,13 +2027,13 @@ sUnk_868A8DC:
 
 baserom_blob 0x68A8DC, 0x68A95C
 
-.global sUnk_868A95C
-sUnk_868A95C:
+.global sStageResultsLanguage1Tilemap
+sStageResultsLanguage1Tilemap:
 
 baserom_blob 0x68A95C, 0x68B15C
 
-.global sUnk_868B15C
-sUnk_868B15C:
+.global sStageResultsLanguage0Tilemap
+sStageResultsLanguage0Tilemap:
 
 baserom_blob 0x68B15C, 0x68B81C
 

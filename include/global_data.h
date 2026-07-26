@@ -346,6 +346,11 @@ extern u8 gUnk_30037BF;
 extern u8 gUnk_3003BF5;
 extern u8 gUnk_3003BF6;
 
+/* 0x03003C39 */
+extern u8 gUnk_3003C39;
+extern u8 gUnk_3003C4A;
+extern u8 gUnk_3003C56;
+
 /* Other IWRAM globals */
 extern u8 gDemoState;
 extern u8 gVideoMode;
