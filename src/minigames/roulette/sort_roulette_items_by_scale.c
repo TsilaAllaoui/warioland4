@@ -9,9 +9,9 @@ void SortRouletteItemsByScale(void)
     struct RouletteItem *swappedItem;
 
     {
-        register struct RouletteItem **base asm("r2");
-        register struct RouletteItem *itemPtr asm("r0");
-        register struct RouletteItem **refPtr asm("r1");
+        struct RouletteItem **base;
+        struct RouletteItem *itemPtr;
+        struct RouletteItem **refPtr;
         base = gRouletteItemDrawOrder;
         itemPtr = gRouletteItems;
         /* Keep the data relocation unmodified; the target adds 24 at runtime. */

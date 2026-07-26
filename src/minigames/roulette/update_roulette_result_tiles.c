@@ -2,12 +2,12 @@
 
 void UpdateRouletteResultTiles(void)
 {
-    register u8 *src asm("r4");
-    register u8 *dst asm("r5");
-    register int i asm("r3");
-    register volatile u32 *dma asm("r2");
+    u8 *src;
+    u8 *dst;
+    int i;
+    volatile u32 *dma;
     register u32 control;
-    register u32 busy asm("r6");
+    u32 busy;
 
     switch (gMinigameState) {
     case 7:
@@ -26,9 +26,9 @@ void UpdateRouletteResultTiles(void)
     control = 0x80000080;
     busy = 0x80000000;
     do {
-        register u32 offset asm("r1");
-        register u32 value asm("r0");
-        register int next asm("r1");
+        u32 offset;
+        u32 value;
+        int next;
         offset = i << 10;
         dma[0] = (u32)(src + offset);
         dma[1] = (u32)(dst + offset);
@@ -38,7 +38,7 @@ void UpdateRouletteResultTiles(void)
         value &= busy;
         next = i + 1;
         if (value != 0) {
-            register u32 pollMask asm("r3");
+            u32 pollMask;
             pollMask = 0x80000000;
             do {
                 value = dma[2];

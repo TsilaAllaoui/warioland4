@@ -10,7 +10,6 @@ This repository can build the following versions:
 ## Decompilation Progress
 
 ![Decompilation progress](docs/progress-treemap.svg)
-
 [Open the interactive progress treemap](https://TsilaAllaoui.github.io/warioland4/progress.html).
 <!-- DECOMP_PROGRESS:END -->
 

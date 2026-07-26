@@ -67,11 +67,11 @@ void SetMoneySunflowerDepleted(void)
 
 void AdvanceMoneySunflowerStage(void)
 {
-    register u8 *persistentData asm("r6");
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u8 *currentRoom asm("r5");
-    register u32 address asm("r0");
-    register int persistentState asm("r1");
+    u8 *persistentData;
+    struct PrimarySpriteData *sprite;
+    u8 *currentRoom;
+    u32 address;
+    int persistentState;
 
     persistentData = &gPersistentSpriteData[0][0];
     sprite = &gCurrentSprite;

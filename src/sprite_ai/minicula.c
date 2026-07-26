@@ -7,11 +7,11 @@ void func_8026450(void);
 
 void InitMinicula(void)
 {
-    register int zero asm("r3");
-    register int zeroHalfword asm("r4");
-    register u16 status asm("r1");
-    register int statusMask asm("r2");
-    register int newStatus asm("r0");
+    int zero;
+    int zeroHalfword;
+    u16 status;
+    int statusMask;
+    int newStatus;
     struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;

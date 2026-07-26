@@ -86,8 +86,8 @@ void ElectricLiftStationaryReset(void)
 {
     struct PrimarySpriteData* sprite;
     u8* work0;
-    register u32 value asm("r0");
-    register u32 timer asm("r1");
+    u32 value;
+    u32 timer;
 
     sprite = &gCurrentSprite;
     work0 = &sprite->work0;
@@ -158,8 +158,8 @@ void ElectricLiftMoveDown(void)
 {
     struct PrimarySpriteData* sprite;
     u8* work0;
-    register u32 value asm("r0");
-    register u32 timer asm("r2");
+    u32 value;
+    u32 timer;
 
     sprite = &gCurrentSprite;
     work0 = &sprite->work0;
@@ -186,8 +186,8 @@ void ElectricLiftMoveUp(void)
 {
     struct PrimarySpriteData* sprite;
     u8* work0;
-    register u32 value asm("r0");
-    register u32 timer asm("r2");
+    u32 value;
+    u32 timer;
 
     sprite = &gCurrentSprite;
     work0 = &sprite->work0;
