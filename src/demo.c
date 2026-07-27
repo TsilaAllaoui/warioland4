@@ -38,25 +38,25 @@ extern const u32 sUnk_86391C4[][6];
 
 void SetupDemo(void)
 {
-    register u32 demoIndex asm("r8");
-    register u8 *passage asm("sl");
+    u32 demoIndex;
+    u8 *passage;
     register u8 *stage asm("r9");
     register u8 *addressLoad asm("r2");
-    register const u8 *configurations asm("r0");
+    const u8 *configurations;
     u32 doubledIndex;
-    register const struct DemoConfiguration *configuration asm("r3");
-    register int stageValue asm("r5");
-    register s8 *stageId asm("r6");
+    const struct DemoConfiguration *configuration;
+    int stageValue;
+    s8 *stageId;
     register const u8 *data asm("r4");
     u32 zero;
     u8 *roomCount;
     u32 stageOffset;
     u32 passageOffset;
-    register const u8 *field asm("r1");
+    const u8 *field;
     register u8 *bossData asm("r2");
     s32 bossOffset;
-    register u32 *collectionBase asm("r3");
-    register u32 collectionOffset asm("r1");
+    u32 *collectionBase;
+    u32 collectionOffset;
 
     demoIndex = sDemoOrder[gUnk_3000020];
     gHasTemporarySave = 0;
@@ -100,7 +100,7 @@ void SetupDemo(void)
         field = data;
         field += 8;
         {
-            register u8 *bossEntry asm("r0");
+            u8 *bossEntry;
             bossEntry = (u8 *)bossOffset;
             bossEntry += (u32)field;
             bossData[0] = *bossEntry;
@@ -112,7 +112,7 @@ void SetupDemo(void)
         asm("" : "+r"(bossOffset));
         field = data + 7;
         {
-            register u8 *bossEntry asm("r0");
+            u8 *bossEntry;
             bossEntry = (u8 *)bossOffset;
             bossEntry += (u32)field;
             bossData[1] = *bossEntry;
@@ -124,7 +124,7 @@ void SetupDemo(void)
         asm("" : "+r"(bossOffset));
         field = data + 6;
         {
-            register u8 *bossEntry asm("r0");
+            u8 *bossEntry;
             bossEntry = (u8 *)bossOffset;
             bossEntry += (u32)field;
             bossData[2] = *bossEntry;
@@ -146,11 +146,11 @@ void SetupDemo(void)
     *(u32 *)collectionOffset = (u32)addressLoad;
 
     if (gDemoState == DEMO_STATE_PLAYBACK) {
-        register volatile struct DemoDmaRegisters *dma asm("r1");
-        register u32 pointerOffset asm("r3");
-        register u32 control asm("r2");
-        register const u16 *counts asm("r0");
-        register const u16 *const *inputTable asm("r0");
+        volatile struct DemoDmaRegisters *dma;
+        u32 pointerOffset;
+        u32 control;
+        const u16 *counts;
+        const u16 *const *inputTable;
 
         dma = (volatile struct DemoDmaRegisters *)0x040000D4;
         inputTable = sDemoInputStreams;
@@ -177,10 +177,10 @@ void SetupDemo(void)
 
 void StopDemo(void)
 {
-    register u32 demoIndex asm("r3");
-    register struct WarioData *wario asm("r2");
-    register const struct DemoConfiguration *configurations asm("r1");
-    register const struct DemoConfiguration *configuration asm("r0");
+    u32 demoIndex;
+    struct WarioData *wario;
+    const struct DemoConfiguration *configurations;
+    const struct DemoConfiguration *configuration;
 
     gUnk_3000020 &= 0x7F;
     demoIndex = sDemoOrder[gUnk_3000020];
@@ -211,8 +211,8 @@ void DemoVBlankCallback(void)
 
 u32 AdvanceDemo(void)
 {
-    register u32 wrapped asm("r6");
-    register u32 zero asm("r4");
+    u32 wrapped;
+    u32 zero;
 
     vu16 *ime;
 
@@ -227,7 +227,7 @@ u32 AdvanceDemo(void)
     m4aMPlayAllStop();
 
     if (gDemoState == DEMO_STATE_RECORDING) {
-        register volatile struct DemoDmaRegisters *dma asm("r0");
+        volatile struct DemoDmaRegisters *dma;
         u32 control;
 
         dma = (volatile struct DemoDmaRegisters *)0x040000D4;

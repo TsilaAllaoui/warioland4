@@ -181,8 +181,8 @@ void BowBalloonAttack(void)
 {
     register int shifted asm("r0");
     register int timer asm("r1");
-    register u8 *work0 asm("r2");
-    register struct PrimarySpriteData *sprite asm("r4");
+    u8 *work0;
+    struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
     work0 = &sprite->work0;
@@ -235,9 +235,9 @@ void BowBalloonGetUpInit(void)
 void BowBalloonGetUp(void)
 {
     {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     register const s16 *table asm("r5");
     s16 velocity;
 
@@ -248,7 +248,7 @@ void BowBalloonGetUp(void)
     asm("" : "+r"(sprite), "+r"(indexPointer), "+r"(index), "+r"(table));
     velocity = table[index];
     if (velocity == 0x7FFF) {
-        register u32 previousVelocityAddress asm("r1");
+        u32 previousVelocityAddress;
         register u16 yPosition asm("r0");
 
         previousVelocityAddress = index - 1;
@@ -259,8 +259,8 @@ void BowBalloonGetUp(void)
         asm("" : "+r"(yPosition), "+r"(previousVelocityAddress));
         sprite->yPosition = yPosition + *(const s16 *)previousVelocityAddress;
     } else {
-        register u32 nextIndex asm("r0");
-        register u8 *storePointer asm("r1");
+        u32 nextIndex;
+        u8 *storePointer;
 
         nextIndex = index + 1;
         storePointer = indexPointer;
@@ -322,7 +322,7 @@ void BowBalloonFallingInit(void)
 
 void BowBalloonStunnedFallingInit(void)
 {
-    register u8 zero8 asm("r2");
+    u8 zero8;
 
     gCurrentSprite.pOamData = sBowBalloonStunnedOam;
     gCurrentSprite.currentAnimationFrame = 0;
@@ -483,7 +483,7 @@ void BowBalloonAirborneInit(void)
 void BowBalloonAirborne(void)
 {
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     s16 velocity;
 
     gCurrentSprite.work0--;
@@ -499,7 +499,7 @@ void BowBalloonAirborne(void)
             asm("" : "+r"(indexPointer), "+r"(index));
             velocity = sUnk_8352B18[index];
             if (velocity == 0x7FFF) {
-                register u32 previousVelocityAddress asm("r1");
+                u32 previousVelocityAddress;
                 register u16 yPosition asm("r0");
 
                 previousVelocityAddress = index - 1;
@@ -511,8 +511,8 @@ void BowBalloonAirborne(void)
                 asm("" : "+r"(yPosition), "+r"(previousVelocityAddress));
                 gCurrentSprite.yPosition = yPosition + *(const s16 *)previousVelocityAddress;
             } else {
-                register u32 nextIndex asm("r0");
-                register u8 *storePointer asm("r1");
+                u32 nextIndex;
+                u8 *storePointer;
 
                 nextIndex = index + 1;
                 storePointer = indexPointer;

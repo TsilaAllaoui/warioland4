@@ -48,7 +48,7 @@ void UtsuboankoIdle(void)
 
 void UtsuboankoEmerge(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *timerPointer asm("ip");
     register s32 nextTimer asm("r2");
     u8 timer;
@@ -95,7 +95,7 @@ void UtsuboankoEmerge(void)
         sprite->animationTimer = timer;
         sprite->pose = SPOSE_14;
         {
-            register int resetTimer asm("r0");
+            int resetTimer;
             register u8 *resetPointer asm("r1");
 
             resetTimer = 117;
@@ -107,8 +107,8 @@ void UtsuboankoEmerge(void)
 
 void UtsuboankoRetreat(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
-    register u8 *timerPointer asm("r2");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
     register int oldTimer asm("r0");
     register int nextTimer asm("r1");
     register u32 shiftedTimer asm("r0");

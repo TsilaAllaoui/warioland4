@@ -17,14 +17,14 @@ u8 UpdateFlamingWario(void)
 
 u8 FlamingWarioBlue(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 pressed asm("r1");
     register u32 active asm("r0");
     u8 zero;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         buttons = &gButtonsPressed;
         pressed = *buttons;
     }
@@ -57,14 +57,14 @@ u8 FlamingWarioBlue(void)
 
 u8 FlamingWarioBlueMidair(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 pressed asm("r1");
     register u32 active asm("r0");
     u8 zero;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         buttons = &gButtonsPressed;
         pressed = *buttons;
     }
@@ -94,14 +94,14 @@ u8 FlamingWarioBlueMidair(void)
 
 u8 FlamingWarioGreen(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 pressed asm("r1");
     register u32 active asm("r0");
     u8 zero;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         buttons = &gButtonsPressed;
         pressed = *buttons;
     }
@@ -132,14 +132,14 @@ u8 FlamingWarioGreen(void)
 
 u8 FlamingWarioGreenMidair(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 pressed asm("r1");
     register u32 active asm("r0");
     u8 zero;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         buttons = &gButtonsPressed;
         pressed = *buttons;
     }
@@ -169,14 +169,14 @@ u8 FlamingWarioGreenMidair(void)
 
 u8 FlamingWarioRed(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 pressed asm("r1");
     register u32 active asm("r0");
     u8 zero;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         buttons = &gButtonsPressed;
         pressed = *buttons;
     }
@@ -207,14 +207,14 @@ u8 FlamingWarioRed(void)
 
 u8 FlamingWarioRedMidair(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 pressed asm("r1");
     register u32 active asm("r0");
     u8 zero;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         buttons = &gButtonsPressed;
         pressed = *buttons;
     }
@@ -244,8 +244,8 @@ u8 FlamingWarioRedMidair(void)
 
 u8 FlamingWarioEngulfed(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     register u16 held asm("r3");
     register u16 active asm("r4");
     register u16 direction asm("r1");
@@ -301,8 +301,8 @@ u8 FlamingWarioEngulfed(void)
 
 u8 FlamingWarioEngulfedMidair(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     u16 timer;
     u8 zero;
 
@@ -326,8 +326,8 @@ u8 FlamingWarioEngulfedMidair(void)
 
 u8 FlamingWarioRecovering(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct FlamingWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct FlamingWarioGraphicsFrame *frames;
     u8 zero;
 
     wario = &gWarioData;
@@ -347,9 +347,9 @@ u8 FlamingWarioRecovering(void)
 
 void SetFlamingWarioPose(u8 pose)
 {
-    register int newPose asm("r4");
+    int newPose;
     register int originalPose asm("r5");
-    register struct WarioData *wario asm("r6");
+    struct WarioData *wario;
 
     newPose = pose;
     originalPose = newPose;
@@ -367,8 +367,8 @@ void SetFlamingWarioPose(u8 pose)
 
     ResetWarioState();
     if (newPose == 0) {
-        register struct WarioData *copy asm("r1");
-        register u8 copyDirection asm("r0");
+        struct WarioData *copy;
+        u8 copyDirection;
 
         copy = &gWarioDataCopy;
         copyDirection = copy->unk_1A;
@@ -381,7 +381,7 @@ void SetFlamingWarioPose(u8 pose)
         m4aSongNumStart(SE_WARIO_TRANSFORM_LOOP);
         VoiceSetPlay(4);
     } else {
-        register struct WarioData *copy asm("r1");
+        struct WarioData *copy;
 
         copy = &gWarioDataCopy;
         if (copy->pose > 6) {

@@ -111,11 +111,11 @@ u8 UpdateWarioSwimmingFreely(void)
 {
     register u32 temp asm("r0");
     register u32 value asm("r1");
-    register struct WarioData *wario asm("r2");
-    register u16 *heldPointer asm("r3");
+    struct WarioData *wario;
+    u16 *heldPointer;
     register u32 opposite asm("r4");
     register u32 zero asm("r5");
-    register const struct WarioAnimationFrame *animation asm("r3");
+    const struct WarioAnimationFrame *animation;
 
     temp = (u32)&gButtonsPressed;
     value = *(u16 *)temp;
@@ -225,8 +225,8 @@ u8 UpdateWarioFloating(void)
     register u32 buttons asm("r2");
     register u32 direction asm("r3");
     register u32 moving asm("r4");
-    register struct WarioData *wario asm("r5");
-    register const struct WarioAnimationFrame *animation asm("r0");
+    struct WarioData *wario;
+    const struct WarioAnimationFrame *animation;
     register u32 frame asm("r2");
     register u32 zero asm("r1");
 
@@ -381,8 +381,8 @@ u8 UpdateWarioJumpingOutOfWater(void)
     register u32 temp asm("r0");
     register u32 buttons asm("r1");
     register u32 value asm("r2");
-    register struct WarioData *callWario asm("r4");
-    register struct WarioData *wario asm("r2");
+    struct WarioData *callWario;
+    struct WarioData *wario;
     register const struct WarioAnimationFrame *animation asm("r3");
 
     temp = (u32)&gButtonsPressed;

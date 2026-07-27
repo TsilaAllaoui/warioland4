@@ -139,9 +139,9 @@ void MarumenGetUpInit(void)
 void MarumenGetUp(void)
 {
     {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     register const s16 *table asm("r5");
     s16 velocity;
 
@@ -152,7 +152,7 @@ void MarumenGetUp(void)
     asm("" : "+r"(sprite), "+r"(indexPointer), "+r"(index), "+r"(table));
     velocity = table[index];
     if (velocity == 0x7FFF) {
-        register u32 previousVelocityAddress asm("r1");
+        u32 previousVelocityAddress;
         register u16 yPosition asm("r0");
 
         previousVelocityAddress = index - 1;
@@ -163,8 +163,8 @@ void MarumenGetUp(void)
         asm("" : "+r"(yPosition), "+r"(previousVelocityAddress));
         sprite->yPosition = yPosition + *(const s16 *)previousVelocityAddress;
     } else {
-        register u32 nextIndex asm("r0");
-        register u8 *storePointer asm("r1");
+        u32 nextIndex;
+        u8 *storePointer;
 
         nextIndex = index + 1;
         storePointer = indexPointer;
@@ -217,7 +217,7 @@ void MarumenGetUp(void)
 
 void MarumenFallingInit(void)
 {
-    register u8 zero8 asm("r2");
+    u8 zero8;
 
     gCurrentSprite.pOamData = sMarumenFallingOam;
     gCurrentSprite.currentAnimationFrame = 0;
@@ -231,7 +231,7 @@ void MarumenFallingInit(void)
 
 void MarumenStunnedFallingInit(void)
 {
-    register u8 zero8 asm("r2");
+    u8 zero8;
 
     gCurrentSprite.pOamData = sMarumenStunnedOam;
     gCurrentSprite.currentAnimationFrame = 0;
@@ -361,11 +361,11 @@ void MarumenPose2DInit(void)
 
 void MarumenCrushed(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
 
     {
-        register struct PrimarySpriteData *current asm("r0");
-        register u32 collision asm("r1");
+        struct PrimarySpriteData *current;
+        u32 collision;
 
         current = &gCurrentSprite;
         collision = current->warioCollision;
@@ -377,7 +377,7 @@ void MarumenCrushed(void)
         }
     }
     {
-        register u8 *work0 asm("r1");
+        u8 *work0;
 
         work0 = &sprite->work0;
         *work0 = 10;
@@ -387,7 +387,7 @@ void MarumenCrushed(void)
 
         state = sprite;
         {
-            register u32 zero asm("r0");
+            u32 zero;
 
             zero = 0;
             asm("" : "+r"(zero), "+r"(state));
@@ -397,8 +397,8 @@ void MarumenCrushed(void)
         }
         {
             register u16 oldStatus asm("r1");
-            register u16 newStatus asm("r0");
-            register u16 deadBit asm("r3");
+            u16 newStatus;
+            u16 deadBit;
 
             oldStatus = state->status;
             newStatus = oldStatus & (u16)~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
@@ -409,8 +409,8 @@ void MarumenCrushed(void)
             state->status = newStatus;
         }
         {
-            register u32 globalId asm("r0");
-            register u32 effect asm("r3");
+            u32 globalId;
+            u32 effect;
 
             globalId = state->globalID;
             effect = 2;
@@ -418,8 +418,8 @@ void MarumenCrushed(void)
                 effect = 5;
             }
             {
-                register u16 yPosition asm("r1");
-                register u16 xPosition asm("r2");
+                u16 yPosition;
+                u16 xPosition;
 
                 yPosition = sprite->yPosition;
                 xPosition = sprite->xPosition;
@@ -515,9 +515,9 @@ void MarumenAirborneInit(void)
 void MarumenAirborne(void)
 {
     {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     register const s16 *table asm("r5");
     s16 velocity;
 
@@ -528,7 +528,7 @@ void MarumenAirborne(void)
     asm("" : "+r"(sprite), "+r"(indexPointer), "+r"(index), "+r"(table));
     velocity = table[index];
     if (velocity == 0x7FFF) {
-        register u32 previousVelocityAddress asm("r1");
+        u32 previousVelocityAddress;
         register u16 yPosition asm("r0");
 
         previousVelocityAddress = index - 1;
@@ -539,8 +539,8 @@ void MarumenAirborne(void)
         asm("" : "+r"(yPosition), "+r"(previousVelocityAddress));
         sprite->yPosition = yPosition + *(const s16 *)previousVelocityAddress;
     } else {
-        register u32 nextIndex asm("r0");
-        register u8 *storePointer asm("r1");
+        u32 nextIndex;
+        u8 *storePointer;
 
         nextIndex = index + 1;
         storePointer = indexPointer;

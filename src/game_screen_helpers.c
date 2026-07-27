@@ -12,7 +12,6 @@
 #include "animated_graphics.h"
 
 #include "gba/m4a.h"
-#include "tile_interaction.h"
 
 
 /* Neighboring modules still use these original ABI symbols on the main base. */
@@ -20,6 +19,7 @@ void TransparencyProcessTiles();
 void func_806D3A4();
 void UpdateCamera();
 void func_806C828();
+void RefreshCollectedTileEffects();
 void InitAnimatedGraphics();
 void func_8071598();
 void func_8071A2C();
@@ -33,12 +33,14 @@ void TransparencyProcessWater();
 void func_8070E24();
 void func_8070BB8();
 void func_8070C38();
+void UpdateTileEffect();
 void func_80701F4();
 void UpdateAnimatedGraphics();
 void func_806CF28();
 void func_806D218();
 void func_806CA00();
 void func_806CCE4();
+void UpdateWarioTileInteractions();
 void m4aSongNumStartOrContinue();
 void m4aMPlayFadeOutTemporarily();
 
@@ -63,8 +65,8 @@ void ConfigureRoomDisplay(void)
     int backgroundY;
     struct Window *windowPointer;
     {
-        register u8 *drawFlag asm("r2");
-        register u16 zero asm("r1");
+        u8 *drawFlag;
+        u16 zero;
         drawFlag = &gDrawWarioOverBackground;
         zero = 0;
         backgroundControlPointer = &backgroundControl[3];
@@ -347,7 +349,7 @@ void ConfigureRoomDisplay(void)
     }
     else
     {
-        register struct Window *window asm("r1");
+        struct Window *window;
         register int zero asm("r2");
         window = &gWindow;
         zero = 0;
@@ -372,8 +374,8 @@ void ConfigureRoomDisplay(void)
     *((vu16 *) 0x0400000E) = backgroundControl[3];
     gMosaic = 0;
     {
-        register vu16 *mosaicRegister asm("r1");
-        register int hwZero asm("r0");
+        vu16 *mosaicRegister;
+        int hwZero;
         mosaicRegister = (vu16 *) 0x0400004C;
         hwZero = 0;
         *mosaicRegister = hwZero;
@@ -403,14 +405,14 @@ u32 GetBackgroundScreenSize(u8 arg0)
 
 void LoadRoom(void)
 {
-    register struct RoomHeader *roomHeader asm("r4");
-    register volatile struct DmaRegisters *dma asm("r5");
+    struct RoomHeader *roomHeader;
+    volatile struct DmaRegisters *dma;
     const u8 *blankTiles;
-    register u32 dmaFillControl asm("r6");
-    register u32 dmaEnable asm("r8");
+    u32 dmaFillControl;
+    u32 dmaEnable;
     struct TilesetLoadData tileset;
     const struct RoomHeader *roomTable;
-    register const struct RoomHeader *const *roomTableBase asm("r1");
+    const struct RoomHeader *const *roomTableBase;
     register const struct RoomHeader *const *roomTablePointer asm("r0");
     const void *selectedData;
     u32 roomIndex;
@@ -433,7 +435,7 @@ void LoadRoom(void)
     else if (gDifficulty == DIFFICULTY_SUPER_HARD)
         roomHeader->pHardSpriteData = roomHeader->pSHardSpriteData;
     if (gUnk_300001C != 0) {
-        register struct RoomHeader *musicRoomHeader asm("r1");
+        struct RoomHeader *musicRoomHeader;
 
         musicRoomHeader = &gCurrentRoomHeader;
         musicRoomHeader->musicVolume = 0;
@@ -503,8 +505,8 @@ void LoadRoom(void)
         }
         {
             register s32 transferSize asm("r3");
-            register volatile struct DmaRegisters *overlayDma asm("r2");
-            register u8 *overlayBuffer asm("r2");
+            volatile struct DmaRegisters *overlayDma;
+            u8 *overlayBuffer;
             register s32 halfSize asm("r0");
             register u32 overlayDmaEnable asm("r1");
 
@@ -548,9 +550,9 @@ void LoadRoom(void)
 
 void LoadRoomBackgrounds(void)
 {
-    register struct DmaRegisters *dma asm("r5");
-    register struct BackgroundInfo *backgroundInfo asm("r4");
-    register u32 dmaEnable asm("r8");
+    struct DmaRegisters *dma;
+    struct BackgroundInfo *backgroundInfo;
+    u32 dmaEnable;
     u8 *buffer;
     u32 size;
     s32 halfSize;
@@ -579,7 +581,7 @@ void LoadRoomBackgrounds(void)
     backgroundInfo->pBg1Data = (void *)data;
 
     if (gCurrentRoomHeader.bg2Param & 0x10) {
-        register u8 *destination asm("r2");
+        u8 *destination;
 
         source = (const u8 *)gCurrentRoomHeader.pBg2Data;
         destination = (u8 *)0x0201A040;
@@ -590,7 +592,7 @@ void LoadRoomBackgrounds(void)
     }
 
     if (gCurrentRoomHeader.bg0Param & 0x10) {
-        register u8 *destination asm("r2");
+        u8 *destination;
 
         source = (const u8 *)gCurrentRoomHeader.pBg0Data;
         destination = (u8 *)0x0201C840;
@@ -611,9 +613,9 @@ void LoadRoomBackgrounds(void)
 
 void RestoreTemporarySaveRoomTiles(void)
 {
-    register u32 base asm("r5");
-    register u16 *tileIndex asm("r2");
-    register u32 zero asm("r4");
+    u32 base;
+    u16 *tileIndex;
+    u32 zero;
     u16 *count;
     s32 index;
 
@@ -641,7 +643,7 @@ void InitializeRoomState(void)
 {
     register struct ColorFading *colorBase asm("r2");
     register struct ColorFading *colorFading asm("r5");
-    register s8 *pauseFlag asm("r4");
+    s8 *pauseFlag;
     s32 initialize;
     register const struct RoomStartData *roomData asm("r3");
     s32 switchState;
@@ -727,11 +729,11 @@ void InitializeRoomState(void)
     gCameraPositionState.yOffset = 0;
 
     {
-        register u16 *tile asm("r2");
-        register u32 index asm("r1");
+        u16 *tile;
+        u32 index;
         register u8 *stageFlags asm("r6");
-        register struct WarioData *wario asm("r4");
-        register u16 zero asm("r5");
+        struct WarioData *wario;
+        u16 zero;
         u16 music;
         u32 xPosition;
         u32 yOffset;
@@ -804,7 +806,7 @@ void InitializeRoomState(void)
 
 void InitializeRoomEffects(void)
 {
-    register struct RoomHeader *roomHeader asm("r5");
+    struct RoomHeader *roomHeader;
     register u32 zeroType asm("r4");
 
     roomHeader = &gCurrentRoomHeader;
@@ -812,7 +814,7 @@ void InitializeRoomEffects(void)
         LoadCurrentRoomCameraControlData();
 
     {
-        register u16 *effectValues asm("r1");
+        u16 *effectValues;
         register u32 zeroValue asm("r3");
         register u32 defaultValue asm("r2");
 
@@ -886,7 +888,7 @@ void DrawRoomBackgroundLayer(u8 layer)
             register struct BackgroundInfo *background asm("r6");
             register u32 width asm("r4");
             register u32 calculation asm("r0");
-            register u32 startRegister asm("r3");
+            u32 startRegister;
 
             {
                 register u32 xPosition asm("r1");
@@ -906,7 +908,7 @@ void DrawRoomBackgroundLayer(u8 layer)
                 }
 
                 {
-                    register u32 mask asm("r0");
+                    u32 mask;
                     register u32 parameter asm("r3");
 
                     mask = 0x10;
@@ -1020,7 +1022,9 @@ void DrawRoomBackgroundLayer(u8 layer)
             asm("" : "+r"(rowBackground));
             sourceIndex = rowBackground->bg0Width * row;
             {
-                register u32 columnRegister asm("r7") = startX;
+                u32 columnRegister;
+
+                columnRegister = startX;
                 asm("" : "+r"(columnRegister));
                 column = columnRegister;
             }
@@ -1032,7 +1036,7 @@ void DrawRoomBackgroundLayer(u8 layer)
             asm("" : "+r"(columnCount));
             if (columnCount != 0) {
                 register u32 screenBlockRegister asm("r12");
-                register u32 layerForOffset asm("r1");
+                u32 layerForOffset;
                 register u32 rowOffset asm("r9");
 
                 layerForOffset = layerValue;
@@ -1123,10 +1127,10 @@ RenderComplete:
             register u8 *bufferRegister asm("r6");
             register struct DmaRegisters *dmaRegister asm("r4");
             register u32 layerOffset asm("r5");
-            register u32 controlRegister asm("r8");
+            u32 controlRegister;
             register const u8 *compressedData asm("r1");
             register u32 layerTemporary asm("r0");
-            register u32 controlValue asm("r1");
+            u32 controlValue;
             register u32 finalControl asm("r2");
             register u32 vramBase asm("r0");
             register u32 secondVramBase asm("r0");
@@ -1163,7 +1167,7 @@ void PreloadStageRoomBackgrounds(void)
     const struct RoomHeader *entry;
     s32 index;
     const u8 *stageCountBase;
-    register const u8 *stageCountTable asm("r8");
+    const u8 *stageCountTable;
     u8 **destinationTable;
     const u8 *graphics;
     u32 size;
@@ -1197,7 +1201,7 @@ u32 DecompressRoomBackground(u8 type, const u8 *sourceArg, u8 *destinationArg)
     register u8 *destination asm("r2");
     register u32 result asm("r5");
     register u8 *base asm("r6");
-    register s32 pass asm("r4");
+    s32 pass;
     register u32 count asm("r3");
     u8 marker;
     u8 value;
@@ -1487,7 +1491,7 @@ void ProcessWarioTransformationMusic(void)
 void SelectWarioTransformationMusic(void)
 {
     register const u8 *musicIndexPointer asm("r1");
-    register u32 currentMusicIndex asm("r0");
+    u32 currentMusicIndex;
     register u32 index asm("r3");
     register struct GameMusicState *musicState asm("r2");
     register const u32 *specialMusicTable asm("r1");
@@ -1517,13 +1521,13 @@ void FadeOutMusicForPause(void)
 
 void ProcessGoldenPassageBossTransition(void)
 {
-    register u8 *transitionFlag asm("r4");
-    register u32 advanceState asm("r5");
-    register u8 *transitionState asm("r6");
+    u8 *transitionFlag;
+    u32 advanceState;
+    u8 *transitionState;
 
     advanceState = 0;
     {
-        register u8 *temporaryPointer asm("r0");
+        u8 *temporaryPointer;
         u32 temporaryValue;
 
         temporaryPointer = &gShopItemTimer;
@@ -1533,7 +1537,7 @@ void ProcessGoldenPassageBossTransition(void)
             gUnk_300188E++;
     }
     {
-        register u8 *temporaryPointer asm("r0");
+        u8 *temporaryPointer;
         u32 temporaryValue;
 
         temporaryPointer = &gSpriteAiDropTimer;

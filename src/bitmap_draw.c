@@ -50,8 +50,8 @@ void DrawBgLine(s32 x0, s32 y0, s32 x1, s32 y1, s32 color)
     // Used specific register binding to match
     volatile s32 lineColor;
     volatile s32 endMajorCoord;
-    register s32 r0 asm("r0");
-    register s32 r1 asm("r1");
+    s32 r0;
+    s32 r1;
     register s32 startMajorCoord asm("r4");
     s32 deltaMajor;
     s32 currentStep;

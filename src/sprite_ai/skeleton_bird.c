@@ -29,7 +29,8 @@ void UpdateSkeletonBirdFacingAndProjectile(void)
     register u8 *actionTimer asm("r5") = &currentSprite->work1;
     register u8 timer asm("r0") = *actionTimer;
     register u16 initialTimer asm("r2") = timer;
-    register struct PrimarySpriteData *turnSprite asm("r3") = currentSprite;
+    struct PrimarySpriteData *turnSprite;
+    turnSprite = currentSprite;
 
     if (initialTimer == 0) {
         if (currentSprite->health == 1

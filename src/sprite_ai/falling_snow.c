@@ -18,7 +18,9 @@ extern void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
 
 void InitFallingSnow(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->status |= 0x400;
     s->drawDistanceDown = 24;
     s->drawDistanceUp = 24;
@@ -38,7 +40,9 @@ void InitFallingSnow(void)
 
 void FallingSnowWaitBeforeDropping(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->disableWarioCollisionTimer = 1;
     if (--s->work0 == 0) {
         s->pOamData = sFallingSnowDropOam;
@@ -52,7 +56,9 @@ void FallingSnowWaitBeforeDropping(void)
 
 void FallingSnowStartFalling(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->disableWarioCollisionTimer = 1;
     if (--s->work0 == 0) {
         s->pOamData = sFallingSnowFallingOam;
@@ -100,7 +106,9 @@ void FallingSnowFall(void)
 
 void FallingSnowStartMelting(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->pOamData = sFallingSnowMeltingOam;
     s->currentAnimationFrame = 0;
     s->animationTimer = 0;
@@ -110,7 +118,9 @@ void FallingSnowStartMelting(void)
 
 void FallingSnowWaitToRespawn(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->disableWarioCollisionTimer = 1;
     if (--s->work0 == 0)
         s->pose = 110;
@@ -118,8 +128,8 @@ void FallingSnowWaitToRespawn(void)
 
 void FallingSnowRespawn(void)
 {
-    register u8 (*map)[3] asm("r3");
-    register struct PrimarySpriteData* sprite asm("r2");
+    u8 (*map)[3];
+    struct PrimarySpriteData* sprite;
     u8 roomSlot;
     u16 y;
 
@@ -136,7 +146,9 @@ void FallingSnowRespawn(void)
 
 void FallingSnowWaitBeforeDroppingAgain(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->disableWarioCollisionTimer = 1;
     s->currentAnimationFrame = 0;
     s->animationTimer = 0;
@@ -149,7 +161,9 @@ void FallingSnowWaitBeforeDroppingAgain(void)
 
 void FallingSnowSpawnFragment(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     if (s->xPosition > gWarioData.xPosition)
         SpawnPrimarySpriteWithStatus(0x9e, s->roomSlot, s->gfxSlot, s->yPosition, s->xPosition, 64);
     else
@@ -158,7 +172,9 @@ void FallingSnowSpawnFragment(void)
 
 void FallingSnowResetAfterImpact(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     s->pOamData = sFallingSnowResetOam;
     s->currentAnimationFrame = 0;
     s->animationTimer = 0;
@@ -168,18 +184,18 @@ void FallingSnowResetAfterImpact(void)
 
 void InitFallingSnowChild(void)
 {
-    register struct PrimarySpriteData* sprite asm("ip");
-    register u8 zero asm("r2");
-    register u16 zero16 asm("r3");
-    register struct PrimarySpriteData* storeSprite asm("r4");
-    register u8 one asm("r1");
-    register u8* ptr asm("r0");
-    register u8* ptr32 asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8 zero;
+    u16 zero16;
+    struct PrimarySpriteData* storeSprite;
+    u8 one;
+    u8* ptr;
+    u8* ptr32;
 
     sprite = &gCurrentSprite;
     {
-        register u16 oldStatus asm("r1");
-        register u32 statusBits asm("r2");
+        u16 oldStatus;
+        u32 statusBits;
         register u16 status asm("r0");
         oldStatus = sprite->status;
         statusBits = 0x400;
@@ -215,8 +231,8 @@ void InitFallingSnowChild(void)
     storeSprite->currentAnimationFrame = zero;
     storeSprite->animationTimer = zero16;
     {
-        register u8* work0 asm("r2");
-        register u8 timer asm("r0");
+        u8* work0;
+        u8 timer;
         work0 = (u8*)sprite + 39;
         timer = 68;
         *work0 = timer;
@@ -228,7 +244,9 @@ void InitFallingSnowChild(void)
 
 void FallingSnowChildExpire(void)
 {
-    struct PrimarySpriteData* s = &gCurrentSprite;
+    struct PrimarySpriteData* s;
+
+    s = &gCurrentSprite;
     if (--s->work0 == 0)
         s->status = 0;
 }
@@ -236,19 +254,19 @@ void FallingSnowChildExpire(void)
 void InitFallingSnowFragment(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
-    register u8 zero asm("r2");
-    register u16 zero16 asm("r3");
+    u8 zero;
+    u16 zero16;
     register u16 status asm("r4");
-    register u8 one asm("r1");
-    register u8* ptr asm("r0");
+    u8 one;
+    u8* ptr;
     register u8* ptr32 asm("r1");
 
     sprite = &gCurrentSprite;
     {
-        register u16 oldStatus asm("r1");
+        s32 oldStatus;
         register u32 statusBits asm("r2");
         register u16 base asm("r0");
-        register u32 mask asm("r0");
+        u32 mask;
 
         oldStatus = sprite->status;
         statusBits = 0x400;
@@ -287,8 +305,8 @@ void InitFallingSnowFragment(void)
     sprite->currentAnimationFrame = zero;
     sprite->animationTimer = zero16;
     {
-        register u8 collision asm("r0");
-        register struct PrimarySpriteData* store asm("r3");
+        u8 collision;
+        struct PrimarySpriteData* store;
         collision = 18;
         asm volatile("" : "+r"(collision));
         store = sprite;
@@ -306,7 +324,7 @@ void InitFallingSnowFragment(void)
         }
         else
         {
-            register const struct AnimationFrame* oam asm("r0");
+            const struct AnimationFrame* oam;
             register struct PrimarySpriteData* dst asm("r1");
             oam = sFallingSnowFragmentRightOam;
             asm volatile("" : "+r"(oam));

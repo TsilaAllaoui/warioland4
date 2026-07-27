@@ -13,13 +13,13 @@ void BubbleCollisionCheck() asm("func_8023BFC");
 void InitBubbleSpawner(void)
 {
     register struct PrimarySpriteData *sprite asm("ip");
-    register u16 oldStatus asm("r1");
+    u16 oldStatus;
     register u16 status asm("r0");
     register int zeroByte asm("r2");
-    register int zeroHalf asm("r3");
-    register u8 *bounds asm("r0");
-    register int one asm("r1");
-    register const struct AnimationFrame *oam asm("r0");
+    int zeroHalf;
+    u8 *bounds;
+    int one;
+    const struct AnimationFrame *oam;
     register struct PrimarySpriteData *postSprite asm("r1");
 
     sprite = &gCurrentSprite;
@@ -57,10 +57,10 @@ void InitBubbleSpawner(void)
 
 void BubbleSpawnerIdle(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u8 *timerPointer asm("r6");
-    register int timerValue asm("r0");
-    register u8 timer asm("r5");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    int timerValue;
+    u8 timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -78,8 +78,8 @@ void BubbleSpawnerIdle(void)
 
 void StartBubblePop(void)
 {
-    register struct PrimarySpriteData *sprite asm("r1");
-    register int temp asm("r2");
+    struct PrimarySpriteData *sprite;
+    int temp;
 
     sprite = &gCurrentSprite;
     temp = 0;
@@ -98,15 +98,15 @@ void MoveBubble(void)
 {
     register const u16 *velocityTable asm("r2");
     register struct PrimarySpriteData *current asm("r1");
-    register struct PrimarySpriteData *sprite asm("r5");
+    struct PrimarySpriteData *sprite;
     register struct PrimarySpriteData *movementSprite asm("r4");
-    register u8 *phasePointer asm("r4");
-    register u8 *directionPointer asm("r3");
-    register int direction asm("r0");
+    u8 *phasePointer;
+    u8 *directionPointer;
+    int direction;
     register u16 velocity asm("r2");
-    register u8 *phaseIncrementPointer asm("r8");
-    register int phaseValue asm("r0");
-    register int zero asm("sl");
+    u8 *phaseIncrementPointer;
+    int phaseValue;
+    int zero;
     register struct PrimarySpriteData *wallHitSprite asm("r0");
 
     velocityTable = sHorizontalOscillationVelocity;
@@ -132,20 +132,20 @@ void MoveBubble(void)
     phaseValue = *phaseIncrementPointer;
     phaseValue++;
     {
-        register u8 *phaseStorePointer asm("r1");
+        u8 *phaseStorePointer;
         phaseStorePointer = phaseIncrementPointer;
         *phaseStorePointer = phaseValue;
     }
 
     {
-        register u16 oldY asm("r1");
-        register int yValue asm("r0");
+        u16 oldY;
+        int yValue;
         register int zeroSource asm("r2");
         register u8 *wallCooldownPointer;
         register u8 *wallCollisionResult asm("r9");
         register int wallCollisionValue asm("r1");
         register int wallCollisionMask asm("r6");
-        register int maskedCollision asm("r0");
+        int maskedCollision;
 
         oldY = movementSprite->yPosition;
         yValue = oldY - 2;
@@ -176,9 +176,9 @@ void MoveBubble(void)
                 wallHitSprite = sprite;
 wallCollision:
                 {
-                    register u8 *hitDirectionPointer asm("r0");
-                    register int hitDirection asm("r1");
-                    register int one asm("r2");
+                    u8 *hitDirectionPointer;
+                    int hitDirection;
+                    int one;
                     hitDirectionPointer = &wallHitSprite->work1;
                     hitDirection = *hitDirectionPointer;
                     one = 1;
@@ -188,7 +188,7 @@ wallCollision:
                 *wallCooldownPointer = wallCollisionMask;
                 zeroSource = zero;
                 {
-                    register u8 *phaseStorePointer asm("r1");
+                    u8 *phaseStorePointer;
                     phaseStorePointer = phaseIncrementPointer;
                     *phaseStorePointer = zeroSource;
                 }
@@ -202,13 +202,13 @@ wallCollision:
 
     {
         register struct PrimarySpriteData *groundSprite asm("r4");
-        register u8 *extentPointer asm("r0");
-        register int extent asm("r1");
+        u8 *extentPointer;
+        int extent;
         register int yValue asm("r0");
         register int topY asm("r5");
-        register int xValue asm("r1");
+        int xValue;
         register u8 *groundCollisionResult asm("r6");
-        register int groundCollisionValue asm("r1");
+        int groundCollisionValue;
         register int groundCollisionMask;
         register int maskedCollision asm("r0");
 
@@ -261,9 +261,9 @@ end:
 
 void UpdateBubblePop(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *timerPointer asm("r1");
-    register int timer asm("r0");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    int timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -281,13 +281,13 @@ void UpdateBubblePop(void)
 
 void InitBubble(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register int zero asm("r4");
     register u16 oldStatus asm("r0");
     register u16 status asm("r1");
-    register int one asm("r2");
+    int one;
     register u8 *bounds asm("r2");
-    register u8 *bytePointer asm("r0");
+    u8 *bytePointer;
     register int condition asm("r1");
 
     sprite = &gCurrentSprite;
@@ -350,9 +350,9 @@ void InitBubble(void)
 
 void BubbleWaitBeforeMoving(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register int timerValue asm("r0");
-    register int timer asm("r1");
+    struct PrimarySpriteData *sprite;
+    int timerValue;
+    int timer;
     u8 *timerPointer;
 
     sprite = &gCurrentSprite;
@@ -387,9 +387,9 @@ void SpriteBubble(void)
 
 void SpriteBubbleInstance(void)
 {
-    register struct PrimarySpriteData *current asm("r0");
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 pose asm("r1");
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprite;
+    s32 pose;
 
     current = &gCurrentSprite;
     pose = current->pose;

@@ -151,15 +151,15 @@ void InitPistonChild(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
     register u8 zero asm("r2");
-    register u16 zero16 asm("r4");
-    register u8 pose asm("r3");
-    register u8 extent asm("r1");
+    u16 zero16;
+    u8 pose;
+    u8 extent;
     register u8* ptr asm("r0");
-    register u8* ptr32 asm("r1");
+    u8* ptr32;
 
     sprite = &gCurrentSprite;
     {
-        register u16 oldStatus asm("r1");
+        u16 oldStatus;
         register u32 statusBits asm("r2");
         register u16 status asm("r0");
 
@@ -223,10 +223,10 @@ void SpritePiston(void)
 void SpritePistonChild(void)
 {
     u16 zero;
-    register struct PrimarySpriteData* current asm("r4");
-    register struct PrimarySpriteData* currentLoad asm("r0");
-    register u8 roomSlot asm("r5");
-    register u8* sprite asm("r2");
+    struct PrimarySpriteData* current;
+    struct PrimarySpriteData* currentLoad;
+    u8 roomSlot;
+    u8* sprite;
     register u8* positionSprite asm("r3");
     register u8* end asm("r6");
 
@@ -244,8 +244,8 @@ void SpritePistonChild(void)
         if (((struct PrimarySpriteData*)sprite)->roomSlot == roomSlot &&
             (u8)(((struct PrimarySpriteData*)sprite)->globalID - PSPRITE_PISTON) <= 1)
         {
-            register u16 status asm("r1");
-            register u32 active asm("r0");
+            u16 status;
+            u32 active;
 
             status = ((struct PrimarySpriteData*)sprite)->status;
             active = 1;

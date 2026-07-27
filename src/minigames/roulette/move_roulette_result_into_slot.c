@@ -3,16 +3,16 @@
 int MoveRouletteResultIntoSlot(void)
 {
     register u8 *progressPtr;
-    register s16 *tileStepPtr asm("r4");
+    s16 *tileStepPtr;
     register u16 *tileBasePtr asm("r5");
     register s16 *xStepPtr asm("r6");
     register u16 *xBasePtr asm("r8");
-    register s16 *yStepPtr asm("r9");
+    s16 *yStepPtr;
     register u16 *yBasePtr asm("sl");
     u8 progress;
 
     {
-        register u8 *progressAddress asm("r0");
+        u8 *progressAddress;
         register u8 initialProgress asm("r1");
         progressAddress = &gRouletteMoveProgress;
         initialProgress = *progressAddress;
@@ -37,7 +37,7 @@ int MoveRouletteResultIntoSlot(void)
         case 10:
             {
                 register s16 *base asm("r2");
-                register s32 zero asm("r0");
+                u16 zero;
                 register s32 baseValue asm("r1");
                 base = (s16 *)yBasePtr;
                 zero = 0;
@@ -51,7 +51,7 @@ int MoveRouletteResultIntoSlot(void)
         case 12:
             {
                 register s16 *base asm("r2");
-                register s32 zero asm("r0");
+                u16 zero;
                 register s32 baseValue asm("r1");
                 base = (s16 *)yBasePtr;
                 zero = 0;
@@ -69,9 +69,9 @@ int MoveRouletteResultIntoSlot(void)
     *progressPtr = progress;
 
     {
-        register struct RouletteItem **refs asm("r3");
-        register struct RouletteItem *item asm("r2");
-        register s32 step asm("r1");
+        struct RouletteItem **refs;
+        struct RouletteItem *item;
+        s32 step;
         register s32 value asm("r0");
 
         refs = gRouletteItemDrawOrder;
@@ -106,7 +106,7 @@ int MoveRouletteResultIntoSlot(void)
         item = refs[0];
         {
             register s16 *stepBase asm("r4");
-            register s32 zero asm("r0");
+            u16 zero;
             stepBase = yStepPtr;
             zero = 0;
             /* Preserve the target's r4 base/r0 zero signed load. */
@@ -124,7 +124,7 @@ int MoveRouletteResultIntoSlot(void)
         item->y = value;
 
         if (*progressPtr == 30) {
-            register u32 state asm("r2");
+            u32 state;
             state = gMinigameState;
             if ((state == 8 && refs[0]->value == gRouletteWinningValues[0]) ||
                 (state == 10 && refs[0]->value == gRouletteWinningValues[1]) ||
@@ -135,15 +135,15 @@ int MoveRouletteResultIntoSlot(void)
             }
 
             {
-                register u8 *resetProgress asm("r7");
+                u8 *resetProgress;
                 register struct RouletteItem **resetRefs asm("r12");
                 register u8 *selectedPtr asm("r8");
                 register u8 *sequencePtr asm("r9");
                 register u16 *yPtr asm("r0");
-                register u8 *statePtr asm("r5");
-                register int zero asm("r6");
-                register int yForState8 asm("r4");
-                register int yForState10 asm("r2");
+                u8 *statePtr;
+                int zero;
+                int yForState8;
+                int yForState10;
                 register int count asm("r3");
                 register struct RouletteItem **refsLoad asm("r2");
                 register u8 *selectedLoad asm("r4");
@@ -186,7 +186,7 @@ int MoveRouletteResultIntoSlot(void)
 
                 {
                     register struct RouletteItem **refsLow asm("r1");
-                    register struct RouletteItem *first asm("r2");
+                    struct RouletteItem *first;
                     register int clear asm("r1");
                     register u8 *selectedLow asm("r2");
                     register u8 *sequenceLow asm("r4");

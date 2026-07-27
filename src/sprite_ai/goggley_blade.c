@@ -103,13 +103,13 @@ void GoggleyBladeSetTurnDown(void)
 
 void GoggleyBladeTurnDown(void)
 {
-    register u8* indexPointer asm("r4");
-    register struct PrimarySpriteData* sprite asm("r5");
-    register u32 index asm("r2");
-    register u32 velocity asm("r6");
+    u8* indexPointer;
+    struct PrimarySpriteData* sprite;
+    u32 index;
+    s32 velocity;
 
     {
-        register u32 base asm("r0");
+        u32 base;
         base = (u32)&gCurrentSprite;
         indexPointer = (u8*)(base + 42);
         index = *indexPointer;
@@ -171,14 +171,14 @@ void GoggleyBladeSetTurnUp(void)
 
 void GoggleyBladeTurnUp(void)
 {
-    register struct PrimarySpriteData* sprite asm("r3");
-    register u8* indexPointer asm("r12");
-    register u32 index asm("r2");
-    register const s16* table asm("r4");
-    register u32 velocity asm("r5");
-    register int zero asm("r6");
-    register u32 temp asm("r0");
-    register s32 auxiliary asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* indexPointer;
+    u32 index;
+    const s16* table;
+    u32 velocity;
+    int zero;
+    u32 temp;
+    s32 auxiliary;
 
     sprite = &gCurrentSprite;
     indexPointer = &sprite->work3;

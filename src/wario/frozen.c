@@ -27,8 +27,8 @@ u8 UpdateFrozenWario(void)
 
 u8 FrozenWarioTransforming(void)
 {
-    register struct WarioData* wario asm("r2");
-    register const struct FrozenAnimationFrame* animation asm("r3");
+    struct WarioData* wario;
+    const struct FrozenAnimationFrame* animation;
 
     wario = &gWarioData;
     animation = sFrozenTransformAnimation;
@@ -64,8 +64,8 @@ u8 FrozenWarioSlideRight(void)
 
 u8 FrozenWarioBonk(void)
 {
-    register struct WarioData* wario asm("r2");
-    register const struct FrozenAnimationFrame* animation asm("r3");
+    struct WarioData* wario;
+    const struct FrozenAnimationFrame* animation;
 
     wario = &gWarioData;
     animation = sFrozenBonkAnimation;
@@ -83,7 +83,7 @@ u8 FrozenWarioBonk(void)
 
 void SetFrozenWarioPose(int pose)
 {
-    register int value asm("r4");
+    int value;
     pose <<= 24;
     value = (u32)pose >> 24;
     ResetWarioState();
@@ -125,9 +125,9 @@ void UpdateFrozenWarioMovement(void)
 {
     register u8* hitbox asm("r3");
     register const u8* data asm("r2");
-    register struct WarioData* wario asm("r4");
-    register u16 movement asm("r2");
-    register u16 velocity asm("r1");
+    struct WarioData* wario;
+    s32 movement;
+    u16 velocity;
     register s32 temp asm("r0");
     const u8* ptr;
     u16 horizontalMovement;
@@ -179,15 +179,15 @@ void UpdateFrozenWarioMovement(void)
 
 void ProcessFrozenWarioCollision(void)
 {
-    register u8* hitbox asm("r4");
+    u8* hitbox;
     register const u8* data asm("r2");
     register struct WarioData* wario asm("r3");
-    register int result asm("r6");
-    register int callResult asm("r0");
-    register struct WarioData* warioAgain asm("r5");
-    register int floorResult asm("r4");
-    register int mask asm("r0");
-    register u8* hitboxAgain asm("r1");
+    int result;
+    int callResult;
+    struct WarioData* warioAgain;
+    int floorResult;
+    int mask;
+    u8* hitboxAgain;
     const u8* ptr;
     u32 index;
     u16 flags;
@@ -264,9 +264,9 @@ void ProcessFrozenWarioCollision(void)
 
 void LoadFrozenWarioGraphics(int index)
 {
-    register u32 value asm("r4");
-    register const struct FrozenGraphicsFrame** table asm("r1");
-    register struct WarioData* wario asm("r2");
+    u32 value;
+    const struct FrozenGraphicsFrame** table;
+    struct WarioData* wario;
     const struct FrozenGraphicsFrame* frame;
     const u8* gfx;
     value = index;
@@ -315,10 +315,10 @@ void ApplyFrozenWarioMusicEffects(void)
 
 void UpdateFrozenWarioHitbox(void)
 {
-    register const u8* data asm("r3");
-    register struct WarioData* wario asm("r4");
-    register const u8* hitboxes asm("r2");
-    register u32 offset asm("r1");
+    const u8* data;
+    struct WarioData* wario;
+    const u8* hitboxes;
+    u32 offset;
     register u32 address asm("r0");
     u32 poseOffset;
     u8 value;

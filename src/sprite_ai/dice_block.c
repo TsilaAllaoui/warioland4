@@ -9,11 +9,11 @@
 
 void SetDiceBlockCollision(void)
 {
-    register int yPosition asm("r6");
-    register int xPosition asm("r4");
-    register int upperY asm("r5");
-    register int leftX asm("r8");
-    register s8 *blockAction asm("sl");
+    int yPosition;
+    u16 xPosition;
+    u16 upperY;
+    u16 leftX;
+    s8 *blockAction;
     register s8 action asm("r9");
 
     yPosition = gCurrentSprite.yPosition;
@@ -25,8 +25,8 @@ void SetDiceBlockCollision(void)
     leftX = (u16) (xPosition - 4);
     func_806D5C0(upperY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
 
         value = action;
         /* Preserve the value move before agbcc materializes the destination pointer. */
@@ -37,8 +37,8 @@ void SetDiceBlockCollision(void)
     xPosition = (u16) (xPosition + 4);
     func_806D5C0(upperY, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
 
         value = action;
         /* Preserve the value move before agbcc materializes the destination pointer. */
@@ -49,8 +49,8 @@ void SetDiceBlockCollision(void)
     yPosition = (u16) (yPosition - 68);
     func_806D5C0(yPosition, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
 
         value = action;
         /* Preserve the value move before agbcc materializes the destination pointer. */
@@ -63,11 +63,11 @@ void SetDiceBlockCollision(void)
 
 void ClearDiceBlockCollision(void)
 {
-    register int yPosition asm("r6");
-    register int xPosition asm("r4");
-    register int upperY asm("r5");
-    register int leftX asm("r8");
-    register s8 *blockAction asm("sl");
+    int yPosition;
+    u16 xPosition;
+    u16 upperY;
+    u16 leftX;
+    s8 *blockAction;
     register s8 action asm("r9");
 
     yPosition = gCurrentSprite.yPosition;
@@ -79,8 +79,8 @@ void ClearDiceBlockCollision(void)
     leftX = (u16) (xPosition - 4);
     func_806D5C0(upperY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
 
         value = action;
         /* Preserve the value move before agbcc materializes the destination pointer. */
@@ -91,8 +91,8 @@ void ClearDiceBlockCollision(void)
     xPosition = (u16) (xPosition + 4);
     func_806D5C0(upperY, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
 
         value = action;
         /* Preserve the value move before agbcc materializes the destination pointer. */
@@ -103,8 +103,8 @@ void ClearDiceBlockCollision(void)
     yPosition = (u16) (yPosition - 68);
     func_806D5C0(yPosition, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
 
         value = action;
         /* Preserve the value move before agbcc materializes the destination pointer. */

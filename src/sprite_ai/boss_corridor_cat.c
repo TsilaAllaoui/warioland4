@@ -6,14 +6,14 @@
 
 void InitBossCorridorCat(void)
 {
-    register u8 *persistentData asm("r1");
-    register struct PrimarySpriteData *sprite asm("r3");
-    register struct PrimarySpriteData *caseSprite asm("r2");
-    register int zeroHalf asm("r4");
+    u8 *persistentData;
+    struct PrimarySpriteData *sprite;
+    struct PrimarySpriteData *caseSprite;
+    int zeroHalf;
     register int zeroByte asm("r2");
     register int offset asm("r0");
-    register int slot asm("r2");
-    register u16 oldStatus asm("r1");
+    int slot;
+    u16 oldStatus;
     register u16 status asm("r0");
     int random;
 
@@ -93,13 +93,13 @@ void InitBossCorridorCat(void)
 
 void BossCorridorCatWaitToTurn(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
-    register u8 *timerPointer asm("ip");
-    register int pointerValue asm("r0");
-    register int timerValue asm("r0");
-    register u8 timer asm("r4");
-    register u16 oldStatus asm("r1");
-    register u16 status asm("r0");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    int pointerValue;
+    int timerValue;
+    u8 timer;
+    u16 oldStatus;
+    s32 status;
     register int zero asm("r2");
 
     sprite = &gCurrentSprite;
@@ -128,10 +128,10 @@ void BossCorridorCatWaitToTurn(void)
 
 void BossCorridorCatStartFastLeftDash(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *timerPointer asm("r3");
-    register int timerValue asm("r0");
-    register u8 timer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    int timerValue;
+    u8 timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -152,10 +152,10 @@ void BossCorridorCatStartFastLeftDash(void)
 
 void BossCorridorCatFastLeftDash(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
-    register u8 *timerPointer asm("r2");
-    register u32 oldTimer asm("r0");
-    register u32 nextTimer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    u32 oldTimer;
+    u32 nextTimer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -178,10 +178,10 @@ void BossCorridorCatFastLeftDash(void)
 
 void BossCorridorCatSlowLeftDash(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
-    register u8 *timerPointer asm("r2");
-    register u32 oldTimer asm("r0");
-    register u32 nextTimer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    u32 oldTimer;
+    u32 nextTimer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -204,10 +204,10 @@ void BossCorridorCatSlowLeftDash(void)
 
 void BossCorridorCatWaitToDashRight(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *timerPointer asm("r3");
-    register int timerValue asm("r0");
-    register u8 timer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    int timerValue;
+    u8 timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -228,10 +228,10 @@ void BossCorridorCatWaitToDashRight(void)
 
 void BossCorridorCatWaitToDashRightShort(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u8 *timerPointer asm("r2");
-    register int timerValue asm("r0");
-    register u8 timer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    int timerValue;
+    u8 timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -253,10 +253,10 @@ void BossCorridorCatWaitToDashRightShort(void)
 
 void BossCorridorCatDashRight(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
-    register u8 *timerPointer asm("r2");
-    register u32 oldTimer asm("r0");
-    register u32 nextTimer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
+    u32 oldTimer;
+    u32 nextTimer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;

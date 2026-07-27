@@ -11,7 +11,7 @@
 
 void PrepareWarioUpdate(void)
 {
-    register struct WarioData *wario asm("r4");
+    struct WarioData *wario;
     u16 direction;
     u8 zero;
 
@@ -45,11 +45,11 @@ void PrepareWarioUpdate(void)
 
 void CopyWarioPalette(const void *source, int destinationIndex, int size)
 {
-    register const u16 *src asm("r4");
-    register int start asm("r3");
+    const u16 *src;
+    int start;
     int end;
     register u16 *dst asm("r1");
-    register int byteOffset asm("r0");
+    int byteOffset;
 
     src = source;
     start = destinationIndex;
@@ -68,7 +68,7 @@ void CopyWarioPalette(const void *source, int destinationIndex, int size)
 
 s32 GetAdjustedWarioXVelocity(void)
 {
-    register struct WarioData *wario asm("r2");
+    struct WarioData *wario;
     u16 velocity;
     u16 originalVelocity;
 
@@ -76,7 +76,7 @@ s32 GetAdjustedWarioXVelocity(void)
     velocity = wario->xVelocity;
     originalVelocity = velocity;
     if ((gCurrentCarriedSprite.unk1 & 0xF) > 1) {
-        register s32 value asm("r0");
+        s32 value;
         register s32 limit asm("r1");
 
         value = (s16)velocity;
@@ -91,15 +91,15 @@ s32 GetAdjustedWarioXVelocity(void)
     }
 
     {
-        register u16 direction asm("r0");
+        u16 direction;
         register u16 flags asm("r2");
 
         direction = wario->horizontalDirection;
         flags = (u16)wario->unk_1C;
         if ((direction & flags) != 0) {
             if ((flags & 1) != 0) {
-                register s32 signedVelocity asm("r1");
-                register s32 product asm("r0");
+                s32 signedVelocity;
+                s32 product;
 
                 signedVelocity = (s16)velocity;
                 product = signedVelocity << 1;
@@ -107,7 +107,7 @@ s32 GetAdjustedWarioXVelocity(void)
                 product <<= 14;
                 velocity = (u32)product >> 16;
             } else {
-                register s32 product asm("r0");
+                s32 product;
 
                 product = (s16)velocity << 2;
                 product /= 5;
@@ -115,9 +115,9 @@ s32 GetAdjustedWarioXVelocity(void)
                 velocity = (u32)product >> 16;
             }
         } else {
-            register s32 sum asm("r0");
-            register s16 *adjustment asm("r1");
-            register s32 signedVelocity asm("r1");
+            s32 sum;
+            s16 *adjustment;
+            s32 signedVelocity;
 
             adjustment = &gWarioHorizontalCollisionOffset;
             sum = (s16)velocity;
@@ -140,10 +140,10 @@ s32 GetAdjustedWarioXVelocity(void)
 
 void UpdateWarioHorizontalCollisionOffset(void)
 {
-    register struct WarioData *wario asm("r4");
+    struct WarioData *wario;
     u16 (*offsets)[3];
-    register struct WarioCollisionData *collision asm("r5");
-    register int mask asm("r6");
+    struct WarioCollisionData *collision;
+    int mask;
     s32 result;
 
     wario = &gWarioData;
@@ -151,8 +151,8 @@ void UpdateWarioHorizontalCollisionOffset(void)
     collision = &gWarioCollisionData;
 
     {
-        register s32 probeX asm("r1");
-        register u16 probeY asm("r0");
+        s32 probeX;
+        u16 probeY;
 
         probeX = offsets[collision->unk_08][0];
         probeY = wario->xPosition;
@@ -168,11 +168,11 @@ void UpdateWarioHorizontalCollisionOffset(void)
         gWarioHorizontalCollisionOffset = -32;
     } else {
         {
-            register u16 *entry asm("r0");
-            register s32 tableIndex asm("r1");
-            register u16 *secondOffsets asm("r1");
-            register s32 probeX asm("r1");
-            register u16 probeY asm("r0");
+            u16 *entry;
+            s32 tableIndex;
+            u16 *secondOffsets;
+            s32 probeX;
+            u16 probeY;
 
             tableIndex = collision->unk_08;
             entry = (u16 *)(tableIndex * 6);
@@ -197,7 +197,7 @@ void UpdateWarioHorizontalCollisionOffset(void)
 
 void UpdateCarriedSpriteOffsets(void)
 {
-    register struct CarriedSprite *carried asm("r1");
+    struct CarriedSprite *carried;
     register const u16 *offsets asm("r2");
     s32 index;
     s32 xOffset;
@@ -217,8 +217,8 @@ void UpdateCarriedSpriteOffsets(void)
 
     {
         register struct CarriedSprite *current asm("r2");
-        register const u16 *yOffsets asm("r0");
-        register s32 yIndex asm("r1");
+        const u16 *yOffsets;
+        s32 yIndex;
 
         current = carried;
         yOffsets = sCarriedSpriteYOffsets;
@@ -229,14 +229,14 @@ void UpdateCarriedSpriteOffsets(void)
 
 void UpdateWarioPositionHistory(void)
 {
-    register struct WarioAfterimage *afterimage asm("r1");
-    register u8 timer asm("r0");
-    register u16 *indexPtr asm("r5");
+    struct WarioAfterimage *afterimage;
+    u8 timer;
+    u16 *indexPtr;
     register u16 index asm("r2");
-    register u16 *history asm("r3");
-    register u16 *slot asm("r4");
-    register u32 offset asm("r0");
-    register u16 position asm("r1");
+    u16 *history;
+    u16 *slot;
+    u32 offset;
+    u16 position;
 
     afterimage = &gWarioDashAfterimage;
     timer = afterimage->unk1;
@@ -271,12 +271,12 @@ void UpdateWarioPositionHistory(void)
 
 void WarioProcessControls(void)
 {
-    register struct WarioData *wario asm("r5");
+    struct WarioData *wario;
     register struct WarioData *current asm("r4");
-    register struct WarioCollisionData *collision asm("r1");
-    register s32 zero asm("r0");
-    register s32 mode asm("r0");
-    register u8 *previousReaction asm("r1");
+    struct WarioCollisionData *collision;
+    s32 zero;
+    s32 mode;
+    u8 *previousReaction;
     u8 poseRequest;
 
     collision = &gWarioCollisionData;
@@ -314,16 +314,16 @@ void WarioProcessControls(void)
 void WarioProcessCollision(void)
 {
     register struct WarioCollisionData *initialCollision asm("r1");
-    register struct WarioCollisionData *collision asm("r3");
-    register struct WarioData *initialWario asm("r2");
-    register struct WarioData *wario asm("r6");
-    register u32 currentX asm("r4");
+    struct WarioCollisionData *collision;
+    struct WarioData *initialWario;
+    struct WarioData *wario;
+    u32 currentX;
     register u8 zero asm("r5");
-    register u16 *previousXPointer asm("r0");
-    register u32 previousX asm("r0");
-    register u32 currentY asm("r1");
-    register u16 *previousYPointer asm("r0");
-    register u32 previousY asm("r0");
+    u16 *previousXPointer;
+    u32 previousX;
+    u32 currentY;
+    u16 *previousYPointer;
+    u32 previousY;
 
     initialCollision = &gWarioCollisionData;
     zero = 0;
@@ -379,9 +379,9 @@ horizontalDone:
 
 void ProcessWarioInteraction(void)
 {
-    register struct WarioData *wario asm("r5");
+    struct WarioData *wario;
     register struct WarioData *current asm("r4");
-    register struct CarriedSprite *carried asm("r2");
+    struct CarriedSprite *carried;
     u8 value;
     u8 direction;
 
@@ -416,7 +416,7 @@ void ProcessWarioInteraction(void)
 
 void FinalizeWarioUpdate(void)
 {
-    register int previousReaction asm("r0");
+    int previousReaction;
 
     if (gSwitchPressed == 0 || gWarioData.reaction == REACTION_NORMAL) {
         sUnk_82DED60[gWarioData.reaction]();

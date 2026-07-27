@@ -145,7 +145,7 @@ void func_80357B8(void)
     }
 
     {
-        register struct PrimarySpriteData *sprite asm("r2");
+        struct PrimarySpriteData *sprite;
         register u8 *work0 asm("r3");
         register u32 next asm("r0");
         register u32 timer asm("r1");
@@ -203,7 +203,7 @@ void func_8035978(void)
 
 void func_8035998(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r3");
     register u32 next asm("r0");
     register u32 timer asm("r1");
@@ -230,7 +230,7 @@ void func_8035998(void)
                     *work0 = 5;
                     sprite->warioCollision = 33;
                     {
-                        register u8 *hitbox asm("r1");
+                        u8 *hitbox;
                         hitbox = &sprite->hitboxExtentLeft;
                         *hitbox++ = 28;
                         /* Preserve the required post-increment addressing form. */
@@ -307,7 +307,7 @@ void func_8035AE0(void)
 
 void func_8035B00(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r3");
     register u32 old asm("r0");
     register u32 next asm("r1");
@@ -349,7 +349,7 @@ void func_8035B5C(void)
 
 void func_8035B88(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r3");
     register u32 old asm("r0");
     register u32 next asm("r1");
@@ -391,7 +391,7 @@ void func_8035BE8(void)
 
 void func_8035C0C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r5");
     u8 timer;
 
@@ -795,7 +795,7 @@ void func_8036274(void)
                 sprite->yPosition = yPosition;
             } else {
                 register u32 nextIndex asm("r0");
-                register u8 *storeWork3 asm("r1");
+                u8 *storeWork3;
                 nextIndex = index + 1;
                 storeWork3 = work3;
                 *storeWork3 = nextIndex;
@@ -853,7 +853,7 @@ void func_8036384(void)
     register struct PrimarySpriteData *sprite asm("r12");
     register u16 status asm("r2");
     register u32 zeroByte asm("r3");
-    register u32 zeroHalf asm("r4");
+    u32 zeroHalf;
     u16 oldStatus;
 
     sprite = &gCurrentSprite;
@@ -881,7 +881,7 @@ void func_8036384(void)
         *fields = 36;
     }
     {
-        register const struct AnimationFrame *oam asm("r0");
+        const struct AnimationFrame *oam;
         register u8 *fields asm("r1");
         oam = sTogeroboOam_83BD00C;
         fields = (u8 *)sprite;
@@ -937,7 +937,7 @@ void func_803645C(void)
 
 void func_80364A4(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r2");
     register u32 old asm("r0");
     register u32 next asm("r1");
@@ -1232,7 +1232,7 @@ call_8024C00:
 
 void SpriteUnknown9C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
     if (sprite->status & SPRITE_STATUS_UNDERWATER)

@@ -25,18 +25,18 @@ u8 ZombieWarioTransforming(void)
 
 u8 ZombieWarioWalking(void)
 {
-    register struct WarioData *wario asm("r3");
-    register u32 held asm("r4");
-    register u32 direction asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r2");
+    struct WarioData *wario;
+    u32 held;
+    u32 direction;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     if (gButtonsPressed & A_BUTTON) {
         return 3;
     }
     {
-        register const u16 *buttons asm("r0");
-        register struct WarioData *address asm("r1");
-        register u32 active asm("r0");
+        const u16 *buttons;
+        struct WarioData *address;
+        u32 active;
 
         buttons = &gButtonsHeld;
         address = &gWarioData;
@@ -78,10 +78,10 @@ u8 ZombieWarioWalking(void)
 
 u8 ZombieWarioEmergingFromHat(void)
 {
-    register struct WarioData *wario asm("r3");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r4");
-    register u16 held asm("r1");
-    register u16 direction asm("r2");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
+    s32 held;
+    u16 direction;
 
     held = gButtonsHeld;
     if (held & A_BUTTON) {
@@ -108,8 +108,8 @@ u8 ZombieWarioEmergingFromHat(void)
 
 u8 ZombieWarioJumping(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
     wario = &gWarioData;
     frames = sZombieWarioJumpingFrames;
     if (wario->unk_1E >= frames[wario->unk_1F].time) {
@@ -125,15 +125,15 @@ u8 ZombieWarioJumping(void)
 
 u8 ZombieWarioFalling(void)
 {
-    register struct WarioData *wario asm("r3");
-    register u32 held asm("r4");
-    register u32 direction asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r2");
+    struct WarioData *wario;
+    u32 held;
+    u32 direction;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     {
-        register const u16 *buttons asm("r0");
+        const u16 *buttons;
         register struct WarioData *address asm("r1");
-        register u32 velocity asm("r0");
+        u32 velocity;
 
         buttons = &gButtonsHeld;
         address = &gWarioData;
@@ -166,13 +166,13 @@ u8 ZombieWarioFalling(void)
     frames = sZombieWarioFallingFrames;
     if (wario->unk_1E >= frames[wario->unk_1F].time) {
         {
-            register u8 zero asm("r0");
+            u8 zero;
             zero = 0;
             wario->unk_1E = zero;
         }
         wario->unk_1F++;
         {
-            register u32 frameTime asm("r0");
+            s16 frameTime;
             frameTime = frames[wario->unk_1F].time;
             if (frameTime == 0) {
                 wario->unk_1F = frameTime;
@@ -184,8 +184,8 @@ u8 ZombieWarioFalling(void)
 
 u8 ZombieWarioUnknown5(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     wario = &gWarioData;
     frames = sZombieWarioFallingFrames;
@@ -201,8 +201,8 @@ u8 ZombieWarioUnknown5(void)
 
 u8 ZombieWarioFallingThroughPlatform(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     wario = &gWarioData;
     frames = sZombieWarioFallingThroughPlatformFrames;
@@ -218,8 +218,8 @@ u8 ZombieWarioFallingThroughPlatform(void)
 
 u8 ZombieWarioLanding(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     wario = &gWarioData;
     frames = sZombieWarioLandingFrames;
@@ -235,8 +235,8 @@ u8 ZombieWarioLanding(void)
 
 u8 ZombieWarioHatLanding(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     wario = &gWarioData;
     frames = sZombieWarioHatLandingFrames;
@@ -252,8 +252,8 @@ u8 ZombieWarioHatLanding(void)
 
 u8 ZombieWarioHatFalling(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
     wario = &gWarioData;
     frames = sZombieWarioHatFallingFrames;
     if (wario->unk_1E >= frames[wario->unk_1F].time) {
@@ -266,8 +266,8 @@ u8 ZombieWarioHatFalling(void)
 
 u8 ZombieWarioTouchingLightSource(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
     wario = &gWarioData;
     frames = sZombieWarioTouchingLightFrames;
     if (wario->unk_1E >= frames[wario->unk_1F].time) {
@@ -283,8 +283,8 @@ u8 ZombieWarioTouchingLightSource(void)
 }
 u8 ZombieWarioUnknown11(void)
 {
-    register struct WarioData *wario asm("r2");
-    register const struct ZombieWarioGraphicsFrame *frames asm("r3");
+    struct WarioData *wario;
+    const struct ZombieWarioGraphicsFrame *frames;
 
     wario = &gWarioData;
     frames = sZombieWarioUnknown11Frames;
@@ -308,8 +308,8 @@ u8 ZombieWarioFallingAfterJump(void)
 
 void SetZombieWarioPose(u8 pose)
 {
-    register int newPose asm("r4");
-    register struct WarioData *wario asm("r2");
+    int newPose;
+    struct WarioData *wario;
 
     newPose = pose;
     ResetWarioState();
@@ -360,35 +360,35 @@ void SetZombieWarioPose(u8 pose)
 
 void UpdateZombieWarioMotion(void)
 {
-    register struct WarioCollisionData *collision asm("r3");
-    register const u8 *config asm("r2");
+    struct WarioCollisionData *collision;
+    const u8 *config;
     register struct WarioData *wario asm("r4");
     u16 yOffset;
     collision = &gWarioCollisionData;
     config = &sZombieWarioPoseProperties[0][0];
     wario = &gWarioData;
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose; poseOffset <<= 3; field = config + 1;
         poseOffset += (u32)field; collision->unk_08 = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose; poseOffset <<= 3; field = config + 2;
         poseOffset += (u32)field; collision->unk_09 = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose; poseOffset <<= 3; config += 3;
         poseOffset += (u32)config; collision->unk_0A = *(const u8 *)poseOffset;
     }
     UpdateWarioHorizontalCollisionOffset();
     yOffset = 0;
     if (wario->unk_1A == 2) {
-        register u16 velocity asm("r1");
-        register u32 shifted asm("r0");
+        u16 velocity;
+        u32 shifted;
         velocity = wario->yVelocity; shifted = velocity; shifted <<= 16;
         shifted = (s32)shifted >> 19; shifted <<= 16; yOffset = shifted >> 16;
         velocity -= 8; wario->yVelocity = velocity;
@@ -400,13 +400,13 @@ void UpdateZombieWarioMotion(void)
     }
     wario->yPosition -= yOffset;
     {
-        register u32 xVelocity asm("r0");
+        u32 xVelocity;
         if (wario->unk_1A == 0) xVelocity = GetAdjustedWarioXVelocity();
         else xVelocity = *(u16 *)&wario->xVelocity;
         xVelocity <<= 16; xVelocity = (s32)xVelocity >> 19; xVelocity <<= 16; xVelocity >>= 16;
         {
             register u32 delta asm("r2");
-            register struct WarioData *positionWario asm("r1");
+            struct WarioData *positionWario;
             u16 xPosition;
             delta = xVelocity; asm("" : "+r"(delta)); positionWario = &gWarioData;
             xPosition = positionWario->xPosition; xPosition += delta; positionWario->xPosition = xPosition;
@@ -416,17 +416,17 @@ void UpdateZombieWarioMotion(void)
 
 void ProcessZombieWarioCollision(void)
 {
-    register struct WarioCollisionData *collision asm("r3");
-    register const u8 *config asm("r2");
-    register struct WarioData *wario asm("r5");
+    struct WarioCollisionData *collision;
+    const u8 *config;
+    struct WarioData *wario;
     u8 result;
     u16 flags;
     collision = &gWarioCollisionData;
     config = &sZombieWarioPoseProperties[0][0];
     wario = &gWarioData;
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 4;
@@ -434,8 +434,8 @@ void ProcessZombieWarioCollision(void)
         collision->unk_0B = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 5;
@@ -443,8 +443,8 @@ void ProcessZombieWarioCollision(void)
         collision->unk_0C = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 6;
@@ -452,7 +452,7 @@ void ProcessZombieWarioCollision(void)
         collision->unk_0D = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 7;
@@ -468,7 +468,7 @@ void ProcessZombieWarioCollision(void)
         flags = collision->flags;
         if (flags & 0x40) result = ResolveWarioFloorCollision();
         else {
-            register u16 mask asm("r0");
+            s32 mask;
             mask = 0x80;
             mask &= flags;
             if (mask != 0) result = ResolveWarioCeilingCollision();
@@ -479,7 +479,7 @@ void ProcessZombieWarioCollision(void)
         }
     }
     {
-        register struct WarioData *currentWario asm("r5");
+        struct WarioData *currentWario;
         int hit;
 
         currentWario = &gWarioData;
@@ -490,12 +490,12 @@ void ProcessZombieWarioCollision(void)
             SetWarioWaterPose(0);
             return;
         } else {
-            register struct WarioCollisionData *collision2 asm("r0");
+            struct WarioCollisionData *collision2;
             collision2 = &gWarioCollisionData;
             if (collision2->unk_11 != 0xFF) {
                 if (result == 0xFD) {
                     {
-                        register u32 currentPose asm("r0");
+                        u32 currentPose;
                         currentPose = currentWario->pose;
                         if ((currentPose == 4) || (currentPose == 12)) {
                         if (*(u16 *)&currentWario->unk_1C != 0) {
@@ -526,10 +526,10 @@ void ProcessZombieWarioCollision(void)
 
 int CheckZombieWarioFloor(void)
 {
-    register u8 collisionOffset asm("r0");
-    register struct WarioData *wario asm("r5");
-    register u16 yPosition asm("r4");
-    register u32 yValue asm("r1");
+    u8 collisionOffset;
+    struct WarioData *wario;
+    u16 yPosition;
+    u32 yValue;
     int result;
     u16 local;
 
@@ -552,7 +552,7 @@ int CheckZombieWarioFloor(void)
 
 void LoadZombieWarioGraphics(int variant)
 {
-    register u32 graphicsVariant asm("r4");
+    u32 graphicsVariant;
     const struct ZombieWarioGraphicsFrame *frame;
     const u8 *gfx;
 
@@ -577,11 +577,11 @@ void LoadZombieWarioGraphics(int variant)
 
 void UpdateZombieWarioMusic(void)
 {
-    register struct MusicPlayerInfo *player0 asm("r6");
-    register struct MusicPlayerInfo *player1 asm("r8");
-    register const struct MusicPlayer *table asm("r4");
-    register int tracks asm("r4");
-    register int pitch asm("r5");
+    struct MusicPlayerInfo *player0;
+    struct MusicPlayerInfo *player1;
+    const struct MusicPlayer *table;
+    int tracks;
+    int pitch;
 
     if (gWarioMusicState != 9) {
         table = gMPlayTable;
@@ -603,17 +603,17 @@ void UpdateZombieWarioMusic(void)
 
 void UpdateZombieWarioHitbox(void)
 {
-    register const u8 *config asm("r3");
-    register struct WarioData *wario asm("r4");
-    register const u8 *hitboxes asm("r2");
-    register u32 hitboxOffset asm("r1");
+    const u8 *config;
+    struct WarioData *wario;
+    const u8 *hitboxes;
+    u32 hitboxOffset;
     u8 direction;
 
     config = &sZombieWarioPoseProperties[0][0];
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         poseOffset += (u32)config;
@@ -622,7 +622,7 @@ void UpdateZombieWarioHitbox(void)
     hitboxes = (const u8 *)&sWarioHitboxes[0][0];
     hitboxOffset <<= 3;
     {
-        register const u8 *address asm("r0");
+        const u8 *address;
         address = (const u8 *)(hitboxOffset + (u32)hitboxes);
         wario->hitboxOffsetLeft = *(const s16 *)address;
         address = hitboxes + 2;
@@ -637,7 +637,7 @@ void UpdateZombieWarioHitbox(void)
     wario->hitboxOffsetBottom = *(const s16 *)hitboxOffset;
 
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 7;

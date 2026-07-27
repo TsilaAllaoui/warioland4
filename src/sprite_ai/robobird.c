@@ -17,12 +17,12 @@ extern const struct AnimationFrame sRobobirdFastAttackOam[];
 void InitRobobird(void)
 {
     register struct PrimarySpriteData* sprite asm("r12");
-    register struct PrimarySpriteData* finalSprite asm("r1");
+    struct PrimarySpriteData* finalSprite;
     register u8* p asm("r0");
-    register u8* q asm("r1");
-    register u8 zero asm("r4");
-    register u8 thirtyTwo asm("r2");
-    register u8 sixteen asm("r3");
+    u8* q;
+    u8 zero;
+    u8 thirtyTwo;
+    u8 sixteen;
 
     sprite = &gCurrentSprite;
     p = &sprite->drawDistanceDown;
@@ -60,9 +60,9 @@ void InitRobobird(void)
 
 void RobobirdIdle(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
-    register struct WarioData* wario asm("r0");
-    register u16 warioY asm("r0");
+    struct PrimarySpriteData* sprite;
+    struct WarioData* wario;
+    u16 warioY;
     u32 nearby;
 
     wario = &gWarioData;
@@ -95,12 +95,12 @@ void StartRobobirdAttack(void)
 
 void RobobirdAttackDelay(void)
 {
-    register struct PrimarySpriteData* sprite asm("r3");
-    register u8* timerPointer asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* timerPointer;
     register u8 oldTimer asm("r0");
     register u8 nextTimer asm("r2");
     register u32 shiftedTimer asm("r0");
-    register u8 timer asm("r1");
+    s32 timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -110,11 +110,11 @@ void RobobirdAttackDelay(void)
     shiftedTimer = nextTimer << 24;
     timer = shiftedTimer >> 24;
     if (timer != 0) {
-        register u32 compareTimer asm("r0");
+        u16 compareTimer;
         compareTimer = timer;
         asm("" : "+r"(compareTimer));
         if (compareTimer == 9) {
-            register u8* extent asm("r1");
+            u8* extent;
             if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
                 extent = &sprite->hitboxExtentRight;
                 *extent = 68;
@@ -135,7 +135,7 @@ void RobobirdAttackDelay(void)
 
 void RobobirdMoveForward(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
     if (sprite->status & SPRITE_STATUS_FACING_RIGHT)
@@ -157,7 +157,7 @@ void StartRobobirdStunned(void)
 
 void RobobirdKnockback(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
     sprite->disableWarioCollisionTimer = 1;
@@ -169,8 +169,8 @@ void RobobirdKnockback(void)
 
 void SetRobobirdDefeated(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8 zero1 asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8 zero1;
     register u8 zero2 asm("r0");
 
     sprite = &gCurrentSprite;
@@ -182,7 +182,7 @@ void SetRobobirdDefeated(void)
     /* Preserve r1 across agbcc's second zero materialization. */
     asm("strh %0, [%1, #20]" : : "r"(zero1), "r"(sprite));
     {
-        register u8* work3 asm("r1");
+        u8* work3;
         work3 = &sprite->work3;
         *work3 = zero2;
     }
@@ -191,7 +191,7 @@ void SetRobobirdDefeated(void)
     sprite->drawPriority = zero2;
     {
         register u16 status asm("r1");
-        register u16 masked asm("r0");
+        u16 masked;
         status = sprite->status;
         masked = status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
         masked |= SPRITE_STATUS_MAYBE_DEAD;
@@ -201,7 +201,7 @@ void SetRobobirdDefeated(void)
 
 void InitRobobirdTackledRight(void)
 {
-    register struct PrimarySpriteData* sprite asm("r1");
+    struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
     sprite->pose = SPOSE_TACKLED_RIGHT;
@@ -212,7 +212,7 @@ void InitRobobirdTackledRight(void)
 
 void InitRobobirdTackledLeft(void)
 {
-    register struct PrimarySpriteData* sprite asm("r1");
+    struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
     sprite->pose = SPOSE_TACKLED_LEFT;

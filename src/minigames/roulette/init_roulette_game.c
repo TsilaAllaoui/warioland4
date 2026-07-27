@@ -3,16 +3,18 @@
 void InitRouletteGame(void)
 {
   int i;
-  register u8 *firstTileBlock asm("r8");
-  register u8 *secondTileBlock asm("r10");
+  u8 *firstTileBlock;
+  u8 *secondTileBlock;
   register u8 *thirdTileBlock asm("r9");
   register u8 *postLoopTiles asm("r12");
-  register u8 *nextPalette asm("r3");
-  register u8 *mainTiles asm("r4");
-  register u8 *objectTiles asm("r5");
+  u8 *nextPalette;
+  u8 *mainTiles;
+  u8 *objectTiles;
   register u8 *loadTemp asm("r6");
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     dmaRegs[0] = (u32) sRouletteBgPalette;
     dmaRegs[1] = (u32) ((void *) 0x05000000);
     dmaRegs[2] = (u32) 0x80000100;
@@ -20,9 +22,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    register volatile u32 *dmaRegs asm("r1");
-    register u32 waitValue asm("r0");
-    register u32 busyMask asm("r2");
+    volatile u32 *dmaRegs;
+    u32 waitValue;
+    u32 busyMask;
 
     dmaRegs = (volatile u32 *)0x040000D4;
     waitValue = dmaRegs[2];
@@ -48,7 +50,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     dmaRegs[0] = (u32) nextPalette;
     dmaRegs[1] = (u32) ((void *) 0x05000200);
     dmaRegs[2] = (u32) 0x80000100;
@@ -56,7 +60,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     while (dmaRegs[2] & 0x80000000)
     {
       ;
@@ -65,7 +71,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     dmaRegs[0] = (u32) mainTiles;
     dmaRegs[1] = (u32) ((void *) 0x06000000);
     dmaRegs[2] = (u32) 0x80003400;
@@ -73,7 +81,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     while (dmaRegs[2] & 0x80000000)
     {
       ;
@@ -82,7 +92,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     dmaRegs[0] = (u32) objectTiles;
     dmaRegs[1] = (u32) ((void *) 0x06010000);
     dmaRegs[2] = (u32) 0x80001800;
@@ -90,7 +102,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     while (dmaRegs[2] & 0x80000000)
     {
       ;
@@ -99,7 +113,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     dmaRegs[0] = (u32) firstTileBlock;
     dmaRegs[1] = (u32) ((void *) 0x06013000);
     dmaRegs[2] = (u32) 0x80002000;
@@ -107,7 +123,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     while (dmaRegs[2] & 0x80000000)
     {
       ;
@@ -117,13 +135,13 @@ void InitRouletteGame(void)
   ;
   {
     register int dmaIndex asm("r5");
-    register int nextIndex asm("r4");
+    int nextIndex;
     register volatile u32 *dmaRegs asm("r2");
-    register u32 dmaControl asm("r7");
-    register u32 dmaBusyMask asm("r6");
-    register u32 tileOffset asm("r1");
-    register u32 value asm("r0");
-    register u32 address asm("r3");
+    u32 dmaControl;
+    u32 dmaBusyMask;
+    u32 tileOffset;
+    u32 value;
+    u32 address;
 
     dmaIndex = 0;
     dmaRegs = (volatile u32 *)0x040000D4;
@@ -188,7 +206,9 @@ void InitRouletteGame(void)
 
   {
     register u8 *postSource asm("r6");
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
 
     /* agbcc otherwise copies the persistent ip source through r0; the target
      * uses r6 for this single DMA source store. */
@@ -200,7 +220,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     while (dmaRegs[2] & 0x80000000)
     {
       ;
@@ -210,7 +232,9 @@ void InitRouletteGame(void)
   ;
   {
     register u8 *lateTiles asm("r0");
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
 
     /* r0 is consumed immediately by this transfer, so agbcc cannot hoist the
      * address into the otherwise-free callee-saved r7 across the DMA loop. */
@@ -222,7 +246,9 @@ void InitRouletteGame(void)
   }
   ;
   {
-    volatile u32 *dmaRegs = (volatile u32 *) 0x040000D4;
+    volatile u32 *dmaRegs;
+
+    dmaRegs = (volatile u32 *) 0x040000D4;
     while (dmaRegs[2] & 0x80000000)
     {
       ;
@@ -264,16 +290,15 @@ void InitRouletteGame(void)
     gRouletteStopRequested = zero;
     gRouletteValueCount = 3;
     {
-      register int activeZero asm("r6");
-      register int tileZero asm("r4");
-      register int angle asm("r3");
-      register struct RouletteItem *item asm("r0");
-      register int x asm("r2");
-      register int y asm("r1");
+      int activeZero;
+      int tileZero;
+      u16 angle;
+      struct RouletteItem *item;
+      int x;
+      int y;
       register int remaining asm("r5");
 
       activeZero = 0;
-      asm volatile("" : "+r"(activeZero));
       /* agbcc proves the cached r4 is already zero and removes this target write. */
       asm volatile("movs %0, #0" : "=r"(tileZero));
       angle = 7168;
@@ -298,10 +323,10 @@ void InitRouletteGame(void)
     }
 
     {
-      register u16 *rouletteCounter asm("r3");
-      register struct RouletteSmallState *topLabel asm("r4");
-      register struct RouletteSmallState *middleLabel asm("r5");
-      register struct RouletteSmallState *bottomLabel asm("r6");
+      u16 *rouletteCounter;
+      struct RouletteSmallState *topLabel;
+      struct RouletteSmallState *middleLabel;
+      struct RouletteSmallState *bottomLabel;
       register struct RouletteMainState *mainState;
 
       rouletteCounter = &gRouletteTickPeriod;
@@ -400,9 +425,9 @@ void InitRouletteGame(void)
       gRouletteBlendEvb = 16;
       *((volatile u16 *) 0x04000050) = 0x240;
       {
-        register volatile u16 *alphaRegister asm("r2");
+        volatile u16 *alphaRegister;
         register s8 *fadePtr asm("r6");
-        register int fadeValue asm("r0");
+        u16 fadeValue;
 
         alphaRegister = (volatile u16 *)0x04000052;
         fadePtr = (s8 *)secondTileBlock;

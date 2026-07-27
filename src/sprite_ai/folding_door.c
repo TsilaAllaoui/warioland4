@@ -11,7 +11,7 @@ void SetFoldingDoorCollision(void)
     register int xPosition asm("r6");
     register int lowerY asm("r4");
     register int leftX asm("r8");
-    register s8 *blockAction asm("sl");
+    s8 *blockAction;
     register s8 action asm("r9");
 
     yPosition = gCurrentSprite.yPosition;
@@ -24,8 +24,8 @@ void SetFoldingDoorCollision(void)
     leftX = (u16)(leftX + xPosition);
     func_806D5C0(yPosition, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -35,8 +35,8 @@ void SetFoldingDoorCollision(void)
     func_806D5C0(yPosition, xPosition);
     lowerY = (u16)(yPosition + 64);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -44,8 +44,8 @@ void SetFoldingDoorCollision(void)
     }
     func_806D5C0(lowerY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -54,8 +54,8 @@ void SetFoldingDoorCollision(void)
     func_806D5C0(lowerY, xPosition);
     lowerY = (u16)(yPosition + 128);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -63,8 +63,8 @@ void SetFoldingDoorCollision(void)
     }
     func_806D5C0(lowerY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -73,8 +73,8 @@ void SetFoldingDoorCollision(void)
     func_806D5C0(lowerY, xPosition);
     yPosition = (u16)(yPosition + 192);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -82,8 +82,8 @@ void SetFoldingDoorCollision(void)
     }
     func_806D5C0(yPosition, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -98,7 +98,7 @@ void ClearFoldingDoorCollision(void)
     register int xPosition asm("r6");
     register int lowerY asm("r4");
     register int leftX asm("r8");
-    register s8 *blockAction asm("sl");
+    s8 *blockAction;
     register s8 action asm("r9");
 
     yPosition = gCurrentSprite.yPosition;
@@ -111,8 +111,8 @@ void ClearFoldingDoorCollision(void)
     leftX = (u16)(leftX + xPosition);
     func_806D5C0(yPosition, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -122,8 +122,8 @@ void ClearFoldingDoorCollision(void)
     func_806D5C0(yPosition, xPosition);
     lowerY = (u16)(yPosition + 64);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -131,8 +131,8 @@ void ClearFoldingDoorCollision(void)
     }
     func_806D5C0(lowerY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -141,8 +141,8 @@ void ClearFoldingDoorCollision(void)
     func_806D5C0(lowerY, xPosition);
     lowerY = (u16)(yPosition + 128);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -150,8 +150,8 @@ void ClearFoldingDoorCollision(void)
     }
     func_806D5C0(lowerY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -160,8 +160,8 @@ void ClearFoldingDoorCollision(void)
     func_806D5C0(lowerY, xPosition);
     yPosition = (u16)(yPosition + 192);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -169,8 +169,8 @@ void ClearFoldingDoorCollision(void)
     }
     func_806D5C0(yPosition, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -201,13 +201,13 @@ void InitFoldingDoor(void)
 void FoldingDoorWaitForSwitch(void)
 {
     int flag;
-    register int maxDistance asm("r6");
-    register u32 warioY asm("r2");
-    register u32 warioX asm("r4");
-    register s32 distance asm("r0");
-    register u32 spriteX asm("r3");
-    register struct PrimarySpriteData *sprite asm("r5");
-    register struct PrimarySpriteData *spriteTemp asm("r1");
+    int maxDistance;
+    u32 warioY;
+    u32 warioX;
+    s32 distance;
+    u32 spriteX;
+    struct PrimarySpriteData *sprite;
+    struct PrimarySpriteData *spriteTemp;
     int yMax;
     int zero;
 
@@ -255,7 +255,7 @@ checkFlag:
 
 activate:
     {
-        register u8 *work0 asm("r2");
+        u8 *work0;
 
         zero = 0;
         sprite->pose = 18;

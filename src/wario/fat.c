@@ -54,17 +54,17 @@ u8 FatWarioTurning(void)
 
 u8 FatWarioWalking(void)
 {
-    register struct WarioData *wario asm("r3");
-    register const struct FatWarioGraphicsFrame *frames asm("r4");
+    struct WarioData *wario;
+    const struct FatWarioGraphicsFrame *frames;
 
     if (gButtonsPressed & A_BUTTON) {
         return 4;
     }
 
     {
-        register struct WarioData *address asm("r0");
+        struct WarioData *address;
         register u16 timer asm("r2");
-        register u32 limit asm("r1");
+        u32 limit;
         register u16 nextTimer asm("r0");
 
         address = &gWarioData;
@@ -79,10 +79,10 @@ u8 FatWarioWalking(void)
     }
 
     {
-        register const u16 *buttons asm("r0");
-        register unsigned int held asm("r2");
-        register unsigned int direction asm("r1");
-        register unsigned int active asm("r0");
+        const u16 *buttons;
+        unsigned int held;
+        unsigned int direction;
+        unsigned int active;
 
         buttons = &gButtonsHeld;
         held = *buttons;
@@ -90,7 +90,7 @@ u8 FatWarioWalking(void)
         asm("" : "=r"(active) : "0"(held));
         active &= direction;
         if (active != 0) {
-            register unsigned int right asm("r0");
+            unsigned int right;
             right = DPAD_RIGHT;
             right &= direction;
             if (right != 0) {
@@ -99,7 +99,7 @@ u8 FatWarioWalking(void)
                 wario->xVelocity = -0x20;
             }
         } else {
-            register u32 test asm("r0");
+            u32 test;
             test = DPAD_LEFT | DPAD_RIGHT;
             test ^= direction;
             test &= held;
@@ -114,7 +114,7 @@ u8 FatWarioWalking(void)
 
     {
         register struct WarioData *animWario asm("r2");
-        register unsigned int frame asm("r0");
+        unsigned int frame;
 
         animWario = wario;
         frames = sFatWarioWalkingFrames;
@@ -151,8 +151,8 @@ u8 FatWarioJumping(void)
 
 u8 FatWarioFalling(void)
 {
-    register const u16 *buttons asm("r0");
-    register struct WarioData *wario asm("r4");
+    const u16 *buttons;
+    struct WarioData *wario;
     register u16 active asm("r3");
     u16 held;
     u16 direction;
@@ -164,7 +164,7 @@ u8 FatWarioFalling(void)
     asm("" : "=r"(active) : "0"(held));
     active &= direction;
     if (active != 0) {
-        register u16 right asm("r0");
+        s32 right;
         right = DPAD_RIGHT;
         right &= direction;
         if (right != 0) {
@@ -173,7 +173,7 @@ u8 FatWarioFalling(void)
             wario->xVelocity = -0x20;
         }
     } else {
-        register u32 test asm("r0");
+        u32 test;
         direction ^= DPAD_LEFT | DPAD_RIGHT;
         test = direction;
         test &= held;
@@ -189,8 +189,8 @@ u8 FatWarioFalling(void)
 
 u8 FatWarioLanding(void)
 {
-    register struct WarioAfterimage *effect asm("r2");
-    register const struct WarioEffectFrame *frames asm("r3");
+    struct WarioAfterimage *effect;
+    const struct WarioEffectFrame *frames;
 
     if (gWarioData.unk_1E > 29) {
         return 9;
@@ -236,9 +236,9 @@ u8 FatWarioDetransforming(void)
 
 u8 FatWarioStartingWalkAfterLanding(void)
 {
-    register struct WarioData *wario asm("r2");
-    register unsigned int held asm("r1");
-    register unsigned int direction asm("r2");
+    struct WarioData *wario;
+    unsigned int held;
+    unsigned int direction;
 
     wario = &gWarioData;
     if (wario->unk_0A > 7) {
@@ -250,7 +250,7 @@ u8 FatWarioStartingWalkAfterLanding(void)
     held = gButtonsHeld;
     direction = wario->horizontalDirection;
     {
-        register u16 test asm("r0");
+        u16 test;
         test = held;
         test &= direction;
         if (test != 0) {
@@ -258,7 +258,7 @@ u8 FatWarioStartingWalkAfterLanding(void)
         }
     }
     {
-        register u32 test asm("r0");
+        u32 test;
         test = DPAD_LEFT | DPAD_RIGHT;
         test ^= direction;
         test &= held;
@@ -267,7 +267,7 @@ u8 FatWarioStartingWalkAfterLanding(void)
         }
     }
     {
-        register u32 test asm("r0");
+        u32 test;
         test = DPAD_UP;
         test &= held;
         if (test != 0) {
@@ -279,10 +279,10 @@ u8 FatWarioStartingWalkAfterLanding(void)
 
 u8 FatWarioIdleInput(void)
 {
-    register const u16 *buttons asm("r0");
-    register struct WarioData *wario asm("r1");
-    register unsigned int held asm("r2");
-    register unsigned int direction asm("r1");
+    const u16 *buttons;
+    struct WarioData *wario;
+    unsigned int held;
+    unsigned int direction;
 
     if (gButtonsPressed & A_BUTTON) {
         return 4;
@@ -292,7 +292,7 @@ u8 FatWarioIdleInput(void)
     held = *buttons;
     direction = wario->horizontalDirection;
     {
-        register u16 test asm("r0");
+        u16 test;
         test = held;
         test &= direction;
         if (test != 0) {
@@ -300,7 +300,7 @@ u8 FatWarioIdleInput(void)
         }
     }
     {
-        register u32 test asm("r0");
+        u32 test;
         test = DPAD_LEFT | DPAD_RIGHT;
         test ^= direction;
         test &= held;
@@ -309,7 +309,7 @@ u8 FatWarioIdleInput(void)
         }
     }
     {
-        register u32 test asm("r0");
+        u32 test;
         test = DPAD_UP;
         test &= held;
         if (test == 0) {
@@ -321,8 +321,8 @@ u8 FatWarioIdleInput(void)
 
 void SetFatWarioPose(u8 pose)
 {
-    register int newPose asm("r4");
-    register struct WarioData *poseTarget asm("r3");
+    int newPose;
+    struct WarioData *poseTarget;
 
     newPose = pose;
     ResetWarioState();
@@ -356,9 +356,9 @@ pose_above_fd:
         goto set_pose;
     }
     {
-        register struct WarioData *copyAddress asm("r0");
-        register struct WarioData *copy asm("r2");
-        register u8 copyPose asm("r1");
+        struct WarioData *copyAddress;
+        struct WarioData *copy;
+        u8 copyPose;
 
         copyAddress = &gWarioDataCopy;
         copyPose = copyAddress->pose;
@@ -379,10 +379,10 @@ pose_above_fd:
 
 pose_fd:
     {
-        register struct WarioData *copy asm("r2");
+        struct WarioData *copy;
         copy = &gWarioDataCopy;
         if (copy->pose == 1) {
-            register struct WarioData *wario asm("r1");
+            struct WarioData *wario;
             wario = &gWarioData;
             wario->pose = 0;
             wario->unk_1E = copy->unk_1E;
@@ -390,7 +390,7 @@ pose_fd:
             goto end;
         }
         {
-            register struct WarioData *wario asm("r1");
+            struct WarioData *wario;
             wario = &gWarioData;
             wario->pose = 6;
             wario->unk_0A++;
@@ -403,7 +403,7 @@ pose_fd:
 
 pose_two:
     {
-        register struct WarioData *wario asm("r1");
+        struct WarioData *wario;
         wario = &gWarioData;
         wario->unk_03 = 1;
         poseTarget = wario;
@@ -416,8 +416,8 @@ end:
 
 void UpdateFatWarioMotion(void)
 {
-    register struct WarioCollisionData *collision asm("r3");
-    register const u8 *config asm("r2");
+    struct WarioCollisionData *collision;
+    const u8 *config;
     register struct WarioData *wario asm("r4");
     u16 yOffset;
 
@@ -426,8 +426,8 @@ void UpdateFatWarioMotion(void)
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 1;
@@ -435,8 +435,8 @@ void UpdateFatWarioMotion(void)
         collision->unk_08 = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 2;
@@ -444,7 +444,7 @@ void UpdateFatWarioMotion(void)
         collision->unk_09 = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 3;
@@ -455,8 +455,8 @@ void UpdateFatWarioMotion(void)
     UpdateWarioHorizontalCollisionOffset();
     yOffset = 0;
     if (wario->unk_1A == 2) {
-        register u16 velocity asm("r1");
-        register u32 shifted asm("r0");
+        u16 velocity;
+        u32 shifted;
 
         velocity = wario->yVelocity;
         shifted = velocity;
@@ -478,7 +478,7 @@ void UpdateFatWarioMotion(void)
 
     wario->yPosition -= yOffset;
     {
-        register u32 xVelocity asm("r0");
+        u32 xVelocity;
         if (wario->unk_1A == 0) {
             xVelocity = GetAdjustedWarioXVelocity();
         } else {
@@ -490,7 +490,7 @@ void UpdateFatWarioMotion(void)
         xVelocity >>= 16;
         {
             register u32 delta asm("r2");
-            register struct WarioData *positionWario asm("r1");
+            struct WarioData *positionWario;
             u16 xPosition;
 
             delta = xVelocity;
@@ -505,9 +505,9 @@ void UpdateFatWarioMotion(void)
 
 void ProcessFatWarioCollision(void)
 {
-    register struct WarioCollisionData *collision asm("r4");
-    register const u8 *config asm("r2");
-    register struct WarioData *wario asm("r3");
+    struct WarioCollisionData *collision;
+    const u8 *config;
+    struct WarioData *wario;
     u8 movementResult;
     u16 flags;
     int collisionResult;
@@ -518,8 +518,8 @@ void ProcessFatWarioCollision(void)
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 4;
@@ -527,8 +527,8 @@ void ProcessFatWarioCollision(void)
         collision->unk_0B = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 5;
@@ -536,8 +536,8 @@ void ProcessFatWarioCollision(void)
         collision->unk_0C = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 6;
@@ -545,7 +545,7 @@ void ProcessFatWarioCollision(void)
         collision->unk_0D = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 7;
@@ -562,7 +562,7 @@ void ProcessFatWarioCollision(void)
     if (flags & 0x40) {
         movementResult = ResolveWarioFloorCollision();
     } else {
-        register u16 mask asm("r0");
+        s32 mask;
         mask = 0x80;
         mask &= flags;
         if (mask != 0) {
@@ -579,7 +579,7 @@ void ProcessFatWarioCollision(void)
     }
 
     {
-        register struct WarioData *currentWario asm("r5");
+        struct WarioData *currentWario;
         currentWario = &gWarioData;
         collisionResult = GetBackgroundCollisionAtPosition(currentWario->yPosition - 0x30, currentWario->xPosition);
         collisionResult &= 0xFF;
@@ -588,11 +588,11 @@ void ProcessFatWarioCollision(void)
             SetWarioWaterPose(12);
             gWarioDustEffect1.unk0 = collisionResult;
         } else {
-            register struct WarioCollisionData *collision2 asm("r4");
+            struct WarioCollisionData *collision2;
             collision2 = &gWarioCollisionData;
             if (collision2->unk_11 != 0xFF) {
                 if (currentWario->pose == 5 && movementResult == 0xFD) {
-                    register int result asm("r0");
+                    int result;
                     result = CheckWarioPointCollision(collision2->unk_08, (u16)(currentWario->yPosition + 1), &local);
                     if (result != 0 && result <= collision2->unk_10) {
                         movementResult = 0xFF;
@@ -608,7 +608,7 @@ void ProcessFatWarioCollision(void)
 
 void LoadFatWarioGraphics(int variant)
 {
-    register u32 graphicsVariant asm("r4");
+    u32 graphicsVariant;
     const struct FatWarioGraphicsFrame *frame;
     const u8 *gfx;
 
@@ -634,11 +634,11 @@ void LoadFatWarioGraphics(int variant)
 
 void UpdateFatWarioMusic(void)
 {
-    register struct MusicPlayerInfo *player0 asm("r6");
-    register struct MusicPlayerInfo *player1 asm("r8");
-    register const struct MusicPlayer *table asm("r4");
-    register int tracks asm("r4");
-    register int pitch asm("r5");
+    struct MusicPlayerInfo *player0;
+    struct MusicPlayerInfo *player1;
+    const struct MusicPlayer *table;
+    int tracks;
+    int pitch;
 
     if (gWarioMusicState != 7) {
         table = gMPlayTable;
@@ -660,17 +660,17 @@ void UpdateFatWarioMusic(void)
 
 void UpdateFatWarioHitbox(void)
 {
-    register const u8 *config asm("r3");
-    register struct WarioData *wario asm("r4");
-    register const u8 *hitboxes asm("r2");
-    register u32 hitboxOffset asm("r1");
+    const u8 *config;
+    struct WarioData *wario;
+    const u8 *hitboxes;
+    u32 hitboxOffset;
     u8 direction;
 
     config = &sFatWarioPoseProperties[0][0];
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         poseOffset += (u32)config;
@@ -679,7 +679,7 @@ void UpdateFatWarioHitbox(void)
     hitboxes = (const u8 *)&sWarioHitboxes[0][0];
     hitboxOffset <<= 3;
     {
-        register const u8 *address asm("r0");
+        const u8 *address;
         address = (const u8 *)(hitboxOffset + (u32)hitboxes);
         wario->hitboxOffsetLeft = *(const s16 *)address;
         address = hitboxes + 2;
@@ -694,7 +694,7 @@ void UpdateFatWarioHitbox(void)
     wario->hitboxOffsetBottom = *(const s16 *)hitboxOffset;
 
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 7;

@@ -9,12 +9,12 @@ void InitIcicle(void)
 {
     register struct PrimarySpriteData *current asm("ip");
     register struct PrimarySpriteData *sprite asm("r4");
-    register u16 oldStatus asm("r1");
+    u16 oldStatus;
     register u16 status asm("r0");
     register int zeroByte asm("r2");
-    register int zeroHalf asm("r3");
+    int zeroHalf;
     register u8 *bounds asm("r1");
-    register u8 *rightExtent asm("r0");
+    u8 *rightExtent;
     register int extentValue asm("r1");
 
     current = &gCurrentSprite;
@@ -53,11 +53,11 @@ void InitIcicle(void)
 
 void IcicleWaitToFall(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u8 *timerPointer asm("r2");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
     register int oldTimer asm("r0");
     register int nextTimer asm("r1");
-    register u8 timer asm("r2");
+    s32 timer;
 
     sprite = &gCurrentSprite;
     timerPointer = &sprite->work0;
@@ -67,7 +67,7 @@ void IcicleWaitToFall(void)
     oldTimer = nextTimer << 24;
     timer = (u32)oldTimer >> 24;
     if (timer != 0) {
-        register u32 compareTimer asm("r1");
+        u16 compareTimer;
         compareTimer = timer;
         if (compareTimer > 32) {
             sprite->disableWarioCollisionTimer = 1;
@@ -78,7 +78,7 @@ void IcicleWaitToFall(void)
         }
     } else {
         register int zero asm("r1");
-        register u8 *work3Pointer asm("r0");
+        u8 *work3Pointer;
         sprite->pOamData = sIcicleFallingOam;
         sprite->currentAnimationFrame = timer;
         zero = 0;
@@ -93,8 +93,8 @@ void IcicleWaitToFall(void)
 
 void IcicleFall(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u32 yPosition asm("r2");
+    struct PrimarySpriteData *sprite;
+    u32 yPosition;
 
     sprite = &gCurrentSprite;
     yPosition = func_8023A60(sprite->yPosition, sprite->xPosition);
@@ -106,10 +106,10 @@ void IcicleFall(void)
         sprite->pose = 23;
     } else {
         register u8 *indexPointer asm("ip");
-        register u8 index asm("r2");
-        register const s16 *velocities asm("r5");
+        u8 index;
+        const s16 *velocities;
         register const s16 *entry asm("r0");
-        register u16 velocityRaw asm("r3");
+        s32 velocityRaw;
         register s32 velocity asm("r1");
         register u32 tempR6 asm("r6");
 
@@ -124,9 +124,9 @@ void IcicleFall(void)
         /* agbcc otherwise reuses the unsigned load instead of emitting the target ldrsh. */
         asm("ldrsh %0, [%1, %2]" : "=r"(velocity) : "r"(entry), "r"(tempR6));
         if (velocity == 0x7FFF) {
-            register u32 previousOffset asm("r1");
+            u32 previousOffset;
             register u16 currentY asm("r0");
-            register u16 previousVelocity asm("r1");
+            s32 previousVelocity;
 
             previousOffset = index - 1;
             asm("" : "+r"(previousOffset));
@@ -138,7 +138,7 @@ void IcicleFall(void)
             currentY += previousVelocity;
             sprite->yPosition = currentY;
         } else {
-            register u8 nextIndex asm("r0");
+            u8 nextIndex;
             register u8 *pointer asm("r1");
             nextIndex = index + 1;
             pointer = indexPointer;
@@ -168,8 +168,8 @@ void IcicleLandWait(void)
 
 void IcicleResetAboveRoom(void)
 {
-    register u8 (*roomData)[3] asm("r3");
-    register struct PrimarySpriteData *sprite asm("r2");
+    u8 (*roomData)[3];
+    struct PrimarySpriteData *sprite;
 
     roomData = gUnk_3000964;
     sprite = &gCurrentSprite;
@@ -197,15 +197,15 @@ void IcicleWaitHidden(void)
 
 void InitIcicleWarning(void)
 {
-    register struct PrimarySpriteData *current asm("ip");
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u16 oldStatus asm("r1");
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprite;
+    u16 oldStatus;
     register u16 status asm("r0");
     register int zeroByte asm("r2");
-    register int zeroHalf asm("r3");
-    register u8 *bounds asm("r1");
-    register u8 *hitbox asm("r0");
-    register int one asm("r1");
+    int zeroHalf;
+    u8 *bounds;
+    u8 *hitbox;
+    int one;
 
     current = &gCurrentSprite;
     oldStatus = current->status;

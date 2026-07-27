@@ -3,7 +3,7 @@
 void BobRouletteResultLabels(void)
 {
     register u16 value asm("r1");
-    register u16 mask asm("r0");
+    u16 mask;
     gRouletteFrameCounter++;
     value = gRouletteFrameCounter;
     mask = 0xF;

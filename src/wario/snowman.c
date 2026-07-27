@@ -49,7 +49,7 @@ u8 SnowmanWarioFallingWithSnow(void)
 
 u8 SnowmanWarioWalking(void)
 {
-    register struct WarioData* wario asm("r4");
+    struct WarioData* wario;
     register u32 held asm("r3");
     register u32 direction asm("r2");
     register u32 common asm("r0");
@@ -66,8 +66,8 @@ u8 SnowmanWarioWalking(void)
         return WPOSE_SNOWMAN_JUMPING;
 
     {
-        register const u16* heldPointer asm("r0");
-        register struct WarioData* movementWario asm("r1");
+        const u16* heldPointer;
+        struct WarioData* movementWario;
 
         heldPointer = &gButtonsHeld;
         movementWario = &gWarioData;
@@ -146,8 +146,8 @@ u8 SnowmanWarioJumping(void)
 
 u8 SnowmanWarioFalling(void)
 {
-    register const u16* heldPointer asm("r0");
-    register struct WarioData* wario asm("r4");
+    const u16* heldPointer;
+    struct WarioData* wario;
     register u16 held asm("r2");
     register u16 direction asm("r1");
     register u16 common asm("r3");
@@ -396,15 +396,15 @@ void SetSnowmanWarioPose(u8 result)
 
 void UpdateSnowmanWarioMovement(void)
 {
-    register struct WarioData* wario asm("r4");
-    register u32 movement asm("r2");
-    register u32 xMovement asm("r0");
+    struct WarioData* wario;
+    u32 movement;
+    u32 xMovement;
 
     {
-        register struct WarioCollisionData* collision asm("r3");
-        register const u8* properties asm("r2");
+        struct WarioCollisionData* collision;
+        const u8* properties;
         register const u8* property asm("r1");
-        register u32 offset asm("r0");
+        u32 offset;
 
         collision = &gWarioCollisionData;
         properties = (const u8*)sSnowmanWarioPoseProperties;
@@ -427,8 +427,8 @@ void UpdateSnowmanWarioMovement(void)
     UpdateWarioHorizontalCollisionOffset();
     movement = 0;
     if (wario->unk_1A == 2) {
-        register u16 velocity asm("r1");
-        register u32 temp asm("r0");
+        u16 velocity;
+        u32 temp;
 
         velocity = wario->yVelocity;
         temp = (u32)(u16)velocity << 16;
@@ -456,7 +456,7 @@ void UpdateSnowmanWarioMovement(void)
     asm("" : "+r"(movement));
 
     {
-        register struct WarioData* positionWario asm("r1");
+        struct WarioData* positionWario;
 
         positionWario = &gWarioData;
         positionWario->xPosition += movement;
@@ -468,11 +468,11 @@ void ProcessSnowmanWarioCollision(void)
     u8 result;
 
     {
-        register struct WarioCollisionData* collision asm("r4");
-        register const u8* properties asm("r2");
-        register struct WarioData* wario asm("r3");
+        struct WarioCollisionData* collision;
+        const u8* properties;
+        struct WarioData* wario;
         register const u8* property asm("r1");
-        register u32 offset asm("r0");
+        u32 offset;
 
         collision = &gWarioCollisionData;
         properties = (const u8*)sSnowmanWarioPoseProperties;
@@ -514,8 +514,8 @@ void ProcessSnowmanWarioCollision(void)
     }
 
     {
-        register struct WarioData* wario asm("r4");
-        register struct WarioCollisionData* collision asm("r6");
+        struct WarioData* wario;
+        struct WarioCollisionData* collision;
         s32 collisionResult;
 
         wario = &gWarioData;
@@ -528,8 +528,8 @@ void ProcessSnowmanWarioCollision(void)
         }
 
         {
-            register struct WarioCollisionData* collisionPointer asm("r0");
-            register u8 movementType asm("r1");
+            struct WarioCollisionData* collisionPointer;
+            u8 movementType;
 
             collisionPointer = &gWarioCollisionData;
             movementType = collisionPointer->unk_11;
@@ -541,7 +541,7 @@ void ProcessSnowmanWarioCollision(void)
         if (wario->pose > WPOSE_SNOWMAN_TURNING && result == 0xFC) {
             result = 3;
         } else {
-            register struct WarioData* collisionWario asm("r1");
+            struct WarioData* collisionWario;
 
             collisionWario = &gWarioData;
             if (collisionWario->pose == WPOSE_SNOWMAN_FALLING && result == 0xFD) {
@@ -604,11 +604,11 @@ void ApplySnowmanWarioMusicEffect(void)
 
 void UpdateSnowmanWarioHitbox(void)
 {
-    register const u8* properties asm("r3");
-    register struct WarioData* wario asm("r4");
-    register const u8* hitboxes asm("r2");
-    register u32 hitboxOffset asm("r1");
-    register const u8* address asm("r0");
+    const u8* properties;
+    struct WarioData* wario;
+    const u8* hitboxes;
+    u32 hitboxOffset;
+    const u8* address;
     u8 movementType;
 
     properties = (const u8*)sSnowmanWarioPoseProperties;

@@ -97,9 +97,9 @@ void PetbottomTurnInit(void)
 
 void PetbottomTurn(void)
 {
-    register struct PrimarySpriteData *sprite asm("r5");
+    struct PrimarySpriteData *sprite;
     register u32 remaining asm("r6");
-    register u32 zero asm("r4");
+    u32 zero;
     u8 *work0;
 
     func_80238A4();
@@ -135,7 +135,7 @@ void PetbottomTurn(void)
         switch (sprite->pose) {
             case SPOSE_12:
             {
-                register u16 status asm("r0");
+                u16 status;
 
                 status = sprite->status;
                 status ^= SPRITE_STATUS_FACING_RIGHT;
@@ -417,7 +417,7 @@ void PetbottomAirborneInit(void)
 void PetbottomAirborne(void)
 {
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     s16 velocity;
 
     gCurrentSprite.work0--;
@@ -433,7 +433,7 @@ void PetbottomAirborne(void)
             asm("" : "+r" (indexPointer), "+r" (index));
             velocity = sUnk_8352B18[index];
             if (velocity == 0x7FFF) {
-                register u32 previousVelocityAddress asm("r1");
+                u32 previousVelocityAddress;
                 register u16 yPosition asm("r0");
 
                 previousVelocityAddress = index - 1;
@@ -445,8 +445,8 @@ void PetbottomAirborne(void)
                 asm("" : "+r" (yPosition), "+r" (previousVelocityAddress));
                 gCurrentSprite.yPosition = yPosition + *(const s16 *) previousVelocityAddress;
             } else {
-                register u32 nextIndex asm("r0");
-                register u8 *storePointer asm("r1");
+                u32 nextIndex;
+                u8 *storePointer;
 
                 nextIndex = index + 1;
                 storePointer = indexPointer;

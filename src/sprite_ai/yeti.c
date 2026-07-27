@@ -213,7 +213,7 @@ void YetiAttack(void)
     register int shifted asm("r0");
     register int timer asm("r1");
     register u8 *work0 asm("r2");
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
     work0 = &sprite->work0;
@@ -260,7 +260,7 @@ void YetiAttackRecoverInit(void)
 
 void YetiAttackRecover(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     u32 nearby;
 
     nearby = SpriteUtilCheckWarioNearbyLeftRight(80, 960);
@@ -320,7 +320,7 @@ void YetiStunnedFallingInit(void)
 
 void YetiTackledInit(void)
 {
-    register struct PrimarySpriteData *sprite asm("r5");
+    struct PrimarySpriteData *sprite;
     register u8 zero asm("r4");
 
     sprite = &gCurrentSprite;
@@ -343,7 +343,7 @@ void YetiTackledInit(void)
     {
         register u16 oldStatus asm("r1");
         register u16 newStatus asm("r0");
-        register u16 deadBit asm("r2");
+        u16 deadBit;
 
         oldStatus = sprite->status;
         newStatus = oldStatus & (u16)~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
@@ -484,7 +484,7 @@ void YetiCrushed(void)
     {
         register u16 oldStatus asm("r1");
         register u16 newStatus asm("r0");
-        register u16 deadBit asm("r2");
+        u16 deadBit;
 
         oldStatus = sprite->status;
         newStatus = oldStatus & (u16)~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;

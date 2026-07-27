@@ -539,13 +539,13 @@ void InitKaentsuboThrownCommon(void)
 void InitKaentsuboFlame(void)
 {
     register struct PrimarySpriteData *currentSprite asm("ip");
-    register u16 currentStatus asm("r1");
+    u16 currentStatus;
     register u16 tmpStatus asm("r2");
     register u16 newStatus asm("r0");
     register u8 zero asm("r3");
-    register u16 zero16 asm("r4");
+    s32 zero16;
     register u8 *drawDistancePtr asm("r0");
-    register struct PrimarySpriteData *writeSprite asm("r1");
+    struct PrimarySpriteData *writeSprite;
     register u8 terrainCollision asm("r0");
 
     currentSprite = &gCurrentSprite;
@@ -687,8 +687,8 @@ void UpdateKaentsuboFlamePushedLeft(u32 slot)
 void InitKaentsuboFireball(void)
 {
     register struct PrimarySpriteData *currentSprite asm("ip");
-    register struct PrimarySpriteData *writeSprite asm("r4");
-    register u16 currentStatus asm("r1");
+    struct PrimarySpriteData *writeSprite;
+    u16 currentStatus;
     register u16 tmpStatus asm("r2");
     register u16 newStatus asm("r0");
     register u16 zero16 asm("r3");
@@ -1018,11 +1018,11 @@ call_8024C00:
 
 void SpriteKaentsuboFlame(void)
 {
-    register u32 parentSlot asm("r4");
-    register u32 parentOffset asm("r0");
+    u32 parentSlot;
+    u32 parentOffset;
     register struct PrimarySpriteData *spriteData asm("r1");
-    register struct PrimarySpriteData *parentSprite asm("r2");
-    register u8 parentHealth asm("r1");
+    struct PrimarySpriteData *parentSprite;
+    u8 parentHealth;
 
     parentSlot = SpriteUtilFindParentSlot(PSPRITE_KAENTSUBO);
     if (parentSlot == 24) {

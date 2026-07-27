@@ -28,6 +28,7 @@ extern const struct AnimationFrame sMoguramenPushedSlideOam[];
 extern const s16 sUnk_8352B18[];
 extern const s16 sMoguramenProjectileYSpeed[];
 extern const s16 sMoguramenProjectileXSpeed[];
+void SpawnTileDebrisParticle(u32 yPosition, u32 xPosition, u32 xVelocity, u32 yVelocity, u32 angleStep);
 
 void UpdateMoguramenHitboxForFacing(void)
 {
@@ -134,7 +135,7 @@ void UpdateMoguramenAttackWindup(void)
         /* agbcc otherwise shares this store with the later nextPose update. */
         asm("strb %0, [%1, #28]" : : "r"(nextPose), "r"(currentSprite));
     } else {
-        register struct PrimarySpriteData *currentSprite2 asm("r2");
+        struct PrimarySpriteData *currentSprite2;
         func_8026374();
         currentSprite2 = &gCurrentSprite;
         attackTimer = &currentSprite2->work1;
@@ -665,13 +666,13 @@ void InitMoguramenProjectile(void)
     struct PrimarySpriteData *currentSprite;
     u16 statusValue;
     register u16 finalStatus asm("r0");
-    register u8 zeroByte asm("r3");
-    register u16 zeroHalf asm("r4");
+    u8 zeroByte;
+    u16 zeroHalf;
 
     currentSprite = &gCurrentSprite;
     {
         register u16 status asm("r1");
-        register u16 flags asm("r2");
+        u16 flags;
         register u16 flagsCopy asm("r0");
         status = currentSprite->status;
         flags = SPRITE_STATUS_AFFINE | SPRITE_STATUS_IGNORE_SPRITE_COLLISION;

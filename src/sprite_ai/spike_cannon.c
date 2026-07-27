@@ -7,13 +7,13 @@
 
 void InitSpikeCannon(void)
 {
-    register struct PrimarySpriteData *current asm("ip");
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u16 oldStatus asm("r1");
+    struct PrimarySpriteData *current;
+    struct PrimarySpriteData *sprite;
+    u16 oldStatus;
     register u16 status asm("r0");
-    register u32 flags asm("r2");
+    u32 flags;
     register int zeroByte asm("r2");
-    register int zeroHalf asm("r3");
+    int zeroHalf;
 
     current = &gCurrentSprite;
     oldStatus = current->status;
@@ -42,10 +42,10 @@ void InitSpikeCannon(void)
 
 void SpikeCannonWait(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *timer asm("ip");
-    register int next asm("r0");
-    register u8 value asm("r3");
+    struct PrimarySpriteData *sprite;
+    u8 *timer;
+    int next;
+    u8 value;
 
     if (SpriteUtilCheckWarioNearbyAboveBelow(70, 96) != 1) {
         sprite = &gCurrentSprite;
@@ -53,7 +53,7 @@ void SpikeCannonWait(void)
         next = *timer;
         next--;
         {
-            register u8 *storePointer asm("r1");
+            u8 *storePointer;
             storePointer = timer;
             *storePointer = next;
         }
@@ -65,8 +65,8 @@ void SpikeCannonWait(void)
             sprite->animationTimer = value;
             sprite->pose = 16;
             {
-                register int resetValue asm("r0");
-                register u8 *resetPointer asm("r1");
+                int resetValue;
+                u8 *resetPointer;
                 resetValue = 72;
                 resetPointer = timer;
                 *resetPointer = resetValue;
@@ -77,10 +77,10 @@ void SpikeCannonWait(void)
 
 void SpikeCannonFire(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u8 *timer asm("r6");
-    register int next asm("r0");
-    register u8 value asm("r5");
+    struct PrimarySpriteData *sprite;
+    u8 *timer;
+    int next;
+    u8 value;
 
     sprite = &gCurrentSprite;
     timer = &sprite->work0;
@@ -104,13 +104,13 @@ void SpikeCannonFire(void)
 void InitSpikeCannonProjectile(void)
 {
     register struct PrimarySpriteData *sprite asm("ip");
-    register u16 oldStatus asm("r0");
+    u16 oldStatus;
     register u16 status asm("r3");
     register int zeroByte asm("r5");
-    register int zeroHalf asm("r6");
-    register int distance asm("r4");
-    register u8 *bounds asm("r0");
-    register int horizontalExtent asm("r2");
+    int zeroHalf;
+    int distance;
+    u8 *bounds;
+    int horizontalExtent;
     register int verticalExtent asm("r1");
 
     sprite = &gCurrentSprite;
@@ -146,7 +146,7 @@ void InitSpikeCannonProjectile(void)
     sprite->currentAnimationFrame = zeroByte;
     sprite->animationTimer = zeroHalf;
     {
-        register int collision asm("r0");
+        int collision;
         register u8 *workPointer asm("r1");
         collision = 9;
         workPointer = (u8 *)sprite;
@@ -163,7 +163,7 @@ void InitSpikeCannonProjectile(void)
     /* agbcc otherwise removes this unused facing-direction test. */
     asm("mov r0, #64\n\tand r0, %0" : : "r"(status) : "r0");
     {
-        register const struct AnimationFrame *oam asm("r0");
+        const struct AnimationFrame *oam;
         register struct PrimarySpriteData *storePointer asm("r1");
         oam = sSpikeCannonProjectileFlyingOam;
         storePointer = sprite;
@@ -173,12 +173,12 @@ void InitSpikeCannonProjectile(void)
 
 void SpikeCannonProjectileMove(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register const s16 *movement asm("r5");
-    register int index asm("r2");
-    register u8 *indexPointer asm("ip");
-    register u8 *timer asm("r1");
-    register int timerValue asm("r0");
+    struct PrimarySpriteData *sprite;
+    const s16 *movement;
+    int index;
+    u8 *indexPointer;
+    u8 *timer;
+    int timerValue;
     s16 delta;
 
     sprite = &gCurrentSprite;
@@ -203,10 +203,10 @@ void SpikeCannonProjectileMove(void)
     movement = sSpikeCannonProjectileYVelocity;
     delta = movement[index];
     if (delta == 0x7FFF) {
-        register int previous asm("r1");
-        register u16 yPosition asm("r0");
+        int previous;
+        u16 yPosition;
         register const s16 *previousPointer asm("r1");
-        register u16 previousDelta asm("r1");
+        u16 previousDelta;
 
         previous = index - 1;
         previous <<= 1;
@@ -217,8 +217,8 @@ void SpikeCannonProjectileMove(void)
         yPosition += previousDelta;
         sprite->yPosition = yPosition;
     } else {
-        register int nextIndex asm("r0");
-        register u8 *storePointer asm("r1");
+        int nextIndex;
+        u8 *storePointer;
         nextIndex = index + 1;
         storePointer = indexPointer;
         *storePointer = nextIndex;
@@ -234,7 +234,7 @@ void SpikeCannonProjectileMove(void)
 
 void StartSpikeCannonProjectileDespawn(void)
 {
-    register struct PrimarySpriteData *sprite asm("r1");
+    struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
     sprite->disableWarioCollisionTimer = 1;
@@ -248,9 +248,9 @@ void StartSpikeCannonProjectileDespawn(void)
 
 void SpikeCannonProjectileDespawn(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *timer asm("r1");
-    register u8 value asm("r0");
+    struct PrimarySpriteData *sprite;
+    u8 *timer;
+    u8 value;
 
     sprite = &gCurrentSprite;
     sprite->disableWarioCollisionTimer = 1;

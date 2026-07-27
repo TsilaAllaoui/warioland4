@@ -43,7 +43,7 @@ void ToyBlockSquareCheckSpriteCollisions(void)
     sprites = gSpriteData;
     for (; i < MAX_SPRITE_COUNT; i++)
     {
-        register u16 maskedStatus asm("r0");
+        u16 maskedStatus;
         register u32 statusMask asm("r3");
 
         sprite = (struct PrimarySpriteData*)((u32)(i * sizeof(struct PrimarySpriteData)) + (u32)sprites);
@@ -72,7 +72,7 @@ void ToyBlockSquareCheckSpriteCollisions(void)
             }
 
             {
-                register u16 positionX asm("r1");
+                s32 positionX;
                 positionX = sprite->xPosition;
                 spriteX = (u16)(basePosition + positionX);
             }
@@ -112,8 +112,8 @@ void ToyBlockSquareSetPassableTiles(void)
     u16 x;
     u16 yTop;
     u16 xLeft;
-    register s8* blockType asm("sl");
-    register s32 value asm("r9");
+    s8* blockType;
+    s32 value;
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
@@ -139,8 +139,8 @@ void ToyBlockSquareSetSolidTiles(void)
     u16 x;
     u16 yTop;
     u16 xLeft;
-    register s8* blockType asm("sl");
-    register s32 value asm("r9");
+    s8* blockType;
+    s32 value;
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
@@ -163,11 +163,11 @@ void ToyBlockSquareSetSolidTiles(void)
 void InitToyBlockSquare(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
-    register struct PrimarySpriteData* temp asm("r1");
-    register u8* drawPtr asm("r0");
-    register u16 zero16 asm("r3");
+    struct PrimarySpriteData* temp;
+    u8* drawPtr;
+    u16 zero16;
     register u8 zero asm("r2");
-    register u8 value asm("r1");
+    u8 value;
     register u16 status asm("r0");
     u16 x;
 

@@ -3,24 +3,24 @@
 void RefreshRouletteResultTiles(void)
 {
     register u8 *src asm("r1");
-    register s32 quotient asm("r2");
-    register struct RouletteSmallState *nextState asm("r8");
+    s32 quotient;
+    struct RouletteSmallState *nextState;
 
     CALC_PARTS_FROM_VALUE(GetRouletteFrameIndex(gRouletteTopResult.frame), sRouletteTopResultTiles);
     {
-        register struct RouletteSmallState *stateLoad asm("r0");
+        struct RouletteSmallState *stateLoad;
         stateLoad = &gRouletteMiddleResult;
         nextState = stateLoad;
     }
     RUN_FOUR_DMAS(0x06017000);
 
     {
-        register struct RouletteSmallState *stateLow asm("r1");
+        struct RouletteSmallState *stateLow;
         stateLow = nextState;
         CALC_PARTS_FROM_VALUE(GetRouletteFrameIndex(stateLow->frame), sRouletteMiddleResultTiles);
     }
     {
-        register struct RouletteSmallState *stateLoad asm("r0");
+        struct RouletteSmallState *stateLoad;
         stateLoad = &gRouletteBottomResult;
         nextState = stateLoad;
     }
@@ -29,15 +29,15 @@ void RefreshRouletteResultTiles(void)
     {
         register s32 frame asm("r3");
         register s32 frameOffset asm("r0");
-        register u8 *graphics asm("r4");
+        u8 *graphics;
         register u8 *dstBase asm("r12");
         register int i asm("r5");
         register volatile u32 *dma asm("r2");
-        register u32 control asm("r7");
-        register u32 busy asm("r6");
+        u32 control;
+        u32 busy;
 
         {
-            register struct RouletteSmallState *stateLow asm("r1");
+            struct RouletteSmallState *stateLow;
             stateLow = nextState;
             frameOffset = GetRouletteFrameIndex(stateLow->frame);
         }
@@ -52,7 +52,7 @@ void RefreshRouletteResultTiles(void)
         quotient <<= 12;
         frameOffset <<= 8;
         {
-            register u8 *base asm("r1");
+            u8 *base;
             base = sRouletteBottomResultTiles;
             frameOffset += (s32)base;
         }
@@ -64,7 +64,7 @@ void RefreshRouletteResultTiles(void)
         busy = 0x80000000;
         do {
             register u32 offset asm("r1");
-            register u32 value asm("r0");
+            u32 value;
             register int next asm("r1");
             offset = i << 10;
             dma[0] = (u32)(graphics + offset);
@@ -75,7 +75,7 @@ void RefreshRouletteResultTiles(void)
             value &= busy;
             next = i + 1;
             if (value != 0) {
-                register u32 pollMask asm("r3");
+                u32 pollMask;
                 pollMask = 0x80000000;
                 do {
                     value = dma[2];

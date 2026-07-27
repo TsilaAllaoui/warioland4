@@ -12,9 +12,9 @@
 s32 ToyBlockTriangleUnlockTouchedLock(void)
 {
     register u32 currentBottom asm("sl");
-    register u32 currentLeft asm("r9");
-    register u32 currentRight asm("r8");
-    register s32 i asm("r6");
+    u32 currentLeft;
+    u32 currentRight;
+    s32 i;
     register struct PrimarySpriteData* sprite asm("r5");
     u8 pose;
     volatile u32 currentTop;

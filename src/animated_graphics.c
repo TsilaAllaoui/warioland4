@@ -3,13 +3,13 @@
 
 void UpdateAnimatedGraphics(void)
 {
-    register struct AnimatedGraphicsState *graphicsState asm("r3");
-    register int slotIndex asm("r5");
+    struct AnimatedGraphicsState *graphicsState;
+    int slotIndex;
     UpdateAnimatedGraphicsSwitches();
     graphicsState = gAnimatedGraphicsStates;
     slotIndex = 0;
     do {
-        register int frameChanged asm("r4");
+        int frameChanged;
         frameChanged = 0;
         switch (graphicsState->mode) {
         case 0: break;
@@ -80,7 +80,7 @@ void UpdateAnimatedGraphics(void)
         }
         }
         if (frameChanged) {
-            u8 sourceFrameIndex; u32 sourceAddress; u32 destinationAddress; register vu32 *dmaRegisters asm("r1");
+            u8 sourceFrameIndex; u32 sourceAddress; u32 destinationAddress; vu32 *dmaRegisters;
             sourceFrameIndex = graphicsState->frameIndex;
             if (graphicsState->frameIndex < 0) { int complementedFrameIndex; complementedFrameIndex = ~graphicsState->frameIndex; sourceFrameIndex = complementedFrameIndex + 1; }
             sourceAddress = (u32)graphicsState->tiles + (((s8)sourceFrameIndex) << 7);
@@ -96,14 +96,14 @@ void UpdateAnimatedGraphics(void)
 void InitAnimatedGraphics(void)
 {
   register struct AnimatedGraphicsState *graphicsState asm("r3");
-  register int slotIndex asm("r4");
+  int slotIndex;
   register const u8 *switchStateTable asm("sl");
   register const u8 *slotSwitchIds asm("r9");
   register const u16 *activeAnimationIds asm("r8");
   register const u16 *inactiveAnimationIds asm("ip");
   int zeroValue;
-  register int animationListOffset asm("r6");
-  register vu32 *dmaRegisters asm("r5");
+  int animationListOffset;
+  vu32 *dmaRegisters;
   graphicsState = gAnimatedGraphicsStates;
   slotIndex = 0;
   switchStateTable = gSwitchStates;
@@ -119,7 +119,7 @@ void InitAnimatedGraphics(void)
     u8 roomId;
     u8 slotSwitchId;
     u32 animationIdAddress;
-    register u8 frameCount asm("r2");
+    s32 frameCount;
     roomId = *((u8 *) (&gCurrentRoomHeader));
     slotSwitchId = slotSwitchIds[slotIndex + (roomId << 4)];
     if (switchStateTable[slotSwitchId] & 1)
@@ -137,7 +137,7 @@ void InitAnimatedGraphics(void)
     {
       register u16 animationId asm("r0");
       register u32 definitionOffset asm("r1");
-      register const struct AnimatedGraphicsDefinition *definitionTable asm("r2");
+      const struct AnimatedGraphicsDefinition *definitionTable;
       animationId = *((u16 *) animationIdAddress);
       definitionOffset = animationId << 3;
       definitionTable = sAnimatedGraphicsDefinitions;
@@ -152,15 +152,15 @@ void InitAnimatedGraphics(void)
     graphicsState->tiles = definition->tiles;
     if ((graphicsState->mode == 3) || (graphicsState->mode == 6))
     {
-      register u8 lastFrameIndex asm("r0");
+      u8 lastFrameIndex;
       lastFrameIndex = frameCount - 1;
       graphicsState->frameIndex = lastFrameIndex;
     }
     {
-      register int tileFrameOffset asm("r0");
-      register u32 sourceAddress asm("r1");
-      register u32 destinationAddress asm("r0");
-      register u32 destinationBase asm("r2");
+      int tileFrameOffset;
+      u32 sourceAddress;
+      u32 destinationAddress;
+      u32 destinationBase;
 
       tileFrameOffset = graphicsState->frameIndex << 7;
       sourceAddress = (u32) graphicsState->tiles;
@@ -172,7 +172,7 @@ void InitAnimatedGraphics(void)
       dmaRegisters[1] = destinationAddress;
     }
     {
-      register u32 dmaControl asm("r0");
+      u32 dmaControl;
 
       dmaControl = 0x80000040;
       dmaRegisters[2] = dmaControl;
@@ -202,18 +202,18 @@ void UpdateAnimatedGraphicsSwitches(void)
 
 void ReloadAnimatedGraphicsForSwitch(u8 switchId)
 {
-  register struct AnimatedGraphicsState *graphicsState asm("r3");
-  register int slotIndex asm("r4");
-  register u8 *selectedSwitchState asm("r8");
-  register int zeroValue asm("ip");
-  register vu32 *dmaRegisters asm("r5");
-  register int animationListOffset asm("r6");
+  struct AnimatedGraphicsState *graphicsState;
+  int slotIndex;
+  u8 *selectedSwitchState;
+  int zeroValue;
+  vu32 *dmaRegisters;
+  int animationListOffset;
   register const u16 *activeAnimationIds asm("sl");
   register const u16 *inactiveAnimationIds asm("r9");
   int reversePlaybackModeStart;
   int slotLimitBias;
   int definitionOffsetCopy;
-  register int animationMode asm("r0");
+  int animationMode;
   graphicsState = gAnimatedGraphicsStates;
   slotIndex = 0;
   selectedSwitchState = gSwitchStates + switchId;
@@ -232,9 +232,9 @@ void ReloadAnimatedGraphicsForSwitch(u8 switchId)
     {
       u32 animationIdAddress;
       const struct AnimatedGraphicsDefinition *definition;
-      register u8 frameCount asm("r2");
+      u8 frameCount;
       {
-        register u8 *selectedSwitchStatePtr asm("r2");
+        u8 *selectedSwitchStatePtr;
         selectedSwitchStatePtr = selectedSwitchState;
         if ((*selectedSwitchStatePtr) != 0)
         {
@@ -251,7 +251,7 @@ void ReloadAnimatedGraphicsForSwitch(u8 switchId)
       }
       {
         register u32 animationId asm("r0");
-        register u32 definitionOffset asm("r1");
+        u32 definitionOffset;
         register const struct AnimatedGraphicsDefinition *definitionTable asm("r0");
         animationId = *((u16 *) animationIdAddress);
         definitionOffset = animationId << 3;
@@ -270,15 +270,15 @@ void ReloadAnimatedGraphicsForSwitch(u8 switchId)
       reversePlaybackModeStart = 5;
       if ((animationMode <= 6) && (animationMode >= reversePlaybackModeStart))
       {
-        register u8 lastFrameIndex asm("r0");
+        u8 lastFrameIndex;
         lastFrameIndex = frameCount - 1;
         graphicsState->frameIndex = lastFrameIndex;
       }
       {
-        register int tileFrameOffset asm("r0");
-        register u32 sourceAddress asm("r1");
-        register u32 destinationAddress asm("r0");
-        register u32 destinationBase asm("r2");
+        int tileFrameOffset;
+        u32 sourceAddress;
+        u32 destinationAddress;
+        u32 destinationBase;
         tileFrameOffset = graphicsState->frameIndex << 7;
         sourceAddress = (u32) graphicsState->tiles;
         sourceAddress += tileFrameOffset;

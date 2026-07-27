@@ -42,12 +42,12 @@ u8 PuffyWarioTransforming(void)
 
 u8 PuffyWarioFloating(void)
 {
-    register struct WarioData* wario asm("r3");
+    struct WarioData* wario;
     register int held asm("r2");
-    register int direction asm("r1");
+    int direction;
     register int temp asm("r0");
     register struct WarioData* animationWario asm("r2");
-    register const struct PuffyAnimationFrame* animation asm("r3");
+    const struct PuffyAnimationFrame* animation;
     u16* heldPtr;
     if (gButtonsPressed & 2) {
         return 2;
@@ -108,8 +108,8 @@ u8 PuffyWarioInhaling(void)
 
 u8 PuffyWarioHitCeiling(void)
 {
-    register struct WarioData* wario asm("r2");
-    register const struct PuffyAnimationFrame* animation asm("r3");
+    struct WarioData* wario;
+    const struct PuffyAnimationFrame* animation;
     int frame;
     wario = &gWarioData;
     animation = sPuffyHitCeilingAnimation;
@@ -131,8 +131,8 @@ u8 PuffyWarioHitCeiling(void)
 
 void SetPuffyWarioPose(u8 pose)
 {
-    register int value asm("r4");
-    register int copy asm("r5");
+    int value;
+    u16 copy;
     u8 temp;
 
     value = pose;
@@ -189,7 +189,7 @@ void UpdatePuffyWarioPosition(void)
 {
     register u8* hitbox asm("r3");
     register const u8* data asm("r2");
-    register struct WarioData* wario asm("r4");
+    struct WarioData* wario;
     const u8* ptr;
     u32 index;
     u16 yVelocity, velocity, xMovement;
@@ -220,9 +220,9 @@ void UpdatePuffyWarioPosition(void)
 
 void UpdatePuffyWarioCollision(void)
 {
-    register u8* hitbox asm("r5");
+    u8* hitbox;
     register const u8* data asm("r2");
-    register struct WarioData* wario asm("r4");
+    struct WarioData* wario;
     const u8* ptr;
     u32 index;
     hitbox = &gWarioCollisionData;
@@ -252,9 +252,9 @@ void UpdatePuffyWarioCollision(void)
 
 void LoadPuffyWarioGraphics(int index)
 {
-    register u32 value asm("r4");
-    register const struct PuffyGraphicsFrame** table asm("r1");
-    register struct WarioData* wario asm("r2");
+    u32 value;
+    const struct PuffyGraphicsFrame** table;
+    struct WarioData* wario;
     const struct PuffyGraphicsFrame* frame;
     const u8* data;
     value = index;
@@ -307,10 +307,10 @@ void ApplyPuffyWarioMusicEffect(void)
 
 void UpdatePuffyWarioHitbox(void)
 {
-    register const u8* data asm("r4");
-    register struct WarioData* wario asm("r3");
-    register const u8* hitboxes asm("r2");
-    register u32 offset asm("r1");
+    const u8* data;
+    struct WarioData* wario;
+    const u8* hitboxes;
+    u32 offset;
     register u32 address asm("r0");
     u32 poseOffset;
     data = sPuffyPoseData;

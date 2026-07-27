@@ -18,26 +18,26 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
 {
     register struct Unk_30000A0 *collision;
     register struct Unk_30000A0 *collisionInit asm("r1");
-    register struct BackgroundInfo *background asm("r9");
-    register struct BackgroundInfo *backgroundInit asm("r2");
+    struct BackgroundInfo *background;
+    struct BackgroundInfo *backgroundInit;
     register struct RoomHeader *roomHeader asm("sl");
     register struct RoomHeader *roomHeaderInit asm("r3");
-    register u32 tileY asm("r8");
+    u32 tileY;
     register u32 tileX asm("ip");
-    register u32 attribute asm("r5");
-    register u32 shiftedY asm("r3");
+    u32 attribute;
+    u32 shiftedY;
     register u32 shiftedX asm("r4");
     register s32 xTruncated asm("r1");
     register s32 collisionType asm("r2");
-    register s32 overrideType asm("r4");
-    register s32 one asm("r6");
+    s32 overrideType;
+    s32 one;
     register s32 limit asm("r0");
-    register u32 parameter asm("r0");
+    u32 parameter;
     struct BgClipStack stack;
-    register const u16 *attributeTable asm("r5");
-    register struct BackgroundInfo *layer asm("r3");
-    register u32 *destination asm("r6");
-    register s32 layerIndex asm("r4");
+    const u16 *attributeTable;
+    struct BackgroundInfo *layer;
+    u32 *destination;
+    s32 layerIndex;
     u32 value;
     s32 waterCollision;
 
@@ -70,7 +70,7 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
     do
     {
         register u32 temporary asm("r0");
-        register u32 product asm("r1");
+        u32 product;
         register u32 tileIndex asm("r2");
         const u16 *tileMap;
 
@@ -143,8 +143,8 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
             overrideType = value - 55;
             if (overrideType <= 3)
             {
-                register u32 switchState asm("r0");
-                register u8 *switchPointer asm("r0");
+                u32 switchState;
+                u8 *switchPointer;
 
                 switchPointer = (u8 *)overrideType;
                 switchPointer += (u32)gSwitchStates;
@@ -159,14 +159,14 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
         }
         else
         {
-            register u32 rangeValue asm("r0");
+            u32 rangeValue;
 
             rangeValue = value;
             rangeValue -= 152;
             if (rangeValue <= 3)
             {
                 register u32 switchState asm("r1");
-                register u32 maskedState asm("r0");
+                u32 maskedState;
 
                 overrideType = rangeValue;
                 switchState = gSwitchStates[1];
@@ -192,7 +192,7 @@ primary_collision_done:
     waterCollision = 0;
     overrideType = 0;
     {
-        register struct RoomHeader *headerTemporary asm("r1");
+        struct RoomHeader *headerTemporary;
 
         headerTemporary = roomHeader;
         parameter = headerTemporary->bgPriorityAlpha;
@@ -205,7 +205,7 @@ primary_collision_done:
 
 check_primary_water_attribute:
     {
-        register u32 rangeValue asm("r0");
+        u32 rangeValue;
 
         rangeValue = attribute;
         rangeValue -= 76;
@@ -220,9 +220,9 @@ process_bg0_collision:
         goto secondary_collision_done;
     {
         register struct BackgroundInfo *backgroundTemporary asm("r1");
-        register s32 bound asm("r0");
+        s32 bound;
         register s32 coordinate asm("r3");
-        register u32 width asm("r1");
+        u32 width;
 
         backgroundTemporary = background;
         bound = backgroundTemporary->bg0Height;
@@ -243,11 +243,11 @@ bg0_out_of_bounds:
 bg0_in_bounds:
         {
             register u32 tileIndex asm("r0");
-            register struct BackgroundInfo *backgroundReload asm("r3");
-            register const u16 *tileMap asm("r1");
-            register struct BackgroundTileTables *tables asm("r3");
-            register const u16 *attributesReload asm("r1");
-            register u32 bgAttribute asm("r1");
+            struct BackgroundInfo *backgroundReload;
+            const u16 *tileMap;
+            struct BackgroundTileTables *tables;
+            const u16 *attributesReload;
+            u32 bgAttribute;
 
             tileIndex = tileY;
             tileIndex *= width;
@@ -287,8 +287,8 @@ bg0_in_bounds:
         }
 
         {
-            register u32 switchState asm("r1");
-            register u32 maskedState asm("r0");
+            u32 switchState;
+            u32 maskedState;
 
             switchState = gSwitchStates[4];
             maskedState = 1;
@@ -322,14 +322,14 @@ secondary_collision_done:
 s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
 {
     register u32 yCoord asm("r5");
-    register u32 xCoord asm("r2");
-    register u32 xSaved asm("r6");
+    u32 xCoord;
+    u16 xSaved;
     struct Unk_30000A0 *collision;
-    register struct Unk_30000A0 *collisionTemp asm("r1");
+    struct Unk_30000A0 *collisionTemp;
     register struct BackgroundInfo *background asm("r4");
-    register s32 result asm("r3");
-    register s32 zero asm("r0");
-    register u32 indexTemporary asm("r0");
+    s32 result;
+    s32 zero;
+    u32 indexTemporary;
     register const u16 *tileMap asm("r1");
     u16 tile;
 
@@ -400,10 +400,10 @@ s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
 
 s32 TryTriggerRoomTransitionAtTile(s32 y, s32 x)
 {
-    register s32 temporary asm("r2");
-    register u32 yCoord asm("r4");
-    register u32 xCoord asm("r3");
-    register s32 result asm("r6");
+    s32 temporary;
+    u32 yCoord;
+    u32 xCoord;
+    s32 result;
     const u8 *entry;
     s16 *modeState;
 
@@ -417,11 +417,10 @@ s32 TryTriggerRoomTransitionAtTile(s32 y, s32 x)
     result = 0;
     {
         register s16 *modePointer asm("r1");
-        register u32 offset asm("r5");
+        u16 offset;
 
         modePointer = &gSubGameMode;
         offset = 0;
-        asm("" : "+r"(offset));
         /* agbcc otherwise materializes an unnecessary scaled pointer for this signed halfword load. */
         asm("ldrsh %0, [%1, %2]" : "=r"(temporary) : "r"(modePointer), "r"(offset));
         modeState = modePointer;
@@ -503,10 +502,10 @@ void CheckRoomTransitionAtPosition(u16 y, u16 x)
 
 void ApplyRoomTransitionTileOffset(u8 value)
 {
-    register struct BackgroundInfo *background asm("r9");
-    register struct BackgroundInfo *widthBackground asm("r1");
+    struct BackgroundInfo *background;
+    struct BackgroundInfo *widthBackground;
     register u16 *loadedMap asm("r1");
-    register s32 firstIndex asm("r3");
+    s32 firstIndex;
     register s32 secondIndex asm("r4");
     register s32 temporary asm("r0");
     u16 *data;
@@ -571,15 +570,15 @@ void ApplyRoomTransitionTileOffset(u8 value)
 void SetRoomTransitionTileValues(s32 value)
 {
     u16 tileValue;
-    register const u16 *data asm("r5");
-    register struct BackgroundInfo *background asm("r6");
-    register s32 count asm("r4");
-    register u32 mask asm("ip");
+    const u16 *data;
+    struct BackgroundInfo *background;
+    s32 count;
+    u32 mask;
     register u32 descriptor asm("r2");
-    register u32 packed asm("r3");
-    register u32 index asm("r0");
-    register u32 width asm("r1");
-    register u16 *map asm("r1");
+    u32 packed;
+    u32 index;
+    u32 width;
+    u16 *map;
 
     value <<= 16;
     tileValue = (u32)value >> 16;

@@ -184,14 +184,14 @@ void func_8032604(void)
 
 void func_803262C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
     register u32 next asm("r2");
     u8 timer;
-    register u32 check asm("r0");
+    u32 check;
 
     sprite = &gCurrentSprite;
     {
-        register u8 *work0 asm("r1");
+        u8 *work0;
         register u32 old asm("r0");
         work0 = &sprite->work0;
         old = *work0;
@@ -365,7 +365,7 @@ void func_8032988(void)
 void func_80329AC(void)
 {
     register u32 timer asm("r2");
-    register u32 original asm("r3");
+    u32 original;
 
     timer = gCurrentSprite.work0;
     original = timer;
@@ -639,7 +639,7 @@ void func_8032ECC(void)
 
 void SpriteTotsumen(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
 
     sprite = &gCurrentSprite;
     if (sprite->status & SPRITE_STATUS_UNDERWATER)

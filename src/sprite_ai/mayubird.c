@@ -94,7 +94,7 @@ void MayubirdFloat(void)
             asm("" : "+r"(sentinel));
             sprite = base;
             if (signedMovement == sentinel) {
-            register int next asm("r0");
+            int next;
             register u8 *store asm("r6");
 
             movement = *(const u16 *)table;
@@ -261,7 +261,7 @@ void MayubirdPrepareShortFall(void)
     {
         register u16 status asm("r0");
         register int deadFlag asm("r2");
-        register int mask asm("r1");
+        int mask;
 
         status = sprite->status;
         deadFlag = 128;

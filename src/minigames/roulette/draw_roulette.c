@@ -18,16 +18,17 @@ extern void DrawRouletteScoreText(void);
 
 void DrawRoulette(void)
 {
-    register int slot = 0;
+    register int slot;
     register int total asm("r9");
     register u16 *rawDst asm("r6");
     register struct RouletteMainState *mainState asm("r8");
-    register const u16 *src asm("r3");
-    register OamData *oamBase asm("r2");
+    const u16 *src;
+    OamData *oamBase;
     struct RouletteRenderStack stack;
     s32 inverse;
     u8 state;
 
+    slot = 0;
     total = gOamSlotsUsed;
     {
         register int byteOffset asm("r0");
@@ -38,7 +39,7 @@ void DrawRoulette(void)
 
     {
         register int active asm("r1");
-        register struct RouletteMainState *statePtr asm("r0");
+        struct RouletteMainState *statePtr;
         statePtr = &gMinigameCameraState;
         active = statePtr->active;
         mainState = statePtr;
@@ -63,8 +64,8 @@ void DrawRoulette(void)
                 stack.affineDPtr = affineDAddress;
             }
             if (slot < total) {
-                register struct RouletteMainState *position asm("r5");
-                register OamData *oam asm("r4");
+                struct RouletteMainState *position;
+                OamData *oam;
                 register int xMask asm("r10");
                 register int attr2Mask asm("r12");
                 position = mainState;
@@ -83,8 +84,8 @@ void DrawRoulette(void)
                     {
                         register int value asm("r2");
                         register int coord asm("r1");
-                        register int xOffset asm("r0");
-                        register int maskTemp asm("r2");
+                        u16 xOffset;
+                        int maskTemp;
                         value = *src++;
                         *rawDst++ = value;
                         xOffset = 8;
@@ -105,7 +106,7 @@ void DrawRoulette(void)
                         }
                     }
                     {
-                        register int oldByte asm("r1");
+                        u16 oldByte;
                         register int mask asm("r0");
                         oldByte = ((u8 *)oam)[3];
                         asm volatile("" : "+r"(oldByte) : : "memory");
@@ -134,15 +135,15 @@ void DrawRoulette(void)
                 slot = total;
             }
             {
-                register s32 sin64 asm("r5");
-                register s32 sin0 asm("r4");
+                s32 sin64;
+                s32 sin0;
                 register s32 negSin0 asm("r4");
                 register u32 affineDResult asm("r0");
 
                 {
                     register const s16 *sinPtr asm("r0");
-                    register s32 scaleValue asm("r0");
-                    register s32 result asm("r0");
+                    s32 scaleValue;
+                    u16 result;
                     sinPtr = sSinCosTable;
                     sinPtr += 64;
                     /* The earlier source pointer still occupies r3 in agbcc's allocator. */
@@ -156,7 +157,7 @@ void DrawRoulette(void)
 
                 {
                     register const s16 *sinPtr asm("r2");
-                    register s32 scaleValue asm("r0");
+                    s32 scaleValue;
                     register s32 result asm("r0");
                     register s16 *outPtr asm("r3");
                     sinPtr = sSinCosTable;
@@ -170,7 +171,7 @@ void DrawRoulette(void)
                 }
 
                 {
-                    register const s16 *sinPtr asm("r0");
+                    const s16 *sinPtr;
                     register s32 scaleValue asm("r0");
                     register s32 result asm("r0");
                     register s16 *outPtr asm("r3");

@@ -55,11 +55,11 @@ void BowlerStartWalking(void)
 
 void BowlerWalking(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
+    struct PrimarySpriteData* sprite;
     register u8* work1Pointer asm("r2");
     register u8* work0Pointer asm("r1");
     register int oldTimer asm("r5");
-    register int mask asm("r3");
+    int mask;
     register int value asm("r0");
 
     func_80238A4();
@@ -88,7 +88,7 @@ void BowlerWalking(void)
 
         func_8023BFC(sprite->yPosition, sprite->xPosition + 120);
         {
-            register volatile u8* collision asm("r5");
+            volatile u8* collision;
             collision = &gSpriteCollisionTileType;
             if ((*collision & 0xF0) == 0)
                 goto setWalkPose;

@@ -37,8 +37,8 @@ void ChandelierStartShaking(void)
 
 void ChandelierShake(void)
 {
-    register struct PrimarySpriteData *sprite asm("r1");
-    register u32 animation asm("r2");
+    struct PrimarySpriteData *sprite;
+    u32 animation;
 
     sprite = &gCurrentSprite;
     animation = *(u32 *)&sprite->animationTimer;
@@ -69,8 +69,8 @@ void ChandelierShake(void)
 
 void ChandelierFall(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u32 yPosition asm("r1");
+    struct PrimarySpriteData *sprite;
+    u32 yPosition;
 
     sprite = &gCurrentSprite;
     yPosition = func_8023A60(sprite->yPosition, sprite->xPosition);
@@ -81,14 +81,13 @@ void ChandelierFall(void)
             m4aSongNumStart(SE_CHANDELIER_LAND);
         }
     } else {
-        register u8 *indexPointer asm("ip");
-        register u8 index asm("r2");
-        register const s16 *velocities asm("r5");
+        u8 *indexPointer;
+        u8 index;
+        const s16 *velocities;
         register const s16 *entry asm("r0");
-        register u16 velocityRaw asm("r3");
+        s32 velocityRaw;
         register s32 velocity asm("r1");
-        register int zero asm("r6");
-
+        u16 zero;
         indexPointer = &sprite->work3;
         index = *indexPointer;
         velocities = sChandelierFallVelocity;
@@ -98,10 +97,9 @@ void ChandelierFall(void)
         /* agbcc otherwise reuses the unsigned load instead of emitting the target ldrsh. */
         asm("ldrsh %0, [%1, %2]" : "=r"(velocity) : "r"(entry), "r"(zero));
         if (velocity == 0x7FFF) {
-            register u32 previousOffset asm("r1");
+            u32 previousOffset;
             register u16 currentY asm("r0");
-            register u16 previousVelocity asm("r1");
-
+            s32 previousVelocity;
             previousOffset = index - 1;
             asm("" : "+r"(previousOffset));
             previousOffset <<= 1;
@@ -112,8 +110,8 @@ void ChandelierFall(void)
             currentY += previousVelocity;
             sprite->yPosition = currentY;
         } else {
-            register u8 nextIndex asm("r0");
-            register u8 *pointer asm("r1");
+            u8 nextIndex;
+            u8 *pointer;
             nextIndex = index + 1;
             pointer = indexPointer;
             *pointer = nextIndex;

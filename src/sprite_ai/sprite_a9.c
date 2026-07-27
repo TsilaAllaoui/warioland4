@@ -184,7 +184,7 @@ void func_805FE0C(void)
 
 void func_805FE34(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r1");
     register u32 old asm("r0");
     register u32 next asm("r2");
@@ -296,12 +296,12 @@ void func_8060000(void)
 
 void func_806002C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r1");
     register u8 *work3 asm("r12");
-    register u32 index asm("r2");
+    u32 index;
     register const s16 *velocities asm("r5");
-    register u32 velocityAddress asm("r0");
+    u32 velocityAddress;
     register u32 rawVelocity asm("r4");
     register u32 zero asm("r6");
     s16 velocity;
@@ -319,7 +319,7 @@ void func_806002C(void)
     zero = 0;
     velocity = *(const s16 *)(velocityAddress + zero);
     if (velocity == 0x7FFF) {
-        register u32 previous asm("r1");
+        u32 previous;
         register u32 yPosition asm("r0");
         previous = index - 1;
         previous <<= 1;
@@ -328,7 +328,7 @@ void func_806002C(void)
         yPosition += *(const u16 *)previous;
         sprite->yPosition = yPosition;
     } else {
-        register u32 nextIndex asm("r0");
+        u32 nextIndex;
         register u8 *storeWork3 asm("r1");
         nextIndex = index + 1;
         storeWork3 = work3;
@@ -396,7 +396,7 @@ void func_8060190(void)
 
 void func_80601B4(void)
 {
-    register u32 timer asm("r2");
+    u32 timer;
     register u32 original asm("r3");
 
     timer = gCurrentSprite.work0;
@@ -612,9 +612,9 @@ void func_80604FC(void)
 
 void func_806052C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
     register u8 *work0 asm("r1");
-    register u32 timer asm("r0");
+    u32 timer;
 
     sprite = &gCurrentSprite;
     work0 = &sprite->work0;
@@ -628,12 +628,12 @@ void func_806052C(void)
         if (gSpriteCollisionTileType & 0xF) {
             sprite->pose = 29;
         } else {
-            register u8 *work3 asm("r12");
-            register u32 index asm("r2");
-            register const s16 *velocities asm("r5");
-            register u32 velocityAddress asm("r0");
-            register u32 rawVelocity asm("r3");
-            register u32 zero asm("r6");
+            u8 *work3;
+            u32 index;
+            const s16 *velocities;
+            u32 velocityAddress;
+            u32 rawVelocity;
+            u32 zero;
             s16 velocity;
 
             work3 = &sprite->work3;
@@ -645,7 +645,7 @@ void func_806052C(void)
             zero = 0;
             velocity = *(const s16 *)(velocityAddress + zero);
             if (velocity == 0x7FFF) {
-                register u32 previous asm("r1");
+                u32 previous;
                 register u32 yPosition asm("r0");
                 previous = index - 1;
                 previous <<= 1;
@@ -654,7 +654,7 @@ void func_806052C(void)
                 yPosition += *(const u16 *)previous;
                 sprite->yPosition = yPosition;
             } else {
-                register u32 nextIndex asm("r0");
+                u32 nextIndex;
                 register u8 *storeWork3 asm("r1");
                 nextIndex = index + 1;
                 storeWork3 = work3;

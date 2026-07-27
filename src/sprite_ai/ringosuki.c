@@ -576,12 +576,12 @@ void RingosukiThrown(void)
     register u8 *indexPointer;
     register u32 index;
     register const s16 *table;
-    register const s16 *entry asm("r0");
-    register u16 rawVelocity asm("r3");
-    register s32 velocity asm("r1");
+    const s16 *entry;
+    s32 rawVelocity;
+    s32 velocity;
     register const s16 *previousEntry;
-    register u16 currentY asm("r0");
-    register u16 previousVelocity asm("r1");
+    u16 currentY;
+    s32 previousVelocity;
     register u32 newIndex;
     register u8 *storePointer;
     u16 nextPose;

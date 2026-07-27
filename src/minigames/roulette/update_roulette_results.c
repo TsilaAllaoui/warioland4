@@ -2,10 +2,10 @@
 
 int UpdateRouletteResults(void)
 {
-    register u8 *statePtr asm("r5");
-    register u8 *stateLoad asm("r0");
-    register u8 *fadeStorePtr asm("r2");
-    register u32 fadeStoreValue asm("r0");
+    u8 *statePtr;
+    u8 *stateLoad;
+    u8 *fadeStorePtr;
+    u32 fadeStoreValue;
     u32 state;
 
     stateLoad = &gMinigameSequenceState;
@@ -15,13 +15,13 @@ int UpdateRouletteResults(void)
     switch (state) {
     case 0:
         {
-            register u16 *timer asm("r4");
+            u16 *timer;
             timer = &gMinigameSequenceTimer;
             (*timer)++;
             BobRouletteResultLabels();
             if (*timer > 60) {
-                register u8 *reload asm("r0");
-                register u32 value asm("r1");
+                u8 *reload;
+                u32 value;
                 reload = &gMinigameSequenceState;
                 asm volatile("" : "+r"(reload));
                 value = *reload;
@@ -49,14 +49,14 @@ int UpdateRouletteResults(void)
 
     case 2:
         {
-            register u16 *timer asm("r4");
+            u16 *timer;
             timer = &gMinigameSequenceTimer;
             (*timer)++;
             BobRouletteResultLabels();
             if (*timer <= 20)
                 goto end;
             {
-                register u16 zero asm("r0");
+                u16 zero;
                 zero = 0;
                 /* A one-instruction store boundary keeps this delay state from
                  * being tail-merged with state 4 by agbcc. */
@@ -80,8 +80,8 @@ int UpdateRouletteResults(void)
         }
         DrawRouletteScoreText();
         {
-            register u8 *reload asm("r1");
-            register u32 value asm("r0");
+            u8 *reload;
+            u32 value;
             reload = &gMinigameSequenceState;
             asm volatile("" : "+r"(reload));
             value = *reload;
@@ -93,7 +93,7 @@ int UpdateRouletteResults(void)
 
     case 4:
         {
-            register u16 *timer asm("r4");
+            u16 *timer;
             timer = &gMinigameSequenceTimer;
             (*timer)++;
             BobRouletteResultLabels();
@@ -105,11 +105,11 @@ int UpdateRouletteResults(void)
 
     case 5:
         {
-            register u16 *timer asm("r5");
-            register u32 one asm("r4");
-            register u32 timerValue asm("r0");
-            register u8 *fade asm("r2");
-            register u32 fadeRaw asm("r3");
+            u16 *timer;
+            u32 one;
+            u32 timerValue;
+            u8 *fade;
+            u32 fadeRaw;
 
             timer = &gMinigameSequenceTimer;
             timerValue = *timer;
@@ -125,7 +125,7 @@ int UpdateRouletteResults(void)
             if ((s8)fadeRaw > 0) {
                 {
                     register u8 *blendPtr asm("r0");
-                    register u32 blendValue asm("r1");
+                    u32 blendValue;
                     blendPtr = &gRouletteBlendEva;
                     asm volatile("" : "+r"(blendPtr));
                     blendValue = *blendPtr;
@@ -143,8 +143,8 @@ int UpdateRouletteResults(void)
 
 advanceState:
         {
-            register u8 *reload asm("r1");
-            register u32 value asm("r0");
+            u8 *reload;
+            u32 value;
             reload = &gMinigameSequenceState;
             asm volatile("" : "+r"(reload));
             value = *reload;
@@ -155,11 +155,11 @@ advanceState:
 
     case 6:
         {
-            register u16 *timer asm("r3");
-            register u32 one asm("r1");
-            register u32 timerValue asm("r0");
+            u16 *timer;
+            u32 one;
+            u32 timerValue;
             register u8 *fade asm("r2");
-            register u32 fadeRaw asm("r4");
+            u32 fadeRaw;
 
             timer = &gMinigameSequenceTimer;
             timerValue = *timer;
@@ -173,7 +173,7 @@ advanceState:
             fade = (u8 *)&gRouletteBlendEvb;
             fadeRaw = *fade;
             if ((s8)fadeRaw > 15) {
-                register u32 clear asm("r0");
+                u32 clear;
                 clear = 0;
                 *timer = one;
                 *statePtr = clear;
@@ -182,7 +182,7 @@ advanceState:
 
             {
                 register u8 *blendPtr asm("r0");
-                register u32 blendValue asm("r1");
+                u32 blendValue;
                 blendPtr = &gRouletteBlendEva;
                 asm volatile("" : "+r"(blendPtr));
                 blendValue = *blendPtr;

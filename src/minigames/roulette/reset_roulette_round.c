@@ -13,8 +13,8 @@ void ResetRouletteRound(void)
     dma[2];
 
     {
-        register s32 value asm("r0");
-        register u16 *angularSpeedAddress asm("r1");
+        s32 value;
+        u16 *angularSpeedAddress;
         angularSpeedAddress = &gRouletteAngularSpeed;
         /* agbcc otherwise emits indexed ldrsh; the target uses ldrh/lsl/asr. */
         asm volatile("ldrh %0, [%1, #0]\nlsl %0, %0, #16\nasr %0, %0, #16"
@@ -51,12 +51,12 @@ void ResetRouletteRound(void)
 
     {
         register s32 tileValue asm("r0");
-        register s32 tileOffset asm("r1");
-        register struct RouletteItem *item asm("r2");
-        register s32 y asm("r3");
-        register s32 x asm("r4");
+        s32 tileOffset;
+        struct RouletteItem *item;
+        s32 y;
+        s32 x;
         register s32 remaining asm("r5");
-        register s32 angle asm("r6");
+        s32 angle;
         register s32 inactive;
 
         inactive = 0;
@@ -84,8 +84,8 @@ void ResetRouletteRound(void)
     }
 
     {
-        register struct RouletteItem **base asm("r2");
-        register struct RouletteItem *item asm("r0");
+        struct RouletteItem **base;
+        struct RouletteItem *item;
         register struct RouletteItem **dst asm("r1");
         base = gRouletteItemDrawOrder;
         item = gRouletteItems;
@@ -101,9 +101,9 @@ void ResetRouletteRound(void)
     }
 
     {
-        register s32 index asm("r5");
+        s32 index;
         register u8 *values asm("r6");
-        register u8 *dst asm("r4");
+        u8 *dst;
         register s32 value asm("r0");
 
         index = 0;
@@ -119,8 +119,8 @@ void ResetRouletteRound(void)
         } while (index <= 2);
 
         {
-            register struct RouletteSmallState *label asm("r1");
-            register u8 value asm("r0");
+            struct RouletteSmallState *label;
+            u8 value;
             label = &gRouletteTopResult;
             value = values[0];
             label->frame = value;

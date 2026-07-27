@@ -34,8 +34,8 @@ void InitPigHeadStatue(void)
 
 void PigHeadStatueWaitToOpen(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r3");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
     u8 zero;
 
     sprite = &gCurrentSprite;
@@ -52,8 +52,8 @@ void PigHeadStatueWaitToOpen(void)
 
 void PigHeadStatueWaitToFire(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r3");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
     u8 zero;
 
     sprite = &gCurrentSprite;
@@ -70,8 +70,8 @@ void PigHeadStatueWaitToFire(void)
 
 void PigHeadStatueFireProjectile(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
-    register u8* timer asm("r5");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
 
     sprite = &gCurrentSprite;
     timer = &sprite->work0;
@@ -87,8 +87,8 @@ void PigHeadStatueFireProjectile(void)
 
 void PigHeadStatueStartCooldown(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r3");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
     u8 zero;
 
     sprite = &gCurrentSprite;
@@ -105,8 +105,8 @@ void PigHeadStatueStartCooldown(void)
 
 void PigHeadStatueCooldown(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
 
     sprite = &gCurrentSprite;
     timer = &sprite->work0;
@@ -119,10 +119,10 @@ void PigHeadStatueCooldown(void)
 void InitPigHeadProjectile(void)
 {
     struct PrimarySpriteData* sprite;
-    register u8 zero asm("r2");
-    register u16 zero16 asm("r3");
+    u8 zero;
+    u16 zero16;
     register u16 status asm("r0");
-    register u16 oldStatus asm("r1");
+    u16 oldStatus;
 
     sprite = &gCurrentSprite;
     oldStatus = sprite->status;
@@ -152,9 +152,9 @@ void InitPigHeadProjectile(void)
 
 void PigHeadProjectileFall(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
-    register u32 yPosition asm("r3");
-    register u32 work0 asm("r0");
+    struct PrimarySpriteData* sprite;
+    u32 yPosition;
+    u32 work0;
     u8* timerPointer;
 
     sprite = &gCurrentSprite;
@@ -166,8 +166,8 @@ void PigHeadProjectileFall(void)
     }
 
     if (gSpriteCollisionResult) {
-        register u32 zero asm("r1");
-        register u32 zero16 asm("r2");
+        u32 zero;
+        u32 zero16;
 
         /* agbcc otherwise coalesces the two required zero-valued registers. */
         asm("mov %0, #0\n\t"
@@ -185,19 +185,18 @@ landed:
         *timerPointer = work0;
         sprite->pose = SPOSE_14;
     } else {
-        register u8* work3Pointer asm("r12");
-        register u32 timer asm("r2");
+        u8* work3Pointer;
+        u32 timer;
         s16 yVelocity;
 
         work3Pointer = &sprite->work3;
         timer = *work3Pointer;
         yVelocity = sSpriteGravityVelocityTable[timer];
         if (yVelocity == S16_MAX) {
-            register u32 previousTimer asm("r1");
-            register const s16* previousEntry asm("r1");
+            u32 previousTimer;
+            const s16* previousEntry;
             register u16 oldY asm("r0");
-            register u16 previousVelocity asm("r1");
-
+            s16 previousVelocity;
             /* agbcc otherwise subtracts in r2 instead of materializing the prior index in r1. */
             asm("sub %0, %1, #1" : "=r"(previousTimer) : "r"(timer));
             previousEntry = &sSpriteGravityVelocityTable[previousTimer];
@@ -207,8 +206,8 @@ landed:
             oldY += previousVelocity;
             sprite->yPosition = oldY;
         } else {
-            register u32 nextTimer asm("r0");
-            register u8* storePointer asm("r1");
+            u32 nextTimer;
+            u8* storePointer;
 
             nextTimer = timer + 1;
             storePointer = work3Pointer;
@@ -220,8 +219,8 @@ landed:
 
 void PigHeadProjectileStartDespawn(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r3");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
     u8 zero;
 
     sprite = &gCurrentSprite;
@@ -238,10 +237,10 @@ void PigHeadProjectileStartDespawn(void)
 
 void PigHeadProjectileDespawn(void)
 {
-    register struct PrimarySpriteData* sprite asm("r3");
-    register u8* timer asm("r2");
-    register int value asm("r1");
-    register u8 oldValue asm("r0");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
+    int value;
+    u8 oldValue;
 
     sprite = &gCurrentSprite;
     timer = &sprite->work0;
@@ -249,7 +248,7 @@ void PigHeadProjectileDespawn(void)
     value = oldValue - 1;
     *timer = value;
     if ((u8)value != 0) {
-        register u32 check asm("r0");
+        u32 check;
 
         /* agbcc otherwise keeps the second unsigned-byte truncation in r1. */
         asm("lsl %0, %1, #24\n\t"

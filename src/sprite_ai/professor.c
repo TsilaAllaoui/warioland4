@@ -75,9 +75,9 @@ void ProfessorInit(void)
 
 void ProfessorPatrolAndSpawnProjectiles(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
+    struct PrimarySpriteData* sprite;
     register u32 facingRightMask asm("r5");
-    register u32 facingRightTest asm("r0");
+    u32 facingRightTest;
     register u32 spriteStatus asm("r1");
 
     sprite = &gCurrentSprite;
@@ -98,7 +98,7 @@ void ProfessorPatrolAndSpawnProjectiles(void)
         func_8023BFC(sprite->yPosition - 32, sprite->xPosition - 48);
         if (gSpriteCollisionTileType & 0xF) {
             register u32 updatedStatus asm("r0");
-            register u32 facingRightFlag asm("r1");
+            u32 facingRightFlag;
 
             updatedStatus = sprite->status;
             facingRightFlag = SPRITE_STATUS_FACING_RIGHT;

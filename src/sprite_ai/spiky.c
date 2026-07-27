@@ -9,8 +9,8 @@
 
 void SpikyInit(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register int zero asm("r5");
+    struct PrimarySpriteData *sprite;
+    int zero;
 
     sprite = &gCurrentSprite;
     sprite->warioCollision = 35;

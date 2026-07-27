@@ -11,14 +11,14 @@
 void InitBallLightningSpawner(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
-    register u16 oldStatus asm("r1");
+    u16 oldStatus;
     register u16 status asm("r0");
     register u8 zero asm("r2");
     register u16 zero16 asm("r3");
     register u8* ptr asm("r0");
-    register u8 one asm("r1");
-    register const struct AnimationFrame* oam asm("r0");
-    register struct PrimarySpriteData* postSprite asm("r1");
+    u8 one;
+    const struct AnimationFrame* oam;
+    struct PrimarySpriteData* postSprite;
 
     sprite = &gCurrentSprite;
     oldStatus = sprite->status;
@@ -77,16 +77,16 @@ void BallLightningSpawnerIdle(void)
 void InitBallLightningBolt(void)
 {
     register struct PrimarySpriteData* sprite asm("ip");
-    register u16 oldStatus asm("r1");
+    u16 oldStatus;
     register u16 status asm("r0");
     register u8 zero asm("r3");
     register u16 zero16 asm("r4");
     register u8* ptr asm("r0");
-    register u8 value16 asm("r2");
-    register u8 value20 asm("r1");
+    u8 value16;
+    u8 value20;
     register u8* leftPtr asm("r5");
-    register const struct AnimationFrame* oam asm("r0");
-    register struct PrimarySpriteData* postSprite asm("r1");
+    const struct AnimationFrame* oam;
+    struct PrimarySpriteData* postSprite;
 
     sprite = &gCurrentSprite;
     oldStatus = sprite->status;
@@ -174,16 +174,16 @@ void StartBallLightningBoltRollLeft(void)
 
 void BallLightningBoltFall(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
+    struct PrimarySpriteData* sprite;
     register u32 newY asm("r2");
 
     sprite = &gCurrentSprite;
     newY = func_8023A60(sprite->yPosition, sprite->xPosition);
     if (gUnk_30000A0.unk_02 == 1)
     {
-        register u16 oldStatus asm("r1");
+        u16 oldStatus;
         register u16 status asm("r0");
-        register u16 underwater asm("r3");
+        u16 underwater;
 
         oldStatus = sprite->status;
         underwater = SPRITE_STATUS_UNDERWATER;
@@ -260,7 +260,7 @@ void StartBallLightningBoltDisappearing(void)
 
 void BallLightningBoltDisappearing(void)
 {
-    register struct PrimarySpriteData* sprite asm("r3");
+    struct PrimarySpriteData* sprite;
     register u8* timerPtr asm("r2");
     register u32 oldValue asm("r0");
     register u32 value asm("r1");

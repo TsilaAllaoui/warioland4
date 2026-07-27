@@ -11,13 +11,13 @@
 
 void ClearChanceWheelRewardSprites(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* sprite;
     register struct PrimarySpriteData* end asm("r4");
-    register u16 exists asm("r3");
+    u16 exists;
     register u16 status asm("r1");
-    register u16 check asm("r0");
-    register int id asm("r0");
-    register u16 zero asm("r0");
+    s16 check;
+    int id;
+    u16 zero;
 
     sprite = gSpriteData;
     end = (struct PrimarySpriteData*)((u8*)sprite + 253 * 4);
@@ -76,11 +76,11 @@ void TransformWarioFromChanceWheel(void)
 
 void PlayChanceWheelSpaceSound(void)
 {
-    register struct SecondarySprite* secondary asm("r1");
+    struct SecondarySprite* secondary;
     register struct SecondarySprite* saved asm("r4");
-    register struct SecondarySprite* previous asm("r2");
-    register int space asm("r5");
-    register int i asm("r3");
+    struct SecondarySprite* previous;
+    int space;
+    int i;
 
     space = 0;
     i = 0;
@@ -116,14 +116,14 @@ void PlayChanceWheelSpaceSound(void)
 
 void ApplyChanceWheelReward(void)
 {
-    register struct SecondarySprite* secondary asm("r1");
+    struct SecondarySprite* secondary;
     register struct SecondarySprite* saved asm("r4");
-    register struct SecondarySprite* previous asm("r2");
-    register int y asm("r6");
+    struct SecondarySprite* previous;
+    int y;
     register int x asm("r5");
     int space;
-    register int i asm("r3");
-    register u32 spawnY asm("r3");
+    int i;
+    u32 spawnY;
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
@@ -203,9 +203,9 @@ void ApplyChanceWheelReward(void)
 
 int IsChanceWheelResultReady(void)
 {
-    register struct SecondarySprite* secondary asm("r1");
-    register int i asm("r2");
-    register int value asm("r0");
+    struct SecondarySprite* secondary;
+    int i;
+    int value;
 
     i = 0;
     secondary = gSecondarySpriteData;
@@ -233,11 +233,11 @@ next:
 
 void SetChanceWheelSecondaryResult(u8 value)
 {
-    register struct SecondarySprite* secondary asm("r1");
-    register int i asm("r2");
-    register u8 work asm("r3");
+    struct SecondarySprite* secondary;
+    int i;
+    u8 work;
     register u8 timer asm("r4");
-    register int check asm("r0");
+    u16 check;
 
     work = value;
     i = 0;
@@ -267,11 +267,11 @@ end:
 
 void CheckWarioNearChanceWheel(void)
 {
-    register int warioY asm("r4");
-    register int warioX asm("r2");
+    int warioY;
+    int warioX;
     register int spriteY asm("r3");
-    register int spriteX asm("r1");
-    register int bound asm("r0");
+    int spriteX;
+    int bound;
 
     if (gWarioData.reaction == 0) {
         warioY = gWarioData.yPosition;
@@ -436,10 +436,10 @@ void ChanceWheelDropToResult(void)
 
 void FinishChanceWheelResult(void)
 {
-    register u8* ptr asm("r1");
-    register struct PrimarySpriteData* sprite asm("r4");
-    register int value asm("r5");
-    register int i asm("r2");
+    u8* ptr;
+    struct PrimarySpriteData* sprite;
+    int value;
+    int i;
 
     ptr = (u8*)&gCurrentSprite;
     ((struct PrimarySpriteData*)ptr)->disableWarioCollisionTimer = 1;
@@ -500,11 +500,11 @@ void ChanceWheelShrink(void)
                 ApplyChanceWheelReward();
             }
             {
-                register struct PrimarySpriteData* sprite asm("r5");
-                register s32 scale asm("r6");
-                register s32 sine asm("r4");
-                register s32 cosine asm("r8");
-                register u8* work3 asm("r1");
+                struct PrimarySpriteData* sprite;
+                s32 scale;
+                s32 sine;
+                s32 cosine;
+                u8* work3;
 
                 sprite = &gCurrentSprite;
                 work3 = &sprite->work3;
@@ -558,10 +558,10 @@ void ResetGoalBlock(void)
 void GoalBlockShrink(void)
 {
     u8 timer;
-    register s32 scale asm("r5");
-    register s32 sine asm("r4");
-    register s32 cosine asm("r6");
-    register u8* work3 asm("r1");
+    s32 scale;
+    s32 sine;
+    s32 cosine;
+    u8* work3;
 
     gCurrentSprite.currentAnimationFrame--;
     gCurrentSprite.disableWarioCollisionTimer = 1;

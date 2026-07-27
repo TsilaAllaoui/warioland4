@@ -33,8 +33,8 @@ u8 UpdateBatWario(void)
 
 u8 BatWarioTransforming(void)
 {
-    register struct WarioData* wario asm("r2");
-    register const struct BatAnimationFrame* animation asm("r3");
+    struct WarioData* wario;
+    const struct BatAnimationFrame* animation;
     if (gCurrentWarioEffect.unk_3 <= 3) {
         return 0xFF;
     }
@@ -52,18 +52,18 @@ u8 BatWarioTransforming(void)
 
 u8 BatWarioFlying(void)
 {
-    register u16* pressedPtr asm("r0");
+    u16* pressedPtr;
     register u16* heldPtr asm("r1");
-    register struct WarioData* wario asm("r4");
+    struct WarioData* wario;
     register int one asm("r2");
     register int pressed asm("r1");
-    register int initialHeld asm("r0");
-    register int held asm("r1");
+    int initialHeld;
+    int held;
     register int direction asm("r2");
     register int intersection asm("r3");
     register int temp asm("r0");
     register struct WarioData* animationWario asm("r2");
-    register const struct BatAnimationFrame* animation asm("r3");
+    const struct BatAnimationFrame* animation;
     int counter;
 
     pressedPtr = &gButtonsPressed;
@@ -140,16 +140,16 @@ u8 BatWarioFlying(void)
 
 u8 BatWarioLanding(void)
 {
-    register u16 pressed asm("r0");
-    register int one asm("r3");
-    register struct WarioData* wario asm("r2");
-    register const struct BatAnimationFrame* animation asm("r4");
+    u16 pressed;
+    int one;
+    struct WarioData* wario;
+    const struct BatAnimationFrame* animation;
     pressed = gButtonsPressed;
     one = 1;
     one &= pressed;
     if (one != 0) {
-        register struct WarioData* current asm("r1");
-        register int value asm("r0");
+        struct WarioData* current;
+        int value;
         current = &gWarioData;
         value = 1;
         current->unk_08 = value;
@@ -169,12 +169,12 @@ u8 BatWarioLanding(void)
 
 u8 BatWarioTurning(void)
 {
-    register u16* heldPtr asm("r2");
-    register struct WarioData* wario asm("r4");
-    register int direction asm("r1");
+    u16* heldPtr;
+    struct WarioData* wario;
+    u16 direction;
     register int mask asm("r0");
-    register int changedDirection asm("r3");
-    register const struct BatAnimationFrame* animation asm("r2");
+    int changedDirection;
+    const struct BatAnimationFrame* animation;
 
     if (gButtonsPressed & 1) {
         gWarioData.unk_08 = 1;
@@ -208,8 +208,8 @@ u8 BatWarioTurning(void)
 
 u8 BatWarioRecovering(void)
 {
-    register struct WarioData* wario asm("r2");
-    register const struct BatAnimationFrame* animation asm("r3");
+    struct WarioData* wario;
+    const struct BatAnimationFrame* animation;
     wario = &gWarioData;
     animation = sBatRecoverAnimation;
     if (wario->unk_1E >= animation[wario->unk_1F].time) {
@@ -226,8 +226,8 @@ u8 BatWarioRecovering(void)
 
 void SetBatWarioPose(int pose)
 {
-    register int value asm("r4");
-    register struct WarioData* wario asm("r1");
+    int value;
+    struct WarioData* wario;
     pose <<= 24;
     value = (u32)pose >> 24;
     ResetWarioState();
@@ -284,11 +284,11 @@ void UpdateBatWarioMovement(void)
 {
     register u8* hitbox asm("r3");
     register const u8* data asm("r2");
-    register struct WarioData* wario asm("r4");
-    register u16 movement asm("r3");
-    register s32 temp asm("r0");
+    struct WarioData* wario;
+    s32 movement;
+    s32 temp;
     register s32 shifted asm("r1");
-    register int velocity asm("r2");
+    int velocity;
     s16 signedVelocity;
     s32 horizontalMovement;
     const u8* ptr;
@@ -348,16 +348,16 @@ void UpdateBatWarioMovement(void)
 
 void ProcessBatWarioCollision(void)
 {
-    register u8* hitbox asm("r4");
+    u8* hitbox;
     register const u8* data asm("r2");
     register struct WarioData* wario asm("r3");
-    register struct WarioData* floorWario asm("r4");
-    register u8* finalHitbox asm("r0");
-    register int result asm("r5");
-    register int callResult asm("r0");
-    register int collisionType asm("r1");
+    struct WarioData* floorWario;
+    u8* finalHitbox;
+    int result;
+    int callResult;
+    int collisionType;
     register int flags asm("r2");
-    register int floorResult asm("r1");
+    int floorResult;
     register int mask asm("r0");
     const u8* ptr;
     u32 index;
@@ -430,11 +430,11 @@ void ProcessBatWarioCollision(void)
 
 void LoadBatWarioGraphics(int index)
 {
-    register int value asm("r4");
-    register struct WarioData* wario asm("r3");
-    register int pose asm("r1");
+    int value;
+    struct WarioData* wario;
+    int pose;
     register const struct BatGraphicsFrame** table asm("r2");
-    register u32 offset asm("r0");
+    u32 offset;
     const struct BatGraphicsFrame* frame;
     const u8* gfx;
     index <<= 24;
@@ -483,11 +483,11 @@ void ApplyBatWarioMusicEffects(void)
 
 void UpdateBatWarioHitbox(void)
 {
-    register const u8* data asm("r3");
-    register struct WarioData* wario asm("r4");
-    register const u8* hitboxes asm("r2");
-    register u32 offset asm("r1");
-    register u32 address asm("r0");
+    const u8* data;
+    struct WarioData* wario;
+    const u8* hitboxes;
+    u32 offset;
+    u32 address;
     u32 poseOffset;
     u8 value;
     data = sBatPoseData;

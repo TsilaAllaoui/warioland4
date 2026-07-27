@@ -50,7 +50,7 @@ void TobawaniPatrol(void)
 {
     u32 horizontal;
     u32 vertical;
-    register struct PrimarySpriteData* sprite asm("r4");
+    struct PrimarySpriteData* sprite;
 
     horizontal = 0;
     vertical = 0;
@@ -124,10 +124,10 @@ void TobawaniSetTurnAround(void)
 
 void TobawaniTurnAround(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* sprite;
     register u8* timer asm("r12");
     register u32 temp asm("r0");
-    register u32 remaining asm("r3");
+    s16 remaining;
     u32 zero;
 
     sprite = &gCurrentSprite;
@@ -219,10 +219,10 @@ void TobawaniSetKnockback(void)
 
 void TobawaniKnockback(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* indexPointer asm("r12");
-    register u8 index asm("r3");
-    register u16 velocity asm("r4");
+    struct PrimarySpriteData* sprite;
+    u8* indexPointer;
+    s16 index;
+    u16 velocity;
     register int zero asm("r5");
     register u8 nextIndex asm("r0");
     register u8* storePointer asm("r1");
@@ -259,14 +259,14 @@ void TobawaniSetFall(void)
 
 void TobawaniFall(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
-    register const s16* table asm("r5");
+    struct PrimarySpriteData* sprite;
+    const s16* table;
     register int zero asm("r6");
     register u32 temp asm("r0");
     register u32 auxiliary asm("r1");
     register u32 index asm("r2");
     register u32 velocity asm("r3");
-    register u8* indexPointer asm("r12");
+    u8* indexPointer;
 
     sprite = &gCurrentSprite;
     func_8023A60(sprite->yPosition, sprite->xPosition);
@@ -360,14 +360,14 @@ void TobawaniStartWallFallLeft(void)
 
 void TobawaniWallFall(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
-    register const s16* table asm("r5");
+    struct PrimarySpriteData* sprite;
+    const s16* table;
     register int zero asm("r6");
     register u32 temp asm("r0");
     register u32 auxiliary asm("r1");
     register u32 index asm("r2");
     register u32 velocity asm("r3");
-    register u8* indexPointer asm("r12");
+    u8* indexPointer;
 
     sprite = &gCurrentSprite;
     func_8023A60(sprite->yPosition, sprite->xPosition);

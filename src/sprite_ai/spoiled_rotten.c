@@ -13,13 +13,13 @@
 
 void func_803AB4C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
-    register u32 value asm("r0");
-    register u32 oldValue asm("r1");
-    register u32 zeroHalf asm("r3");
+    struct PrimarySpriteData *sprite;
+    u32 value;
+    u32 oldValue;
+    u32 zeroHalf;
     register u32 zeroByte asm("r2");
     register u8 *field asm("r1");
-    register u8 *otherField asm("r0");
+    u8 *otherField;
 
     gUnk_3000A62 = 90;
     sprite = &gCurrentSprite;
@@ -87,7 +87,7 @@ void func_803AB4C(void)
 
 void func_803ABD8(void)
 {
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
     u8 *timer;
 
     sprite = &gCurrentSprite;
@@ -441,9 +441,9 @@ void func_803B164(void)
 {
     register struct PrimarySpriteData *current asm("r4");
     register const struct AnimationFrame *oam asm("r5");
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u32 value asm("r0");
-    register u32 other asm("r1");
+    struct PrimarySpriteData *sprite;
+    u32 value;
+    u32 other;
     struct PrimarySpriteData *end;
     u8 zero;
 
@@ -490,9 +490,9 @@ void func_803B164(void)
 void func_803B1F8(void)
 {
     register struct PrimarySpriteData *sprite asm("r1");
-    register struct PrimarySpriteData *current asm("r2");
+    struct PrimarySpriteData *current;
     u8 *timer;
-    register u8 *finalTimer asm("r1");
+    u8 *finalTimer;
     u8 value;
 
     sprite = &gCurrentSprite;
@@ -546,7 +546,7 @@ void func_803B2A0(void)
     }
 
     {
-        register u8 *flagPtr asm("r0");
+        u8 *flagPtr;
         u8 flagValue;
 
         flagPtr = &gGoldenDivaRoomTimer;
@@ -606,8 +606,8 @@ void func_803B2EC(void)
 
 void func_803B36C(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *work1Ptr asm("r4");
+    struct PrimarySpriteData *sprite;
+    u8 *work1Ptr;
     u8 previousWork1;
     u8 newWork1;
 
@@ -615,8 +615,8 @@ void func_803B36C(void)
     work1Ptr = &sprite->work1;
 
     {
-        register u32 oldRaw asm("r0");
-        register u32 newRaw asm("r1");
+        u32 oldRaw;
+        u32 newRaw;
 
         oldRaw = *work1Ptr;
         newRaw = oldRaw + 1;
@@ -628,8 +628,8 @@ void func_803B36C(void)
     }
 
     if (newWork1 == 32) {
-        register u8 *work2Ptr asm("r0");
-        register u8 health asm("r3");
+        u8 *work2Ptr;
+        s32 health;
         u8 currentHealth;
 
         work2Ptr = &sprite->work2;
@@ -641,7 +641,7 @@ void func_803B36C(void)
         } else {
             *work1Ptr = 0;
             if (currentHealth != 0) {
-                register u8 nextHealth asm("r0");
+                u8 nextHealth;
 
                 nextHealth = health - 1;
                 sprite->health = nextHealth;
@@ -662,9 +662,9 @@ void func_803B36C(void)
 
 void func_803B3E0(void)
 {
-    register struct PrimarySpriteData *base asm("r0");
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 health asm("r1");
+    struct PrimarySpriteData *base;
+    struct PrimarySpriteData *sprite;
+    u8 health;
 
     base = &gCurrentSprite;
     health = base->health;
@@ -738,8 +738,8 @@ void func_803B49C(void)
     }
 
     {
-        register struct PrimarySpriteData *healthSprite asm("r1");
-        register u32 health asm("r0");
+        struct PrimarySpriteData *healthSprite;
+        u32 health;
 
         healthSprite = &gCurrentSprite;
         health = healthSprite->health;
@@ -804,9 +804,9 @@ void func_803B538(void)
 
 void func_803B608(void)
 {
-    register struct PrimarySpriteData *base asm("r0");
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 health asm("r1");
+    struct PrimarySpriteData *base;
+    struct PrimarySpriteData *sprite;
+    u8 health;
 
     base = &gCurrentSprite;
     health = base->health;

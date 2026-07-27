@@ -3,12 +3,12 @@
 
 void ShuffleRouletteOamTable(void)
 {
-    register int i asm("r4");
+    int i;
     int index;
     u8 swappedOrder;
 
     {
-        register const u16 **dst asm("r1");
+        const u16 **dst;
         register const u16 **frames asm("r0");
         dst = gRouletteItemOamTable;
         frames = sRouletteItemOamFrames;
@@ -16,7 +16,7 @@ void ShuffleRouletteOamTable(void)
     }
 
     {
-        register u8 *order asm("r0");
+        u8 *order;
         order = gRouletteOamOrder;
         /* Prevent agbcc from folding +13 into the relocation addend. */
         asm volatile("" : "+r"(order));
@@ -30,8 +30,8 @@ void ShuffleRouletteOamTable(void)
 
     {
         register u8 *order asm("r5");
-        register u8 *current asm("r2");
-        register u8 *random asm("r0");
+        u8 *current;
+        u8 *random;
         i = 13;
         order = gRouletteOamOrder;
         do {
@@ -48,17 +48,17 @@ void ShuffleRouletteOamTable(void)
     }
 
     {
-        register const u16 **dstBase asm("r0");
-        register const u16 **frames asm("r3");
-        register u8 *order asm("r1");
-        register const u16 **dst asm("r2");
+        const u16 **dstBase;
+        const u16 **frames;
+        u8 *order;
+        const u16 **dst;
         dstBase = gRouletteItemOamTable;
         frames = sRouletteItemOamFrames;
         order = gRouletteOamOrder;
         dst = dstBase + 1;
         i = 13;
         do {
-            register int frameIndex asm("r0");
+            int frameIndex;
             frameIndex = *order;
             frameIndex++;
             *dst++ = frames[frameIndex];

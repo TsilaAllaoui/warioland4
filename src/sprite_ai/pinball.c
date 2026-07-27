@@ -1044,10 +1044,10 @@ void PinballCounterInit(void)
 void PinballCounterUpdateDisplay(void)
 {
     s32 completedCount;
-    register s32 index asm("r1");
+    s32 index;
     register const u8 *entries asm("ip");
     register const u8 *globalIDPtr asm("r2");
-    register struct PrimarySpriteData *sprite asm("r4");
+    struct PrimarySpriteData *sprite;
 
     completedCount = 0;
     index = 0;
@@ -1059,9 +1059,9 @@ void PinballCounterUpdateDisplay(void)
         entries = globalIDPtr;
         sprite = &gCurrentSprite;
         if (firstEntry != 255) {
-            register u8 *persistentData asm("r8");
-            register u8 *room asm("r6");
-            register s32 byteOffset asm("r3");
+            u8 *persistentData;
+            u8 *room;
+            s32 byteOffset;
 
             persistentData = &gPersistentSpriteData[0][0];
             room = &gCurrentRoom;

@@ -267,9 +267,9 @@ void MoneyFlowerCollectedIdle(void)
 
 void CollectMoneyFlower(void)
 {
-    register struct PrimarySpriteData* initialSprite asm("r1");
-    register struct PrimarySpriteData* sprite asm("r3");
-    register u8 work1 asm("r0");
+    struct PrimarySpriteData* initialSprite;
+    struct PrimarySpriteData* sprite;
+    s32 work1;
     u8 amount;
 
     initialSprite = &gCurrentSprite;

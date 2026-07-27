@@ -422,7 +422,7 @@ void MenonoAirborneInit(void)
 void MenonoAirborne(void)
 {
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     s16 velocity;
 
     gCurrentSprite.work0--;
@@ -438,7 +438,7 @@ void MenonoAirborne(void)
             asm("" : "+r" (indexPointer), "+r" (index));
             velocity = sUnk_8352B18[index];
             if (velocity == 0x7FFF) {
-                register u32 previousVelocityAddress asm("r1");
+                u32 previousVelocityAddress;
                 register u16 yPosition asm("r0");
 
                 previousVelocityAddress = index - 1;
@@ -450,8 +450,8 @@ void MenonoAirborne(void)
                 asm("" : "+r" (yPosition), "+r" (previousVelocityAddress));
                 gCurrentSprite.yPosition = yPosition + *(const s16 *) previousVelocityAddress;
             } else {
-                register u32 nextIndex asm("r0");
-                register u8 *storePointer asm("r1");
+                u32 nextIndex;
+                u8 *storePointer;
 
                 nextIndex = index + 1;
                 storePointer = indexPointer;

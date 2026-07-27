@@ -15,11 +15,11 @@ u8 UpdateMaskWario(void)
 
 u8 MaskWarioTransforming(void)
 {
-    register int newTimer asm("r0");
+    int newTimer;
     u16 timer;
 
     {
-        register u16 oldTimer asm("r1");
+        u16 oldTimer;
         oldTimer = gWarioData.unk_0C;
         if (oldTimer > 0x120) {
             return 1;
@@ -77,9 +77,9 @@ void SetMaskWarioPose(u8 pose)
 
 void UpdateMaskWarioMotion(void)
 {
-    register struct WarioCollisionData *collision asm("r3");
-    register const u8 *config asm("r2");
-    register struct WarioData *wario asm("r4");
+    struct WarioCollisionData *collision;
+    const u8 *config;
+    struct WarioData *wario;
     u16 yOffset;
 
     collision = &gWarioCollisionData;
@@ -87,8 +87,8 @@ void UpdateMaskWarioMotion(void)
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 1;
@@ -96,8 +96,8 @@ void UpdateMaskWarioMotion(void)
         collision->unk_08 = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 2;
@@ -105,7 +105,7 @@ void UpdateMaskWarioMotion(void)
         collision->unk_09 = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 3;
@@ -115,7 +115,7 @@ void UpdateMaskWarioMotion(void)
 
     yOffset = 0;
     if (wario->pose == 1) {
-        register u16 velocity asm("r1");
+        u16 velocity;
         velocity = wario->yVelocity;
         yOffset = (s16)velocity >> 3;
         wario->yVelocity = velocity - 8;
@@ -130,9 +130,9 @@ void UpdateMaskWarioMotion(void)
 
 void ProcessMaskWarioCollision(void)
 {
-    register struct WarioCollisionData *collision asm("r4");
-    register const u8 *config asm("r2");
-    register struct WarioData *wario asm("r3");
+    struct WarioCollisionData *collision;
+    const u8 *config;
+    struct WarioData *wario;
     u8 movementResult;
     u16 flags;
     int collisionResult;
@@ -142,8 +142,8 @@ void ProcessMaskWarioCollision(void)
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 4;
@@ -151,8 +151,8 @@ void ProcessMaskWarioCollision(void)
         collision->unk_0B = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 5;
@@ -160,8 +160,8 @@ void ProcessMaskWarioCollision(void)
         collision->unk_0C = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
-        register const u8 *field asm("r1");
+        u32 poseOffset;
+        const u8 *field;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         field = config + 6;
@@ -169,7 +169,7 @@ void ProcessMaskWarioCollision(void)
         collision->unk_0D = *(const u8 *)poseOffset;
     }
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 7;
@@ -182,7 +182,7 @@ void ProcessMaskWarioCollision(void)
     if (flags & 0x40) {
         movementResult = ResolveWarioFloorCollision();
     } else {
-        register u16 mask asm("r0");
+        s32 mask;
         mask = 0x80;
         mask &= flags;
         if (mask != 0) {
@@ -230,17 +230,17 @@ void UpdateMaskWarioAnimation(void)
 
 void UpdateMaskWarioHitbox(void)
 {
-    register const u8 *config asm("r3");
-    register struct WarioData *wario asm("r4");
-    register const u8 *hitboxes asm("r2");
-    register u32 hitboxOffset asm("r1");
+    const u8 *config;
+    struct WarioData *wario;
+    const u8 *hitboxes;
+    u32 hitboxOffset;
     u8 direction;
 
     config = &sMaskWarioPoseProperties[0][0];
     wario = &gWarioData;
 
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         poseOffset += (u32)config;
@@ -249,7 +249,7 @@ void UpdateMaskWarioHitbox(void)
     hitboxes = (const u8 *)&sWarioHitboxes[0][0];
     hitboxOffset <<= 3;
     {
-        register const u8 *address asm("r0");
+        const u8 *address;
         address = (const u8 *)(hitboxOffset + (u32)hitboxes);
         wario->hitboxOffsetLeft = *(const s16 *)address;
         address = hitboxes + 2;
@@ -264,7 +264,7 @@ void UpdateMaskWarioHitbox(void)
     wario->hitboxOffsetBottom = *(const s16 *)hitboxOffset;
 
     {
-        register u32 poseOffset asm("r0");
+        u32 poseOffset;
         poseOffset = wario->pose;
         poseOffset <<= 3;
         config += 7;

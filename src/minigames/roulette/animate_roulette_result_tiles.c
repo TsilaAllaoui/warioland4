@@ -21,13 +21,13 @@ void AnimateRouletteResultTiles(void)
         dma[2] = 0x80000800;
         dma[2];
     } else if (phase == 8) {
-        register int i asm("r3");
-        register u8 *source0 asm("r9");
-        register u8 *source1 asm("r8");
-        register u8 *source2 asm("ip");
-        register volatile u32 *dmaRegs asm("r2");
+        int i;
+        u8 *source0;
+        u8 *source1;
+        u8 *source2;
+        volatile u32 *dmaRegs;
         register u32 control;
-        register u32 busy asm("r6");
+        u32 busy;
 
         i = 0;
         source0 = sRouletteTopResultTiles;
@@ -37,10 +37,10 @@ void AnimateRouletteResultTiles(void)
         control = 0x80000080;
         busy = 0x80000000;
         do {
-            register u32 offset asm("r1");
-            register u32 value asm("r0");
-            register int next asm("r5");
-            register u8 *address asm("r0");
+            u32 offset;
+            u32 value;
+            int next;
+            u8 *address;
 
             offset = i << 10;
             {
@@ -51,7 +51,7 @@ void AnimateRouletteResultTiles(void)
             }
             dmaRegs[0] = (u32)address;
             {
-                register u8 *base asm("r4");
+                u8 *base;
                 base = (u8 *)0x06017000;
                 address = base + offset;
             }
@@ -62,7 +62,7 @@ void AnimateRouletteResultTiles(void)
             value &= busy;
             next = i + 1;
             if (value != 0) {
-                register u32 pollMask asm("r3");
+                u32 pollMask;
                 pollMask = 0x80000000;
                 do {
                     value = dmaRegs[2];
@@ -87,7 +87,7 @@ void AnimateRouletteResultTiles(void)
             dmaRegs[2] = control;
             value = dmaRegs[2];
             {
-                register volatile u32 *waitDma asm("r4");
+                volatile u32 *waitDma;
                 waitDma = dmaRegs;
                 value = dmaRegs[2];
                 value &= busy;
@@ -123,7 +123,7 @@ void AnimateRouletteResultTiles(void)
                 value = waitDma[2];
                 value &= busy;
                 if (value != 0) {
-                    register u32 pollMask asm("r3");
+                    u32 pollMask;
                     pollMask = 0x80000000;
                     do {
                         value = waitDma[2];

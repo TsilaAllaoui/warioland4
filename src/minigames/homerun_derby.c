@@ -180,9 +180,9 @@ ALL asm inlined code islands are for agbcc frontier, i couldn't find a replaceme
 s32 UpdateHomerunDerby(void)
 {
     register u8 *stateAddress asm("r0");
-    register u8 *savedStateAddress  asm("r4");
+    u8 *savedStateAddress;
     register u8 *cameraData asm("r4");
-    register u8 *cameraDataForExit asm("r3");
+    u8 *cameraDataForExit;
     u8 *swingActiveFlag;
     u8 *pitchAnimationTable;
     u8 *pitcherData;
@@ -451,7 +451,7 @@ s32 UpdateHomerunDerby(void)
 
 void ResetHomerunDerbyRound(void)
 {
-    register u16 zeroHalfword asm("r2");
+    u16 zeroHalfword;
     register u8 zeroByte asm("r3");
     u16 *ballState;
     u16 *batState;
@@ -499,12 +499,12 @@ void InitHomerunDerby(void)
     register u8 *pitchLevelPointer asm("r8");
     register u8 *backgroundTilemapB asm("r9");
     register u8 *backgroundTilemapD asm("r10");
-    register u8 *backgroundTiles asm("r4");
-    register u8 *objectPalette asm("r3");
-    register u8 *objectTiles asm("r5");
-    register u8 *backgroundTilemapA asm("r6");
+    u8 *backgroundTiles;
+    u8 *objectPalette;
+    u8 *objectTiles;
+    u8 *backgroundTilemapA;
     register u32 dmaBusyMask asm("r2");
-    register u32 zeroValue asm("r1");
+    u32 zeroValue;
     register u32 dmaStatus asm("r0");
 
     DMA3->src = (u32)sHomerunBgPalette;
@@ -593,7 +593,7 @@ void InitHomerunDerby(void)
     }
 
     {
-        register volatile struct Dma3Regs *dmaRegisters asm("r1");
+        volatile struct Dma3Regs *dmaRegisters;
         register u8 *backgroundTilemapC asm("r2");
         dmaRegisters = DMA3;
         backgroundTilemapC = sHomerunBgTilemapC;
@@ -611,7 +611,7 @@ void InitHomerunDerby(void)
     }
 
     {
-        register volatile struct Dma3Regs *dmaRegisters asm("r1");
+        volatile struct Dma3Regs *dmaRegisters;
         register u8 *backgroundTilemapBReload asm("r6");
         dmaRegisters = DMA3;
         backgroundTilemapBReload = backgroundTilemapB;
@@ -629,7 +629,7 @@ void InitHomerunDerby(void)
     }
 
     {
-        register volatile struct Dma3Regs *dmaRegisters asm("r1");
+        volatile struct Dma3Regs *dmaRegisters;
         dmaRegisters = DMA3;
         asm("mov r7, %0\n\tstr r7, [r1]" : : "r"(backgroundTilemapD));
         dmaRegisters->dst = 0x0600F000;
@@ -763,12 +763,12 @@ void SelectHomerunPitchPath(void)
 
 s32 UpdateHomerunPitch(void)
 {
-    register u16 *ballState asm("r5");
+    u16 *ballState;
     u16 *ballStateReload;
-    register const u16 *pathXCoordinates asm("r3");
-    register const u16 *pathYCoordinates asm("r3");
-    register u8 *pitchFramePointer asm("r4");
-    register u8 *frameIndexPointer asm("r2");
+    const u16 *pathXCoordinates;
+    const u16 *pathYCoordinates;
+    u8 *pitchFramePointer;
+    u8 *frameIndexPointer;
     s32 coordinateOffset;
     s32 xPosition;
     s32 yPosition;
@@ -1210,7 +1210,7 @@ void DrawHomerunDerby(void)
   struct HomerunCameraState *oamXMaskPointer;
   s16 matrixSine;
   s16 matrixNegativeSine;
-  struct HomerunSimpleAnimation *bonusRenderState = &gHomerunBonusRender;
+  struct HomerunSimpleAnimation *bonusRenderState;
   s16 matrixCosineD;
   s16 ballMatrixCosine;
   s16 ballMatrixSine;
@@ -1303,6 +1303,7 @@ void DrawHomerunDerby(void)
   void *staticOamBytes;
   register OamByte *bonusOamBytes asm("r4");
   void *pitcherOamEntry;
+  bonusRenderState = &gHomerunBonusRender;
   firstOamIndex = 0;
   nextOamIndex = gOamSlotsUsed;
   workingOffset = nextOamIndex * 8;

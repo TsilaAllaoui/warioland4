@@ -251,7 +251,7 @@ void DendenUnderwaterFallInit(void)
 
 void DendenFall(void)
 {
-    register u32 floorY asm("r5");
+    u32 floorY;
 
     floorY = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
     if (gUnk_30000A0.unk_02 == 1)

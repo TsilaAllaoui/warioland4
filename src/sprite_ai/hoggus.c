@@ -90,9 +90,9 @@ void UpdateHoggusPosition(void)
 
 void InitHoggus(void)
 {
-    register u32 existingSprite asm("r4");
-    register struct PrimarySpriteData* sprite asm("r3");
-    register u8* work2 asm("r0");
+    u32 existingSprite;
+    struct PrimarySpriteData* sprite;
+    u8* work2;
 
     existingSprite = SpriteUtilDespawnIfSpriteExists(PSPRITE_HOGGUS);
     if (existingSprite == 0)
@@ -119,8 +119,8 @@ void InitHoggus(void)
 
 void StartHoggusIdle(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* direction asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* direction;
 
     sprite = &gCurrentSprite;
     sprite->pOamData = sHoggusIdleOam;
@@ -142,9 +142,9 @@ void StartHoggusIdle(void)
 
 void HoggusIdle(void)
 {
-    register struct PrimarySpriteData* sprite asm("r5");
-    register u8* timer asm("r6");
-    register int count asm("r4");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
+    int count;
 
     sprite = &gCurrentSprite;
     timer = &sprite->work0;
@@ -169,7 +169,7 @@ void HoggusIdle(void)
                 sprite->pose = 17;
                 *timer = 120;
                 {
-                    register u8* direction asm("r2");
+                    u8* direction;
 
                     direction = &sprite->work1;
                     *direction ^= 1;
@@ -183,7 +183,7 @@ void HoggusIdle(void)
 
 void StartHoggusCharge(void)
 {
-    register struct PrimarySpriteData* sprite asm("r0");
+    struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
     sprite->pOamData = sHoggusChargeOam;
@@ -196,8 +196,8 @@ void StartHoggusCharge(void)
 
 void HoggusCharge(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
     int value;
 
     sprite = &gCurrentSprite;
@@ -211,12 +211,12 @@ void HoggusCharge(void)
 
 void StartHoggusAttack(void)
 {
-    register struct PrimarySpriteData* initialSprite asm("r0");
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* initialSprite;
+    struct PrimarySpriteData* sprite;
 
     initialSprite = &gCurrentSprite;
     {
-        register u8 work1 asm("r1");
+        u8 work1;
 
         work1 = initialSprite->work1;
         sprite = initialSprite;
@@ -229,7 +229,7 @@ void StartHoggusAttack(void)
     sprite->animationTimer = 0;
     sprite->pose = 20;
     {
-        register u8* timer asm("r1");
+        u8* timer;
 
         timer = &sprite->work0;
         *timer = 40;
@@ -239,8 +239,8 @@ void StartHoggusAttack(void)
 
 void HoggusAttack(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8* timer asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* timer;
     int value;
 
     sprite = &gCurrentSprite;
@@ -254,12 +254,12 @@ void HoggusAttack(void)
 
 void StartHoggusSpawn(void)
 {
-    register struct PrimarySpriteData* initialSprite asm("r0");
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* initialSprite;
+    struct PrimarySpriteData* sprite;
 
     initialSprite = &gCurrentSprite;
     {
-        register u8 work1 asm("r1");
+        u8 work1;
 
         work1 = initialSprite->work1;
         sprite = initialSprite;
@@ -272,7 +272,7 @@ void StartHoggusSpawn(void)
     sprite->animationTimer = 0;
     sprite->pose = 22;
     {
-        register u8* timer asm("r1");
+        u8* timer;
 
         timer = &sprite->work0;
         *timer = 40;
@@ -281,13 +281,13 @@ void StartHoggusSpawn(void)
 
 void HoggusSpawn(void)
 {
-    register struct PrimarySpriteData* sprite asm("r5");
-    register u8* variant asm("r4");
-    register u8* timerPointer asm("r2");
+    struct PrimarySpriteData* sprite;
+    u8* variant;
+    u8* timerPointer;
     register int timer asm("r1");
-    register int pose asm("r3");
+    int pose;
     register int collisionState asm("r1");
-    register int maskedState asm("r0");
+    int maskedState;
     int shiftedTimer;
 
     sprite = &gCurrentSprite;
@@ -328,7 +328,7 @@ update_movement:
 
 void StartHoggusEscape(void)
 {
-    register struct PrimarySpriteData* sprite asm("r1");
+    struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
     sprite->pOamData = sHoggusIdleOam;
@@ -346,10 +346,10 @@ void HoggusEscape(void)
 void InitHoggusEgg(void)
 {
     register struct PrimarySpriteData* sprite asm("r12");
-    register struct PrimarySpriteData* setupSprite asm("r1");
+    struct PrimarySpriteData* setupSprite;
     register struct PrimarySpriteData* finalSprite asm("r4");
     register u32 zeroByte asm("r2");
-    register u32 zeroHalf asm("r3");
+    u32 zeroHalf;
     register u16 status asm("r0");
 
     sprite = &gCurrentSprite;
@@ -378,7 +378,7 @@ void InitHoggusEgg(void)
         *distance = 32;
     }
     {
-        register u8* hitbox asm("r0");
+        u8* hitbox;
 
         hitbox = &sprite->hitboxExtentUp;
         *hitbox = 4;
@@ -391,7 +391,7 @@ void InitHoggusEgg(void)
         *hitbox = 4;
     }
     {
-        register const struct AnimationFrame* oam asm("r0");
+        const struct AnimationFrame* oam;
 
         oam = sHoggusEggOam;
         finalSprite = sprite;
@@ -401,7 +401,7 @@ void InitHoggusEgg(void)
     finalSprite->animationTimer = zeroHalf;
     finalSprite->pose = 15;
     {
-        register u8* timer asm("r1");
+        u8* timer;
 
         timer = &sprite->work0;
         *timer = 36;
@@ -410,8 +410,8 @@ void InitHoggusEgg(void)
 
 void HoggusEggUpdate(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
-    register u8* timerPointer asm("r2");
+    struct PrimarySpriteData* sprite;
+    u8* timerPointer;
     register int timer asm("r1");
     register int value asm("r0");
 
@@ -431,8 +431,8 @@ void HoggusEggUpdate(void)
     value = sprite->roomSlot;
     if (value == 0)
     {
-        register int roomSlot asm("r1");
-        register int gfxSlot asm("r2");
+        int roomSlot;
+        int gfxSlot;
 
         /* agbcc otherwise hoists this register copy before the room-slot comparison. */
         asm("mov %0, %1" : "=r"(roomSlot) : "r"(value));
@@ -442,8 +442,8 @@ void HoggusEggUpdate(void)
     }
     else
     {
-        register int roomSlot asm("r1");
-        register int gfxSlot asm("r2");
+        int roomSlot;
+        int gfxSlot;
 
         /* Preserve the original post-branch room-slot reload into r1. */
         asm("ldrb %0, [%1, #24]" : "=r"(roomSlot) : "r"(sprite));
@@ -462,9 +462,9 @@ finished:
 
 void SpriteHoggus(void)
 {
-    register struct PrimarySpriteData* initialSprite asm("r0");
-    register struct PrimarySpriteData* sprite asm("r2");
-    register u8 pose asm("r1");
+    struct PrimarySpriteData* initialSprite;
+    struct PrimarySpriteData* sprite;
+    u8 pose;
 
     initialSprite = &gCurrentSprite;
     pose = initialSprite->pose;

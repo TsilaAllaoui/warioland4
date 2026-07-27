@@ -66,11 +66,11 @@ void InitGlassBirdFragment(void)
 
 void GlassBirdFragmentBreakInit(void)
 {
-    register struct PrimarySpriteData* sprite asm("r1");
-    register u16 oldStatus asm("r0");
+    struct PrimarySpriteData* sprite;
+    u16 oldStatus;
     register u16 status asm("r2");
-    register u32 one asm("r4");
-    register u32 zero16 asm("r5");
+    u32 one;
+    u32 zero16;
     register u32 zero asm("r3");
 
     sprite = &gCurrentSprite;
@@ -200,8 +200,8 @@ void SpriteGlassBird(void)
 
 void SpriteGlassBirdFragment(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
-    register struct PrimarySpriteData* current asm("r0");
+    struct PrimarySpriteData* sprite;
+    struct PrimarySpriteData* current;
     u8 pose;
 
     current = &gCurrentSprite;

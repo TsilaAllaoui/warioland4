@@ -61,9 +61,9 @@ void UpdateDeburinaAlertWait(void)
 
 void StartDeburinaLeapWindup(void)
 {
-    register struct PrimarySpriteData *sprite asm("r1");
+    struct PrimarySpriteData *sprite;
     register u8 *timer asm("r3");
-    register u32 timerValue asm("r2");
+    s16 timerValue;
     register struct PrimarySpriteData *savedSprite asm("r12");
     register u32 zero asm("r4");
     register u32 one asm("r5");
@@ -97,7 +97,7 @@ void StartDeburinaLeapWindup(void)
         sprite->pose = 115;
         *timer = 48;
         {
-            register struct WarioData *wario asm("r1");
+            struct WarioData *wario;
             register struct PrimarySpriteData *compareSprite asm("r2");
             register u16 currentX asm("r0");
 
@@ -516,9 +516,9 @@ void UpdateDeburinaThrownCrash(void)
     register int index asm("r3");
     register const s16 *table asm("r6");
     register const s16 *entry asm("r0");
-    register u16 yVelocity asm("r4");
+    u16 yVelocity;
     register int signedVelocity asm("r1");
-    register int threshold asm("r0");
+    int threshold;
     register struct PrimarySpriteData *sprite asm("r5");
     register int zero asm("r5");
     register struct PrimarySpriteData *currentSprite asm("r4");
@@ -624,7 +624,7 @@ void InitDeburinaChild(void)
     sprite = &gCurrentSprite;
     {
         register u16 status asm("r1");
-        register u16 flags asm("r2");
+        u16 flags;
         register u16 flagsCopy asm("r0");
         status = sprite->status;
         flags = SPRITE_STATUS_IGNORE_SPRITE_COLLISION;
@@ -695,7 +695,7 @@ void UpdateDeburinaChild(void)
                 {
                     register struct PrimarySpriteData *currentSprite asm("r0");
                     register u16 currentStatus asm("r2");
-                    register u16 visibleStatus asm("r1");
+                    u16 visibleStatus;
 
                     currentSprite = &gCurrentSprite;
                     currentStatus = currentSprite->status;
@@ -707,7 +707,7 @@ void UpdateDeburinaChild(void)
             default:
                 {
                     register struct PrimarySpriteData *currentSprite asm("r1");
-                    register u16 currentStatus asm("r2");
+                    u16 currentStatus;
                     register u16 hiddenStatus asm("r0");
 
                     currentSprite = &gCurrentSprite;

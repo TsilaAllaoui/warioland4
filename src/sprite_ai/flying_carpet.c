@@ -7,8 +7,8 @@
 
 volatile long UpdateMagicCarpetCollisionTimer(void)
 {
-  register struct PrimarySpriteData *currentLoad asm("r1");
-  register struct PrimarySpriteData *current asm("ip");
+  struct PrimarySpriteData *currentLoad;
+  struct PrimarySpriteData *current;
   u8 roomSlot;
   int i;
   u16 status;
@@ -39,7 +39,7 @@ volatile long UpdateMagicCarpetCollisionTimer(void)
 
 void InitMagicCarpet(void)
 {
-  register struct PrimarySpriteData *sprite asm("ip");
+  struct PrimarySpriteData *sprite;
   const struct AnimationFrame *new_var;
   struct PrimarySpriteData **new_var2;
   new_var2 = &sprite;
@@ -103,9 +103,9 @@ void SetMagicCarpetMovementState(void)
 
 void MagicCarpetWaitForWario(void)
 {
-    register struct PrimarySpriteData* sprite asm("r2");
+    struct PrimarySpriteData* sprite;
     register u16 status asm("r3");
-    register u16 newStatus asm("r0");
+    u16 newStatus;
     register u8* work2 asm("r1");
 
     sprite = &gCurrentSprite;
@@ -137,8 +137,8 @@ void MagicCarpetWaitForWario(void)
 void MagicCarpetHandleStandingWario(void)
 {
   struct PrimarySpriteData **new_var;
-  register struct PrimarySpriteData *sprite asm("r3");
-  register u16 status asm("r4");
+  struct PrimarySpriteData *sprite;
+  u16 status;
   u16 standing;
   register u16 buttons asm("r1");
   register u8 *work2 asm("r1");
@@ -191,7 +191,7 @@ void MagicCarpetHandleStandingWario(void)
 
 void MagicCarpetRiseAndMove(void)
 {
-    register struct PrimarySpriteData* sprite asm("r4");
+    struct PrimarySpriteData* sprite;
     struct PrimarySpriteData** new_var;
     register u16 newStatus asm("r0");
     register u16 status asm("r2");
@@ -234,8 +234,8 @@ void MagicCarpetRiseAndMove(void)
                         index = sprite->work3;
                         velocity = sMagicCarpetVerticalVelocity[index];
                         if (velocity == 0x7FFF) {
-                            register const s16* previousVelocity asm("r1");
-                            register u16 yPosition asm("r0");
+                            const s16* previousVelocity;
+                            u16 yPosition;
 
                             asm volatile(
                                 "sub %0, %1, #1\n\t"
@@ -290,11 +290,11 @@ void MagicCarpetRiseAndMove(void)
 
 void MagicCarpetMoveUnridden(void)
 {
-  register struct PrimarySpriteData *sprite asm("r4");
-  register unsigned int groundY asm("r3");
+  struct PrimarySpriteData *sprite;
+  unsigned int groundY;
   u16 status;
   register u16 statusCopy asm("r3");
-  register u16 standing asm("r0");
+  u16 standing;
   u16 y;
   u8 *work2;
   struct PrimarySpriteData **new_var;
@@ -307,9 +307,9 @@ void MagicCarpetMoveUnridden(void)
   }
   if (gSpriteCollisionResult != 0)
   {
-    register u8 zeroByte asm("r1");
-    register u16 zeroHalf asm("r2");
-    register u16 yPosition asm("r0");
+    u8 zeroByte;
+    u16 zeroHalf;
+    s32 yPosition;
     zeroByte = 0;
     zeroHalf = 0;
     asm volatile("" : "+r"(zeroByte), "+r"(zeroHalf));

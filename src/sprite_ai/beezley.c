@@ -36,7 +36,7 @@ s32 func_804012C(void)
         struct PrimarySpriteData *sprite;
 
         {
-            register struct PrimarySpriteData *sprites asm("r1");
+            struct PrimarySpriteData *sprites;
             register u32 spriteOffset asm("r0");
 
             sprites = gSpriteData;
@@ -108,7 +108,7 @@ void func_8040238(void)
         struct PrimarySpriteData *sprite;
 
         {
-            register struct PrimarySpriteData *sprites asm("r1");
+            struct PrimarySpriteData *sprites;
             register u32 spriteOffset asm("r0");
 
             sprites = gSpriteData;
@@ -412,7 +412,7 @@ void func_8040720(void)
                 goto setPose;
             }
             {
-                register u8 *workPtr asm("r1");
+                u8 *workPtr;
 
                 workPtr = &sprite->work2;
                 xPosition = sprite->xPosition;
@@ -437,8 +437,8 @@ setPose:
 
 computeLeftX:
     {
-        register u8 *workPtr asm("r0");
-        register u32 amount asm("r1");
+        u8 *workPtr;
+        u32 amount;
 
         workPtr = &sprite->work2;
         amount = *workPtr;
@@ -588,7 +588,7 @@ void func_8040A28(void)
     movement = sUnk_83C6616[index];
     if (movement == 0x7FFF) {
         register u32 tableOffset asm("r1");
-        register u32 yPosition asm("r0");
+        u32 yPosition;
 
         tableOffset = index - 1;
         tableOffset *= 2;
@@ -632,7 +632,7 @@ void func_8040ADC(void)
     movement = sUnk_83C6616[index];
     if (movement == 0x7FFF) {
         register u32 tableOffset asm("r1");
-        register u32 yPosition asm("r0");
+        u32 yPosition;
 
         tableOffset = index - 1;
         tableOffset *= 2;

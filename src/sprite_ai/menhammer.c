@@ -165,7 +165,7 @@ void MenhammerPrepareAttack(void)
 void MenhammerAttack(void)
 {
     {
-        register struct PrimarySpriteData *sprite asm("r4");
+        struct PrimarySpriteData *sprite;
         register u8 *work0Pointer asm("r5");
         register u32 initialWork0 asm("r6");
         u32 work0;
@@ -191,7 +191,7 @@ void MenhammerAttack(void)
                 return;
             }
         } else {
-            register u32 yPosition asm("r2");
+            u32 yPosition;
 
             yPosition = func_8023A60(sprite->yPosition, sprite->xPosition);
             if (gUnk_30000A0.unk_02 == 1) {
@@ -211,16 +211,16 @@ void MenhammerAttack(void)
     }
 
     {
-        register struct PrimarySpriteData *spriteBase asm("r2");
+        struct PrimarySpriteData *spriteBase;
         register u8 *indexPointer asm("ip");
-        register u32 index asm("r3");
-        register const s16 *table asm("r6");
+        u32 index;
+        const s16 *table;
         register u32 r4Value asm("r4");
-        register u32 r5Value asm("r5");
-        register u32 velocityAddress asm("r0");
-        register s32 signedVelocity asm("r1");
-        register u32 sentinel asm("r0");
-        register u16 yPosition asm("r0");
+        u32 r5Value;
+        u32 velocityAddress;
+        s32 signedVelocity;
+        u32 sentinel;
+        s32 yPosition;
 
         spriteBase = &gCurrentSprite;
         r4Value = 42;
@@ -249,7 +249,7 @@ void MenhammerAttack(void)
             previousVelocityAddress = *(const u16 *) previousVelocityAddress;
             yPosition = yPosition + previousVelocityAddress;
         } else {
-            register u32 nextIndex asm("r0");
+            u32 nextIndex;
             register u8 *storePointer asm("r1");
 
             nextIndex = index + 1;
@@ -274,7 +274,7 @@ void MenhammerAttack(void)
                 m4aSongNumStart(SE_WALL_BOUNCE);
             }
         } else {
-            register u32 xPosition asm("r1");
+            u32 xPosition;
 
             xPosition = ((struct PrimarySpriteData *) r4Value)->xPosition;
             xPosition -= 8;
@@ -511,7 +511,7 @@ void MenhammerAirborneInit(void)
 void MenhammerAirborne(void)
 {
     register u8 *indexPointer asm("ip");
-    register u32 index asm("r2");
+    u32 index;
     s16 velocity;
 
     gCurrentSprite.work0--;
@@ -527,7 +527,7 @@ void MenhammerAirborne(void)
             asm("" : "+r" (indexPointer), "+r" (index));
             velocity = sUnk_8352B18[index];
             if (velocity == 0x7FFF) {
-                register u32 previousVelocityAddress asm("r1");
+                u32 previousVelocityAddress;
                 register u16 yPosition asm("r0");
 
                 previousVelocityAddress = index - 1;
@@ -539,8 +539,8 @@ void MenhammerAirborne(void)
                 asm("" : "+r" (yPosition), "+r" (previousVelocityAddress));
                 gCurrentSprite.yPosition = yPosition + *(const s16 *) previousVelocityAddress;
             } else {
-                register u32 nextIndex asm("r0");
-                register u8 *storePointer asm("r1");
+                u32 nextIndex;
+                u8 *storePointer;
 
                 nextIndex = index + 1;
                 storePointer = indexPointer;

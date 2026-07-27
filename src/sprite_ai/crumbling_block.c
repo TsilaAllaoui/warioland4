@@ -7,11 +7,11 @@
 
 void SetCrumblingBlockCollision(void)
 {
-    register int yPosition asm("r6");
-    register int xPosition asm("r4");
-    register int lowerY asm("r5");
-    register int leftX asm("r8");
-    register s8 *blockAction asm("sl");
+    int yPosition;
+    u16 xPosition;
+    u16 lowerY;
+    u16 leftX;
+    s8 *blockAction;
     register s8 action asm("r9");
 
     yPosition = gCurrentSprite.yPosition;
@@ -23,8 +23,8 @@ void SetCrumblingBlockCollision(void)
     leftX = (u16)(xPosition - 4);
     func_806D5C0(lowerY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -33,8 +33,8 @@ void SetCrumblingBlockCollision(void)
     xPosition = (u16)(xPosition + 4);
     func_806D5C0(lowerY, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -43,8 +43,8 @@ void SetCrumblingBlockCollision(void)
     yPosition = (u16)(yPosition - 4);
     func_806D5C0(yPosition, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -55,11 +55,11 @@ void SetCrumblingBlockCollision(void)
 
 void ClearCrumblingBlockCollision(void)
 {
-    register int yPosition asm("r6");
-    register int xPosition asm("r4");
-    register int lowerY asm("r5");
-    register int leftX asm("r8");
-    register s8 *blockAction asm("sl");
+    int yPosition;
+    u16 xPosition;
+    u16 lowerY;
+    u16 leftX;
+    s8 *blockAction;
     register s8 action asm("r9");
 
     yPosition = gCurrentSprite.yPosition;
@@ -71,8 +71,8 @@ void ClearCrumblingBlockCollision(void)
     leftX = (u16)(xPosition - 4);
     func_806D5C0(lowerY, leftX);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -81,8 +81,8 @@ void ClearCrumblingBlockCollision(void)
     xPosition = (u16)(xPosition + 4);
     func_806D5C0(lowerY, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -91,8 +91,8 @@ void ClearCrumblingBlockCollision(void)
     yPosition = (u16)(yPosition - 4);
     func_806D5C0(yPosition, xPosition);
     {
-        register s8 value asm("r0");
-        register s8 *pointer asm("r1");
+        s8 value;
+        s8 *pointer;
         value = action;
         asm("" : "+r"(value));
         pointer = blockAction;
@@ -134,7 +134,7 @@ void StartCrumblingBlockCollapse(void)
 
 void CrumblingBlockCollapse(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
+    struct PrimarySpriteData *sprite;
     register u8 *timerPointer asm("ip");
     register s32 nextTimer asm("r2");
     u8 timer;
@@ -166,7 +166,7 @@ void CrumblingBlockCollapse(void)
         timer = shiftedTimer >> 24;
     }
     if (timer != 0) {
-        register int comparison asm("r0");
+        u16 comparison;
 
         comparison = timer;
         asm("" : "+r"(comparison));
@@ -179,7 +179,7 @@ void CrumblingBlockCollapse(void)
         sprite->animationTimer = timer;
         sprite->pose = SPOSE_12;
         {
-            register int resetTimer asm("r0");
+            int resetTimer;
             register u8 *resetPointer asm("r1");
 
             resetTimer = 120;
@@ -191,8 +191,8 @@ void CrumblingBlockCollapse(void)
 
 void CrumblingBlockRespawnDelay(void)
 {
-    register struct PrimarySpriteData *sprite asm("r1");
-    register u8 *timer asm("r3");
+    struct PrimarySpriteData *sprite;
+    u8 *timer;
     u8 value;
 
     sprite = &gCurrentSprite;
@@ -213,8 +213,8 @@ void CrumblingBlockRespawnDelay(void)
 
 void CrumblingBlockReform(void)
 {
-    register struct PrimarySpriteData *sprite asm("r3");
-    register u8 *timerPointer asm("r1");
+    struct PrimarySpriteData *sprite;
+    u8 *timerPointer;
     register s32 nextTimer asm("r2");
     u8 timer;
 
@@ -236,7 +236,7 @@ void CrumblingBlockReform(void)
         timer = shiftedTimer >> 24;
     }
     if (timer != 0) {
-        register int comparison asm("r0");
+        u16 comparison;
 
         comparison = timer;
         asm("" : "+r"(comparison));

@@ -4,9 +4,9 @@ int UpdateRouletteGame(void)
 {
     register u8 *statePtr;
     register u8 *stateLoad;
-    register u32 sound asm("r0");
-    register s8 *fadePtr asm("r2");
-    register u8 fadeRaw asm("r3");
+    u32 sound;
+    s8 *fadePtr;
+    u8 fadeRaw;
     register s32 fade asm("r0");
     register int parity asm("r1");
     u32 state;
@@ -62,7 +62,7 @@ int UpdateRouletteGame(void)
 
     case 5:
         {
-            register u16 *timerPtr asm("r3");
+            u16 *timerPtr;
             register int timer asm("r2");
             s16 period;
 
@@ -140,8 +140,8 @@ advanceStateCached:
             register struct RouletteItem **base asm("r0");
             register struct RouletteItem **ref asm("r3");
             register int hiddenX asm("r2");
-            register int count asm("r1");
-            register struct RouletteItem *hidden asm("r0");
+            int count;
+            struct RouletteItem *hidden;
 
             base = gRouletteItemDrawOrder;
             hiddenX = 250;
@@ -157,9 +157,9 @@ advanceStateCached:
         m4aSongNumStart(587);
         asm volatile("@ roulette case 7 copy boundary");
         {
-            register struct RouletteSmallState *result asm("r1");
-            register struct RouletteItem **base asm("r0");
-            register struct RouletteItem *item asm("r2");
+            struct RouletteSmallState *result;
+            struct RouletteItem **base;
+            struct RouletteItem *item;
 
             result = &gRouletteTopResult;
             base = gRouletteItemDrawOrder;
@@ -189,9 +189,9 @@ advanceStateCached:
             gRouletteStopRequested = done;
         {
             register u16 *itemHalfwords asm("r0");
-            register int zero asm("r3");
+            int zero;
             register int angle asm("r2");
-            register int count asm("r1");
+            int count;
 
             itemHalfwords = (u16 *)gRouletteItems;
             zero = 0;
@@ -220,8 +220,8 @@ advanceStateCached:
             register struct RouletteItem **base asm("r0");
             register struct RouletteItem **ref asm("r3");
             register int hiddenX asm("r2");
-            register int count asm("r1");
-            register struct RouletteItem *hidden asm("r0");
+            int count;
+            struct RouletteItem *hidden;
 
             base = gRouletteItemDrawOrder;
             hiddenX = 250;
@@ -237,9 +237,9 @@ advanceStateCached:
         m4aSongNumStart(588);
         asm volatile("@ roulette case 9 copy boundary");
         {
-            register struct RouletteSmallState *result asm("r1");
-            register struct RouletteItem **base asm("r0");
-            register struct RouletteItem *item asm("r2");
+            struct RouletteSmallState *result;
+            struct RouletteItem **base;
+            struct RouletteItem *item;
 
             result = &gRouletteMiddleResult;
             base = gRouletteItemDrawOrder;
@@ -264,9 +264,9 @@ advanceStateCached:
         gRouletteStopRequested = 2;
         {
             register u16 *itemHalfwords asm("r0");
-            register int zero asm("r3");
+            int zero;
             register int angle asm("r2");
-            register int count asm("r1");
+            int count;
 
             itemHalfwords = (u16 *)gRouletteItems;
             zero = 0;
@@ -293,9 +293,9 @@ advanceStateCached:
         {
             register struct RouletteItem **base asm("r0");
             register struct RouletteItem **ref asm("r3");
-            register int hiddenX asm("r2");
-            register int count asm("r1");
-            register struct RouletteItem *hidden asm("r0");
+            int hiddenX;
+            int count;
+            struct RouletteItem *hidden;
 
             base = gRouletteItemDrawOrder;
             hiddenX = 250;
@@ -311,9 +311,9 @@ advanceStateCached:
         m4aSongNumStart(589);
         asm volatile("@ roulette case 11 copy boundary");
         {
-            register struct RouletteSmallState *result asm("r1");
-            register struct RouletteItem **base asm("r0");
-            register struct RouletteItem *item asm("r2");
+            struct RouletteSmallState *result;
+            struct RouletteItem **base;
+            struct RouletteItem *item;
 
             result = &gRouletteBottomResult;
             base = gRouletteItemDrawOrder;
@@ -350,9 +350,9 @@ rouletteMismatch:
         /* Separate alias prevents agbcc from reusing the cached r4 state pointer. */
         gMinigameState = 14;
         {
-            register const struct MusicPlayer *mplay asm("r2");
-            register const u8 *songBase asm("r0");
-            register int songOffset asm("r1");
+            const struct MusicPlayer *mplay;
+            const u8 *songBase;
+            int songOffset;
             u16 songIndex;
 
             mplay = gMPlayTable;

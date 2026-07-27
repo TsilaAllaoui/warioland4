@@ -48,19 +48,19 @@ void InitTogenobi(void)
 
 void InitTogenobiOuterPart(void)
 {
-    register struct PrimarySpriteData* current asm("r4");
+    struct PrimarySpriteData* current;
     register int zero asm("r5");
-    register int zeroTimer asm("r2");
+    int zeroTimer;
     register u16 status asm("r0");
-    register u16 oldStatus asm("r1");
-    register struct PrimarySpriteData* sprites asm("r2");
+    u16 oldStatus;
+    struct PrimarySpriteData* sprites;
     register u32 temp asm("r0");
-    register u32 index asm("r1");
-    register u32 parentY asm("r2");
+    u32 index;
+    u32 parentY;
     u32 parentX;
-    register u32 currentY asm("r1");
-    register u8* ptr0 asm("r0");
-    register u8* ptr1 asm("r1");
+    u32 currentY;
+    u8* ptr0;
+    u8* ptr1;
 
     current = &gCurrentSprite;
     oldStatus = current->status;
@@ -136,15 +136,15 @@ void InitTogenobiOuterPart(void)
 
 void UpdateTogenobiOuterPartPosition(void)
 {
-    register struct PrimarySpriteData* current asm("r3");
-    register struct PrimarySpriteData* data asm("r2");
-    register u8* parentSlot asm("r4");
-    register int spriteSize asm("r5");
+    struct PrimarySpriteData* current;
+    struct PrimarySpriteData* data;
+    u8* parentSlot;
+    int spriteSize;
     register int radius asm("r6");
     u32 dataBase;
     register struct PrimarySpriteData* currentIp asm("r12");
-    register const s16* table asm("r1");
-    register const s16* table2 asm("r2");
+    const s16* table;
+    const s16* table2;
     register s32 value asm("r0");
     register u32 other asm("r1");
     register u32 offsetX asm("r2");
@@ -255,17 +255,17 @@ void UpdateTogenobiOuterPartPosition(void)
 void FindTogenobiPartSlot(u8 id)
 {
     u8 spriteId;
-    register u8 roomSlot asm("r6");
-    register u16 yPosition asm("r5");
-    register u16 xPosition asm("r4");
-    register int i asm("r3");
-    register struct PrimarySpriteData* current asm("r8");
-    register struct PrimarySpriteData* sprites asm("r12");
-    register struct PrimarySpriteData* spritesTemp asm("r0");
+    u8 roomSlot;
+    u16 yPosition;
+    u16 xPosition;
+    int i;
+    struct PrimarySpriteData* current;
+    struct PrimarySpriteData* sprites;
+    struct PrimarySpriteData* spritesTemp;
     struct PrimarySpriteData* currentTemp;
-    register int offset asm("r0");
-    register u8* base asm("r1");
-    register struct PrimarySpriteData* sprite asm("r2");
+    int offset;
+    u8* base;
+    struct PrimarySpriteData* sprite;
 
     spriteId = id;
     currentTemp = &gCurrentSprite;
@@ -300,23 +300,23 @@ void FindTogenobiPartSlot(u8 id)
 
 void InitTogenobiInnerPart(void)
 {
-    register struct PrimarySpriteData* current asm("r5");
+    struct PrimarySpriteData* current;
     register int zero asm("r6");
-    register u32 zeroTimer asm("r4");
+    u32 zeroTimer;
     register u16 status asm("r0");
-    register u16 oldStatus asm("r1");
-    register u8* work0 asm("r4");
-    register struct PrimarySpriteData* sprites asm("r2");
+    u16 oldStatus;
+    u8* work0;
+    struct PrimarySpriteData* sprites;
     register u32 temp asm("r0");
-    register u32 index asm("r1");
+    u32 index;
     u32 parentY;
     u32 parentX;
     u32 currentY;
-    register u8* work1 asm("r0");
-    register u32 workValue asm("r1");
-    register u8 distance asm("r2");
+    u8* work1;
+    u32 workValue;
+    u8 distance;
     register u8 extentUp asm("r3");
-    register u8* property asm("r0");
+    u8* property;
 
     current = &gCurrentSprite;
     oldStatus = current->status;
@@ -397,8 +397,8 @@ void UpdateTogenobiInnerPartPosition(void)
 {
     register struct PrimarySpriteData* current asm("r12");
     register s32 value asm("r0");
-    register s32 reg1 asm("r1");
-    register s32 reg2 asm("r2");
+    s32 reg1;
+    s32 reg2;
     register s32 reg3 asm("r3");
     register s32 preservedRadius asm("r4");
     register u32 dataBase asm("r5");

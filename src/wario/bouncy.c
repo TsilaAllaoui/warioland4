@@ -53,7 +53,7 @@ u8 BouncyWarioJumping(void)
     }
 
     {
-        register const u16* heldPointer asm("r0");
+        const u16* heldPointer;
 
         heldPointer = &gButtonsHeld;
         movementWario = &gWarioData;
@@ -225,15 +225,15 @@ void SetBouncyWarioPose(u8 result)
 
 void UpdateBouncyWarioMovement(void)
 {
-    register struct WarioData* wario asm("r3");
-    register u16 movement asm("r4");
+    struct WarioData* wario;
+    u16 movement;
     u16 xMovement;
 
     {
         register struct WarioCollisionData* collision asm("r4");
-        register const u8* properties asm("r2");
+        const u8* properties;
         register const u8* property asm("r1");
-        register u32 offset asm("r0");
+        u32 offset;
 
         collision = &gWarioCollisionData;
         properties = (const u8*)sUnk_82DDB60;
@@ -255,8 +255,8 @@ void UpdateBouncyWarioMovement(void)
 
     movement = 0;
     if (wario->unk_1A == 2) {
-        register u16 velocity asm("r1");
-        register u32 temp asm("r0");
+        u16 velocity;
+        u32 temp;
 
         velocity = wario->yVelocity;
         temp = (u32)(u16)velocity << 16;
@@ -287,11 +287,11 @@ void ProcessBouncyWarioCollision(void)
     u8 result;
 
     {
-        register struct WarioCollisionData* collision asm("r4");
-        register const u8* properties asm("r2");
-        register struct WarioData* wario asm("r3");
+        struct WarioCollisionData* collision;
+        const u8* properties;
+        struct WarioData* wario;
         register const u8* property asm("r1");
-        register u32 offset asm("r0");
+        u32 offset;
 
         collision = &gWarioCollisionData;
         properties = (const u8*)sUnk_82DDB60;
@@ -333,7 +333,7 @@ void ProcessBouncyWarioCollision(void)
     }
 
     {
-        register struct WarioData* wario asm("r4");
+        struct WarioData* wario;
         s32 collisionResult;
 
         wario = &gWarioData;
@@ -432,11 +432,11 @@ void ApplyBouncyWarioMusicEffect(void)
 
 void UpdateBouncyWarioHitbox(void)
 {
-    register const u8* properties asm("r3");
-    register struct WarioData* wario asm("r4");
-    register const u8* hitboxes asm("r2");
-    register u32 hitboxOffset asm("r1");
-    register const u8* address asm("r0");
+    const u8* properties;
+    struct WarioData* wario;
+    const u8* hitboxes;
+    u32 hitboxOffset;
+    const u8* address;
     u8 movementType;
 
     properties = (const u8*)sUnk_82DDB60;

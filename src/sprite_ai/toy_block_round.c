@@ -12,14 +12,14 @@
 
 void InitToyBlockRound(void)
 {
-    register struct PrimarySpriteData* sprite asm("ip");
-    register u8* ptr asm("r1");
-    register u8* temp asm("r0");
-    register u16 oldStatus asm("r1");
+    struct PrimarySpriteData* sprite;
+    u8* ptr;
+    u8* temp;
+    u16 oldStatus;
     register u16 status asm("r0");
     register u8 zero asm("r2");
-    register u16 zero16 asm("r3");
-    register const struct AnimationFrame* oam asm("r0");
+    u16 zero16;
+    const struct AnimationFrame* oam;
 
     sprite = &gCurrentSprite;
     oldStatus = sprite->status;
@@ -103,8 +103,8 @@ void ToyBlockRoundFalling(void)
 
     if (gSpriteCollisionResult != 0) {
         register u8 zero asm("r2");
-        register u8* workPtr asm("r0");
-        register u8* workPtr2 asm("r1");
+        u8* workPtr;
+        u8* workPtr2;
 
         zero = 0;
         sprite->yPosition = newY;

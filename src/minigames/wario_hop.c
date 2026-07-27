@@ -146,11 +146,11 @@ void WarioHopApplyBgScroll(void)
 
 void WarioHopInit(void)
 {
-    register const void *dmaSrc1 asm("r3");
+    const void *dmaSrc1;
     register const void *dmaSrc2 asm("r4");
     register const void *dmaSrc4 asm("r12");
     register const void *dmaSrc5 asm("r9");
-    register u16 *scrollA asm("r10");
+    u16 *scrollA;
     register u8 *speedBase asm("r8");
     register struct WarioHopObjState *playerBase asm("r6");
     u16 *scrollPtr;
@@ -167,12 +167,16 @@ void WarioHopInit(void)
 
     DmaSet(3, (const void *)0x0870D8F8, (void *)0x05000000, 0x80000100);
     {
-        vu32 *dmaRegs = (vu32 *)REG_ADDR_DMA3;
-        u32 dmaStatus = dmaRegs[2];
-        u32 dmaMask = DMA_ENABLE << 16;
-        register const void *tmpSrc4 asm("r5");
-        register u16 *tmpScrollA asm("r7");
-        register u8 *tmpSpeedBase asm("r5");
+        vu32 *dmaRegs;
+        u32 dmaStatus;
+        u32 dmaMask;
+        const void *tmpSrc4;
+        u16 *tmpScrollA;
+        u8 *tmpSpeedBase;
+
+        dmaRegs = (vu32 *)REG_ADDR_DMA3;
+        dmaStatus = dmaRegs[2];
+        dmaMask = DMA_ENABLE << 16;
 
         dmaSrc1 = sUnk_87122F8;
         dmaSrc2 = sUnk_870DAF8;
@@ -335,7 +339,7 @@ void WarioHopInit(void)
         asm("ldrb r0, [r7]" : "=r"(speed) : : "memory");
         gWarioHopJumpAcceleration = 0x2800 / (speed * speed);
         {
-            register s32 speed2 asm("r1");
+            s32 speed2;
             register s32 accel asm("r0");
             /* The original reloads the duration directly into r1. */
             asm("ldrb r1, [r7]" : "=r"(speed2) : : "memory");
@@ -400,7 +404,7 @@ void WarioHopInit(void)
     }
     WarioHopDrawScoreDigits();
     {
-        register u8 *medalTimerPtr asm("r0");
+        u8 *medalTimerPtr;
         medalTimerPtr = &gWarioHopMedalRewardTimer;
         /* Same persistent r5 byte zero as above. */
         asm volatile("strb r5, [r0]" : : "r"(medalTimerPtr), "r"(zero) : "memory");
@@ -410,8 +414,8 @@ void WarioHopInit(void)
     m4aSongNumStart(0x2BE);
 
     {
-        register s32 j asm("r1");
-        register u32 loopZero asm("r2");
+        s32 j;
+        u32 loopZero;
         register u32 one asm("r3");
         register struct WarioHopSmallState *item asm("r0");
         loopZero = 0;
@@ -460,7 +464,7 @@ void WarioHopInit(void)
     gMinigameCamera.active = 1;
 
     {
-        register struct WarioHopSmallState *bonusEffect asm("r0");
+        struct WarioHopSmallState *bonusEffect;
         register struct WarioHopSmallState *medalEffect asm("r1");
 
         bonusEffect = &gWarioHopBonusEffect;
@@ -527,7 +531,7 @@ s32 WarioHopUpdateGameplay(void)
         case 1:
             if (WarioHopUpdateJumpArc() != 0) {
                 {
-                    register s32 resetValue asm("r0");
+                    s32 resetValue;
                     register volatile s16 *resetPtr asm("r1");
 
                     gWarioHopHitLock = 0;
@@ -545,8 +549,8 @@ s32 WarioHopUpdateGameplay(void)
     }
 
     {
-        register u8 *activePtr asm("r6");
-        register u32 active asm("r0");
+        u8 *activePtr;
+        u32 active;
 
         activePtr = &gWarioHopMusicActive;
         asm volatile("ldrb %0, [%1, #0]" : "=r"(active) : "r"(activePtr));
@@ -564,8 +568,8 @@ s32 WarioHopUpdateGameplay(void)
             }
         } else {
             if (gWarioHopJumpState == 0) {
-                register u8 *speedPtr asm("r4");
-                register u8 *accelPtr asm("r5");
+                u8 *speedPtr;
+                u8 *accelPtr;
                 s32 speed;
 
                 speedPtr = &gWarioHopJumpDuration;

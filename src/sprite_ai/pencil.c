@@ -60,17 +60,17 @@ setOam:
 
 void PencilStartMovingRight(void)
 {
-    register struct PrimarySpriteData *initial asm("r0");
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *direction asm("r3");
-    register u8 currentDirection asm("r1");
+    struct PrimarySpriteData *initial;
+    struct PrimarySpriteData *sprite;
+    u8 *direction;
+    u8 currentDirection;
 
     initial = &gCurrentSprite;
     direction = &initial->work2;
     currentDirection = *direction;
     sprite = initial;
     {
-        register u8 nextDirection asm("r0");
+        u8 nextDirection;
 
         if (currentDirection != 0) {
             if (sprite->globalID != PSPRITE_PENCIL_BLUE) {
@@ -102,7 +102,7 @@ startMoving:
 
 void PencilMoveRight(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
     register u8 *timer asm("r1");
 
     sprite = &gCurrentSprite;
@@ -116,17 +116,17 @@ void PencilMoveRight(void)
 
 void PencilStartMovingLeft(void)
 {
-    register struct PrimarySpriteData *initial asm("r0");
-    register struct PrimarySpriteData *sprite asm("r2");
-    register u8 *direction asm("r3");
-    register u8 currentDirection asm("r1");
+    struct PrimarySpriteData *initial;
+    struct PrimarySpriteData *sprite;
+    u8 *direction;
+    u8 currentDirection;
 
     initial = &gCurrentSprite;
     direction = &initial->work2;
     currentDirection = *direction;
     sprite = initial;
     {
-        register u8 nextDirection asm("r0");
+        u8 nextDirection;
 
         if (currentDirection != 0) {
             if (sprite->globalID == PSPRITE_PENCIL_BLUE) {
@@ -158,7 +158,7 @@ startMoving:
 
 void PencilMoveLeft(void)
 {
-    register struct PrimarySpriteData *sprite asm("r2");
+    struct PrimarySpriteData *sprite;
     register u8 *timer asm("r1");
 
     sprite = &gCurrentSprite;

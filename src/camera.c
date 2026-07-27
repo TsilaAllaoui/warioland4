@@ -50,7 +50,7 @@ void UpdateCameraFromControlAreas(const struct CameraTargetPosition *position)
 
 void MoveCameraTowardTarget(s32 x, s32 y)
 {
-    register u32 targetX asm("r5");
+    u32 targetX;
     register u16 *positionY asm("r4");
     register u16 *positionX asm("r3");
     register u16 *pointer asm("r0");
@@ -169,12 +169,12 @@ s32 GetCameraYForControlArea(const struct CameraControlArea *area, const struct 
 
 void LoadCurrentRoomCameraControlData(void)
 {
-    register const u8 *const *list asm("r0");
-    register const u8 *entry asm("r2");
-    register const u8 **output asm("r3");
+    const u8 *const *list;
+    const u8 *entry;
+    const u8 **output;
     register u8 *roomPtr asm("r4");
-    register u8 room asm("r5");
-    register u8 roomId asm("r1");
+    u8 room;
+    s32 roomId;
 
     list = sRoomCameraControlDataTable[gUnk_3000023];
     roomPtr = &gCurrentRoom;
@@ -189,15 +189,15 @@ void BuildCurrentRoomCameraControlAreas(void)
     register u32 value asm("r0");
     register u32 countOrBoundary asm("r1");
     register u32 baseAddress asm("r2");
-    register s32 offsetOrLimit asm("r3");
-    register u32 recordAddress asm("r4");
-    register u32 areaAddress asm("r5");
+    s32 offsetOrLimit;
+    u32 recordAddress;
+    u32 areaAddress;
     register u32 backgroundInfoAddress asm("r6");
     struct CameraControlArea *areas;
-    register u32 xTile asm("r8");
-    register u32 remaining asm("r9");
-    register u32 nextRecord asm("r10");
-    register u32 yTile asm("r12");
+    u32 xTile;
+    u32 remaining;
+    u32 nextRecord;
+    u32 yTile;
     u32 fieldOffsets[4];
     u32 *fieldOffsetPtr;
 
@@ -376,8 +376,8 @@ void UpdateBottomRoomCamera(const struct CameraTargetPosition *position)
 void BuildBottomRoomCameraControlAreas(void)
 {
     struct CameraControlArea *areas;
-    register s32 warioY asm("r6");
-    register u32 temp asm("r0");
+    s32 warioY;
+    u32 temp;
     s32 index;
     s32 boundary;
 
@@ -386,7 +386,7 @@ void BuildBottomRoomCameraControlAreas(void)
     areas[1].mode = 0;
     index = 0;
     temp = gWarioData.yPosition >> 6;
-    /* Preserve the original temporary register before assigning warioY. */
+    /* Preserve the original temporary before assigning warioY. */
     asm volatile("" : "+r"(temp));
     warioY = temp;
 
@@ -477,13 +477,13 @@ backgroundPositionUpdated:
 
 void UpdateStandardCamera(const struct CameraTargetPosition *position)
 {
-    register s32 value asm("r0");
-    register s32 limit asm("r1");
-    register s32 positionValue asm("r2");
+    s32 value;
+    s32 limit;
+    s32 positionValue;
     register s32 cameraTarget asm("r3");
     register s32 positionAddress asm("r4");
-    register s32 boundsAddress asm("r5");
-    register s32 cameraStateAddress asm("r6");
+    s32 boundsAddress;
+    s32 cameraStateAddress;
     s16 *subGameModePtr;
 
     positionAddress = (u32)position;
@@ -699,7 +699,7 @@ done:
 
 void UpdateBg0CameraPosition(const struct CameraTargetPosition *unusedPosition)
 {
-    register u32 mode asm("r0");
+    u32 mode;
 
     /* The caller passes this pointer in r0 in the original code. */
     (void)unusedPosition;
@@ -717,14 +717,14 @@ void UpdateBg0CameraPosition(const struct CameraTargetPosition *unusedPosition)
         return;
     }
     if (mode == 17) {
-        register u16 *output asm("r3");
-        register u16 *scroll asm("r1");
-        register u16 *bounds asm("r2");
+        u16 *output;
+        u16 *scroll;
+        u16 *bounds;
 
         output = &gBg0XPosition;
         scroll = &gUnk_300003A;
         bounds = gRoomCameraBounds;
-        /* Preserve agbcc's original argument-register allocation for these pointers. */
+        /* Preserve agbcc's original argument-allocation for these pointers. */
         asm volatile("" : "+r"(output), "+r"(scroll), "+r"(bounds));
         *output = *scroll + bounds[1] - 32;
         gBg0YPosition = (u16)-32 + bounds[2];
@@ -755,7 +755,9 @@ void SetCameraPositionClampedToRoom(const struct CameraTargetPosition *position)
     if (position->x <= 479) {
         gBg1XPosition = 0;
     } else {
-        u16 x = position->x;
+        u16 x;
+
+        x = position->x;
         roomSize = gBackgroundInfo.bg1Width << 6;
         if (x > roomSize - 480)
             gBg1XPosition = roomSize - 960;
@@ -766,7 +768,9 @@ void SetCameraPositionClampedToRoom(const struct CameraTargetPosition *position)
     if (position->y <= 447) {
         gBg1YPosition = 0;
     } else {
-        u16 y = position->y;
+        u16 y;
+
+        y = position->y;
         roomSize = gBackgroundInfo.bg1Height << 6;
         if (y > roomSize - 192)
             gBg1YPosition = roomSize - 640;
