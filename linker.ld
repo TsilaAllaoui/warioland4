@@ -148,14 +148,14 @@ SECTIONS {
         obj/init_helpers.o(iwram_data);
 
         . = 0x1850; gUnk_3001850 = .;
-        . = 0x1852; gUnk_3001852 = .;
-        . = 0x1854; gUnk_3001854 = .;
+        . = 0x1852; gStageEndAffineOriginX = .;
+        . = 0x1854; gStageEndAffineOriginY = .;
         . = 0x1858; gBg2X = .;
         . = 0x185C; gBg2Y = .;
         . = 0x1860; gMosaic = .;
-        . = 0x1862; gUnk_3001862 = .;
-        . = 0x1864; gUnk_3001864 = .;
-        . = 0x1866; gUnk_3001866 = .;
+        . = 0x1862; gStageEndScaleX = .;
+        . = 0x1864; gStageEndScaleY = .;
+        . = 0x1866; gStageEndAngle = .;
         . = 0x1868; gBg2PA = .;
         . = 0x186A; gBg2PB = .;
         . = 0x186C; gBg2PC = .;
@@ -292,9 +292,9 @@ SECTIONS {
         . = 0x3bea; gUnk_3003BEA = .;
         . = 0x3bf0; gUnk_3003BF0 = .;
         . = 0x3bf1; gUnk_3003BF1 = .;
-        . = 0x3bf2; gUnk_3003BF2 = .;
+        . = 0x3bf2; gStageEndHorizontalDirection = .;
         . = 0x3bf3; gUnk_3003BF3 = .;
-        . = 0x3bf4; gUnk_3003BF4 = .;
+        . = 0x3bf4; gStageEndScaleStep = .;
         . = 0x3bf5; gUnk_3003BF5 = .;
         . = 0x3bf6; gUnk_3003BF6 = .;
         . = 0x3bf8; gUnk_3003BF8 = .;
@@ -718,7 +718,7 @@ SECTIONS {
         obj/tile_interaction.o(.text);
         obj/disasm_color_fading.o(.text);
         obj/disasm_hblank.o(.text);
-        obj/disasm_stage_end.o(.text);
+        obj/stage_end.o(.text);
         obj/demo.o(.text);
         obj/quit.o(.text);
         obj/disasm_save_file.o(.text);
@@ -796,7 +796,6 @@ SECTIONS {
         obj/tile_interaction.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
-        obj/disasm_stage_end.o(.rodata);
         obj/blob_0x3FA838-0x3FDA2C.o(.rodata);
         obj/data/demo.o(.rodata);
         obj/quit.o(.rodata);

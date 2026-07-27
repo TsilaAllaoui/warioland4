@@ -13,21 +13,21 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  84.8%   3,454 / 4,072</text>
-<text x="24" y="88" class="mono">Code size  ██████████████████████░░░░░░░░  71.7%   437,372 / 609,840 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████░░░░  85.0%   3,463 / 4,072</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████░░░░░░░░  72.1%   439,544 / 609,840 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (609,788 / 609,840 bytes exact)</text>
 <rect x="24.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="40.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">FUNCTIONS</text>
-<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">3,454 / 4,072</text>
-<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">84.8% matched functions</text>
+<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">3,463 / 4,072</text>
+<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">85.0% matched functions</text>
 <rect x="335.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="351.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">CODE BYTES</text>
-<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">437,372 / 609,840</text>
-<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">71.7% matched code bytes</text>
+<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">439,544 / 609,840</text>
+<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">72.1% matched code bytes</text>
 <rect x="646.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="662.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">REMAINING</text>
-<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">618 funcs · 172,468 bytes</text>
+<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">609 funcs · 170,296 bytes</text>
 <text x="662.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">remaining unmatched code</text>
 <rect x="957.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="973.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">EXACT BYTE SIZING</text>
@@ -4020,21 +4020,21 @@
 <rect x="1266.18" y="580.56" width="5.47" height="5.73" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>swinging_platform/SpriteSwingingPlatform2: 32 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_stage_end: 0.0% matched, 2,172 bytes</title>
+<title>stage_end: 100.0% matched, 2,172 bytes</title>
 <rect x="893.91" y="587.64" width="53.54" height="58.03" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip84"><rect x="895.91" y="588.64" width="50.14" height="10.55"/></clipPath>
 <rect x="894.91" y="588.64" width="52.14" height="10.55" fill="#05080d"/>
-<text x="896.41" y="596.19" clip-path="url(#moduleLabelClip84)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_…</text>
-<text x="945.05" y="596.19" text-anchor="end" clip-path="url(#moduleLabelClip84)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="894.91" y="599.19" width="27.78" height="26.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80720E8: 692 bytes, not matched, size=symbol</title></rect>
-<rect x="894.91" y="626.39" width="27.78" height="18.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80723CC: 480 bytes, not matched, size=symbol</title></rect>
-<rect x="923.05" y="599.19" width="23.66" height="15.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80725AC: 344 bytes, not matched, size=symbol</title></rect>
-<rect x="923.05" y="615.04" width="12.84" height="16.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80727F8: 200 bytes, not matched, size=symbol</title></rect>
-<rect x="936.24" y="615.04" width="10.47" height="16.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_8072754: 164 bytes, not matched, size=symbol</title></rect>
-<rect x="923.05" y="631.81" width="10.17" height="13.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80728E4: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="933.57" y="631.81" width="6.23" height="13.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_8072704: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="940.15" y="631.81" width="6.56" height="7.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_807239C: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="940.15" y="639.50" width="6.56" height="5.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_end/func_80728C0: 36 bytes, not matched, size=symbol</title></rect>
+<text x="896.41" y="596.19" clip-path="url(#moduleLabelClip84)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">stage_e…</text>
+<text x="945.05" y="596.19" text-anchor="end" clip-path="url(#moduleLabelClip84)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="894.91" y="599.19" width="27.78" height="26.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/UpdateStageExitSequence: 692 bytes, matched, size=symbol</title></rect>
+<rect x="894.91" y="626.39" width="27.78" height="18.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/UpdateStageEndSequence: 480 bytes, matched, size=symbol</title></rect>
+<rect x="923.05" y="599.19" width="23.66" height="15.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/UpdateStageEndAffineTransform: 344 bytes, matched, size=symbol</title></rect>
+<rect x="923.05" y="615.04" width="12.84" height="16.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/StageEndVBlank: 200 bytes, matched, size=symbol</title></rect>
+<rect x="936.24" y="615.04" width="10.47" height="16.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/InitStageEndAffine: 164 bytes, matched, size=symbol</title></rect>
+<rect x="923.05" y="631.81" width="10.17" height="13.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/UpdateStageEndBlend: 128 bytes, matched, size=symbol</title></rect>
+<rect x="933.57" y="631.81" width="6.23" height="13.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/UpdateStageEndScale: 80 bytes, matched, size=symbol</title></rect>
+<rect x="940.15" y="631.81" width="6.56" height="7.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/RunCurrentPassageStageEnd: 48 bytes, matched, size=symbol</title></rect>
+<rect x="940.15" y="639.50" width="6.56" height="5.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_end/InitStageEndVBlank: 36 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>zombie: 100.0% matched, 2,156 bytes</title>

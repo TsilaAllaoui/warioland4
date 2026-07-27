@@ -1,5 +1,10 @@
-#include "types.h"
+#include "stage_end.h"
 
-void func_80723CC(void);
-
-ProcedureFunc sUnk_878F5DC[] = {func_80723CC, func_80723CC, func_80723CC, func_80723CC, func_80723CC, func_80723CC};
+StageEndUpdateFunc sStageEndUpdateFunctions[] = {
+    UpdateStageEndSequence,
+    UpdateStageEndSequence,
+    UpdateStageEndSequence,
+    UpdateStageEndSequence,
+    UpdateStageEndSequence,
+    UpdateStageEndSequence,
+};

@@ -4,18 +4,18 @@
 #include "types.h"
 
 // gUnk_3001850
-// gUnk_3001852
-// gUnk_3001854
+extern u16 gStageEndAffineOriginX;
+extern u16 gStageEndAffineOriginY;
 extern s32 gBg2X;
 extern s32 gBg2Y;
 extern u16 gMosaic;
-// gUnk_3001862
-// gUnk_3001864
-// gUnk_3001866
-extern u16 gBg2PA;
-extern u16 gBg2PB;
-extern u16 gBg2PC;
-extern u16 gBg2PD;
+extern u16 gStageEndScaleX;
+extern u16 gStageEndScaleY;
+extern u16 gStageEndAngle;
+extern s16 gBg2PA;
+extern s16 gBg2PB;
+extern s16 gBg2PC;
+extern s16 gBg2PD;
 extern u16 gBldy;
 extern u16 gUnk_3001872;
 extern u16 gUnk_3001874;
