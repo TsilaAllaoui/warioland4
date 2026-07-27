@@ -1,8 +1,5 @@
 #include "minigames/roulette.h"
 
-#define ROULETTE_TARGET_ADD(value, base) \
-    asm volatile("add %0, %0, %1" : "+r"(value) : "r"(base))
-
 void UpdateRouletteWheel(void)
 {
     struct RouletteItem *base;
@@ -65,7 +62,7 @@ void UpdateRouletteWheel(void)
                     offset += 64;
                     offset <<= 1;
                     samplePtr = (const s16 *)offset;
-                    ROULETTE_TARGET_ADD(samplePtr, sinTable);
+                    asm volatile("add %0, %0, %1" : "+r"(samplePtr) : "r"(sinTable));
                     sample = *samplePtr;
                 }
                 product = (sample << 3) + sample;
@@ -108,7 +105,7 @@ void UpdateRouletteWheel(void)
 
             index = *selectedIndex;
             selected = (struct RouletteItem *)((index * 3) << 2);
-            ROULETTE_TARGET_ADD(selected, base);
+            asm volatile("add %0, %0, %1" : "+r"(selected) : "r"(base));
             selected->angle = 224 << 5;
         }
 
@@ -123,7 +120,7 @@ void UpdateRouletteWheel(void)
 
                 selectedValue = *selectedIndex;
                 selected = (struct RouletteItem *)((selectedValue * 3) << 2);
-                ROULETTE_TARGET_ADD(selected, base);
+                asm volatile("add %0, %0, %1" : "+r"(selected) : "r"(base));
             }
             selectedSin = sSinCosTable;
             index = (s16)selected->angle >> 5;
@@ -135,7 +132,7 @@ void UpdateRouletteWheel(void)
                 offset += 64;
                 offset <<= 1;
                 samplePtr = (const s16 *)offset;
-                ROULETTE_TARGET_ADD(samplePtr, selectedSin);
+                asm volatile("add %0, %0, %1" : "+r"(samplePtr) : "r"(selectedSin));
                 sample = *samplePtr;
             }
             product = (sample << 3) + sample;
@@ -154,7 +151,7 @@ void UpdateRouletteWheel(void)
 
                 selectedValue = *selectedIndex;
                 selected = (struct RouletteItem *)((selectedValue * 3) << 2);
-                ROULETTE_TARGET_ADD(selected, base);
+                asm volatile("add %0, %0, %1" : "+r"(selected) : "r"(base));
             }
             one = 1;
             selected->active = one;
@@ -171,7 +168,7 @@ void UpdateRouletteWheel(void)
 
                 selectedValue = *selectedIndex;
                 selected = (struct RouletteItem *)((selectedValue * 3) << 2);
-                ROULETTE_TARGET_ADD(selected, base);
+                asm volatile("add %0, %0, %1" : "+r"(selected) : "r"(base));
             }
             index = (s16)selected->angle >> 5;
             sample = selectedSin[index];
@@ -192,7 +189,7 @@ void UpdateRouletteWheel(void)
 
                 selectedValue = *selectedIndex;
                 selected = (struct RouletteItem *)((selectedValue * 3) << 2);
-                ROULETTE_TARGET_ADD(selected, base);
+                asm volatile("add %0, %0, %1" : "+r"(selected) : "r"(base));
             }
             selected->value = gRouletteValuePool[gRouletteValueSequenceIndex];
         }
