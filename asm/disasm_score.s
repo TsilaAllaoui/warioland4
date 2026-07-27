@@ -1779,7 +1779,7 @@ func_8075F44:
 .L_75f88:
 	.4byte	gCurrentStageNumber
 .L_75f8c:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_75f90:
 	.4byte	gHasTemporarySave
 .L_75f94:

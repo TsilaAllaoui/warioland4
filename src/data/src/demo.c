@@ -135,7 +135,7 @@ void SetupDemo(void)
     gPauseFlag = zero;
     gTimerState = zero;
     gSwitchPressed = zero;
-    gUnk_3000C3F = zero;
+    gStageEntryPauseMenuDisabled = zero;
     collectionBase = (u32 *)gCurrentCollection;
     addressLoad = stage;
     collectionOffset = *addressLoad << 2;
@@ -244,7 +244,7 @@ u32 AdvanceDemo(void)
     }
 
     gDemoState = zero;
-    gUnk_3000C3F = zero;
+    gStageEntryPauseMenuDisabled = zero;
     gPauseFlag = zero;
     gUnk_3000022 = zero;
     gUnk_3000020++;

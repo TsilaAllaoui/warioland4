@@ -236,7 +236,7 @@ func_80720E8:
 	mov	r1, #2
 	strb	r1, [r0, #0]
 	strb	r2, [r0, #2]
-	bl	func_80701F4
+	bl	SetCurrentStageKeyzerRecoveredFlag
 	b	.L_721fe
 	.align	2, 0
 .L_722d8:
@@ -325,7 +325,7 @@ func_80720E8:
 .L_72370:
 	.4byte	gSwitchPressed
 .L_72374:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_72378:
 	.4byte	gUnk_3000025
 .L_7237c:
@@ -564,7 +564,7 @@ func_80723CC:
 	mov	r0, #2
 	strb	r0, [r1, #0]
 	strb	r5, [r1, #2]
-	bl	func_80701F4
+	bl	SetCurrentStageKeyzerRecoveredFlag
 	strh	r5, [r4, #0]
 	b	.L_72566
 	.align	2, 0

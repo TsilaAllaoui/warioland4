@@ -35,7 +35,7 @@ u32 GameScreenSubroutine(void)
     result = 0;
     switch (gSubGameMode) {
         case 0:
-            if (!gUnk_3000C3F) {
+            if (!gStageEntryPauseMenuDisabled) {
                 DemoInputInit();
             }
             if (gDemoState == DEMO_STATE_PLAYBACK) {
@@ -361,7 +361,7 @@ void GameScreenInitAndLoadGenerics(void)
     REG_DISPCNT = 0;
 
     gUnk_3000022 = 0;
-    if (!gUnk_3000C3F) {
+    if (!gStageEntryPauseMenuDisabled) {
         InitializeVideoMemory();
         func_8073418();
         func_8073BA0();
@@ -379,7 +379,7 @@ void GameScreenInitAndLoadGenerics(void)
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
 
-    if ((gPauseFlag == 0) && (gUnk_3000C3F != 0)) {
+    if ((gPauseFlag == 0) && (gStageEntryPauseMenuDisabled != 0)) {
         WarioProcessControls();
         WarioProcessCollision();
     }
@@ -392,10 +392,10 @@ void GameScreenInitAndLoadGenerics(void)
     func_801DE7C();
     func_80711E8();
     InitializeRoomMusic();
-    if (gUnk_3000C3F == 0) {
+    if (gStageEntryPauseMenuDisabled == 0) {
         func_801D684();
         func_8074808();
-        gUnk_3000C3F = 1;
+        gStageEntryPauseMenuDisabled = 1;
         gWarioPauseTimer = 0;
         gDisableWario = 0;
         if (!gHasTemporarySave && !gUnk_3000025) {
@@ -453,7 +453,7 @@ void GameScreenInitWario(void)
     if (gWarioData.unk_1A == 1) {
         gWarioData.unk_1A = 2;
     }
-    if (gUnk_3000C3F != 0) {
+    if (gStageEntryPauseMenuDisabled != 0) {
         if (gWarioData.reaction != 0) {
             return;
         }

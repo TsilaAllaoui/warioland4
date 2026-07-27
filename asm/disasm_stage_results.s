@@ -19,7 +19,7 @@ func_8080A6C:
 	mov	pc, r0
 	.align	2, 0
 .L_80a88:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80a8c:
 	.4byte	.L_80a90
 .L_80a90:
@@ -60,7 +60,7 @@ func_8080A6C:
 .L_80ae4:
 	.4byte	gUnk_3003D98
 .L_80ae8:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80aec:
 	ldr	r4, .L_80af8
 	ldr	r0, [r4, #0]
@@ -223,7 +223,7 @@ func_8080A6C:
 .L_80c10:
 	.4byte	gUnk_3003DE4
 .L_80c14:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80c18:
 	.4byte	gNewHighScore
 .L_80c1c:
@@ -312,7 +312,7 @@ func_8080A6C:
 .L_80cb8:
 	.4byte	0x701
 .L_80cbc:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80cc0:
 	.4byte	gLanguage
 .L_80cc4:
@@ -339,7 +339,7 @@ func_8080A6C:
 	strb	r0, [r1, #0]
 	b	.L_80d44
 .L_80cec:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80cf0:
 	ldr	r0, .L_80d28
 	ldrh	r1, [r0, #0]

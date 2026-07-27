@@ -410,7 +410,7 @@ func_8072F0C:
 	bx	r0
 	.align	2, 0
 .L_72f8c:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_72f90:
 	.4byte	gHasTemporarySave
 .L_72f94:

@@ -91,7 +91,7 @@ SaveResetSubroutine:
 	b	.L_928ca
 	.align	2, 0
 .L_92898:
-	.4byte	gUnk_3000C3E
+	.4byte	gStageEntrySoftResetDisabled
 .L_9289c:
 	.4byte	gSubGameMode
 .L_928a0:
@@ -651,7 +651,7 @@ func_8092B30:
 .L_92cac:
 	.4byte	0x04000052
 .L_92cb0:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_92cb4:
 	.4byte	gBg1XPosition
 .L_92cb8:

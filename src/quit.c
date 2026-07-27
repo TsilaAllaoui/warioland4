@@ -19,5 +19,5 @@ void QuitSubroutine(void)
     func_8072F0C();
     gTimerState = 0;
     gSwitchPressed = 0;
-    gUnk_3000C3F = 0;
+    gStageEntryPauseMenuDisabled = 0;
 }

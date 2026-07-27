@@ -2620,7 +2620,7 @@ func_806FD74:
 .L_6ff34:
 	.4byte	gUnk_3000025
 .L_6ff38:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_6ff3c:
 	.4byte	gSubGameMode
 .L_6ff40:

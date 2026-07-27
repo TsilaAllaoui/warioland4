@@ -76,7 +76,7 @@ func_807ADFC:
 .L_7ae94:
 	.4byte	sUnk_86392C0
 .L_7ae98:
-	.4byte	gUnk_3003C44
+	.4byte	gStageEntryMainSpriteFalling
 .L_7ae9c:
 	.4byte	gUnk_3003C64
 .L_7aea0:
@@ -469,7 +469,7 @@ func_807AEF0:
 .L_7b188:
 	.4byte	gUnk_3004A30
 .L_7b18c:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7b190:
 	.4byte	sUnk_863926C
 .L_7b194:
@@ -477,7 +477,7 @@ func_807AEF0:
 .L_7b198:
 	.4byte	sUnk_8639288
 .L_7b19c:
-	.4byte	gUnk_3003C44
+	.4byte	gStageEntryMainSpriteFalling
 .L_7b1a0:
 	.4byte	gUnk_3003C40
 .L_7b1a4:
@@ -509,13 +509,13 @@ func_807AEF0:
 .L_7b1d8:
 	.4byte	gUnk_3003C94
 .L_7b1dc:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7b1e0:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7b1e4:
-	.4byte	gUnk_3003C9A
+	.4byte	gStageEntryShakeTimer
 .L_7b1e8:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7b1ec:
 	.4byte	gUnk_3003C97
 .L_7b1f0:
@@ -655,9 +655,9 @@ func_807AEF0:
 .L_7b2f4:
 	.4byte	0x1641
 .L_7b2f8:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_7b2fc:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_7b300:
 	ldr	r2, .L_7b340
 	strh	r3, [r2, #0]
@@ -693,9 +693,9 @@ func_807AEF0:
 	bx	r0
 	.align	2, 0
 .L_7b340:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_7b344:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_7b348:
 	.4byte	0x4000040
 .L_7b34c:
@@ -805,7 +805,7 @@ func_807B3C0:
 .L_7b410:
 	.4byte	sUnk_8640404
 .L_7b414:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7b418:
 	.4byte	gUnk_3003C40
 .L_7b41c:
@@ -874,11 +874,11 @@ func_807B420:
 .L_7b498:
 	.4byte	gUnk_3003C94
 .L_7b49c:
-	.4byte	gUnk_3003C44
+	.4byte	gStageEntryMainSpriteFalling
 .L_7b4a0:
 	.4byte	gCurrentPassage
 .L_7b4a4:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7b4a8:
 	.4byte	sUnk_863926C
 .L_7b4ac:
@@ -898,7 +898,7 @@ func_807B420:
 .L_7b4c8:
 	.4byte	sUnk_8639528
 .L_7b4cc:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7b4d0:
 	.4byte	0x1AB
 
@@ -956,9 +956,9 @@ func_807B4D4:
 .L_7b538:
 	.4byte	sUnk_863951C
 .L_7b53c:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_7b540:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 
 
 thumb_func_start func_807B544
@@ -987,13 +987,13 @@ func_807B544:
 	b	.L_7b744
 	.align	2, 0
 .L_7b574:
-	.4byte	gUnk_3003C44
+	.4byte	gStageEntryMainSpriteFalling
 .L_7b578:
 	.4byte	gButtonsPressed
 .L_7b57c:
 	.4byte	0x125
 .L_7b580:
-	.4byte	gUnk_3003C08
+	.4byte	gStageEntryExitRequested
 .L_7b584:
 	mov	r0, #32
 	and	r0, r2
@@ -1239,7 +1239,7 @@ func_807B544:
 thumb_func_start func_807B758
 func_807B758:
 	push	{lr}
-	bl	func_807F6B4
+	bl	UpdateStageEntryHorizontalShake
 	ldr	r2, .L_7b790
 	ldr	r1, .L_7b794
 	ldrh	r1, [r1, #0]
@@ -1321,9 +1321,9 @@ func_807B758:
 .L_7b7f8:
 	.4byte	0x4000040
 .L_7b7fc:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_7b800:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_7b804:
 	.4byte	0x4000044
 
@@ -1480,7 +1480,7 @@ func_807B82C:
 .L_7b924:
 	.4byte	sUnk_8639500
 .L_7b928:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7b92c:
 	.4byte	gUnk_3003C48
 .L_7b930:
@@ -1506,7 +1506,7 @@ func_807B940:
 	beq	.L_7b966
 	b	.L_7bbae
 .L_7b954:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7b958:
 	cmp	r0, #2
 	bne	.L_7b95e
@@ -1586,7 +1586,7 @@ func_807B940:
 .L_7b9e8:
 	.4byte	sUnk_8640454
 .L_7b9ec:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7b9f0:
 	.4byte	gUnk_3003C48
 .L_7b9f4:
@@ -1651,7 +1651,7 @@ func_807B940:
 	strb	r0, [r7, #0]
 	b	.L_7bbae
 .L_7ba70:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7ba74:
 	.4byte	gUnk_3003C48
 .L_7ba78:
@@ -1659,13 +1659,13 @@ func_807B940:
 .L_7ba7c:
 	.4byte	gUnk_3003C70
 .L_7ba80:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7ba84:
 	.4byte	sUnk_863926C
 .L_7ba88:
 	.4byte	sUnk_8639288
 .L_7ba8c:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7ba90:
 	.4byte	gUnk_3003C40
 .L_7ba94:
@@ -1710,13 +1710,13 @@ func_807B940:
 	strh	r2, [r3, #2]
 	b	.L_7bbae
 .L_7bae4:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7bae8:
 	.4byte	gUnk_3003C40
 .L_7baec:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7baf0:
-	.4byte	gUnk_3003C9A
+	.4byte	gStageEntryShakeTimer
 .L_7baf4:
 	.4byte	sUnk_8640960
 .L_7baf8:
@@ -1824,7 +1824,7 @@ func_807B940:
 .L_7bbbc:
 	.4byte	sUnk_86404A4
 .L_7bbc0:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7bbc4:
 	.4byte	gUnk_3003C40
 .L_7bbc8:
@@ -1832,7 +1832,7 @@ func_807B940:
 .L_7bbcc:
 	.4byte	gUnk_3003C94
 .L_7bbd0:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 
 
 thumb_func_start func_807BBD4
@@ -1851,7 +1851,7 @@ func_807BBD4:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_7bbec:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7bbf0:
 	.4byte	.L_7bbf4
 .L_7bbf4:
@@ -1885,9 +1885,9 @@ func_807BBD4:
 	bl	m4aSongNumStart
 	b	.L_7bd7e
 .L_7bc38:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7bc3c:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7bc40:
 	ldr	r1, .L_7bc80
 	ldrh	r0, [r1, #0]
@@ -1922,11 +1922,11 @@ func_807BBD4:
 	b	.L_7bd7e
 	.align	2, 0
 .L_7bc80:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7bc84:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7bc88:
-	.4byte	gUnk_3003C44
+	.4byte	gStageEntryMainSpriteFalling
 .L_7bc8c:
 	.4byte	gUnk_3003C40
 .L_7bc90:
@@ -1955,7 +1955,7 @@ func_807BBD4:
 .L_7bcbc:
 	.4byte	gUnk_3003C92
 .L_7bcc0:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7bcc4:
 	.4byte	gUnk_3003C88
 .L_7bcc8:
@@ -1976,7 +1976,7 @@ func_807BBD4:
 .L_7bce4:
 	.4byte	gUnk_3003C88
 .L_7bce8:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7bcec:
 	cmp	r3, #2
 	bne	.L_7bcf6
@@ -2013,9 +2013,9 @@ func_807BBD4:
 .L_7bd28:
 	.4byte	sUnk_863951C
 .L_7bd2c:
-	.4byte	gUnk_3003C9A
+	.4byte	gStageEntryShakeTimer
 .L_7bd30:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7bd34:
 	.4byte	sUnk_8639510
 .L_7bd38:
@@ -2034,7 +2034,7 @@ func_807BBD4:
 	b	.L_7bd7c
 	.align	2, 0
 .L_7bd54:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7bd58:
 	ldr	r1, .L_7bd84
 	ldrh	r0, [r1, #0]
@@ -2061,9 +2061,9 @@ func_807BBD4:
 	pop	{r0}
 	bx	r0
 .L_7bd84:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_7bd88:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_7bd8c:
 	.4byte	gUnk_3003C94
 
@@ -2083,7 +2083,7 @@ func_807BD90:
 	b	.L_7bf5e
 	.align	2, 0
 .L_7bda8:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7bdac:
 	cmp	r1, #2
 	beq	.L_7be8c
@@ -2117,11 +2117,11 @@ func_807BD90:
 	b	.L_7bf5e
 	.align	2, 0
 .L_7bde4:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7bde8:
 	.4byte	gUnk_3003C88
 .L_7bdec:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7bdf0:
 	ldr	r1, .L_7be10
 	ldrh	r0, [r1, #2]
@@ -2142,7 +2142,7 @@ func_807BD90:
 .L_7be10:
 	.4byte	gUnk_3003C88
 .L_7be14:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7be18:
 	cmp	r3, #2
 	bne	.L_7be22
@@ -2191,11 +2191,11 @@ func_807BD90:
 .L_7be6c:
 	.4byte	sUnk_863951C
 .L_7be70:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7be74:
 	.4byte	sUnk_8639510
 .L_7be78:
-	.4byte	gUnk_3003C9A
+	.4byte	gStageEntryShakeTimer
 .L_7be7c:
 	.4byte	gUnk_3003C68
 .L_7be80:
@@ -2259,7 +2259,7 @@ func_807BD90:
 .L_7bef0:
 	.4byte	gUnk_3003C68
 .L_7bef4:
-	.4byte	gUnk_3003C9C
+	.4byte	gStageEntryShakeMode
 .L_7bef8:
 	.4byte	sUnk_8639528
 .L_7befc:
@@ -2317,7 +2317,7 @@ func_807BD90:
 	pop	{r0}
 	bx	r0
 .L_7bf64:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7bf68:
 	.4byte	gUnk_3003C48
 .L_7bf6c:
@@ -2325,7 +2325,7 @@ func_807BD90:
 .L_7bf70:
 	.4byte	gUnk_3003C70
 .L_7bf74:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7bf78:
 	.4byte	sUnk_863926C
 .L_7bf7c:
@@ -2349,7 +2349,7 @@ func_807BF88:
 	b	.L_7c064
 	.align	2, 0
 .L_7bf9c:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7bfa0:
 	ldr	r3, .L_7c030
 	ldr	r1, .L_7c034
@@ -2423,7 +2423,7 @@ func_807BF88:
 	mov	r0, #1
 	b	.L_7c066
 .L_7c030:
-	.4byte	gUnk_3003C44
+	.4byte	gStageEntryMainSpriteFalling
 .L_7c034:
 	.4byte	sUnk_86395FC
 .L_7c038:
@@ -2445,9 +2445,9 @@ func_807BF88:
 .L_7c058:
 	.4byte	sUnk_8639288
 .L_7c05c:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7c060:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_7c064:
 	mov	r0, #0
 .L_7c066:
@@ -2509,7 +2509,7 @@ func_807C06C:
 	bx	r0
 	.align	2, 0
 .L_7c0cc:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7c0d0:
 	.4byte	gUnk_3003C40
 .L_7c0d4:
@@ -3217,7 +3217,7 @@ func_807C24C:
 .L_7c5f4:
 	.4byte	gUnk_3003C6C
 .L_7c5f8:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7c5fc:
 	.4byte	gUnk_3003C40
 .L_7c600:
@@ -3239,7 +3239,7 @@ func_807C24C:
 .L_7c620:
 	.4byte	gUnk_3003C94
 .L_7c624:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7c628:
 	.4byte	gUnk_3003C88
 .L_7c62c:
@@ -3458,7 +3458,7 @@ func_807C24C:
 .L_7c7c4:
 	.4byte	gUnk_3003C6C
 .L_7c7c8:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7c7cc:
 	.4byte	gUnk_3003C40
 .L_7c7d0:

@@ -1291,7 +1291,7 @@ func_801DFF8:
 	ble	.L_1e00e
 	b	.L_1e056
 .L_1e02c:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_1e030:
 	.4byte	gPersistentSpriteData
 .L_1e034:

@@ -34,7 +34,7 @@ void func_8070E24();
 void func_8070BB8();
 void func_8070C38();
 void func_806F684();
-void func_80701F4();
+void SetCurrentStageKeyzerRecoveredFlag();
 void UpdateAnimatedGraphics();
 void func_806CF28();
 void func_806D218();
@@ -296,7 +296,7 @@ void ConfigureRoomDisplay(void)
             gUnk_30000D8.targetAlpha = blendLevel;
             gUnk_30000D8.currentAlpha = blendLevel;
             gUnk_30000D8.defaultAlpha = blendLevel;
-            if (gUnk_3000C3F != 0)
+            if (gStageEntryPauseMenuDisabled != 0)
             {
                 TransparencyProcessTiles(0);
                 gUnk_30000D8.currentAlpha = gUnk_30000D8.targetAlpha;
@@ -444,7 +444,7 @@ void LoadRoom(void)
     gUnk_30031F4.bottom = tileset.metatileBottom;
     gUnk_30031F4.attributes = tileset.metatileAttributes;
     InitializeRoomEffects();
-    if (gUnk_3000C3F == 0 || gHasTemporarySave != 0)
+    if (gStageEntryPauseMenuDisabled == 0 || gHasTemporarySave != 0)
         PreloadStageRoomBackgrounds();
 
     dma = (struct DmaRegisters *)0x040000D4;
@@ -662,7 +662,7 @@ void InitializeRoomState(void)
     gShopItemState = 0;
     gBldCnt = 0;
     gUnk_30037BE = 0;
-    initialize = gUnk_3000C3F;
+    initialize = gStageEntryPauseMenuDisabled;
     colorFading = colorBase;
     pauseFlag = &gPauseFlag;
 
@@ -1343,7 +1343,7 @@ void InitializeRoomMusic(void)
     if (gSwitchPressed != 0)
         gCurrentRoomHeader.musicVolume = 0x100;
 
-    if (gUnk_3000C3F == 0) {
+    if (gStageEntryPauseMenuDisabled == 0) {
         gGameMusicState.specialSongId = 0;
         if (gHasTemporarySave != 0 && gSwitchPressed != 0)
             SetHurryUpMusic(0);
@@ -1674,7 +1674,7 @@ void ProcessRoomBackgrounds(void)
             ProcessGoldenPassageBossTransition();
     }
     if (gPauseFlag != 0) {
-        func_80701F4();
+        SetCurrentStageKeyzerRecoveredFlag();
         gGameMusicState.state = 0;
         gColorFading.unk_2 = 0;
         gColorFading.type = 2;

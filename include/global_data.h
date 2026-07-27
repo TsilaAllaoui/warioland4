@@ -4,6 +4,9 @@
 #include "gba.h"
 #include "oam.h"
 
+#define ASM_INCLUDE(path) \
+    __asm__(".include \"" path "\"\n")
+
 enum Passage {
     PASSAGE_ENTRY,
     PASSAGE_EMERALD,
