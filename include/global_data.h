@@ -282,7 +282,7 @@ extern u8 gEnableHBlank;
 extern u8 gUnk_3000038;
 extern u16 gUnk_300003A;
 extern u16 gUnk_300003C;
-extern u16 gUnk_300003E;
+extern u16 gClearedRoomTileCount;
 extern u8 gShopItemState;
 extern u8 gShopItemTimer;
 extern u8 gUnk_3000046;
@@ -304,8 +304,8 @@ extern struct ScreenShakeParameters gScreenShakeX;
 
 extern u8 gBossDefeatTimer[];
 extern u8 gUnk_3000023;
-extern struct BackgroundTileTables gUnk_30031F4;
-extern u8 gUnk_300342C;
+extern struct BackgroundTileTables gBackgroundTileTables;
+extern u8 gRoomTransitionTileDataCount;
 
 /* 0x03000544 */
 extern u8 gUnk_3000544[];
@@ -327,7 +327,7 @@ extern OamData *gUnk_3002C70;
 extern u32 gUnk_3002C74;
 
 /* 0x030031F4 */
-extern struct BackgroundTileTables gUnk_30031F4;
+extern struct BackgroundTileTables gBackgroundTileTables;
 extern struct GameMusicState gGameMusicState;
 extern u16 gRoomCameraBounds[4];
 extern struct RoomEffectState gUnk_3003214;
@@ -336,7 +336,7 @@ extern u16 gUnk_300321C[2];
 extern struct BackgroundPositionState gCameraPositionState;
 
 /* 0x0300342C */
-extern u8 gUnk_300342C;
+extern u8 gRoomTransitionTileDataCount;
 
 /* 0x030037BE */
 extern u8 gUnk_30037BE;

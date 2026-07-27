@@ -9,7 +9,6 @@ extern const struct AnimationFrame sBossTreasureOam_83CF72C[];
 extern const struct AnimationFrame sBossTreasureOam_83DAB40[];
 extern const struct AnimationFrame sBossTreasureOam_83DF9E8[];
 
-void func_806F650(s32 index);
 void BossTreasureInit(void);
 
 void SpriteBossTreasure(void);

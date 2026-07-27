@@ -1771,7 +1771,7 @@ func_8075F44:
 	b	.L_75fd2
 	.align	2, 0
 .L_75f7c:
-	.4byte	gUnk_3000C2A
+	.4byte	gBossTreasureType
 .L_75f80:
 	.4byte	gCurrentPassage
 .L_75f84:
@@ -3067,8 +3067,8 @@ ScoreGiveOrDropCoins:
 	.4byte	gWarioData
 
 
-thumb_func_start func_807690C
-func_807690C:
+thumb_func_start SpawnOnePointTileEffect
+SpawnOnePointTileEffect:
 	push	{r4, r5, lr}
 	add	r4, r0, #0
 	add	r5, r1, #0
@@ -3102,8 +3102,8 @@ func_807690C:
 	bx	r0
 
 
-thumb_func_start func_8076950
-func_8076950:
+thumb_func_start SpawnTenPointTileEffect
+SpawnTenPointTileEffect:
 	push	{r4, r5, lr}
 	add	r4, r0, #0
 	add	r5, r1, #0
@@ -3140,8 +3140,8 @@ func_8076950:
 	.4byte	0x0000013f
 
 
-thumb_func_start func_8076998
-func_8076998:
+thumb_func_start SpawnTileDebrisParticle
+SpawnTileDebrisParticle:
 	push	{r4, r5, r6, lr}
 	ldr	r4, [sp, #16]
 	lsl	r0, r0, #16

@@ -984,7 +984,7 @@ func_8074F44:
 	cmp	r0, #0
 	bne	.L_74f74
 	mov	r0, #0
-	bl	func_806F650
+	bl	StartTileEffect
 	ldr	r0, .L_74f70
 	strb	r4, [r0, #0]
 	b	.L_74fa0
@@ -1000,7 +1000,7 @@ func_8074F44:
 	cmp	r0, #4
 	bne	.L_74f90
 	mov	r0, #1
-	bl	func_806F650
+	bl	StartTileEffect
 	ldr	r1, .L_74f8c
 	b	.L_74f9c
 	.align	2, 0
@@ -1010,7 +1010,7 @@ func_8074F44:
 	cmp	r0, #2
 	bne	.L_74fa0
 	mov	r0, #2
-	bl	func_806F650
+	bl	StartTileEffect
 	ldr	r1, .L_74fa8
 .L_74f9c:
 	mov	r0, #1
@@ -1133,7 +1133,7 @@ func_8074FAC:
 	bne	.L_75072
 	mov	r0, #11
 .L_7506a:
-	bl	func_806F650
+	bl	StartTileEffect
 	mov	r0, #1
 	strb	r0, [r4, #0]
 .L_75072:

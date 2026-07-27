@@ -51,7 +51,7 @@ SECTIONS {
         . = 0x0038; gUnk_3000038 = .;
         . = 0x003a; gUnk_300003A = .;
         . = 0x003c; gUnk_300003C = .;
-        . = 0x003e; gUnk_300003E = .;
+        . = 0x003e; gClearedRoomTileCount = .;
         . = 0x0040; gUnk_3000040 = .;
         . = 0x0044; gShopItemState = .;
         . = 0x0045; gShopItemTimer = .;
@@ -134,7 +134,7 @@ SECTIONS {
         . = 0x0c24; gVortexGfxSlot = .;
         . = 0x0c26; gVortexYPosition = .;
         . = 0x0c28; gVortexXPosition = .;
-        . = 0x0c2a; gUnk_3000C2A = .;
+        . = 0x0c2a; gBossTreasureType = .;
         . = 0x0c2b; gUnk_3000C2B = .;
         . = 0x0c2c; gHasBossTreasure5 = .;
         . = 0x0c2d; gHasBossTreasure6 = .;
@@ -268,7 +268,7 @@ SECTIONS {
         . = 0x31c8; gWarioHorizontalCollisionOffset = .;
         . = 0x31ca; gWarioTileHorizontalSpeed = .;
         . = 0x31cc; gWarioTileVerticalSpeed = .;
-        . = 0x31f4; gUnk_30031F4 = .;
+        . = 0x31f4; gBackgroundTileTables = .;
         . = 0x3200; gGameMusicState = .;
         . = 0x320c; gRoomCameraBounds = .;
         . = 0x3214; gUnk_3003214 = .;
@@ -276,7 +276,7 @@ SECTIONS {
         . = 0x321c; gUnk_300321C = .;
         . = 0x3224; gCameraPositionState = .;
         . = 0x322c; gUnk_300322C = .;
-        . = 0x342c; gUnk_300342C = .;
+        . = 0x342c; gRoomTransitionTileDataCount = .;
         . = 0x342e; gUnk_300342E = .;
         . = 0x35f6; gUnk_30035F6 = .;
         . = 0x37be; gUnk_30037BE = .;
@@ -285,7 +285,7 @@ SECTIONS {
         . = 0x3928; gUnk_3003928 = .;
         . = 0x3b08; gAnimatedGraphicsStates = .;
         . = 0x3bc8; gCurrentRoomCameraControlData = .;
-        . = 0x3bcc; gUnk_3003BCC = .;
+        . = 0x3bcc; gTileEffectState = .;
         . = 0x3bd0; gUnk_3003BD0 = .;
         . = 0x3bdc; gUnk_3003BDC = .;
         . = 0x3be8; gUnk_3003BE8 = .;
@@ -715,7 +715,7 @@ SECTIONS {
         obj/bg_clip.o(.text);
         obj/animated_graphics.o(.text);
         obj/camera.o(.text);
-        obj/disasm_0x06EC50.o(.text);
+        obj/tile_interaction.o(.text);
         obj/disasm_color_fading.o(.text);
         obj/disasm_hblank.o(.text);
         obj/disasm_stage_end.o(.text);
@@ -793,7 +793,7 @@ SECTIONS {
         obj/data/sprite_data_3B6450_3C4AE8.o(.rodata);
         obj/sprite_ai/rock.o(.rodata);
         obj/data/sprite_data_3C4B28_3F9D64.o(.rodata);
-        obj/disasm_0x06EC50.o(.rodata);
+        obj/tile_interaction.o(.rodata);
         obj/disasm_color_fading.o(.rodata);
         obj/disasm_hblank.o(.rodata);
         obj/disasm_stage_end.o(.rodata);

@@ -12,6 +12,7 @@
 #include "animated_graphics.h"
 
 #include "gba/m4a.h"
+#include "tile_interaction.h"
 
 
 /* Neighboring modules still use these original ABI symbols on the main base. */
@@ -19,7 +20,6 @@ void TransparencyProcessTiles();
 void func_806D3A4();
 void UpdateCamera();
 void func_806C828();
-void func_806F7CC();
 void InitAnimatedGraphics();
 void func_8071598();
 void func_8071A2C();
@@ -33,14 +33,12 @@ void TransparencyProcessWater();
 void func_8070E24();
 void func_8070BB8();
 void func_8070C38();
-void func_806F684();
 void func_80701F4();
 void UpdateAnimatedGraphics();
 void func_806CF28();
 void func_806D218();
 void func_806CA00();
 void func_806CCE4();
-void func_806F838();
 void m4aSongNumStartOrContinue();
 void m4aMPlayFadeOutTemporarily();
 
@@ -440,9 +438,9 @@ void LoadRoom(void)
         musicRoomHeader = &gCurrentRoomHeader;
         musicRoomHeader->musicVolume = 0;
     }
-    gUnk_30031F4.top = tileset.metatileTop;
-    gUnk_30031F4.bottom = tileset.metatileBottom;
-    gUnk_30031F4.attributes = tileset.metatileAttributes;
+    gBackgroundTileTables.top = tileset.metatileTop;
+    gBackgroundTileTables.bottom = tileset.metatileBottom;
+    gBackgroundTileTables.attributes = tileset.metatileAttributes;
     InitializeRoomEffects();
     if (gUnk_3000C3F == 0 || gHasTemporarySave != 0)
         PreloadStageRoomBackgrounds();
@@ -527,7 +525,7 @@ void LoadRoom(void)
     }
     if (gUnk_300001B != 0)
         DecompressRoomBackground(0, sBossRoomBackgroundData, (u8 *)0x0201F040);
-    func_806F7CC();
+    RefreshCollectedTileEffects();
     InitAnimatedGraphics();
     func_8071598();
     func_8071A2C();
@@ -539,7 +537,7 @@ void LoadRoom(void)
         gPreviousYPosition = gWarioData.yPosition;
     }
     tileAttribute = *(const u16 *)gBackgroundInfo.pBg1Data;
-    tileAttributes = gUnk_30031F4.attributes;
+    tileAttributes = gBackgroundTileTables.attributes;
     tilePointer = (const u16 *)((tileAttribute * 2) + (u32)tileAttributes);
     tileAttribute = *tilePointer;
     if (tileAttribute == 0xA0)
@@ -620,7 +618,7 @@ void RestoreTemporarySaveRoomTiles(void)
     s32 index;
 
     if (gHasTemporarySave != 0) {
-        count = &gUnk_300003E;
+        count = &gClearedRoomTileCount;
         if (*count != 0) {
             index = 0;
             if (index != *count) {
@@ -689,7 +687,7 @@ void InitializeRoomState(void)
         if (gHasTemporarySave == 0) {
             if ((gUnk_3000020 & 0x80) == 0)
                 gUnk_3000025 = 0;
-            gUnk_300003E = 0;
+            gClearedRoomTileCount = 0;
             gUnk_300003A = 0;
             gUnk_300003C = 0;
             {
@@ -800,7 +798,7 @@ void InitializeRoomState(void)
     gBg1XPosition = 0;
     gBg0XPosition = 0;
     gBg0YPosition = 0;
-    gUnk_300342C = 0;
+    gRoomTransitionTileDataCount = 0;
     gUnk_3000038 = 0;
 }
 
@@ -1091,10 +1089,10 @@ void DrawRoomBackgroundLayer(u8 layer)
                     asm("" : "+r"(sourceOffset));
                     metatile = *(u16 *)sourceOffset;
                     tileIndex = metatile * 4;
-                    destination[0] = gUnk_30031F4.top[tileIndex++];
-                    destination[1] = gUnk_30031F4.top[tileIndex++];
-                    destination[32] = gUnk_30031F4.top[tileIndex++];
-                    destination[33] = gUnk_30031F4.top[tileIndex++];
+                    destination[0] = gBackgroundTileTables.top[tileIndex++];
+                    destination[1] = gBackgroundTileTables.top[tileIndex++];
+                    destination[32] = gBackgroundTileTables.top[tileIndex++];
+                    destination[33] = gBackgroundTileTables.top[tileIndex++];
                     sourceIndex++;
                     remainingColumns--;
                     column = (u16)(column + 1);
@@ -1669,7 +1667,7 @@ void ProcessRoomBackgrounds(void)
     if (gShopItemState != 0)
         ProcessRoomWindowEffect();
     if (gUnk_300001B > 1) {
-        func_806F684();
+        UpdateTileEffect();
         if (gUnk_300001B == 3)
             ProcessGoldenPassageBossTransition();
     }
@@ -1785,6 +1783,6 @@ void DrawGameScreen(void)
         func_806CCE4();
     }
     if (gSubGameMode == 2)
-        func_806F838();
+        UpdateWarioTileInteractions();
     func_8071A2C();
 }
