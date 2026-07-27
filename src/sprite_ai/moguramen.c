@@ -28,7 +28,6 @@ extern const struct AnimationFrame sMoguramenPushedSlideOam[];
 extern const s16 sUnk_8352B18[];
 extern const s16 sMoguramenProjectileYSpeed[];
 extern const s16 sMoguramenProjectileXSpeed[];
-void func_8076998(u32 yPosition, u32 xPosition, u32 xVelocity, u32 yVelocity, u32 angleStep);
 
 void UpdateMoguramenHitboxForFacing(void)
 {
@@ -738,9 +737,9 @@ void UpdateMoguramenProjectileThrown(void)
 {
     gCurrentSprite.status = 0;
     if (gCurrentSprite.xPosition > gWarioData.xPosition) {
-        func_8076998(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, 0, 1, 0);
+        SpawnTileDebrisParticle(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, 0, 1, 0);
     } else {
-        func_8076998(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, 0, 2, 0);
+        SpawnTileDebrisParticle(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, 0, 2, 0);
     }
 }
 

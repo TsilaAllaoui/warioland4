@@ -7,6 +7,7 @@
 #include "sprite_ai/treasure.h"
 #include "sprite_util.h"
 #include "voice_set.h"
+#include "tile_effect.h"
 
 void BossTreasureInit(void)
 {
@@ -30,7 +31,7 @@ void BossTreasureInit(void)
     gCurrentSprite.hitboxExtentRight = 4;
     gCurrentSprite.warioCollision = 0;
 
-    treasureType = gUnk_3000C2A;
+    treasureType = gBossTreasureType;
     sprite = &gCurrentSprite;
     switch (treasureType) {
         case 1:
@@ -149,7 +150,7 @@ void SpriteBossTreasure(void)
             }
             sprite->pose = SPOSE_14;
             if (gCollectedNEJewelPiece == 2) {
-                func_806F650(0);
+                StartTileEffect(0);
                 gCollectedNEJewelPiece = one;
                 *timer = 80;
             } else {
@@ -195,7 +196,7 @@ void SpriteBossTreasure(void)
             }
             sprite->pose = SPOSE_16;
             if (gCollectedSEJewelPiece == 2) {
-                func_806F650(1);
+                StartTileEffect(1);
                 gCollectedSEJewelPiece = one;
                 *timer = 80;
             } else {
@@ -241,7 +242,7 @@ void SpriteBossTreasure(void)
             }
             sprite->pose = SPOSE_17;
             if (gCollectedSWJewelPiece == 2) {
-                func_806F650(2);
+                StartTileEffect(2);
                 gCollectedSWJewelPiece = one;
                 *timer = 110;
             } else {

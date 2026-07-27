@@ -641,7 +641,7 @@ func_806CA00:
 .L_6ccdc:
 	.4byte	gBackgroundInfo
 .L_6cce0:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 
 
 thumb_func_start func_806CCE4
@@ -1343,7 +1343,7 @@ func_806CF28:
 .L_6d210:
 	.4byte	gBackgroundInfo
 .L_6d214:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 
 
 thumb_func_start func_806D218

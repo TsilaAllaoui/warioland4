@@ -911,11 +911,11 @@ func_8072FB0:
 .L_7332c:
 	.4byte	gUnk_3000025
 .L_73330:
-	.4byte	gUnk_300342C
+	.4byte	gRoomTransitionTileDataCount
 .L_73334:
 	.4byte	gTimerState
 .L_73338:
-	.4byte	gUnk_300003E
+	.4byte	gClearedRoomTileCount
 .L_7333c:
 	.4byte	gGameMusicState
 .L_73340:
@@ -1534,11 +1534,11 @@ func_807345C:
 .L_737bc:
 	.4byte	gUnk_3000025
 .L_737c0:
-	.4byte	gUnk_300342C
+	.4byte	gRoomTransitionTileDataCount
 .L_737c4:
 	.4byte	gTimerState
 .L_737c8:
-	.4byte	gUnk_300003E
+	.4byte	gClearedRoomTileCount
 .L_737cc:
 	.4byte	gGameMusicState
 .L_737d0:

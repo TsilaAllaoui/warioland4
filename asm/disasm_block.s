@@ -93,7 +93,7 @@ func_806D3C0:
 .L_6d46c:
 	.4byte	gBackgroundInfo
 .L_6d470:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6d474:
 	.4byte	sRoomStartDataTables
 .L_6d478:
@@ -212,7 +212,7 @@ func_806D4C0:
 	b	.L_6d56c
 	.align	2, 0
 .L_6d550:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6d554:
 	.4byte	sUnk_878F2E4
 .L_6d558:
@@ -347,7 +347,7 @@ func_806D5C0:
 	ldrh	r1, [r7, #4]
 	ldrh	r2, [r6, #2]
 	str	r3, [sp, #32]
-	bl	func_806F524
+	bl	ProcessTileInteractionAtPosition
 	ldr	r3, [sp, #32]
 	cmp	r0, #0
 	beq	.L_6d66c
@@ -403,7 +403,7 @@ func_806D5C0:
 	add	r5, r0, #0
 	b	.L_6d6d4
 .L_6d6b8:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6d6bc:
 	.4byte	sUnk_878F2E4
 .L_6d6c0:

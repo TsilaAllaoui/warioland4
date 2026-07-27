@@ -63,7 +63,7 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
     tileX = shiftedX >> 22;
     roomHeaderInit = &gCurrentRoomHeader;
     asm("" : "=r"(roomHeader) : "0"(roomHeaderInit));
-    attributeTable = gUnk_30031F4.attributes;
+    attributeTable = gBackgroundTileTables.attributes;
     destination = stack.attributes;
     layer = (struct BackgroundInfo *)&background->pBg1Data;
     layerIndex = 1;
@@ -257,7 +257,7 @@ bg0_in_bounds:
             tileIndex <<= 1;
             tileIndex += (u32)tileMap;
             tileIndex = *(u16 *)tileIndex;
-            tables = &gUnk_30031F4;
+            tables = &gBackgroundTileTables;
             attributesReload = tables->attributes;
             tileIndex <<= 1;
             tileIndex += (u32)attributesReload;
@@ -357,7 +357,7 @@ s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
     indexTemporary = xCoord << 1;
     indexTemporary += (u32)tileMap;
     tile = *(u16 *)indexTemporary;
-    tile = gUnk_30031F4.attributes[tile];
+    tile = gBackgroundTileTables.attributes[tile];
 
     if ((u32)(tile - 96) <= 7)
     {
@@ -514,10 +514,10 @@ void ApplyRoomTransitionTileOffset(u8 value)
     u16 tile;
     s32 count;
 
-    if (gUnk_300342C == 0)
+    if (gRoomTransitionTileDataCount == 0)
         return;
 
-    count = gUnk_300342C;
+    count = gRoomTransitionTileDataCount;
     if (count != 0)
     {
         background = &gBackgroundInfo;
@@ -565,7 +565,7 @@ void ApplyRoomTransitionTileOffset(u8 value)
     }
 
     if (value == 0)
-        gUnk_300342C = 0;
+        gRoomTransitionTileDataCount = 0;
 }
 
 void SetRoomTransitionTileValues(s32 value)

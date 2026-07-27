@@ -13,21 +13,21 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  84.0%   3,421 / 4,071</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████░░░░░░░░░  70.9%   432,238 / 609,818 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████░░░░░  84.8%   3,454 / 4,071</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████░░░░░░░░  71.8%   437,778 / 609,818 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (609,788 / 609,818 bytes exact)</text>
 <rect x="24.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="40.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">FUNCTIONS</text>
-<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">3,421 / 4,071</text>
-<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">84.0% matched functions</text>
+<text x="40.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">3,454 / 4,071</text>
+<text x="40.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">84.8% matched functions</text>
 <rect x="335.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="351.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">CODE BYTES</text>
-<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">432,238 / 609,818</text>
-<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">70.9% matched code bytes</text>
+<text x="351.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">437,778 / 609,818</text>
+<text x="351.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">71.8% matched code bytes</text>
 <rect x="646.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="662.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">REMAINING</text>
-<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">650 funcs · 177,580 bytes</text>
+<text x="662.00" y="164.00" fill="#f8fafc" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="800" text-anchor="start">617 funcs · 172,040 bytes</text>
 <text x="662.00" y="188.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="500" text-anchor="start">remaining unmatched code</text>
 <rect x="957.00" y="108.00" width="299.00" height="94.00" rx="10" fill="#0f172a" stroke="#1e293b"/>
 <text x="973.00" y="133.00" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="700" text-anchor="start">EXACT BYTE SIZING</text>
@@ -1757,12 +1757,12 @@
 <rect x="563.42" y="894.47" width="12.44" height="13.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpriteSpawnSecondary: 156 bytes, not matched, size=symbol</title></rect>
 <rect x="563.42" y="908.41" width="12.44" height="13.24" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_80752F0: 152 bytes, not matched, size=symbol</title></rect>
 <rect x="576.20" y="894.47" width="10.44" height="14.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/ScoreGivePoints: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="576.20" y="909.72" width="10.44" height="11.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8076998: 116 bytes, not matched, size=symbol</title></rect>
+<rect x="576.20" y="909.72" width="10.44" height="11.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpawnTileDebrisParticle: 116 bytes, not matched, size=symbol</title></rect>
 <rect x="587.00" y="894.47" width="9.51" height="9.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8076784: 88 bytes, not matched, size=symbol</title></rect>
 <rect x="596.85" y="894.47" width="9.06" height="9.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/ScoreGiveOrDropCoins: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="587.00" y="904.67" width="9.15" height="8.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8076950: 72 bytes, not matched, size=symbol</title></rect>
+<rect x="587.00" y="904.67" width="9.15" height="8.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpawnTenPointTileEffect: 72 bytes, not matched, size=symbol</title></rect>
 <rect x="587.00" y="913.34" width="9.15" height="8.31" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8076A0C: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="596.50" y="904.67" width="9.41" height="7.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_807690C: 68 bytes, not matched, size=symbol</title></rect>
+<rect x="596.50" y="904.67" width="9.41" height="7.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpawnOnePointTileEffect: 68 bytes, not matched, size=symbol</title></rect>
 <rect x="596.50" y="912.63" width="6.97" height="9.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_807687C: 60 bytes, not matched, size=symbol</title></rect>
 <rect x="603.82" y="912.63" width="2.09" height="9.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075974: 20 bytes, not matched, size=symbol</title></rect>
 </g>
@@ -2027,45 +2027,45 @@
 <rect x="1179.74" y="304.62" width="1.31" height="2.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>m4a/nullsub_141: 4 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_0x06EC50: 0.0% matched, 5,540 bytes</title>
+<title>tile_interaction: 100.0% matched, 5,540 bytes</title>
 <rect x="1182.40" y="219.00" width="90.00" height="88.77" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip28"><rect x="1184.40" y="220.00" width="86.60" height="16.09"/></clipPath>
 <rect x="1183.40" y="220.00" width="88.60" height="16.09" fill="#05080d"/>
-<text x="1184.90" y="233.00" clip-path="url(#moduleLabelClip28)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_0x06…</text>
-<text x="1270.00" y="232.00" text-anchor="end" clip-path="url(#moduleLabelClip28)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="1183.40" y="236.09" width="21.59" height="25.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FD74: 496 bytes, not matched, size=symbol</title></rect>
-<rect x="1183.40" y="261.85" width="21.59" height="23.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F9D8: 460 bytes, not matched, size=symbol</title></rect>
-<rect x="1183.40" y="285.75" width="21.59" height="21.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F838: 416 bytes, not matched, size=symbol</title></rect>
-<rect x="1205.34" y="236.09" width="17.19" height="19.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F524: 300 bytes, not matched, size=symbol</title></rect>
-<rect x="1222.88" y="236.09" width="16.72" height="19.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806EC50: 292 bytes, not matched, size=symbol</title></rect>
-<rect x="1239.96" y="236.09" width="16.26" height="19.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806EE98: 284 bytes, not matched, size=symbol</title></rect>
-<rect x="1256.56" y="236.09" width="15.09" height="19.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FBA4: 264 bytes, not matched, size=symbol</title></rect>
-<rect x="1205.34" y="255.58" width="14.09" height="18.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F1C0: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="1205.34" y="274.21" width="14.09" height="17.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FFB0: 232 bytes, not matched, size=symbol</title></rect>
-<rect x="1205.34" y="292.52" width="14.09" height="14.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_8070098: 188 bytes, not matched, size=symbol</title></rect>
-<rect x="1219.78" y="255.58" width="13.56" height="13.09" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F11C: 164 bytes, not matched, size=symbol</title></rect>
-<rect x="1219.78" y="269.02" width="13.56" height="12.76" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_8070154: 160 bytes, not matched, size=symbol</title></rect>
-<rect x="1219.78" y="282.13" width="13.56" height="12.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806EDFC: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="1219.78" y="294.91" width="13.56" height="12.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F424: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="1233.70" y="255.58" width="12.67" height="11.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F708: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="1246.71" y="255.58" width="12.29" height="11.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806ED74: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="1259.36" y="255.58" width="12.29" height="11.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F328: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="1233.70" y="267.84" width="13.39" height="10.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F684: 132 bytes, not matched, size=symbol</title></rect>
-<rect x="1247.44" y="267.84" width="12.14" height="10.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F058: 120 bytes, not matched, size=symbol</title></rect>
-<rect x="1259.93" y="267.84" width="11.72" height="10.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F3B0: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="1233.70" y="278.79" width="12.74" height="9.41" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FCAC: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="1233.70" y="288.55" width="12.74" height="9.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806EFEC: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="1233.70" y="297.96" width="12.74" height="9.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F7CC: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="1246.78" y="278.79" width="9.74" height="11.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F4BC: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="1256.87" y="278.79" width="7.41" height="11.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F2D8: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="1264.63" y="278.79" width="7.02" height="11.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F0D0: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="1246.78" y="290.55" width="8.60" height="9.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FF64: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="1246.78" y="300.23" width="8.60" height="6.78" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806EFB4: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1255.73" y="290.55" width="8.09" height="7.22" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F794: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="1264.17" y="290.55" width="7.48" height="7.22" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F650: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="1255.73" y="298.12" width="5.07" height="8.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806F2AC: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1261.15" y="298.12" width="5.07" height="8.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FD1C: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1266.58" y="298.12" width="5.07" height="8.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_0x06EC50/func_806FD48: 44 bytes, not matched, size=symbol</title></rect>
+<text x="1184.90" y="233.00" clip-path="url(#moduleLabelClip28)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">tile_intera…</text>
+<text x="1270.00" y="232.00" text-anchor="end" clip-path="url(#moduleLabelClip28)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="1183.40" y="236.09" width="21.59" height="25.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/UpdateWarioEnvironmentalTiles: 496 bytes, matched, size=symbol</title></rect>
+<rect x="1183.40" y="261.85" width="21.59" height="23.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessTileAtPosition: 460 bytes, matched, size=symbol</title></rect>
+<rect x="1183.40" y="285.75" width="21.59" height="21.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/UpdateWarioTileInteractions: 416 bytes, matched, size=symbol</title></rect>
+<rect x="1205.34" y="236.09" width="17.19" height="19.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessTileInteractionAtPosition: 300 bytes, matched, size=symbol</title></rect>
+<rect x="1222.88" y="236.09" width="16.72" height="19.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessHorizontalTileInteraction: 292 bytes, matched, size=symbol</title></rect>
+<rect x="1239.96" y="236.09" width="16.26" height="19.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessTileInteractionAttribute: 284 bytes, matched, size=symbol</title></rect>
+<rect x="1256.56" y="236.09" width="15.09" height="19.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessWarioReactionTile: 264 bytes, matched, size=symbol</title></rect>
+<rect x="1205.34" y="255.58" width="14.09" height="18.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/BreakTrackedAdjacentTiles: 236 bytes, matched, size=symbol</title></rect>
+<rect x="1205.34" y="274.21" width="14.09" height="17.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/SetBg1Tile: 232 bytes, matched, size=symbol</title></rect>
+<rect x="1205.34" y="292.52" width="14.09" height="14.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/SetBg1TileAndGraphics: 188 bytes, matched, size=symbol</title></rect>
+<rect x="1219.78" y="255.58" width="13.56" height="13.09" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/BreakAdjacentTiles: 164 bytes, matched, size=symbol</title></rect>
+<rect x="1219.78" y="269.02" width="13.56" height="12.76" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/SetBg2TileAndGraphics: 160 bytes, matched, size=symbol</title></rect>
+<rect x="1219.78" y="282.13" width="13.56" height="12.43" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessSideTileInteraction: 156 bytes, matched, size=symbol</title></rect>
+<rect x="1219.78" y="294.91" width="13.56" height="12.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ActivateSwitchTile: 152 bytes, matched, size=symbol</title></rect>
+<rect x="1233.70" y="255.58" width="12.67" height="11.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ReplaceTileEffectPair: 140 bytes, matched, size=symbol</title></rect>
+<rect x="1246.71" y="255.58" width="12.29" height="11.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/FindTwoStepTileReplacement: 136 bytes, matched, size=symbol</title></rect>
+<rect x="1259.36" y="255.58" width="12.29" height="11.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessPointTileInteraction: 136 bytes, matched, size=symbol</title></rect>
+<rect x="1233.70" y="267.84" width="13.39" height="10.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/UpdateTileEffect: 132 bytes, matched, size=symbol</title></rect>
+<rect x="1247.44" y="267.84" width="12.14" height="10.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/DispatchTileInteractionHandler: 120 bytes, matched, size=symbol</title></rect>
+<rect x="1259.93" y="267.84" width="11.72" height="10.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/FindTileReplacement: 116 bytes, matched, size=symbol</title></rect>
+<rect x="1233.70" y="278.79" width="12.74" height="9.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessAlternateTileAtPosition: 112 bytes, matched, size=symbol</title></rect>
+<rect x="1233.70" y="288.55" width="12.74" height="9.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessDirectionalTileAttribute: 108 bytes, matched, size=symbol</title></rect>
+<rect x="1233.70" y="297.96" width="12.74" height="9.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/RefreshCollectedTileEffects: 108 bytes, matched, size=symbol</title></rect>
+<rect x="1246.78" y="278.79" width="9.74" height="11.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessSpecialBossTile: 104 bytes, matched, size=symbol</title></rect>
+<rect x="1256.87" y="278.79" width="7.41" height="11.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/SpawnTileDebrisSprite: 80 bytes, matched, size=symbol</title></rect>
+<rect x="1264.63" y="278.79" width="7.02" height="11.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/BreakSingleTile: 76 bytes, matched, size=symbol</title></rect>
+<rect x="1246.78" y="290.55" width="8.60" height="9.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/RequestWarioPoseForTileAttributes: 76 bytes, matched, size=symbol</title></rect>
+<rect x="1246.78" y="300.23" width="8.60" height="6.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/GetTileEffectPosition: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1255.73" y="290.55" width="8.09" height="7.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ProcessFragileTileAttribute: 56 bytes, matched, size=symbol</title></rect>
+<rect x="1264.17" y="290.55" width="7.48" height="7.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/StartTileEffect: 52 bytes, matched, size=symbol</title></rect>
+<rect x="1255.73" y="298.12" width="5.07" height="8.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ClearTileAndSpawnAlternateEffect: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1261.15" y="298.12" width="5.07" height="8.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/ClearTileAndSpawnPrimaryEffect: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1266.58" y="298.12" width="5.07" height="8.90" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>tile_interaction/SpawnTileDebris: 44 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_sound_room: 0.0% matched, 5,524 bytes</title>

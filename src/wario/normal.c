@@ -6,6 +6,7 @@
 #include "score.h"
 #include "screen_shake.h"
 #include "sound.h"
+#include "tile_collision.h"
 #define CopyWarioPalette NormalHeader_CopyWarioPalette
 #define UpdateWarioPositionHistory NormalHeader_UpdateWarioPositionHistory
 #define PrepareWarioUpdate NormalHeader_PrepareWarioUpdate
@@ -31,10 +32,7 @@ extern void PrepareWarioUpdate(void);
 extern void UpdateWarioHorizontalCollisionOffset(void);
 extern u32 GetAdjustedWarioXVelocity(void);
 extern void func_8016614(u32 value);
-extern u32 func_806EDFC(u32 y, u32 x);
-extern u32 func_806ED74(u32 y, u32 x);
 extern u32 func_806D4C0(u32 y, u32 x);
-extern u32 func_806EC50(u32 y, u32 x);
 
 u8 UpdateNormalWarioPose(void)
 {
@@ -5566,7 +5564,7 @@ u32 CheckWarioHorizontalCollision(u32 side, u16 *newXPosition, u32 verticalOffse
                 break;
         }
         if (collisionData->unk_0B != 0) {
-            if (func_806EC50(yPosition, xPosition) != 0)
+            if (ProcessHorizontalTileInteraction(yPosition, xPosition) != 0)
                 collisionData->unk_0E += 1;
         }
         result += 1;
@@ -5633,7 +5631,7 @@ firstProbeDone:
 
                 collisionData = &gWarioCollisionData;
                 if (collisionData->unk_0B != 0) {
-                    if (func_806EC50(yPosition, xPosition) != 0)
+                    if (ProcessHorizontalTileInteraction(yPosition, xPosition) != 0)
                         collisionData->unk_0E += 2;
                 }
             }
@@ -5693,7 +5691,7 @@ secondProbeDone:
 
                 collisionData = &gWarioCollisionData;
                 if (collisionData->unk_0B != 0) {
-                    if (func_806EC50(yPosition, xPosition) != 0)
+                    if (ProcessHorizontalTileInteraction(yPosition, xPosition) != 0)
                         collisionData->unk_0E += 4;
                 }
             }
@@ -5868,7 +5866,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
                 if (gWarioCollisionData.unk_0C != 0) {
                     register u32 nibble asm("r1");
 
-                    collision = func_806EDFC(yPosition, xPosition);
+                    collision = ProcessSideTileInteraction(yPosition, xPosition);
                     nibble = 0xF;
                     nibble &= collision;
                     if (nibble != 0)
@@ -5906,7 +5904,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             if (gWarioCollisionData.unk_0C != 0) {
                 register u32 nibble asm("r1");
 
-                collision = func_806EDFC(yPosition, xPosition);
+                collision = ProcessSideTileInteraction(yPosition, xPosition);
                 nibble = 0xF;
                 nibble &= collision;
                 if (nibble != 0)
@@ -5943,7 +5941,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             if (gWarioCollisionData.unk_0C != 0) {
                 register u32 nibble asm("r1");
 
-                collision = func_806EDFC(yPosition, xPosition);
+                collision = ProcessSideTileInteraction(yPosition, xPosition);
                 nibble = 0xF;
                 nibble &= collision;
                 if (nibble != 0)
@@ -5987,7 +5985,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
                 if (gWarioCollisionData.unk_0C != 0) {
                     register u32 nibble asm("r1");
 
-                    collision = func_806EDFC(yPosition, xPosition);
+                    collision = ProcessSideTileInteraction(yPosition, xPosition);
                     nibble = 0xF;
                     nibble &= collision;
                     if (nibble != 0)
@@ -6040,7 +6038,7 @@ u32 CheckWarioPointCollision(u32 index, u32 yPosition, u16 *secondaryResult)
     }
     collision = func_806D4C0(normalizedY, xPosition);
     if ((collision & 0x01000000) != 0) {
-        if (gWarioCollisionData.unk_0D != 0 && func_806ED74(normalizedY, xPosition) != 0)
+        if (gWarioCollisionData.unk_0D != 0 && ProcessPointTileInteraction(normalizedY, xPosition) != 0)
             gWarioCollisionData.unk_10 += 1;
         result += 1;
     } else if ((collision & 0xFF) == 12) {
@@ -6080,7 +6078,7 @@ u32 CheckWarioPointCollision(u32 index, u32 yPosition, u16 *secondaryResult)
     }
 secondSolid:
     {
-        if (gWarioCollisionData.unk_0D != 0 && func_806ED74(normalizedY, xPosition) != 0)
+        if (gWarioCollisionData.unk_0D != 0 && ProcessPointTileInteraction(normalizedY, xPosition) != 0)
             gWarioCollisionData.unk_10 += 2;
         result += 2;
     }
@@ -6107,7 +6105,7 @@ secondDone:
             xPosition = gWarioData.xPosition;
             collision = func_806D4C0(normalizedY, xPosition);
             if ((collision & 0x01000000) != 0) {
-                if (gWarioCollisionData.unk_0D != 0 && func_806ED74(normalizedY, xPosition) != 0)
+                if (gWarioCollisionData.unk_0D != 0 && ProcessPointTileInteraction(normalizedY, xPosition) != 0)
                     gWarioCollisionData.unk_10 += 4;
                 result += 4;
             } else if ((collision & 0xFF) == 12) {
@@ -7348,7 +7346,7 @@ afterStoreYReturnFD:
                         goto returnFF;
                     }
                 }
-                result = func_806EC50(firstY, locals.probeX);
+                result = ProcessHorizontalTileInteraction(firstY, locals.probeX);
                 asm volatile("" : "+r"(result));
                 if (result != 0 && collisionData->unk_0B != 1)
                     goto returnFF;

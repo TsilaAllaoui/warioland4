@@ -156,7 +156,7 @@ u8* gCurrentHeartGaugeGfx;
 extern u8 gVortexGfxSlot;
 extern u16 gVortexYPosition;
 extern u16 gVortexXPosition;
-extern u8 gUnk_3000C2A;
+extern u8 gBossTreasureType;
 // gUnk_3000C2B
 #define gHasBossChest55sec gCollectedNEJewelPiece
 #define gHasBossChest35sec gCollectedSEJewelPiece
@@ -174,6 +174,9 @@ void ProcessSecondarySprites(void);
 void func_8075F44(void);
 void ScoreGivePoints(s32);
 void SpriteSpawnSecondary(u32 y, u32 x, u8 id);
+void SpawnOnePointTileEffect(u32 y, u32 x);
+void SpawnTenPointTileEffect(u32 y, u32 x);
+void SpawnTileDebrisParticle(u32 y, u32 x, u32 debrisOffset, u32 direction, u32 parity);
 void func_80767DC(u32 y, u32 x, s32 amount);
 // void func_80767DC(u16 yPosition, u16 xPosition, s32 amount);
 void func_807687C(u32 id, u32 y, u32 x, u32 amount);

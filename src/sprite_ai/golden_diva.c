@@ -10,6 +10,7 @@
 #include "score.h"
 #include "screen_shake.h"
 #include "sound.h"
+#include "tile_effect.h"
 #include "sprite.h"
 #include "sprite_collision.h"
 #include "sprite_ai/golden_diva.h"
@@ -118,7 +119,6 @@ extern const u32 sGoldenDivaDynamicGraphicsPointers[];
 extern const u8 sGoldenDivaDefeatSpawnSchedule[];
 extern const u8 sGoldenDivaTreasureReleaseOrder[];
 extern const u8 sGoldenDivaDefeatPalette[];
-extern void func_806F650(u32 index);
 extern void func_8023FA8(void);
 
 
@@ -2960,7 +2960,7 @@ void UpdateGoldenDivaDefeatSequence(void)
                 goto waitOne;
             value = 11;
 releaseTreasure:
-            func_806F650(value);
+            StartTileEffect(value);
             value = 1;
             *statePointer = value;
             value = 80;
