@@ -1,4 +1,5 @@
 #include "minigame_transition.h"
+#include "cutscene.h"
 #include "global_data.h"
 #include "main.h"
 
@@ -30,8 +31,8 @@ void SubGameInitAndDispatch(u32 subGameMode)
         dma3[2];
     }
 
-    func_80033BC();
-    func_8003428();
+    ResetPrimaryCutsceneAffineState();
+    ResetSecondaryCutsceneAffineState();
 
     gUnk_300188E = 0;
     gUnk_3002C60 = 0;
@@ -143,7 +144,7 @@ void SubGameClearGraphicsMemory(void)
     REG_DISPCNT = 0;
 }
 
-void SubGameWaitAndAdvance(void)
+void SubGameWaitAndAdvance(u16 frame UNUSED)
 {
     s32 frameCounter;
 
