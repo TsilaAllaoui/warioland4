@@ -7,10 +7,8 @@
 
 void SubGameInitAndDispatch(u32 subGameMode);
 void SubGameClearGraphicsMemory(void);
-void SubGameWaitAndAdvance(void);
+void SubGameWaitAndAdvance(u16 frame);
 
-void func_80033BC(void);
-void func_8003428(void);
 void func_8003C90(void);
 void func_8003F88(void);
 void func_8004244(void);

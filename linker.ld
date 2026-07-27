@@ -597,7 +597,7 @@ SECTIONS {
         obj/m4a.o(.text);
         obj/syscalls.o(.text);
         obj/sram.o(.text);
-        obj/disasm_title.o(.text);
+        obj/title.o(.text);
         obj/minigame_transition.o(.text);
         obj/disasm_cutscenes.o(.text);
         obj/cutscenes/cutscene_oam_anim.o(.text);

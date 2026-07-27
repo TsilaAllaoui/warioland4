@@ -3,9 +3,9 @@
 
 #include "types.h"
 
-// func_80033BC()
-// func_8003428()
-u32 CutsceneSubroutine(void);
-// func_8003980()
+void ResetPrimaryCutsceneAffineState(void);
+void ResetSecondaryCutsceneAffineState(void);
+u32 UpdateCutsceneSequence(void);
+void CutsceneVBlankCallback(void);
 
 #endif  // CUTSCENE_H

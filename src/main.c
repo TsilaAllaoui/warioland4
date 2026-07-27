@@ -66,7 +66,7 @@ void AgbMain(void)
 
         switch (gMainGameMode) {
             case GM_CUTSCENE:
-                cutsceneResult = CutsceneSubroutine();
+                cutsceneResult = UpdateCutsceneSequence();
                 if (cutsceneResult == 1) {
                     gMainGameMode = GM_FILE_SELECT;
                     gSubGameMode = 0;

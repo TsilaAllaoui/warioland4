@@ -319,12 +319,37 @@ extern struct SecondarySprite gSecondarySpriteData[8];
 /* 0x0300188E */
 extern u16 gUnk_300188E;
 
+/* 0x03002C28 */
+extern s16 gUnk_3002C28;
+extern s16 gUnk_3002C2A;
+extern u16 gUnk_3002C2C;
+extern s16 gUnk_3002C2E;
+extern u16 gUnk_3002C30;
+extern u16 gUnk_3002C32[8];
+extern s16 gUnk_3002C42;
+extern s16 gUnk_3002C44;
+extern s16 gUnk_3002C46;
+extern s16 gUnk_3002C48;
+extern s16 gUnk_3002C4A;
+extern s16 gUnk_3002C4C;
+extern s16 gUnk_3002C4E;
+extern s16 gUnk_3002C50;
+extern s16 gUnk_3002C52;
+extern s16 gUnk_3002C54;
+extern s16 gUnk_3002C56;
+extern s16 gUnk_3002C58;
+extern s16 gUnk_3002C5A;
+extern s16 gUnk_3002C5C;
+extern s16 gUnk_3002C5E;
+
 /* 0x03002C60 */
 extern u16 gUnk_3002C60;
 extern s32 gUnk_3002C64;
 extern u32 gUnk_3002C6C;
 extern OamData *gUnk_3002C70;
 extern u32 gUnk_3002C74;
+extern s32 gUnk_3002C78;
+extern s32 gUnk_3002C7C;
 
 /* 0x030031F4 */
 extern struct BackgroundTileTables gUnk_30031F4;
