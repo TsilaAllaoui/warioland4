@@ -20,26 +20,6 @@ struct ShopkeeperDmaRegisters {
     volatile u32 control;
 };
 
-#define UPDATE_TEMPORARY_SHOP_SPRITE(animation, lifetime) \
-    do { \
-        register struct PrimarySpriteData *sprite asm("r4"); \
-        register u32 timer asm("r0"); \
-        register u8 *timerPtr asm("r1"); \
-        sprite = &gCurrentSprite; \
-        sprite->disableWarioCollisionTimer = 1; \
-        if (sprite->pose == 0) { \
-            UpdateShopkeeperCommonAnimation(); \
-            sprite->pOamData = (animation); \
-            sprite->work0 = (lifetime); \
-        } \
-        timerPtr = &sprite->work0; \
-        timer = *timerPtr; \
-        timer--; \
-        *timerPtr = timer; \
-        if ((u8)timer == 0) \
-            sprite->status = 0; \
-    } while (0)
-
 void ShopkeeperUpdateGraphicsScript(const u8* script)
 {
     register const u8* scr asm("r5");
@@ -8016,17 +7996,62 @@ void UpdateShopkeeperCommonAnimation(void)
 
 void SpriteShopEffectShortB(void)
 {
-    UPDATE_TEMPORARY_SHOP_SPRITE(sShopEffectShortBOam, 25);
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 timer asm("r0");
+    register u8 *timerPtr asm("r1");
+    sprite = &gCurrentSprite;
+    sprite->disableWarioCollisionTimer = 1;
+    if (sprite->pose == 0) {
+        UpdateShopkeeperCommonAnimation();
+        sprite->pOamData = sShopEffectShortBOam;
+        sprite->work0 = 25;
+    }
+    timerPtr = &sprite->work0;
+    timer = *timerPtr;
+    timer--;
+    *timerPtr = timer;
+    if ((u8)timer == 0)
+        sprite->status = 0;
 }
 
 void SpriteShopEffectShortA(void)
 {
-    UPDATE_TEMPORARY_SHOP_SPRITE(sShopEffectShortAOam, 25);
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 timer asm("r0");
+    register u8 *timerPtr asm("r1");
+    sprite = &gCurrentSprite;
+    sprite->disableWarioCollisionTimer = 1;
+    if (sprite->pose == 0) {
+        UpdateShopkeeperCommonAnimation();
+        sprite->pOamData = sShopEffectShortAOam;
+        sprite->work0 = 25;
+    }
+    timerPtr = &sprite->work0;
+    timer = *timerPtr;
+    timer--;
+    *timerPtr = timer;
+    if ((u8)timer == 0)
+        sprite->status = 0;
 }
 
 void SpriteShopEffectLong(void)
 {
-    UPDATE_TEMPORARY_SHOP_SPRITE(sShopEffectLongOam, 43);
+    register struct PrimarySpriteData *sprite asm("r4");
+    register u32 timer asm("r0");
+    register u8 *timerPtr asm("r1");
+    sprite = &gCurrentSprite;
+    sprite->disableWarioCollisionTimer = 1;
+    if (sprite->pose == 0) {
+        UpdateShopkeeperCommonAnimation();
+        sprite->pOamData = sShopEffectLongOam;
+        sprite->work0 = 43;
+    }
+    timerPtr = &sprite->work0;
+    timer = *timerPtr;
+    timer--;
+    *timerPtr = timer;
+    if ((u8)timer == 0)
+        sprite->status = 0;
 }
 
 void SpriteShopkeeperTransition(void)

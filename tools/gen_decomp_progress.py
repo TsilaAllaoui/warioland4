@@ -1,20 +1,35 @@
 #!/usr/bin/env python3
+# -----------------------------------------------------------------------------
+# WL4 PROGRESS REPORT — FILTERED/VERIFIED EDITION
+#
+# Local project customization:
+#   * Adds visible HTML controls for matched/unmatched filtering and sorting.
+#   * Shows authoritative function and byte totals in both HTML and SVG output.
+#   * Uses linker-map ranges as the source of truth whenever a map is available.
+#   * Keeps UI filtering separate from accounting so totals never change when a
+#     user hides rows, changes sort order, or applies a minimum-size filter.
+#
+# This header is intentionally distinctive so `git diff` and `git status` make
+# it obvious that the customized generator has replaced the original script.
+# -----------------------------------------------------------------------------
+
 """
 Generate Wario Land 4 decompilation progress from the current repo.
 
-Outputs, by default:
+Generated repo artifact:
   docs/progress-treemap.svg
   docs/progress.html
-  report.json
 
-INLINE ASM FIX 2026-07-26:
-  Inline asm statements/macros such as `asm(...)`, `asm volatile(...)`,
-  `asm_unified(...)`, and `asm_volatile(...)` are ignored by the C function
-  parser so they do not appear as fake functions named `asm` or `volatile`.
+Default run:
+  python3 tools/gen_decomp_progress.py
 
-HTML CONTROL FIX 2026-07-26:
-  docs/progress.html keeps the CI-required control IDs:
-    search, module, sort, reset
+The script has no third-party dependencies.
+
+Progress report guarantees:
+  * A linker map is the authoritative source for function ranges and byte totals.
+  * Same-address aliases are counted once.
+  * Symbol-less text contributes bytes, but never inflates the function count.
+  * The HTML offers client-side filters; changing a filter never changes totals.
 """
 
 from __future__ import annotations
@@ -22,21 +37,32 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import math
 import os
 import re
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
+
 BAR_WIDTH = 30
-STATUS_MATCHED = "matched"
-STATUS_UNMATCHED = "not matched"
-STATUS_UNKNOWN = STATUS_UNMATCHED
-README_START = "<!-- DECOMP_PROGRESS:START -->"
-README_END = "<!-- DECOMP_PROGRESS:END -->"
+SVG_WIDTH = 1280
+SVG_HEIGHT = 930
+SVG_PAD = 24
+
+# Increment this whenever the generated report UI or accounting rules change.
+# It is displayed in the HTML footer so stale generated pages are easy to spot.
+REPORT_FORMAT_VERSION = "2026.07-filter-audit-v4"
 
 CODE_ADDR_MIN = 0x08000000
 CODE_ADDR_MAX = 0x0A000000
+
+STATUS_MATCHED = "matched"
+STATUS_UNMATCHED = "not matched"
+STATUS_UNKNOWN = STATUS_UNMATCHED
+
+README_START = "<!-- DECOMP_PROGRESS:START -->"
+README_END = "<!-- DECOMP_PROGRESS:END -->"
 
 FUNC_NAME_RE = re.compile(r"^[A-Za-z_]\w*$")
 ADDR_FUNC_LABEL_RE = re.compile(r"^(?:sub|func)_[0-9A-Fa-f]{6,8}$|^func_[0-9A-Fa-f]+$")
@@ -45,13 +71,7 @@ ASM_LABEL_RE = re.compile(r"^\s*([A-Za-z_]\w*):\s*(?:@.*)?$")
 ASSIGN_SYMBOL_RE = re.compile(r"^\s*([A-Za-z_]\w*)\s*=\s*0x([0-9A-Fa-f]+)\s*;?\s*$")
 MAP_SYMBOL_RE = re.compile(r"\b0x([0-9A-Fa-f]{7,8})\b\s+([A-Za-z_]\w*)\b")
 NM_SYMBOL_RE = re.compile(r"^\s*([0-9A-Fa-f]{7,8})\s+[A-Za-z]\s+([A-Za-z_]\w*)\b")
-ASM_INCLUDE_RE = re.compile(r"asm_(?:unified|volatile)\s*\(\s*[\"']\.include\s+[\"']([^\"']+)[\"']")
-
-# INLINE ASM FIX 2026-07-26:
-# Detect normal inline asm statements/macros before they can be glued to the
-# next real function signature by the simple C parser.
-INLINE_ASM_RE = re.compile(r"^\s*(?:asm|__asm|__asm__|asm_unified|asm_volatile)\b")
-
+ASM_INCLUDE_RE = re.compile(r'asm_(?:unified|volatile)\s*\(\s*["\']\.include\s+["\']([^"\']+)["\']')
 CONTRIB_RE = re.compile(
     r"^\s+(\.\S+)\s+(0x[0-9a-fA-F]+)\s+(?:0x[0-9a-fA-F]+\s+)?(0x[0-9a-fA-F]+)\s+(\S.*\S|\S)\s*$"
 )
@@ -59,8 +79,6 @@ MAP_NESTED_SYMBOL_RE = re.compile(r"^\s+(0x[0-9a-fA-F]+)\s+([A-Za-z_.$][\w.$]*)\
 SECTION_TOTAL_RE = re.compile(r"^(\.\S+)\s+0x[0-9a-fA-F]+\s+0x[0-9a-fA-F]+\s*$")
 NAKED_DEF_RE = re.compile(r"\bNAKED\b[^;{}()]*?\b(\w+)\s*\([^;]*?\)\s*\{")
 
-# INLINE ASM FIX 2026-07-26:
-# asm/volatile are not function names. They are control-ish parser tokens here.
 CONTROL_WORDS = {
     "if",
     "for",
@@ -69,14 +87,6 @@ CONTROL_WORDS = {
     "return",
     "sizeof",
     "do",
-    "else",
-    "case",
-    "asm",
-    "__asm",
-    "__asm__",
-    "volatile",
-    "asm_unified",
-    "asm_volatile",
 }
 
 
@@ -88,6 +98,7 @@ class FunctionInfo:
     status: str
     source: str
     size_source: str
+    is_function: bool = True
 
     @property
     def matched(self) -> bool:
@@ -115,23 +126,35 @@ class MapContribution:
     symbols: list[tuple[int, str]]
 
 
-def read_text(path: Path) -> str:
-    try:
-        return path.read_text(encoding="utf-8", errors="ignore")
-    except OSError:
-        return ""
-
-
 def is_probably_function_name(name: str) -> bool:
-    if not FUNC_NAME_RE.match(name):
+    if name.startswith(("sub_", "func_")):
+        return True
+    if name.startswith((
+        "loc_",
+        "off_",
+        "byte_",
+        "word_",
+        "dword_",
+        "stru_",
+        "gUnk_",
+        "sUnk_",
+        "__",
+    )):
         return False
     if name in CONTROL_WORDS:
         return False
-    if name.startswith(("loc_", "off_", "byte_", "word_", "dword_", "stru_", "gUnk_", "sUnk_", "__")):
-        return False
     if name.isupper():
         return False
-    return True
+    return bool(FUNC_NAME_RE.match(name))
+
+
+def visual_weight(size: int) -> float:
+    return max(1.0, float(size))
+
+
+def module_visual_weight(rows: list["FunctionInfo"]) -> float:
+    # Give every module enough visual presence to carry a label, while keeping byte stats exact.
+    return max(28.0, sum(visual_weight(row.size) for row in rows))
 
 
 def iter_files(root: Path, suffixes: tuple[str, ...]) -> list[Path]:
@@ -145,14 +168,15 @@ def iter_files(root: Path, suffixes: tuple[str, ...]) -> list[Path]:
         "permuter_work",
         "permuter_best",
     }
-    out: list[Path] = []
+    files: list[Path] = []
     for path in root.rglob("*"):
         if not path.is_file() or path.suffix not in suffixes:
             continue
-        if set(path.relative_to(root).parts) & ignored_parts:
+        rel_parts = set(path.relative_to(root).parts)
+        if rel_parts & ignored_parts:
             continue
-        out.append(path)
-    return sorted(out)
+        files.append(path)
+    return sorted(files)
 
 
 def clean_module_label(value: str) -> str:
@@ -162,7 +186,12 @@ def clean_module_label(value: str) -> str:
     token = token.rstrip("/")
     if not token:
         return "unknown"
-    return Path(token).stem or Path(token).name or "unknown"
+
+    path = Path(token)
+    stem = path.stem
+    if stem:
+        return stem
+    return path.name or "unknown"
 
 
 def module_from_path(root: Path, path: Path) -> str:
@@ -170,20 +199,34 @@ def module_from_path(root: Path, path: Path) -> str:
 
 
 def module_from_object_path(value: str) -> str:
-    token = value.strip().strip("()").replace("\\", "/")
+    token = value.strip().strip("()")
+    token = token.replace("\\", "/")
     if "(" in token and token.endswith(")"):
         token = token[token.rfind("(") + 1 : -1]
     for marker in ("/build/us/", "build/us/", "/src/", "src/", "/asm/", "asm/"):
         if marker in token:
             token = token.split(marker, 1)[1]
             break
-    if token.startswith("build/us/"):
-        token = token[len("build/us/") :]
-    if token.startswith(("src/", "asm/")):
-        token = token.split("/", 1)[1]
+    if token.startswith(("build/us/", "src/", "asm/")):
+        parts = token.split("/")
+        if parts[0] == "build" and len(parts) > 2:
+            parts = parts[2:]
+        if parts and parts[0] in {"src", "asm"}:
+            parts = parts[1:]
+        token = "/".join(parts)
     if token.startswith("lib/"):
         token = token[4:]
     return clean_module_label(token)
+
+
+def map_object_module(line: str) -> str | None:
+    for token in reversed(line.replace("(", " (").replace(")", ") ").split()):
+        if ".o" not in token:
+            continue
+        cleaned = token.strip()
+        if cleaned.endswith(".o") or ".o)" in cleaned:
+            return module_from_object_path(cleaned)
+    return None
 
 
 def object_stem(objpath: str) -> str:
@@ -192,10 +235,12 @@ def object_stem(objpath: str) -> str:
         token = token[token.rfind("(") + 1 : -1]
     if token.endswith(".o"):
         token = token[:-2]
+
     for prefix in ("build/us/", "build/jp/", "obj/"):
         if token.startswith(prefix):
             token = token[len(prefix) :]
             break
+
     if token.startswith(("src/", "asm/", "include/")):
         token = token.split("/", 1)[1]
     return token.strip("/")
@@ -206,12 +251,14 @@ def source_candidates_for_object(root: Path, objpath: str) -> tuple[Path | None,
     c_path = root / "src" / f"{stem}.c"
     h_path = root / "include" / f"{stem}.h"
     s_path = root / "asm" / f"{stem}.s"
+
     if not c_path.exists():
         c_path = root / f"{stem}.c"
     if not h_path.exists():
         h_path = root / f"{stem}.h"
     if not s_path.exists():
         s_path = root / f"{stem}.s"
+
     return (
         c_path if c_path.exists() else None,
         h_path if h_path.exists() else None,
@@ -227,7 +274,7 @@ def naked_functions_in(path: Path | None) -> set[str]:
         return set()
     if path in NAKED_FUNCTION_CACHE:
         return NAKED_FUNCTION_CACHE[path]
-    names = {m.group(1) for m in NAKED_DEF_RE.finditer(read_text(path))}
+    names = {match.group(1) for match in NAKED_DEF_RE.finditer(read_text(path))}
     NAKED_FUNCTION_CACHE[path] = names
     return names
 
@@ -241,6 +288,13 @@ def object_base_status(root: Path, objpath: str) -> tuple[str, Path | None]:
     if s_path is not None:
         return STATUS_UNMATCHED, s_path
     return STATUS_UNKNOWN, None
+
+
+def read_text(path: Path) -> str:
+    try:
+        return path.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return ""
 
 
 def estimate_asm_bytes(lines: list[str]) -> int:
@@ -260,6 +314,7 @@ def estimate_asm_bytes(lines: list[str]) -> int:
             if nums:
                 total += int(nums[0], 0)
         elif not line.startswith("."):
+            # Thumb instructions are normally 2 bytes; a few are 4, so this is only a fallback.
             total += 2
     return max(total, 2)
 
@@ -270,142 +325,202 @@ def collect_asm_functions(root: Path) -> dict[str, FunctionInfo]:
         rel = path.relative_to(root)
         if rel.parts and rel.parts[0] not in {"asm", "asm_arm", "data"}:
             continue
+
+        lines = read_text(path).splitlines()
         current_name: str | None = None
         current_lines: list[str] = []
+        current_status = STATUS_UNMATCHED
 
         def flush() -> None:
             nonlocal current_name, current_lines
-            if current_name and is_probably_function_name(current_name):
-                size = estimate_asm_bytes(current_lines)
-                old = funcs.get(current_name)
-                if old is None or size > old.size:
-                    funcs[current_name] = FunctionInfo(
-                        current_name,
-                        module_from_path(root, path),
-                        size,
-                        STATUS_UNMATCHED,
-                        str(rel),
-                        "asm estimate",
-                    )
+            if not current_name or not is_probably_function_name(current_name):
+                current_name = None
+                current_lines = []
+                return
+            size = estimate_asm_bytes(current_lines)
+            old = funcs.get(current_name)
+            if old is None or size > old.size:
+                funcs[current_name] = FunctionInfo(
+                    name=current_name,
+                    module=module_from_path(root, path),
+                    size=size,
+                    status=current_status,
+                    source=str(rel),
+                    size_source="asm estimate",
+                )
             current_name = None
             current_lines = []
 
-        for line in read_text(path).splitlines():
+        for line in lines:
             start = ASM_START_RE.match(line)
             label = ASM_LABEL_RE.match(line)
             name = start.group(1) if start else None
             if name is None and label and ADDR_FUNC_LABEL_RE.match(label.group(1)):
                 name = label.group(1)
+
             if name:
                 flush()
                 current_name = name
+                current_lines = []
             elif current_name:
                 current_lines.append(line)
         flush()
+
     return funcs
 
 
 def symbol_candidates(root: Path) -> list[Path]:
-    paths = [
-        root / "build/us/warioland4.map",
-        root / "build/us/MPAdvance.map",
-        root / "warioland4.map",
-        root / "wl4_us.map",
-        root / "wl4.map",
-        root / "symbols.txt",
-        root / "symbol_addrs.txt",
-        root / "sym.txt",
+    names = [
+        "build/us/warioland4.map",
+        "symbols.txt",
+        "symbol_addrs.txt",
+        "sym.txt",
+        "warioland4.map",
+        "wl4.map",
     ]
+    paths = [root / name for name in names]
     paths.extend(root.glob("*.sym"))
     paths.extend(root.glob("*.map"))
     paths.extend(root.glob("build/**/*.map"))
-    return sorted({p for p in paths if p.exists() and p.is_file()})
+    return sorted({path for path in paths if path.exists() and path.is_file()})
 
 
 def parse_map_contributions(root: Path, map_path: Path) -> list[MapContribution]:
     contributions: list[MapContribution] = []
     current: MapContribution | None = None
     source = str(map_path.relative_to(root))
+
     for raw in read_text(map_path).splitlines():
         if not raw.strip():
             continue
-        m = CONTRIB_RE.match(raw)
-        if m:
-            section, addr_text, size_text, objpath = m.groups()
+
+        match = CONTRIB_RE.match(raw)
+        if match:
+            section, addr_text, size_text, objpath = match.groups()
             if section.startswith(".text"):
-                current = MapContribution(section, int(addr_text, 16), int(size_text, 16), objpath.strip(), source, [])
+                current = MapContribution(
+                    section=section,
+                    addr=int(addr_text, 16),
+                    size=int(size_text, 16),
+                    objpath=objpath.strip(),
+                    source=source,
+                    symbols=[],
+                )
                 contributions.append(current)
             else:
                 current = None
             continue
+
         if SECTION_TOTAL_RE.match(raw):
             current = None
             continue
-        m = MAP_NESTED_SYMBOL_RE.match(raw)
-        if m and current is not None:
-            addr_text, name = m.groups()
+
+        match = MAP_NESTED_SYMBOL_RE.match(raw)
+        if match and current is not None:
+            addr_text, name = match.groups()
             if is_probably_function_name(name):
                 current.symbols.append((int(addr_text, 16), name))
+
     return contributions
 
 
 def collect_map_functions(root: Path) -> list[FunctionInfo]:
+    """Collect exact function extents from the linker map.
+
+    The linker map is the source of truth when available. Symbols that share an
+    address are aliases for the same code and therefore count as one function.
+    Gaps and symbol-less text contributions are retained for byte accounting,
+    but are not counted as functions.
+    """
+    rows: list[FunctionInfo] = []
+    c_function_names = set(collect_c_functions(root))
+
     for map_path in symbol_candidates(root):
         if map_path.suffix != ".map":
             continue
-        rows: list[FunctionInfo] = []
-        for contrib in parse_map_contributions(root, map_path):
+
+        contributions = parse_map_contributions(root, map_path)
+        if not contributions:
+            continue
+
+        for contrib in contributions:
             if "(" in contrib.objpath and contrib.objpath.rstrip().endswith(")"):
                 continue
+
             module = module_from_object_path(contrib.objpath)
             base_status, source_path = object_base_status(root, contrib.objpath)
             naked_names = naked_functions_in(source_path)
-            ordered = sorted(set(contrib.symbols), key=lambda item: item[0])
+
+            # One code range can have several symbol aliases. Count it once,
+            # preferring the name explicitly present in C, then a descriptive
+            # name, then the canonical address-style symbol.
+            aliases_by_addr: dict[int, set[str]] = {}
+            for addr, name in contrib.symbols:
+                aliases_by_addr.setdefault(addr, set()).add(name)
+
+            ordered: list[tuple[int, str]] = []
+            for addr, names in aliases_by_addr.items():
+                chosen = sorted(
+                    names,
+                    key=lambda name: (
+                        name not in c_function_names,
+                        bool(ADDR_FUNC_LABEL_RE.match(name)),
+                        name,
+                    ),
+                )[0]
+                ordered.append((addr, chosen))
+            ordered.sort(key=lambda item: item[0])
+
             if not ordered:
                 if contrib.size > 0:
                     rows.append(
                         FunctionInfo(
-                            f"({clean_module_label(contrib.objpath)})",
-                            module,
-                            contrib.size,
-                            base_status,
-                            f"{contrib.source}:{contrib.objpath}",
-                            "symbol",
+                            name=f"({clean_module_label(contrib.objpath)} text)",
+                            module=module,
+                            size=contrib.size,
+                            status=base_status,
+                            source=f"{contrib.source}:{contrib.objpath}",
+                            size_source="symbol",
+                            is_function=False,
                         )
                     )
                 continue
+
             end_addr = contrib.addr + contrib.size
             if ordered[0][0] > contrib.addr:
                 rows.append(
                     FunctionInfo(
-                        "(unnamed)",
-                        module,
-                        ordered[0][0] - contrib.addr,
-                        base_status,
-                        f"{contrib.source}:{contrib.objpath}",
-                        "symbol",
+                        name="(unnamed text)",
+                        module=module,
+                        size=ordered[0][0] - contrib.addr,
+                        status=base_status,
+                        source=f"{contrib.source}:{contrib.objpath}",
+                        size_source="symbol",
+                        is_function=False,
                     )
                 )
+
             for index, (addr, name) in enumerate(ordered):
                 next_addr = ordered[index + 1][0] if index + 1 < len(ordered) else end_addr
                 size = next_addr - addr
                 if size <= 0 or size > 0x4000:
                     continue
                 status = STATUS_UNMATCHED if name in naked_names else base_status
-                rows.append(FunctionInfo(name, module, size, status, f"{contrib.source}:{contrib.objpath}", "symbol"))
+                rows.append(
+                    FunctionInfo(
+                        name=name,
+                        module=module,
+                        size=size,
+                        status=status,
+                        source=f"{contrib.source}:{contrib.objpath}",
+                        size_source="symbol",
+                    )
+                )
+
         if rows:
             return rows
-    return []
 
-
-def map_object_module(line: str) -> str | None:
-    for token in reversed(line.replace("(", " (").replace(")", ") ").split()):
-        if ".o" not in token:
-            continue
-        cleaned = token.strip()
-        if cleaned.endswith(".o") or ".o)" in cleaned:
-            return module_from_object_path(cleaned)
-    return None
+    return rows
 
 
 def collect_symbol_info(root: Path) -> dict[str, SymbolInfo]:
@@ -413,37 +528,59 @@ def collect_symbol_info(root: Path) -> dict[str, SymbolInfo]:
     for path in symbol_candidates(root):
         rel = str(path.relative_to(root))
         current_module = "symbols"
-        current_is_text = path.suffix != ".map"
+        is_map = path.suffix == ".map"
+        current_is_text = not is_map
         for line in read_text(path).splitlines():
             stripped = line.lstrip()
-            if path.suffix == ".map" and stripped.startswith("."):
-                current_is_text = stripped.split(None, 1)[0].startswith(".text")
-            mod = map_object_module(line)
-            if mod:
-                current_module = mod
-            m = ASSIGN_SYMBOL_RE.match(line)
-            if m:
-                name = m.group(1)
-                addr = int(m.group(2), 16)
+            if is_map and stripped.startswith("."):
+                section_name = stripped.split(None, 1)[0]
+                current_is_text = section_name.startswith(".text")
+
+            object_module = map_object_module(line)
+            if object_module:
+                current_module = object_module
+
+            match = ASSIGN_SYMBOL_RE.match(line)
+            if match:
+                name = match.group(1)
+                addr = int(match.group(2), 16)
+                module = current_module
             else:
-                m = MAP_SYMBOL_RE.search(line) or NM_SYMBOL_RE.match(line)
-                if not m:
+                match = MAP_SYMBOL_RE.search(line) or NM_SYMBOL_RE.match(line)
+                if not match:
                     continue
-                addr = int(m.group(1), 16)
-                name = m.group(2)
+                addr = int(match.group(1), 16)
+                name = match.group(2)
+                module = current_module
             if current_is_text and CODE_ADDR_MIN <= addr < CODE_ADDR_MAX and is_probably_function_name(name):
-                pairs.append((addr, name, current_module, rel))
-    pairs = sorted(set(pairs))
-    out: dict[str, SymbolInfo] = {}
-    for index, (addr, name, module, source) in enumerate(pairs[:-1]):
-        size = pairs[index + 1][0] - addr
+                pairs.append((addr, name, module, rel))
+
+    if not pairs:
+        return {}
+
+    seen_addrs: set[tuple[int, str]] = set()
+    unique_pairs: list[tuple[int, str, str, str]] = []
+    for item in sorted(pairs):
+        addr, name, module, source = item
+        key = (addr, name)
+        if key in seen_addrs:
+            continue
+        seen_addrs.add(key)
+        unique_pairs.append(item)
+
+    symbols: dict[str, SymbolInfo] = {}
+    for index, (addr, name, module, source) in enumerate(unique_pairs):
+        if index + 1 >= len(unique_pairs):
+            continue
+        next_addr = unique_pairs[index + 1][0]
+        size = next_addr - addr
         if 0 < size <= 0x4000:
-            out[name] = SymbolInfo(size, module, source)
-    return out
+            symbols[name] = SymbolInfo(size=size, module=module, source=source)
+    return symbols
 
 
 def remove_comments(line: str, in_block: bool) -> tuple[str, bool]:
-    out: list[str] = []
+    out = []
     i = 0
     while i < len(line):
         if in_block:
@@ -464,75 +601,69 @@ def remove_comments(line: str, in_block: bool) -> tuple[str, bool]:
     return "".join(out), in_block
 
 
-def strip_string_literals(text: str) -> str:
-    """INLINE ASM FIX 2026-07-26: remove strings before signature regex."""
-    out: list[str] = []
-    i = 0
-    quote: str | None = None
-    escaped = False
-    while i < len(text):
-        ch = text[i]
-        if quote is not None:
-            if escaped:
-                escaped = False
-            elif ch == "\\":
-                escaped = True
-            elif ch == quote:
-                quote = None
-            out.append(" ")
-        else:
-            if ch in {"'", '"'}:
-                quote = ch
-                out.append(" ")
-            else:
-                out.append(ch)
-        i += 1
-    return "".join(out)
-
 
 def split_macro_arguments(text: str) -> list[str]:
+    """Split a C macro argument list without being confused by nested calls."""
     args: list[str] = []
     current: list[str] = []
     depth = 0
-    quote: str | None = None
+    in_string: str | None = None
     escaped = False
+
     for ch in text:
-        if quote is not None:
+        if in_string is not None:
             current.append(ch)
             if escaped:
                 escaped = False
             elif ch == "\\":
                 escaped = True
-            elif ch == quote:
-                quote = None
+            elif ch == in_string:
+                in_string = None
             continue
-        if ch in {"'", '"'}:
-            quote = ch
+
+        if ch in {"\"", "'"}:
+            in_string = ch
             current.append(ch)
         elif ch in "([{":
             depth += 1
             current.append(ch)
-        elif ch in ")]}":
-            depth = max(0, depth - 1)
+        elif ch in ")]}" and depth > 0:
+            depth -= 1
             current.append(ch)
         elif ch == "," and depth == 0:
             args.append("".join(current).strip())
             current = []
         else:
             current.append(ch)
+
     args.append("".join(current).strip())
     return args
 
 
 def collect_macro_generated_function_names(root: Path) -> set[str]:
+    """Return real linker symbols created only through function-generating macros.
+
+    A macro is considered function-generating when one of its parameters is used
+    as the function declarator in the macro body, for example::
+
+        #define SIMPLE_ANIM(name, table, result) \
+        u8 name(void) \
+        { ... }
+
+    Invocations such as ``SIMPLE_ANIM(ZombieWarioLanding, ...)`` are then
+    excluded from progress totals. Explicit C function definitions are untouched.
+    """
     generated: set[str] = set()
+
     for path in iter_files(root, (".c", ".h")):
         rel = path.relative_to(root)
         if rel.parts and rel.parts[0] == "tools":
             continue
+
+        raw_lines = read_text(path).splitlines()
         logical_lines: list[str] = []
         current = ""
-        for raw in read_text(path).splitlines():
+        for raw in raw_lines:
             stripped = raw.rstrip()
             current += stripped[:-1] + " " if stripped.endswith("\\") else stripped
             if not stripped.endswith("\\"):
@@ -540,120 +671,131 @@ def collect_macro_generated_function_names(root: Path) -> set[str]:
                 current = ""
         if current:
             logical_lines.append(current)
+
         generator_params: dict[str, list[int]] = {}
         for line in logical_lines:
-            m = re.match(r"^\s*#\s*define\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*(.*)$", line)
-            if not m:
+            match = re.match(
+                r"^\s*#\s*define\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*(.*)$",
+                line,
+            )
+            if not match:
                 continue
-            macro_name, params_text, body = m.groups()
-            params = [p.strip() for p in params_text.split(",") if p.strip()]
+
+            macro_name, params_text, body = match.groups()
+            params = [param.strip() for param in params_text.split(",") if param.strip()]
             indexes: list[int] = []
             for index, param in enumerate(params):
-                if FUNC_NAME_RE.match(param) and re.search(rf"\b{re.escape(param)}\s*\([^;{{}}]*\)\s*\{{", body):
+                if not FUNC_NAME_RE.match(param):
+                    continue
+                # The parameter must be used as a function declarator followed by
+                # a body, not merely as a callback, expression, or data symbol.
+                declarator = re.compile(
+                    rf"\b{re.escape(param)}\s*\([^;{{}}]*\)\s*\{{"
+                )
+                if declarator.search(body):
                     indexes.append(index)
             if indexes:
                 generator_params[macro_name] = indexes
+
+        if not generator_params:
+            continue
+
         for line in logical_lines:
             if line.lstrip().startswith("#"):
                 continue
             for macro_name, indexes in generator_params.items():
-                m = re.match(rf"^\s*{re.escape(macro_name)}\s*\((.*)\)\s*;?\s*$", line)
-                if not m:
+                invocation = re.match(
+                    rf"^\s*{re.escape(macro_name)}\s*\((.*)\)\s*;?\s*$",
+                    line,
+                )
+                if not invocation:
                     continue
-                args = split_macro_arguments(m.group(1))
+                args = split_macro_arguments(invocation.group(1))
                 for index in indexes:
-                    if index < len(args):
-                        name = args[index].strip()
-                        if FUNC_NAME_RE.match(name) and is_probably_function_name(name):
-                            generated.add(name)
+                    if index >= len(args):
+                        continue
+                    name = args[index].strip()
+                    if FUNC_NAME_RE.match(name) and is_probably_function_name(name):
+                        generated.add(name)
+
     return generated
 
-
 def find_c_function_name(signature: str) -> str | None:
-    """INLINE ASM FIX 2026-07-26: choose the last real function-looking token."""
     signature = re.sub(r"\s+", " ", signature.strip())
     if ";" in signature:
         return None
-
-    cleaned = strip_string_literals(signature)
-
-    matches = list(re.finditer(r"([A-Za-z_]\w*)\s*\([^;{}]*\)\s*\{", cleaned))
-    for match in reversed(matches):
-        name = match.group(1)
-        if name not in CONTROL_WORDS and is_probably_function_name(name):
-            return name
-
-    return None
+    match = re.search(r"([A-Za-z_]\w*)\s*\([^;{}]*\)\s*\{", signature)
+    if not match:
+        return None
+    name = match.group(1)
+    if name in CONTROL_WORDS:
+        return None
+    return name
 
 
 def collect_c_functions(root: Path) -> dict[str, FunctionInfo]:
     funcs: dict[str, FunctionInfo] = {}
     for path in iter_files(root, (".c", ".h")):
         rel = path.relative_to(root)
-        if rel.parts and rel.parts[0] == "tools":
+        if rel.parts and rel.parts[0] in {"tools"}:
             continue
+
+        lines = read_text(path).splitlines()
         in_block_comment = False
         pending = ""
         pending_start = 0
-        for lineno, raw in enumerate(read_text(path).splitlines(), start=1):
+
+        for lineno, raw in enumerate(lines, start=1):
             line, in_block_comment = remove_comments(raw, in_block_comment)
 
-            # Keep the special asm include behavior: these are real unmatched asm
-            # wrappers and should still appear in progress.
             include = ASM_INCLUDE_RE.search(line)
             if include:
                 inc = include.group(1)
                 name = Path(inc).stem
                 if is_probably_function_name(name):
                     funcs[name] = FunctionInfo(
-                        name,
-                        module_from_path(root, path),
-                        2,
-                        STATUS_UNMATCHED,
-                        f"{rel}:{lineno}",
-                        "asm include",
+                        name=name,
+                        module=module_from_path(root, path),
+                        size=2,
+                        status=STATUS_UNMATCHED,
+                        source=f"{rel}:{lineno}",
+                        size_source="asm include",
                     )
 
-            stripped = line.strip()
-            if not stripped:
-                continue
-
-            if stripped.endswith("\\"):
-                stripped = stripped[:-1].rstrip()
-
-            # INLINE ASM FIX 2026-07-26:
-            # Normal inline asm statements and macro body lines are never C
-            # function definitions. Skip them before pending-signature collection.
-            if INLINE_ASM_RE.match(stripped):
-                pending = ""
-                continue
-
-            if not pending and "(" in stripped and not stripped.startswith("#"):
+            if not pending and "(" in line and not line.lstrip().startswith("#"):
                 pending_start = lineno
-            if pending or ("(" in stripped and not stripped.startswith("#")):
-                pending += " " + stripped
+            if pending or ("(" in line and not line.lstrip().startswith("#")):
+                pending += " " + line.strip()
+
             if "{" in pending:
                 name = find_c_function_name(pending)
-                if name:
+                if name and is_probably_function_name(name):
                     funcs[name] = FunctionInfo(
-                        name,
-                        module_from_path(root, path),
-                        max(2, len(pending) // 4),
-                        STATUS_MATCHED,
-                        f"{rel}:{pending_start}",
-                        "source estimate",
+                        name=name,
+                        module=module_from_path(root, path),
+                        size=max(2, len(pending) // 4),
+                        status=STATUS_MATCHED,
+                        source=f"{rel}:{pending_start}",
+                        size_source="source estimate",
                     )
                 pending = ""
-            elif ";" in pending or len(pending) > 1000:
+            elif ";" in pending or len(pending) > 500:
                 pending = ""
+
     return funcs
 
 
 def merge_functions(root: Path) -> list[FunctionInfo]:
     macro_generated = collect_macro_generated_function_names(root)
-    map_rows = [row for row in collect_map_functions(root) if row.name not in macro_generated]
+    map_rows = [
+        row for row in collect_map_functions(root)
+        if row.name not in macro_generated
+    ]
     if map_rows:
-        c_funcs = {name: info for name, info in collect_c_functions(root).items() if name not in macro_generated}
+        c_funcs = {
+            name: info for name, info in collect_c_functions(root).items()
+            if name not in macro_generated
+        }
         by_name = {row.name: row for row in map_rows}
         for name, c_info in c_funcs.items():
             row = by_name.get(name)
@@ -664,32 +806,72 @@ def merge_functions(root: Path) -> list[FunctionInfo]:
                 row.status = STATUS_MATCHED
             if row.module in {"unknown", "symbols"}:
                 row.module = c_info.module
+        # Do not append source-only names when a linker map exists. They may be
+        # inline, dead, macro helpers, declarations, or parser false positives.
+        # The map alone represents code that is actually present in the ROM.
         return sorted(map_rows, key=lambda row: (row.module, row.name))
 
-    asm_funcs = {name: info for name, info in collect_asm_functions(root).items() if name not in macro_generated}
-    c_funcs = {name: info for name, info in collect_c_functions(root).items() if name not in macro_generated}
-    symbol_infos = {name: info for name, info in collect_symbol_info(root).items() if name not in macro_generated}
+    asm_funcs = {
+        name: info for name, info in collect_asm_functions(root).items()
+        if name not in macro_generated
+    }
+    c_funcs = {
+        name: info for name, info in collect_c_functions(root).items()
+        if name not in macro_generated
+    }
+    symbol_infos = {
+        name: info for name, info in collect_symbol_info(root).items()
+        if name not in macro_generated
+    }
+
     names = sorted(set(asm_funcs) | set(c_funcs) | set(symbol_infos))
-    rows: list[FunctionInfo] = []
+    merged: list[FunctionInfo] = []
+
     for name in names:
         c_info = c_funcs.get(name)
         asm_info = asm_funcs.get(name)
-        sym = symbol_infos.get(name)
+        symbol_info = symbol_infos.get(name)
         base = c_info or asm_info
         if base is None:
-            base = FunctionInfo(
-                name,
-                sym.module if sym else "unknown",
+            module = symbol_info.module if symbol_info else "unknown"
+            source = symbol_info.source if symbol_info else "symbols"
+            base = FunctionInfo(name, module, 2, STATUS_UNMATCHED, source, "source estimate")
+
+        if symbol_info is not None:
+            size = symbol_info.size
+            size_source = "symbol"
+        else:
+            size = max(
+                c_info.size if c_info else 0,
+                asm_info.size if asm_info else 0,
                 2,
-                STATUS_UNMATCHED,
-                sym.source if sym else "symbols",
-                "source estimate",
             )
-        size = sym.size if sym else max(c_info.size if c_info else 0, asm_info.size if asm_info else 0, 2)
-        size_source = "symbol" if sym else base.size_source
-        status = STATUS_MATCHED if c_info and c_info.status == STATUS_MATCHED else base.status
-        rows.append(FunctionInfo(name, base.module, size, status, base.source, size_source))
-    return rows
+            size_source = base.size_source
+
+        module = base.module
+        source = base.source
+        if base.module in {"symbols", "unknown"} and symbol_info is not None:
+            module = symbol_info.module
+            source = symbol_info.source
+
+        status = base.status
+        if c_info and c_info.status == STATUS_MATCHED:
+            status = STATUS_MATCHED
+        elif asm_info:
+            status = asm_info.status
+
+        merged.append(
+            FunctionInfo(
+                name=name,
+                module=module,
+                size=size,
+                status=status,
+                source=source,
+                size_source=size_source,
+            )
+        )
+
+    return merged
 
 
 def progress_bar(label: str, done: int, total: int, suffix: str = "") -> str:
@@ -699,9 +881,31 @@ def progress_bar(label: str, done: int, total: int, suffix: str = "") -> str:
     return f"{label:<10} {bar} {pct * 100:5.1f}%   {done:,} / {total:,}{suffix}"
 
 
+def validate_progress_rows(rows: list[FunctionInfo]) -> None:
+    """Fail early when accounting data is internally inconsistent.
+
+    This does not compare against the baserom. It verifies the invariants needed
+    for trustworthy progress percentages: positive sizes, valid statuses, and no
+    duplicate function identity inside one module. Non-function rows may share a
+    display name because separate object contributions can both contain gaps.
+    """
+    seen_functions: set[tuple[str, str]] = set()
+    for row in rows:
+        if row.size <= 0:
+            raise ValueError(f"invalid non-positive progress size: {row.module}/{row.name}: {row.size}")
+        if row.status not in {STATUS_MATCHED, STATUS_UNMATCHED}:
+            raise ValueError(f"invalid progress status: {row.module}/{row.name}: {row.status!r}")
+        if row.is_function:
+            key = (row.module, row.name)
+            if key in seen_functions:
+                raise ValueError(f"duplicate function in progress data: {row.module}/{row.name}")
+            seen_functions.add(key)
+
+
 def summarize(rows: list[FunctionInfo]) -> tuple[str, str]:
-    total_functions = len(rows)
-    matched_functions = sum(1 for row in rows if row.matched)
+    function_rows = [row for row in rows if row.is_function]
+    total_functions = len(function_rows)
+    matched_functions = sum(1 for row in function_rows if row.matched)
     total_size = sum(row.size for row in rows)
     matched_size = sum(row.size for row in rows if row.matched)
     return (
@@ -711,11 +915,13 @@ def summarize(rows: list[FunctionInfo]) -> tuple[str, str]:
 
 
 def stats(rows: list[FunctionInfo]) -> dict[str, int | float | str]:
-    total_functions = len(rows)
-    matched_functions = sum(1 for row in rows if row.matched)
+    function_rows = [row for row in rows if row.is_function]
+    total_functions = len(function_rows)
+    matched_functions = sum(1 for row in function_rows if row.matched)
     total_size = sum(row.size for row in rows)
     matched_size = sum(row.size for row in rows if row.matched)
-    exact_sizes = sum(1 for row in rows if row.exact_size)
+    exact_sizes = sum(1 for row in function_rows if row.exact_size)
+    exact_bytes = sum(row.size for row in rows if row.exact_size)
     return {
         "total_functions": total_functions,
         "matched_functions": matched_functions,
@@ -725,350 +931,981 @@ def stats(rows: list[FunctionInfo]) -> dict[str, int | float | str]:
         "size_pct": 0.0 if total_size == 0 else matched_size / total_size,
         "exact_sizes": exact_sizes,
         "exact_pct": 0.0 if total_functions == 0 else exact_sizes / total_functions,
-        "byte_label": "exact" if total_functions > 0 and exact_sizes == total_functions else "mixed/estimated",
+        "exact_bytes": exact_bytes,
+        "byte_label": "exact" if total_size > 0 and exact_bytes == total_size else "mixed/estimated",
     }
+
+
+def esc(value: object) -> str:
+    return html.escape(str(value), quote=True)
 
 
 def fmt_int(value: int | float) -> str:
     return f"{int(value):,}"
 
 
+def fmt_pct(value: int | float) -> str:
+    return f"{float(value) * 100:.1f}%"
+
+
+def worst_ratio(row: list[dict], side: float) -> float:
+    if not row:
+        return math.inf
+    total = sum(item["value"] for item in row)
+    if total <= 0 or side <= 0:
+        return math.inf
+    values = [item["value"] for item in row]
+    max_value = max(values)
+    min_value = min(values)
+    side2 = side * side
+    return max((side2 * max_value) / (total * total), (total * total) / (side2 * min_value))
+
+
+def normalize_items(items: list[dict], area: float) -> list[dict]:
+    total = sum(item["value"] for item in items)
+    if total <= 0:
+        return []
+    scale = area / total
+    return [{**item, "value": max(0.1, item["value"] * scale)} for item in items if item["value"] > 0]
+
+
+def layout_row(row: list[dict], x: float, y: float, w: float, h: float) -> tuple[list[tuple[dict, float, float, float, float]], float, float, float, float]:
+    out: list[tuple[dict, float, float, float, float]] = []
+    row_area = sum(item["value"] for item in row)
+    if w >= h:
+        row_h = row_area / w if w else 0
+        cursor = x
+        for item in row:
+            item_w = item["value"] / row_h if row_h else 0
+            out.append((item, cursor, y, item_w, row_h))
+            cursor += item_w
+        return out, x, y + row_h, w, h - row_h
+
+    row_w = row_area / h if h else 0
+    cursor = y
+    for item in row:
+        item_h = item["value"] / row_w if row_w else 0
+        out.append((item, x, cursor, row_w, item_h))
+        cursor += item_h
+    return out, x + row_w, y, w - row_w, h
+
+
+def squarify(items: list[dict], x: float, y: float, w: float, h: float) -> list[tuple[dict, float, float, float, float]]:
+    items = [item for item in items if item["value"] > 0]
+    if not items:
+        return []
+    total = sum(item["value"] for item in items)
+    if total <= 0 or w <= 0 or h <= 0:
+        return []
+
+    scale = (w * h) / total
+    scaled = [(item, item["value"] * scale) for item in sorted(items, key=lambda item: item["value"], reverse=True)]
+    out: list[tuple[dict, float, float, float, float]] = []
+    rx, ry, rw, rh = x, y, w, h
+    index = 0
+
+    while index < len(scaled):
+        short = min(rw, rh)
+        row = [scaled[index]]
+        index += 1
+
+        while index < len(scaled):
+            trial = row + [scaled[index]]
+            if squarify_worst(trial, short) <= squarify_worst(row, short):
+                row = trial
+                index += 1
+            else:
+                break
+
+        out.extend(squarify_layout_row(row, rx, ry, rw, rh))
+        row_sum = sum(area for _, area in row)
+        if rw <= rh:
+            delta_h = row_sum / rw if rw else 0
+            ry += delta_h
+            rh -= delta_h
+        else:
+            delta_w = row_sum / rh if rh else 0
+            rx += delta_w
+            rw -= delta_w
+
+    return out
+
+
+def squarify_worst(row: list[tuple[dict, float]], short: float) -> float:
+    total = sum(area for _, area in row)
+    if total <= 0 or short <= 0:
+        return math.inf
+    largest = max(area for _, area in row)
+    smallest = min(area for _, area in row)
+    if smallest <= 0:
+        return math.inf
+    short2 = short * short
+    return max((short2 * largest) / (total * total), (total * total) / (short2 * smallest))
+
+
+def squarify_layout_row(row: list[tuple[dict, float]], x: float, y: float, w: float, h: float) -> list[tuple[dict, float, float, float, float]]:
+    total = sum(area for _, area in row)
+    out: list[tuple[dict, float, float, float, float]] = []
+    if total <= 0:
+        return out
+
+    if w <= h:
+        row_h = total / w if w else 0
+        cursor_x = x
+        for item, area in row:
+            item_w = area / row_h if row_h else 0
+            out.append((item, cursor_x, y, item_w, row_h))
+            cursor_x += item_w
+    else:
+        row_w = total / h if h else 0
+        cursor_y = y
+        for item, area in row:
+            item_h = area / row_w if row_w else 0
+            out.append((item, x, cursor_y, row_w, item_h))
+            cursor_y += item_h
+
+    return out
+
+
+def color_for_row(row: FunctionInfo) -> str:
+    return "url(#matchedGrad)" if row.matched else "url(#unmatchedGrad)"
+
+
+def add_text(body: list[str], x: float, y: float, text: object, size: int, color: str, weight: int = 400, anchor: str = "start") -> None:
+    body.append(
+        f'<text x="{x:.2f}" y="{y:.2f}" fill="{color}" font-family="Inter, Segoe UI, sans-serif" '
+        f'font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">{esc(text)}</text>'
+    )
+
+
+def add_card(body: list[str], x: float, y: float, w: float, h: float, label: str, value: str, sub: str) -> None:
+    body.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" rx="10" fill="#0f172a" stroke="#1e293b"/>')
+    add_text(body, x + 16, y + 25, label, 12, "#94a3b8", 700)
+    add_text(body, x + 16, y + 56, value, 25, "#f8fafc", 800)
+    add_text(body, x + 16, y + 80, sub, 12, "#94a3b8", 500)
+
+
 def write_svg(rows: list[FunctionInfo], svg_path: Path) -> Path:
+    # Validate once more at the output boundary so bad accounting cannot silently
+    # reach the committed SVG even when this function is called independently.
+    validate_progress_rows(rows)
     svg_path.parent.mkdir(parents=True, exist_ok=True)
-    total_size = sum(row.size for row in rows) or 1
-    matched_size = sum(row.size for row in rows if row.matched)
-    pct = matched_size / total_size
+    info = stats(rows)
+    modules: dict[str, list[FunctionInfo]] = {}
+    for row in rows:
+        modules.setdefault(row.module, []).append(row)
+
+    module_items = []
+    for module, funcs in modules.items():
+        total_bytes = sum(row.size for row in funcs)
+        matched_bytes = sum(row.size for row in funcs if row.matched)
+        module_items.append(
+            {
+                "name": module,
+                "functions": sorted(funcs, key=lambda row: row.size, reverse=True),
+                "value": module_visual_weight(funcs),
+                "bytes": total_bytes,
+                "matched": matched_bytes,
+            }
+        )
+
+    # The SVG repeats the same authoritative totals used by the HTML.  These
+    # values are computed before any visual layout, so small treemap rectangles
+    # or omitted labels can never affect function/byte accounting.
     function_line, size_line = summarize(rows)
-    width = 1280
-    height = 260
-    done_w = int((width - 80) * pct)
-    body = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
-<rect width="100%" height="100%" fill="#0d1117"/>
-<text x="40" y="52" fill="#e5e7eb" font-family="Inter,Segoe UI,sans-serif" font-size="30" font-weight="800">Wario Land 4 Decompilation Progress</text>
-<text x="40" y="88" fill="#cbd5e1" font-family="ui-monospace,Menlo,monospace" font-size="15">{html.escape(function_line)}</text>
-<text x="40" y="114" fill="#cbd5e1" font-family="ui-monospace,Menlo,monospace" font-size="15">{html.escape(size_line)}</text>
-<rect x="40" y="150" width="{width - 80}" height="46" rx="10" fill="#334155"/>
-<rect x="40" y="150" width="{done_w}" height="46" rx="10" fill="#22c55e"/>
-<text x="{width - 40}" y="184" text-anchor="end" fill="#f8fafc" font-family="Inter,Segoe UI,sans-serif" font-size="22" font-weight="800">{pct * 100:.1f}%</text>
-<text x="{width - 40}" y="238" text-anchor="end" fill="#94a3b8" font-family="Inter,Segoe UI,sans-serif" font-size="13">Generated by tools/gen_decomp_progress.py</text>
-</svg>
-'''
-    svg_path.write_text(body, encoding="utf-8")
+    function_value = f'{fmt_int(info["matched_functions"])} / {fmt_int(info["total_functions"])}'
+    function_sub = f'{fmt_pct(info["function_pct"])} matched functions'
+    code_value = f'{fmt_int(info["matched_size"])} / {fmt_int(info["total_size"])}'
+    code_sub = f'{fmt_pct(info["size_pct"])} matched code bytes'
+    unmatched_function_count = int(info["total_functions"]) - int(info["matched_functions"])
+    unmatched_byte_count = int(info["total_size"]) - int(info["matched_size"])
+    remaining_value = f'{fmt_int(unmatched_function_count)} funcs · {fmt_int(unmatched_byte_count)} bytes'
+    remaining_sub = 'remaining unmatched code'
+    exact_value = f'{fmt_int(info["exact_bytes"])} / {fmt_int(info["total_size"])}'
+    exact_sub = f'byte sizing: {info["byte_label"]}'
+    byte_note = f'byte sizes: {info["byte_label"]} ({fmt_int(info["exact_bytes"])} / {fmt_int(info["total_size"])} bytes exact)'
+
+    body = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{SVG_WIDTH}" height="{SVG_HEIGHT}" viewBox="0 0 {SVG_WIDTH} {SVG_HEIGHT}">',
+        "<defs>",
+        '<style><![CDATA[',
+        ".title{font:700 28px Inter,Segoe UI,sans-serif;fill:#e5e7eb}",
+        ".sub{font:500 13px Inter,Segoe UI,sans-serif;fill:#94a3b8}",
+        ".mono{font:500 13px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#cbd5e1}",
+        ".module{font:700 12px Inter,Segoe UI,sans-serif;fill:#e2e8f0}",
+        ".percent{font:700 11px Inter,Segoe UI,sans-serif;fill:#94a3b8}",
+        ".func{font:700 9px Inter,Segoe UI,sans-serif;fill:#ecfdf5}",
+        "]]></style>",
+        '<linearGradient id="matchedGrad" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#39d353"/><stop offset="100%" stop-color="#238636"/></linearGradient>',
+        '<linearGradient id="unmatchedGrad" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#4a4d52"/><stop offset="100%" stop-color="#30333a"/></linearGradient>',
+        "</defs>",
+        '<rect width="100%" height="100%" fill="#0d1117"/>',
+    ]
+
+    body.append(f'<text x="{SVG_PAD}" y="42" class="title">Wario Land 4 Decompilation Progress</text>')
+    body.append(f'<text x="{SVG_PAD}" y="68" class="mono">{esc(function_line)}</text>')
+    body.append(f'<text x="{SVG_PAD}" y="88" class="mono">{esc(size_line)}</text>')
+    body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="68" text-anchor="end" class="sub">green = matched C</text>')
+    body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="88" text-anchor="end" class="sub">{esc(byte_note)}</text>')
+
+    # Four compact cards make the absolute counts readable in README embeds,
+    # where the monospace progress bars can become too small to inspect.
+    card_gap = 12
+    card_y = 108
+    card_h = 94
+    card_w = (SVG_WIDTH - SVG_PAD * 2 - card_gap * 3) / 4
+    add_card(body, SVG_PAD, card_y, card_w, card_h, "FUNCTIONS", function_value, function_sub)
+    add_card(body, SVG_PAD + (card_w + card_gap), card_y, card_w, card_h, "CODE BYTES", code_value, code_sub)
+    add_card(body, SVG_PAD + 2 * (card_w + card_gap), card_y, card_w, card_h, "REMAINING", remaining_value, remaining_sub)
+    add_card(body, SVG_PAD + 3 * (card_w + card_gap), card_y, card_w, card_h, "EXACT BYTE SIZING", exact_value, exact_sub)
+
+    chart_x = 6
+    chart_y = 218
+    chart_w = SVG_WIDTH - chart_x * 2
+    chart_h = SVG_HEIGHT - chart_y - 6
+    body.append(f'<rect x="{chart_x:.2f}" y="{chart_y:.2f}" width="{chart_w:.2f}" height="{chart_h:.2f}" fill="#05080d" stroke="#000000" stroke-width="1"/>')
+
+    for module_index, (item, x, y, w, h) in enumerate(squarify(module_items, chart_x + 1, chart_y + 1, chart_w - 2, chart_h - 2)):
+        pct = 0.0 if item["bytes"] == 0 else item["matched"] / item["bytes"]
+        title = f'{item["name"]}: {pct * 100:.1f}% matched, {item["bytes"]:,} bytes'
+        clip_id = f"moduleLabelClip{module_index}"
+        body.append("<g>")
+        body.append(f"<title>{esc(title)}</title>")
+        body.append(f'<rect x="{x:.2f}" y="{y:.2f}" width="{max(0.0, w - 0.6):.2f}" height="{max(0.0, h - 0.6):.2f}" fill="#10151c" stroke="#000000" stroke-width="1"/>')
+
+        header_h = min(18.0, max(10.0, h * 0.18))
+        label_font = 11 if w > 86 and h > 38 else 8
+        percent_font = 10 if w > 86 and h > 38 else 7
+        label = item["name"]
+        max_chars = max(3, int((w - 12) / max(5.0, label_font * 0.58)))
+        if len(label) > max_chars:
+            label = label[: max(1, max_chars - 1)] + "…"
+        body.append(f'<clipPath id="{clip_id}"><rect x="{x + 2:.2f}" y="{y + 1:.2f}" width="{max(1.0, w - 4):.2f}" height="{max(1.0, header_h):.2f}"/></clipPath>')
+        body.append(f'<rect x="{x + 1:.2f}" y="{y + 1:.2f}" width="{max(0.0, w - 2):.2f}" height="{max(0.0, header_h):.2f}" fill="#05080d"/>')
+        body.append(
+            f'<text x="{x + 2.5:.2f}" y="{y + min(header_h - 2, label_font + 3):.2f}" '
+            f'clip-path="url(#{clip_id})" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" '
+            f'font-size="{label_font}" font-weight="800">{esc(label)}</text>'
+        )
+        if w > 54:
+            body.append(
+                f'<text x="{x + w - 3:.2f}" y="{y + min(header_h - 2, percent_font + 3):.2f}" '
+                f'text-anchor="end" clip-path="url(#{clip_id})" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" '
+                f'font-size="{percent_font}" font-weight="700">{pct * 100:.0f}%</text>'
+            )
+
+        inner_x = x + 1
+        inner_y = y + header_h + 1
+        inner_w = max(0.0, w - 2)
+        inner_h = max(0.0, h - header_h - 2)
+        func_items = [{"value": visual_weight(row.size), "row": row} for row in item["functions"]]
+
+        if inner_w > 4 and inner_h > 4:
+            for wrapped, fx, fy, fw, fh in squarify(func_items, inner_x, inner_y, inner_w, inner_h):
+                row: FunctionInfo = wrapped["row"]
+                if fw < 1.2 or fh < 1.2:
+                    continue
+                tip = f"{row.module}/{row.name}: {row.size:,} bytes, {row.status}, size={row.size_source}"
+                stroke = "#2c7a41" if row.matched else "#393b3f"
+                body.append(
+                    f'<rect x="{fx:.2f}" y="{fy:.2f}" width="{max(0.0, fw - 0.35):.2f}" height="{max(0.0, fh - 0.35):.2f}" '
+                    f'fill="{color_for_row(row)}" stroke="{stroke}" stroke-opacity="0.72" stroke-width="0.45">'
+                    f"<title>{esc(tip)}</title></rect>"
+                )
+                if fw > 82 and fh > 22 and row.matched:
+                    label = row.name
+                    max_chars = max(8, int((fw - 8) / 5.8))
+                    if len(label) > max_chars:
+                        label = label[: max_chars - 1] + "..."
+                    body.append(f'<text x="{fx + 4:.2f}" y="{fy + 14:.2f}" class="func">{esc(label)}</text>')
+        body.append("</g>")
+
+    body.append(f'<text x="{SVG_WIDTH - SVG_PAD}" y="{SVG_HEIGHT - 7}" text-anchor="end" class="sub">Generated by tools/gen_decomp_progress.py · report {REPORT_FORMAT_VERSION}</text>')
+    body.append("</svg>")
+    svg_path.write_text("\n".join(body), encoding="utf-8")
     return svg_path
 
 
 def write_html(rows: list[FunctionInfo], html_path: Path) -> Path:
-    """HTML CONTROL FIX 2026-07-26: keep search/module/sort/reset IDs and status filters."""
+    # HTML filtering is presentation-only. These validated rows remain the single
+    # immutable dataset used by all cards, filters, lists, and treemap views.
+    validate_progress_rows(rows)
     html_path.parent.mkdir(parents=True, exist_ok=True)
     info = stats(rows)
-
-    modules = sorted({row.module for row in rows})
-    rows_json = json.dumps(
-        [
+    payload = {
+        "reportVersion": REPORT_FORMAT_VERSION,
+        "stats": info,
+        "rows": [
             {
-                "module": row.module,
                 "name": row.name,
+                "module": row.module,
                 "size": row.size,
+                "layoutSize": visual_weight(row.size),
                 "status": row.status,
+                "matched": row.matched,
                 "source": row.source,
+                "sizeSource": row.size_source,
+                "isFunction": row.is_function,
             }
             for row in rows
-        ]
-    ).replace("</", "<\\/")
-
-    module_options = "\n".join(
-        f'<option value="{html.escape(module)}">{html.escape(module)}</option>'
-        for module in modules
-    )
-
-    html_text = f'''<!doctype html>
+        ],
+    }
+    data_json = json.dumps(payload, separators=(",", ":")).replace("</", "<\\/")
+    html_text = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wario Land 4 Progress</title>
+<title>Wario Land 4 Decompilation Progress</title>
 <style>
+:root {{
+  color-scheme: dark;
+  --bg: #020617;
+  --panel: #0f172a;
+  --panel2: #111827;
+  --line: #1e293b;
+  --muted: #94a3b8;
+  --text: #f8fafc;
+  --green: #22c55e;
+  --green2: #34d399;
+  --slate: #334155;
+  --slate2: #64748b;
+}}
+* {{ box-sizing: border-box; }}
 body {{
-  background:#020617;
-  color:#e5e7eb;
-  font-family:system-ui,sans-serif;
-  margin:24px;
+  margin: 0;
+  background: radial-gradient(circle at 20% 0%, #13203a 0, transparent 28rem), var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }}
-.controls {{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr auto;
-  gap:10px;
-  margin:12px 0 18px;
+main {{
+  width: min(1480px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 28px 0;
 }}
-input, select, button {{
-  padding:10px;
-  background:#0f172a;
-  color:#e5e7eb;
-  border:1px solid #334155;
-  border-radius:8px;
+.top {{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 18px;
 }}
-button {{
-  cursor:pointer;
+h1 {{
+  margin: 0 0 6px;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: 0;
 }}
-table {{
-  border-collapse:collapse;
-  width:100%;
+.sub {{ margin: 0; color: var(--muted); }}
+.actions {{ display: flex; gap: 10px; flex-wrap: wrap; justify-content: end; }}
+button, input, select {{
+  border: 1px solid var(--line);
+  background: rgba(15, 23, 42, .92);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
 }}
-td, th {{
-  border-bottom:1px solid #1e293b;
-  padding:6px 8px;
-  text-align:left;
+button {{ cursor: pointer; }}
+button.active {{ border-color: var(--green); color: #dcfce7; box-shadow: 0 0 0 1px rgba(34,197,94,.25) inset; }}
+.cards {{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
 }}
-th {{
-  color:#cbd5e1;
+.card {{
+  background: linear-gradient(180deg, rgba(15,23,42,.96), rgba(15,23,42,.72));
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
 }}
-.matched {{
-  color:#22c55e;
+.label {{ color: var(--muted); font-size: 12px; text-transform: uppercase; font-weight: 800; letter-spacing: .08em; }}
+.value {{ margin-top: 8px; font-size: 30px; font-weight: 850; }}
+.detail {{ margin-top: 5px; color: var(--muted); font-size: 13px; }}
+.controls-shell {{
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, .72);
 }}
-.unmatched {{
-  color:#94a3b8;
+.controls-head {{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
 }}
-.summary {{
-  color:#cbd5e1;
+.controls-head h2 {{ margin: 0; font-size: 17px; }}
+.controls-head span {{ color: var(--muted); font-size: 12px; }}
+.tools {{
+  display: grid;
+  grid-template-columns: 1fr 170px 170px 110px;
+  gap: 10px;
+  margin-bottom: 14px;
+}}
+.stage {{
+  position: relative;
+  min-height: 640px;
+  background: linear-gradient(180deg, rgba(15,23,42,.95), rgba(2,6,23,.95));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+}}
+.min-bytes {{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}}
+.min-bytes input {{ width: 92px; }}
+
+.workspace {{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 14px;
+  align-items: stretch;
+}}
+.done-panel {{
+  min-height: 640px;
+  max-height: 720px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(15,23,42,.95), rgba(2,6,23,.95));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
+}}
+.done-head {{
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}}
+.done-head strong {{ display: block; font-size: 15px; }}
+.done-head span {{ color: var(--muted); font-size: 12px; }}
+.done-list {{
+  height: calc(100% - 68px);
+  overflow: auto;
+  padding: 8px;
+}}
+.done-item {{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  padding: 9px 10px;
+  border-bottom: 1px solid rgba(30,41,59,.7);
+  font-size: 12px;
+}}
+.done-item b {{
+  color: #dcfce7;
+  font-weight: 750;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}}
+.done-item small {{
+  grid-column: 1 / -1;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}}
+.done-size {{ color: #86efac; font-variant-numeric: tabular-nums; }}
+canvas {{
+  display: block;
+  width: 100%;
+  height: 720px;
+  cursor: crosshair;
+}}
+.tooltip {{
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(10px, 10px);
+  z-index: 10;
+  background: rgba(2, 6, 23, .94);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 260px;
+  box-shadow: 0 14px 36px rgba(0,0,0,.35);
+}}
+.tooltip strong {{ display: block; margin-bottom: 5px; }}
+.tooltip div {{ color: var(--muted); font-size: 13px; line-height: 1.45; }}
+.legend {{ display: flex; gap: 16px; align-items: center; color: var(--muted); font-size: 13px; padding: 10px 2px 0; }}
+.dot {{ width: 10px; height: 10px; display: inline-block; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }}
+.matched {{ background: var(--green); }}
+.unmatched {{ background: var(--slate2); }}
+@media (max-width: 900px) {{
+  .top {{ grid-template-columns: 1fr; }}
+  .actions {{ justify-content: start; }}
+  .cards {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+  .tools {{ grid-template-columns: 1fr; }}
+  .workspace {{ grid-template-columns: 1fr; }}
+  .done-panel {{ max-height: 420px; min-height: 320px; }}
+  canvas {{ height: 620px; }}
+}}
+@media (max-width: 560px) {{
+  main {{ width: calc(100vw - 20px); padding-top: 18px; }}
+  .cards {{ grid-template-columns: 1fr; }}
 }}
 </style>
 </head>
 <body>
-<h1>Wario Land 4 Progress</h1>
-<p class="summary">
-Functions: {info['matched_functions']:,} / {info['total_functions']:,}.
-Code size: {info['matched_size']:,} / {info['total_size']:,} bytes.
-</p>
-
-<!-- HTML CONTROL FIX 2026-07-26:
-     CI expects IDs search/module/sort/reset.
-     CI also expects data-status values all/matched/not matched. -->
-<div class="controls">
-  <input id="search" placeholder="Search function, module, or source">
-
-  <select id="module">
-    <option value="">All modules</option>
-    {module_options}
-  </select>
-
-  <select id="sort">
-    <option value="module">Sort by module</option>
-    <option value="name">Sort by function</option>
-    <option value="size-desc">Sort by size desc</option>
-    <option value="size-asc">Sort by size asc</option>
-    <option value="status">Sort by status</option>
-  </select>
-
-  <select id="status">
-    <option value="all" data-status="all">All statuses</option>
-    <option value="matched" data-status="matched">Matched</option>
-    <option value="not matched" data-status="not matched">Not matched</option>
-  </select>
-
-  <button id="reset" type="button">Reset</button>
-</div>
-
-<table>
-<thead>
-<tr>
-  <th>Module</th>
-  <th>Function</th>
-  <th>Size</th>
-  <th>Status</th>
-  <th>Source</th>
-</tr>
-</thead>
-<tbody id="body"></tbody>
-</table>
-
+<main>
+  <section class="top">
+    <div>
+      <h1>Wario Land 4 Progress</h1>
+      <p class="sub">Interactive decompilation treemap. Each tile is one function, sized by byte count.</p>
+    </div>
+    <div class="actions">
+      <button class="active" data-status="all">All</button>
+      <button data-status="matched">Matched only</button>
+      <button data-status="not matched">Unmatched only</button>
+    </div>
+  </section>
+  <section class="cards">
+    <div class="card"><div class="label">Functions</div><div class="value" id="functionsPct"></div><div class="detail" id="functionsDetail"></div></div>
+    <div class="card"><div class="label">Code Size</div><div class="value" id="sizePct"></div><div class="detail" id="sizeDetail"></div></div>
+    <div class="card"><div class="label">Byte Sizing</div><div class="value" id="byteSizing"></div><div class="detail" id="byteDetail"></div></div>
+    <div class="card"><div class="label">Visible</div><div class="value" id="visibleCount"></div><div class="detail" id="visibleDetail"></div></div>
+  </section>
+  <section class="controls-shell">
+    <div class="controls-head">
+      <h2>Progress controls</h2>
+      <span>Filters change the visible treemap only; project totals stay exact.</span>
+    </div>
+    <div class="tools">
+      <!-- All controls below are client-side only; report totals remain immutable. -->
+      <input id="search" type="search" placeholder="Search function or module">
+    <select id="module" title="Filter by object/module"></select>
+    <select id="sizeQuality" title="Filter by exact linker-map sizing">
+      <option value="all">All size sources</option>
+      <option value="exact">Exact sizes only</option>
+      <option value="estimated">Estimated sizes only</option>
+    </select>
+    <select id="kind" title="Choose whether symbol-less text is visible">
+      <option value="functions">Functions only</option>
+      <option value="all">Functions + unassigned text</option>
+      <option value="text">Unassigned text only</option>
+    </select>
+    <label class="min-bytes">Min bytes <input id="minBytes" type="number" min="0" step="1" value="0"></label>
+    <select id="sort">
+      <option value="size-desc">Largest first</option>
+      <option value="size-asc">Smallest first</option>
+      <option value="module">Module</option>
+      <option value="name">Name A–Z</option>
+      <option value="name-desc">Name Z–A</option>
+      <option value="status">Unmatched first</option>
+    </select>
+      <button id="reset">Reset filters</button>
+    </div>
+  </section>
+  <section class="workspace">
+    <div class="stage">
+      <canvas id="treemap"></canvas>
+    </div>
+    <aside class="done-panel">
+      <div class="done-head">
+        <strong>Done Matched Functions</strong>
+        <span id="doneSummary"></span>
+      </div>
+      <div class="done-list" id="doneList"></div>
+    </aside>
+  </section>
+  <div class="legend">
+    <span><span class="dot matched"></span>Matched C</span>
+    <span><span class="dot unmatched"></span>Not matched</span>
+    <span id="exactNote"></span>
+  </div>
+</main>
+<div class="tooltip" id="tooltip"></div>
 <script>
-const rows = {rows_json};
-const body = document.getElementById('body');
-const search = document.getElementById('search');
-const moduleFilter = document.getElementById('module');
-const sort = document.getElementById('sort');
-const statusFilter = document.getElementById('status');
-const reset = document.getElementById('reset');
+const DATA = {data_json};
+const rows = DATA.rows;
+const stats = DATA.stats;
+// UI state is deliberately separate from DATA: filters must never mutate the
+// authoritative rows used for the headline function/byte totals.
+const state = {{
+  status: "all",
+  query: "",
+  module: "all",
+  sizeQuality: "all",
+  kind: "functions",
+  minBytes: 0,
+  sort: "size-desc"
+}};
+const canvas = document.getElementById("treemap");
+const ctx = canvas.getContext("2d");
+const tip = document.getElementById("tooltip");
+let rects = [];
 
-function esc(s) {{
-  return String(s).replace(/[&<>"]/g, c => ({{
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;'
-  }}[c]));
+const fmtInt = new Intl.NumberFormat("en-US");
+const pct = value => `${{(value * 100).toFixed(1)}}%`;
+
+function init() {{
+  document.getElementById("functionsPct").textContent = pct(stats.function_pct);
+  document.getElementById("functionsDetail").textContent = `${{fmtInt.format(stats.matched_functions)}} / ${{fmtInt.format(stats.total_functions)}} matched`;
+  document.getElementById("sizePct").textContent = pct(stats.size_pct);
+  document.getElementById("sizeDetail").textContent = `${{fmtInt.format(stats.matched_size)}} / ${{fmtInt.format(stats.total_size)}} bytes`;
+  document.getElementById("byteSizing").textContent = stats.byte_label;
+  document.getElementById("byteDetail").textContent = `${{fmtInt.format(stats.exact_bytes)}} / ${{fmtInt.format(stats.total_size)}} bytes exact`;
+  document.getElementById("exactNote").textContent = `Byte sizing: ${{stats.byte_label}}`;
+
+  const modules = [...new Set(rows.map(row => row.module))].sort();
+  const moduleSelect = document.getElementById("module");
+  moduleSelect.innerHTML = `<option value="all">All modules</option>` + modules.map(name => `<option>${{escapeHtml(name)}}</option>`).join("");
+
+  document.querySelectorAll("[data-status]").forEach(button => {{
+    button.addEventListener("click", () => {{
+      document.querySelectorAll("[data-status]").forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+      state.status = button.dataset.status;
+      draw();
+    }});
+  }});
+  document.getElementById("search").addEventListener("input", event => {{ state.query = event.target.value.toLowerCase(); draw(); }});
+  moduleSelect.addEventListener("change", event => {{ state.module = event.target.value; draw(); }});
+  document.getElementById("sizeQuality").addEventListener("change", event => {{ state.sizeQuality = event.target.value; draw(); }});
+  document.getElementById("kind").addEventListener("change", event => {{ state.kind = event.target.value; draw(); }});
+  document.getElementById("minBytes").addEventListener("input", event => {{
+    state.minBytes = Math.max(0, Number.parseInt(event.target.value || "0", 10) || 0);
+    draw();
+  }});
+  document.getElementById("sort").addEventListener("change", event => {{ state.sort = event.target.value; draw(); }});
+  document.getElementById("reset").addEventListener("click", reset);
+  window.addEventListener("resize", draw);
+  canvas.addEventListener("mousemove", onMove);
+  canvas.addEventListener("mouseleave", () => tip.style.opacity = 0);
+  draw();
 }}
 
-function compareRows(a, b) {{
-  const mode = sort.value;
+function reset() {{
+  state.status = "all";
+  state.query = "";
+  state.module = "all";
+  state.sizeQuality = "all";
+  state.kind = "functions";
+  state.minBytes = 0;
+  state.sort = "size-desc";
+  document.getElementById("search").value = "";
+  document.getElementById("module").value = "all";
+  document.getElementById("sizeQuality").value = "all";
+  document.getElementById("kind").value = "functions";
+  document.getElementById("minBytes").value = "0";
+  document.getElementById("sort").value = "size-desc";
+  document.querySelectorAll("[data-status]").forEach(item => item.classList.toggle("active", item.dataset.status === "all"));
+  draw();
+}}
 
-  if (mode === 'name') {{
-    return a.name.localeCompare(b.name) || a.module.localeCompare(b.module);
+function escapeHtml(value) {{
+  return String(value).replace(/[&<>"']/g, char => ({{ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }}[char]));
+}}
+
+function filteredRows() {{
+  // Filtering never changes DATA.stats. It only selects rows for the current
+  // treemap/list view, preserving stable project-wide totals at the top.
+  let out = rows.filter(row => {{
+    if (state.status !== "all" && row.status !== state.status) return false;
+    if (state.module !== "all" && row.module !== state.module) return false;
+    if (state.sizeQuality === "exact" && row.sizeSource !== "symbol") return false;
+    if (state.sizeQuality === "estimated" && row.sizeSource === "symbol") return false;
+    if (state.kind === "functions" && !row.isFunction) return false;
+    if (state.kind === "text" && row.isFunction) return false;
+    if (row.size < state.minBytes) return false;
+    if (state.query && !(row.name.toLowerCase().includes(state.query) || row.module.toLowerCase().includes(state.query))) return false;
+    return true;
+  }});
+  if (state.sort === "name") out.sort((a, b) => a.name.localeCompare(b.name));
+  else if (state.sort === "name-desc") out.sort((a, b) => b.name.localeCompare(a.name));
+  else if (state.sort === "module") out.sort((a, b) => a.module.localeCompare(b.module) || b.size - a.size);
+  else if (state.sort === "status") out.sort((a, b) => Number(a.matched) - Number(b.matched) || b.size - a.size);
+  else if (state.sort === "size-asc") out.sort((a, b) => a.size - b.size || a.name.localeCompare(b.name));
+  else out.sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
+  return out;
+}}
+
+function groupModules(items) {{
+  const byModule = new Map();
+  for (const row of items) {{
+    if (!byModule.has(row.module)) byModule.set(row.module, []);
+    byModule.get(row.module).push(row);
+  }}
+  return [...byModule.entries()].map(([name, functions]) => ({{
+    name,
+    functions,
+    value: Math.max(28, functions.reduce((sum, row) => sum + row.layoutSize, 0)),
+    bytes: functions.reduce((sum, row) => sum + row.size, 0),
+    matched: functions.filter(row => row.matched).reduce((sum, row) => sum + row.size, 0)
+  }})).sort((a, b) => b.value - a.value);
+}}
+
+function worst(row, side) {{
+  if (!row.length) return Infinity;
+  const total = row.reduce((sum, item) => sum + item.value, 0);
+  const values = row.map(item => item.value);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  return Math.max((side * side * max) / (total * total), (total * total) / (side * side * min));
+}}
+
+function layoutRow(row, box) {{
+  const area = row.reduce((sum, item) => sum + item.value, 0);
+  const rects = [];
+  if (box.w >= box.h) {{
+    const h = area / box.w;
+    let x = box.x;
+    for (const item of row) {{
+      const w = item.value / h;
+      rects.push({{ item, x, y: box.y, w, h }});
+      x += w;
+    }}
+    return {{ rects, box: {{ x: box.x, y: box.y + h, w: box.w, h: box.h - h }} }};
+  }}
+  const w = area / box.h;
+  let y = box.y;
+  for (const item of row) {{
+    const h = item.value / w;
+    rects.push({{ item, x: box.x, y, w, h }});
+    y += h;
+  }}
+  return {{ rects, box: {{ x: box.x + w, y: box.y, w: box.w - w, h: box.h }} }};
+}}
+
+function squarify(items, box) {{
+  const total = items.reduce((sum, item) => sum + item.value, 0);
+  if (!total) return [];
+  const scale = (box.w * box.h) / total;
+  const scaled = items
+    .filter(item => item.value > 0)
+    .sort((a, b) => b.value - a.value)
+    .map(item => [item, item.value * scale]);
+
+  function worst(row, short) {{
+    const sum = row.reduce((acc, pair) => acc + pair[1], 0);
+    if (sum <= 0 || short <= 0) return Infinity;
+    const values = row.map(pair => pair[1]);
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    if (min <= 0) return Infinity;
+    return Math.max((short * short * max) / (sum * sum), (sum * sum) / (short * short * min));
   }}
 
-  if (mode === 'size-desc') {{
-    return b.size - a.size || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
+  function layoutRow(row, rect) {{
+    const sum = row.reduce((acc, pair) => acc + pair[1], 0);
+    const out = [];
+    if (sum <= 0) return out;
+
+    if (rect.w <= rect.h) {{
+      const rowH = rect.w ? sum / rect.w : 0;
+      let x = rect.x;
+      for (const [item, area] of row) {{
+        const w = rowH ? area / rowH : 0;
+        out.push({{ item, x, y: rect.y, w, h: rowH }});
+        x += w;
+      }}
+    }} else {{
+      const rowW = rect.h ? sum / rect.h : 0;
+      let y = rect.y;
+      for (const [item, area] of row) {{
+        const h = rowW ? area / rowW : 0;
+        out.push({{ item, x: rect.x, y, w: rowW, h }});
+        y += h;
+      }}
+    }}
+    return out;
   }}
 
-  if (mode === 'size-asc') {{
-    return a.size - b.size || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
-  }}
+  let rect = {{ ...box }};
+  let index = 0;
+  let out = [];
+  while (index < scaled.length) {{
+    const short = Math.min(rect.w, rect.h);
+    let row = [scaled[index++]];
 
-  if (mode === 'status') {{
-    return a.status.localeCompare(b.status) || a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
-  }}
+    while (index < scaled.length) {{
+      const trial = row.concat([scaled[index]]);
+      if (worst(trial, short) <= worst(row, short)) {{
+        row = trial;
+        index++;
+      }} else {{
+        break;
+      }}
+    }}
 
-  return a.module.localeCompare(b.module) || a.name.localeCompare(b.name);
+    out = out.concat(layoutRow(row, rect));
+    const rowSum = row.reduce((acc, pair) => acc + pair[1], 0);
+    if (rect.w <= rect.h) {{
+      const dh = rect.w ? rowSum / rect.w : 0;
+      rect = {{ x: rect.x, y: rect.y + dh, w: rect.w, h: rect.h - dh }};
+    }} else {{
+      const dw = rect.h ? rowSum / rect.h : 0;
+      rect = {{ x: rect.x + dw, y: rect.y, w: rect.w - dw, h: rect.h }};
+    }}
+  }}
+  return out;
+}}
+
+function drawRoundRect(x, y, w, h, r) {{
+  const radius = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.arcTo(x + w, y, x + w, y + h, radius);
+  ctx.arcTo(x + w, y + h, x, y + h, radius);
+  ctx.arcTo(x, y + h, x, y, radius);
+  ctx.arcTo(x, y, x + w, y, radius);
+  ctx.closePath();
 }}
 
 function draw() {{
-  const needle = search.value.toLowerCase();
-  const selectedModule = moduleFilter.value;
-  const selectedStatus = statusFilter.value;
+  const dpr = window.devicePixelRatio || 1;
+  const bounds = canvas.getBoundingClientRect();
+  canvas.width = Math.max(1, Math.floor(bounds.width * dpr));
+  canvas.height = Math.max(1, Math.floor(bounds.height * dpr));
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = bounds.width;
+  const H = bounds.height;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = "#0b1120";
+  ctx.fillRect(0, 0, W, H);
+  rects = [];
 
-  const filtered = rows
-    .filter(r => !selectedModule || r.module === selectedModule)
-    .filter(r => selectedStatus === 'all' || r.status === selectedStatus)
-    .filter(r => !needle ||
-      r.name.toLowerCase().includes(needle) ||
-      r.module.toLowerCase().includes(needle) ||
-      r.source.toLowerCase().includes(needle))
-    .sort(compareRows);
+  const visible = filteredRows();
+  const visibleSize = visible.reduce((sum, row) => sum + row.size, 0);
+  const visibleFunctions = visible.filter(row => row.isFunction).length;
+  document.getElementById("visibleCount").textContent = fmtInt.format(visibleFunctions);
+  document.getElementById("visibleDetail").textContent = `${{fmtInt.format(visibleSize)}} visible bytes`;
+  renderDoneList(visible);
 
-  body.innerHTML = filtered.map(r => `
-    <tr>
-      <td>${{esc(r.module)}}</td>
-      <td>${{esc(r.name)}}</td>
-      <td>${{r.size}}</td>
-      <td class="${{r.status === 'matched' ? 'matched' : 'unmatched'}}">${{esc(r.status)}}</td>
-      <td>${{esc(r.source)}}</td>
-    </tr>
-  `).join('');
+  const modules = groupModules(visible);
+  if (!modules.length) {{
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "600 18px Inter, sans-serif";
+    ctx.fillText("No functions match the current filters.", 28, 42);
+    return;
+  }}
+
+  const moduleRects = squarify(modules, {{ x: 12, y: 12, w: W - 24, h: H - 24 }});
+  for (const box of moduleRects) {{
+    const mod = box.item;
+    const pct = mod.bytes ? mod.matched / mod.bytes : 0;
+    ctx.fillStyle = "#111827";
+    ctx.fillRect(box.x, box.y, Math.max(0, box.w - 0.5), Math.max(0, box.h - 0.5));
+    ctx.strokeStyle = "#253247";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(box.x, box.y, Math.max(0, box.w - 0.5), Math.max(0, box.h - 0.5));
+
+    const header = Math.min(18, Math.max(10, box.h * 0.18));
+    const labelFont = box.w > 96 && box.h > 50 ? 11 : 8;
+    const percentFont = box.w > 96 && box.h > 50 ? 10 : 7;
+    ctx.save();
+    ctx.fillStyle = "rgba(13,17,23,.84)";
+    ctx.fillRect(box.x + 1, box.y + 1, Math.max(0, box.w - 2), Math.max(0, header));
+    ctx.beginPath();
+    ctx.rect(box.x + 2, box.y + 1, Math.max(1, box.w - 4), Math.max(1, header));
+    ctx.clip();
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = `800 ${{labelFont}}px Inter, sans-serif`;
+    ctx.fillText(trimText(mod.name, Math.max(12, box.w - 8)), box.x + 2.5, box.y + Math.min(header - 2, labelFont + 4));
+    if (box.w > 54) {{
+      ctx.fillStyle = "#94a3b8";
+      ctx.font = `700 ${{percentFont}}px Inter, sans-serif`;
+      ctx.textAlign = "right";
+      ctx.fillText(`${{Math.round(pct * 100)}}%`, box.x + box.w - 3, box.y + Math.min(header - 2, percentFont + 4));
+      ctx.textAlign = "left";
+    }}
+    ctx.restore();
+
+    const inner = {{ x: box.x + 1, y: box.y + header + 1, w: Math.max(0, box.w - 2), h: Math.max(0, box.h - header - 2) }};
+    const functionRects = squarify(mod.functions.map(row => ({{ ...row, value: row.layoutSize }})), inner);
+    for (const fn of functionRects) {{
+      if (fn.w < 1.4 || fn.h < 1.4) continue;
+      const row = fn.item;
+      const grad = ctx.createLinearGradient(fn.x, fn.y, fn.x + fn.w, fn.y + fn.h);
+      if (row.matched) {{
+        grad.addColorStop(0, "#34d399");
+        grad.addColorStop(1, "#16a34a");
+      }} else {{
+        grad.addColorStop(0, "#4a4d52");
+        grad.addColorStop(1, "#30333a");
+      }}
+      ctx.fillStyle = grad;
+      ctx.fillRect(fn.x, fn.y, Math.max(0, fn.w - 0.35), Math.max(0, fn.h - 0.35));
+      ctx.strokeStyle = row.matched ? "rgba(44,122,65,.78)" : "rgba(57,59,63,.78)";
+      ctx.lineWidth = .45;
+      ctx.strokeRect(fn.x, fn.y, Math.max(0, fn.w - 0.35), Math.max(0, fn.h - 0.35));
+      if (fn.w > 86 && fn.h > 26) {{
+        ctx.fillStyle = row.matched ? "#f0fdf4" : "#e2e8f0";
+        ctx.font = "700 10px Inter, sans-serif";
+        ctx.fillText(trimText(row.name, fn.w - 10), fn.x + 5, fn.y + 16);
+      }}
+      rects.push({{ row, x: fn.x, y: fn.y, w: fn.w, h: fn.h }});
+    }}
+  }}
 }}
 
-search.addEventListener('input', draw);
-moduleFilter.addEventListener('change', draw);
-sort.addEventListener('change', draw);
-statusFilter.addEventListener('change', draw);
+function renderDoneList(visible) {{
+  const done = visible
+    .filter(row => row.matched && row.isFunction);
+  if (state.sort === "size-asc") done.sort((a, b) => a.size - b.size || a.name.localeCompare(b.name));
+  else if (state.sort === "name") done.sort((a, b) => a.name.localeCompare(b.name));
+  else if (state.sort === "name-desc") done.sort((a, b) => b.name.localeCompare(a.name));
+  else if (state.sort === "module") done.sort((a, b) => a.module.localeCompare(b.module) || b.size - a.size);
+  else if (state.sort === "status") done.sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
+  else done.sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
+  const list = document.getElementById("doneList");
+  const shown = done.slice(0, 300);
+  document.getElementById("doneSummary").textContent = `${{fmtInt.format(done.length)}} matched in current filters`;
+  if (!shown.length) {{
+    list.innerHTML = `<div class="done-item"><b>No matched functions visible</b><small>Change filters or search.</small></div>`;
+    return;
+  }}
+  list.innerHTML = shown.map(row => `
+    <div class="done-item" title="${{escapeHtml(row.module + "/" + row.name)}}">
+      <b>${{escapeHtml(row.name)}}</b>
+      <span class="done-size">${{fmtInt.format(row.size)}} B</span>
+      <small>${{escapeHtml(row.module)}}</small>
+    </div>
+  `).join("");
+}}
 
-reset.addEventListener('click', () => {{
-  search.value = '';
-  moduleFilter.value = '';
-  sort.value = 'module';
-  statusFilter.value = 'all';
-  draw();
-}});
+function trimText(text, maxWidth) {{
+  if (ctx.measureText(text).width <= maxWidth) return text;
+  let out = text;
+  while (out.length > 4 && ctx.measureText(out + "...").width > maxWidth) out = out.slice(0, -1);
+  return out + "...";
+}}
 
-draw();
+function onMove(event) {{
+  const bounds = canvas.getBoundingClientRect();
+  const x = event.clientX - bounds.left;
+  const y = event.clientY - bounds.top;
+  const hit = rects.find(rect => x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h);
+  if (!hit) {{
+    tip.style.opacity = 0;
+    return;
+  }}
+  const row = hit.row;
+  tip.innerHTML = `<strong>${{escapeHtml(row.name)}}</strong>
+    <div>Module: ${{escapeHtml(row.module)}}</div>
+    <div>Kind: ${{row.isFunction ? "function" : "unassigned text"}}</div>
+    <div>Status: ${{escapeHtml(row.status)}}</div>
+    <div>Size: ${{fmtInt.format(row.size)}} bytes (${{escapeHtml(row.sizeSource)}})</div>
+    <div>Source: ${{escapeHtml(row.source)}}</div>`;
+  tip.style.left = `${{event.clientX + 12}}px`;
+  tip.style.top = `${{event.clientY + 12}}px`;
+  tip.style.opacity = 1;
+}}
+
+init();
 </script>
 </body>
 </html>
-'''
+"""
     html_path.write_text(html_text, encoding="utf-8")
     return html_path
-
-
-def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path:
-    def percent(done: int, total: int) -> float:
-        return 0.0 if total == 0 else done / total * 100.0
-
-    def is_real_function(row: FunctionInfo) -> bool:
-        return not (row.name.startswith("(") and row.name.endswith(")"))
-
-    grouped: dict[str, list[FunctionInfo]] = {}
-    unit_order: list[str] = []
-    for row in rows:
-        if row.module not in grouped:
-            grouped[row.module] = []
-            unit_order.append(row.module)
-        grouped[row.module].append(row)
-
-    report_measures: dict[str, int | float] = {
-        "total_code": 0,
-        "matched_code": 0,
-        "total_data": 0,
-        "total_functions": 0,
-        "matched_functions": 0,
-        "complete_code": 0,
-        "complete_data": 0,
-        "total_units": 0,
-        "complete_units": 0,
-    }
-    report_units: list[dict[str, object]] = []
-
-    for module_name in unit_order:
-        module_rows = grouped[module_name]
-        function_rows = [row for row in module_rows if is_real_function(row)]
-        total_code = sum(max(0, row.size) for row in module_rows)
-        matched_code = sum(max(0, row.size) for row in module_rows if row.matched)
-        total_functions = len(function_rows)
-        matched_functions = sum(1 for row in function_rows if row.matched)
-        complete_unit = int(total_code == matched_code)
-
-        unit_measures = {
-            "total_code": total_code,
-            "matched_code": matched_code,
-            "total_data": 0,
-            "total_functions": total_functions,
-            "matched_functions": matched_functions,
-            "complete_code": matched_code,
-            "complete_data": 0,
-            "total_units": 1,
-            "complete_units": complete_unit,
-            "matched_code_percent": percent(matched_code, total_code),
-            "complete_code_percent": percent(matched_code, total_code),
-            "matched_functions_percent": percent(matched_functions, total_functions),
-            "fuzzy_match_percent": percent(matched_code, total_code),
-            "complete_data_percent": 0.0,
-        }
-
-        report_units.append(
-            {
-                "name": module_name,
-                "measures": unit_measures,
-                "sections": [],
-                "functions": [
-                    {
-                        "name": row.name,
-                        "size": max(0, row.size),
-                        "fuzzy_match_percent": 100.0 if row.matched else 0.0,
-                    }
-                    for row in function_rows
-                ],
-            }
-        )
-
-        report_measures["total_code"] += total_code
-        report_measures["matched_code"] += matched_code
-        report_measures["complete_code"] += matched_code
-        report_measures["total_functions"] += total_functions
-        report_measures["matched_functions"] += matched_functions
-        report_measures["total_units"] += 1
-        report_measures["complete_units"] += complete_unit
-
-    report_measures.update(
-        {
-            "matched_code_percent": percent(int(report_measures["matched_code"]), int(report_measures["total_code"])),
-            "complete_code_percent": percent(int(report_measures["complete_code"]), int(report_measures["total_code"])),
-            "matched_functions_percent": percent(
-                int(report_measures["matched_functions"]),
-                int(report_measures["total_functions"]),
-            ),
-            "fuzzy_match_percent": percent(int(report_measures["matched_code"]), int(report_measures["total_code"])),
-            "complete_data_percent": 0.0,
-        }
-    )
-
-    report = {
-        "measures": report_measures,
-        "units": report_units,
-        "version": 2,
-        "categories": [],
-    }
-
-    report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    return report_path
 
 
 def infer_pages_url(root: Path, html_rel_path: str) -> str:
@@ -1106,12 +1943,16 @@ def update_readme(readme_path: Path, svg_rel_path: str, html_rel_path: str) -> P
 ## Decompilation Progress
 
 ![Decompilation progress]({svg_rel_path})
+
 [Open the interactive progress treemap]({html_url}).
 {README_END}"""
 
-    text = readme_path.read_text(encoding="utf-8", errors="ignore") if readme_path.exists() else "# Wario Land 4\n"
-    pattern = re.compile(re.escape(README_START) + r".*?" + re.escape(README_END), re.S)
+    if readme_path.exists():
+        text = readme_path.read_text(encoding="utf-8", errors="ignore")
+    else:
+        text = "# Wario Land 4\n"
 
+    pattern = re.compile(re.escape(README_START) + r".*?" + re.escape(README_END), re.S)
     if pattern.search(text):
         text = pattern.sub(block, text)
     elif re.search(r"^##\s+Dependencies\s*$", text, flags=re.M):
@@ -1128,34 +1969,31 @@ def main() -> int:
     parser.add_argument("--root", default=".", help="repo root to scan")
     parser.add_argument("--svg", default="docs/progress-treemap.svg", help="SVG path relative to repo root")
     parser.add_argument("--html", default="docs/progress.html", help="interactive HTML path relative to repo root")
-    parser.add_argument("--report", default="report.json", help="decomp.dev-compatible JSON report path relative to repo root")
     parser.add_argument("--no-html", action="store_true", help="skip interactive HTML generation")
-    parser.add_argument("--no-report", action="store_true", help="skip decomp.dev JSON report generation")
     parser.add_argument("--no-readme", action="store_true", help="do not update the README progress block")
     parser.add_argument("--update-readme", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--readme", default="README.md", help="README path relative to repo root")
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
+    svg_path = root / args.svg
+    html_path = root / args.html
+    readme_path = root / args.readme
+
     rows = merge_functions(root)
-
-    written_svg = write_svg(rows, root / args.svg)
-    written_html = None if args.no_html else write_html(rows, root / args.html)
-    written_report = None if args.no_report else write_decomp_dev_report(rows, root / args.report)
-    written_readme = None if args.no_readme else update_readme(root / args.readme, args.svg, args.html)
-
+    written_svg = write_svg(rows, svg_path)
+    written_html = None if args.no_html else write_html(rows, html_path)
+    written_readme = None if args.no_readme else update_readme(readme_path, args.svg, args.html)
     info = stats(rows)
-    function_line, size_line = summarize(rows)
 
+    function_line, size_line = summarize(rows)
     print(function_line)
     print(size_line)
-    print(f'Byte sizes: {info["byte_label"]} ({fmt_int(info["exact_sizes"])} / {fmt_int(info["total_functions"])} exact)')
+    print(f'Byte sizes: {info["byte_label"]} ({fmt_int(info["exact_bytes"])} / {fmt_int(info["total_size"])} bytes exact)')
     print()
     print(f"SVG: {written_svg.relative_to(root)}")
     if written_html is not None:
         print(f"HTML: {written_html.relative_to(root)}")
-    if written_report is not None:
-        print(f"Report: {written_report.relative_to(root)}")
     if written_readme is not None:
         print(f"README: {written_readme.relative_to(root)}")
 
