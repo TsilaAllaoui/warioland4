@@ -107,7 +107,7 @@ u32 GameScreenSubroutine(void)
             break;
 
         case 6:
-            result = func_80720E8();
+            result = UpdateStageExitSequence();
             if (result) {
                 if (result == 1) {
                     gSubGameMode = 0;

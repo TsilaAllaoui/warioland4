@@ -3,6 +3,11 @@
 
 #include "types.h"
 
-u32 func_80720E8();
+typedef s32 (*StageEndUpdateFunc)(void);
+
+s32 UpdateStageExitSequence(void);
+s32 UpdateStageEndSequence(void);
+
+extern StageEndUpdateFunc sStageEndUpdateFunctions[];
 
 #endif  // STAGE_END_H
