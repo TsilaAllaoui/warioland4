@@ -910,7 +910,7 @@ StageSelectSubroutine:
 	strh	r0, [r1, #0]
 	b	.L_7a36a
 .L_7a110:
-	.4byte	gUnk_3000023
+	.4byte	gStageRoomTableIndex
 .L_7a114:
 	.4byte	gSubGameMode
 .L_7a118:
@@ -1726,7 +1726,7 @@ func_807A700:
 .L_7a79c:
 	.4byte	sStageRoomCounts
 .L_7a7a0:
-	.4byte	gUnk_3000023
+	.4byte	gStageRoomTableIndex
 .L_7a7a4:
 	.4byte	gDifficulty
 .L_7a7a8:

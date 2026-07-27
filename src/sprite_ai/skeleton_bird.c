@@ -657,7 +657,7 @@ void InitSkeletonBirdProjectile(void)
 void UpdateSkeletonBirdProjectile(void)
 {
     func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1 || (gSpriteCollisionResult & 0xF) != 0) {
+    if (gBackgroundCollisionData.waterType == 1 || (gSpriteCollisionResult & 0xF) != 0) {
         gCurrentSprite.pose = 49;
     } else {
         if (gCurrentSprite.status & SPRITE_STATUS_FACING_RIGHT) {

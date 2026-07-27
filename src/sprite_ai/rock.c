@@ -411,7 +411,7 @@ void SpriteRock(void)
         }
     } else if ((gCurrentSprite.health & 0xF) == 2) {
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-        if (gUnk_30000A0.unk_02 == 1) {
+        if (gBackgroundCollisionData.waterType == 1) {
             gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
         }
         if (!(gCurrentSprite.status & SPRITE_STATUS_UNDERWATER)) {

@@ -117,20 +117,20 @@ void ToyBlockSquareSetPassableTiles(void)
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
-    blockType = &gSpriteAiCollisionOffset;
+    blockType = &gSpriteTileInteractionMode;
     value = 2;
-    gSpriteAiCollisionOffset = 2;
+    gSpriteTileInteractionMode = 2;
     yTop = y - 4;
     xLeft = x - 4;
-    func_806D5C0(yTop, xLeft);
-    gSpriteAiCollisionOffset = 2;
+    GetSpriteBlockCollisionAtPosition(yTop, xLeft);
+    gSpriteTileInteractionMode = 2;
     x += 4;
-    func_806D5C0(yTop, x);
-    gSpriteAiCollisionOffset = 2;
+    GetSpriteBlockCollisionAtPosition(yTop, x);
+    gSpriteTileInteractionMode = 2;
     y -= 68;
-    func_806D5C0(y, x);
-    gSpriteAiCollisionOffset = 2;
-    func_806D5C0(y, xLeft);
+    GetSpriteBlockCollisionAtPosition(y, x);
+    gSpriteTileInteractionMode = 2;
+    GetSpriteBlockCollisionAtPosition(y, xLeft);
 }
 
 void ToyBlockSquareSetSolidTiles(void)
@@ -144,20 +144,20 @@ void ToyBlockSquareSetSolidTiles(void)
 
     y = gCurrentSprite.yPosition;
     x = gCurrentSprite.xPosition;
-    blockType = &gSpriteAiCollisionOffset;
+    blockType = &gSpriteTileInteractionMode;
     value = 3;
-    gSpriteAiCollisionOffset = 3;
+    gSpriteTileInteractionMode = 3;
     yTop = y - 4;
     xLeft = x - 4;
-    func_806D5C0(yTop, xLeft);
-    gSpriteAiCollisionOffset = 3;
+    GetSpriteBlockCollisionAtPosition(yTop, xLeft);
+    gSpriteTileInteractionMode = 3;
     x += 4;
-    func_806D5C0(yTop, x);
-    gSpriteAiCollisionOffset = 3;
+    GetSpriteBlockCollisionAtPosition(yTop, x);
+    gSpriteTileInteractionMode = 3;
     y -= 68;
-    func_806D5C0(y, x);
-    gSpriteAiCollisionOffset = 3;
-    func_806D5C0(y, xLeft);
+    GetSpriteBlockCollisionAtPosition(y, x);
+    gSpriteTileInteractionMode = 3;
+    GetSpriteBlockCollisionAtPosition(y, xLeft);
 }
 
 void InitToyBlockSquare(void)
@@ -275,7 +275,7 @@ void ToyBlockSquareFalling(void)
 
     newY = func_8023A60(sprite->yPosition, (*sprite).xPosition);
 
-    if ((double)(gUnk_30000A0.unk_02 == 1))
+    if ((double)(gBackgroundCollisionData.waterType == 1))
     {
         sprite->status |= SPRITE_STATUS_UNDERWATER;
         m4aSongNumStart(SE_ENTER_WATER);

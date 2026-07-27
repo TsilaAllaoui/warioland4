@@ -68,7 +68,7 @@ void ShieragutchiRise(void)
     s16 movement;
 
     func_8023BFC((u16)(gCurrentSprite.yPosition - 160), gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 != 1 || (gSpriteCollisionTileType & 15) != 0)
+    if (gBackgroundCollisionData.waterType != 1 || (gSpriteCollisionTileType & 15) != 0)
     {
         gCurrentSprite.pose = 112;
         return;

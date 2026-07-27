@@ -1118,7 +1118,7 @@ s32 ProcessTileInteractionAtPosition(u32 y, u32 x, u32 tile)
         state->collisionMode = 1;
     }
     result = 0;
-    mode = (u8)gSpriteAiCollisionOffset;
+    mode = (u8)gSpriteTileInteractionMode;
 
     switch (mode) {
     case 1:

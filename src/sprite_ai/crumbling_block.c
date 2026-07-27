@@ -16,12 +16,12 @@ void SetCrumblingBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gSpriteAiCollisionOffset;
+    blockAction = &gSpriteTileInteractionMode;
     action = 3;
     *blockAction = action;
     lowerY = (u16)(yPosition + 4);
     leftX = (u16)(xPosition - 4);
-    func_806D5C0(lowerY, leftX);
+    GetSpriteBlockCollisionAtPosition(lowerY, leftX);
     {
         s8 value;
         s8 *pointer;
@@ -31,7 +31,7 @@ void SetCrumblingBlockCollision(void)
         *pointer = value;
     }
     xPosition = (u16)(xPosition + 4);
-    func_806D5C0(lowerY, xPosition);
+    GetSpriteBlockCollisionAtPosition(lowerY, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -41,7 +41,7 @@ void SetCrumblingBlockCollision(void)
         *pointer = value;
     }
     yPosition = (u16)(yPosition - 4);
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -50,7 +50,7 @@ void SetCrumblingBlockCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
 }
 
 void ClearCrumblingBlockCollision(void)
@@ -64,12 +64,12 @@ void ClearCrumblingBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gSpriteAiCollisionOffset;
+    blockAction = &gSpriteTileInteractionMode;
     action = 2;
     *blockAction = action;
     lowerY = (u16)(yPosition + 4);
     leftX = (u16)(xPosition - 4);
-    func_806D5C0(lowerY, leftX);
+    GetSpriteBlockCollisionAtPosition(lowerY, leftX);
     {
         s8 value;
         s8 *pointer;
@@ -79,7 +79,7 @@ void ClearCrumblingBlockCollision(void)
         *pointer = value;
     }
     xPosition = (u16)(xPosition + 4);
-    func_806D5C0(lowerY, xPosition);
+    GetSpriteBlockCollisionAtPosition(lowerY, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -89,7 +89,7 @@ void ClearCrumblingBlockCollision(void)
         *pointer = value;
     }
     yPosition = (u16)(yPosition - 4);
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -98,7 +98,7 @@ void ClearCrumblingBlockCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
 }
 
 void InitCrumblingBlock(void)

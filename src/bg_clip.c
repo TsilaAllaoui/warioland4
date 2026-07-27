@@ -16,8 +16,8 @@ struct BgClipStack {
 
 s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
 {
-    register struct Unk_30000A0 *collision;
-    register struct Unk_30000A0 *collisionInit asm("r1");
+    register struct BackgroundCollisionData *collision;
+    register struct BackgroundCollisionData *collisionInit asm("r1");
     struct BackgroundInfo *background;
     struct BackgroundInfo *backgroundInit;
     register struct RoomHeader *roomHeader asm("sl");
@@ -46,9 +46,9 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
     shiftedX = x << 16;
     xTruncated = (u32)shiftedX >> 16;
     stack.xPosition = xTruncated;
-    collisionInit = &gUnk_30000A0;
-    collisionInit->unk_00 = 0;
-    collisionInit->unk_02 = 0;
+    collisionInit = &gBackgroundCollisionData;
+    collisionInit->primaryType = 0;
+    collisionInit->waterType = 0;
     backgroundInit = &gBackgroundInfo;
     limit = backgroundInit->bg1Height;
     limit <<= 6;
@@ -188,7 +188,7 @@ s32 GetBackgroundCollisionAtPosition(u16 y, u16 x)
     }
 
 primary_collision_done:
-    collision->unk_00 = collisionType;
+    collision->primaryType = collisionType;
     waterCollision = 0;
     overrideType = 0;
     {
@@ -238,7 +238,7 @@ process_bg0_collision:
             goto bg0_in_bounds;
 
 bg0_out_of_bounds:
-        return collision->unk_00 << 16;
+        return collision->primaryType << 16;
 
 bg0_in_bounds:
         {
@@ -312,11 +312,11 @@ secondary_collision_done:
 
     if (waterCollision == 1)
     {
-        if (overrideType != 0 || collision->unk_00 != 1)
-            collision->unk_00 = overrideType;
+        if (overrideType != 0 || collision->primaryType != 1)
+            collision->primaryType = overrideType;
     }
-    collision->unk_02 = waterCollision;
-    return (collision->unk_00 << 16) | collision->unk_02;
+    collision->waterType = waterCollision;
+    return (collision->primaryType << 16) | collision->waterType;
 }
 
 s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
@@ -324,8 +324,8 @@ s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
     register u32 yCoord asm("r5");
     u32 xCoord;
     u16 xSaved;
-    struct Unk_30000A0 *collision;
-    struct Unk_30000A0 *collisionTemp;
+    struct BackgroundCollisionData *collision;
+    struct BackgroundCollisionData *collisionTemp;
     register struct BackgroundInfo *background asm("r4");
     s32 result;
     s32 zero;
@@ -340,9 +340,9 @@ s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
     x <<= 16;
     xCoord = (u32)x >> 16;
     xSaved = xCoord;
-    collisionTemp = &gUnk_30000A0;
+    collisionTemp = &gBackgroundCollisionData;
     zero = 0;
-    collisionTemp->unk_04 = zero;
+    collisionTemp->bg2Type = zero;
     result = 0;
     background = &gBackgroundInfo;
     collision = collisionTemp;
@@ -394,7 +394,7 @@ s32 GetBg2CollisionTypeAtTile(s32 y, s32 x)
         result = tile - 123;
     }
 
-    collision->unk_04 = result;
+    collision->bg2Type = result;
     return result;
 }
 
@@ -429,7 +429,7 @@ s32 TryTriggerRoomTransitionAtTile(s32 y, s32 x)
     if (temporary != 2)
         return y;
 
-    entry = (const u8 *)sRoomStartDataTables[gUnk_3000023];
+    entry = (const u8 *)sRoomStartDataTables[gStageRoomTableIndex];
     while (entry[0] != 0)
     {
         if (entry[0] == 2 && entry[1] == gCurrentRoom &&
@@ -463,7 +463,7 @@ void CheckRoomTransitionAtPosition(u16 y, u16 x)
 
     tileY = y >> 6;
     tileX = x >> 6;
-    entry = (const u8 *)sRoomStartDataTables[gUnk_3000023];
+    entry = (const u8 *)sRoomStartDataTables[gStageRoomTableIndex];
     while (entry[0] != 0)
     {
         s32 fadeMusic;

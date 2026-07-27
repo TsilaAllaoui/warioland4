@@ -159,7 +159,7 @@ void PigHeadProjectileFall(void)
 
     sprite = &gCurrentSprite;
     yPosition = func_8023A60(sprite->yPosition + 32, sprite->xPosition);
-    work0 = gUnk_30000A0.unk_02;
+    work0 = gBackgroundCollisionData.waterType;
     if (work0 == 1) {
         timerPointer = &sprite->work0;
         goto landed;

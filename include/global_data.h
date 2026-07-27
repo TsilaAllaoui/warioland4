@@ -65,10 +65,13 @@ enum SwitchState {
     SWITCH_STATE_SWITCHING_OFF,
 };
 
-struct DebugInfo {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
+struct GameScreenDebugInfo {
+    u8 freeCameraEnabled;
+    u8 roomEntryTensDigit;
+    u8 roomEntryOnesDigitAndPalette;
+    u8 reserved03;
+    u16 tileAttribute;
+    u8 reserved06[2];
 };
 
 struct BackgroundInfo {
@@ -107,10 +110,10 @@ struct RoomHeader {
     u16 musicVolume;
 };
 
-struct Unk_30000A0 {
-    u16 unk_00;
-    u16 unk_02;
-    u16 unk_04;
+struct BackgroundCollisionData {
+    u16 primaryType;
+    u16 waterType;
+    u16 bg2Type;
 };
 
 struct BackgroundScroll {
@@ -187,7 +190,7 @@ struct TransparencyState {
 
 struct BackgroundTileTables {
     const u16 *top;
-    const u16 *bottom;
+    const u8 *bottom;
     const u16 *attributes;
 };
 
@@ -266,12 +269,12 @@ extern u8 gDisableSoftReset;
 extern u8 gUnk_3000020;
 extern u8 gSpriteAiDropTimer;
 extern u8 gUnk_3000022;
-extern u8 gUnk_3000023;
+extern u8 gStageRoomTableIndex;
 extern u8 gCurrentRoom;
 extern u8 gUnk_3000025;
 extern u8 gUnk_3000026;
 extern u8 gUnk_3000027;
-extern s8 gSpriteAiCollisionOffset;
+extern s8 gSpriteTileInteractionMode;
 extern u16 gBldAlpha;
 extern u16 gBldCnt;
 extern u8 gSwitchStates[SWITCH_COUNT];
@@ -289,10 +292,10 @@ extern u8 gUnk_3000046;
 extern u8 gTimerState;
 extern u8 gUnk_3000A62;
 extern u8 gStageExitType;
-extern struct DebugInfo gUnk_300004C;
+extern struct GameScreenDebugInfo gGameScreenDebugInfo;
 extern struct BackgroundInfo gBackgroundInfo;
 extern struct RoomHeader gCurrentRoomHeader;
-extern struct Unk_30000A0 gUnk_30000A0;
+extern struct BackgroundCollisionData gBackgroundCollisionData;
 extern struct BackgroundScroll gBackgroundScroll;
 extern struct Window gWindow;
 extern u8 gUnk_30000C8;
@@ -306,6 +309,7 @@ extern u8 gBossDefeatTimer[];
 extern u8 gUnk_3000023;
 extern struct BackgroundTileTables gBackgroundTileTables;
 extern u8 gRoomTransitionTileDataCount;
+// extern u8 gUnk_300342C; 
 
 /* 0x03000544 */
 extern u8 gUnk_3000544[];

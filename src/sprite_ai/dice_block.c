@@ -18,12 +18,12 @@ void SetDiceBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gSpriteAiCollisionOffset;
+    blockAction = &gSpriteTileInteractionMode;
     action = 3;
     *blockAction = action;
     upperY = (u16) (yPosition - 4);
     leftX = (u16) (xPosition - 4);
-    func_806D5C0(upperY, leftX);
+    GetSpriteBlockCollisionAtPosition(upperY, leftX);
     {
         s8 value;
         s8 *pointer;
@@ -35,7 +35,7 @@ void SetDiceBlockCollision(void)
         *pointer = value;
     }
     xPosition = (u16) (xPosition + 4);
-    func_806D5C0(upperY, xPosition);
+    GetSpriteBlockCollisionAtPosition(upperY, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -47,7 +47,7 @@ void SetDiceBlockCollision(void)
         *pointer = value;
     }
     yPosition = (u16) (yPosition - 68);
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -58,7 +58,7 @@ void SetDiceBlockCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
 }
 
 void ClearDiceBlockCollision(void)
@@ -72,12 +72,12 @@ void ClearDiceBlockCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gSpriteAiCollisionOffset;
+    blockAction = &gSpriteTileInteractionMode;
     action = 2;
     *blockAction = action;
     upperY = (u16) (yPosition - 4);
     leftX = (u16) (xPosition - 4);
-    func_806D5C0(upperY, leftX);
+    GetSpriteBlockCollisionAtPosition(upperY, leftX);
     {
         s8 value;
         s8 *pointer;
@@ -89,7 +89,7 @@ void ClearDiceBlockCollision(void)
         *pointer = value;
     }
     xPosition = (u16) (xPosition + 4);
-    func_806D5C0(upperY, xPosition);
+    GetSpriteBlockCollisionAtPosition(upperY, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -101,7 +101,7 @@ void ClearDiceBlockCollision(void)
         *pointer = value;
     }
     yPosition = (u16) (yPosition - 68);
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
     {
         s8 value;
         s8 *pointer;
@@ -112,7 +112,7 @@ void ClearDiceBlockCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
 }
 
 void InitDiceBlock(void)

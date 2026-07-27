@@ -423,7 +423,7 @@ void LoadRoom(void)
     InitializeRoomState();
     roomHeader = &gCurrentRoomHeader;
     roomTableBase = sRoomHeaderTables;
-    roomTablePointer = (const struct RoomHeader *const *)(gUnk_3000023 * 4);
+    roomTablePointer = (const struct RoomHeader *const *)(gStageRoomTableIndex * 4);
     roomTablePointer = (const struct RoomHeader *const *)((u32)roomTablePointer + (u32)roomTableBase);
     roomIndex = gCurrentRoom;
     roomTable = *roomTablePointer;
@@ -685,7 +685,7 @@ void InitializeRoomState(void)
         ((u8 *)&gGoldenDivaRoomTimer)[3] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[4] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[5] = 0;
-        gSpriteAiCollisionOffset = 0;
+        gSpriteTileInteractionMode = 0;
         if (gHasTemporarySave == 0) {
             if ((gUnk_3000020 & 0x80) == 0)
                 gUnk_3000025 = 0;
@@ -710,7 +710,7 @@ void InitializeRoomState(void)
         return;
 
     gUnk_3000046 = 0;
-    roomData = sRoomStartDataTables[gUnk_3000023];
+    roomData = sRoomStartDataTables[gStageRoomTableIndex];
     roomIndex = gUnk_3000025;
     roomData += roomIndex;
     gCurrentRoom = roomData->room;
@@ -826,7 +826,7 @@ void InitializeRoomEffects(void)
         effectValues[1] = defaultValue;
         effectValues[3] = defaultValue;
         effectValues[2] = defaultValue;
-        if (gUnk_3000023 == 24) {
+        if (gStageRoomTableIndex == 24) {
             effectValues[0] = zeroValue;
             effectValues[1] = zeroValue;
             effectValues[3] = zeroValue;
@@ -1174,7 +1174,7 @@ void PreloadStageRoomBackgrounds(void)
     s32 stageOffset;
 
     destination = (u8 *)0x02000040;
-    entry = sRoomHeaderTables[gUnk_3000023];
+    entry = sRoomHeaderTables[gStageRoomTableIndex];
     index = 0;
     stageCountBase = sStageRoomCounts;
     stageOffset = gCurrentStageID * 12;

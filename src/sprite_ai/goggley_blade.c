@@ -208,7 +208,7 @@ void GoggleyBladeTurnUp(void)
     }
 
     func_8023BFC(gCurrentSprite.yPosition - 56, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1 && (gSpriteCollisionTileType & 15) == 0) {
+    if (gBackgroundCollisionData.waterType == 1 && (gSpriteCollisionTileType & 15) == 0) {
         gCurrentSprite.yPosition -= velocity;
     }
     func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition + 56);
@@ -280,7 +280,7 @@ void GoggleyBladeVerticalMovement(void)
             return;
         }
         func_8023BFC(gCurrentSprite.yPosition - 76, gCurrentSprite.xPosition);
-        if (gUnk_30000A0.unk_02 != 1 || (gSpriteCollisionTileType & 15) != 0) {
+        if (gBackgroundCollisionData.waterType != 1 || (gSpriteCollisionTileType & 15) != 0) {
             gCurrentSprite.pose = 21;
             return;
         }
@@ -322,7 +322,7 @@ void GoggleyBladeTurnHorizontal(void)
         }
     } else {
         func_8023BFC(gCurrentSprite.yPosition - 56, gCurrentSprite.xPosition);
-        if (gUnk_30000A0.unk_02 == 1 && (gSpriteCollisionTileType & 15) == 0) {
+        if (gBackgroundCollisionData.waterType == 1 && (gSpriteCollisionTileType & 15) == 0) {
             gCurrentSprite.yPosition--;
         }
         func_8023BFC(gCurrentSprite.yPosition, gCurrentSprite.xPosition - 56);
@@ -360,7 +360,7 @@ void GoggleyBladeKnockback(void)
             }
         } else if (gCurrentSprite.warioCollision == 77) {
             func_8023BFC(gCurrentSprite.yPosition - 76, gCurrentSprite.xPosition);
-            if (gUnk_30000A0.unk_02 != 1 || (gSpriteCollisionTileType & 15) != 0) {
+            if (gBackgroundCollisionData.waterType != 1 || (gSpriteCollisionTileType & 15) != 0) {
                 gCurrentSprite.pose = 21;
             } else {
                 gCurrentSprite.yPosition -= 8;

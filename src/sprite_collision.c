@@ -4569,14 +4569,14 @@ void func_8021F84(s32 slot, u16 left, u16 right, u16 top)
                 break;
         }
     } else if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
-        func_806D5C0(gWarioData.yPosition, gWarioData.xPosition);
-        if (gUnk_30000A0.unk_02 != 1) {
+        GetSpriteBlockCollisionAtPosition(gWarioData.yPosition, gWarioData.xPosition);
+        if (gBackgroundCollisionData.waterType != 1) {
             gWarioData.xPosition = left - gWarioData.hitboxOffsetRight;
             WarioRequestPose(WPOSE_NORMAL_STANDING);
         }
     } else if (gSpriteCollisionFlags & SPRITE_COLLISION_RIGHT) {
-        func_806D5C0(gWarioData.yPosition, gWarioData.xPosition);
-        if (gUnk_30000A0.unk_02 != 1) {
+        GetSpriteBlockCollisionAtPosition(gWarioData.yPosition, gWarioData.xPosition);
+        if (gBackgroundCollisionData.waterType != 1) {
             gWarioData.xPosition = (right - gWarioData.hitboxOffsetLeft) + 1;
             WarioRequestPose(WPOSE_NORMAL_STANDING);
         }

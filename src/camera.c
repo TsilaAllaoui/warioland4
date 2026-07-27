@@ -176,7 +176,7 @@ void LoadCurrentRoomCameraControlData(void)
     u8 room;
     s32 roomId;
 
-    list = sRoomCameraControlDataTable[gUnk_3000023];
+    list = sRoomCameraControlDataTable[gStageRoomTableIndex];
     roomPtr = &gCurrentRoom;
     output = &gCurrentRoomCameraControlData;
     while ((roomId = (entry = *list)[0]) != (room = *roomPtr) && roomId != 0xFF)
@@ -424,7 +424,7 @@ void UpdateCamera(void)
     if (position.y & 0x8000)
         position.y = 0;
 
-    if (gUnk_300004C.unk0 == 0)
+    if (gGameScreenDebugInfo.freeCameraEnabled == 0)
         goto loadCameraControl;
     if (gSubGameMode != 8)
         goto loadCameraControl;
