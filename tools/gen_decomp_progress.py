@@ -1908,6 +1908,115 @@ init();
     return html_path
 
 
+def write_decomp_dev_report(rows: list[FunctionInfo], report_path: Path) -> Path:
+    def percent(done: int, total: int) -> float:
+        return 0.0 if total == 0 else done / total * 100.0
+
+    grouped: dict[str, list[FunctionInfo]] = {}
+    unit_order: list[str] = []
+    for row in rows:
+        if row.module not in grouped:
+            grouped[row.module] = []
+            unit_order.append(row.module)
+        grouped[row.module].append(row)
+
+    report_measures: dict[str, int | float] = {
+        "total_code": 0,
+        "matched_code": 0,
+        "total_data": 0,
+        "total_functions": 0,
+        "matched_functions": 0,
+        "complete_code": 0,
+        "complete_data": 0,
+        "total_units": 0,
+        "complete_units": 0,
+    }
+    report_units: list[dict[str, object]] = []
+
+    for module_name in unit_order:
+        module_rows = grouped[module_name]
+        function_rows = [row for row in module_rows if row.is_function]
+        total_code = sum(max(0, row.size) for row in module_rows)
+        matched_code = sum(max(0, row.size) for row in module_rows if row.matched)
+        total_functions = len(function_rows)
+        matched_functions = sum(1 for row in function_rows if row.matched)
+        complete_unit = int(total_code == matched_code)
+
+        unit_measures = {
+            "total_code": total_code,
+            "matched_code": matched_code,
+            "total_data": 0,
+            "total_functions": total_functions,
+            "matched_functions": matched_functions,
+            "complete_code": matched_code,
+            "complete_data": 0,
+            "total_units": 1,
+            "complete_units": complete_unit,
+            "matched_code_percent": percent(matched_code, total_code),
+            "complete_code_percent": percent(matched_code, total_code),
+            "matched_functions_percent": percent(matched_functions, total_functions),
+            "fuzzy_match_percent": percent(matched_code, total_code),
+            "complete_data_percent": 0.0,
+        }
+
+        report_units.append(
+            {
+                "name": module_name,
+                "measures": unit_measures,
+                "sections": [],
+                "functions": [
+                    {
+                        "name": row.name,
+                        "size": max(0, row.size),
+                        "fuzzy_match_percent": 100.0 if row.matched else 0.0,
+                    }
+                    for row in function_rows
+                ],
+            }
+        )
+
+        report_measures["total_code"] += total_code
+        report_measures["matched_code"] += matched_code
+        report_measures["complete_code"] += matched_code
+        report_measures["total_functions"] += total_functions
+        report_measures["matched_functions"] += matched_functions
+        report_measures["total_units"] += 1
+        report_measures["complete_units"] += complete_unit
+
+    report_measures.update(
+        {
+            "matched_code_percent": percent(
+                int(report_measures["matched_code"]),
+                int(report_measures["total_code"]),
+            ),
+            "complete_code_percent": percent(
+                int(report_measures["complete_code"]),
+                int(report_measures["total_code"]),
+            ),
+            "matched_functions_percent": percent(
+                int(report_measures["matched_functions"]),
+                int(report_measures["total_functions"]),
+            ),
+            "fuzzy_match_percent": percent(
+                int(report_measures["matched_code"]),
+                int(report_measures["total_code"]),
+            ),
+            "complete_data_percent": 0.0,
+        }
+    )
+
+    report = {
+        "measures": report_measures,
+        "units": report_units,
+        "version": 2,
+        "categories": [],
+    }
+
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    return report_path
+
+
 def infer_pages_url(root: Path, html_rel_path: str) -> str:
     repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
     if not repo:
@@ -1969,7 +2078,9 @@ def main() -> int:
     parser.add_argument("--root", default=".", help="repo root to scan")
     parser.add_argument("--svg", default="docs/progress-treemap.svg", help="SVG path relative to repo root")
     parser.add_argument("--html", default="docs/progress.html", help="interactive HTML path relative to repo root")
+    parser.add_argument("--report", default="report.json", help="decomp.dev-compatible JSON report path relative to repo root")
     parser.add_argument("--no-html", action="store_true", help="skip interactive HTML generation")
+    parser.add_argument("--no-report", action="store_true", help="skip decomp.dev JSON report generation")
     parser.add_argument("--no-readme", action="store_true", help="do not update the README progress block")
     parser.add_argument("--update-readme", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--readme", default="README.md", help="README path relative to repo root")
@@ -1978,11 +2089,13 @@ def main() -> int:
     root = Path(args.root).resolve()
     svg_path = root / args.svg
     html_path = root / args.html
+    report_path = root / args.report
     readme_path = root / args.readme
 
     rows = merge_functions(root)
     written_svg = write_svg(rows, svg_path)
     written_html = None if args.no_html else write_html(rows, html_path)
+    written_report = None if args.no_report else write_decomp_dev_report(rows, report_path)
     written_readme = None if args.no_readme else update_readme(readme_path, args.svg, args.html)
     info = stats(rows)
 
@@ -1994,6 +2107,8 @@ def main() -> int:
     print(f"SVG: {written_svg.relative_to(root)}")
     if written_html is not None:
         print(f"HTML: {written_html.relative_to(root)}")
+    if written_report is not None:
+        print(f"Report: {written_report.relative_to(root)}")
     if written_readme is not None:
         print(f"README: {written_readme.relative_to(root)}")
 
