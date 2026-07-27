@@ -22,7 +22,7 @@ void GameScreenDebugSubroutine(void)
 
     if (CHECK_KEYS_ALL(gButtonsPressed, SELECT_BUTTON)) {
         gSubGameMode = 2;
-        gUnk_300004C.unk0 = 0;
+        gGameScreenDebugInfo.freeCameraEnabled = 0;
     }
     if (CHECK_KEYS_ALL(gButtonsPressed, DPAD_UP) && CHECK_KEYS_ALL(gButtonsHeld, L_BUTTON)) {
         if (gCurrentPassage != PASSAGE_GOLDEN) {
@@ -50,7 +50,7 @@ void GameScreenDebugSubroutine(void)
     }
 
     if (CHECK_KEYS_ALL(gButtonsPressed, START_BUTTON)) {
-        gUnk_300004C.unk0 ^= 1;
+        gGameScreenDebugInfo.freeCameraEnabled ^= 1;
     }
     if (CHECK_KEYS_ALL(gButtonsHeld, DPAD_RIGHT)) {
         xVelocity = SUBPIXELS_FROM_PIXELS(3);
@@ -131,13 +131,13 @@ void func_801D4D4(void)
     }
 
     var_r6 = 0;
-    if (gUnk_300004C.unk2 == U8_MAX) {
+    if (gGameScreenDebugInfo.roomEntryOnesDigitAndPalette == U8_MAX) {
         return;
     }
 
-    temp = gUnk_300004C.unk2;
+    temp = gGameScreenDebugInfo.roomEntryOnesDigitAndPalette;
     if (SIGN_BIT(temp)) {
-        temp = gUnk_300004C.unk2 & 0x7F;
+        temp = gGameScreenDebugInfo.roomEntryOnesDigitAndPalette & 0x7F;
         var_r6 = 3;
     }
     gOamBuffer[0x7B].split.y = 0x96;
@@ -145,8 +145,8 @@ void func_801D4D4(void)
     gOamBuffer[0x7B].split.tileNum = 0x1F0 + temp;
     gOamBuffer[0x7B].split.paletteNum = var_r6;
 
-    temp = gUnk_300004C.unk1;
-    if (gUnk_300004C.unk1 == 0) {
+    temp = gGameScreenDebugInfo.roomEntryTensDigit;
+    if (gGameScreenDebugInfo.roomEntryTensDigit == 0) {
         return;
     }
     gOamBuffer[0x79].split.y = 0x96;

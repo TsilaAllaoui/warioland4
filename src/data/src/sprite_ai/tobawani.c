@@ -270,7 +270,7 @@ void TobawaniFall(void)
 
     sprite = &gCurrentSprite;
     func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         TobawaniEnterWater();
     } else {
         indexPointer = &sprite->work3;
@@ -371,7 +371,7 @@ void TobawaniWallFall(void)
 
     sprite = &gCurrentSprite;
     func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         TobawaniEnterWater();
     } else if ((gSpriteCollisionResult & 15) != 0) {
         if (sprite->pose == 52) {

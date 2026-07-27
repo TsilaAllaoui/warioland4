@@ -1944,7 +1944,7 @@ void AerodentThrowableBounce(void)
 
     sprite = &gCurrentSprite;
     nextY = func_8023A60((u16)(sprite->yPosition + 48), sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         sprite->status |= 0x800;
         m4aSongNumStart(SE_ENTER_WATER);
     }
@@ -2154,7 +2154,7 @@ void AerodentThrowableBounceAfterCharge(void)
 
     sprite = &gCurrentSprite;
     nextY = func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         sprite->status |= 0x800;
         m4aSongNumStart(SE_ENTER_WATER);
     }
@@ -2582,7 +2582,7 @@ void AerodentEmitterPatrol(void)
 
     sprite = &gCurrentSprite;
     nextY = func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1)
+    if (gBackgroundCollisionData.waterType == 1)
         sprite->pose = 107;
     if (gSpriteCollisionResult != 0) {
         sprite->yPosition = nextY;

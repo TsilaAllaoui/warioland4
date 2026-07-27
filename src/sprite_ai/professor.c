@@ -983,7 +983,7 @@ afterPose:
             u16 underwater;
 
             func_8023BFC(spriteAfterState->yPosition, spriteAfterState->xPosition);
-            if (gUnk_30000A0.unk_02 == 1)
+            if (gBackgroundCollisionData.waterType == 1)
                 spriteAfterState->status |= SPRITE_STATUS_UNDERWATER;
 
             status = spriteAfterState->status;

@@ -2026,7 +2026,7 @@ func_8070FDC:
 .L_7108c:
 	.4byte	sUnk_83F9E0C
 .L_71090:
-	.4byte	gUnk_3000023
+	.4byte	gStageRoomTableIndex
 .L_71094:
 	.4byte	sUnk_83F9E0C + 2  @ Unsure what's going on here
 .L_71098:

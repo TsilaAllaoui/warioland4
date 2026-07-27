@@ -179,7 +179,7 @@ void BallLightningBoltFall(void)
 
     sprite = &gCurrentSprite;
     newY = func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1)
+    if (gBackgroundCollisionData.waterType == 1)
     {
         register u16 oldStatus asm("r1");
         register u16 status asm("r0");

@@ -31,7 +31,6 @@ struct GoldenDivaDmaRegs {
  */
 
 extern u8 gSpriteAiDropTimer;
-extern s8 gSpriteAiCollisionOffset;
 extern u8 gShopItemState;
 extern u8 gShopItemTimer;
 extern u8 gGoldenDivaRoomTimer;
@@ -2283,7 +2282,7 @@ void BeginGoldenDivaHitReaction(void)
     if (value != 0) {
         value = result << 16;
         temp = sprite->xPosition;
-        temp3 = (u32)&gSpriteAiCollisionOffset;
+        temp3 = (u32)&gSpriteTileInteractionMode;
         temp2 = 4;
         *(u8 *)temp3 = temp2;
         zero = 0x80;
@@ -2291,7 +2290,7 @@ void BeginGoldenDivaHitReaction(void)
         zero <<= 11;
         value += zero;
         value >>= 16;
-        func_806D5C0(value, temp);
+        GetSpriteBlockCollisionAtPosition(value, temp);
         temp = -0x120;
         asm("" : "+r"(temp));
         value = result + temp;

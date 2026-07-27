@@ -414,7 +414,7 @@ func_8072F0C:
 .L_72f90:
 	.4byte	gHasTemporarySave
 .L_72f94:
-	.4byte	gUnk_3000023
+	.4byte	gStageRoomTableIndex
 .L_72f98:
 	.4byte	gSaveFlag
 .L_72f9c:
@@ -903,7 +903,7 @@ func_8072FB0:
 .L_7331c:
 	.4byte	0x02039018
 .L_73320:
-	.4byte	gUnk_3000023
+	.4byte	gStageRoomTableIndex
 .L_73324:
 	.4byte	gCurrentPassage
 .L_73328:
@@ -1526,7 +1526,7 @@ func_807345C:
 .L_737ac:
 	.4byte	0x02039018
 .L_737b0:
-	.4byte	gUnk_3000023
+	.4byte	gStageRoomTableIndex
 .L_737b4:
 	.4byte	gCurrentPassage
 .L_737b8:

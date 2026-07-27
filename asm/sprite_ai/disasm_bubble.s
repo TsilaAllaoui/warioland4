@@ -293,7 +293,7 @@ func_8035370:
 	pop	{r0}
 	bx	r0
 .L_354d4:
-	.4byte	gUnk_30000A0
+	.4byte	gBackgroundCollisionData
 
 
 thumb_func_start func_80354D8

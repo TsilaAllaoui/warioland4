@@ -75,7 +75,7 @@ void FallingSnowFall(void)
 
     sprite = &gCurrentSprite;
     newY = func_8023A60(sprite->yPosition, (*sprite).xPosition);
-    if ((double)(gUnk_30000A0.unk_02 == 1))
+    if ((double)(gBackgroundCollisionData.waterType == 1))
         sprite->status |= 0x800;
     if (gSpriteCollisionResult != 0)
     {

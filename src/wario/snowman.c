@@ -1,6 +1,7 @@
 #include "wario/snowman.h"
 
 #include "bg_clip.h"
+#include "block.h"
 #include "global_data.h"
 #include "input.h"
 #include "screen_shake.h"
@@ -22,7 +23,6 @@ extern u8 ResolveWarioLandingCollision(void);
 extern u8 ResolveWarioCeilingCollision(void);
 extern u8 ResolveWarioFloorCollision(void);
 extern void func_8016614(u8);
-extern u32 func_806D4C0(u16, u16);
 
 extern const struct AnimationFrameU16 sUnk_82E04C4[];
 
@@ -56,7 +56,7 @@ u8 SnowmanWarioWalking(void)
 
     wario = &gWarioData;
     if ((wario->unk_1C & 1) != 0) {
-        if ((func_806D4C0(wario->yPosition + 20, wario->xPosition) & 0x01000000) == 0) {
+        if ((GetWarioBlockCollisionAtPosition((u16)(wario->yPosition + 20), wario->xPosition) & 0x01000000) == 0) {
             wario->horizontalDirection = (wario->unk_1C ^ 0x30) & 0x30;
             return WPOSE_SNOWMAN_ROLLING_SMALL;
         }

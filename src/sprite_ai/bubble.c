@@ -250,7 +250,7 @@ wallCollision:
         }
 
         func_8023BFC(groundSprite->yPosition - 40, groundSprite->xPosition);
-        if (gUnk_30000A0.unk_02 != 1) {
+        if (gBackgroundCollisionData.waterType != 1) {
             StartBubblePop();
         }
     }

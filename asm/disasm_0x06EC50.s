@@ -66,7 +66,7 @@ func_806EC50:
 .L_6ecc8:
 	.4byte	gBackgroundInfo
 .L_6eccc:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6ecd0:
 	.4byte	gWarioCollisionData
 .L_6ecd4:
@@ -207,7 +207,7 @@ func_806ED74:
 .L_6ede4:
 	.4byte	gBackgroundInfo
 .L_6ede8:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6edec:
 	.4byte	gWarioCollisionData
 .L_6edf0:
@@ -281,7 +281,7 @@ func_806EDFC:
 .L_6ee6c:
 	.4byte	gBackgroundInfo
 .L_6ee70:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6ee74:
 	.4byte	gWarioCollisionData
 .L_6ee78:
@@ -962,7 +962,7 @@ func_806F328:
 	b	.L_6f36a
 	.align	2, 0
 .L_6f358:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6f35c:
 	.4byte	gBackgroundInfo
 .L_6f360:
@@ -1037,7 +1037,7 @@ func_806F3B0:
 	strh	r0, [r2, #2]
 	b	.L_6f3ea
 .L_6f3d8:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6f3dc:
 	.4byte	gBackgroundInfo
 .L_6f3e0:
@@ -1264,9 +1264,9 @@ func_806F524:
 	b	.L_6f644
 	.align	2, 0
 .L_6f56c:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6f570:
-	.4byte	gSpriteAiCollisionOffset
+	.4byte	gSpriteTileInteractionMode
 .L_6f574:
 	cmp	r0, #3
 	beq	.L_6f5e2
@@ -1944,7 +1944,7 @@ func_806F9D8:
 .L_6fa38:
 	.4byte	gBackgroundInfo
 .L_6fa3c:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6fa40:
 	.4byte	gSwitchStates
 .L_6fa44:
@@ -2337,7 +2337,7 @@ func_806FCAC:
 .L_6fd10:
 	.4byte	gBackgroundInfo
 .L_6fd14:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6fd18:
 	.4byte	gWarioData
 
@@ -2500,7 +2500,7 @@ func_806FD74:
 .L_6fe44:
 	.4byte	gBackgroundInfo
 .L_6fe48:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 .L_6fe4c:
 	.4byte	gCurrentRoomHeader
 .L_6fe50:
@@ -2811,7 +2811,7 @@ func_806FFB0:
 .L_70090:
 	.4byte	0x06001800
 .L_70094:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 
 
 thumb_func_start func_8070098
@@ -2911,7 +2911,7 @@ func_8070098:
 .L_7014c:
 	.4byte	0x06001800
 .L_70150:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 
 
 thumb_func_start func_8070154
@@ -2996,7 +2996,7 @@ func_8070154:
 .L_701ec:
 	.4byte	0x06002800
 .L_701f0:
-	.4byte	gUnk_30031F4
+	.4byte	gBackgroundTileTables
 
 
 .section .rodata

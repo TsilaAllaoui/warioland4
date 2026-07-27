@@ -96,7 +96,7 @@ void ToyBlockRoundFalling(void)
 
     sprite = &gCurrentSprite;
     newY = func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         sprite->status |= SPRITE_STATUS_UNDERWATER;
         m4aSongNumStart(SE_ENTER_WATER);
     }

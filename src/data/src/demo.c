@@ -29,7 +29,6 @@ struct DemoMusicState {
     u8 specialPlayerId;
 };
 
-extern u8 gUnk_3000023;
 extern u8 gUnk_3000BF0[];
 extern const u8 sStageRoomCounts[];
 extern const u32 sUnk_86391C4[][6];
@@ -84,7 +83,7 @@ void SetupDemo(void)
     stageOffset += (u32)data;
     *stageId = *(const u32 *)stageOffset;
 
-    roomCount = &gUnk_3000023;
+    roomCount = &gStageRoomTableIndex;
     data = sStageRoomCounts;
     *roomCount = data[*stageId * 12];
 

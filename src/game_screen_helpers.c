@@ -423,7 +423,7 @@ void LoadRoom(void)
     InitializeRoomState();
     roomHeader = &gCurrentRoomHeader;
     roomTableBase = sRoomHeaderTables;
-    roomTablePointer = (const struct RoomHeader *const *)(gUnk_3000023 * 4);
+    roomTablePointer = (const struct RoomHeader *const *)(gStageRoomTableIndex * 4);
     roomTablePointer = (const struct RoomHeader *const *)((u32)roomTablePointer + (u32)roomTableBase);
     roomIndex = gCurrentRoom;
     roomTable = *roomTablePointer;
@@ -440,9 +440,9 @@ void LoadRoom(void)
         musicRoomHeader = &gCurrentRoomHeader;
         musicRoomHeader->musicVolume = 0;
     }
-    gUnk_30031F4.top = tileset.metatileTop;
-    gUnk_30031F4.bottom = tileset.metatileBottom;
-    gUnk_30031F4.attributes = tileset.metatileAttributes;
+    gBackgroundTileTables.top = tileset.metatileTop;
+    gBackgroundTileTables.bottom = tileset.metatileBottom;
+    gBackgroundTileTables.attributes = tileset.metatileAttributes;
     InitializeRoomEffects();
     if (gUnk_3000C3F == 0 || gHasTemporarySave != 0)
         PreloadStageRoomBackgrounds();
@@ -539,7 +539,7 @@ void LoadRoom(void)
         gPreviousYPosition = gWarioData.yPosition;
     }
     tileAttribute = *(const u16 *)gBackgroundInfo.pBg1Data;
-    tileAttributes = gUnk_30031F4.attributes;
+    tileAttributes = gBackgroundTileTables.attributes;
     tilePointer = (const u16 *)((tileAttribute * 2) + (u32)tileAttributes);
     tileAttribute = *tilePointer;
     if (tileAttribute == 0xA0)
@@ -685,7 +685,7 @@ void InitializeRoomState(void)
         ((u8 *)&gGoldenDivaRoomTimer)[3] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[4] = 0;
         ((u8 *)&gGoldenDivaRoomTimer)[5] = 0;
-        gSpriteAiCollisionOffset = 0;
+        gSpriteTileInteractionMode = 0;
         if (gHasTemporarySave == 0) {
             if ((gUnk_3000020 & 0x80) == 0)
                 gUnk_3000025 = 0;
@@ -710,7 +710,7 @@ void InitializeRoomState(void)
         return;
 
     gUnk_3000046 = 0;
-    roomData = sRoomStartDataTables[gUnk_3000023];
+    roomData = sRoomStartDataTables[gStageRoomTableIndex];
     roomIndex = gUnk_3000025;
     roomData += roomIndex;
     gCurrentRoom = roomData->room;
@@ -826,7 +826,7 @@ void InitializeRoomEffects(void)
         effectValues[1] = defaultValue;
         effectValues[3] = defaultValue;
         effectValues[2] = defaultValue;
-        if (gUnk_3000023 == 24) {
+        if (gStageRoomTableIndex == 24) {
             effectValues[0] = zeroValue;
             effectValues[1] = zeroValue;
             effectValues[3] = zeroValue;
@@ -1091,10 +1091,10 @@ void DrawRoomBackgroundLayer(u8 layer)
                     asm("" : "+r"(sourceOffset));
                     metatile = *(u16 *)sourceOffset;
                     tileIndex = metatile * 4;
-                    destination[0] = gUnk_30031F4.top[tileIndex++];
-                    destination[1] = gUnk_30031F4.top[tileIndex++];
-                    destination[32] = gUnk_30031F4.top[tileIndex++];
-                    destination[33] = gUnk_30031F4.top[tileIndex++];
+                    destination[0] = gBackgroundTileTables.top[tileIndex++];
+                    destination[1] = gBackgroundTileTables.top[tileIndex++];
+                    destination[32] = gBackgroundTileTables.top[tileIndex++];
+                    destination[33] = gBackgroundTileTables.top[tileIndex++];
                     sourceIndex++;
                     remainingColumns--;
                     column = (u16)(column + 1);
@@ -1172,7 +1172,7 @@ void PreloadStageRoomBackgrounds(void)
     s32 stageOffset;
 
     destination = (u8 *)0x02000040;
-    entry = sRoomHeaderTables[gUnk_3000023];
+    entry = sRoomHeaderTables[gStageRoomTableIndex];
     index = 0;
     stageCountBase = sStageRoomCounts;
     stageOffset = gCurrentStageID * 12;

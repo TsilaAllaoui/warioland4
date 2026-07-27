@@ -1038,7 +1038,7 @@ void UpdateCatbatLandingAttack(void)
 
         sprite = &gCurrentSprite;
         func_8023BFC((u16)(sprite->yPosition + 128), sprite->xPosition);
-        if (gUnk_30000A0.unk_02 != 1)
+        if (gBackgroundCollisionData.waterType != 1)
             return;
 
         sprite->pose = 20;
@@ -2703,7 +2703,7 @@ void UpdateCatbatAttackEffect(void)
         func_8023BFC(motionSprite->yPosition, motionSprite->xPosition);
         /* Keep the zero offset live across the call, matching the target save. */
         asm("" : : "l"(zero));
-        if (gUnk_30000A0.unk_02 == 1) {
+        if (gBackgroundCollisionData.waterType == 1) {
             motionSprite->pose = 108;
         } else {
             register u16 status asm("r1");

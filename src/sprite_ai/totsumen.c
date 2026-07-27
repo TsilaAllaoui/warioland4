@@ -307,7 +307,7 @@ void func_8032824(void)
 
     if (gCurrentSprite.work0 > 16) {
         yPosition = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-        if (gUnk_30000A0.unk_02 == 1)
+        if (gBackgroundCollisionData.waterType == 1)
             gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
         if (gSpriteCollisionResult != 0) {
             gCurrentSprite.yPosition = yPosition;

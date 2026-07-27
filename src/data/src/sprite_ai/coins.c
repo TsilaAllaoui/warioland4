@@ -624,7 +624,7 @@ void CoinPose44(void)
     gCurrentSprite.xPosition -= gCurrentSprite.work2;
 
     unk_r2 = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
 
@@ -663,7 +663,7 @@ void CoinPose46(void)
     gCurrentSprite.xPosition += gCurrentSprite.work2;
 
     unk_r2 = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1) {
+    if (gBackgroundCollisionData.waterType == 1) {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
     }
 

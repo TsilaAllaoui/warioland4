@@ -1,5 +1,6 @@
 #include "gba/m4a.h"
 #include "global_data.h"
+#include "block.h"
 #include "door.h"
 #include "input.h"
 #include "main.h"
@@ -30,7 +31,6 @@ extern void UpdateWarioHorizontalCollisionOffset(void);
 extern u32 GetAdjustedWarioXVelocity(void);
 extern u32 func_806EDFC(u32 y, u32 x);
 extern u32 func_806ED74(u32 y, u32 x);
-extern u32 func_806D4C0(u32 y, u32 x);
 extern u32 func_806EC50(u32 y, u32 x);
 
 u8 UpdateNormalWarioPose(void)
@@ -5311,7 +5311,7 @@ u8 CheckWarioTileCollision(u32 xPosition, u32 yPosition, u16 *newYPosition, u16 
             : "=r"(x), "+r"(xRaw), "+r"(yRaw));
         y = yRaw >> 16;
     }
-    collisionResult = func_806D4C0(y, x);
+    collisionResult = GetWarioBlockCollisionAtPosition(y, x);
     if (collisionResult & 0x01000000) {
         *inWater = 1;
     } else {
@@ -5547,7 +5547,7 @@ u32 CheckWarioHorizontalCollision(u32 side, u16 *newXPosition, u32 verticalOffse
         yPosition = (u16)pointValue;
         }
 
-        collisionResult = func_806D4C0(yPosition, xPosition);
+        collisionResult = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
         if ((collisionResult & 0x01000000) == 0)
             goto firstProbeDone;
         tile = collisionResult & 0xFF;
@@ -5610,7 +5610,7 @@ firstProbeDone:
                 shiftedY <<= 16;
                 yPosition = shiftedY >> 16;
             }
-            collisionResult = func_806D4C0(yPosition, xPosition);
+            collisionResult = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
             if ((collisionResult & 0x01000000) == 0)
                 goto secondProbeDone;
             tile = collisionResult & 0xFF;
@@ -5670,7 +5670,7 @@ secondProbeDone:
                 adjustedY <<= 16;
                 yPosition = adjustedY >> 16;
             }
-            collisionResult = func_806D4C0(yPosition, xPosition);
+            collisionResult = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
             if ((collisionResult & 0x01000000) == 0)
                 goto thirdProbeDone;
             tile = collisionResult & 0xFF;
@@ -5791,7 +5791,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             pointValue += warioX;
             xPosition = (u16)pointValue;
         }
-        collision = func_806D4C0(yPosition, xPosition);
+        collision = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
         result = 0x01000000;
         collision &= result;
         collision = -collision;
@@ -5811,7 +5811,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             pointValue += warioX;
             xPosition = (u16)pointValue;
         }
-        collision = func_806D4C0(yPosition, xPosition);
+        collision = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
         collision &= result;
         if (collision != 0) {
             register u32 eight asm("r0");
@@ -5857,7 +5857,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             warioX = wario->xPosition;
             pointValue += warioX;
             xPosition = (u16)pointValue;
-            collision = func_806D4C0(yPosition, xPosition);
+            collision = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
             collisionMask = 0x01000000;
             collisionMask &= collision;
             if (collisionMask != 0) {
@@ -5895,7 +5895,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             pointValue += warioX;
             xPosition = (u16)pointValue;
         }
-        collision = func_806D4C0(yPosition, xPosition);
+        collision = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
         collisionMask = 0x01000000;
         collisionMask &= collision;
         if (collisionMask != 0) {
@@ -5932,7 +5932,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
             pointValue += warioX;
             xPosition = (u16)pointValue;
         }
-        collision = func_806D4C0(yPosition, xPosition);
+        collision = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
         collisionMask = 0x01000000;
         collisionMask &= collision;
         if (collisionMask != 0) {
@@ -5976,7 +5976,7 @@ int CheckWarioVerticalCollision(u32 index, u32 offset, u32 mode)
                 pointValue += warioX;
                 xPosition = (u16)pointValue;
             }
-            collision = func_806D4C0(yPosition, xPosition);
+            collision = GetWarioBlockCollisionAtPosition(yPosition, xPosition);
             collisionMask = 0x01000000;
             collisionMask &= collision;
             if (collisionMask != 0) {
@@ -6035,7 +6035,7 @@ u32 CheckWarioPointCollision(u32 index, u32 yPosition, u16 *secondaryResult)
         pointValue += warioX;
         xPosition = (u16)pointValue;
     }
-    collision = func_806D4C0(normalizedY, xPosition);
+    collision = GetWarioBlockCollisionAtPosition(normalizedY, xPosition);
     if ((collision & 0x01000000) != 0) {
         if (gWarioCollisionData.unk_0D != 0 && func_806ED74(normalizedY, xPosition) != 0)
             gWarioCollisionData.unk_10 += 1;
@@ -6063,7 +6063,7 @@ u32 CheckWarioPointCollision(u32 index, u32 yPosition, u16 *secondaryResult)
         warioX = wario->xPosition;
         pointValue += warioX;
         xPosition = (u16)pointValue;
-        collision = func_806D4C0(normalizedY, xPosition);
+        collision = GetWarioBlockCollisionAtPosition(normalizedY, xPosition);
         {
             register u32 collisionMask asm("r0");
 
@@ -6102,7 +6102,7 @@ secondDone:
         zero = 0;
         if (*(const s16 *)pointOffset > 31) {
             xPosition = gWarioData.xPosition;
-            collision = func_806D4C0(normalizedY, xPosition);
+            collision = GetWarioBlockCollisionAtPosition(normalizedY, xPosition);
             if ((collision & 0x01000000) != 0) {
                 if (gWarioCollisionData.unk_0D != 0 && func_806ED74(normalizedY, xPosition) != 0)
                     gWarioCollisionData.unk_10 += 4;

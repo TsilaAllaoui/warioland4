@@ -35,12 +35,12 @@ SECTIONS {
         . = 0x0020; gUnk_3000020 = .;
         . = 0x0021; gSpriteAiDropTimer = .;
         . = 0x0022; gUnk_3000022 = .;
-        . = 0x0023; gUnk_3000023 = .;
+        . = 0x0023; gStageRoomTableIndex = .;
         . = 0x0024; gCurrentRoom = .;
         . = 0x0025; gUnk_3000025 = .;
         . = 0x0026; gUnk_3000026 = .;
         . = 0x0027; gUnk_3000027 = .;
-        . = 0x0028; gSpriteAiCollisionOffset = .;
+        . = 0x0028; gSpriteTileInteractionMode = .;
         . = 0x002a; gBldAlpha = .;
         . = 0x002c; gBldCnt = .;
         . = 0x002e; gSwitchStates = .;
@@ -58,10 +58,10 @@ SECTIONS {
         . = 0x0046; gUnk_3000046 = .;
         . = 0x0047; gTimerState = .;
         . = 0x0048; gStageExitType = .;
-        . = 0x004c; gUnk_300004C = .;
+        . = 0x004c; gGameScreenDebugInfo = .;
         . = 0x0054; gBackgroundInfo = .;
         . = 0x0074; gCurrentRoomHeader = .;
-        . = 0x00a0; gUnk_30000A0 = .;
+        . = 0x00a0; gBackgroundCollisionData = .;
         . = 0x00a8; gBackgroundScroll = .;
 
         . = 0x00c0; gWindow = .;
@@ -268,7 +268,7 @@ SECTIONS {
         . = 0x31c8; gWarioHorizontalCollisionOffset = .;
         . = 0x31ca; gWarioTileHorizontalSpeed = .;
         . = 0x31cc; gWarioTileVerticalSpeed = .;
-        . = 0x31f4; gUnk_30031F4 = .;
+        . = 0x31f4; gBackgroundTileTables = .;
         . = 0x3200; gGameMusicState = .;
         . = 0x320c; gRoomCameraBounds = .;
         . = 0x3214; gUnk_3003214 = .;
@@ -711,7 +711,7 @@ SECTIONS {
         obj/transparency.o(.text);
         obj/game_screen_helpers.o(.text);
         obj/disasm_scrolling.o(.text);
-        obj/disasm_block.o(.text);
+        obj/block.o(.text);
         obj/bg_clip.o(.text);
         obj/animated_graphics.o(.text);
         obj/camera.o(.text);

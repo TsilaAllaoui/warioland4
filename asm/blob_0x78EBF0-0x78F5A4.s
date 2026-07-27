@@ -66,8 +66,8 @@ sRoomHeaderTables:
 
 baserom_blob 0x78F280, 0x78F2E4
 
-.global sUnk_878F2E4
-sUnk_878F2E4:
+.global sBlockCollisionHandlers
+sBlockCollisionHandlers:
 
 baserom_blob 0x78F2E4, 0x78F540
 

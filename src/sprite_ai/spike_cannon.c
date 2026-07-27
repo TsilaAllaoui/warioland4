@@ -193,7 +193,7 @@ void SpikeCannonProjectileMove(void)
     }
 
     func_8023A60(sprite->yPosition, sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1 || (gSpriteCollisionResult & 0xF) != 0) {
+    if (gBackgroundCollisionData.waterType == 1 || (gSpriteCollisionResult & 0xF) != 0) {
         sprite->pose = 49;
         return;
     }

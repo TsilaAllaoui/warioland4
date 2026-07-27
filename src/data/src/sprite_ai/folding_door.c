@@ -16,13 +16,13 @@ void SetFoldingDoorCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gSpriteAiCollisionOffset;
+    blockAction = &gSpriteTileInteractionMode;
     action = 3;
     *blockAction = action;
     leftX = 64;
     leftX = -leftX;
     leftX = (u16)(leftX + xPosition);
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -32,7 +32,7 @@ void SetFoldingDoorCollision(void)
         *pointer = value;
     }
     xPosition = (u16)(xPosition + 64);
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
     lowerY = (u16)(yPosition + 64);
     {
         register s8 value asm("r0");
@@ -42,7 +42,7 @@ void SetFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, leftX);
+    GetSpriteBlockCollisionAtPosition(lowerY, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -51,7 +51,7 @@ void SetFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, xPosition);
+    GetSpriteBlockCollisionAtPosition(lowerY, xPosition);
     lowerY = (u16)(yPosition + 128);
     {
         register s8 value asm("r0");
@@ -61,7 +61,7 @@ void SetFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, leftX);
+    GetSpriteBlockCollisionAtPosition(lowerY, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -70,7 +70,7 @@ void SetFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, xPosition);
+    GetSpriteBlockCollisionAtPosition(lowerY, xPosition);
     yPosition = (u16)(yPosition + 192);
     {
         register s8 value asm("r0");
@@ -80,7 +80,7 @@ void SetFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -89,7 +89,7 @@ void SetFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
 }
 
 void ClearFoldingDoorCollision(void)
@@ -103,13 +103,13 @@ void ClearFoldingDoorCollision(void)
 
     yPosition = gCurrentSprite.yPosition;
     xPosition = gCurrentSprite.xPosition;
-    blockAction = &gSpriteAiCollisionOffset;
+    blockAction = &gSpriteTileInteractionMode;
     action = 2;
     *blockAction = action;
     leftX = 64;
     leftX = -leftX;
     leftX = (u16)(leftX + xPosition);
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -119,7 +119,7 @@ void ClearFoldingDoorCollision(void)
         *pointer = value;
     }
     xPosition = (u16)(xPosition + 64);
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
     lowerY = (u16)(yPosition + 64);
     {
         register s8 value asm("r0");
@@ -129,7 +129,7 @@ void ClearFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, leftX);
+    GetSpriteBlockCollisionAtPosition(lowerY, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -138,7 +138,7 @@ void ClearFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, xPosition);
+    GetSpriteBlockCollisionAtPosition(lowerY, xPosition);
     lowerY = (u16)(yPosition + 128);
     {
         register s8 value asm("r0");
@@ -148,7 +148,7 @@ void ClearFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, leftX);
+    GetSpriteBlockCollisionAtPosition(lowerY, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -157,7 +157,7 @@ void ClearFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(lowerY, xPosition);
+    GetSpriteBlockCollisionAtPosition(lowerY, xPosition);
     yPosition = (u16)(yPosition + 192);
     {
         register s8 value asm("r0");
@@ -167,7 +167,7 @@ void ClearFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, leftX);
+    GetSpriteBlockCollisionAtPosition(yPosition, leftX);
     {
         register s8 value asm("r0");
         register s8 *pointer asm("r1");
@@ -176,7 +176,7 @@ void ClearFoldingDoorCollision(void)
         pointer = blockAction;
         *pointer = value;
     }
-    func_806D5C0(yPosition, xPosition);
+    GetSpriteBlockCollisionAtPosition(yPosition, xPosition);
 }
 
 void InitFoldingDoor(void)

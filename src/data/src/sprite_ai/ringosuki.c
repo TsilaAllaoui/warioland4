@@ -698,7 +698,7 @@ void RingosukiAppleFly(void)
     u16 workValue;
 
     func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1 || (gSpriteCollisionResult & 0xF) != 0)
+    if (gBackgroundCollisionData.waterType == 1 || (gSpriteCollisionResult & 0xF) != 0)
     {
         gCurrentSprite.pose = 107;
         return;

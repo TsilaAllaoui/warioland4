@@ -254,7 +254,7 @@ void DendenFall(void)
     register u32 floorY asm("r5");
 
     floorY = func_8023A60(gCurrentSprite.yPosition, gCurrentSprite.xPosition);
-    if (gUnk_30000A0.unk_02 == 1)
+    if (gBackgroundCollisionData.waterType == 1)
     {
         gCurrentSprite.status |= SPRITE_STATUS_UNDERWATER;
         m4aSongNumStart(SE_ENTER_WATER);

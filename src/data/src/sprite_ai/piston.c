@@ -91,7 +91,7 @@ void PistonExtend(void)
     u8 index;
     sprite = &gCurrentSprite;
     y = func_8023A60((u16)(sprite->yPosition + 128), sprite->xPosition);
-    if (gUnk_30000A0.unk_02 == 1)
+    if (gBackgroundCollisionData.waterType == 1)
         sprite->status |= SPRITE_STATUS_UNDERWATER;
     if (gSpriteCollisionResult != 0)
     {
