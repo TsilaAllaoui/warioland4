@@ -766,7 +766,7 @@ SECTIONS {
         obj/minigames/homerun_derby.o(.text);
         obj/disasm_shop.o(.text);
         obj/disasm_file_select.o(.text);
-        obj/disasm_save_data_clear.o(.text);
+        obj/save_data_clear.o(.text);
         obj/disasm_credits.o(.text);
         */libgcc.a:*(.text);
         */libc.a:*(.text);

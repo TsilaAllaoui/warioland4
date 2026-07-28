@@ -244,6 +244,37 @@ struct SecondarySprite {
     u16 xPosition;
 };
 
+struct SaveDataClearData {
+    u8 pad_00[0x08];
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0A;
+    u8 pad_0B;
+    u16 unk_0C;
+    u16 unk_0E;
+    u8 pad_10[0x04];
+    u8 unk_14;
+    u8 unk_15;
+    u8 unk_16;
+    u8 pad_17;
+    u16 unk_18;
+    u16 unk_1A;
+    u8 pad_1C[0x04];
+    u8 unk_20;
+    u8 unk_21;
+    u8 unk_22;
+};
+
+struct SaveClearAnimationState {
+    u16 y;
+    u16 x;
+    u8 pad_04[4];
+    u8 timer;
+    u8 frame;
+    u8 type;
+    u8 pad_0B;
+};
+
 /* 0x03000000 */
 extern u8 gCurrentPassage;
 extern u8 gCurrentStageNumber;
@@ -405,5 +436,10 @@ extern u8 gInitialHealth;
 extern u8 gPaletteFlashTimer;
 extern u8 gBgAnimationFrame;
 extern u8 gBgAnimationTimer;
+
+extern s16 gSubGameMode;
+extern s8 gUnk_3000C3E;
+
+extern struct SaveDataClearData gUnk_3004A70;
 
 #endif /* GLOBAL_DATA_H */

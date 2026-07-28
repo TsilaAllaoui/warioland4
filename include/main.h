@@ -38,8 +38,6 @@ extern u8 gUnk_3000C36;
 extern s8 gUnk_3000C37;
 extern u8 gCurrentShopItem;
 extern s16 gMainGameMode;
-extern s16 gSubGameMode;
-extern s8 gUnk_3000C3E;
 extern s8 gUnk_3000C3F;
 extern s8 gUnk_3000C40;
 extern u8 gMainTimer;
