@@ -5,11 +5,13 @@
 
 extern const u16 sCommonSpritesPal[];
 
-void func_80746C0(void);
+void LoadHudSpriteGraphics(void);
 void UpdateBossHealthGauge(void);
-void func_8074808(void);
-void func_8074988(void);
-
-void UpdateBossHealthGauge(void);
+void UpdateWarioLifeHud(void);
+void DrawGameplayHudOam(void);
+void UpdateBigBoardSecondarySprite(void);
+void UpdateTreasureCollectionHudEffects(void);
+void StartNextCollectedTreasureHudEffect(void);
+void StartCollectedJewelPieceHudEffect(void);
 
 #endif  // HUD_H

@@ -148,8 +148,8 @@ u32 GameScreenSubroutine(void)
             UpdateCamera();
             ProcessWarioInteraction();
         }
-        func_8074808();
-        func_8074988();
+        UpdateWarioLifeHud();
+        DrawGameplayHudOam();
         ProcessSecondarySprites();
         if (!gDisableWario) {
             GameScreenDrawWario();
@@ -368,7 +368,7 @@ void GameScreenInitAndLoadGenerics(void)
     }
 
     DmaCopy16(3, sUnk_82DF094, 0x06010B00, 0x100);
-    func_80746C0();
+    LoadHudSpriteGraphics();
     DmaCopy16(3, sWarioDefaultObjPalette, OBJ_PLTT, 0x20);
     DmaCopy16(3, sWarioGroundPoundPalette, OBJ_PLTT + 0x40, 0x20);
     DmaCopy16(3, sCommonSpritesPal, OBJ_PLTT + 0x80, 0x80) GameScreenInitWario();
@@ -394,7 +394,7 @@ void GameScreenInitAndLoadGenerics(void)
     InitializeRoomMusic();
     if (gUnk_3000C3F == 0) {
         func_801D684();
-        func_8074808();
+        UpdateWarioLifeHud();
         gUnk_3000C3F = 1;
         gWarioPauseTimer = 0;
         gDisableWario = 0;
