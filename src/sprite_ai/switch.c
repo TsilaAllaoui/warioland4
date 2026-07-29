@@ -155,7 +155,7 @@ void EscapeSwitchActivate(void)
     sprite->pose = 18;
     sprite->work0 = 13;
     gSwitchPressed = 1;
-    gUnk_3000035 = 1;
+    gEscapeHBlankEffectState = 1;
     gSwitchStates[SWITCH_ESCAPE] = SWITCH_STATE_SWITCHING_ON;
     gTimerState = 1;
     gUnk_3000BEC = zero;

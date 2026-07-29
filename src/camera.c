@@ -732,7 +732,7 @@ void UpdateBg0CameraPosition(const struct CameraTargetPosition *unusedPosition)
     }
     if (mode == 33) {
         gBg0XPosition = gUnk_300003A;
-        gBg0YPosition = gUnk_300003C;
+        gBg0YPosition = gGoldenBossTransitionBg0Y;
     }
 }
 

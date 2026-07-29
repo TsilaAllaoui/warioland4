@@ -4,6 +4,7 @@
 #include "color_effects.h"
 #include "fixed_point.h"
 #include "global_data.h"
+#include "hblank.h"
 #include "interrupt_callbacks.h"
 #include "main.h"
 #include "score.h"
@@ -16,7 +17,6 @@ void func_807053C(void);
 void func_8070BB8(void);
 void func_8070C38(void);
 s32 func_80714F0(void);
-void func_8071600(s32 effectId);
 s32 RunCurrentPassageStageEnd(void);
 
 void UpdateStageEndAffineTransform(void);
@@ -87,7 +87,7 @@ s32 UpdateStageExitSequence(void)
             break;
 
         case 2:
-            func_8071600(1);
+            SetHBlankMode(1);
             nextState = 128;
             /* fall through */
         case 3:
@@ -466,7 +466,7 @@ void StageEndVBlank(void)
     ioRegister--;
     *ioRegister = 0x064A;
 
-    func_8071600(0xE);
+    SetHBlankMode(0xE);
     *(vu16 *)0x05000000 = 0;
 }
 

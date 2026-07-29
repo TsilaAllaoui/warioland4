@@ -419,7 +419,7 @@ void GameScreenInitAndLoadGenerics(void)
     gHasTemporarySave = 0;
     gPauseFlag = 0;
 
-    if (gEnableHBlank) {
+    if (gHBlankMode) {
         REG_IE |= INTR_FLAG_HBLANK;
         REG_DISPSTAT |= DISPSTAT_HBLANK_INTR;
     } else {

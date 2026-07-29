@@ -311,11 +311,11 @@ extern u16 gBldCnt;
 extern u8 gSwitchStates[SWITCH_COUNT];
 extern u8 gDrawWarioOverBackground;
 extern u8 gUnk_3000034;
-extern u8 gUnk_3000035;
-extern u8 gEnableHBlank;
+extern u8 gEscapeHBlankEffectState;
+extern u8 gHBlankMode;
 extern u8 gUnk_3000038;
 extern u16 gUnk_300003A;
-extern u16 gUnk_300003C;
+extern u16 gGoldenBossTransitionBg0Y;
 extern u16 gClearedRoomTileCount;
 extern u8 gShopItemState;
 extern u8 gShopItemTimer;
@@ -392,7 +392,7 @@ extern struct GameMusicState gGameMusicState;
 extern u16 gRoomCameraBounds[4];
 extern struct RoomEffectState gUnk_3003214;
 extern struct RoomEffectState gBg0ScrollEffect;
-extern u16 gUnk_300321C[2];
+extern u16 gHBlankPaletteFadeColors[3];
 extern struct BackgroundPositionState gCameraPositionState;
 
 /* 0x0300342C */

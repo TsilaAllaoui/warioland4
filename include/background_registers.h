@@ -25,7 +25,7 @@ extern u16 gBg1XPosition;
 extern u16 gBg1YPosition;
 extern u16 gBg2XPosition;
 extern u16 gBg2YPosition;
-extern u16 gUnk_3001882;
-extern u16 gUnk_3001884;
+extern u16 gBg3XPosition;
+extern u16 gBg3YPosition;
 
 #endif  // BACKGROUND_REGISTERS_H
