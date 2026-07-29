@@ -1169,7 +1169,7 @@ func_8075988:
 	beq	.L_75b48
 	cmp	r0, #5
 	bne	.L_75b44
-	bl	func_807507C
+	bl	UpdateTreasureCollectionHudEffects
 	b	.L_75b48
 .L_75b38:
 	.4byte	gUnk_3000C01
@@ -1178,7 +1178,7 @@ func_8075988:
 .L_75b40:
 	.4byte	gCurrentPassage
 .L_75b44:
-	bl	func_8074F44
+	bl	StartCollectedJewelPieceHudEffect
 .L_75b48:
 	pop	{r4, r5}
 	pop	{r0}

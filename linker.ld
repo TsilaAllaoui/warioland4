@@ -724,7 +724,6 @@ SECTIONS {
         obj/disasm_save_file.o(.text);
         obj/boss_pause.o(.text);
         obj/hud.o(.text);
-        obj/disasm_hud.o(.text);
         obj/disasm_score.o(.text);
         obj/disasm_secondary_sprite_ai.o(.text);
         obj/disasm_stage_select.o(.text);
