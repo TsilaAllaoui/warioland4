@@ -88,11 +88,11 @@ func_806C828:
 .L_6c8d4:
 	.4byte	gBg0YPosition
 .L_6c8d8:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_6c8dc:
 	.4byte	gUnk_3003214
 .L_6c8e0:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 
 
 thumb_func_start func_806C8E4
@@ -154,7 +154,7 @@ func_806C8E4:
 	b	.L_6c960
 	.align	2, 0
 .L_6c950:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_6c954:
 	.4byte	gRoomCameraBounds
 .L_6c958:
@@ -168,7 +168,7 @@ func_806C8E4:
 	b	.L_6c97a
 	.align	2, 0
 .L_6c968:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_6c96c:
 	.4byte	gBg1XPosition
 .L_6c970:
@@ -192,11 +192,11 @@ func_806C8E4:
 	strh	r0, [r2, #0]
 	b	.L_6c9c6
 .L_6c994:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_6c998:
 	.4byte	gBg1XPosition
 .L_6c99c:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 .L_6c9a0:
 	.4byte	gRoomCameraBounds
 .L_6c9a4:
@@ -209,7 +209,7 @@ func_806C8E4:
 	b	.L_6c9c6
 	.align	2, 0
 .L_6c9b4:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 .L_6c9b8:
 	.4byte	gBg1YPosition
 .L_6c9bc:
@@ -223,7 +223,7 @@ func_806C8E4:
 	pop	{r0}
 	bx	r0
 .L_6c9cc:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 .L_6c9d0:
 	.4byte	gBg1YPosition
 

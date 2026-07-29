@@ -1199,9 +1199,9 @@ func_809329C:
 .L_938cc:
 	.4byte	gBg2YPosition
 .L_938d0:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_938d4:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 .L_938d8:
 	.4byte	func_80930B8
 .L_938dc:

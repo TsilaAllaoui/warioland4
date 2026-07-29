@@ -921,7 +921,7 @@ func_8072FB0:
 .L_73340:
 	.4byte	gUnk_300003A
 .L_73344:
-	.4byte	gUnk_300003C
+	.4byte	gGoldenBossTransitionBg0Y
 .L_73348:
 	.4byte	gWarioData
 .L_7334c:
@@ -1003,7 +1003,7 @@ func_8072FB0:
 .L_733e4:
 	.4byte	gBg2YPosition
 .L_733e8:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_733ec:
 	ldrh	r0, [r7, #0]
 	strh	r0, [r4, #0]
@@ -1023,7 +1023,7 @@ func_8072FB0:
 	pop	{r0}
 	bx	r0
 .L_73410:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 .L_73414:
 	.4byte	sUnk_840094C
 
@@ -1544,7 +1544,7 @@ func_807345C:
 .L_737d0:
 	.4byte	gUnk_300003A
 .L_737d4:
-	.4byte	gUnk_300003C
+	.4byte	gGoldenBossTransitionBg0Y
 .L_737d8:
 	.4byte	gWarioData
 .L_737dc:
@@ -1626,9 +1626,9 @@ func_807345C:
 .L_73874:
 	.4byte	gBg2YPosition
 .L_73878:
-	.4byte	gUnk_3001882
+	.4byte	gBg3XPosition
 .L_7387c:
-	.4byte	gUnk_3001884
+	.4byte	gBg3YPosition
 
 
 thumb_func_start func_8073880

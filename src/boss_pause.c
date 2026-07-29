@@ -75,7 +75,7 @@ s32 BossPause(void)
         gUnk_300001A++;
         break;
     case 8:
-        if (gEnableHBlank != 0) {
+        if (gHBlankMode != 0) {
             REG_IE |= 2;
             REG_DISPSTAT |= 0x10;
         }

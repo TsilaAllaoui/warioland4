@@ -1734,7 +1734,7 @@ func_8070E24:
 .L_70e48:
 	.4byte	gSubGameMode
 .L_70e4c:
-	.4byte	gUnk_3000035
+	.4byte	gEscapeHBlankEffectState
 .L_70e50:
 	.4byte	gTimerState
 .L_70e54:
@@ -1819,7 +1819,7 @@ func_8070E24:
 	.4byte	gColorFading
 .L_70f04:
 	mov	r0, #3
-	bl	func_8071600
+	bl	SetHBlankMode
 .L_70f0a:
 	bl	func_8070208
 	mov	r0, #0
@@ -1928,7 +1928,7 @@ func_8070E24:
 .L_70fd4:
 	.4byte	gColorFading
 .L_70fd8:
-	.4byte	gUnk_3000035
+	.4byte	gEscapeHBlankEffectState
 
 
 thumb_func_start func_8070FDC
@@ -2108,7 +2108,7 @@ func_80710D8:
 .L_71120:
 	.4byte	gSwitchPressed
 .L_71124:
-	.4byte	gUnk_3000035
+	.4byte	gEscapeHBlankEffectState
 .L_71128:
 	ldr	r1, .L_71144
 	add	r0, r4, r1
@@ -2358,7 +2358,7 @@ func_80712B4:
 	b	.L_712f2
 	.align	2, 0
 .L_712e0:
-	.4byte	gUnk_3000035
+	.4byte	gEscapeHBlankEffectState
 .L_712e4:
 	.4byte	gColorFading
 .L_712e8:

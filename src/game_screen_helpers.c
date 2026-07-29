@@ -4,6 +4,7 @@
 #include "color_effects.h"
 #include "demo.h"
 #include "global_data.h"
+#include "hblank.h"
 #include "main.h"
 #include "score.h"
 #include "sound.h"
@@ -21,14 +22,11 @@ void UpdateCamera();
 void func_806C828();
 void RefreshCollectedTileEffects();
 void InitAnimatedGraphics();
-void func_8071598();
-void func_8071A2C();
 void ApplyRoomTransitionTileOffset();
 void SetRoomTransitionTileValues();
 void func_8000D18();
 void StopDemo();
 void LoadCurrentRoomCameraControlData();
-void func_8071600();
 void TransparencyProcessWater();
 void func_8070E24();
 void func_8070BB8();
@@ -468,9 +466,9 @@ void LoadRoom(void)
         dma->control = dmaFillControl;
         dma->control;
     }
-    gUnk_300321C[0] = *(const u16 *)tileset.palette;
+    gHBlankPaletteFadeColors[0] = *(const u16 *)tileset.palette;
     *(vu16 *)0x05000000 = 0;
-    gUnk_300321C[1] = 0;
+    gHBlankPaletteFadeColors[1] = 0;
     dma->source = tileset.animatedGraphics;
     dma->destination = (void *)(0x0600FFE0 - tileset.animatedGraphicsSize);
     dma->control = dmaEnable | (tileset.animatedGraphicsSize >> 1);
@@ -529,8 +527,8 @@ void LoadRoom(void)
         DecompressRoomBackground(0, sBossRoomBackgroundData, (u8 *)0x0201F040);
     RefreshCollectedTileEffects();
     InitAnimatedGraphics();
-    func_8071598();
-    func_8071A2C();
+    InitRoomHBlank();
+    UpdateHBlankEffect();
     if (gWarioData.unk_02 != 0) {
         if (gWarioData.pose == 17)
             gWarioData.yPosition += 0x80;
@@ -672,7 +670,7 @@ void InitializeRoomState(void)
         gGameMusicState.memoryAccessState = 0;
         gGameMusicState.previousSongId = 0;
         gGameMusicState.playerId = 0;
-        gUnk_3000035 = 0;
+        gEscapeHBlankEffectState = 0;
         gBossDefeatTimer[0] = 0;
         gBossDefeatTimer[1] = 0;
         gBossDefeatTimer[2] = 0;
@@ -691,7 +689,7 @@ void InitializeRoomState(void)
                 gUnk_3000025 = 0;
             gClearedRoomTileCount = 0;
             gUnk_300003A = 0;
-            gUnk_300003C = 0;
+            gGoldenBossTransitionBg0Y = 0;
             {
                 register u32 switchZero asm("r3");
 
@@ -1545,7 +1543,7 @@ void ProcessGoldenPassageBossTransition(void)
         transitionState = temporaryPointer;
         switch (temporaryValue) {
         case 0:
-            gUnk_300003C = 0;
+            gGoldenBossTransitionBg0Y = 0;
             gUnk_3003BF5 = 0;
             gUnk_3003BF6 = 0;
             if (*transitionFlag != 1)
@@ -1583,7 +1581,7 @@ void ProcessGoldenPassageBossTransition(void)
             break;
         case 4:
             if (gUnk_300188E > 40) {
-                func_8071600(15);
+                SetHBlankMode(15);
                 goto increment_state;
             }
             break;
@@ -1649,8 +1647,8 @@ void UpdateGoldenPassageBossTransitionTimer(void)
         gUnk_3003BF6 = 0;
     } else {
         gUnk_3003BF6++;
-        if (gUnk_300003C <= 149)
-            gUnk_300003C++;
+        if (gGoldenBossTransitionBg0Y <= 149)
+            gGoldenBossTransitionBg0Y++;
         else
             gUnk_3003BF5 = 0;
     }
@@ -1746,7 +1744,7 @@ void ProcessRoomWindowEffect(void)
             window = &gWindow;
             window->top = 0;
             *(vu16 *)0x04000046 = window->bottom;
-            *(vu16 *)0x05000000 = gUnk_300321C[1];
+            *(vu16 *)0x05000000 = gHBlankPaletteFadeColors[1];
             nextState = state - 1;
             *statePointer = nextState;
             if ((u8)nextState == 0x40) {
@@ -1788,5 +1786,5 @@ void DrawGameScreen(void)
     }
     if (gSubGameMode == 2)
         UpdateWarioTileInteractions();
-    func_8071A2C();
+    UpdateHBlankEffect();
 }
