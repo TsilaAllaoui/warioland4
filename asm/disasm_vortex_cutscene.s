@@ -36,7 +36,7 @@ func_807F8D0:
 	mov	r0, #1
 	b	.L_7f91e
 .L_7f910:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7f914:
 	bl	func_807FFD8
 	bl	func_80800EC
@@ -221,11 +221,11 @@ func_807F924:
 .L_7fa6c:
 	.4byte	gUnk_3003D6A
 .L_7fa70:
-	.4byte	gUnk_3003C20
+	.4byte	gStageEntryHorizontalScroll
 .L_7fa74:
 	.4byte	gUnk_3003D66
 .L_7fa78:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_7fa7c:
 	.4byte	gStageResultsTimer
 .L_7fa80:
@@ -309,7 +309,7 @@ func_807FAA4:
 .L_7fb14:
 	.4byte	gUnk_3003D72
 .L_7fb18:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7fb1c:
 	.4byte	sSinCosTable
 
@@ -407,7 +407,7 @@ func_807FB20:
 .L_7fbc8:
 	.4byte	gUnk_3003D72
 .L_7fbcc:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7fbd0:
 	.4byte	0x600D000
 .L_7fbd4:
@@ -607,7 +607,7 @@ func_807FB20:
 .L_7fd40:
 	.4byte	gUnk_3003D72
 .L_7fd44:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7fd48:
 	.4byte	0x600D000
 .L_7fd4c:
@@ -735,7 +735,7 @@ func_807FD94:
 .L_7fe34:
 	.4byte	gUnk_3003D66
 .L_7fe38:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7fe3c:
 	.4byte	gUnk_3003D70
 .L_7fe40:
@@ -834,7 +834,7 @@ func_807FD94:
 .L_7fef4:
 	.4byte	gUnk_3003D66
 .L_7fef8:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_7fefc:
 	.4byte	gUnk_3003D70
 .L_7ff00:
@@ -1090,7 +1090,7 @@ func_807FFD8:
 .L_800e4:
 	.4byte	sSinCosTable
 .L_800e8:
-	.4byte	gUnk_3003C20
+	.4byte	gStageEntryHorizontalScroll
 
 
 thumb_func_start func_80800EC
@@ -1178,7 +1178,7 @@ func_8080144:
 .L_80180:
 	.4byte	0x4000020
 .L_80184:
-	.4byte	gUnk_3003C20
+	.4byte	gStageEntryHorizontalScroll
 .L_80188:
 	.4byte	0xFFF0000
 
@@ -1684,7 +1684,7 @@ func_808018C:
 .L_80564:
 	.4byte	sStageEjectionWarioOam
 .L_80568:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_8056c:
 	.4byte	0x1FF
 .L_80570:
@@ -1702,7 +1702,7 @@ func_808018C:
 .L_80588:
 	.4byte	gSubGameMode
 .L_8058c:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80590:
 	.4byte	gStageResultsAnimationFinished
 .L_80594:
@@ -2077,7 +2077,7 @@ func_808018C:
 .L_80868:
 	.4byte	sUnk_863DBE4
 .L_8086c:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_80870:
 	.4byte	gStageResultsScoreRank
 .L_80874:

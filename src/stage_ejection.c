@@ -8,9 +8,9 @@
 #include "gba/m4a.h"
 
 extern u8 gUnk_3003C4A;
-extern u16 gUnk_3003C0C[];
-extern s16 gUnk_3003C20[];
-extern u16 gUnk_3003C3A;
+extern u16 gStageEntryMainSpriteState[];
+extern s16 gStageEntryHorizontalScroll[];
+extern u16 gStageEntrySequenceTimer;
 
 extern const s32 sStageEjectionParticleSpawnDelays[];
 extern const s32 sStageEjectionParticleYVelocities[];
@@ -36,7 +36,7 @@ struct Dma3RegsStageEjection { const void *src; void *dst; u32 control; };
 
 s32 UpdateStageEjectionExitState(void)
 {
-    if ((s16)gUnk_3003C0C[5] > 0xB40) {
+    if ((s16)gStageEntryMainSpriteState[5] > 0xB40) {
         ClearStageEjectionCollectionFlags();
         return 1;
     }
@@ -221,15 +221,15 @@ void InitializeStageEjection(void)
     {
         s32 zero;
 
-        stageEntryY = &gUnk_3003C20;
+        stageEntryY = &gStageEntryHorizontalScroll;
         zero = 0;
         stageEntryY[1] = zero;
-        gUnk_3003C0C[4] = 0x780;
-        gUnk_3003C0C[5] = 0xFF00;
-        gUnk_3003C0C[6] = zero;
-        gUnk_3003C0C[7] = 0x1000;
-        gUnk_3003C0C[8] = 0x1000;
-        gUnk_3003C3A = zero;
+        gStageEntryMainSpriteState[4] = 0x780;
+        gStageEntryMainSpriteState[5] = 0xFF00;
+        gStageEntryMainSpriteState[6] = zero;
+        gStageEntryMainSpriteState[7] = 0x1000;
+        gStageEntryMainSpriteState[8] = 0x1000;
+        gStageEntrySequenceTimer = zero;
         *(vu16 *)0x04000012 = zero;
         *(vu16 *)0x04000010 = zero;
     }
@@ -249,8 +249,8 @@ void UpdateStageEjectionParticles(void)
     gStageEjectionParticleSpawnTimer++;
     if (gStageEjectionParticleSpawnTimer == sStageEjectionParticleSpawnDelays[gStageEjectionParticleSpawnCount - 1]) {
         gStageEjectionParticles[gStageEjectionParticleIndex].active = 1;
-        gStageEjectionParticles[gStageEjectionParticleIndex].x = gUnk_3003C0C[4] + sStageEjectionParticleSpawnOffsets[MinigameRandom() % 6];
-        gStageEjectionParticles[gStageEjectionParticleIndex].y = gUnk_3003C0C[5] + sStageEjectionParticleSpawnOffsets[MinigameRandom() % 6];
+        gStageEjectionParticles[gStageEjectionParticleIndex].x = gStageEntryMainSpriteState[4] + sStageEjectionParticleSpawnOffsets[MinigameRandom() % 6];
+        gStageEjectionParticles[gStageEjectionParticleIndex].y = gStageEntryMainSpriteState[5] + sStageEjectionParticleSpawnOffsets[MinigameRandom() % 6];
         gStageEjectionParticles[gStageEjectionParticleIndex].animationTimer = 0;
         gStageEjectionParticles[gStageEjectionParticleIndex].frame = 0;
         if (gStageEjectionParticleIndex & 1) {
@@ -299,11 +299,11 @@ void UpdateStageEjectionParticles(void)
 
 void UpdateStageEjectionTreasureParticles(void)
 {
-    if (((u32) gStageEjectionTreasureIndex <= 4U) && ((s32)(s16) gUnk_3003C0C[5] > sStageEjectionTreasureSpawnYThresholds[gStageEjectionTreasureIndex]))
+    if (((u32) gStageEjectionTreasureIndex <= 4U) && ((s32)(s16) gStageEntryMainSpriteState[5] > sStageEjectionTreasureSpawnYThresholds[gStageEjectionTreasureIndex]))
     {
         gStageEjectionTreasureParticles[gStageEjectionTreasureIndex].active = 1;
-        gStageEjectionTreasureParticles[gStageEjectionTreasureIndex].x = gUnk_3003C0C[4];
-        gStageEjectionTreasureParticles[gStageEjectionTreasureIndex].y = gUnk_3003C0C[5];
+        gStageEjectionTreasureParticles[gStageEjectionTreasureIndex].x = gStageEntryMainSpriteState[4];
+        gStageEjectionTreasureParticles[gStageEjectionTreasureIndex].y = gStageEntryMainSpriteState[5];
 
         if (1 & gStageEjectionTreasureIndex)
         {
@@ -408,26 +408,26 @@ void UpdateStageEjectionArcMovement(void)
 {
   s32 horizontalStep;
   u16 curveTimer;
-  gUnk_3003C0C[5] = (u16) (gUnk_3003C0C[5] + 0x1E);
-  if (((u32) gUnk_3003C3A) > 0x1EU)
+  gStageEntryMainSpriteState[5] = (u16) (gStageEntryMainSpriteState[5] + 0x1E);
+  if (((u32) gStageEntrySequenceTimer) > 0x1EU)
   {
-    horizontalStep = gUnk_3003C3A - 0x2D;
+    horizontalStep = gStageEntrySequenceTimer - 0x2D;
   }
   else
   {
-    horizontalStep = 0xF - gUnk_3003C3A;
+    horizontalStep = 0xF - gStageEntrySequenceTimer;
   }
   do
   {
-    gUnk_3003C0C[4] = (u16) ((horizontalStep * 2) + gUnk_3003C0C[4]);
+    gStageEntryMainSpriteState[4] = (u16) ((horizontalStep * 2) + gStageEntryMainSpriteState[4]);
   }
   while (0);
-  curveTimer = (gUnk_3003C3A = gUnk_3003C3A + 1);
+  curveTimer = (gStageEntrySequenceTimer = gStageEntrySequenceTimer + 1);
   if (((u32) curveTimer) > 0x3CU)
   {
-    gUnk_3003C3A = 0;
+    gStageEntrySequenceTimer = 0;
   }
-  gUnk_3003C0C[6] = (gUnk_3003C0C[6] + 0xFD) & 0xFF;
+  gStageEntryMainSpriteState[6] = (gStageEntryMainSpriteState[6] + 0xFD) & 0xFF;
 }
 
 void DrawStageEjection(void)
@@ -469,7 +469,7 @@ void DrawStageEjection(void)
     {
       return;
     }
-    state = gUnk_3003C0C;
+    state = gStageEntryMainSpriteState;
     sineTable = sSinCosTable;
     aff1Ptr = &affine[1];
     aff2Ptr = &affine[2];
@@ -753,7 +753,7 @@ void UpdateStageEjectionEffects(void)
     UpdateStageEjectionParticles();
     UpdateStageEjectionTreasureParticles();
 
-    angle = (gUnk_3003C20[1] + 0x96) & 0xFFF;
-    gUnk_3003C20[1] = angle;
+    angle = (gStageEntryHorizontalScroll[1] + 0x96) & 0xFFF;
+    gStageEntryHorizontalScroll[1] = angle;
     *(volatile u16 *)0x04000012 = angle >> 4;
 }

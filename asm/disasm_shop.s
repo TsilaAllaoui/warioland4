@@ -712,13 +712,13 @@ func_808FCE0:
 .L_900d8:
 	.4byte	0x000002aa
 .L_900dc:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_900e0:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_900e4:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_900e8:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_900ec:
 	.4byte	0x04000048
 .L_900f0:
@@ -790,13 +790,13 @@ func_8090114:
 .L_90168:
 	.4byte	0x04000040
 .L_9016c:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_90170:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_90174:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_90178:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_9017c:
 	.4byte	gLanguage
 .L_90180:

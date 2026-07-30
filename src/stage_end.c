@@ -11,7 +11,7 @@
 
 #include "gba/m4a.h"
 
-void func_80701F4(void);
+void SetCurrentStageKeyzerRecoveredFlag(void);
 void func_80703DC(void);
 void func_807053C(void);
 void func_8070BB8(void);
@@ -170,7 +170,7 @@ s32 UpdateStageExitSequence(void)
         case 19:
             gColorFading.type = 2;
             gColorFading.unk_2 = 0;
-            func_80701F4();
+            SetCurrentStageKeyzerRecoveredFlag();
             nextState = 128;
             goto set_state;
 
@@ -206,7 +206,7 @@ s32 UpdateStageExitSequence(void)
             *(u16 *)0x04000004 &= 0xFFEF;
             *(u16 *)0x04000200 &= 0xFFFD;
             gSwitchPressed = 0;
-            gUnk_3000C3F = 0;
+            gStageEntryPauseMenuDisabled = 0;
             gUnk_3000025 = 0;
             resultCode = 1;
             break;
@@ -325,7 +325,7 @@ s32 UpdateStageEndSequence(void)
             gUnk_300188E += 1;
             gColorFading.type = 2;
             gColorFading.unk_2 = 0;
-            func_80701F4();
+            SetCurrentStageKeyzerRecoveredFlag();
             gUnk_300188E = 0;
             gSpriteAiDropTimer += 1;
             break;

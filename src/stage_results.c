@@ -15,17 +15,17 @@ u32 UpdateStageResults(void)
     volatile u32 *dma;
 
     pressed = 0;
-    switch (gUnk_3003C39) {
+    switch (gStageEntrySequenceStep) {
     case 1:
         InitStageResults();
-        gUnk_3003C39++;
+        gStageEntrySequenceStep++;
         break;
     case 2:
         REG_DISPCNT = 0x1701;
         if (!StageResultsTimerExpired(30))
             break;
         if (gStageResultsTreasure.state > 4) {
-            gUnk_3003C39 = 4;
+            gStageEntrySequenceStep = 4;
             break;
         }
         if (gStageResultsTreasureSound == 1) {
@@ -35,7 +35,7 @@ u32 UpdateStageResults(void)
             m4aSongNumStart(SE_RESULTS_FOUND_CD);
             gStageResultsTreasureSound = 0;
         }
-        gUnk_3003C39++;
+        gStageEntrySequenceStep++;
         break;
     case 3:
         if (gStageResultsAnimationFinished == 0) {
@@ -53,7 +53,7 @@ u32 UpdateStageResults(void)
             gStageResultsTreasureSound = 0;
         }
         if (gStageResultsTreasure.state > 4)
-            gUnk_3003C39++;
+            gStageEntrySequenceStep++;
         break;
     case 4:
         if (gStageResultsAnimationFinished == 0) {
@@ -73,7 +73,7 @@ u32 UpdateStageResults(void)
             gStageResultsScoreRank = 3;
         else
             gStageResultsScoreRank = 0;
-        gUnk_3003C39++;
+        gStageEntrySequenceStep++;
         if (gNewHighScore != 0) {
             gStageResultsNewHighScoreIcon.state = 1;
             m4aSongNumStart(SE_HIGH_SCORE);
@@ -81,11 +81,11 @@ u32 UpdateStageResults(void)
         break;
     case 5:
         if (StageResultsTimerExpired(75))
-            gUnk_3003C39++;
+            gStageEntrySequenceStep++;
         break;
     case 6:
         if (TransferStageScoreToTotal())
-            gUnk_3003C39++;
+            gStageEntrySequenceStep++;
         break;
     case 7:
         if (gButtonsPressed & A_BUTTON)
@@ -99,7 +99,7 @@ u32 UpdateStageResults(void)
         if (gCurrentPassage != 0 || gCollectedKeyzer != 1)
             goto exitResults;
         REG_DISPCNT = 0x701;
-        gUnk_3003C39++;
+        gStageEntrySequenceStep++;
         if (gLanguage == 0) {
             dma = (volatile u32 *)0x040000D4;
             dma[0] = (u32)sStageResultsLanguage0Tilemap;
@@ -117,7 +117,7 @@ u32 UpdateStageResults(void)
         break;
     case 8:
         if (StageResultsTimerExpired(120))
-            gUnk_3003C39++;
+            gStageEntrySequenceStep++;
         break;
     case 9:
         if (!(gButtonsPressed & A_BUTTON))

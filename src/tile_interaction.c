@@ -2127,7 +2127,7 @@ void UpdateWarioEnvironmentalTiles(void)
             } else if (value == 8) {
                 gStageExitType = 6;
                 gUnk_3000025 = 0;
-                gUnk_3000C3F = 0;
+                gStageEntryPauseMenuDisabled = 0;
                 gSubGameMode = 3;
                 StartRoomTransitionFade(2);
                 {

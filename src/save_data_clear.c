@@ -14,7 +14,7 @@ extern u8 sUnk_8746D72[];
 extern u8 sUnk_8746D74[];
 extern u8 sUnk_8746D76[];
 extern u8 sUnk_8746D78[];
-extern u8 gUnk_3000C3F;
+extern u8 gStageEntryPauseMenuDisabled;
 extern u8 sUnk_8745350[];
 extern u8 sUnk_8745B58[];
 extern u8 sUnk_8746480[];
@@ -52,7 +52,7 @@ s32 SaveResetSubroutine(void)
             break;
 
         case 2:
-            saveResultPtr = &gUnk_3000C3E;
+            saveResultPtr = &gStageEntrySoftResetDisabled;
             saveResult = func_80928E4();
             *saveResultPtr = saveResult;
             if ((s8)saveResult != 0) {
@@ -324,7 +324,7 @@ void func_8092B30(void)
         *((volatile u16*)0x04000008) = clear;
         gUnk_3001874 = clear;
         *((volatile u16*)0x04000052) = clear;
-        gUnk_3000C3F = clear;
+        gStageEntryPauseMenuDisabled = clear;
         gBg1XPosition = 4;
         gBg1YPosition = clear;
         func_8092CC4();

@@ -1,8 +1,8 @@
 .include "macros.s.inc"
 
 
-thumb_func_start func_80701F4
-func_80701F4:
+thumb_func_start SetCurrentStageKeyzerRecoveredFlag
+SetCurrentStageKeyzerRecoveredFlag:
 	push	{lr}
 	bl	func_8070208
 	bl	func_806D3A4

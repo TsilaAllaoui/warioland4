@@ -26,18 +26,18 @@ struct BossDoorOpeningIcon {
     u8 padding[3];
 };
 
-extern struct BossDoorOpeningBackground gUnk_3003C0C;
-extern struct BossDoorOpeningScrollOffset gUnk_3003C20;
-extern u8 gUnk_3003C08;
-extern u8 gUnk_3003C39;
-extern u16 gUnk_3003C3A;
+extern struct BossDoorOpeningBackground gStageEntryMainSpriteState;
+extern struct BossDoorOpeningScrollOffset gStageEntryHorizontalScroll;
+extern u8 gStageEntryExitRequested;
+extern u8 gStageEntrySequenceStep;
+extern u16 gStageEntrySequenceTimer;
 extern u8 gUnk_3003C4A;
-extern u16 gUnk_3003C4C;
-extern u16 gUnk_3003C4E;
-extern u16 gUnk_3003C50;
-extern u16 gUnk_3003C52;
+extern u16 gStageEntryWindowLeft;
+extern u16 gStageEntryWindowRight;
+extern u16 gStageEntryWindowTop;
+extern u16 gStageEntryWindowBottom;
 extern u8 gUnk_3003C56;
-extern u32 gUnk_3003C9C;
+extern u32 gStageEntryShakeMode;
 extern u8 gUnk_3004730;
 extern u8 gUnk_3004731;
 extern struct BossDoorOpeningIcon gUnk_3004738[];

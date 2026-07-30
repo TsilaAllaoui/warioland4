@@ -33,8 +33,8 @@ IWRAM_DATA s8 gUnk_3000C37 = 0;
 IWRAM_DATA u8 gCurrentShopItem = 0;
 IWRAM_DATA s16 gMainGameMode = 0;
 IWRAM_DATA s16 gSubGameMode = 0;
-IWRAM_DATA s8 gUnk_3000C3E = 0;
-IWRAM_DATA s8 gUnk_3000C3F = 0;
+IWRAM_DATA s8 gStageEntrySoftResetDisabled = 0;
+IWRAM_DATA s8 gStageEntryPauseMenuDisabled = 0;
 IWRAM_DATA s8 gUnk_3000C40 = 0;
 IWRAM_DATA u8 gMainTimer = 0;
 IWRAM_DATA vu16 gInterruptCheck = 0;
@@ -91,7 +91,7 @@ void AgbMain(void)
 
             case GM_FILE_SELECT:
                 if (FileSelectSubroutine()) {
-                    if (gUnk_3000C3E == 1) {
+                    if (gStageEntrySoftResetDisabled == 1) {
                         if (gHasTemporarySave) {
                             gSubGameMode = 0;
                             gMainGameMode = GM_GAME_SCREEN;
@@ -110,9 +110,9 @@ void AgbMain(void)
                         gSubGameMode = 0;
                         gMainGameMode = GM_CUTSCENE;
                     }
-                    gUnk_3000C3E = 0;
+                    gStageEntrySoftResetDisabled = 0;
                 }
-                gUnk_3000C3F = 0;
+                gStageEntryPauseMenuDisabled = 0;
                 break;
 
             case GM_STAGE_SELECT:
@@ -226,7 +226,7 @@ void AgbMain(void)
             case GM_SAVE_RESET:
                 if (SaveResetSubroutine()) {
                     gSubGameMode = 0;
-                    if (gUnk_3000C3E == 1) {
+                    if (gStageEntrySoftResetDisabled == 1) {
                         gResetSaveFile = 2;
                     } else {
                         gMainGameMode = GM_CUTSCENE;

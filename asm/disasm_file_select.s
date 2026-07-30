@@ -512,7 +512,7 @@ func_8090A40:
 .L_90da4:
 	.4byte	0x04000052
 .L_90da8:
-	.4byte	gUnk_3000C3F
+	.4byte	gStageEntryPauseMenuDisabled
 .L_90dac:
 	.4byte	gPauseFlag
 .L_90db0:
@@ -1531,7 +1531,7 @@ func_80914B4:
 .L_9150c:
 	.4byte	0x04000049
 .L_91510:
-	.4byte	gUnk_3000C3E
+	.4byte	gStageEntrySoftResetDisabled
 .L_91514:
 	.4byte	gOamSlotsUsed
 .L_91518:
@@ -1997,7 +1997,7 @@ FileSelectSubroutine:
 	b	.L_919b0
 	.align	2, 0
 .L_9189c:
-	.4byte	gUnk_3000C3E
+	.4byte	gStageEntrySoftResetDisabled
 .L_918a0:
 	.4byte	gUnk_3003BF8
 .L_918a4:

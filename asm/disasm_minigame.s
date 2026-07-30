@@ -625,13 +625,13 @@ func_8089DCC:
 	mov	r0, #0
 	b	.L_89e0c
 .L_89df4:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_89df8:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_89dfc:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_89e00:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_89e04:
 	strh	r5, [r4, #0]
 	mov	r0, #240	@ 0xf0
@@ -669,13 +669,13 @@ func_8089E14:
 	b	.L_89e58
 	.align	2, 0
 .L_89e40:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_89e44:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_89e48:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_89e4c:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_89e50:
 	mov	r0, #120	@ 0x78
 	strh	r0, [r4, #0]
@@ -1303,13 +1303,13 @@ func_8089FFC:
 .L_8a2f4:
 	.4byte	gMinigameSequenceTimer
 .L_8a2f8:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_8a2fc:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_8a300:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_8a304:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_8a308:
 	.4byte	0x04000048
 .L_8a30c:
@@ -1529,13 +1529,13 @@ func_808A46C:
 .L_8a49c:
 	.4byte	0x04000040
 .L_8a4a0:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_8a4a4:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_8a4a8:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_8a4ac:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_8a4b0:
 	.4byte	gLanguage
 .L_8a4b4:

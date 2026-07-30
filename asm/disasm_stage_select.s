@@ -256,7 +256,7 @@ StageSelectSubroutine:
 .L_79c10:
 	.4byte	gSubGameMode
 .L_79c14:
-	bl	func_807CAB8
+	bl	UpdateStageEntry
 	cmp	r0, #0
 	bne	.L_79c1e
 	b	.L_7a36a
@@ -303,7 +303,7 @@ StageSelectSubroutine:
 	b	.L_7a36a
 	.align	2, 0
 .L_79c70:
-	.4byte	gUnk_3003C08
+	.4byte	gStageEntryExitRequested
 .L_79c74:
 	ldr	r0, .L_79c84
 	strh	r1, [r0, #0]
@@ -337,7 +337,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79cc0
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807D10C
+	bl	InitializeStageEntryState
 	ldr	r1, .L_79cc4
 	mov	r0, #8
 	b	.L_7a30c
@@ -357,7 +357,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79ce8
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807D294
+	bl	InitializeStageEntryLandingState
 	ldr	r1, .L_79cec
 	mov	r0, #8
 	b	.L_7a30c
@@ -377,7 +377,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79d10
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807D364
+	bl	InitializeStageEntryKeyzerArrivalState
 	ldr	r1, .L_79d14
 	mov	r0, #8
 	b	.L_7a30c
@@ -397,7 +397,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79d38
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807D410
+	bl	InitializeStageEntryMovingLandingState
 	ldr	r1, .L_79d3c
 	mov	r0, #8
 	b	.L_7a30c
@@ -896,7 +896,7 @@ StageSelectSubroutine:
 	beq	.L_7a134
 	b	.L_7a36a
 .L_7a0f8:
-	.4byte	gUnk_3003C08
+	.4byte	gStageEntryExitRequested
 .L_7a0fc:
 	ldr	r0, .L_7a110
 	ldrb	r0, [r0, #0]
@@ -1121,7 +1121,7 @@ StageSelectSubroutine:
 	b	.L_7a36a
 	.align	2, 0
 .L_7a2ac:
-	.4byte	gUnk_3003C08
+	.4byte	gStageEntryExitRequested
 .L_7a2b0:
 	bl	m4aMPlayAllStop
 	mov	r7, #1
@@ -1549,7 +1549,7 @@ func_807A528:
 	bl	func_8080144
 	b	.L_7a662
 .L_7a63a:
-	bl	func_807F838
+	bl	UpdateStageEntryDisplayRegisters
 	b	.L_7a662
 .L_7a640:
 	bl	func_807B758
@@ -1653,7 +1653,7 @@ func_807A700:
 	b	.L_7a81e
 	.align	2, 0
 .L_7a710:
-	.4byte	gUnk_3003C08
+	.4byte	gStageEntryExitRequested
 .L_7a714:
 	ldr	r5, .L_7a78c
 	ldr	r3, .L_7a790

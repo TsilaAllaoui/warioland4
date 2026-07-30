@@ -5,7 +5,7 @@
 #include "global_data.h"
 #include "main.h"
 
-void func_80701F4(void);
+void SetCurrentStageKeyzerRecoveredFlag(void);
 
 struct BgClipStack {
     u32 bg0Attribute;
@@ -621,7 +621,7 @@ void StartRoomTransitionFade(u8 type)
     {
         gColorFading.unk_2 = 0;
         gColorFading.type = 2;
-        func_80701F4();
+        SetCurrentStageKeyzerRecoveredFlag();
         gSubGameMode = 6;
         gSpriteAiDropTimer = 0;
         gStageExitType = 0x80;
@@ -630,6 +630,6 @@ void StartRoomTransitionFade(u8 type)
     {
         gColorFading.unk_2 = 0;
         gColorFading.type = 2;
-        func_80701F4();
+        SetCurrentStageKeyzerRecoveredFlag();
     }
 }

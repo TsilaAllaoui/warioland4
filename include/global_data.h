@@ -4,6 +4,9 @@
 #include "gba.h"
 #include "oam.h"
 
+#define ASM_INCLUDE(path) \
+    __asm__(".include \"" path "\"\n")
+
 enum Passage {
     PASSAGE_ENTRY,
     PASSAGE_EMERALD,
@@ -407,7 +410,7 @@ extern u8 gUnk_3003BF5;
 extern u8 gUnk_3003BF6;
 
 /* 0x03003C39 */
-extern u8 gUnk_3003C39;
+extern u8 gStageEntrySequenceStep;
 extern u8 gUnk_3003C4A;
 extern u8 gUnk_3003C56;
 
@@ -438,7 +441,7 @@ extern u8 gBgAnimationFrame;
 extern u8 gBgAnimationTimer;
 
 extern s16 gSubGameMode;
-extern s8 gUnk_3000C3E;
+extern s8 gStageEntrySoftResetDisabled;
 
 extern struct SaveDataClearData gUnk_3004A70;
 

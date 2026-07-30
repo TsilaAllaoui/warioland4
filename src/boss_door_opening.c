@@ -23,7 +23,7 @@ extern const u8 sUnk_86B2708[];
 extern const u16 sUnk_863C5DC[];
 extern const s32 sUnk_863C674[2][4];
 extern const u8 sUnk_86AE648[];
-s32 func_807F6B4(void);
+s32 UpdateStageEntryHorizontalShake(void);
 extern const struct AnimationFrame *const sUnk_863C654[];
 extern const struct AnimationFrame sUnk_8642464[];
 extern const struct AnimationFrame *const sUnk_863C5EC[];
@@ -79,7 +79,7 @@ s32 UpdateBossDoorOpeningState(void)
         goto done;
 
     case 2:
-        timerPtr = &gUnk_3003C3A;
+        timerPtr = &gStageEntrySequenceTimer;
         work = *timerPtr;
         timer = work + 1;
         *timerPtr = timer;
@@ -97,7 +97,7 @@ s32 UpdateBossDoorOpeningState(void)
         goto done;
 
     case 3:
-        timerPtr = &gUnk_3003C3A;
+        timerPtr = &gStageEntrySequenceTimer;
         work = *timerPtr;
         timer = work + 1;
         *timerPtr = timer;
@@ -119,9 +119,9 @@ s32 UpdateBossDoorOpeningState(void)
         goto done;
 
     case 4:
-        gUnk_3003C0C.second -= 20;
-        gUnk_3003C0C.first -= 4;
-        timerPtr = &gUnk_3003C3A;
+        gStageEntryMainSpriteState.second -= 20;
+        gStageEntryMainSpriteState.first -= 4;
+        timerPtr = &gStageEntrySequenceTimer;
         work = *timerPtr;
         timerAlias = &timer;
         timer = work + 1;
@@ -146,8 +146,8 @@ s32 UpdateBossDoorOpeningState(void)
 
     case 8:
         if ((u8)(gUnk_3004730 - 1) <= 1) {
-            gUnk_3003C0C.second -= 20;
-            gUnk_3003C0C.first -= 4;
+            gStageEntryMainSpriteState.second -= 20;
+            gStageEntryMainSpriteState.first -= 4;
         }
         if (func_8089E14() != 0) {
             return 1;
@@ -193,7 +193,7 @@ s32 UpdateBossDoorOpeningState(void)
             s32 tailTimer;
             u16 *tailTimerPtr;
 
-            tailTimerPtr = &gUnk_3003C3A;
+            tailTimerPtr = &gStageEntrySequenceTimer;
             tailTimer = *tailTimerPtr + 1;
             *tailTimerPtr = tailTimer;
             if ((u16)tailTimer > 120) {
@@ -226,11 +226,11 @@ void InitializeBossDoorOpeningScene(void)
     volatile u32 *new_var2;
 
     InitializeVideoMemory();
-    gUnk_3003C0C.second = 0x2000;
-    gUnk_3003C0C.width = 120;
-    gUnk_3003C0C.first = 2400;
-    gUnk_3003C0C.x = 0;
-    gUnk_3003C0C.y = 0;
+    gStageEntryMainSpriteState.second = 0x2000;
+    gStageEntryMainSpriteState.width = 120;
+    gStageEntryMainSpriteState.first = 2400;
+    gStageEntryMainSpriteState.x = 0;
+    gStageEntryMainSpriteState.y = 0;
 
     {
         volatile u32 *dma;
@@ -429,10 +429,10 @@ void InitializeBossDoorOpeningScene(void)
     gUnk_3004760.state = 0;
     gUnk_3004760.animationTimer = 0;
     gUnk_3004760.frame = 0;
-    gUnk_3003C4C = 120;
-    gUnk_3003C4E = 120;
-    gUnk_3003C50 = 0;
-    gUnk_3003C52 = 160;
+    gStageEntryWindowLeft = 120;
+    gStageEntryWindowRight = 120;
+    gStageEntryWindowTop = 0;
+    gStageEntryWindowBottom = 160;
     *(volatile u16 *)0x04000000 |= 0x2000;
     display = (volatile u16 *)0x04000048;
     *display = 63;
@@ -441,13 +441,13 @@ void InitializeBossDoorOpeningScene(void)
     *display = 0x1641;
     display++;
     *display = 0x0808;
-    gUnk_3003C9C = 0;
+    gStageEntryShakeMode = 0;
     new_var4 = 2;
-    gUnk_3003C3A = 0;
-    gUnk_3003C39 = 0;
+    gStageEntrySequenceTimer = 0;
+    gStageEntrySequenceStep = 0;
     gUnk_3004731 = 0;
     gUnk_3004768 = 0x900;
-    gUnk_3003C20.vertical = 0;
+    gStageEntryHorizontalScroll.vertical = 0;
     ((volatile u16 *)0x04000012)[0] = 0;
     ((volatile u16 *)0x04000012)[-1] = 0;
     ((volatile u16 *)0x04000012)[2] = 0;
@@ -483,11 +483,11 @@ void PrepareBossDoorOpeningResult(void)
 
     if (gCurrentCollection[gCurrentPassage][STAGE_BOSS].BOSS_DEFEATED) {
         gUnk_3004730 = 3;
-        gUnk_3003C08 = 1;
+        gStageEntryExitRequested = 1;
     } else if (gCurrentCollection[gCurrentPassage][STAGE_BOSS].SHOW_BOSS_DOOR_OPENING) {
         gUnk_3004730 = 1;
         gCurrentCollection[gCurrentPassage][STAGE_BOSS].SHOW_BOSS_DOOR_OPENING = 0;
-        gUnk_3003C08 = 0;
+        gStageEntryExitRequested = 0;
         AutosaveDefeat();
     } else if ((gUnk_3004738[0].state != 0 &&
                 gUnk_3004738[1].state != 0 &&
@@ -495,10 +495,10 @@ void PrepareBossDoorOpeningResult(void)
                 gUnk_3004738[3].state != 0) ||
                (gUnk_3003C4A != 0 && gUnk_3004738[0].state != 0)) {
         gUnk_3004730 = 2;
-        gUnk_3003C08 = 0;
+        gStageEntryExitRequested = 0;
     } else {
         gUnk_3004730 = 0;
-        gUnk_3003C08 = 1;
+        gStageEntryExitRequested = 1;
     }
 
     InitializeBossDoorOpeningScene();
@@ -543,11 +543,11 @@ void UpdateBossDoorOpeningDisplay(void)
     s32 timer;
     u32 mask;
 
-    offset = func_807F6B4();
-    *(volatile u16 *)0x04000040 = (gUnk_3003C4C << 8) | gUnk_3003C4E;
-    *(volatile u16 *)0x04000044 = (gUnk_3003C50 << 8) | gUnk_3003C52;
-    *(volatile u16 *)0x04000016 = gUnk_3003C20.vertical + offset;
-    *(volatile u16 *)0x0400001A = gUnk_3003C20.vertical + offset;
+    offset = UpdateStageEntryHorizontalShake();
+    *(volatile u16 *)0x04000040 = (gStageEntryWindowLeft << 8) | gStageEntryWindowRight;
+    *(volatile u16 *)0x04000044 = (gStageEntryWindowTop << 8) | gStageEntryWindowBottom;
+    *(volatile u16 *)0x04000016 = gStageEntryHorizontalScroll.vertical + offset;
+    *(volatile u16 *)0x0400001A = gStageEntryHorizontalScroll.vertical + offset;
 
     timer = gMainTimer;
     mask = 31;
@@ -575,24 +575,24 @@ s32 UpdateBossDoorOpeningSequence(void)
 {
     s32 timer;
 
-    switch (gUnk_3003C39) {
+    switch (gStageEntrySequenceStep) {
     case 0:
-        timer = gUnk_3003C3A + 1;
-        gUnk_3003C3A = timer;
+        timer = gStageEntrySequenceTimer + 1;
+        gStageEntrySequenceTimer = timer;
         if ((u16)timer > 30) {
-            gUnk_3003C3A = 0;
-            gUnk_3003C39++;
-            gUnk_3003C9C = 2;
+            gStageEntrySequenceTimer = 0;
+            gStageEntrySequenceStep++;
+            gStageEntryShakeMode = 2;
         }
         break;
 
     case 1:
-        timer = gUnk_3003C3A + 1;
-        gUnk_3003C3A = timer;
+        timer = gStageEntrySequenceTimer + 1;
+        gStageEntrySequenceTimer = timer;
         if ((u16)timer > 70) {
-            gUnk_3003C3A = 0;
-            gUnk_3003C39++;
-            gUnk_3003C9C = 4;
+            gStageEntrySequenceTimer = 0;
+            gStageEntrySequenceStep++;
+            gStageEntryShakeMode = 4;
             m4aSongNumStart(0x1DC);
             VoiceSetPlay(10);
         }
@@ -602,17 +602,17 @@ s32 UpdateBossDoorOpeningSequence(void)
         gUnk_3004768 -= 6;
         if (gUnk_3004768 <= 255) {
             gUnk_3004768 = 0x100;
-            gUnk_3003C39++;
+            gStageEntrySequenceStep++;
         }
         break;
 
     case 3:
-        timer = gUnk_3003C3A + 1;
-        gUnk_3003C3A = timer;
+        timer = gStageEntrySequenceTimer + 1;
+        gStageEntrySequenceTimer = timer;
         if ((u16)timer > 30) {
-            gUnk_3003C3A = 0;
-            gUnk_3003C39 = 0;
-            gUnk_3003C9C = 1;
+            gStageEntrySequenceTimer = 0;
+            gStageEntrySequenceStep = 0;
+            gStageEntryShakeMode = 1;
             return 1;
         }
         break;
@@ -1438,7 +1438,7 @@ active_next:
     {
         register u32 inactiveState asm("r0");
         inactiveState = gUnk_3004731;
-        background = &gUnk_3003C0C;
+        background = &gStageEntryMainSpriteState;
         inactiveAnimation = sUnk_8642464;
         if (inactiveState > 3 && (u8)(gUnk_3004730 - 1) <= 1) {
             register u32 timer asm("r0");
