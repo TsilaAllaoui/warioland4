@@ -271,7 +271,7 @@ SECTIONS {
         . = 0x31f4; gBackgroundTileTables = .;
         . = 0x3200; gGameMusicState = .;
         . = 0x320c; gRoomCameraBounds = .;
-        . = 0x3214; gUnk_3003214 = .;
+        . = 0x3214; gLayer3ScrollEffectState = .;
         . = 0x3218; gBg0ScrollEffect = .;
         . = 0x321c; gHBlankPaletteFadeColors = .;
         . = 0x3224; gCameraPositionState = .;
@@ -279,10 +279,10 @@ SECTIONS {
         . = 0x342c; gRoomTransitionTileDataCount = .;
         . = 0x342e; gHBlankLineOffsets = .;
         . = 0x35f6; gHBlankLineValues = .;
-        . = 0x37be; gUnk_30037BE = .;
+        . = 0x37be; gScrollingUpdateFrameCounter = .;
         . = 0x37bf; gUnk_30037BF = .;
-        . = 0x37c0; gUnk_30037C0 = .;
-        . = 0x3928; gUnk_3003928 = .;
+        . = 0x37c0; gHorizontalScrollingTileUploads = .;
+        . = 0x3928; gVerticalScrollingTileUploads = .;
         . = 0x3b08; gAnimatedGraphicsStates = .;
         . = 0x3bc8; gCurrentRoomCameraControlData = .;
         . = 0x3bcc; gTileEffectState = .;
@@ -710,7 +710,7 @@ SECTIONS {
         obj/screen_shake.o(.text);
         obj/transparency.o(.text);
         obj/game_screen_helpers.o(.text);
-        obj/disasm_scrolling.o(.text);
+        obj/scrolling.o(.text);
         obj/block.o(.text);
         obj/bg_clip.o(.text);
         obj/animated_graphics.o(.text);

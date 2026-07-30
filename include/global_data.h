@@ -393,7 +393,7 @@ extern s32 gUnk_3002C7C;
 extern struct BackgroundTileTables gBackgroundTileTables;
 extern struct GameMusicState gGameMusicState;
 extern u16 gRoomCameraBounds[4];
-extern struct RoomEffectState gUnk_3003214;
+extern struct RoomEffectState gLayer3ScrollEffectState;
 extern struct RoomEffectState gBg0ScrollEffect;
 extern u16 gHBlankPaletteFadeColors[3];
 extern struct BackgroundPositionState gCameraPositionState;
@@ -402,7 +402,7 @@ extern struct BackgroundPositionState gCameraPositionState;
 extern u8 gRoomTransitionTileDataCount;
 
 /* 0x030037BE */
-extern u8 gUnk_30037BE;
+extern u8 gScrollingUpdateFrameCounter;
 extern u8 gUnk_30037BF;
 
 /* 0x03003BF5 */

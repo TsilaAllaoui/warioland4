@@ -2,6 +2,7 @@
 #define GAME_SCREEN_HELPERS_H
 
 #include "global_data.h"
+#include "scrolling.h"
 #include "types.h"
 
 struct TilesetLoadData {
