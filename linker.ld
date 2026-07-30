@@ -400,12 +400,12 @@ SECTIONS {
         . = 0x3ddc; gStageResultsRemainingHearts = .;
         . = 0x3de0; gStageResultsAnimationFinished = .;
         . = 0x3de4; gStageResultsScoreRank = .;
-        . = 0x3de8; gUnk_3003DE8 = .;
-        . = 0x4068; gUnk_3004068 = .;
-        . = 0x40b8; gUnk_30040B8 = .;
-        . = 0x40b9; gUnk_30040B9 = .;
-        . = 0x40ba; gUnk_30040BA = .;
-        . = 0x40bb; gUnk_30040BB = .;
+        . = 0x3de8; gStageEjectionParticles = .;
+        . = 0x4068; gStageEjectionTreasureParticles = .;
+        . = 0x40b8; gStageEjectionParticleIndex = .;
+        . = 0x40b9; gStageEjectionParticleSpawnCount = .;
+        . = 0x40ba; gStageEjectionParticleSpawnTimer = .;
+        . = 0x40bb; gStageEjectionTreasureIndex = .;
         . = 0x40c0; gUnk_30040C0 = .;
         . = 0x40c8; gUnk_30040C8 = .;
         . = 0x40e8; gUnk_30040E8 = .;
@@ -732,7 +732,7 @@ SECTIONS {
         obj/disasm_vortex_cutscene.o(.text);
         obj/stage_results.o(.text);
         obj/autosave.o(.text);
-        obj/disasm_stage_ejection.o(.text);
+        obj/stage_ejection.o(.text);
         obj/disasm_boss_treasure_cutscene.o(.text);
         obj/disasm_passage_clear.o(.text);
         obj/disasm_passage_screen.o(.text);

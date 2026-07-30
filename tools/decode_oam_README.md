@@ -1,14 +1,22 @@
-# `decode_oam.py` v9 — OAM decoder and Method 3 region generator
+# `decode_oam.py` v10 — evidence-based OAM detector, decoder, and Method 3 region generator
 
-This tool converts Wario Land 4 sprite animation tables and OAM frames from raw ROM bytes into readable C definitions using `OAM_ENTRY(...)`.
+This tool converts Wario Land 4 OAM resources from raw ROM bytes into readable C definitions using `OAM_ENTRY(...)`.
 
-It supports three repository layouts:
+It now understands three distinct OAM data forms:
 
-1. **Legacy ASM-only** — animation data is still provided by `.s` files containing `baserom_blob`.
+1. **Direct OAM frames** — `const u16 frame[]`, beginning with an object count.
+2. **OAM frame-pointer tables** — `const u16 *const frames[]`.
+3. **Animation tables** — `const struct AnimationFrame animation[]`.
+
+It also positively excludes sprite tiles, background tiles, tilemaps, palettes, and ordinary numeric tables when their declarations and consumers identify them as non-OAM data.
+
+Repository layouts supported:
+
+1. **Legacy ASM-only** — data remains in `.s` files containing `baserom_blob`.
 2. **Method 3 C regions** — shared ROM intervals are represented by `src/data/sprite_data_START_END.c` files.
-3. **Mixed/cross-blob modules** — a sprite's animation tables and pointed frames are split across multiple ASM blobs or Method 3 regions.
+3. **Mixed/cross-blob modules** — tables and pointed frames are split across several ASM blobs or Method 3 regions.
 
-The tool searches the entire repository. It does not assume that all data for a module is in one file.
+The tool searches the repository and does not require OAM symbols or files to have a special suffix. A name ending in `Oam` is only low-confidence fallback evidence; it is never enough for automatic rewriting.
 
 ---
 
@@ -25,9 +33,120 @@ Run commands from the repository root.
 
 ---
 
-## Normal workflow
+## Recommended automatic workflow
 
-### 1. Validate and preview
+### 1. Audit the module
+
+```bash
+python3 tools/decode_oam.py stage_ejection --audit
+```
+
+The audit reads the module source and included project headers, then classifies referenced arrays using:
+
+- the declared C type;
+- how the module consumes the symbol;
+- DMA destinations such as OBJ VRAM or palette RAM;
+- the exact raw-array or ASM-label address range;
+- structural validation of animation records, pointers, and OAM entries.
+
+Confidence meanings:
+
+- `HIGH`: declaration/consumer evidence is sufficient for automatic selection;
+- `MEDIUM`: likely OAM, but the consumer or boundary is not fully proven;
+- `LOW`: weak evidence such as a name only;
+- `NO`: positively classified as non-OAM or structurally invalid.
+
+`--audit` never modifies source files and does not require a baserom when all relevant ranges already exist as valid Method 3 arrays.
+
+### 2. Generate a safe preview
+
+```bash
+python3 tools/decode_oam.py stage_ejection --auto
+```
+
+Only `HIGH` candidates are decoded. The tool:
+
+- validates every nested frame pointer;
+- rejects unsupported or malformed OAM entries;
+- deduplicates shared frames;
+- emits required forward declarations when tables precede their frames;
+- reconstructs every emitted object's original bytes and requires an exact round trip;
+- writes `build/oam_decode/stage_ejection_generated.c`;
+- does not modify repository source files.
+
+### 3. Apply high-confidence conversions
+
+```bash
+python3 tools/decode_oam.py stage_ejection --auto --apply
+```
+
+The tool splits only the owning raw arrays, preserves all bytes outside decoded objects, inserts typed definitions in ROM-address order, and creates backups under `build/oam_decode/backups/`.
+
+To run a clean build and require full-ROM byte identity immediately after applying:
+
+```bash
+python3 tools/decode_oam.py stage_ejection --auto --apply --verify
+```
+
+`--verify` runs the project build for `VERSION` (default `us`) and compares `build/<version>/warioland4_<version>.gba` against `baserom_<version>.gba` using `cmp`. It prints MD5 and SHA-256 only after an exact match.
+
+### Explicit reviewed overrides
+
+Use an override only after reviewing an ambiguous candidate:
+
+```bash
+python3 tools/decode_oam.py module_name --audit \
+  --symbol sSomeDirectFrame:frame \
+  --symbol sSomeFrameTable:pointer-table \
+  --symbol sSomeAnimation:animation \
+  --symbol sKnownNonOamData:ignore
+```
+
+The same options can be used with `--auto` and `--auto --apply`.
+
+Allowed kinds are:
+
+```text
+frame
+pointer-table
+animation
+ignore
+```
+
+An override chooses the parser, but byte-structure validation still has to pass before anything is emitted or applied.
+
+### Stage-ejection example
+
+For `stage_ejection`, automatic detection selects:
+
+```text
+sStageEjectionWarioOam              direct frame/block
+sStageEjectionTreasureOamFrames     frame-pointer table
+sStageEjectionParticleAnimation     AnimationFrame table
+```
+
+It rejects the following based on their actual consumers:
+
+```text
+sStageEjectionObjTiles              OBJ VRAM graphics
+sStageEjectionObjPalette            OBJ palette
+sStageEjectionPassagePalettes       OBJ palettes
+sStageEjectionPassageExtraPalettes  OBJ palettes
+sStageEjectionBgTiles               BG graphics
+sStageEjectionBgTilemap             BG screen map
+sStageEjectionBgPalette             BG palette
+```
+
+No renaming is needed for detection.
+
+---
+
+## Legacy name-based workflow
+
+The original workflow remains available for modules whose animation symbols follow the established `s...Oam` convention.
+
+
+### 1. Validate and preview legacy animation tables
 
 ```bash
 python3 tools/decode_oam.py professor --check
@@ -235,6 +354,12 @@ python3 tools/decode_oam.py professor \
 
 ## Discovery rules
 
+### Automatic classification is not name-based
+
+`--audit` and `--auto` use declarations, consumers, address ownership, and binary structure. Renaming a file or symbol to end in `Oam` does not make it decodable.
+
+Accidental recursive copies such as `src/data/src/data` are ignored during Method 3 discovery. They should still be removed from the repository.
+
 ### Module source
 
 The tool checks:
@@ -372,9 +497,11 @@ Then restore the original linker entry.
 
 ## Honest limitations
 
-The tool is robust when the missing data belongs to a pure, contiguous, uniquely linked `baserom_blob` ASM object.
+The automatic detector is intentionally conservative. It applies only candidates whose declaration/consumer evidence and binary structure agree. Method 3 objects are byte-round-tripped before source changes are offered.
 
-It deliberately refuses automatic generation when:
+Missing-region generation is robust when the data belongs to a pure, contiguous, uniquely linked `baserom_blob` ASM object.
+
+The tool deliberately refuses automatic generation when:
 
 - the ASM object mixes code and data;
 - custom assembly macros obscure actual byte ownership;

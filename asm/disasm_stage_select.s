@@ -581,7 +581,7 @@ StageSelectSubroutine:
 	strb	r0, [r1, #0]
 	ldr	r0, .L_79eb0
 	strh	r2, [r0, #0]
-	bl	func_80816A4
+	bl	InitializeStageEjection
 	ldr	r0, .L_79eb4
 	strb	r5, [r0, #0]
 	ldr	r1, .L_79eb8
@@ -611,7 +611,7 @@ StageSelectSubroutine:
 .L_79ed0:
 	.4byte	gSubGameMode
 .L_79ed4:
-	bl	func_808167C
+	bl	UpdateStageEjectionExitState
 	cmp	r0, #0
 	bne	.L_79ede
 	b	.L_7a36a
@@ -1555,7 +1555,7 @@ func_807A528:
 	bl	func_807B758
 	b	.L_7a662
 .L_7a646:
-	bl	func_8081FF4
+	bl	UpdateStageEjectionEffects
 	b	.L_7a662
 .L_7a64c:
 	bl	func_8083750
@@ -1633,7 +1633,7 @@ func_807A668:
 	bl	func_8080144
 	b	.L_7a6fc
 .L_7a6f2:
-	bl	func_8081FF4
+	bl	UpdateStageEjectionEffects
 	b	.L_7a6fc
 .L_7a6f8:
 	bl	func_8083750
@@ -2511,7 +2511,7 @@ func_807ACDC:
 	bl	func_808018C
 	b	.L_7adf8
 .L_7add6:
-	bl	func_8081CE0
+	bl	DrawStageEjection
 	b	.L_7adf8
 .L_7addc:
 	bl	func_8082F60
