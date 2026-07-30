@@ -54,20 +54,20 @@ ASSIGN_SYMBOL_RE = re.compile(r"^\s*([A-Za-z_]\w*)\s*=\s*0x([0-9A-Fa-f]+)\s*;?\s
 MAP_SYMBOL_RE = re.compile(r"\b0x([0-9A-Fa-f]{7,8})\b\s+([A-Za-z_]\w*)\b")
 NM_SYMBOL_RE = re.compile(r"^\s*([0-9A-Fa-f]{7,8})\s+[A-Za-z]\s+([A-Za-z_]\w*)\b")
 ASM_INCLUDE_RE = re.compile(r'asm_(?:unified|volatile)\s*\(\s*["\']\.include\s+["\']([^"\']+)["\']')
-ASM_INCLUDE_CALL_RE = re.compile(  # TEST
-    r'\bASM_INCLUDE\s*\(\s*(["\'])(?P<path>[^"\']+\.[sS])\1\s*\)\s*;?',  # TEST
-    re.MULTILINE,  # TEST
-)  # TEST
-GENERATED_ASM_INCLUDE_RE = re.compile(  # TEST
-    r'^\s*\.include\s+(["\'])(?P<path>[^"\']+)\1',  # TEST
-    re.MULTILINE,  # TEST
-)  # TEST
-ASM_GLOBAL_RE = re.compile(r'^\s*\.global\s+([A-Za-z_]\w*)', re.MULTILINE)  # TEST
-ASM_TYPE_FUNCTION_RE = re.compile(  # TEST
-    r'^\s*\.type\s+([A-Za-z_]\w*)\s*,\s*%?function\b',  # TEST
-    re.MULTILINE,  # TEST
-)  # TEST
-ASM_INCLUDE_FIX_MARKER = "ASM_INCLUDE_TEST_MARKED_V1"  # TEST
+ASM_INCLUDE_CALL_RE = re.compile(  
+    r'\bASM_INCLUDE\s*\(\s*(["\'])(?P<path>[^"\']+\.[sS])\1\s*\)\s*;?',  
+    re.MULTILINE,  
+)  
+GENERATED_ASM_INCLUDE_RE = re.compile(  
+    r'^\s*\.include\s+(["\'])(?P<path>[^"\']+)\1',  
+    re.MULTILINE,  
+)  
+ASM_GLOBAL_RE = re.compile(r'^\s*\.global\s+([A-Za-z_]\w*)', re.MULTILINE)  
+ASM_TYPE_FUNCTION_RE = re.compile(  
+    r'^\s*\.type\s+([A-Za-z_]\w*)\s*,\s*%?function\b',  
+    re.MULTILINE,  
+)  
+ASM_INCLUDE_FIX_MARKER = "ASM_INCLUDE_TEST_MARKED_V1"  
 INLINE_ASM_STMT_RE = re.compile(r"^\s*(?:asm|__asm|__asm__|asm_unified|asm_volatile)\b")
 CONTRIB_RE = re.compile(
     r"^\s+(\.\S+)\s+(0x[0-9a-fA-F]+)\s+(?:0x[0-9a-fA-F]+\s+)?(0x[0-9a-fA-F]+)\s+(\S.*\S|\S)\s*$"
@@ -329,97 +329,97 @@ def estimate_asm_bytes(lines: list[str]) -> int:
     return max(total, 2)
 
 
-# TEST
-def _asm_include_function_names(path: Path) -> set[str]:  # TEST
-    text = read_text(path)  # TEST
-    names: set[str] = set()  # TEST
-    declared = set(ASM_GLOBAL_RE.findall(text)) | set(ASM_TYPE_FUNCTION_RE.findall(text))  # TEST
-    for line in text.splitlines():  # TEST
-        start = ASM_START_RE.match(line)  # TEST
-        label = ASM_LABEL_RE.match(line)  # TEST
-        name = start.group(1) if start else None  # TEST
-        if name is None and label:  # TEST
-            candidate = label.group(1)  # TEST
-            if ADDR_FUNC_LABEL_RE.match(candidate) or candidate in declared:  # TEST
-                name = candidate  # TEST
-        if name is not None and is_probably_function_name(name):  # TEST
-            names.add(name)  # TEST
-    for name in declared:  # TEST
-        if is_probably_function_name(name):  # TEST
-            names.add(name)  # TEST
-    return names  # TEST
-# TEST
-def _resolve_asm_include(root: Path, include_path: str, owner: Path) -> Path | None:  # TEST
-    normalized = include_path.replace("\\", "/")  # TEST
-    candidates = [root / normalized, owner.parent / normalized]  # TEST
-    if not Path(normalized).suffix:  # TEST
-        candidates.extend([root / f"{normalized}.s", owner.parent / f"{normalized}.s"])  # TEST
-    for candidate in candidates:  # TEST
-        if candidate.exists() and candidate.is_file():  # TEST
-            return candidate.resolve()  # TEST
-    return None  # TEST
-# TEST
-def collect_asm_include_functions(root: Path) -> dict[str, FunctionInfo]:  # TEST
-    included: dict[str, FunctionInfo] = {}  # TEST
-# TEST
-    def record(include_path: str, owner: Path, source: str) -> None:  # TEST
-        asm_path = _resolve_asm_include(root, include_path, owner)  # TEST
-        if asm_path is None:  # TEST
-            return  # TEST
-        names = _asm_include_function_names(asm_path)  # TEST
-        module = module_from_path(root, owner)  # TEST
-        for name in names:  # TEST
-            included[name] = FunctionInfo(  # TEST
-                name=name,  # TEST
-                module=module,  # TEST
-                size=2,  # TEST
-                status=STATUS_UNMATCHED,  # TEST
-                source=source,  # TEST
-                size_source="asm include",  # TEST
-            )  # TEST
-# TEST
-    for owner in iter_files(root, (".c", ".h")):  # TEST
-        rel = owner.relative_to(root)  # TEST
-        if rel.parts and rel.parts[0] == "tools":  # TEST
-            continue  # TEST
-        text = read_text(owner)  # TEST
-        for match in ASM_INCLUDE_CALL_RE.finditer(text):  # TEST
-            line = text.count("\n", 0, match.start()) + 1  # TEST
-            record(match.group("path"), owner, f"{rel}:{line}")  # TEST
-# TEST
-    build_dir = root / "build"  # TEST
-    if build_dir.exists():  # TEST
-        for generated in sorted(build_dir.rglob("*.s")):  # TEST
-            rel = generated.relative_to(root)  # TEST
-            if "asm" not in rel.parts:  # TEST
-                continue  # TEST
-            text = read_text(generated)  # TEST
-            for match in GENERATED_ASM_INCLUDE_RE.finditer(text):  # TEST
-                line = text.count("\n", 0, match.start()) + 1  # TEST
-                record(match.group("path"), generated, f"{rel}:{line}")  # TEST
-    return included  # TEST
-# TEST
-def apply_asm_include_status(rows: list[FunctionInfo], included: dict[str, FunctionInfo]) -> None:  # TEST
-    by_name = {row.name: row for row in rows}  # TEST
-    for name, asm_info in included.items():  # TEST
-        row = by_name.get(name)  # TEST
-        if row is None:  # TEST
-            rows.append(asm_info)  # TEST
-            by_name[name] = asm_info  # TEST
-            continue  # TEST
-        row.status = STATUS_UNMATCHED  # TEST
-        row.source = asm_info.source  # TEST
-        row.module = asm_info.module  # TEST
-    rows.sort(key=lambda row: (row.module, row.name))  # TEST
-# TEST
-def verify_asm_include_status(rows: list[FunctionInfo], included: dict[str, FunctionInfo]) -> None:  # TEST
-    by_name = {row.name: row for row in rows}  # TEST
-    failures = [name for name in included if name not in by_name or by_name[name].matched]  # TEST
-    if failures:  # TEST
-        joined = ", ".join(sorted(failures))  # TEST
-        raise RuntimeError(f"ASM_INCLUDE functions incorrectly reported matched: {joined}")  # TEST
-# TEST
-# TEST
+
+def _asm_include_function_names(path: Path) -> set[str]:  
+    text = read_text(path)  
+    names: set[str] = set()  
+    declared = set(ASM_GLOBAL_RE.findall(text)) | set(ASM_TYPE_FUNCTION_RE.findall(text))  
+    for line in text.splitlines():  
+        start = ASM_START_RE.match(line)  
+        label = ASM_LABEL_RE.match(line)  
+        name = start.group(1) if start else None  
+        if name is None and label:  
+            candidate = label.group(1)  
+            if ADDR_FUNC_LABEL_RE.match(candidate) or candidate in declared:  
+                name = candidate  
+        if name is not None and is_probably_function_name(name):  
+            names.add(name)  
+    for name in declared:  
+        if is_probably_function_name(name):  
+            names.add(name)  
+    return names  
+
+def _resolve_asm_include(root: Path, include_path: str, owner: Path) -> Path | None:  
+    normalized = include_path.replace("\\", "/")  
+    candidates = [root / normalized, owner.parent / normalized]  
+    if not Path(normalized).suffix:  
+        candidates.extend([root / f"{normalized}.s", owner.parent / f"{normalized}.s"])  
+    for candidate in candidates:  
+        if candidate.exists() and candidate.is_file():  
+            return candidate.resolve()  
+    return None  
+
+def collect_asm_include_functions(root: Path) -> dict[str, FunctionInfo]:  
+    included: dict[str, FunctionInfo] = {}  
+
+    def record(include_path: str, owner: Path, source: str) -> None:  
+        asm_path = _resolve_asm_include(root, include_path, owner)  
+        if asm_path is None:  
+            return  
+        names = _asm_include_function_names(asm_path)  
+        module = module_from_path(root, owner)  
+        for name in names:  
+            included[name] = FunctionInfo(  
+                name=name,  
+                module=module,  
+                size=2,  
+                status=STATUS_UNMATCHED,  
+                source=source,  
+                size_source="asm include",  
+            )  
+
+    for owner in iter_files(root, (".c", ".h")):  
+        rel = owner.relative_to(root)  
+        if rel.parts and rel.parts[0] == "tools":  
+            continue  
+        text = read_text(owner)  
+        for match in ASM_INCLUDE_CALL_RE.finditer(text):  
+            line = text.count("\n", 0, match.start()) + 1  
+            record(match.group("path"), owner, f"{rel}:{line}")  
+
+    build_dir = root / "build"  
+    if build_dir.exists():  
+        for generated in sorted(build_dir.rglob("*.s")):  
+            rel = generated.relative_to(root)  
+            if "asm" not in rel.parts:  
+                continue  
+            text = read_text(generated)  
+            for match in GENERATED_ASM_INCLUDE_RE.finditer(text):  
+                line = text.count("\n", 0, match.start()) + 1  
+                record(match.group("path"), generated, f"{rel}:{line}")  
+    return included  
+
+def apply_asm_include_status(rows: list[FunctionInfo], included: dict[str, FunctionInfo]) -> None:  
+    by_name = {row.name: row for row in rows}  
+    for name, asm_info in included.items():  
+        row = by_name.get(name)  
+        if row is None:  
+            rows.append(asm_info)  
+            by_name[name] = asm_info  
+            continue  
+        row.status = STATUS_UNMATCHED  
+        row.source = asm_info.source  
+        row.module = asm_info.module  
+    rows.sort(key=lambda row: (row.module, row.name))  
+
+def verify_asm_include_status(rows: list[FunctionInfo], included: dict[str, FunctionInfo]) -> None:  
+    by_name = {row.name: row for row in rows}  
+    failures = [name for name in included if name not in by_name or by_name[name].matched]  
+    if failures:  
+        joined = ", ".join(sorted(failures))  
+        raise RuntimeError(f"ASM_INCLUDE functions incorrectly reported matched: {joined}")  
+
+
 def collect_asm_functions(root: Path) -> dict[str, FunctionInfo]:
     funcs: dict[str, FunctionInfo] = {}
     for path in iter_files(root, (".s", ".S")):
@@ -2165,8 +2165,8 @@ def main() -> int:
             config_path = root / requested_config
 
     all_rows = merge_functions(root)
-    asm_include_functions = collect_asm_include_functions(root)  # TEST
-    apply_asm_include_status(all_rows, asm_include_functions)  # TEST
+    asm_include_functions = collect_asm_include_functions(root)  
+    apply_asm_include_status(all_rows, asm_include_functions)  
     config = load_progress_config(config_path)
     if args.include_excluded:
         rows = all_rows
@@ -2174,8 +2174,8 @@ def main() -> int:
     else:
         rows, excluded_rows = filter_progress_rows(all_rows, config)
 
-    verify_asm_include_status(rows, asm_include_functions)  # TEST
-# TEST
+    verify_asm_include_status(rows, asm_include_functions)  
+
     # The same scoped row set feeds every artifact. In particular, report.json
     # must not reintroduce platform/SDK units excluded from HTML and SVG totals.
     written_svg = write_svg(rows, svg_path)
