@@ -1,6 +1,4 @@
-#include "cutscene.h"
-
-#include "cutscenes/cutscene_wario_sprite.h"
+#include "cutscenes.h"
 #include "gba/m4a.h"
 #include "global_data.h"
 #include "input.h"
@@ -10,25 +8,22 @@
 
 #define DMA_COPY_32(count) (((DMA_ENABLE | DMA_32BIT) << 16) | (count))
 
-void func_8003DC4(u16 frame);
-void func_8004070(u16 frame);
-void func_80042F0(u16 frame);
-void func_800450C(u16 frame);
-void func_80047B8(u16 frame);
-void func_8004BFC(u16 frame);
+void UpdateAffineCutsceneBackground(u16 frame);
+void UpdateCutsceneSequence150(u16 frame);
+void UpdateCutsceneDisplayTimeline(u16 frame);
+void UpdateCutsceneBackgroundVariantTransition(u16 frame);
+void UpdateLayeredBackgroundTransition(u16 frame);
+void UpdateLayeredSpriteCutsceneSequence(u16 frame);
 void func_8005500(u16 frame);
 void func_80058AC(u16 frame);
-void func_8005F1C(u16 frame);
-void func_80067BC(u16 frame);
-void func_8006FA0(u16 frame);
-void func_8007890(u16 frame);
-void func_8007C30(u16 frame);
-void func_8008B20(u16 frame);
-void func_8009DD8(u16 frame);
-void func_800A43C(u16 frame);
-void func_800B15C(u16 frame);
-void func_800B280(void);
-void func_800B398(u16 *affineRegisters, u16 rotation, u16 scaleX, u16 scaleY, s32 centerX, s32 centerY);
+void UpdateLayeredSubGameCutscene(u16 frame);
+void UpdateLayeredEndingCutsceneSequence(u16 frame);
+void UpdateLayeredWarioCutsceneSequence(u16 frame);
+void UpdateAffineWarioCutscene(u16 frame);
+void UpdateEndingScrollCutscene(u16 frame);
+void UpdateTitleScreenLogoCutscene(u16 frame);
+void CountEndingTreasuresAndSelectTier(void);
+void BuildCutsceneBackgroundAffineMatrix(u16 *affineRegisters, u16 rotation, u16 scaleX, u16 scaleY, s32 centerX, s32 centerY);
 
 void ResetPrimaryCutsceneAffineState(void)
 {
@@ -85,7 +80,7 @@ u32 UpdateCutsceneSequence(void)
             REG_IE &= INTR_FLAG_GAMEPAK;
             InterruptCallbackSetVBlank(CutsceneVBlankCallback);
             REG_IE |= INTR_FLAG_VBLANK;
-            func_800B280();
+            CountEndingTreasuresAndSelectTier();
             SubGameInitAndDispatch(0);
             gUnk_3002C74 = 0;
             gUnk_3002C78 = gLanguage;
@@ -108,7 +103,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 3:
-            func_8003DC4((u16)(gUnk_300188E++));
+            UpdateAffineCutsceneBackground((u16)(gUnk_300188E++));
             break;
 
         case 6:
@@ -116,7 +111,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 7:
-            func_80042F0((u16)(gUnk_300188E++));
+            UpdateCutsceneDisplayTimeline((u16)(gUnk_300188E++));
             break;
 
         case 8:
@@ -124,7 +119,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 9:
-            func_800450C((u16)(gUnk_300188E++));
+            UpdateCutsceneBackgroundVariantTransition((u16)(gUnk_300188E++));
             break;
 
         case 14:
@@ -140,7 +135,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 17:
-            func_8005F1C((u16)(gUnk_300188E++));
+            UpdateLayeredSubGameCutscene((u16)(gUnk_300188E++));
             break;
 
         case 18:
@@ -157,7 +152,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 20:
-            func_80067BC((u16)(gUnk_300188E++));
+            UpdateLayeredEndingCutsceneSequence((u16)(gUnk_300188E++));
             break;
 
         case 21:
@@ -165,7 +160,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 22:
-            func_8006FA0((u16)(gUnk_300188E++));
+            UpdateLayeredWarioCutsceneSequence((u16)(gUnk_300188E++));
             break;
 
         case 23:
@@ -173,7 +168,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 24:
-            func_8007890((u16)(gUnk_300188E++));
+            UpdateAffineWarioCutscene((u16)(gUnk_300188E++));
             break;
 
         case 25:
@@ -186,7 +181,7 @@ u32 UpdateCutsceneSequence(void)
             InterruptCallbackSetVBlank(CutsceneVBlankCallback);
             REG_IE |= INTR_FLAG_VBLANK;
             gUnk_3002C78 = gLanguage;
-            func_800B280();
+            CountEndingTreasuresAndSelectTier();
             SubGameClearGraphicsMemory();
             SubGameInitAndDispatch(0x1A);
             break;
@@ -208,7 +203,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 31:
-            func_8009DD8((u16)(gUnk_300188E++));
+            UpdateEndingScrollCutscene((u16)(gUnk_300188E++));
             break;
 
         case 32:
@@ -230,7 +225,7 @@ u32 UpdateCutsceneSequence(void)
             REG_IE |= INTR_FLAG_VBLANK;
             gUnk_3002C78 = gLanguage;
             gUnk_3002C7C = 1;
-            func_800B280();
+            CountEndingTreasuresAndSelectTier();
             SubGameClearGraphicsMemory();
             /* fallthrough */
         case 4:
@@ -239,7 +234,7 @@ u32 UpdateCutsceneSequence(void)
 
         case 5:
         case 36:
-            func_8004070((u16)(gUnk_300188E++));
+            UpdateCutsceneSequence150((u16)(gUnk_300188E++));
             break;
 
         case 10:
@@ -249,7 +244,7 @@ u32 UpdateCutsceneSequence(void)
 
         case 11:
         case 38:
-            func_80047B8((u16)(gUnk_300188E++));
+            UpdateLayeredBackgroundTransition((u16)(gUnk_300188E++));
             break;
 
         case 12:
@@ -259,7 +254,7 @@ u32 UpdateCutsceneSequence(void)
 
         case 13:
         case 40:
-            func_8004BFC((u16)(gUnk_300188E++));
+            UpdateLayeredSpriteCutsceneSequence((u16)(gUnk_300188E++));
             break;
 
         case 41:
@@ -275,7 +270,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 44:
-            func_800B15C((u16)(gUnk_300188E++));
+            UpdateTitleScreenLogoCutscene((u16)(gUnk_300188E++));
             break;
 
         case 45:
@@ -289,7 +284,7 @@ u32 UpdateCutsceneSequence(void)
             break;
     }
 
-    func_800B398(gUnk_3002C32, gUnk_3002C2C, gUnk_3002C2E, gUnk_3002C30, 0x78 - gUnk_3002C28, 0x50 - gUnk_3002C2A);
+    BuildCutsceneBackgroundAffineMatrix(gUnk_3002C32, gUnk_3002C2C, gUnk_3002C2E, gUnk_3002C30, 0x78 - gUnk_3002C28, 0x50 - gUnk_3002C2A);
 
     if (((u16)(gSubGameMode - 3) <= 0xD) && ((gButtonsPressed & (A_BUTTON | START_BUTTON)) != 0)) {
         m4aSongNumStartOrChange(0x124);

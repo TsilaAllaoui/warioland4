@@ -599,15 +599,7 @@ SECTIONS {
         obj/sram.o(.text);
         obj/title.o(.text);
         obj/minigame_transition.o(.text);
-        obj/disasm_cutscenes.o(.text);
-        obj/cutscenes/cutscene_oam_anim.o(.text);
-        obj/cutscenes/cutscene_bg_anim.o(.text);
-        obj/cutscenes/cutscene_wario_sprite.o(.text);
-        obj/cutscenes/cutscene_layered_oam_anim.o(.text);
-        obj/cutscenes/cutscene_gfx.o(.text);
-        obj/cutscenes/cutscene_ending_oam_paths.o(.text);
-        obj/cutscenes/cutscene_scroll_anim.o(.text);
-        obj/cutscenes/cutscene_title_screen_oam_anim.o(.text);
+        obj/cutscenes.o(.text);
         obj/wario.o(.text);
         obj/demo_input.o(.text);
         obj/wario/normal.o(.text);

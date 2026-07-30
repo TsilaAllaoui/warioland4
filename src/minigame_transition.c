@@ -1,5 +1,5 @@
 #include "minigame_transition.h"
-#include "cutscene.h"
+#include "cutscenes.h"
 #include "global_data.h"
 #include "main.h"
 
@@ -13,9 +13,9 @@ void SubGameInitAndDispatch(u32 subGameMode)
 {
     u32 fillValue;
 
-    func_800B580(subGameMode);
+    WaitForVBlankInterrupt(subGameMode);
     REG_DISPCNT = 0;
-    func_800B6C0();
+    ResetCutsceneBackgroundRegisters();
 
     gUnk_3002C6C = 0;
     gUnk_3002C70 = gOamBuffer;
@@ -43,59 +43,59 @@ void SubGameInitAndDispatch(u32 subGameMode)
             SubGameClearGraphicsMemory();
             break;
         case 2:
-            func_8003C90();
+            InitializeAffineCutsceneBackground();
             break;
         case 4:
-            func_8003F88();
+            InitializeVariantCutsceneBackground();
             break;
         case 6:
-            func_8004244();
+            InitializeCutsceneBackgroundGraphics();
             break;
         case 8:
-            func_8004350();
+            InitializeLayeredScrollCutscene();
             break;
         case 10:
-            func_80046D8();
+            InitializeWindowedCutsceneBackgrounds();
             break;
         case 12:
-            func_8004B14();
+            InitializeScaledSpriteCutscene();
             break;
         case 14:
-            func_800542C();
+            InitializeThreeLayerCutsceneBackground();
             break;
         case 16:
-            func_8005CC0();
+            InitializeSubGameTransitionGraphics();
             break;
         case 19:
             func_8006680();
             break;
         case 21:
-            func_8006E00();
+            InitializeLayeredWarioCutscene();
             break;
         case 23:
-            func_80077C4();
+            InitializeAffineWarioCutscene();
             break;
         case 26:
-            func_8007B14();
+            InitializeLayeredObjectCutscene();
             break;
         case 28:
-            func_8008900();
+            InitializeEndingTreasureCutscene();
             break;
         case 30:
-            func_8009B38();
+            InitializeEndingBackgroundSetup();
             break;
         case 32:
-            func_800A180();
+            InitializeEndingCutscene();
             break;
         case 43:
-            func_800AFDC();
+            InitializeTitleScreenLogoCutscene();
             break;
         case 41:
-            func_80057BC();
+            InitializeThreeLayerCutsceneBackgroundWithSprites();
             break;
         case SUBGAME_MODE_DELAYED_RETURN:
             gUnk_3002C74 = 1;
-            func_8005CC0();
+            InitializeSubGameTransitionGraphics();
             break;
     }
 
