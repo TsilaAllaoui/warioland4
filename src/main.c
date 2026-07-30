@@ -12,7 +12,7 @@
 #include "sram_misc.h"
 
 #include "credits.h"
-#include "cutscene.h"
+#include "cutscenes.h"
 #include "demo.h"
 #include "file_select.h"
 #include "game_screen.h"

@@ -388,9 +388,26 @@ extern OamData *gUnk_3002C70;
 extern u32 gUnk_3002C74;
 extern s32 gUnk_3002C78;
 extern s32 gUnk_3002C7C;
+extern s32 gUnk_3002C68;
+extern s16 gUnk_3002C80;
+extern s16 gUnk_3002C82;
+extern s16 gUnk_3002C84;
+extern s32 gUnk_3002C88;
+extern s32 gUnk_3002C8C;
+extern s32 gUnk_3002C90;
+extern s32 gUnk_3002C94;
+extern s16 gUnk_3002C98;
+extern s16 gUnk_3002C9A;
+extern s16 gUnk_3002C9C;
+extern s16 gUnk_3002C9E;
+extern s16 gUnk_3002CA0;
+extern s16 gUnk_3002CA2;
+extern s16 gUnk_3002CA4;
+extern s16 gUnk_3002CA6;
+extern s16 gUnk_3002CA8[8];
+extern s16 gUnk_3002CB8[8];
 
 /* 0x030031F4 */
-extern struct BackgroundTileTables gBackgroundTileTables;
 extern struct GameMusicState gGameMusicState;
 extern u16 gRoomCameraBounds[4];
 extern struct RoomEffectState gUnk_3003214;
@@ -399,7 +416,6 @@ extern u16 gHBlankPaletteFadeColors[3];
 extern struct BackgroundPositionState gCameraPositionState;
 
 /* 0x0300342C */
-extern u8 gRoomTransitionTileDataCount;
 
 /* 0x030037BE */
 extern u8 gUnk_30037BE;
