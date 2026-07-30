@@ -1,0 +1,1970 @@
+#include "autosave.h"
+#include "boss_door_opening.h"
+#include "fixed_point.h"
+#include "global_data.h"
+#include "init_helpers.h"
+#include "main.h"
+#include "score.h"
+#include "stage_select.h"
+#include "voice_set.h"
+#include "gba/m4a.h"
+
+s32 func_8089DCC(void);
+s32 func_8089E14(void);
+extern const u8 sUnk_86A9E48[];
+extern const u8 sUnk_86AA048[];
+extern const u8 sUnk_86AE048[];
+extern const u8 sUnk_86AE248[];
+extern const u8 sUnk_86B0E48[];
+extern const u8 sUnk_86B1648[];
+extern const u8 sUnk_86B1E48[];
+extern const u8 sUnk_86B2648[];
+extern const u8 sUnk_86B2708[];
+extern const u16 sUnk_863C5DC[];
+extern const s32 sUnk_863C674[2][4];
+extern const u8 sUnk_86AE648[];
+s32 func_807F6B4(void);
+extern const struct AnimationFrame *const sUnk_863C654[];
+extern const struct AnimationFrame sUnk_8642464[];
+extern const struct AnimationFrame *const sUnk_863C5EC[];
+extern const struct AnimationFrame *const sUnk_863C5F4[];
+extern const struct AnimationFrame *const sUnk_863C634[];
+
+
+s32 UpdateBossDoorOpeningState(void)
+{
+    u32 work;
+    u32 value;
+    s32 timer;
+    s32 *timerAlias;
+    u32 state;
+    u8 passage;
+    u8 *statePtr;
+    u16 *timerPtr;
+
+    work = (u32)&gUnk_3004731;
+    value = *(u8 *)work;
+    state = value;
+    statePtr = (u8 *)work;
+
+    switch (state) {
+    case 0:
+        if (func_8089DCC() == 0) {
+            goto done;
+        }
+        if (gUnk_3003C56 != 0) {
+            gUnk_3004731 = 5;
+            goto done;
+        }
+
+        passage = gUnk_3004730;
+        if (passage == 1) {
+            goto setPassageState;
+        }
+        if (passage == 2) {
+            goto setState3;
+        }
+        gUnk_3004731 = 2;
+        goto done;
+
+    setPassageState:
+        gUnk_3004731 = passage;
+        goto done;
+
+    case 1:
+        if (UpdateBossDoorOpeningSequence() != 0) {
+        setState3:
+            gUnk_3004731 = 3;
+        }
+        goto done;
+
+    case 2:
+        timerPtr = &gUnk_3003C3A;
+        work = *timerPtr;
+        timer = work + 1;
+        *timerPtr = timer;
+        work = gButtonsPressed;
+        value = 1;
+        value &= work;
+        if (value != 0) {
+            goto skipOpening;
+        }
+        work = (u16)timer;
+        if (work > 100) {
+            work = 8;
+            goto setStateAndTimer;
+        }
+        goto done;
+
+    case 3:
+        timerPtr = &gUnk_3003C3A;
+        work = *timerPtr;
+        timer = work + 1;
+        *timerPtr = timer;
+        work = gButtonsPressed;
+        value = 1;
+        value &= work;
+        if (value != 0) {
+        skipOpening:
+            m4aSongNumStart(0x126);
+            gUnk_3004731 = 8;
+            *timerPtr = 0;
+            goto done;
+        }
+        work = (u16)timer;
+        if (work > 30) {
+            work = 4;
+            goto setStateAndTimer;
+        }
+        goto done;
+
+    case 4:
+        gUnk_3003C0C.second -= 20;
+        gUnk_3003C0C.first -= 4;
+        timerPtr = &gUnk_3003C3A;
+        work = *timerPtr;
+        timerAlias = &timer;
+        timer = work + 1;
+        *timerPtr = *timerAlias;
+        work = gButtonsPressed;
+        value = 1;
+        value &= work;
+        if (value != 0) {
+            m4aSongNumStart(0x126);
+            gUnk_3004731 = 8;
+            *timerPtr = 0;
+            goto done;
+        }
+        work = (u16)timer;
+        if (90 < work) {
+            work = 8;
+        setStateAndTimer:
+            *statePtr = work;
+            *timerPtr = value;
+        }
+        goto done;
+
+    case 8:
+        if ((u8)(gUnk_3004730 - 1) <= 1) {
+            gUnk_3003C0C.second -= 20;
+            gUnk_3003C0C.first -= 4;
+        }
+        if (func_8089E14() != 0) {
+            return 1;
+        }
+        goto done;
+
+    case 5:
+        gUnk_300476C++;
+        if (gUnk_300476C > 80) {
+            gUnk_300476C = 80;
+            (*statePtr)++;
+        }
+        goto done;
+
+    case 6:
+        gUnk_300476A -= 5;
+        if ((u16)gUnk_300476A <= 255) {
+            u32 collectionBase;
+
+            m4aSongNumStart(0x1A8);
+            gUnk_3004758.state = 1;
+            gUnk_300476A = 0x100;
+            gUnk_3004731++;
+            state = (u32)gCurrentCollection;
+            timer = state;
+            collectionBase = timer;
+            work = (u32)&gCurrentPassage;
+            value = *(u8 *)work;
+            work = value << 1;
+            work += value;
+            work <<= 3;
+            work += collectionBase;
+            work = *(u8 *)(work + 16);
+            work <<= 28;
+            if ((s32)work < 0) {
+                gUnk_3004760.state = 1;
+            }
+        }
+        goto done;
+
+    case 7:
+        {
+            s32 tailTimer;
+            u16 *tailTimerPtr;
+
+            tailTimerPtr = &gUnk_3003C3A;
+            tailTimer = *tailTimerPtr + 1;
+            *tailTimerPtr = tailTimer;
+            if ((u16)tailTimer > 120) {
+                *statePtr = 8;
+                *tailTimerPtr = 0;
+            }
+        }
+        goto done;
+    }
+
+done:
+    return 0;
+}
+
+void InitializeBossDoorOpeningScene(void)
+{
+    const volatile u8 *passage;
+    register const u8 *backgroundPalette asm("r4");
+    const u8 *new_var3;
+    register const u8 *passagePalette asm("r3");
+    const u8 *new_var;
+    const u8 *backgroundGfx;
+    int new_var4;
+    int tempPtr;
+    const u8 *tilemapGfx;
+    const u8 *screenC000Gfx;
+    const u8 *screenD000Gfx;
+    const u8 *screenE000Gfx;
+    volatile u16 *display;
+    volatile u32 *new_var2;
+
+    InitializeVideoMemory();
+    gUnk_3003C0C.second = 0x2000;
+    gUnk_3003C0C.width = 120;
+    gUnk_3003C0C.first = 2400;
+    gUnk_3003C0C.x = 0;
+    gUnk_3003C0C.y = 0;
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)sUnk_86AE048;
+        dma[1] = 0x05000000;
+        dma[2] = 0x80000100;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        new_var = &gCurrentPassage;
+        dma[0] = (u32)(sUnk_86B2648 + (gCurrentPassage * 32));
+        new_var2 = dma;
+        dma[1] = 0x05000160;
+        dma[2] = 0x80000010;
+        dmaStatus = new_var2[2];
+        dmaStatus = new_var2[2];
+        dmaMask = 0x80000000;
+        new_var3 = new_var;
+        passage = new_var3;
+        backgroundPalette = sUnk_86A9E48;
+        passagePalette = sUnk_86B2708;
+        backgroundGfx = sUnk_86AE248;
+        tilemapGfx = sUnk_86AA048;
+        screenC000Gfx = sUnk_86B1E48;
+        screenD000Gfx = sUnk_86B0E48;
+        screenE000Gfx = sUnk_86B1648;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = new_var2[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    tempPtr = (u32)passagePalette;
+    *(volatile u16 *)0x05000000 = 0;
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)backgroundPalette;
+        dma[1] = 0x05000200;
+        dma[2] = 0x80000100;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = ((*passage) * 64) + tempPtr;
+        dma[1] = 0x05000360;
+        dma[2] = 0x80000020;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)backgroundGfx;
+        dma[1] = 0x06000000;
+        dma[2] = 0x80001600;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)tilemapGfx;
+        dma[1] = 0x06010000;
+        dma[2] = 0x80002000;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)screenC000Gfx;
+        dma[1] = 0x0600C000;
+        dma[2] = 0x80000400;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)screenD000Gfx;
+        dma[1] = 0x0600D000;
+        dma[2] = 0x80000400;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    {
+        volatile u32 *dma;
+        u32 dmaStatus;
+        u32 dmaMask;
+
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)screenE000Gfx;
+        dma[1] = 0x0600E000;
+        dma[2] = 0x80000400;
+        dmaStatus = dma[2];
+        dmaStatus = dma[2];
+        dmaMask = 0x80000000;
+        if (((s32)dmaStatus) < 0) {
+            do {
+                dmaStatus = dma[2] & dmaMask;
+            } while (dmaStatus != 0);
+        }
+    }
+
+    display = (volatile u16 *)0x04000008;
+    *display = 0x5800;
+    display++;
+    *display = 0x5A01;
+    display++;
+    *display = 0x5C02;
+    InitMinigameScoreDisplay();
+    *(volatile u16 *)0x04000054 = 0;
+    *(volatile u16 *)0x04000000 = 0x1700;
+    gUnk_3004760.state = 0;
+    gUnk_3004760.animationTimer = 0;
+    gUnk_3004760.frame = 0;
+    gUnk_3003C4C = 120;
+    gUnk_3003C4E = 120;
+    gUnk_3003C50 = 0;
+    gUnk_3003C52 = 160;
+    *(volatile u16 *)0x04000000 |= 0x2000;
+    display = (volatile u16 *)0x04000048;
+    *display = 63;
+    *(volatile u16 *)0x0400004A = 0;
+    display += 4;
+    *display = 0x1641;
+    display++;
+    *display = 0x0808;
+    gUnk_3003C9C = 0;
+    new_var4 = 2;
+    gUnk_3003C3A = 0;
+    gUnk_3003C39 = 0;
+    gUnk_3004731 = 0;
+    gUnk_3004768 = 0x900;
+    gUnk_3003C20.vertical = 0;
+    ((volatile u16 *)0x04000012)[0] = 0;
+    ((volatile u16 *)0x04000012)[-1] = 0;
+    ((volatile u16 *)0x04000012)[2] = 0;
+    ((volatile u16 *)0x04000012)[1] = 0;
+    ((volatile u16 *)0x04000012)[4] = 0;
+    ((volatile u16 *)0x04000012)[3] = 0;
+}
+
+void PrepareBossDoorOpeningResult(void)
+{
+    s32 i;
+
+    if (gCurrentPassage == PASSAGE_ENTRY || gCurrentPassage == PASSAGE_GOLDEN)
+        gUnk_3003C4A = 1;
+    else
+        gUnk_3003C4A = 0;
+
+    for (i = 0; i <= 3; i++) {
+        if (gCurrentCollection[gCurrentPassage][i].jewelPieceNE &&
+            gCurrentCollection[gCurrentPassage][i].jewelPieceSE &&
+            gCurrentCollection[gCurrentPassage][i].jewelPieceSW &&
+            gCurrentCollection[gCurrentPassage][i].jewelPieceNW) {
+            if (gCurrentCollection[gCurrentPassage][STAGE_BOSS].BOSS_DEFEATED)
+                gUnk_3004738[i].state = 2;
+            else
+                gUnk_3004738[i].state = 1;
+        } else {
+            gUnk_3004738[i].state = 0;
+        }
+        gUnk_3004738[i].animationTimer = 0;
+        gUnk_3004738[i].frame = 0;
+    }
+
+    if (gCurrentCollection[gCurrentPassage][STAGE_BOSS].BOSS_DEFEATED) {
+        gUnk_3004730 = 3;
+        gUnk_3003C08 = 1;
+    } else if (gCurrentCollection[gCurrentPassage][STAGE_BOSS].SHOW_BOSS_DOOR_OPENING) {
+        gUnk_3004730 = 1;
+        gCurrentCollection[gCurrentPassage][STAGE_BOSS].SHOW_BOSS_DOOR_OPENING = 0;
+        gUnk_3003C08 = 0;
+        AutosaveDefeat();
+    } else if ((gUnk_3004738[0].state != 0 &&
+                gUnk_3004738[1].state != 0 &&
+                gUnk_3004738[2].state != 0 &&
+                gUnk_3004738[3].state != 0) ||
+               (gUnk_3003C4A != 0 && gUnk_3004738[0].state != 0)) {
+        gUnk_3004730 = 2;
+        gUnk_3003C08 = 0;
+    } else {
+        gUnk_3004730 = 0;
+        gUnk_3003C08 = 1;
+    }
+
+    InitializeBossDoorOpeningScene();
+    m4aSongNumStart(sUnk_863C5DC[gUnk_3004730 * 2]);
+}
+
+void PrepareBossDoorOpeningJewelDisplay(void)
+{
+    s32 i;
+
+    if (gCurrentPassage == PASSAGE_ENTRY || gCurrentPassage == PASSAGE_GOLDEN)
+        gUnk_3003C4A = 1;
+    else
+        gUnk_3003C4A = 0;
+
+    for (i = 0; i <= 3; i++) {
+        if (gCurrentCollection[gCurrentPassage][i].jewelPieceNE &&
+            gCurrentCollection[gCurrentPassage][i].jewelPieceSE &&
+            gCurrentCollection[gCurrentPassage][i].jewelPieceSW &&
+            gCurrentCollection[gCurrentPassage][i].jewelPieceNW)
+            gUnk_3004738[i].state = 1;
+        else
+            gUnk_3004738[i].state = 0;
+        gUnk_3004738[i].animationTimer = 0;
+        gUnk_3004738[i].frame = 0;
+    }
+
+    gUnk_300476A = 0x200;
+    gUnk_300476C = sUnk_863C674[gUnk_3003C4A][gCurrentStageNumber];
+    gUnk_3004758.animationTimer = 0;
+    gUnk_3004758.frame = 0;
+    gUnk_3004758.state = 0;
+    gUnk_3004730 = 0;
+    InitializeBossDoorOpeningScene();
+    m4aSongNumStart(0x1A9);
+}
+
+void UpdateBossDoorOpeningDisplay(void)
+{
+    s32 offset;
+    volatile u32 *dma;
+    s32 timer;
+    u32 mask;
+
+    offset = func_807F6B4();
+    *(volatile u16 *)0x04000040 = (gUnk_3003C4C << 8) | gUnk_3003C4E;
+    *(volatile u16 *)0x04000044 = (gUnk_3003C50 << 8) | gUnk_3003C52;
+    *(volatile u16 *)0x04000016 = gUnk_3003C20.vertical + offset;
+    *(volatile u16 *)0x0400001A = gUnk_3003C20.vertical + offset;
+
+    timer = gMainTimer;
+    mask = 31;
+    timer &= mask;
+    if (timer == 0) {
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)sUnk_86AE248;
+        dma[1] = 0x06000000;
+        dma[2] = 0x80000200;
+        dma[2];
+    }
+
+    timer = gMainTimer;
+    timer &= mask;
+    if (timer == 16) {
+        dma = (volatile u32 *)0x040000D4;
+        dma[0] = (u32)sUnk_86AE648;
+        dma[1] = 0x06000000;
+        dma[2] = 0x80000200;
+        dma[2];
+    }
+}
+
+s32 UpdateBossDoorOpeningSequence(void)
+{
+    s32 timer;
+
+    switch (gUnk_3003C39) {
+    case 0:
+        timer = gUnk_3003C3A + 1;
+        gUnk_3003C3A = timer;
+        if ((u16)timer > 30) {
+            gUnk_3003C3A = 0;
+            gUnk_3003C39++;
+            gUnk_3003C9C = 2;
+        }
+        break;
+
+    case 1:
+        timer = gUnk_3003C3A + 1;
+        gUnk_3003C3A = timer;
+        if ((u16)timer > 70) {
+            gUnk_3003C3A = 0;
+            gUnk_3003C39++;
+            gUnk_3003C9C = 4;
+            m4aSongNumStart(0x1DC);
+            VoiceSetPlay(10);
+        }
+        break;
+
+    case 2:
+        gUnk_3004768 -= 6;
+        if (gUnk_3004768 <= 255) {
+            gUnk_3004768 = 0x100;
+            gUnk_3003C39++;
+        }
+        break;
+
+    case 3:
+        timer = gUnk_3003C3A + 1;
+        gUnk_3003C3A = timer;
+        if ((u16)timer > 30) {
+            gUnk_3003C3A = 0;
+            gUnk_3003C39 = 0;
+            gUnk_3003C9C = 1;
+            return 1;
+        }
+        break;
+    }
+
+    return 0;
+}
+
+void UpdateBossDoorOpeningSprites(void)
+{
+    register s32 oldSlot asm("r10");
+    register s32 slot asm("r9");
+    u16 *rawDestination;
+    s32 i;
+    s32 limit;
+    s32 inactiveTableOffset;
+    s32 activeTableOffset;
+    s32 iconOffset;
+    const u16 *source;
+    OamData *oam;
+    register struct BossDoorOpeningIcon *largeIcon asm("r4");
+    register struct BossDoorOpeningBackground *background asm("r6");
+    register u32 r8Work asm("r8");
+    register const struct AnimationFrame *inactiveAnimation asm("r2");
+    u16 attr;
+    s16 affine[4];
+    s16 *affineBPtr;
+    s16 *affineCPtr;
+    s16 *affineDPtr;
+
+    asm("" : : "m"(i), "m"(limit));
+
+    oldSlot = 0;
+    slot = gOamSlotsUsed;
+    {
+        register u32 initialOffset asm("r1");
+        register OamData *initialBuffer asm("r0");
+        initialOffset = (u32)slot << 3;
+        initialBuffer = gOamBuffer;
+        rawDestination = (u16 *)(initialOffset + (u32)initialBuffer);
+    }
+
+    if (gUnk_3003C56 != 0) {
+        {
+            register struct BossDoorOpeningIcon *iconAddress asm("r0");
+            register u8 iconState asm("r1");
+            iconAddress = &gUnk_3004758;
+            iconState = iconAddress->state;
+            largeIcon = iconAddress;
+            if (iconState != 0) {
+                register const u8 *tableBase asm("r2");
+                register const u8 *stageAddress asm("r0");
+                register u32 tableIndex asm("r0");
+                register const u8 *modeAddress asm("r3");
+                register u32 modeIndex asm("r1");
+                register const struct AnimationFrame *largeAnimation asm("r3");
+                register u32 timer asm("r1");
+
+                tableBase = (const u8 *)sUnk_863C654;
+                stageAddress = &gCurrentStageNumber;
+                tableIndex = *stageAddress;
+                tableIndex <<= 2;
+                modeAddress = &gUnk_3003C4A;
+                modeIndex = *modeAddress;
+                modeIndex <<= 4;
+                tableIndex += modeIndex;
+                tableIndex += (u32)tableBase;
+                largeAnimation = *(const struct AnimationFrame *const *)tableIndex;
+                timer = largeIcon->animationTimer;
+                timer++;
+                largeIcon->animationTimer = timer;
+                if (largeAnimation[largeIcon->frame].time < (u16)timer) {
+                    largeIcon->animationTimer = 1;
+                    largeIcon->frame++;
+                    if (largeAnimation[largeIcon->frame].time == 0) {
+                        largeIcon->animationTimer = oldSlot;
+                        largeIcon->frame = oldSlot;
+                        largeIcon->state = 0;
+                    }
+                }
+                if (largeIcon->state != 0) {
+                    source = (largeAnimation[largeIcon->frame].oam);
+                    slot += *source++;
+                    if (slot > MAX_OAM_SLOTS) {
+                        return;
+                    }
+                    if (oldSlot < slot) {
+                        OamData *largeBuffer;
+                        u32 xMask;
+                        s32 priorityMask;
+                        largeBuffer = gOamBuffer;
+                        xMask = 0x1FF;
+                        r8Work = 0xFFFFFE00;
+                        priorityMask = -13;
+                        oam = (OamData *)(((u32)oldSlot << 3) + (u32)largeBuffer);
+                        oldSlot = slot - oldSlot;
+                        do {
+                            attr = *source++;
+                            *rawDestination++ = attr;
+                            oam->split.y = attr + 0x50;
+                            attr = *source++;
+                            *rawDestination++ = attr;
+                            {
+                                register u32 newX asm("r1");
+                                register u32 oldX asm("r2");
+                                register u32 mergedX asm("r0");
+                                newX = (attr + 0x78) & xMask;
+                                oldX = oam->all.attr1;
+                                mergedX = r8Work;
+                                mergedX &= oldX;
+                                mergedX |= newX;
+                                oam->all.attr1 = mergedX;
+                            }
+                            {
+                                register u16 tileAttr asm("r0");
+                                tileAttr = *source;
+                                *rawDestination = tileAttr;
+                                source++;
+                            }
+                            ((u8 *)oam)[5] = (((u8 *)oam)[5] & priorityMask) | 8;
+                            rawDestination += 2;
+                            oam++;
+                            oldSlot--;
+                        } while (oldSlot != 0);
+                        oldSlot = slot;
+                    }
+                }
+            }
+        }
+
+        {
+            register const u8 *doorModeAddress asm("r3");
+            register u32 doorMode asm("r0");
+            register s32 limitValue asm("r1");
+            register s32 one asm("r2");
+            doorModeAddress = &gUnk_3003C4A;
+            doorMode = *doorModeAddress;
+            limitValue = 4;
+            limit = limitValue;
+            if (doorMode != 0) {
+                one = 1;
+                limit = one;
+            }
+        }
+        {
+            register s32 zero asm("r3");
+            zero = 0;
+            i = zero;
+            if (zero < limit) {
+                {
+                    register s32 activeOffsetZero asm("r1");
+                    register s32 iconOffsetZero asm("r2");
+                    activeOffsetZero = 0;
+                    asm("" : "+r"(activeOffsetZero));
+                    activeTableOffset = activeOffsetZero;
+                    iconOffsetZero = 0;
+                    asm("" : "+r"(iconOffsetZero));
+                    iconOffset = iconOffsetZero;
+                }
+                do {
+                    register const u8 *firstStageAddress asm("r0");
+                    register u32 firstStage asm("r0");
+                    register s32 firstLoopIndex asm("r3");
+                    register const u8 *firstPassageAddress asm("r0");
+                    register u32 firstPassage asm("r1");
+                    register const u8 *savedPassageAddress asm("r2");
+
+                    firstStageAddress = &gCurrentStageNumber;
+                    firstStage = *firstStageAddress;
+                    firstLoopIndex = i;
+                    if (firstStage != firstLoopIndex) {
+                        goto active_inactive_render;
+                    }
+                    firstPassageAddress = &gUnk_3004731;
+                    firstPassage = *firstPassageAddress;
+                    savedPassageAddress = firstPassageAddress;
+                    if (firstPassage <= 6) {
+                        if (firstPassage <= 4) {
+                            goto active_recheck;
+                        }
+                        {
+                            register u32 activeState asm("r0");
+                            {
+                                register struct BossDoorOpeningIcon *activeIcon asm("r1");
+                                register u8 *iconBase asm("r0");
+                                register s32 activeIconOffset asm("r2");
+                                iconBase = (u8 *)gUnk_3004738;
+                                activeIconOffset = iconOffset;
+                                asm("" : "+r"(activeIconOffset));
+                                activeIcon = (struct BossDoorOpeningIcon *)((u32)activeIconOffset + (u32)iconBase);
+                                activeState = activeIcon->state;
+                            }
+                            if (activeState != 0) {
+                                register u32 tableIndex asm("r1");
+                                register const u8 *modeAddress asm("r0");
+                                register const u8 *tableBase asm("r0");
+                                register const struct AnimationFrame *activeAnimation asm("r3");
+                                tableIndex = activeState;
+                                asm("" : "+r"(tableIndex));
+                                tableIndex--;
+                                tableIndex <<= 4;
+                                {
+                                    register s32 activeOffsetValue asm("r3");
+                                    activeOffsetValue = activeTableOffset;
+                                    tableIndex = activeOffsetValue + tableIndex;
+                                }
+                                modeAddress = &gUnk_3003C4A;
+                                tableIndex += (u32)(*modeAddress) << 5;
+                                tableBase = (const u8 *)sUnk_863C5F4;
+                                tableIndex += (u32)tableBase;
+                                activeAnimation = *(const struct AnimationFrame *const *)tableIndex;
+                                source = activeAnimation[0].oam;
+                                slot += *source++;
+                                {
+                                    register s32 activeSlotCheck asm("r1");
+                                    activeSlotCheck = slot;
+                                    asm("" : "+r"(activeSlotCheck));
+                                    if (activeSlotCheck > MAX_OAM_SLOTS) {
+                                        asm("b .Lboss_return_only");
+                                    }
+                                }
+                                if (oldSlot < slot) {
+                                    register s32 matrixInit asm("r2");
+                                    register s32 matrixMask asm("r12");
+                                    register const u8 *verticalAddress asm("r0");
+                                    register s32 previousSlot asm("r1");
+                                    register OamData *jewelBuffer asm("r2");
+                                    register u32 xMask asm("r6");
+                                    register s32 priorityInit asm("r0");
+                                    register s32 priorityMask asm("r5");
+                                    register s32 remaining asm("r2");
+                                    register s32 loopRemaining asm("r0");
+                                    matrixInit = 15;
+                                    asm("" : : "r"(matrixInit));
+                                    matrixInit = -matrixInit;
+                                    matrixMask = matrixInit;
+                                    verticalAddress = (const u8 *)&gUnk_300476C;
+                                    r8Work = (u32)verticalAddress;
+                                    previousSlot = oldSlot;
+                                    {
+                                        register u32 oamOffset asm("r0");
+                                        oamOffset = (u32)previousSlot << 3;
+                                        jewelBuffer = gOamBuffer;
+                                        oam = (OamData *)(oamOffset + (u32)jewelBuffer);
+                                    }
+                                    xMask = 0x1FF;
+                                    priorityInit = -13;
+                                    asm("" : "+r"(priorityInit));
+                                    priorityMask = priorityInit;
+                                    remaining = slot;
+                                    asm("" : "+r"(remaining));
+                                    remaining -= previousSlot;
+                                    asm("" : "+r"(remaining));
+                                    oldSlot = remaining;
+                                    do {
+                                        attr = *source++;
+                                        *rawDestination++ = attr;
+                                        {
+                                            register const u8 *vertical asm("r1");
+                                            register u32 y asm("r0");
+                                            vertical = (const u8 *)r8Work;
+                                            y = *vertical;
+                                            y += attr;
+                                            y -= 0x10;
+                                            oam->split.y = y;
+                                        }
+                                        ((u8 *)oam)[1] |= 3;
+                                        attr = *source++;
+                                        *rawDestination++ = attr;
+                                        {
+                                            register u32 newX asm("r1");
+                                            register u32 oldX asm("r2");
+                                            register u32 mergedX asm("r0");
+                                            newX = (attr + 0x68) & xMask;
+                                            oldX = oam->all.attr1;
+                                            mergedX = oldX & 0xFFFFFE00;
+                                            mergedX |= newX;
+                                            oam->all.attr1 = mergedX;
+                                        }
+                                        {
+                                            register u32 oldMatrix asm("r1");
+                                            register u32 maskedMatrix asm("r0");
+                                            oldMatrix = ((u8 *)oam)[3];
+                                            maskedMatrix = matrixMask;
+                                            maskedMatrix &= oldMatrix;
+                                            ((u8 *)oam)[3] = maskedMatrix;
+                                        }
+                                        {
+                                            register u16 tileAttr asm("r0");
+                                            tileAttr = *source;
+                                            *rawDestination = tileAttr;
+                                            source++;
+                                        }
+                                        {
+                                            register u32 priority asm("r0");
+                                            priority = ((u8 *)oam)[5];
+                                            priority &= priorityMask;
+                                            ((u8 *)oam)[5] = priority;
+                                        }
+                                        rawDestination += 2;
+                                        oam++;
+                                        {
+                                            register s32 decrement asm("r2");
+                                            decrement = 1;
+                                            decrement = -decrement;
+                                            asm("" : "+r"(decrement));
+                                            oldSlot += decrement;
+                                            loopRemaining = oldSlot;
+                                            asm("" : "+r"(loopRemaining));
+                                        }
+                                    } while (loopRemaining != 0);
+                                    oldSlot = slot;
+                                }
+                            }
+                        }
+
+                        {
+                            register const s16 *activeSinTable asm("r5");
+                            register s32 cosineValue asm("r8");
+                            register const s16 *cosineAddress asm("r0");
+                            register s32 cosineIndex asm("r2");
+                            register s32 loadedCosine asm("r1");
+                            register s32 inverse;
+                            register s32 result asm("r0");
+                            register s16 *activeBPtr asm("r6");
+                            register s16 *activeCPtr asm("r4");
+
+                            activeSinTable = sSinCosTable;
+                            cosineAddress = activeSinTable + 0x40;
+                            cosineIndex = 0;
+                            loadedCosine = *(const s16 *)((const u8 *)cosineAddress + cosineIndex);
+                            cosineValue = loadedCosine;
+                            {
+                                register const s16 *scaleAddress asm("r3");
+                                register s32 scale asm("r0");
+                                scaleAddress = &gUnk_300476A;
+                                scale = scaleAddress[0];
+                                inverse = FixedInverse(scale);
+                            }
+                            {
+                                register s32 left asm("r0");
+                                register s32 right asm("r1");
+                                right = inverse;
+                                asm("" : "+r"(right));
+                                right = (s16)right;
+                                left = cosineValue;
+                                result = FixedMul(left, right);
+                            }
+                            affine[0] = result;
+                            {
+                                register s32 sineValue asm("r4");
+                                register s32 sineIndex asm("r2");
+                                register const s16 *scaleAddress asm("r3");
+                                register s32 scale asm("r0");
+                                register s32 left asm("r0");
+                                register s32 right asm("r1");
+                                sineIndex = 0;
+                                sineValue = activeSinTable[sineIndex];
+                                scaleAddress = &gUnk_300476A;
+                                scale = scaleAddress[0];
+                                inverse = FixedInverse(scale);
+                                right = inverse;
+                                asm("" : "+r"(right));
+                                right = (s16)right;
+                                left = sineValue;
+                                result = FixedMul(left, right);
+                                activeBPtr = affine;
+                                activeBPtr++;
+                                *activeBPtr = result;
+                            }
+                            {
+                                register s32 sineValue asm("r4");
+                                register const s16 *scaleAddress asm("r2");
+                                register s32 scale asm("r0");
+                                register s32 left asm("r0");
+                                register s32 right asm("r1");
+                                sineValue = ((const u16 *)activeSinTable)[0];
+                                sineValue = -sineValue;
+                                sineValue = (s16)sineValue;
+                                scaleAddress = &gUnk_300476A;
+                                scale = scaleAddress[0];
+                                inverse = FixedInverse(scale);
+                                right = inverse;
+                                asm("" : "+r"(right));
+                                right = (s16)right;
+                                left = sineValue;
+                                result = FixedMul(left, right);
+                                activeCPtr = affine;
+                                activeCPtr += 2;
+                                *activeCPtr = result;
+                            }
+                            {
+                                register const s16 *scaleAddress asm("r1");
+                                register s32 scale asm("r0");
+                                register s32 left asm("r0");
+                                register s32 right asm("r1");
+                                register u32 finalValue asm("r0");
+                                register s16 *activeDPtr asm("r1");
+                                register u32 firstValue asm("r1");
+                                register OamData *affineBuffer asm("r3");
+                                scaleAddress = &gUnk_300476A;
+                                scale = scaleAddress[0];
+                                inverse = FixedInverse(scale);
+                                right = inverse;
+                                asm("" : "+r"(right));
+                                right = (s16)right;
+                                left = cosineValue;
+                                result = FixedMul(left, right);
+                                finalValue = (u16)result;
+                                activeDPtr = affine;
+                                activeDPtr += 3;
+                                *activeDPtr = finalValue;
+                                firstValue = (u16)affine[0];
+                                affineBuffer = gOamBuffer;
+                                affineBuffer[0].all.affineParam = firstValue;
+                                firstValue = (u16)*activeBPtr;
+                                affineBuffer[1].all.affineParam = firstValue;
+                                firstValue = (u16)*activeCPtr;
+                                affineBuffer[2].all.affineParam = firstValue;
+                                affineBuffer[3].all.affineParam = finalValue;
+                            }
+                        }
+                    } else {
+active_recheck:
+                        {
+                            register const u8 *stageAddress asm("r1");
+                            register u32 stage asm("r0");
+                            register s32 loopIndex asm("r3");
+                            register u32 passageState asm("r0");
+                            stageAddress = &gCurrentStageNumber;
+                            stage = *stageAddress;
+                            loopIndex = i;
+                            if (stage == loopIndex) {
+                                passageState = *savedPassageAddress;
+                                if (passageState <= 6) {
+                                    goto active_next;
+                                }
+                            }
+                        }
+active_inactive_render:
+                        {
+                            register u8 *iconsBase asm("r0");
+                            register s32 currentIconOffset asm("r1");
+                            register struct BossDoorOpeningIcon *loopIcon asm("r2");
+                            register u32 activeState asm("r4");
+                            register u8 *savedIconsBase asm("r12");
+                            iconsBase = (u8 *)gUnk_3004738;
+                            currentIconOffset = iconOffset;
+                            asm("" : "+r"(currentIconOffset));
+                            loopIcon = (struct BossDoorOpeningIcon *)((u32)currentIconOffset + (u32)iconsBase);
+                            activeState = loopIcon->state;
+                            savedIconsBase = iconsBase;
+                            if (activeState == 1) {
+                                register const u8 *firstTableBase asm("r1");
+                                register const u8 *modeAddress asm("r0");
+                                register u32 modeOffset asm("r0");
+                                register s32 tableOffset asm("r3");
+                                register const struct AnimationFrame *firstAnimation asm("r3");
+                                register u32 timer asm("r1");
+                                firstTableBase = (const u8 *)sUnk_863C634;
+                                modeAddress = &gUnk_3003C4A;
+                                modeOffset = *modeAddress;
+                                modeOffset <<= 4;
+                                tableOffset = activeTableOffset;
+                                modeOffset = tableOffset + modeOffset;
+                                modeOffset += (u32)firstTableBase;
+                                firstAnimation = *(const struct AnimationFrame *const *)modeOffset;
+                                timer = loopIcon->animationTimer;
+                                timer++;
+                                loopIcon->animationTimer = timer;
+                                if (firstAnimation[loopIcon->frame].time < (u16)timer) {
+                                    loopIcon->animationTimer = activeState;
+                                    loopIcon->frame++;
+                                    if (firstAnimation[loopIcon->frame].time == 0) {
+                                        loopIcon->animationTimer = 0;
+                                        loopIcon->frame = 0;
+                                    }
+                                }
+                                {
+                                    register u32 frameIconAddress asm("r0");
+                                    frameIconAddress = iconOffset;
+                                    frameIconAddress += (u32)savedIconsBase;
+                                    source = (firstAnimation[((struct BossDoorOpeningIcon *)frameIconAddress)->frame].oam);
+                                    slot += *source++;
+                                    if (slot > MAX_OAM_SLOTS) {
+                                        return;
+                                    }
+                                    if (oldSlot < slot) {
+                                        register u32 xMask asm("r6");
+                                        register s32 clearMask asm("r1");
+                                        register s32 priorityMask asm("r5");
+                                        register s32 previousSlot asm("r2");
+                                        register u32 oamOffset asm("r0");
+                                        register OamData *centerBuffer asm("r1");
+                                        register OamData *centerOam asm("r4");
+                                        register s32 remaining asm("r0");
+                                        register s32 loopRemaining asm("r2");
+                                        xMask = 0x1FF;
+                                        clearMask = 0xFFFFFE00;
+                                        asm("" : "+r"(clearMask));
+                                        r8Work = clearMask;
+                                        priorityMask = -13;
+                                        previousSlot = oldSlot;
+                                        oamOffset = (u32)previousSlot << 3;
+                                        centerBuffer = gOamBuffer;
+                                        centerOam = (OamData *)((u32)oamOffset + (u32)centerBuffer);
+                                        oam = centerOam;
+                                        remaining = slot;
+                                        asm("" : "+r"(remaining));
+                                        remaining -= previousSlot;
+                                        asm("" : "+r"(remaining));
+                                        oldSlot = remaining;
+                                        asm(".Lcenter_first_loop:");
+                                        {
+                                            attr = *source++;
+                                            *rawDestination++ = attr;
+                                            oam->split.y = attr + 0x50;
+                                            attr = *source++;
+                                            *rawDestination++ = attr;
+                                            {
+                                                register u32 newX asm("r1");
+                                                register u32 oldX asm("r2");
+                                                register u32 mergedX asm("r0");
+                                                newX = (attr + 0x78) & xMask;
+                                                oldX = oam->all.attr1;
+                                                mergedX = r8Work;
+                                                mergedX &= oldX;
+                                                mergedX |= newX;
+                                                oam->all.attr1 = mergedX;
+                                            }
+                                            {
+                                                register u16 tileAttr asm("r0");
+                                                tileAttr = *source;
+                                                *rawDestination = tileAttr;
+                                                source++;
+                                                asm volatile("" : "+r"(source));
+                                            }
+                                            {
+                                                register u32 oldPriority asm("r1");
+                                                register u32 newPriority asm("r0");
+                                                oldPriority = ((u8 *)oam)[5];
+                                                newPriority = priorityMask;
+                                                newPriority &= oldPriority;
+                                                oldPriority = 8;
+                                                newPriority |= oldPriority;
+                                                ((u8 *)oam)[5] = newPriority;
+                                            }
+                                            rawDestination += 2;
+                                            oam++;
+                                            asm volatile("" : "+r"(oam));
+                                            {
+                                                register s32 decrement asm("r1");
+                                                decrement = 1;
+                                                asm("" : "+r"(decrement));
+                                                decrement = -decrement;
+                                                asm("" : "+r"(decrement));
+                                            oldSlot += decrement; asm("" : : "r"(oldSlot));
+                                                loopRemaining = oldSlot;
+                                            }
+                                            asm volatile("cmp %0, #0\n\tbne .Lcenter_first_loop" : : "r"(loopRemaining) : "cc");
+                                        }
+                                        oldSlot = slot;
+                                    }
+                                }
+                            }
+                            {
+                                register u32 secondIconAddress asm("r1");
+                                register u32 secondState asm("r0");
+                                secondIconAddress = iconOffset;
+                                secondIconAddress += (u32)savedIconsBase;
+                                secondState = ((struct BossDoorOpeningIcon *)secondIconAddress)->state;
+                                if (secondState != 0) {
+                                    register u32 tableIndex asm("r1");
+                                    register s32 tableOffset asm("r3");
+                                    register const u8 *modeAddress asm("r0");
+                                    register u32 modeOffset asm("r0");
+                                    register const u8 *tableBase asm("r0");
+                                    register const struct AnimationFrame *secondAnimation asm("r3");
+                                    tableIndex = secondState;
+                                    asm("" : "+r"(tableIndex));
+                                    tableIndex--;
+                                    tableIndex <<= 4;
+                                    tableOffset = activeTableOffset;
+                                    asm("" : "+r"(tableOffset));
+                                    tableIndex = tableOffset + tableIndex;
+                                    modeAddress = &gUnk_3003C4A;
+                                    modeOffset = *modeAddress;
+                                    modeOffset <<= 5;
+                                    tableIndex += modeOffset;
+                                    tableBase = (const u8 *)sUnk_863C5F4;
+                                    tableIndex += (u32)tableBase;
+                                    secondAnimation = *(const struct AnimationFrame *const *)tableIndex;
+                                    source = (secondAnimation[0].oam);
+                                    slot += *source++;
+                                    {
+                                        register s32 slotCheck asm("r1");
+                                        slotCheck = slot;
+                                        if (slotCheck > MAX_OAM_SLOTS) {
+                                            return;
+                                        }
+                                    }
+                                    if (oldSlot < slot) {
+                                        register u32 xMask asm("r6");
+                                        register s32 clearMask asm("r2");
+                                        register s32 priorityMask asm("r5");
+                                        register s32 previousSlot asm("r1");
+                                        register u32 oamOffset asm("r0");
+                                        register OamData *centerBuffer asm("r2");
+                                        register OamData *centerOam asm("r4");
+                                        register s32 remaining asm("r0");
+                                        register s32 loopRemaining asm("r2");
+                                        xMask = 0x1FF;
+                                        clearMask = 0xFFFFFE00;
+                                        asm("" : "+r"(clearMask));
+                                        r8Work = clearMask;
+                                        priorityMask = -13;
+                                        previousSlot = oldSlot;
+                                        oamOffset = (u32)previousSlot << 3;
+                                        centerBuffer = gOamBuffer;
+                                        centerOam = (OamData *)((u32)oamOffset + (u32)centerBuffer);
+                                        oam = centerOam;
+                                        remaining = slot;
+                                        asm("" : "+r"(remaining));
+                                        remaining -= previousSlot;
+                                        asm("" : "+r"(remaining));
+                                        oldSlot = remaining;
+                                        do {
+                                            attr = *source++;
+                                            *rawDestination++ = attr;
+                                            oam->split.y = attr + 0x50;
+                                            attr = *source++;
+                                            *rawDestination++ = attr;
+                                            {
+                                                register u32 newX asm("r1");
+                                                register u32 oldX asm("r2");
+                                                register u32 mergedX asm("r0");
+                                                newX = (attr + 0x78) & xMask;
+                                                oldX = oam->all.attr1;
+                                                mergedX = r8Work;
+                                                mergedX &= oldX;
+                                                mergedX |= newX;
+                                                oam->all.attr1 = mergedX;
+                                            }
+                                            {
+                                                register u16 tileAttr asm("r0");
+                                                tileAttr = *source;
+                                                *rawDestination = tileAttr;
+                                                source++;
+                                            }
+                                            {
+                                                register u32 oldPriority asm("r1");
+                                                register u32 newPriority asm("r0");
+                                                oldPriority = ((u8 *)oam)[5];
+                                                newPriority = priorityMask;
+                                                newPriority &= oldPriority;
+                                                oldPriority = 8;
+                                                newPriority |= oldPriority;
+                                                ((u8 *)oam)[5] = newPriority;
+                                            }
+                                            rawDestination += 2;
+                                            oam++;
+                                            {
+                                                register s32 decrement asm("r1");
+                                                decrement = 1;
+                                                asm("" : "+r"(decrement));
+                                                decrement = -decrement;
+                                                asm("" : "+r"(decrement));
+                                            oldSlot += decrement;
+                                                loopRemaining = oldSlot;
+                                            asm("" : "+r"(loopRemaining));
+                                            }
+                                        } while (loopRemaining != 0);
+                                        oldSlot = slot;
+                                    }
+                                }
+                            }
+                        }
+                    }
+active_next:
+                    {
+                        register s32 nextTableOffset asm("r3");
+                        nextTableOffset = activeTableOffset;
+                        asm("" : "+r"(nextTableOffset));
+                        nextTableOffset += 4;
+                        activeTableOffset = nextTableOffset;
+                    }
+                    {
+                        register s32 nextIconOffset asm("r0");
+                        nextIconOffset = iconOffset;
+                        asm("" : "+r"(nextIconOffset));
+                        nextIconOffset += 8;
+                        iconOffset = nextIconOffset;
+                    }
+                    {
+                        register s32 nextIndex asm("r1");
+                        register s32 loopLimitCheck asm("r2");
+                        nextIndex = i;
+                        nextIndex++;
+                        i = nextIndex;
+                        loopLimitCheck = limit;
+                        if (nextIndex >= loopLimitCheck) {
+                            break;
+                        }
+                    }
+                } while (1);
+            }
+        }
+
+        {
+            register const u8 *tableBase asm("r1");
+            register const u8 *modeAddress asm("r0");
+            register u32 tableIndex asm("r0");
+            register const struct AnimationFrame *finalAnimation asm("r3");
+            register struct BossDoorOpeningIcon *iconAddress asm("r0");
+            register struct BossDoorOpeningIcon *finalIcon asm("r2");
+            register u32 finalState asm("r1");
+            tableBase = (const u8 *)sUnk_863C5EC;
+            modeAddress = &gUnk_3003C4A;
+            tableIndex = *modeAddress;
+            tableIndex <<= 2;
+            tableIndex += (u32)tableBase;
+            finalAnimation = *(const struct AnimationFrame *const *)tableIndex;
+            iconAddress = &gUnk_3004760;
+            finalState = iconAddress->state;
+            finalIcon = iconAddress;
+            if (finalState != 0) {
+                register u32 timer asm("r0");
+                timer = finalIcon->animationTimer;
+                timer++;
+                finalIcon->animationTimer = timer;
+                if (finalAnimation[finalIcon->frame].time < (u16)timer) {
+                    timer = 1;
+                    finalIcon->animationTimer = timer;
+                    finalIcon->frame++;
+                    if (finalAnimation[finalIcon->frame].time == 0) {
+                        finalIcon->animationTimer = 0;
+                        finalIcon->frame = 0;
+                        finalIcon->state = 0;
+                    }
+                }
+            }
+            source = finalAnimation[finalIcon->frame].oam;
+            slot += *source++;
+            {
+                register s32 slotCheck asm("r0");
+                slotCheck = slot;
+                asm("" : "+r"(slotCheck));
+                if (slotCheck > MAX_OAM_SLOTS) {
+                    return;
+                }
+            }
+            if (oldSlot < slot) {
+                register OamData *finalBuffer asm("r1");
+                register u32 xMask asm("r6");
+                register s32 clearMask asm("r2");
+                register s32 priorityMask asm("r5");
+                register s32 previousSlot asm("r2");
+                finalBuffer = gOamBuffer;
+                xMask = 0x1FF;
+                clearMask = 0xFFFFFE00;
+                r8Work = clearMask;
+                priorityMask = -13;
+                previousSlot = oldSlot;
+                oam = (OamData *)(((u32)previousSlot << 3) + (u32)finalBuffer);
+                oldSlot = slot - previousSlot;
+                do {
+                    attr = *source++;
+                    *rawDestination++ = attr;
+                    {
+                        register const s16 *verticalAddress asm("r0");
+                        register s32 newY asm("r0");
+                        verticalAddress = &gUnk_3004768;
+                        newY = ((s16)*verticalAddress >> 4) + attr;
+                        oam->split.y = newY;
+                    }
+                    attr = *source++;
+                    *rawDestination++ = attr;
+                    {
+                        register u32 newX asm("r1");
+                        register u32 oldX asm("r2");
+                        register u32 mergedX asm("r0");
+                        newX = (attr + 0x78) & xMask;
+                        oldX = oam->all.attr1;
+                        mergedX = r8Work;
+                        mergedX &= oldX;
+                        mergedX |= newX;
+                        oam->all.attr1 = mergedX;
+                    }
+                    {
+                        register u16 tileAttr asm("r0");
+                        tileAttr = *source;
+                        *rawDestination = tileAttr;
+                        source++;
+                    }
+                    {
+                        register u32 oldPriority asm("r1");
+                        register u32 newPriority asm("r0");
+                        oldPriority = ((u8 *)oam)[5];
+                        newPriority = priorityMask;
+                        newPriority &= oldPriority;
+                        oldPriority = 8;
+                        newPriority |= oldPriority;
+                        ((u8 *)oam)[5] = newPriority;
+                    }
+                    asm("" : : : "r1");
+                    rawDestination += 2;
+                    oam++;
+                    {
+                        register s32 decrement asm("r1");
+                        register s32 remaining asm("r2");
+                        decrement = 1;
+                        decrement = -decrement;
+                        oldSlot += decrement;
+                        remaining = oldSlot;
+                    }
+                } while (oldSlot != 0);
+                oldSlot = slot;
+            }
+        }
+        goto finish;
+    }
+
+    {
+        register u32 inactiveState asm("r0");
+        inactiveState = gUnk_3004731;
+        background = &gUnk_3003C0C;
+        inactiveAnimation = sUnk_8642464;
+        if (inactiveState > 3 && (u8)(gUnk_3004730 - 1) <= 1) {
+            register u32 timer asm("r0");
+            register u32 frameTime asm("r1");
+            timer = background->x;
+            timer++;
+            background->x = timer;
+            frameTime = inactiveAnimation[background->y].time;
+            if (frameTime < (u16)timer) {
+                timer = 1;
+                background->x = timer;
+                background->y++;
+                if (inactiveAnimation[background->y].time == 0) {
+                    register u32 zero asm("r3");
+                    zero = oldSlot;
+                    background->x = zero;
+                    background->y = zero;
+                }
+            }
+        }
+    }
+    source = (inactiveAnimation[background->y].oam);
+    slot += *source++;
+    if (slot > MAX_OAM_SLOTS) {
+        return;
+    }
+    r8Work = (u32)sSinCosTable;
+    {
+        register s16 *bPointer asm("r2");
+        register s16 *cPointer asm("r0");
+        register s16 *dPointer asm("r1");
+        bPointer = affine;
+        bPointer++;
+        affineBPtr = bPointer;
+        cPointer = affine;
+        asm("" : "+r"(cPointer));
+        cPointer += 2;
+        affineCPtr = cPointer;
+        dPointer = &affine[3];
+        affineDPtr = dPointer;
+    }
+    asm("" : "+m"(affineBPtr), "+m"(affineCPtr), "+m"(affineDPtr));
+    if (oldSlot < slot) {
+        register OamData *inactiveBuffer asm("r1");
+        register struct BossDoorOpeningBackground *inactiveBackground asm("r5");
+        register s32 previousSlot asm("r2");
+        register u32 oamOffset asm("r0");
+        register u32 xMaskValue asm("r0");
+        register u32 xMask asm("r12");
+        register s32 remaining asm("r1");
+        inactiveBuffer = gOamBuffer;
+        inactiveBackground = background;
+        previousSlot = oldSlot;
+        oamOffset = (u32)previousSlot << 3;
+        oam = (OamData *)(oamOffset + (u32)inactiveBuffer);
+        xMaskValue = 0x1FF;
+        xMask = xMaskValue;
+        remaining = slot;
+        remaining -= previousSlot;
+        oldSlot = remaining;
+        do {
+            attr = *source++;
+            *rawDestination++ = attr;
+            {
+                register s32 newY asm("r0");
+                newY = inactiveBackground->first;
+                newY <<= 16;
+                newY >>= 20;
+                newY += attr;
+                newY -= 0x20;
+                oam->split.y = newY;
+            }
+            oam->split.affineMode = 3;
+            attr = *source++;
+            *rawDestination++ = attr;
+            {
+                register s32 widthOffset asm("r0");
+                register s32 newX asm("r1");
+                register u32 oldX asm("r2");
+                register u32 mergedX asm("r0");
+                widthOffset = 8;
+                newX = attr + *(s16 *)((u8 *)inactiveBackground + widthOffset);
+                newX -= 0x20;
+                newX &= xMask;
+                oldX = oam->all.attr1;
+                mergedX = oldX & 0xFFFFFE00;
+                mergedX |= newX;
+                oam->all.attr1 = mergedX;
+            }
+            {
+                register u32 oldMatrix asm("r1");
+                register s32 matrixMask asm("r0");
+                oldMatrix = ((u8 *)oam)[3];
+                matrixMask = 15;
+                matrixMask = -matrixMask;
+                matrixMask &= oldMatrix;
+                ((u8 *)oam)[3] = matrixMask;
+            }
+            {
+                register u16 tileAttr asm("r0");
+                tileAttr = *source;
+                *rawDestination = tileAttr;
+                source++;
+            }
+            {
+                register u32 oldPriority asm("r1");
+                register s32 priorityMask asm("r0");
+                oldPriority = ((u8 *)oam)[5];
+                priorityMask = 13;
+                priorityMask = -priorityMask;
+                priorityMask &= oldPriority;
+                ((u8 *)oam)[5] = priorityMask;
+            }
+            rawDestination += 2;
+            oam++;
+            {
+                register s32 decrement asm("r0");
+                register s32 remainingCount asm("r1");
+                decrement = 1;
+                decrement = -decrement;
+                oldSlot += decrement;
+                remainingCount = oldSlot;
+            }
+        } while (oldSlot != 0);
+        oldSlot = slot;
+    }
+    {
+        register s32 cosine asm("r5");
+        register s32 sine asm("r4");
+        register const s16 *sineTable asm("r3");
+        register const u16 *unsignedSineTable asm("r2");
+        cosine = ((const s16 *)r8Work)[0x40];
+        affine[0] = FixedMul(cosine, (s16)FixedInverse(background->second >> 4));
+        sineTable = (const s16 *)r8Work;
+        sine = sineTable[0];
+        *affineBPtr = FixedMul(sine, (s16)FixedInverse(background->second >> 4));
+        unsignedSineTable = (const u16 *)r8Work;
+        sine = -unsignedSineTable[0];
+        sine = (s16)sine;
+        {
+            register s32 cValue asm("r0");
+            register s16 *cStorePointer asm("r3");
+            cValue = FixedMul(sine, (s16)FixedInverse(background->second >> 4));
+            cStorePointer = affineCPtr;
+            *cStorePointer = cValue;
+        }
+        {
+            register s32 dValue asm("r0");
+            register OamData *affineBuffer asm("r2");
+            register s16 *otherPointer asm("r3");
+            register u16 value asm("r1");
+            dValue = FixedMul(cosine, (s16)FixedInverse(background->second >> 4));
+            *affineDPtr = dValue;
+            affineBuffer = gOamBuffer;
+            value = affine[0];
+            affineBuffer[0].all.affineParam = value;
+            otherPointer = affineBPtr;
+            value = *(u16 *)otherPointer;
+            affineBuffer[1].all.affineParam = value;
+            otherPointer = affineCPtr;
+            value = *(u16 *)otherPointer;
+            affineBuffer[2].all.affineParam = value;
+            affineBuffer[3].all.affineParam = dValue;
+        }
+    }
+    if (gUnk_3004730 == 2) {
+        goto finish;
+    }
+
+    {
+        register const u8 *modeAddress asm("r0");
+        register u32 modeValue asm("r1");
+        register s32 initialLimit asm("r3");
+        register s32 loopIndex asm("r1");
+        register s32 loopLimit asm("r3");
+        modeAddress = &gUnk_3003C4A;
+        modeValue = *modeAddress;
+        initialLimit = 4;
+        limit = initialLimit;
+        if (modeValue != 0) {
+            limit = 1;
+        }
+        loopIndex = 0;
+        i = loopIndex;
+        loopLimit = limit;
+        if (loopIndex < loopLimit) {
+            register s32 initialOffset asm("r0");
+            register struct BossDoorOpeningIcon *currentIcon asm("r5");
+            initialOffset = 0;
+            asm("" : "+r"(initialOffset));
+            inactiveTableOffset = initialOffset;
+            currentIcon = gUnk_3004738;
+            do {
+                register u32 firstState asm("r2");
+                firstState = currentIcon->state;
+                if (firstState == 1) {
+                    register const u8 *tableBase asm("r1");
+                    register const u8 *currentModeAddress asm("r3");
+                    register u32 tableIndex asm("r0");
+                    register const struct AnimationFrame *firstAnimation asm("r3");
+                    register u32 timer asm("r1");
+                    tableBase = (const u8 *)sUnk_863C634;
+                    currentModeAddress = &gUnk_3003C4A;
+                    tableIndex = *currentModeAddress;
+                    tableIndex <<= 4;
+                    tableIndex = inactiveTableOffset + tableIndex;
+                    tableIndex += (u32)tableBase;
+                    firstAnimation = *(const struct AnimationFrame *const *)tableIndex;
+                    timer = currentIcon->animationTimer;
+                    timer++;
+                    currentIcon->animationTimer = timer;
+                    if (firstAnimation[currentIcon->frame].time < (u16)timer) {
+                        currentIcon->animationTimer = firstState;
+                        currentIcon->frame++;
+                        if (firstAnimation[currentIcon->frame].time == 0) {
+                            currentIcon->animationTimer = 0;
+                            currentIcon->frame = 0;
+                        }
+                    }
+                    source = firstAnimation[currentIcon->frame].oam;
+                    slot += *source++;
+                    {
+                        register u32 xMaskInit asm("r0");
+                        register u32 xMask asm("r12");
+                        register s32 priorityInit asm("r1");
+                        register s32 priorityMask asm("r8");
+                        register s32 slotCheck asm("r2");
+                        register const s16 *verticalPosition asm("r6");
+                        register s32 previousSlot asm("r1");
+                        register u32 oamOffset asm("r0");
+                        register OamData *gateBuffer asm("r2");
+                        register s32 remaining asm("r0");
+                        slotCheck = slot;
+                        if (slotCheck > MAX_OAM_SLOTS) {
+                            return;
+                        }
+                        if (oldSlot < slot) {
+                            xMaskInit = 0x1FF;
+                            xMask = xMaskInit;
+                            priorityInit = 13;
+                            priorityInit = -priorityInit;
+                            priorityMask = priorityInit;
+                            verticalPosition = &gUnk_3004768;
+                            previousSlot = oldSlot;
+                            oamOffset = (u32)previousSlot << 3;
+                            gateBuffer = gOamBuffer;
+                            oam = (OamData *)(oamOffset + (u32)gateBuffer);
+                            remaining = slot;
+                            remaining -= previousSlot;
+                            oldSlot = remaining;
+                            do {
+                                attr = *source++;
+                                *rawDestination++ = attr;
+                                {
+                                    register s32 y asm("r0");
+                                    y = *(const u16 *)verticalPosition;
+                                    y <<= 16;
+                                    y >>= 20;
+                                    y += attr;
+                                    y -= 0x40;
+                                    oam->split.y = y;
+                                }
+                                attr = *source++;
+                                *rawDestination++ = attr;
+                                {
+                                    register u32 newX asm("r1");
+                                    register u32 oldX asm("r2");
+                                    register u32 mergedX asm("r0");
+                                    newX = (attr + 0x78) & xMask;
+                                    oldX = oam->all.attr1;
+                                    mergedX = oldX & 0xFFFFFE00;
+                                    mergedX |= newX;
+                                    oam->all.attr1 = mergedX;
+                                }
+                                {
+                                    register u16 tileAttr asm("r0");
+                                    tileAttr = *source;
+                                    *rawDestination = tileAttr;
+                                    source++;
+                                }
+                                {
+                                    register u32 oldPriority asm("r1");
+                                    register u32 newPriority asm("r0");
+                                    oldPriority = ((u8 *)oam)[5];
+                                    newPriority = priorityMask;
+                                    newPriority &= oldPriority;
+                                    newPriority |= 8;
+                                    ((u8 *)oam)[5] = newPriority;
+                                }
+                                rawDestination += 2;
+                                oam++;
+                                {
+                                    register s32 decrement asm("r0");
+                                    register s32 remainingCount asm("r1");
+                                    decrement = 1;
+                                    decrement = -decrement;
+                                    oldSlot += decrement;
+                                    remainingCount = oldSlot;
+                                }
+                            } while (oldSlot != 0);
+                            oldSlot = slot;
+                        }
+                    }
+                }
+                asm("" : : : "memory");
+                {
+                    register u32 tableIndex asm("r0");
+                    tableIndex = currentIcon->state;
+                    if (tableIndex != 0) {
+                        register u32 tableOffset asm("r2");
+                        register const u8 *currentModeAddress asm("r3");
+                        register u32 modeOffset asm("r1");
+                        register const u8 *tableBase asm("r1");
+                        register const struct AnimationFrame *secondAnimation asm("r3");
+                        tableIndex--;
+                        tableIndex <<= 4;
+                        tableOffset = inactiveTableOffset;
+                        tableIndex = tableOffset + tableIndex;
+                        currentModeAddress = &gUnk_3003C4A;
+                        modeOffset = *currentModeAddress;
+                        modeOffset <<= 5;
+                        tableIndex += modeOffset;
+                        tableBase = (const u8 *)sUnk_863C5F4;
+                        tableIndex += (u32)tableBase;
+                        secondAnimation = *(const struct AnimationFrame *const *)tableIndex;
+                        source = secondAnimation[0].oam;
+                        slot += *source++;
+                        {
+                            register u32 xMaskInit asm("r0");
+                            register u32 xMask asm("r12");
+                            register s32 priorityInit asm("r1");
+                            register s32 priorityMask asm("r8");
+                            register s32 slotCheck asm("r2");
+                            register const s16 *verticalPosition asm("r6");
+                            register s32 previousSlot asm("r2");
+                            register u32 oamOffset asm("r0");
+                            register OamData *gateBuffer asm("r1");
+                            register s32 remaining asm("r0");
+                            slotCheck = slot;
+                            asm("" : "+r"(slotCheck));
+                            if (slotCheck > MAX_OAM_SLOTS) {
+                                return;
+                            }
+                            if (oldSlot < slot) {
+                                xMaskInit = 0x1FF;
+                                xMask = xMaskInit;
+                                priorityInit = 13;
+                                priorityInit = -priorityInit;
+                                priorityMask = priorityInit;
+                                verticalPosition = &gUnk_3004768;
+                                previousSlot = oldSlot;
+                                oamOffset = (u32)previousSlot << 3;
+                                gateBuffer = gOamBuffer;
+                                oam = (OamData *)(oamOffset + (u32)gateBuffer);
+                                remaining = slot;
+                                remaining -= previousSlot;
+                                oldSlot = remaining;
+                                do {
+                                    attr = *source++;
+                                    *rawDestination++ = attr;
+                                    {
+                                        register s32 y asm("r0");
+                                        y = *(const u16 *)verticalPosition;
+                                        y <<= 16;
+                                        y >>= 20;
+                                        y += attr;
+                                        y -= 0x40;
+                                        oam->split.y = y;
+                                    }
+                                    attr = *source++;
+                                    *rawDestination++ = attr;
+                                    {
+                                        register u32 newX asm("r1");
+                                        register u32 oldX asm("r2");
+                                        register u32 mergedX asm("r0");
+                                        newX = (attr + 0x78) & xMask;
+                                        oldX = oam->all.attr1;
+                                        mergedX = oldX & 0xFFFFFE00;
+                                        mergedX |= newX;
+                                        oam->all.attr1 = mergedX;
+                                    }
+                                    {
+                                        register u16 tileAttr asm("r0");
+                                        tileAttr = *source;
+                                        *rawDestination = tileAttr;
+                                        source++;
+                                    }
+                                    {
+                                        register u32 oldPriority asm("r1");
+                                        register u32 newPriority asm("r0");
+                                        oldPriority = ((u8 *)oam)[5];
+                                        newPriority = priorityMask;
+                                        newPriority &= oldPriority;
+                                        newPriority |= 8;
+                                        ((u8 *)oam)[5] = newPriority;
+                                    }
+                                    rawDestination += 2;
+                                    oam++;
+                                    {
+                                        register s32 decrement asm("r0");
+                                        register s32 remainingCount asm("r1");
+                                        decrement = 1;
+                                        decrement = -decrement;
+                                        oldSlot += decrement;
+                                        remainingCount = oldSlot;
+                                    }
+                                } while (oldSlot != 0);
+                                oldSlot = slot;
+                            }
+                        }
+                    }
+                }
+                inactiveTableOffset += 4;
+                currentIcon++;
+                {
+                    register s32 nextIndex asm("r3");
+                    register s32 loopLimitCheck asm("r0");
+                    nextIndex = i;
+                    nextIndex++;
+                    i = nextIndex;
+                    loopLimitCheck = limit;
+                    if (nextIndex >= loopLimitCheck) {
+                        break;
+                    }
+                }
+            } while (1);
+        }
+    }
+
+    {
+        register const u8 *tableBase asm("r1");
+        register const u8 *modeAddress asm("r2");
+        register u32 tableIndex asm("r0");
+        register const struct AnimationFrame *finalAnimation asm("r3");
+        register struct BossDoorOpeningIcon *finalIcon asm("r0");
+        tableBase = (const u8 *)sUnk_863C5EC;
+        modeAddress = &gUnk_3003C4A;
+        tableIndex = *modeAddress;
+        tableIndex <<= 2;
+        tableIndex += (u32)tableBase;
+        finalAnimation = *(const struct AnimationFrame *const *)tableIndex;
+        finalIcon = &gUnk_3004760;
+        source = (finalAnimation[finalIcon->frame].oam);
+        slot += *source++;
+        if (slot > MAX_OAM_SLOTS) {
+            return;
+        }
+        if (oldSlot < slot) {
+            register OamData *finalBuffer asm("r1");
+            register u32 xMaskValue asm("r2");
+            register u32 clearMaskValue asm("r0");
+            register u32 clearMask asm("r12");
+            register s32 priorityMask asm("r6");
+            register const u16 *verticalPosition asm("r5");
+            register s32 previousSlot asm("r2");
+            register u32 oamOffset asm("r0");
+            register s32 remaining asm("r0");
+            finalBuffer = gOamBuffer;
+            xMaskValue = 0x1FF;
+            r8Work = xMaskValue;
+            clearMaskValue = 0xFFFFFE00;
+            clearMask = clearMaskValue;
+            priorityMask = 13;
+            priorityMask = -priorityMask;
+            verticalPosition = (const u16 *)&gUnk_3004768;
+            previousSlot = oldSlot;
+            oamOffset = (u32)previousSlot << 3;
+            oam = (OamData *)(oamOffset + (u32)finalBuffer);
+            remaining = slot;
+            asm("sub %0, %0, %1" : "+r"(remaining) : "r"(previousSlot));
+            oldSlot = remaining;
+            do {
+                attr = *source++;
+                *rawDestination++ = attr;
+                {
+                    register s32 y asm("r0");
+                    y = *verticalPosition;
+                    y <<= 16;
+                    y >>= 20;
+                    y += attr;
+                    oam->split.y = y;
+                }
+                attr = *source++;
+                *rawDestination++ = attr;
+                {
+                    register u32 newX asm("r1");
+                    register u32 oldX asm("r2");
+                    register u32 mergedX asm("r0");
+                    newX = attr + 0x78;
+                    asm("mov r2, r8; and r1, r2; ldrh r2, [r4, #2]; mov r0, ip; and r0, r2; orr r0, r1"
+                        : "=r"(mergedX), "=r"(oldX), "+r"(newX)
+                        : "r"(oam), "r"(clearMask), "r"(r8Work)
+                        : "cc");
+                    oam->all.attr1 = mergedX;
+                }
+                {
+                    register u16 tileAttr asm("r0");
+                    tileAttr = *source;
+                    *rawDestination = tileAttr;
+                    source++;
+                }
+                {
+                    register u32 oldPriority asm("r1");
+                    register u32 newPriority asm("r0");
+                    oldPriority = ((u8 *)oam)[5];
+                    newPriority = priorityMask;
+                    newPriority &= oldPriority;
+                    newPriority |= 8;
+                    ((u8 *)oam)[5] = newPriority;
+                }
+                rawDestination += 2;
+                oam++;
+                {
+                    register s32 decrement asm("r0");
+                    register s32 remainingCount asm("r1");
+                    decrement = 1;
+                    decrement = -decrement;
+                    asm("" : "+r"(decrement));
+                    oldSlot += decrement;
+                    remainingCount = oldSlot;
+                }
+            } while (oldSlot != 0);
+            oldSlot = slot;
+        }
+    }
+finish:
+    gOamSlotsUsed = slot;
+    asm(".Lboss_return_only:");
+}
