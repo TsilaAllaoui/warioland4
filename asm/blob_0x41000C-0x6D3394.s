@@ -922,43 +922,43 @@ sUnk_863A490:
 
 baserom_blob 0x63A490, 0x63A498
 
-.global sUnk_863A498
-sUnk_863A498:
+.global sStageEjectionParticleSpawnDelays
+sStageEjectionParticleSpawnDelays:
 
 baserom_blob 0x63A498, 0x63A4AC
 
-.global sUnk_863A4AC
-sUnk_863A4AC:
+.global sStageEjectionParticleYVelocities
+sStageEjectionParticleYVelocities:
 
 baserom_blob 0x63A4AC, 0x63A4C4
 
-.global sUnk_863A4C4
-sUnk_863A4C4:
+.global sStageEjectionParticleXVelocities
+sStageEjectionParticleXVelocities:
 
 baserom_blob 0x63A4C4, 0x63A4DC
 
-.global sUnk_863A4DC
-sUnk_863A4DC:
+.global sStageEjectionParticleSpawnOffsets
+sStageEjectionParticleSpawnOffsets:
 
 baserom_blob 0x63A4DC, 0x63A4F4
 
-.global sUnk_863A4F4
-sUnk_863A4F4:
+.global sStageEjectionTreasureSpawnYThresholds
+sStageEjectionTreasureSpawnYThresholds:
 
 baserom_blob 0x63A4F4, 0x63A508
 
-.global sUnk_863A508
-sUnk_863A508:
+.global sStageEjectionTreasureOamFrames
+sStageEjectionTreasureOamFrames:
 
 baserom_blob 0x63A508, 0x63A51C
 
-.global sUnk_863A51C
-sUnk_863A51C:
+.global sStageEjectionTreasureYVelocities
+sStageEjectionTreasureYVelocities:
 
 baserom_blob 0x63A51C, 0x63A534
 
-.global sUnk_863A534
-sUnk_863A534:
+.global sStageEjectionTreasureXVelocities
+sStageEjectionTreasureXVelocities:
 
 baserom_blob 0x63A534, 0x63A54C
 
@@ -1452,8 +1452,8 @@ sUnk_863D9A0:
 
 baserom_blob 0x63D9A0, 0x63D9BC
 
-.global sUnk_863D9BC
-sUnk_863D9BC:
+.global sStageEjectionWarioOam
+sStageEjectionWarioOam:
 
 baserom_blob 0x63D9BC, 0x63D9EC
 
@@ -1477,8 +1477,8 @@ sUnk_863DBE4:
 
 baserom_blob 0x63DBE4, 0x63DC4C
 
-.global sUnk_863DC4C
-sUnk_863DC4C:
+.global sStageEjectionParticleAnimation
+sStageEjectionParticleAnimation:
 
 baserom_blob 0x63DC4C, 0x63DCB4
 
@@ -1977,13 +1977,13 @@ sUnk_8681C9C:
 
 baserom_blob 0x681C9C, 0x68249C
 
-.global sUnk_868249C
-sUnk_868249C:
+.global sStageEjectionObjPalette
+sStageEjectionObjPalette:
 
 baserom_blob 0x68249C, 0x68269C
 
-.global sUnk_868269C
-sUnk_868269C:
+.global sStageEjectionObjTiles
+sStageEjectionObjTiles:
 
 baserom_blob 0x68269C, 0x68669C
 
@@ -2017,13 +2017,13 @@ sUnk_868A01C:
 
 baserom_blob 0x68A01C, 0x68A81C
 
-.global sUnk_868A81C
-sUnk_868A81C:
+.global sStageEjectionPassagePalettes
+sStageEjectionPassagePalettes:
 
 baserom_blob 0x68A81C, 0x68A8DC
 
-.global sUnk_868A8DC
-sUnk_868A8DC:
+.global sStageEjectionPassageExtraPalettes
+sStageEjectionPassageExtraPalettes:
 
 baserom_blob 0x68A8DC, 0x68A95C
 
@@ -2047,18 +2047,18 @@ sUnk_868B8DC:
 
 baserom_blob 0x68B8DC, 0x68B95C
 
-.global sUnk_868B95C
-sUnk_868B95C:
+.global sStageEjectionBgPalette
+sStageEjectionBgPalette:
 
 baserom_blob 0x68B95C, 0x68BB5C
 
-.global sUnk_868BB5C
-sUnk_868BB5C:
+.global sStageEjectionBgTiles
+sStageEjectionBgTiles:
 
 baserom_blob 0x68BB5C, 0x68C55C
 
-.global sUnk_868C55C
-sUnk_868C55C:
+.global sStageEjectionBgTilemap
+sStageEjectionBgTilemap:
 
 baserom_blob 0x68C55C, 0x68CD5C
 

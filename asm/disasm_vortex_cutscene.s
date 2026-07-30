@@ -207,7 +207,7 @@ func_807F924:
 .L_7fa50:
 	.4byte	0x80000020
 .L_7fa54:
-	.4byte	sUnk_868249C
+	.4byte	sStageEjectionObjPalette
 .L_7fa58:
 	.4byte	0x5000200
 .L_7fa5c:
@@ -215,7 +215,7 @@ func_807F924:
 .L_7fa60:
 	.4byte	sUnk_867DC9C
 .L_7fa64:
-	.4byte	sUnk_868269C
+	.4byte	sStageEjectionObjTiles
 .L_7fa68:
 	.4byte	sUnk_8681C9C
 .L_7fa6c:
@@ -397,7 +397,7 @@ func_807FB20:
 .L_7fbb4:
 	.4byte	sUnk_868981C
 .L_7fbb8:
-	.4byte	sUnk_868A81C
+	.4byte	sStageEjectionPassagePalettes
 .L_7fbbc:
 	.4byte	sUnk_868669C
 .L_7fbc0:
@@ -597,7 +597,7 @@ func_807FB20:
 .L_7fd2c:
 	.4byte	sUnk_868981C
 .L_7fd30:
-	.4byte	sUnk_868A81C
+	.4byte	sStageEjectionPassagePalettes
 .L_7fd34:
 	.4byte	sUnk_868669C
 .L_7fd38:
@@ -1682,7 +1682,7 @@ func_808018C:
 .L_80560:
 	.4byte	gUnk_3003D66
 .L_80564:
-	.4byte	sUnk_863D9BC
+	.4byte	sStageEjectionWarioOam
 .L_80568:
 	.4byte	gUnk_3003C0C
 .L_8056c:

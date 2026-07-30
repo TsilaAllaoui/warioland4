@@ -1,32 +1,33 @@
 #!/usr/bin/env python3
-"""Repository-aware Wario Land 4 OAM decoder for legacy and Method 3 data layouts.
+"""Repository-aware Wario Land 4 OAM auditor, decoder, and region generator.
 
-Normal use from the repository root:
+Recommended evidence-based workflow from the repository root::
 
-    python3 tools/decode_oam.py pinball
-    python3 tools/decode_oam.py pinball --apply
-    python3 tools/decode_oam.py pinball --check
+    python3 tools/decode_oam.py stage_ejection --audit
+    python3 tools/decode_oam.py stage_ejection --auto
+    python3 tools/decode_oam.py stage_ejection --auto --apply
 
-The tool automatically discovers:
-  * the module source and its referenced ``s...Oam`` symbols;
-  * assembly labels and their ``baserom_blob`` boundaries;
-  * the Method 3 ``const u8`` region arrays owning those addresses;
-  * the baserom;
-  * pointed OAM frames, including shared frames.
+Automatic mode classifies direct OAM frames, OAM frame-pointer tables, and
+AnimationFrame tables from C declarations, consumers, address ownership, and
+binary structure. Data copied to OBJ/BG VRAM or palette RAM is excluded.
+Symbol names are never sufficient evidence for automatic rewriting.
 
-Preview is the default. Source files are modified only with ``--apply``.
+The legacy s...Oam animation-table workflow remains available without --auto.
+Preview is the default. Source files are modified only with --apply.
 """
 from __future__ import annotations
 
 import argparse
 import dataclasses
+import hashlib
+import os
 import re
 import shutil
 import struct
 import subprocess
 import sys
 from pathlib import Path
-from typing import Iterable, NoReturn
+from typing import Iterable, NoReturn, Sequence
 
 ROM_BASE = 0x08000000
 
@@ -46,6 +47,12 @@ SIZE_NAMES = {
 }
 
 ANIM_SYMBOL_RE = re.compile(r"\b(s[A-Za-z0-9_]*Oam)\b")
+SYMBOL_RE = re.compile(r"\b(s[A-Za-z_][A-Za-z0-9_]*)\b")
+EXTERN_ARRAY_RE = re.compile(
+    r"\bextern\s+(?P<type>[^;{}]+?)\s+(?P<name>s[A-Za-z_][A-Za-z0-9_]*)"
+    r"\s*\[(?P<count>[^]]*)\]\s*;",
+    re.S,
+)
 REGION_HEADER_RE = re.compile(
     r"Shared\s+sprite\s+data\s+region:\s*0x([0-9A-Fa-f]{8})\s*-\s*0x([0-9A-Fa-f]{8})",
     re.I,
@@ -139,12 +146,48 @@ class OamFrame:
 
 
 @dataclasses.dataclass(frozen=True)
+class SymbolDeclaration:
+    name: str
+    type_text: str
+    count_text: str
+    path: Path
+
+
+@dataclasses.dataclass(frozen=True)
+class OamCandidate:
+    name: str
+    kind: str
+    confidence: str
+    reasons: tuple[str, ...]
+    declaration: SymbolDeclaration | None
+    start: int | None = None
+    end: int | None = None
+    selected: bool = False
+    error: str | None = None
+
+
+@dataclasses.dataclass(frozen=True)
+class PointerTableEntry:
+    frame_address: int
+    frame_name: str
+
+
+@dataclasses.dataclass(frozen=True)
+class OamPointerTable:
+    name: str
+    start: int
+    end: int
+    entries: tuple[PointerTableEntry, ...]
+
+
+@dataclasses.dataclass(frozen=True)
 class TypedObject:
     start: int
     end: int
     name: str
     code: str
     kind: str
+    data: bytes = b""
 
 
 @dataclasses.dataclass(frozen=True)
@@ -180,13 +223,17 @@ class Discovery:
     root: Path
     module: str
     source_path: Path
-    rom_path: Path
+    rom_path: Path | None
     symbols: list[str]
     animations: list[AnimationRange]
     arrays: list[RawArray]
     regions: list[RegionFile]
     frames: list[OamFrame]
     typed_objects: list[TypedObject]
+    candidates: list[OamCandidate] = dataclasses.field(default_factory=list)
+    pointer_tables: list[OamPointerTable] = dataclasses.field(default_factory=list)
+    diagnostics: list[str] = dataclasses.field(default_factory=list)
+    mode: str = "legacy"
 
 
 def die(message: str) -> NoReturn:
@@ -266,7 +313,7 @@ def find_source(root: Path, module: str) -> Path:
     die(f"could not find the source file for module '{module}'")
 
 
-def find_rom(root: Path) -> Path:
+def find_rom_optional(root: Path) -> Path | None:
     candidates = [
         root / "baserom.us.gba",
         root / "baserom_us.gba",
@@ -281,6 +328,13 @@ def find_rom(root: Path) -> Path:
         seen.add(path)
         if path.is_file():
             return path
+    return None
+
+
+def find_rom(root: Path) -> Path:
+    path = find_rom_optional(root)
+    if path is not None:
+        return path
     die("could not find baserom.us.gba (or another baserom*.gba) in the repository root")
 
 
@@ -291,6 +345,297 @@ def referenced_animation_symbols(source_path: Path, module: str) -> list[str]:
     preferred = [symbol for symbol in symbols if symbol.startswith(prefix)]
     return preferred or symbols
 
+
+
+
+def local_include_paths(root: Path, source_path: Path) -> list[Path]:
+    """Return the source and recursively included project headers.
+
+    Only quote includes are followed. System/SDK headers are intentionally not
+    searched, and declarations are later filtered to symbols used by the module.
+    """
+    result: list[Path] = []
+    queue = [source_path]
+    seen: set[Path] = set()
+    include_re = re.compile(r'^\s*#\s*include\s+"([^"]+)"', re.M)
+    while queue:
+        path = queue.pop(0).resolve()
+        if path in seen or not path.is_file():
+            continue
+        seen.add(path)
+        result.append(path)
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for name in include_re.findall(text):
+            candidates = [path.parent / name, root / "include" / name, root / name]
+            for candidate in candidates:
+                if candidate.is_file():
+                    queue.append(candidate)
+                    break
+    return result
+
+
+def parse_symbol_declarations(root: Path, source_path: Path) -> dict[str, SymbolDeclaration]:
+    source_text = source_path.read_text(encoding="utf-8", errors="replace")
+    referenced = set(SYMBOL_RE.findall(source_text))
+    declarations: dict[str, SymbolDeclaration] = {}
+    for path in local_include_paths(root, source_path):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        text = re.sub(r"/\*.*?\*/", " ", text, flags=re.S)
+        text = re.sub(r"//.*", " ", text)
+        for match in EXTERN_ARRAY_RE.finditer(text):
+            name = match.group("name")
+            if name not in referenced:
+                continue
+            declaration = SymbolDeclaration(
+                name=name,
+                type_text=" ".join(match.group("type").split()),
+                count_text=match.group("count").strip(),
+                path=path,
+            )
+            previous = declarations.get(name)
+            if previous is not None and previous.type_text != declaration.type_text:
+                die(
+                    f"conflicting declarations for {name}: {previous.type_text} in "
+                    f"{previous.path.relative_to(root)} and {declaration.type_text} in "
+                    f"{path.relative_to(root)}"
+                )
+            declarations[name] = declaration
+    return declarations
+
+
+def normalized_type(type_text: str) -> str:
+    return re.sub(r"\s+", "", type_text).replace("struct", "struct")
+
+
+def direct_frame_usage(source_text: str, symbol: str) -> tuple[bool, list[str]]:
+    reasons: list[str] = []
+    escaped = re.escape(symbol)
+    for assignment in re.finditer(rf"\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*{escaped}\s*;", source_text):
+        variable = assignment.group(1)
+        declaration_re = re.compile(rf"\b(?:const\s+)?u16\s*\*[^;\n]*\b{re.escape(variable)}\b")
+        if not declaration_re.search(source_text):
+            continue
+        window = source_text[assignment.end():assignment.end() + 2200]
+        if re.search(rf"\*\s*{re.escape(variable)}\b", window) and re.search(
+            rf"\b{re.escape(variable)}\s*\+\+|\+\+\s*{re.escape(variable)}\b", window
+        ):
+            reasons.append(
+                f"assigned to const u16 pointer '{variable}', then dereferenced and advanced as an OAM stream"
+            )
+            return True, reasons
+    return False, reasons
+
+
+def pointer_table_usage(source_text: str, symbol: str) -> tuple[bool, list[str]]:
+    reasons: list[str] = []
+    escaped = re.escape(symbol)
+    indexed = re.search(rf"\b{escaped}\s*\[[^]]+\]", source_text)
+    assigned = re.search(rf"\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*{escaped}\s*;", source_text)
+    if indexed:
+        reasons.append("indexed directly as a table")
+        return True, reasons
+    if assigned:
+        variable = assigned.group(1)
+        window = source_text[assigned.end():assigned.end() + 1200]
+        if re.search(rf"\b{re.escape(variable)}\s*\[[^]]+\]", window):
+            reasons.append(f"assigned to '{variable}' and indexed as a frame-pointer table")
+            return True, reasons
+    return False, reasons
+
+
+def dma_classification(source_text: str, symbol: str) -> tuple[str | None, list[str]]:
+    """Classify data copied to a hardware memory class.
+
+    The destination, not the symbol name, is the authoritative signal.
+    """
+    reasons: list[str] = []
+    escaped = re.escape(symbol)
+    src_re = re.compile(rf"->src\s*=\s*[^;]*\b{escaped}\b[^;]*;")
+    for match in src_re.finditer(source_text):
+        window = source_text[match.end():match.end() + 600]
+        next_src = window.find("->src")
+        if next_src >= 0:
+            window = window[:next_src]
+        dst_match = re.search(r"->dst\s*=\s*([^;]+);", window)
+        if not dst_match:
+            continue
+        destination = re.sub(r"\s+", "", dst_match.group(1))
+        numeric_match = re.search(r"0x([0-9A-Fa-f]{8})", destination)
+        address = int(numeric_match.group(1), 16) if numeric_match else None
+        if address is not None:
+            if 0x05000200 <= address < 0x05000400:
+                reasons.append(f"DMA destination 0x{address:08X} is OBJ palette RAM")
+                return "obj-palette", reasons
+            if 0x05000000 <= address < 0x05000200:
+                reasons.append(f"DMA destination 0x{address:08X} is BG palette RAM")
+                return "bg-palette", reasons
+            if 0x06010000 <= address < 0x06018000:
+                reasons.append(f"DMA destination 0x{address:08X} is OBJ VRAM")
+                return "obj-tiles", reasons
+            if 0x06000000 <= address < 0x06010000:
+                # A screen base destination strongly indicates a tilemap.
+                if address & 0x7FF == 0 and address >= 0x06008000:
+                    reasons.append(f"DMA destination 0x{address:08X} is a BG screen block")
+                    return "bg-tilemap", reasons
+                reasons.append(f"DMA destination 0x{address:08X} is BG character VRAM")
+                return "bg-tiles", reasons
+        upper = destination.upper()
+        symbolic = {
+            "OBJ_PLTT": "obj-palette",
+            "OBJ_PALETTE": "obj-palette",
+            "OBJ_VRAM": "obj-tiles",
+            "OBJ_VRAM0": "obj-tiles",
+            "BG_PLTT": "bg-palette",
+            "BG_PALETTE": "bg-palette",
+            "BG_VRAM": "bg-tiles",
+        }
+        for token, kind in symbolic.items():
+            if token in upper:
+                reasons.append(f"DMA destination '{dst_match.group(1).strip()}' identifies {kind}")
+                return kind, reasons
+    return None, reasons
+
+
+def declaration_kind(declaration: SymbolDeclaration, source_text: str) -> tuple[str, str, list[str]]:
+    type_text = normalized_type(declaration.type_text)
+    reasons = [f"declared as '{declaration.type_text}[]'"]
+    dma_kind, dma_reasons = dma_classification(source_text, declaration.name)
+    if dma_kind is not None:
+        return dma_kind, "NO", reasons + dma_reasons
+    if "AnimationFrameU16" in declaration.type_text:
+        return "animation-u16", "NO", reasons + [
+            "AnimationFrameU16 requires a separate 16-bit-duration decoder"
+        ]
+    if re.search(r"\bAnimationFrame\b", declaration.type_text):
+        return "animation", "HIGH", reasons
+    if "u16" in type_text and "*" in type_text:
+        used, usage_reasons = pointer_table_usage(source_text, declaration.name)
+        confidence = "HIGH" if used else "MEDIUM"
+        return "pointer-table", confidence, reasons + usage_reasons
+    if type_text in {"constu16", "u16", "volatileconstu16"}:
+        used, usage_reasons = direct_frame_usage(source_text, declaration.name)
+        confidence = "HIGH" if used else "MEDIUM"
+        return "frame", confidence, reasons + usage_reasons
+    if any(token in type_text for token in ("u8", "s8", "u16", "s16", "u32", "s32")):
+        return "numeric-table", "NO", reasons + ["scalar array with no OAM consumer evidence"]
+    return "unknown", "LOW", reasons
+
+
+def parse_symbol_overrides(values: Sequence[str]) -> dict[str, str]:
+    allowed = {"animation", "pointer-table", "frame", "ignore"}
+    result: dict[str, str] = {}
+    for value in values:
+        if ":" not in value:
+            die(f"invalid --symbol '{value}'; expected NAME:animation|pointer-table|frame|ignore")
+        name, kind = value.rsplit(":", 1)
+        if not re.fullmatch(r"s[A-Za-z_][A-Za-z0-9_]*", name):
+            die(f"invalid symbol name in --symbol: {name}")
+        if kind not in allowed:
+            die(f"invalid --symbol kind '{kind}' for {name}; choose one of {sorted(allowed)}")
+        result[name] = kind
+    return result
+
+
+
+def parse_typed_definitions(root: Path) -> dict[str, tuple[str, Path]]:
+    patterns = [
+        ("animation", re.compile(r"^\s*(?:static\s+)?const\s+struct\s+AnimationFrame\s+(s[A-Za-z_][A-Za-z0-9_]*)\s*\[", re.M)),
+        ("pointer-table", re.compile(r"^\s*(?:static\s+)?const\s+u16\s*\*\s*const\s+(s[A-Za-z_][A-Za-z0-9_]*)\s*\[", re.M)),
+        ("frame", re.compile(r"^\s*(?:static\s+)?const\s+u16\s+(s[A-Za-z_][A-Za-z0-9_]*)\s*\[", re.M)),
+    ]
+    result: dict[str, tuple[str, Path]] = {}
+    for path in candidate_region_paths(root):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for kind, pattern in patterns:
+            for name in pattern.findall(text):
+                previous = result.get(name)
+                if previous is not None and previous != (kind, path):
+                    die(
+                        f"typed symbol {name} has multiple definitions: "
+                        f"{previous[1].relative_to(root)} and {path.relative_to(root)}"
+                    )
+                result[name] = (kind, path)
+    return result
+
+
+def exact_array_by_name(arrays: list[RawArray], name: str) -> RawArray | None:
+    matches = [array for array in arrays if array.name == name]
+    if len(matches) > 1:
+        locations = ", ".join(str(item.path) for item in matches)
+        die(f"raw symbol {name} has multiple Method 3 definitions: {locations}")
+    return matches[0] if matches else None
+
+
+def candidate_asm_range(root: Path, name: str) -> AnimationRange | None:
+    matches = find_asm_animation_ranges(root, [name])
+    return matches[0] if matches else None
+
+
+def classify_candidates(
+    root: Path,
+    source_path: Path,
+    arrays: list[RawArray],
+    overrides: dict[str, str],
+) -> list[OamCandidate]:
+    source_text = source_path.read_text(encoding="utf-8", errors="replace")
+    declarations = parse_symbol_declarations(root, source_path)
+    typed_definitions = parse_typed_definitions(root)
+    candidates: list[OamCandidate] = []
+    for name, declaration in sorted(declarations.items()):
+        kind, confidence, reasons = declaration_kind(declaration, source_text)
+        if name in overrides:
+            override = overrides[name]
+            if override == "ignore":
+                kind, confidence = "ignored", "NO"
+                reasons.append("explicitly ignored by --symbol")
+            else:
+                kind, confidence = override, "HIGH"
+                reasons.append(f"explicit --symbol override selected kind '{override}'")
+        raw = exact_array_by_name(arrays, name)
+        typed = typed_definitions.get(name)
+        if raw is None and typed is not None:
+            typed_kind, typed_path = typed
+            kind = f"already-{typed_kind}"
+            confidence = "NO"
+            reasons.append(f"already decoded in {typed_path.relative_to(root)}")
+        asm_range = None if raw is not None or typed is not None else candidate_asm_range(root, name)
+        start = raw.start if raw else (asm_range.start if asm_range else None)
+        end = raw.end if raw else (asm_range.end if asm_range else None)
+        if start is None and typed is None:
+            reasons.append("no named Method 3 array or ASM label was found")
+            if confidence == "HIGH":
+                confidence = "MEDIUM"
+        selected = confidence == "HIGH" and kind in {"animation", "pointer-table", "frame"}
+        candidates.append(
+            OamCandidate(
+                name=name,
+                kind=kind,
+                confidence=confidence,
+                reasons=tuple(reasons),
+                declaration=declaration,
+                start=start,
+                end=end,
+                selected=selected,
+            )
+        )
+    # Preserve a low-confidence fallback for legacy source references that lack
+    # declarations, but never auto-apply based on a name alone.
+    declared = set(declarations)
+    for name in sorted(set(ANIM_SYMBOL_RE.findall(source_text)) - declared):
+        raw = exact_array_by_name(arrays, name)
+        candidates.append(
+            OamCandidate(
+                name=name,
+                kind="unknown-oam-name",
+                confidence="LOW",
+                reasons=("symbol name ends in Oam, but no usable declaration or consumer proof was found",),
+                declaration=None,
+                start=raw.start if raw else None,
+                end=raw.end if raw else None,
+                selected=False,
+            )
+        )
+    return candidates
 
 def find_asm_animation_ranges(root: Path, symbols: Iterable[str]) -> list[AnimationRange]:
     """Find labels and the first following baserom_blob, tolerating spacing/directives."""
@@ -371,6 +716,11 @@ def candidate_region_paths(root: Path) -> list[Path]:
             continue
         if any(part in ignored for part in rel.parts):
             continue
+        # Ignore accidental recursively copied source trees such as
+        # src/data/src/... . They are never legitimate Method 3 owners.
+        parts = rel.parts
+        if parts[:3] == ("src", "data", "src"):
+            continue
         paths.append(path)
     return sorted(set(paths))
 
@@ -392,8 +742,9 @@ def parse_regions(root: Path) -> list[RegionFile]:
     return regions
 
 
-def parse_region_arrays(root: Path) -> list[RawArray]:
+def parse_region_arrays(root: Path, diagnostics: list[str] | None = None) -> list[RawArray]:
     arrays: list[RawArray] = []
+    diagnostics = diagnostics if diagnostics is not None else []
     for path in candidate_region_paths(root):
         text = path.read_text(encoding="utf-8", errors="replace")
         for match in RANGE_ARRAY_RE.finditer(text):
@@ -402,10 +753,11 @@ def parse_region_arrays(root: Path) -> list[RawArray]:
             data = bytes(int(value, 16) for value in HEX_BYTE_RE.findall(match.group("body")))
             expected = end - start
             if len(data) != expected:
-                die(
-                    f"{path.relative_to(root)}:{match.group('name')} declares range "
-                    f"0x{start:08X}-0x{end:08X} ({expected} bytes) but contains {len(data)} bytes"
+                diagnostics.append(
+                    f"skipped malformed raw array {path.relative_to(root)}:{match.group('name')}: "
+                    f"range 0x{start:08X}-0x{end:08X} declares {expected} bytes but contains {len(data)}"
                 )
+                continue
             arrays.append(RawArray(path, match.group("name"), start, end, data, match.start(), match.end()))
     return arrays
 
@@ -538,11 +890,16 @@ def owner_for(arrays: list[RawArray], start: int, end: int, required: bool = Tru
     die(f"multiple raw arrays own 0x{start:08X}-0x{end:08X}: {locations}")
 
 
-def bytes_for(discovery_arrays: list[RawArray], rom: bytes, start: int, end: int) -> bytes:
+def bytes_for(discovery_arrays: list[RawArray], rom: bytes | None, start: int, end: int) -> bytes:
     owner = owner_for(discovery_arrays, start, end, required=False)
     if owner is not None:
         begin = start - owner.start
         return owner.data[begin : begin + (end - start)]
+    if rom is None:
+        die(
+            f"range 0x{start:08X}-0x{end:08X} is not covered by a valid Method 3 raw array "
+            "and no baserom is available"
+        )
     rom_start = start - ROM_BASE
     rom_end = end - ROM_BASE
     if rom_start < 0 or rom_end > len(rom):
@@ -608,7 +965,7 @@ def frame_name_map(
     return names
 
 
-def decode_oam_frame(arrays: list[RawArray], rom: bytes, address: int, name: str) -> OamFrame:
+def decode_oam_frame(arrays: list[RawArray], rom: bytes | None, address: int, name: str) -> OamFrame:
     header = bytes_for(arrays, rom, address, address + 2)
     count = u16(header, 0)
     if count > 128:
@@ -653,6 +1010,62 @@ def decode_oam_frame(arrays: list[RawArray], rom: bytes, address: int, name: str
             )
         )
     return OamFrame(address, name, tuple(entries))
+
+
+
+def encode_oam_frame(frame: OamFrame) -> bytes:
+    data = bytearray(struct.pack("<H", len(frame.entries)))
+    for entry in frame.entries:
+        data.extend(struct.pack("<HHH", entry.attr0, entry.attr1, entry.attr2))
+    return bytes(data)
+
+
+def encode_animation(entries: Sequence[AnimationEntry]) -> bytes:
+    data = bytearray()
+    for entry in entries:
+        pointer = 0 if entry.frame_address is None else entry.frame_address
+        data.extend(struct.pack("<IBBBB", pointer, entry.duration, 0, 0, 0))
+    return bytes(data)
+
+
+def decode_pointer_table(
+    arrays: list[RawArray],
+    rom: bytes | None,
+    name: str,
+    start: int,
+    end: int,
+) -> list[int]:
+    size = end - start
+    if size <= 0 or size % 4 != 0:
+        die(f"{name} pointer-table size 0x{size:X} is not a positive multiple of 4")
+    data = bytes_for(arrays, rom, start, end)
+    pointers: list[int] = []
+    for offset in range(0, len(data), 4):
+        pointer = u32(data, offset)
+        if pointer < ROM_BASE or pointer & 1:
+            die(
+                f"invalid OAM frame pointer 0x{pointer:08X} in {name} at "
+                f"0x{start + offset:08X}"
+            )
+        pointers.append(pointer)
+    if not pointers:
+        die(f"{name} contains no frame pointers")
+    return pointers
+
+
+def emit_pointer_table(table: OamPointerTable) -> str:
+    lines = [
+        f"/* 0x{table.start:08X}: decoded OAM frame-pointer table. */",
+        f"const u16 *const {table.name}[] = {{",
+    ]
+    for entry in table.entries:
+        lines.append(f"    {entry.frame_name}, /* 0x{entry.frame_address:08X} */")
+    lines.append("};")
+    return "\n".join(lines)
+
+
+def encode_pointer_table(table: OamPointerTable) -> bytes:
+    return b"".join(struct.pack("<I", entry.frame_address) for entry in table.entries)
 
 
 def emit_frame(frame: OamFrame) -> str:
@@ -783,7 +1196,10 @@ def build_discovery(root: Path, module: str, rom_override: Path | None = None, s
     typed_objects: list[TypedObject] = []
     for frame in frames:
         typed_objects.append(
-            TypedObject(frame.address, frame.address + frame.size, frame.name, emit_frame(frame), "frame")
+            TypedObject(
+                frame.address, frame.address + frame.size, frame.name, emit_frame(frame),
+                "frame", encode_oam_frame(frame)
+            )
         )
     for animation, entries in decoded_animations:
         typed_objects.append(
@@ -793,6 +1209,7 @@ def build_discovery(root: Path, module: str, rom_override: Path | None = None, s
                 animation.name,
                 emit_animation(animation, entries, names),
                 "animation",
+                encode_animation(entries),
             )
         )
     typed_objects.sort(key=lambda item: (item.start, item.end))
@@ -815,6 +1232,326 @@ def build_discovery(root: Path, module: str, rom_override: Path | None = None, s
         frames=frames,
         typed_objects=typed_objects,
     )
+
+
+
+def pointer_frame_name(table_name: str, index: int) -> str:
+    if table_name.endswith("Frames"):
+        base = table_name[:-1]
+    elif table_name.endswith("Table"):
+        base = table_name[:-5] + "Frame"
+    else:
+        base = table_name + "Frame"
+    return f"{base}{index}"
+
+
+def candidate_range_with_declared_count(candidate: OamCandidate) -> tuple[int, int]:
+    if candidate.start is None or candidate.end is None:
+        die(f"{candidate.name} has no resolvable data range")
+    end = candidate.end
+    count_text = candidate.declaration.count_text if candidate.declaration else ""
+    if count_text and re.fullmatch(r"(?:0x[0-9A-Fa-f]+|[0-9]+)", count_text):
+        count = int(count_text, 0)
+        if candidate.kind == "pointer-table":
+            proposed = candidate.start + count * 4
+            if proposed <= candidate.end:
+                end = proposed
+    return candidate.start, end
+
+
+def validate_typed_object_bytes(
+    arrays: list[RawArray], rom: bytes | None, obj: TypedObject
+) -> None:
+    if not obj.data:
+        return
+    original = bytes_for(arrays, rom, obj.start, obj.end)
+    if original != obj.data:
+        for index, (left, right) in enumerate(zip(original, obj.data)):
+            if left != right:
+                die(
+                    f"round-trip mismatch for {obj.name} at 0x{obj.start + index:08X}: "
+                    f"source 0x{left:02X}, emitted 0x{right:02X}"
+                )
+        die(
+            f"round-trip size mismatch for {obj.name}: source {len(original)} bytes, "
+            f"emitted {len(obj.data)} bytes"
+        )
+
+
+def build_auto_discovery(
+    root: Path,
+    module: str,
+    rom_override: Path | None = None,
+    source_override: Path | None = None,
+    symbol_overrides: Sequence[str] = (),
+) -> Discovery:
+    source_path = (
+        source_override if source_override and source_override.is_absolute() else root / source_override
+    ) if source_override else find_source(root, module)
+    if not source_path.is_file():
+        die(f"source file not found: {source_path}")
+
+    diagnostics: list[str] = []
+    arrays = parse_region_arrays(root, diagnostics)
+    regions = parse_regions(root)
+    overrides = parse_symbol_overrides(symbol_overrides)
+    candidates = classify_candidates(root, source_path, arrays, overrides)
+
+    if rom_override:
+        rom_path = rom_override if rom_override.is_absolute() else root / rom_override
+        if not rom_path.is_file():
+            die(f"baserom not found: {rom_path}")
+    else:
+        rom_path = find_rom_optional(root)
+    rom = rom_path.read_bytes() if rom_path is not None else None
+
+    selected = [candidate for candidate in candidates if candidate.selected]
+    if not selected:
+        already = [candidate.name for candidate in candidates if candidate.kind.startswith("already-")]
+        if already:
+            die("no new OAM objects need decoding; already typed: " + ", ".join(already))
+        die(
+            "no HIGH-confidence OAM candidates were found; run --audit and use "
+            "--symbol NAME:frame|pointer-table|animation for a reviewed override"
+        )
+
+    animations_data: list[tuple[OamCandidate, AnimationRange, list[AnimationEntry]]] = []
+    pointer_data: list[tuple[OamCandidate, int, int, list[int]]] = []
+    direct_data: list[tuple[OamCandidate, int]] = []
+    candidate_updates: dict[str, OamCandidate] = {}
+
+    for candidate in selected:
+        try:
+            start, end = candidate_range_with_declared_count(candidate)
+            if candidate.kind == "animation":
+                animation = AnimationRange(candidate.name, start, end, source_path)
+                data = bytes_for(arrays, rom, start, end)
+                entries = decode_animation(data, animation)
+                animations_data.append((candidate, animation, entries))
+            elif candidate.kind == "pointer-table":
+                pointers = decode_pointer_table(arrays, rom, candidate.name, start, end)
+                pointer_data.append((candidate, start, end, pointers))
+            elif candidate.kind == "frame":
+                # Decode exactly one frame from the symbol start. The owning raw
+                # array may intentionally contain consecutive frames.
+                decode_oam_frame(arrays, rom, start, candidate.name)
+                direct_data.append((candidate, start))
+            else:
+                continue
+            candidate_updates[candidate.name] = dataclasses.replace(
+                candidate,
+                confidence="HIGH",
+                reasons=candidate.reasons + ("binary structure validated",),
+                selected=True,
+            )
+        except ToolError as error:
+            candidate_updates[candidate.name] = dataclasses.replace(
+                candidate,
+                confidence="NO",
+                reasons=candidate.reasons + ("binary structure validation failed",),
+                selected=False,
+                error=str(error),
+            )
+
+    candidates = [candidate_updates.get(candidate.name, candidate) for candidate in candidates]
+    valid_names = {candidate.name for candidate in candidates if candidate.selected}
+    animations_data = [item for item in animations_data if item[0].name in valid_names]
+    pointer_data = [item for item in pointer_data if item[0].name in valid_names]
+    direct_data = [item for item in direct_data if item[0].name in valid_names]
+    if not (animations_data or pointer_data or direct_data):
+        errors = [candidate.error for candidate in candidates if candidate.error]
+        die("all selected OAM candidates failed structural validation:\n  " + "\n  ".join(errors))
+
+    frame_names: dict[int, str] = {}
+    # A direct symbol is the strongest canonical frame name.
+    for candidate, address in direct_data:
+        frame_names.setdefault(address, candidate.name)
+
+    pointer_tables: list[OamPointerTable] = []
+    for candidate, start, end, pointers in pointer_data:
+        entries: list[PointerTableEntry] = []
+        for index, address in enumerate(pointers):
+            name = frame_names.setdefault(address, pointer_frame_name(candidate.name, index))
+            entries.append(PointerTableEntry(address, name))
+        pointer_tables.append(OamPointerTable(candidate.name, start, end, tuple(entries)))
+
+    # Animation frame names fill only addresses not already named by direct or
+    # pointer-table evidence.
+    animation_pairs = [(animation, entries) for _, animation, entries in animations_data]
+    generated_names = frame_name_map(animation_pairs)
+    for address, name in generated_names.items():
+        frame_names.setdefault(address, name)
+
+    frames = [
+        decode_oam_frame(arrays, rom, address, name)
+        for address, name in sorted(frame_names.items())
+    ]
+
+    typed_objects: list[TypedObject] = []
+    for frame in frames:
+        typed_objects.append(
+            TypedObject(
+                frame.address,
+                frame.address + frame.size,
+                frame.name,
+                emit_frame(frame),
+                "frame",
+                encode_oam_frame(frame),
+            )
+        )
+    for _, animation, entries in animations_data:
+        typed_objects.append(
+            TypedObject(
+                animation.start,
+                animation.end,
+                animation.name,
+                emit_animation(animation, entries, frame_names),
+                "animation",
+                encode_animation(entries),
+            )
+        )
+    for table in pointer_tables:
+        typed_objects.append(
+            TypedObject(
+                table.start,
+                table.end,
+                table.name,
+                emit_pointer_table(table),
+                "pointer-table",
+                encode_pointer_table(table),
+            )
+        )
+
+    typed_objects.sort(key=lambda item: (item.start, item.end, item.name))
+    for previous, current in zip(typed_objects, typed_objects[1:]):
+        if current.start < previous.end:
+            die(
+                f"generated objects overlap: {previous.name} "
+                f"0x{previous.start:08X}-0x{previous.end:08X} and {current.name} "
+                f"0x{current.start:08X}-0x{current.end:08X}"
+            )
+    for obj in typed_objects:
+        validate_typed_object_bytes(arrays, rom, obj)
+
+    return Discovery(
+        root=root,
+        module=module,
+        source_path=source_path,
+        rom_path=rom_path,
+        symbols=[candidate.name for candidate in candidates if candidate.selected],
+        animations=[animation for _, animation, _ in animations_data],
+        arrays=arrays,
+        regions=regions,
+        frames=frames,
+        typed_objects=typed_objects,
+        candidates=candidates,
+        pointer_tables=pointer_tables,
+        diagnostics=diagnostics,
+        mode="auto",
+    )
+
+
+def audit_discovery(
+    root: Path,
+    module: str,
+    rom_override: Path | None = None,
+    source_override: Path | None = None,
+    symbol_overrides: Sequence[str] = (),
+) -> tuple[Path, list[OamCandidate], list[str]]:
+    source_path = (
+        source_override if source_override and source_override.is_absolute() else root / source_override
+    ) if source_override else find_source(root, module)
+    diagnostics: list[str] = []
+    arrays = parse_region_arrays(root, diagnostics)
+    candidates = classify_candidates(
+        root, source_path, arrays, parse_symbol_overrides(symbol_overrides)
+    )
+    if rom_override:
+        rom_path = rom_override if rom_override.is_absolute() else root / rom_override
+        if not rom_path.is_file():
+            die(f"baserom not found: {rom_path}")
+    else:
+        rom_path = find_rom_optional(root)
+    rom = rom_path.read_bytes() if rom_path is not None else None
+
+    validated: list[OamCandidate] = []
+    for candidate in candidates:
+        if not candidate.selected:
+            validated.append(candidate)
+            continue
+        try:
+            start, end = candidate_range_with_declared_count(candidate)
+            if candidate.kind == "animation":
+                animation = AnimationRange(candidate.name, start, end, source_path)
+                entries = decode_animation(bytes_for(arrays, rom, start, end), animation)
+                for entry in entries:
+                    if entry.frame_address is not None:
+                        decode_oam_frame(arrays, rom, entry.frame_address, candidate.name + "AuditFrame")
+            elif candidate.kind == "pointer-table":
+                pointers = decode_pointer_table(arrays, rom, candidate.name, start, end)
+                for address in pointers:
+                    decode_oam_frame(arrays, rom, address, candidate.name + "AuditFrame")
+            elif candidate.kind == "frame":
+                decode_oam_frame(arrays, rom, start, candidate.name)
+            validated.append(dataclasses.replace(
+                candidate,
+                confidence="HIGH",
+                reasons=candidate.reasons + ("binary structure and nested frame pointers validated",),
+                selected=True,
+            ))
+        except ToolError as error:
+            unavailable = "no baserom is available" in str(error)
+            validated.append(dataclasses.replace(
+                candidate,
+                confidence="MEDIUM" if unavailable else "NO",
+                reasons=candidate.reasons + ((
+                    "binary validation needs a baserom or complete Method 3 coverage"
+                    if unavailable else "binary structure validation failed"
+                ),),
+                selected=False,
+                error=str(error),
+            ))
+    return source_path, validated, diagnostics
+
+
+def print_candidate_audit(root: Path, source_path: Path, candidates: list[OamCandidate], diagnostics: list[str]) -> None:
+    print(f"Module source: {source_path.relative_to(root)}")
+    print("OAM classification audit:")
+    for candidate in candidates:
+        address = "unresolved" if candidate.start is None else (
+            f"0x{candidate.start:08X}-0x{candidate.end:08X}"
+        )
+        print(
+            f"  {candidate.confidence:<6} {candidate.name:<48} "
+            f"{candidate.kind:<16} {address}"
+        )
+        for reason in candidate.reasons:
+            print(f"         - {reason}")
+        if candidate.error:
+            print(f"         - ERROR: {candidate.error}")
+    if diagnostics:
+        print("Non-fatal repository diagnostics:")
+        for message in diagnostics:
+            print(f"  - {message}")
+
+
+def auto_report(discovery: Discovery, preview_path: Path | None = None) -> None:
+    print(f"Module: {discovery.module}")
+    print(f"Source: {discovery.source_path.relative_to(discovery.root)}")
+    if discovery.rom_path is None:
+        print("Baserom: not required; all selected ranges came from valid Method 3 arrays")
+    else:
+        print(f"Baserom: {discovery.rom_path.relative_to(discovery.root)}")
+    print_candidate_audit(
+        discovery.root, discovery.source_path, discovery.candidates, discovery.diagnostics
+    )
+    print(f"Selected animation tables: {len(discovery.animations)}")
+    print(f"Selected frame-pointer tables: {len(discovery.pointer_tables)}")
+    print(f"Unique OAM frames decoded: {len(discovery.frames)}")
+    print(f"Typed objects emitted: {len(discovery.typed_objects)}")
+    if preview_path:
+        print(f"Generated preview: {preview_path.relative_to(discovery.root)}")
+    print("Round-trip source bytes: MATCH for every emitted object")
 
 
 
@@ -1155,16 +1892,42 @@ def create_regions(discovery: Discovery, plans: list[RegionPlan], backup_dir: Pa
     return changed
 
 
+def table_frame_references(discovery: Discovery) -> list[str]:
+    frame_names = {frame.name for frame in discovery.frames}
+    referenced: set[str] = set()
+    for obj in discovery.typed_objects:
+        if obj.kind not in {"animation", "pointer-table"}:
+            continue
+        referenced.update(name for name in frame_names if re.search(rf"\b{re.escape(name)}\b", obj.code))
+    return sorted(referenced)
+
+
+def insert_forward_declarations(text: str, names: Sequence[str]) -> str:
+    include_matches = list(re.finditer(r'^\s*#\s*include[^\n]*\n', text, re.M))
+    offset = include_matches[-1].end() if include_matches else 0
+    declaration_scope = text[:offset]
+    missing = [
+        name for name in names
+        if not re.search(rf"\bextern\s+const\s+u16\s+{re.escape(name)}\s*\[", declaration_scope)
+    ]
+    if not missing:
+        return text
+    declarations = "\n".join(f"extern const u16 {name}[];" for name in missing) + "\n"
+    prefix = "\n" if offset and not text[offset:offset + 1] == "\n" else ""
+    return text[:offset] + prefix + declarations + text[offset:]
+
+
 def generated_preview(discovery: Discovery) -> str:
     header = [
         '#include "oam.h"',
         '#include "types.h"',
         "",
-        f"/* Generated preview for sprite_ai/{discovery.module}. */",
+        f"/* Generated preview for {discovery.module}. */",
         "/* Definitions are ordered by original ROM address. */",
         "",
     ]
-    return "\n\n".join(["\n".join(header), *(obj.code for obj in discovery.typed_objects)]) + "\n"
+    text = "\n\n".join(["\n".join(header), *(obj.code for obj in discovery.typed_objects)]) + "\n"
+    return insert_forward_declarations(text, table_frame_references(discovery))
 
 
 def affected_arrays(discovery: Discovery) -> dict[Path, list[RawArray]]:
@@ -1271,6 +2034,12 @@ def apply_changes(discovery: Discovery, backup_dir: Path) -> list[Path]:
         new_text = text
         for start, end, replacement in sorted(replacements, key=lambda item: (item[0], item[1]), reverse=True):
             new_text = new_text[:start] + replacement + new_text[end:]
+        objects_in_path = [
+            obj for obj in discovery.typed_objects
+            if (region_for(discovery.regions, obj.start, obj.end, required=False) or owner_for(discovery.arrays, obj.start, obj.end, required=False)).path == path
+        ]
+        if any(obj.kind in {"animation", "pointer-table"} for obj in objects_in_path):
+            new_text = insert_forward_declarations(new_text, table_frame_references(discovery))
         relative = path.relative_to(discovery.root)
         backup = backup_dir / relative
         backup.parent.mkdir(parents=True, exist_ok=True)
@@ -1322,16 +2091,84 @@ def report(discovery: Discovery, preview_path: Path | None = None) -> None:
         print(f"Generated preview: {preview_path.relative_to(discovery.root)}")
 
 
+
+def file_hash(path: Path, algorithm: str) -> str:
+    digest = hashlib.new(algorithm)
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_project_build(root: Path) -> tuple[Path, Path]:
+    version = os.environ.get("VERSION", "us")
+    baserom = root / f"baserom_{version}.gba"
+    target = root / "build" / version / f"warioland4_{version}.gba"
+    if not baserom.is_file():
+        die(
+            f"--verify requires {baserom.name} in the repository root; "
+            "the source changes were applied but verification could not start"
+        )
+    print("Verification: clean build")
+    try:
+        subprocess.run(["make", "clean", f"VERSION={version}"], cwd=root, check=True)
+        subprocess.run(["make", str(target.relative_to(root)), f"VERSION={version}"], cwd=root, check=True)
+    except FileNotFoundError:
+        die("--verify could not run make")
+    except subprocess.CalledProcessError as error:
+        die(f"clean build failed with exit status {error.returncode}")
+    if not target.is_file():
+        die(f"build completed without producing {target.relative_to(root)}")
+    try:
+        subprocess.run(["cmp", "-s", str(baserom), str(target)], check=True)
+    except FileNotFoundError:
+        if baserom.read_bytes() != target.read_bytes():
+            die("generated ROM differs from the baserom")
+    except subprocess.CalledProcessError:
+        die("generated ROM differs from the baserom")
+    print("Verification: full ROM cmp MATCH")
+    print(f"  MD5:    {file_hash(target, 'md5')}")
+    print(f"  SHA256: {file_hash(target, 'sha256')}")
+    return baserom, target
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Decode a sprite module's raw Method 3 OAM data into readable OAM_ENTRY C definitions."
+        description=(
+            "Audit, detect, and decode a module's raw OAM frames, AnimationFrame tables, "
+            "and OAM frame-pointer tables into readable OAM_ENTRY C definitions."
+        )
     )
-    parser.add_argument("module", nargs="?", help="module name, e.g. pinball or kaentsubo")
+    parser.add_argument("module", nargs="?", help="module name, e.g. stage_ejection or pinball")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--apply", action="store_true", help="replace owning raw arrays in place")
     mode.add_argument("--check", action="store_true", help="validate discovery and decoding only")
+    mode.add_argument("--audit", action="store_true", help="classify referenced data without modifying files")
     mode.add_argument("--plan-region", action="store_true", help="show missing Method 3 region files and safe linker changes")
+    parser.add_argument(
+        "--auto",
+        action="store_true",
+        help=(
+            "use declaration, consumer, and byte-structure detection instead of the legacy "
+            "s...Oam animation-name scan"
+        ),
+    )
+    parser.add_argument(
+        "--symbol",
+        action="append",
+        default=[],
+        metavar="NAME:KIND",
+        help=(
+            "reviewed classification override; KIND is animation, pointer-table, frame, or ignore; "
+            "may be repeated"
+        ),
+    )
     parser.add_argument("--create-region", action="store_true", help="create missing full-ASM Method 3 regions; requires --apply")
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="after --apply, run a clean project build and require full-ROM cmp identity",
+    )
     parser.add_argument("--max-region-size", type=lambda value: int(value, 0), default=0x200000,
                         help="maximum automatically generated region size (default: 0x200000)")
     parser.add_argument("--root", type=Path, default=Path.cwd(), help="repository root")
@@ -1340,22 +2177,47 @@ def main() -> int:
     args = parser.parse_args()
     if args.create_region and not args.apply:
         parser.error("--create-region must be used together with --apply")
+    if args.verify and not args.apply:
+        parser.error("--verify must be used together with --apply")
+    if args.symbol and not (args.auto or args.audit):
+        parser.error("--symbol requires --auto or --audit")
 
     try:
         root = repository_root(args.root)
         module = args.module or infer_module(root)
-        discovery = build_discovery(root, module, args.rom, args.source)
+
+        if args.audit:
+            source_path, candidates, diagnostics = audit_discovery(
+                root, module, args.rom, args.source, args.symbol
+            )
+            print_candidate_audit(root, source_path, candidates, diagnostics)
+            print("Audit completed. No source files were changed.")
+            print(
+                f"Preview HIGH-confidence conversions with: python3 tools/decode_oam.py "
+                f"{module} --auto"
+            )
+            return 0
+
+        if args.auto:
+            discovery = build_auto_discovery(
+                root, module, args.rom, args.source, args.symbol
+            )
+        else:
+            discovery = build_discovery(root, module, args.rom, args.source)
 
         output_dir = root / "build" / "oam_decode"
         output_dir.mkdir(parents=True, exist_ok=True)
         preview_path = output_dir / f"{module}_generated.c"
         preview_path.write_text(generated_preview(discovery), encoding="utf-8")
 
-        report(discovery, preview_path)
-        if discovery.regions:
-            print("Round-trip source bytes: MATCH (decoded from exact Method 3 ranges)")
+        if discovery.mode == "auto":
+            auto_report(discovery, preview_path)
         else:
-            print("Source bytes: MATCH (decoded directly from exact ASM baserom_blob ranges)")
+            report(discovery, preview_path)
+            if discovery.regions:
+                print("Round-trip source bytes: MATCH (decoded from exact Method 3 ranges)")
+            else:
+                print("Source bytes: MATCH (decoded directly from exact ASM baserom_blob ranges)")
 
         if args.plan_region:
             plans = build_region_plans(discovery, args.max_region_size)
@@ -1373,19 +2235,29 @@ def main() -> int:
                 plans = build_region_plans(discovery, args.max_region_size)
                 print_region_plan(discovery, plans)
                 changed.extend(create_regions(discovery, plans, backup_dir))
-                # Re-discover the newly created raw Method 3 arrays before typing them.
-                discovery = build_discovery(root, module, args.rom, args.source)
+                if args.auto:
+                    discovery = build_auto_discovery(
+                        root, module, args.rom, args.source, args.symbol
+                    )
+                else:
+                    discovery = build_discovery(root, module, args.rom, args.source)
             changed.extend(apply_changes(discovery, backup_dir))
             print("Updated:")
             for path in dict.fromkeys(changed):
                 print(f"  {path.relative_to(root)}")
             print(f"Backups: {backup_dir.relative_to(root)}")
-            print("Run a clean build and verify symbol addresses and the ROM MD5 before committing.")
+            if args.verify:
+                verify_project_build(root)
+            else:
+                print("Run a clean build and verify symbol addresses and the full ROM before committing.")
             return 0
 
         print("No source files were changed.")
         print(f"Review {preview_path.relative_to(root)}.")
-        if discovery.regions:
+        if args.auto:
+            print("Then apply only the HIGH-confidence conversions with:")
+            print(f"  python3 tools/decode_oam.py {module} --auto --apply")
+        elif discovery.regions:
             print("Then apply with:")
             print(f"  python3 tools/decode_oam.py {module} --apply")
         else:
