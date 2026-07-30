@@ -1022,7 +1022,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_7a1f8
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_8086354
+	bl	PrepareBossDoorOpeningResult
 	ldr	r1, .L_7a1fc
 	mov	r0, #42	@ 0x2a
 	b	.L_7a30c
@@ -1069,7 +1069,7 @@ StageSelectSubroutine:
 .L_7a244:
 	.4byte	gSubGameMode
 .L_7a248:
-	bl	func_8085E24
+	bl	UpdateBossDoorOpeningState
 	cmp	r0, #0
 	bne	.L_7a252
 	b	.L_7a36a
@@ -1146,7 +1146,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_7a2ec
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_80864B0
+	bl	PrepareBossDoorOpeningJewelDisplay
 	ldr	r1, .L_7a2f0
 	mov	r0, #42	@ 0x2a
 	b	.L_7a30c
@@ -1564,7 +1564,7 @@ func_807A528:
 	bl	func_8085D68
 	b	.L_7a662
 .L_7a658:
-	bl	func_80865A4
+	bl	UpdateBossDoorOpeningDisplay
 	b	.L_7a662
 .L_7a65e:
 	bl	func_8087388
@@ -2523,7 +2523,7 @@ func_807ACDC:
 	bl	func_8085580
 	b	.L_7adf8
 .L_7adee:
-	bl	func_8086720
+	bl	UpdateBossDoorOpeningSprites
 	b	.L_7adf8
 .L_7adf4:
 	bl	func_8087DB0

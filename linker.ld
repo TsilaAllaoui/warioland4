@@ -737,7 +737,7 @@ SECTIONS {
         obj/disasm_boss_treasure_cutscene.o(.text);
         obj/disasm_passage_clear.o(.text);
         obj/disasm_passage_screen.o(.text);
-        obj/disasm_boss_door_opening.o(.text);
+        obj/boss_door_opening.o(.text);
         obj/disasm_sound_room.o(.text);
         obj/voice_set.o(.text);
         obj/disasm_pause_screen.o(.text);
