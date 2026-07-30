@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "excluded_modules": [
+    "crt0",
+    "rom_header",
+    "syscalls",
+    "m4a_asm"
+  ],
+  "excluded_paths": [
+    "asm/data/**",
+    "asm/blob_*.s"
+  ]
+}
