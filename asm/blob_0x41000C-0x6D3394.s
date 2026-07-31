@@ -412,8 +412,8 @@ sUnk_8414A54:
 
 baserom_blob 0x414A54, 0x414A5C
 
-.global sUnk_8414A5C
-sUnk_8414A5C:
+.global sWarioCenteredScaleEffectOam
+sWarioCenteredScaleEffectOam:
 
 baserom_blob 0x414A5C, 0x414A64
 

@@ -80,6 +80,10 @@ class ToolError(RuntimeError):
     pass
 
 
+class NoNewOamObjects(ToolError):
+    pass
+
+
 @dataclasses.dataclass(frozen=True)
 class RegionFile:
     path: Path
@@ -496,6 +500,16 @@ def dma_classification(source_text: str, symbol: str) -> tuple[str | None, list[
     return None, reasons
 
 
+def animation_cast_usage(source_text: str, symbol: str) -> tuple[bool, list[str]]:
+    escaped = re.escape(symbol)
+    pattern = re.compile(
+        rf"\(\s*(?:const\s+)?struct\s+AnimationFrame\s*\*\s*\)\s*{escaped}\b"
+    )
+    if pattern.search(source_text):
+        return True, ["explicitly cast to const struct AnimationFrame * by the module"]
+    return False, []
+
+
 def declaration_kind(declaration: SymbolDeclaration, source_text: str) -> tuple[str, str, list[str]]:
     type_text = normalized_type(declaration.type_text)
     reasons = [f"declared as '{declaration.type_text}[]'"]
@@ -516,6 +530,9 @@ def declaration_kind(declaration: SymbolDeclaration, source_text: str) -> tuple[
         used, usage_reasons = direct_frame_usage(source_text, declaration.name)
         confidence = "HIGH" if used else "MEDIUM"
         return "frame", confidence, reasons + usage_reasons
+    cast_used, cast_reasons = animation_cast_usage(source_text, declaration.name)
+    if cast_used:
+        return "animation", "HIGH", reasons + cast_reasons
     if any(token in type_text for token in ("u8", "s8", "u16", "s16", "u32", "s32")):
         return "numeric-table", "NO", reasons + ["scalar array with no OAM consumer evidence"]
     return "unknown", "LOW", reasons
@@ -535,6 +552,29 @@ def parse_symbol_overrides(values: Sequence[str]) -> dict[str, str]:
         result[name] = kind
     return result
 
+
+
+def parse_typed_frame_addresses(root: Path) -> dict[int, tuple[str, Path]]:
+    pattern = re.compile(
+        r"/\*\s*0x([0-9A-Fa-f]{8})[^*]*\*/\s*"
+        r"(?:static\s+)?const\s+u16\s+"
+        r"(s[A-Za-z_][A-Za-z0-9_]*)\s*\[",
+        re.S,
+    )
+    result: dict[int, tuple[str, Path]] = {}
+    for path in candidate_region_paths(root):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for address_text, name in pattern.findall(text):
+            address = int(address_text, 16)
+            previous = result.get(address)
+            if previous is not None and previous[0] != name:
+                die(
+                    f"typed OAM frame address 0x{address:08X} has multiple definitions: "
+                    f"{previous[0]} in {previous[1].relative_to(root)}, "
+                    f"{name} in {path.relative_to(root)}"
+                )
+            result[address] = (name, path)
+    return result
 
 
 def parse_typed_definitions(root: Path) -> dict[str, tuple[str, Path]]:
@@ -1296,6 +1336,7 @@ def build_auto_discovery(
     regions = parse_regions(root)
     overrides = parse_symbol_overrides(symbol_overrides)
     candidates = classify_candidates(root, source_path, arrays, overrides)
+    typed_frames_by_address = parse_typed_frame_addresses(root)
 
     if rom_override:
         rom_path = rom_override if rom_override.is_absolute() else root / rom_override
@@ -1309,7 +1350,9 @@ def build_auto_discovery(
     if not selected:
         already = [candidate.name for candidate in candidates if candidate.kind.startswith("already-")]
         if already:
-            die("no new OAM objects need decoding; already typed: " + ", ".join(already))
+            raise NoNewOamObjects(
+                "no new OAM objects need decoding; already typed: " + ", ".join(already)
+            )
         die(
             "no HIGH-confidence OAM candidates were found; run --audit and use "
             "--symbol NAME:frame|pointer-table|animation for a reviewed override"
@@ -1325,7 +1368,9 @@ def build_auto_discovery(
             start, end = candidate_range_with_declared_count(candidate)
             if candidate.kind == "animation":
                 animation = AnimationRange(candidate.name, start, end, source_path)
-                data = bytes_for(arrays, rom, start, end)
+                if rom is not None:
+                    animation = refine_legacy_animation_ranges([animation], rom)[0]
+                data = bytes_for(arrays, rom, animation.start, animation.end)
                 entries = decode_animation(data, animation)
                 animations_data.append((candidate, animation, entries))
             elif candidate.kind == "pointer-table":
@@ -1338,10 +1383,14 @@ def build_auto_discovery(
                 direct_data.append((candidate, start))
             else:
                 continue
+            range_start = animation.start if candidate.kind == "animation" else start
+            range_end = animation.end if candidate.kind == "animation" else end
             candidate_updates[candidate.name] = dataclasses.replace(
                 candidate,
                 confidence="HIGH",
                 reasons=candidate.reasons + ("binary structure validated",),
+                start=range_start,
+                end=range_end,
                 selected=True,
             )
         except ToolError as error:
@@ -1363,28 +1412,38 @@ def build_auto_discovery(
         die("all selected OAM candidates failed structural validation:\n  " + "\n  ".join(errors))
 
     frame_names: dict[int, str] = {}
-    # A direct symbol is the strongest canonical frame name.
+
+    def canonical_frame_name(address: int, generated_name: str) -> str:
+        existing = typed_frames_by_address.get(address)
+        return existing[0] if existing is not None else generated_name
+
+    # A reviewed direct symbol is strongest unless that address is already
+    # represented by a typed frame from an earlier module conversion.
     for candidate, address in direct_data:
-        frame_names.setdefault(address, candidate.name)
+        frame_names.setdefault(address, canonical_frame_name(address, candidate.name))
 
     pointer_tables: list[OamPointerTable] = []
     for candidate, start, end, pointers in pointer_data:
         entries: list[PointerTableEntry] = []
         for index, address in enumerate(pointers):
-            name = frame_names.setdefault(address, pointer_frame_name(candidate.name, index))
+            generated_name = pointer_frame_name(candidate.name, index)
+            name = frame_names.setdefault(
+                address, canonical_frame_name(address, generated_name)
+            )
             entries.append(PointerTableEntry(address, name))
         pointer_tables.append(OamPointerTable(candidate.name, start, end, tuple(entries)))
 
     # Animation frame names fill only addresses not already named by direct or
-    # pointer-table evidence.
+    # pointer-table evidence, and reuse existing typed frames at shared addresses.
     animation_pairs = [(animation, entries) for _, animation, entries in animations_data]
     generated_names = frame_name_map(animation_pairs)
     for address, name in generated_names.items():
-        frame_names.setdefault(address, name)
+        frame_names.setdefault(address, canonical_frame_name(address, name))
 
     frames = [
         decode_oam_frame(arrays, rom, address, name)
         for address, name in sorted(frame_names.items())
+        if address not in typed_frames_by_address
     ]
 
     typed_objects: list[TypedObject] = []
@@ -1483,7 +1542,11 @@ def audit_discovery(
             start, end = candidate_range_with_declared_count(candidate)
             if candidate.kind == "animation":
                 animation = AnimationRange(candidate.name, start, end, source_path)
-                entries = decode_animation(bytes_for(arrays, rom, start, end), animation)
+                if rom is not None:
+                    animation = refine_legacy_animation_ranges([animation], rom)[0]
+                entries = decode_animation(
+                    bytes_for(arrays, rom, animation.start, animation.end), animation
+                )
                 for entry in entries:
                     if entry.frame_address is not None:
                         decode_oam_frame(arrays, rom, entry.frame_address, candidate.name + "AuditFrame")
@@ -1493,10 +1556,14 @@ def audit_discovery(
                     decode_oam_frame(arrays, rom, address, candidate.name + "AuditFrame")
             elif candidate.kind == "frame":
                 decode_oam_frame(arrays, rom, start, candidate.name)
+            range_start = animation.start if candidate.kind == "animation" else start
+            range_end = animation.end if candidate.kind == "animation" else end
             validated.append(dataclasses.replace(
                 candidate,
                 confidence="HIGH",
                 reasons=candidate.reasons + ("binary structure and nested frame pointers validated",),
+                start=range_start,
+                end=range_end,
                 selected=True,
             ))
         except ToolError as error:
@@ -1894,11 +1961,17 @@ def create_regions(discovery: Discovery, plans: list[RegionPlan], backup_dir: Pa
 
 def table_frame_references(discovery: Discovery) -> list[str]:
     frame_names = {frame.name for frame in discovery.frames}
+    frame_names.update(
+        name for name, _ in parse_typed_frame_addresses(discovery.root).values()
+    )
     referenced: set[str] = set()
     for obj in discovery.typed_objects:
         if obj.kind not in {"animation", "pointer-table"}:
             continue
-        referenced.update(name for name in frame_names if re.search(rf"\b{re.escape(name)}\b", obj.code))
+        referenced.update(
+            name for name in frame_names
+            if re.search(rf"\b{re.escape(name)}\b", obj.code)
+        )
     return sorted(referenced)
 
 
@@ -2264,6 +2337,9 @@ def main() -> int:
             print("This branch has no Method 3 shared-region C file yet.")
             print(f"Plan generation with: python3 tools/decode_oam.py {module} --plan-region")
             print(f"Create a safe full-ASM region and apply with: python3 tools/decode_oam.py {module} --create-region --apply")
+        return 0
+    except NoNewOamObjects as message:
+        print(f"decode_oam.py: {message}")
         return 0
     except ToolError as error:
         print(f"decode_oam.py: error: {error}", file=sys.stderr)

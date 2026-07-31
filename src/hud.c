@@ -34,8 +34,6 @@ extern const u8 sBossLife1Gfx[];
 extern const u8 sBossLife0Gfx[];
 
 extern s8 gUnk_3000BF0[];
-extern struct SecondarySprite gCurrentSecondarySprite;
-extern const u8 *gUnk_3000C10;
 extern const u8 sUnk_83BF986[];
 extern const u8 sBigBoardSpaceSpriteTable[];
 
@@ -858,7 +856,7 @@ playStopSound:
     }
 
     if (gUnk_3000038 == 0 || gCurrentSecondarySprite.pose == 2) {
-        gUnk_3000C10 = sUnk_83BF986;
+        gCurrentSecondarySpriteOamData = sUnk_83BF986;
     } else {
         register struct SecondarySprite *current asm("r4");
         register const u8 **destination asm("r3");
@@ -867,7 +865,7 @@ playStopSound:
         register u32 index asm("r0");
 
         current = &gCurrentSecondarySprite;
-        destination = &gUnk_3000C10;
+        destination = &gCurrentSecondarySpriteOamData;
         table = sBigBoardSpaceSpriteTable;
         spaces = sBigBoardSpaces;
         index = current->animationTimer;

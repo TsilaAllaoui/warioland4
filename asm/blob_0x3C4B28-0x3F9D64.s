@@ -1580,53 +1580,53 @@ sVizormanBeamGlowActiveOam:
 
 baserom_blob 0x3D9718, 0x3D9792
 
-.global sUnk_83D9792
-sUnk_83D9792:
+.global sBugleNote1OamFrame
+sBugleNote1OamFrame:
 
 baserom_blob 0x3D9792, 0x3D979A
 
-.global sUnk_83D979A
-sUnk_83D979A:
+.global sBugleNote2OamFrame
+sBugleNote2OamFrame:
 
 baserom_blob 0x3D979A, 0x3D97A2
 
-.global sUnk_83D97A2
-sUnk_83D97A2:
+.global sBugleNote3OamFrame
+sBugleNote3OamFrame:
 
 baserom_blob 0x3D97A2, 0x3D97AA
 
-.global sUnk_83D97AA
-sUnk_83D97AA:
+.global sBugleNote4OamFrame
+sBugleNote4OamFrame:
 
 baserom_blob 0x3D97AA, 0x3D97B2
 
-.global sUnk_83D97B2
-sUnk_83D97B2:
+.global sBugleNote5OamFrame
+sBugleNote5OamFrame:
 
 baserom_blob 0x3D97B2, 0x3D97BA
 
-.global sUnk_83D97BA
-sUnk_83D97BA:
+.global sBugleNote6OamFrame
+sBugleNote6OamFrame:
 
 baserom_blob 0x3D97BA, 0x3D97C2
 
-.global sUnk_83D97C2
-sUnk_83D97C2:
+.global sBugleNote7OamFrame
+sBugleNote7OamFrame:
 
 baserom_blob 0x3D97C2, 0x3D97CA
 
-.global sUnk_83D97CA
-sUnk_83D97CA:
+.global sBugleNote8OamFrame
+sBugleNote8OamFrame:
 
 baserom_blob 0x3D97CA, 0x3D97D2
 
-.global sUnk_83D97D2
-sUnk_83D97D2:
+.global sBugleNote9OamFrame
+sBugleNote9OamFrame:
 
 baserom_blob 0x3D97D2, 0x3D97DA
 
-.global sUnk_83D97DA
-sUnk_83D97DA:
+.global sBugleNote10OamFrame
+sBugleNote10OamFrame:
 
 baserom_blob 0x3D97DA, 0x3D97E4
 
