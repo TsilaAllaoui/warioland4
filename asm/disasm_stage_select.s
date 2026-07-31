@@ -86,7 +86,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79abc
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807B354
+	bl	StartMapScreenFromStageSelect
 	b	.L_79bb0
 	.align	2, 0
 .L_79ab8:
@@ -108,7 +108,7 @@ StageSelectSubroutine:
 .L_79adc:
 	.4byte	gSubGameMode
 .L_79ae0:
-	bl	func_807ADFC
+	bl	UpdateMapScreen
 	cmp	r0, #0
 	bne	.L_79aec
 	bl	.L_7a36a
@@ -158,7 +158,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79b58
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807B388
+	bl	StartMapScreenAfterStageExit
 	b	.L_79bb0
 	.align	2, 0
 .L_79b54:
@@ -174,7 +174,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79b78
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807B3C0
+	bl	StartMapScreenIntroSequence
 	b	.L_79bb0
 	.align	2, 0
 .L_79b74:
@@ -190,7 +190,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79b98
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807B420
+	bl	StartMapScreenFinalPassageIntro
 	b	.L_79bb0
 	.align	2, 0
 .L_79b94:
@@ -206,7 +206,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79bc4
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_807B4D4
+	bl	StartMapScreenBossUnlockSequence
 .L_79bb0:
 	ldr	r0, .L_79bc8
 	strh	r4, [r0, #0]
@@ -1552,7 +1552,7 @@ func_807A528:
 	bl	UpdateStageEntryDisplayRegisters
 	b	.L_7a662
 .L_7a640:
-	bl	func_807B758
+	bl	UpdateMapScreenBackgroundsAndText
 	b	.L_7a662
 .L_7a646:
 	bl	UpdateStageEjectionEffects
@@ -2502,7 +2502,7 @@ func_807ACDC:
 	.4byte	.L_7adf4
 	.4byte	.L_7adf4
 .L_7adc4:
-	bl	func_807C24C
+	bl	DrawMapScreenSprites
 	b	.L_7adf8
 .L_7adca:
 	bl	func_807E7B0

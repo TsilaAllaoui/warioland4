@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  93.4%   3,758 / 4,024</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████████░░░░░  84.2%   510,307 / 606,283 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  93.9%   3,777 / 4,024</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  85.0%   515,507 / 606,283 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,020 / 4,024 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1613,32 +1613,32 @@
 <rect x="612.61" y="224.87" width="10.09" height="5.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/SelectCreditsVBlankCallback: 52 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_map_screen: 0.0% matched, 7,356 bytes</title>
+<title>map_screen: 70.7% matched, 7,356 bytes</title>
 <rect x="523.99" y="232.14" width="99.47" height="112.98" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip15"><rect x="525.99" y="233.14" width="96.07" height="18.00"/></clipPath>
 <rect x="524.99" y="233.14" width="98.07" height="18.00" fill="#05080d"/>
-<text x="526.49" y="246.14" clip-path="url(#moduleLabelClip15)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_map_s…</text>
-<text x="621.06" y="245.14" text-anchor="end" clip-path="url(#moduleLabelClip15)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="524.99" y="251.14" width="43.38" height="61.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807C24C: 2,156 bytes, not matched, size=symbol</title></rect>
-<rect x="524.99" y="312.66" width="43.38" height="31.72" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807AEF0: 1,124 bytes, not matched, size=symbol</title></rect>
-<rect x="568.71" y="251.14" width="29.74" height="27.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B940: 660 bytes, not matched, size=symbol</title></rect>
-<rect x="598.80" y="251.14" width="23.90" height="27.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B544: 532 bytes, not matched, size=symbol</title></rect>
-<rect x="568.71" y="278.51" width="28.54" height="21.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807BD90: 504 bytes, not matched, size=symbol</title></rect>
-<rect x="597.60" y="278.51" width="25.10" height="21.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807BBD4: 444 bytes, not matched, size=symbol</title></rect>
-<rect x="568.71" y="300.28" width="20.87" height="15.88" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B82C: 276 bytes, not matched, size=symbol</title></rect>
-<rect x="568.71" y="316.51" width="20.87" height="14.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807ADFC: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="568.71" y="330.85" width="20.87" height="13.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807C160: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="589.93" y="300.28" width="18.16" height="15.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807BF88: 228 bytes, not matched, size=symbol</title></rect>
-<rect x="608.44" y="300.28" width="14.26" height="15.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B420: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="589.93" y="315.65" width="12.01" height="17.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B758: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="589.93" y="333.42" width="12.01" height="10.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B4D4: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="602.29" y="315.65" width="10.64" height="11.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807C06C: 108 bytes, not matched, size=symbol</title></rect>
-<rect x="613.28" y="315.65" width="9.42" height="11.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B3C0: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="602.29" y="327.90" width="9.74" height="8.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807C118: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="602.29" y="336.81" width="9.74" height="7.57" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807C0D8: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="612.38" y="327.90" width="10.33" height="6.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B388: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="612.38" y="334.45" width="5.96" height="9.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B354: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="618.69" y="334.45" width="4.02" height="9.93" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_map_screen/func_807B808: 36 bytes, not matched, size=symbol</title></rect>
+<text x="526.49" y="246.14" clip-path="url(#moduleLabelClip15)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">map_screen</text>
+<text x="621.06" y="245.14" text-anchor="end" clip-path="url(#moduleLabelClip15)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">71%</text>
+<rect x="524.99" y="251.14" width="43.38" height="61.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/DrawMapScreenSprites: 2,156 bytes, not matched, size=symbol</title></rect>
+<rect x="524.99" y="312.66" width="43.38" height="31.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/InitMapScreen: 1,124 bytes, matched, size=symbol</title></rect>
+<rect x="568.71" y="251.14" width="29.74" height="27.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenIntroSequence: 660 bytes, matched, size=symbol</title></rect>
+<rect x="598.80" y="251.14" width="23.90" height="27.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenPassageInput: 532 bytes, matched, size=symbol</title></rect>
+<rect x="568.71" y="278.51" width="28.54" height="21.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenFinalPassageSequence: 504 bytes, matched, size=symbol</title></rect>
+<rect x="597.60" y="278.51" width="25.10" height="21.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenBossUnlockSequence: 444 bytes, matched, size=symbol</title></rect>
+<rect x="568.71" y="300.28" width="20.87" height="15.88" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenPassageTransition: 276 bytes, matched, size=symbol</title></rect>
+<rect x="568.71" y="316.51" width="20.87" height="14.00" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreen: 244 bytes, matched, size=symbol</title></rect>
+<rect x="568.71" y="330.85" width="20.87" height="13.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenTreasurePalettes: 236 bytes, matched, size=symbol</title></rect>
+<rect x="589.93" y="300.28" width="18.16" height="15.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenStageStartTransition: 228 bytes, matched, size=symbol</title></rect>
+<rect x="608.44" y="300.28" width="14.26" height="15.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/StartMapScreenFinalPassageIntro: 180 bytes, matched, size=symbol</title></rect>
+<rect x="589.93" y="315.65" width="12.01" height="17.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenBackgroundsAndText: 176 bytes, matched, size=symbol</title></rect>
+<rect x="589.93" y="333.42" width="12.01" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/StartMapScreenBossUnlockSequence: 112 bytes, matched, size=symbol</title></rect>
+<rect x="602.29" y="315.65" width="10.64" height="11.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/AdvanceMapScreenWarioAnimation: 108 bytes, matched, size=symbol</title></rect>
+<rect x="613.28" y="315.65" width="9.42" height="11.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/StartMapScreenIntroSequence: 96 bytes, matched, size=symbol</title></rect>
+<rect x="602.29" y="327.90" width="9.74" height="8.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/UpdateMapScreenPaletteCycle: 72 bytes, matched, size=symbol</title></rect>
+<rect x="602.29" y="336.81" width="9.74" height="7.57" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/AdvanceMapScreenDoorAnimation: 64 bytes, matched, size=symbol</title></rect>
+<rect x="612.38" y="327.90" width="10.33" height="6.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/StartMapScreenAfterStageExit: 56 bytes, matched, size=symbol</title></rect>
+<rect x="612.38" y="334.45" width="5.96" height="9.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/StartMapScreenFromStageSelect: 52 bytes, matched, size=symbol</title></rect>
+<rect x="618.69" y="334.45" width="4.02" height="9.93" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>map_screen/ApplyMapScreenScrollVelocity: 36 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>homerun_derby: 100.0% matched, 7,092 bytes</title>
