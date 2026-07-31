@@ -4,6 +4,7 @@
 #include "score.h"
 #include "stage_select.h"
 #include "gba/m4a.h"
+#include "boss_treasure_cutscene.h"
 
 extern const u8 sUnk_8642958[];
 extern const u8 sUnk_8646358[];
@@ -90,11 +91,6 @@ void VoiceSetPlay(s32 voice);
 
 void m4aSongNumStart(u16 songNum);
 void func_80741F0(void);
-extern u16 gUnk_3003C62;
-extern const u16 sUnk_864BD78[];
-extern const u16 sUnk_864BD98[];
-extern const u16 sUnk_864BDB8[];
-extern const u16 sUnk_864BDD8[];
 
 extern u8 gLanguage;
 extern const u16 * const sUnk_8639588[];
@@ -1316,7 +1312,7 @@ void UpdateMapScreenTreasurePalettes(void)
     register u32 test asm("r0");
     register u32 byte asm("r1");
 
-    timerPtr = &gUnk_3003C62;
+    timerPtr = &gStageTransitionPaletteCycleTimer;
     test = *timerPtr;
     test += 1;
     *timerPtr = test;
@@ -1347,7 +1343,7 @@ void UpdateMapScreenTreasurePalettes(void)
     {
         dma = (vu32 *)0x040000D4;
         test = phase << 1;
-        byte = (u32)sUnk_864BD78;
+        byte = (u32)sBossTreasureGoldenPaletteCycle;
         test += byte;
         dma[0] = test;
         test = 0x050000DC;
@@ -1365,7 +1361,7 @@ void UpdateMapScreenTreasurePalettes(void)
     {
         dma = (vu32 *)0x040000D4;
         test = phase << 1;
-        byte = (u32)sUnk_864BD98;
+        byte = (u32)sBossTreasureSapphirePaletteCycle;
         test += byte;
         dma[0] = test;
         test = 0x050000FC;
@@ -1383,7 +1379,7 @@ void UpdateMapScreenTreasurePalettes(void)
     {
         dma = (vu32 *)0x040000D4;
         test = phase << 1;
-        byte = (u32)sUnk_864BDB8;
+        byte = (u32)sBossTreasureEmeraldPaletteCycle;
         test += byte;
         dma[0] = test;
         test = 0x0500011C;
@@ -1401,7 +1397,7 @@ void UpdateMapScreenTreasurePalettes(void)
     {
         dma = (vu32 *)0x040000D4;
         test = phase << 1;
-        byte = (u32)sUnk_864BDD8;
+        byte = (u32)sBossTreasureRubyPaletteCycle;
         test += byte;
         dma[0] = test;
         test = 0x0500013C;
