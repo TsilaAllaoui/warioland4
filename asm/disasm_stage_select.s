@@ -1730,7 +1730,7 @@ func_807A700:
 .L_7a7a4:
 	.4byte	gDifficulty
 .L_7a7a8:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_7a7ac:
 	cmp	r0, #1
 	bne	.L_7a7e0
@@ -1757,7 +1757,7 @@ func_807A700:
 	b	.L_7a80e
 	.align	2, 0
 .L_7a7dc:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_7a7e0:
 	ldr	r2, .L_7a818
 	add	r0, r4, #0
@@ -1789,7 +1789,7 @@ func_807A700:
 	mov	r0, #1
 	b	.L_7a81e
 .L_7a818:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_7a81c:
 	mov	r0, #0
 .L_7a81e:

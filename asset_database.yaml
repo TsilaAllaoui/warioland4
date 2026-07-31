@@ -184,10 +184,46 @@
     us_jp: 0x404648
   size: 1
 
-- path: hud/time_up.4bpp
-  count: 0xC00
+- path: hud/time_up_base.4bpp
+  count: 0x300
   addr:
     us_jp: 0x404688
+  size: 1
+
+- path: hud/time_up_text.4bpp
+  count: 0x400
+  addr:
+    us_jp: 0x404988
+  size: 1
+
+- path: hud/time_up_wario.4bpp
+  count: 0x100
+  addr:
+    us_jp: 0x404D88
+  size: 1
+
+- path: hud/time_up_effect_0.4bpp
+  count: 0x100
+  addr:
+    us_jp: 0x404E88
+  size: 1
+
+- path: hud/time_up_effect_1.4bpp
+  count: 0x100
+  addr:
+    us_jp: 0x404F88
+  size: 1
+
+- path: hud/time_up_effect_2.4bpp
+  count: 0x100
+  addr:
+    us_jp: 0x405088
+  size: 1
+
+- path: hud/time_up_effect_3.4bpp
+  count: 0x100
+  addr:
+    us_jp: 0x405188
   size: 1
 
 - path: hud/heart_meter_heart_empty.4bpp

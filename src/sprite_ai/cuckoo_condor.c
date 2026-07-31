@@ -2268,7 +2268,7 @@ void CuckooCondorPendulumSwingClockwise(void)
         size = sizeof(struct PrimarySpriteData);
         size *= slot;
         parent = (struct PrimarySpriteData *)(size + (u32)sprites);
-        SpriteSpawnSecondary(parent->yPosition - 0x20, parent->xPosition - 0x14, 6);
+        SpawnSecondarySprite(parent->yPosition - 0x20, parent->xPosition - 0x14, 6);
         CuckooCondorPendulumEndSwing();
     } else {
         value += 4;
@@ -2366,7 +2366,7 @@ void CuckooCondorPendulumSwingCounterclockwise(void)
         size = sizeof(struct PrimarySpriteData);
         size *= slot;
         parent = (struct PrimarySpriteData *)(size + (u32)sprites);
-        SpriteSpawnSecondary(parent->yPosition - 0x20, parent->xPosition + 0x14, 6);
+        SpawnSecondarySprite(parent->yPosition - 0x20, parent->xPosition + 0x14, 6);
         CuckooCondorPendulumEndSwing();
     } else {
         result = value - 4;
@@ -2608,14 +2608,14 @@ void CuckooCondorHeadAttack(void)
         value = *(u16 *)(value + 0xA);
         value -= 0x20;
         child = 0x40;
-        SpriteSpawnSecondary(temp, value, child);
+        SpawnSecondarySprite(temp, value, child);
     } else {
         temp = *(u16 *)(value + 8);
         temp -= 0x20;
         value = *(u16 *)(value + 0xA);
         value += 0x20;
         child = 0x40;
-        SpriteSpawnSecondary(temp, value, child);
+        SpawnSecondarySprite(temp, value, child);
     }
 
     temp = (u32)&gCurrentSprite;
@@ -3474,7 +3474,7 @@ void CuckooCondorChickKnockbackRight(void)
     sprite->pose = 0x20;
     sprite->work2 = 8;
     ResetCuckooCondorChickMotion();
-    SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 0x20, sprite->xPosition, 6);
 }
 
 void CuckooCondorChickKnockbackLeft(void)
@@ -3485,7 +3485,7 @@ void CuckooCondorChickKnockbackLeft(void)
     sprite->pose = 0x22;
     sprite->work2 = 8;
     ResetCuckooCondorChickMotion();
-    SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 0x20, sprite->xPosition, 6);
 }
 
 void CuckooCondorChickFallRight(void)
@@ -4451,7 +4451,7 @@ void SpriteCuckooCondorEgg(void)
         break;
     case 31:
     case 79:
-        SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition - 0x20, 6);
+        SpawnSecondarySprite(sprite->yPosition - 0x20, sprite->xPosition - 0x20, 6);
     case 106:
         CuckooCondorEggFallOffscreenRight();
     case 32:
@@ -4459,7 +4459,7 @@ void SpriteCuckooCondorEgg(void)
         break;
     case 33:
     case 80:
-        SpriteSpawnSecondary(sprite->yPosition - 0x20, sprite->xPosition + 0x20, 6);
+        SpawnSecondarySprite(sprite->yPosition - 0x20, sprite->xPosition + 0x20, 6);
     case 105:
         CuckooCondorEggFallOffscreenLeft();
     case 34:

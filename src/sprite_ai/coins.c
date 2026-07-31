@@ -828,8 +828,8 @@ void CoinCollect(void)
     gCurrentSprite.status = SPRITE_STATUS_NONE;
     switch (gCurrentSprite.globalID) {
         case PSPRITE_COIN_50POINTS:
-            ScoreGivePoints(CONVERT_SCORE(50));
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 90, gCurrentSprite.xPosition, SSPRITE_SCORE_50);
+            AddStageScore(CONVERT_SCORE(50));
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 90, gCurrentSprite.xPosition, SSPRITE_SCORE_50);
             if (gWarioData.reaction == REACTION_WATER) {
                 m4aSongNumStart(SE_GET_COIN_50POINTS_UNDERWATER);
             } else {
@@ -838,8 +838,8 @@ void CoinCollect(void)
             break;
 
         case PSPRITE_COIN_100POINTS:
-            ScoreGivePoints(CONVERT_SCORE(100));
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 120, gCurrentSprite.xPosition, SSPRITE_SCORE_100);
+            AddStageScore(CONVERT_SCORE(100));
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 120, gCurrentSprite.xPosition, SSPRITE_SCORE_100);
             if (gWarioData.reaction == REACTION_WATER) {
                 m4aSongNumStart(SE_GET_COIN_100POINTS_UNDERWATER);
             } else {
@@ -848,8 +848,8 @@ void CoinCollect(void)
             break;
 
         case PSPRITE_COIN_500POINTS:
-            ScoreGivePoints(CONVERT_SCORE(500));
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 150, gCurrentSprite.xPosition, SSPRITE_SCORE_500);
+            AddStageScore(CONVERT_SCORE(500));
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 150, gCurrentSprite.xPosition, SSPRITE_SCORE_500);
             if (gWarioData.reaction == REACTION_WATER) {
                 m4aSongNumStart(SE_GET_COIN_500POINTS_UNDERWATER);
             } else {
@@ -858,8 +858,8 @@ void CoinCollect(void)
             break;
 
         case PSPRITE_COIN_1000POINTS:
-            ScoreGivePoints(CONVERT_SCORE(1000));
-            SpriteSpawnSecondary(
+            AddStageScore(CONVERT_SCORE(1000));
+            SpawnSecondarySprite(
                 gCurrentSprite.yPosition - 180, gCurrentSprite.xPosition - BLOCK_SIZE, SSPRITE_SCORE_1000
             );
             if (gWarioData.reaction == REACTION_WATER) {
@@ -881,8 +881,8 @@ void CoinCollect(void)
             break;
 
         default:
-            ScoreGivePoints(CONVERT_SCORE(10));
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 60, gCurrentSprite.xPosition, SSPRITE_SCORE_10);
+            AddStageScore(CONVERT_SCORE(10));
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 60, gCurrentSprite.xPosition, SSPRITE_SCORE_10);
             if (gWarioData.reaction == REACTION_WATER) {
                 m4aSongNumStart(SE_GET_COIN_10POINTS_UNDERWATER);
             } else {
@@ -959,8 +959,8 @@ void DiamondCollect(void)
 {
     gCurrentSprite.status = SPRITE_STATUS_NONE;
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
-    ScoreGivePoints(CONVERT_SCORE(1000));
-    SpriteSpawnSecondary(
+    AddStageScore(CONVERT_SCORE(1000));
+    SpawnSecondarySprite(
         gCurrentSprite.yPosition - SUBPIXELS_FROM_PIXELS(25), gCurrentSprite.xPosition - BLOCK_SIZE, SSPRITE_SCORE_1000
     );
     if (gWarioData.reaction == REACTION_WATER) {
@@ -1013,10 +1013,10 @@ void SpriteCoin(void)
         }
     }
     if (gCurrentSprite.status & SPRITE_STATUS_UNDERWATER) {
-        if (gUnk_3000BEC & 1) {
+        if (gStageFrameCounter & 1) {
             TIMER_COUNT_DOWN(gCurrentSprite.currentAnimationFrame);
         }
-        if (gUnk_3000BEC & 3 && gCurrentSprite.pose != SPOSE_CRUSHED_OR_COLLECTED_INIT) {
+        if (gStageFrameCounter & 3 && gCurrentSprite.pose != SPOSE_CRUSHED_OR_COLLECTED_INIT) {
             return;
         }
     }

@@ -732,9 +732,9 @@ void func_803B49C(void)
     sprite->pose = 32;
 
     if (gWarioData.horizontalDirection == 32) {
-        SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition + 96, 6);
+        SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition + 96, 6);
     } else {
-        SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition - 96, 6);
+        SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition - 96, 6);
     }
 
     {

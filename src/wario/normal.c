@@ -4786,7 +4786,7 @@ subgame_tail_801318C:
         case 18:
             if (gHeartMeter.unk_2 == 0 && gHeartMeter.current != 0) {
                 gHeartMeter.current--;
-                SpriteSpawnSecondary(gWarioData.yPosition - 96,
+                SpawnSecondarySprite(gWarioData.yPosition - 96,
                     gWarioData.xPosition, 48);
             }
             pose = (u32)&gWarioData;

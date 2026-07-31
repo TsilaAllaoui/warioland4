@@ -260,9 +260,9 @@ void MarumenTackledInit(void)
     if (globalId == PSPRITE_MARUMEN_RED) {
         effect = 5;
     }
-    func_807687C(globalId, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(globalId, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, effect);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
@@ -297,9 +297,9 @@ void MarumenDefeatedInit(void)
     if (globalId == PSPRITE_MARUMEN_RED) {
         effect = 5;
     }
-    func_807687C(globalId, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(globalId, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, effect);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }
 
@@ -423,7 +423,7 @@ void MarumenCrushed(void)
 
                 yPosition = sprite->yPosition;
                 xPosition = sprite->xPosition;
-                func_807687C(globalId, yPosition, xPosition, effect);
+                SpawnEnemyScoreDrop(globalId, yPosition, xPosition, effect);
             }
         }
     }
@@ -440,7 +440,7 @@ void MarumenInstantlyKill(void)
     if (globalId == PSPRITE_MARUMEN_RED) {
         effect = 5;
     }
-    func_807687C(globalId, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(globalId, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, effect);
     SpriteUtilDie();
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;

@@ -1050,15 +1050,15 @@ void UpdateCatbatLandingAttack(void)
         maskedFacing <<= 16;
         facing = (u32)maskedFacing >> 16;
         if (facing != 0) {
-            SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 60, 7);
-            SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 4, 7);
-            SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition - 116, 7);
+            SpawnSecondarySprite(sprite->yPosition + 128, sprite->xPosition - 60, 7);
+            SpawnSecondarySprite(sprite->yPosition + 128, sprite->xPosition - 4, 7);
+            SpawnSecondarySprite(sprite->yPosition + 128, sprite->xPosition - 116, 7);
             SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossState, 0, sprite->yPosition + 128,
                 sprite->xPosition - 128, facingMask);
         } else {
-            SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 4, 7);
-            SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 60, 7);
-            SpriteSpawnSecondary(sprite->yPosition + 128, sprite->xPosition + 116, 7);
+            SpawnSecondarySprite(sprite->yPosition + 128, sprite->xPosition + 4, 7);
+            SpawnSecondarySprite(sprite->yPosition + 128, sprite->xPosition + 60, 7);
+            SpawnSecondarySprite(sprite->yPosition + 128, sprite->xPosition + 116, 7);
             SpawnPrimarySpriteWithStatus(PSPRITE_CATBAT_LANDING_DEBRIS, gBossState, 0, sprite->yPosition + 128,
                 sprite->xPosition + 128, facing);
         }
@@ -1133,7 +1133,7 @@ void InitCatbatDefeat(void)
     pose = 64;
     *(u8 *)sprite = pose;
     wario = &gWarioData;
-    SpriteSpawnSecondary(wario->yPosition, wario->xPosition, 5);
+    SpawnSecondarySprite(wario->yPosition, wario->xPosition, 5);
     SpriteUtilTurnTowardWario();
     UpdateCatbatHitboxFacing();
     VoiceSetPlay(14);
@@ -1264,13 +1264,13 @@ void UpdateCatbatDamaged(void)
             goto move;
 
         if (timer == 88) {
-            SpriteSpawnSecondary(sprite->yPosition - 216, sprite->xPosition, 6);
+            SpawnSecondarySprite(sprite->yPosition - 216, sprite->xPosition, 6);
             SpriteSpawnAsChild(10, 0, 0, sprite->yPosition - 128, sprite->xPosition);
             m4aSongNumStart(SOUND_D5);
         } else if (timer == 80) {
-            SpriteSpawnSecondary(sprite->yPosition - 144, sprite->xPosition - 32, 6);
+            SpawnSecondarySprite(sprite->yPosition - 144, sprite->xPosition - 32, 6);
         } else if (timer == 72) {
-            SpriteSpawnSecondary(sprite->yPosition - 144, sprite->xPosition + 32, 6);
+            SpawnSecondarySprite(sprite->yPosition - 144, sprite->xPosition + 32, 6);
         } else if (timer == 64) {
             DmaCopy16(3, sUnk_83CBE54, (void *)0x06015420, 0xE0);
             sprite->warioCollision = 63;
@@ -2794,7 +2794,7 @@ void InitCatbatAttackEffectDespawn(void)
         sprite = &gCurrentSprite;
         zero = 0;
         sprite->status = zero;
-        SpriteSpawnSecondary(sprite->yPosition, sprite->xPosition, 64);
+        SpawnSecondarySprite(sprite->yPosition, sprite->xPosition, 64);
     } else {
         sprite = &gCurrentSprite;
         sprite->pOamData = sCatbatOam_83CF8BC;

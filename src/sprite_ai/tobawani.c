@@ -14,7 +14,7 @@ void TobawaniEnterWater(void)
     gCurrentSprite.pose = 39;
     gCurrentSprite.warioCollision = 80;
     m4aSongNumStart(SE_ENTER_WATER);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, SSPRITE_07);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, SSPRITE_07);
     gCurrentSprite.status &= ~0x200;
     gCurrentSprite.status |= 0x400;
     gCurrentSprite.hitboxExtentUp = 64;
@@ -319,8 +319,8 @@ void TobawaniPrepareFallOffscreen(void)
     gCurrentSprite.work2 = 8;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, SSPRITE_06);
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, SSPRITE_06);
     gCurrentSprite.status &= ~0x100;
     gCurrentSprite.status |= 0x200;
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
@@ -434,7 +434,7 @@ void TobawaniWallFallLeft(void)
 
 void TobawaniDie(void)
 {
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
     SpriteUtilDie();
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
 }

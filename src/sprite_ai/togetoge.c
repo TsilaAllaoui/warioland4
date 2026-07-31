@@ -104,7 +104,7 @@ void TogetogeStartFallingOffscreen(void)
     gCurrentSprite.work2 = 4;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gCurrentSprite.status = (gCurrentSprite.status & 0xFEFF) | 0x200;
 }
 
@@ -222,7 +222,7 @@ pose_70:
             break;
         default:
             gCurrentSprite.status = 0;
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 5);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 5);
             gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot]--;
             break;
     }

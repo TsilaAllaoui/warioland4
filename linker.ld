@@ -105,17 +105,17 @@ SECTIONS {
 
         . = 0x0b80; gSecondarySpriteData = .;
         . = 0x0be0; gCurrentSecondarySprite = .;
-        . = 0x0bec; gUnk_3000BEC = .;
-        . = 0x0bf0; gUnk_3000BF0 = .;
+        . = 0x0bec; gStageFrameCounter = .;
+        . = 0x0bf0; gStageTimerDigits = .;
         . = 0x0bf4; gTotalScore = .;
         . = 0x0bf8; gStageScore = .;
         . = 0x0bfc; gScoreDigits = .;
-        . = 0x0c01; gUnk_3000C01 = .;
-        . = 0x0c02; gUnk_3000C02 = .;
-        . = 0x0c03; gUnk_3000C03 = .;
+        . = 0x0c01; gStageTimerDigitsState = .;
+        . = 0x0c02; gStageScoreDigitsDirty = .;
+        . = 0x0c03; gStageTimerColonState = .;
         . = 0x0c04; gUnk_3000C04 = .;
         . = 0x0c05; gUnk_3000C05 = .;
-        . = 0x0c06; gUnk_3000C06 = .;
+        . = 0x0c06; gEnemyScoreDropCounter = .;
         . = 0x0c07; gCollectedNEJewelPiece = .;
         . = 0x0c08; gCollectedSEJewelPiece = .;
         . = 0x0c09; gCollectedSWJewelPiece = .;
@@ -716,7 +716,7 @@ SECTIONS {
         obj/disasm_save_file.o(.text);
         obj/boss_pause.o(.text);
         obj/hud.o(.text);
-        obj/disasm_score.o(.text);
+        obj/score.o(.text);
         obj/secondary_sprite_ai.o(.text);
         obj/disasm_stage_select.o(.text);
         obj/disasm_map_screen.o(.text);

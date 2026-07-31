@@ -199,7 +199,7 @@ void BowlerStartDying(void)
     sprite->pose = 50;
     sprite->work0 = 8;
     sprite->status = (sprite->status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES) | SPRITE_STATUS_MAYBE_DEAD;
-    func_807687C(sprite->globalID, sprite->yPosition, sprite->xPosition, 10);
+    SpawnEnemyScoreDrop(sprite->globalID, sprite->yPosition, sprite->xPosition, 10);
     gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }
 
@@ -507,15 +507,15 @@ void DestroyBowlerBall(void)
     sprite = &gCurrentSprite;
     if (sprite->status & SPRITE_STATUS_ONSCREEN) {
         if (sprite->status & SPRITE_STATUS_FACING_RIGHT) {
-            SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition + 32, 8);
-            SpriteSpawnSecondary(sprite->yPosition - 96, sprite->xPosition + 32, 14);
-            SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition - 32, 14);
-            SpriteSpawnSecondary(sprite->yPosition - 96, sprite->xPosition - 32, 8);
+            SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition + 32, 8);
+            SpawnSecondarySprite(sprite->yPosition - 96, sprite->xPosition + 32, 14);
+            SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition - 32, 14);
+            SpawnSecondarySprite(sprite->yPosition - 96, sprite->xPosition - 32, 8);
         } else {
-            SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition + 32, 9);
-            SpriteSpawnSecondary(sprite->yPosition - 96, sprite->xPosition + 32, 15);
-            SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition - 32, 15);
-            SpriteSpawnSecondary(sprite->yPosition - 96, sprite->xPosition - 32, 9);
+            SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition + 32, 9);
+            SpawnSecondarySprite(sprite->yPosition - 96, sprite->xPosition + 32, 15);
+            SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition - 32, 15);
+            SpawnSecondarySprite(sprite->yPosition - 96, sprite->xPosition - 32, 9);
         }
     }
     *(volatile u16*)&gCurrentSprite.status = 0;

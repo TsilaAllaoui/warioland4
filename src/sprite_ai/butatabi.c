@@ -92,7 +92,7 @@ void StartButatabiTackled(void)
     asm("" : "+r"(work3Pointer));
     *work3Pointer = 8;
     sprite->status = (sprite->status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES) | SPRITE_STATUS_MAYBE_DEAD;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, SSPRITE_06);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, SSPRITE_06);
 }
 
 void InitButatabiTackledRight(void)
@@ -127,7 +127,7 @@ void StartButatabiBumped(void)
     work3Pointer--;
     asm("" : "+r"(work3Pointer));
     *work3Pointer = 7;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, SSPRITE_06);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, SSPRITE_06);
 }
 
 void InitButatabiBumpedRight(void)

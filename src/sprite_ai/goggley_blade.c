@@ -438,8 +438,8 @@ void DefeatGoggleyBlade(void)
     gCurrentSprite.work2 = 8;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, SSPRITE_06);
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, SSPRITE_06);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;

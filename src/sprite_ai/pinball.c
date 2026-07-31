@@ -404,7 +404,7 @@ void PinballLockUpDisappear(void)
             gCurrentSprite.yPosition,
             gCurrentSprite.xPosition
         );
-        func_80767DC(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
+        SpawnScoreCoinDropSprites(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
     }
 }
 
@@ -607,7 +607,7 @@ void PinballLockDownDisappear(void)
             gCurrentSprite.yPosition,
             gCurrentSprite.xPosition
         );
-        func_80767DC(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
+        SpawnScoreCoinDropSprites(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
     }
 }
 
@@ -800,7 +800,7 @@ void PinballLockLeftDisappear(void)
             gCurrentSprite.yPosition,
             gCurrentSprite.xPosition
         );
-        func_80767DC(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
+        SpawnScoreCoinDropSprites(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
     }
 }
 
@@ -993,7 +993,7 @@ void PinballLockRightDisappear(void)
             gCurrentSprite.yPosition,
             gCurrentSprite.xPosition
         );
-        func_80767DC(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
+        SpawnScoreCoinDropSprites(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 5);
     }
 }
 
@@ -1143,7 +1143,7 @@ void PinballCounterComplete(void)
             gCurrentSprite.yPosition,
             gCurrentSprite.xPosition
         );
-        func_80767DC(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 50);
+        SpawnScoreCoinDropSprites(gCurrentSprite.yPosition, gCurrentSprite.xPosition, 50);
         VoiceSetPlay(VS_WARIO_TREASURE);
     }
 }

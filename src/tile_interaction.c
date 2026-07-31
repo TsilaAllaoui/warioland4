@@ -1074,7 +1074,7 @@ s32 ProcessSpecialBossTile(struct TileInteractionContext *ctx)
     result = state->xTile;
     result <<= 6;
     result += 32;
-    SpriteSpawnSecondary(value, result, 68);
+    SpawnSecondarySprite(value, result, 68);
     result = 1;
 done:
     value = result;
@@ -1909,7 +1909,7 @@ s32 ProcessWarioReactionTile(s32 attribute, s32 pose)
         if (gWarioData.reaction == 8)
             gWarioData.reaction = 0;
         sWarioPoseRequestFuncTable[gWarioData.reaction]((u8)poseReg);
-        ScoreGiveOrDropCoins(-10);
+        ChangeStageScoreAndDropCoins(-10);
     }
     return hit;
 }

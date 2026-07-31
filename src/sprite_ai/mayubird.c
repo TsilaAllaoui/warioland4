@@ -220,7 +220,7 @@ void MayubirdPrepareLongFall(void)
         asm volatile("strb %1, [%0]" : : "r"(work3Pointer), "r"(zero));
     }
     sprite->drawPriority = zero;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     sprite->status = (sprite->status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES) | SPRITE_STATUS_MAYBE_DEAD;
 }
 
@@ -257,7 +257,7 @@ void MayubirdPrepareShortFall(void)
         asm volatile("strb %1, [%0]" : : "r"(work3Pointer), "r"(zero));
     }
     asm volatile("strb %1, [%0, #26]" : : "r"(sprite), "r"(zero));
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     {
         register u16 status asm("r0");
         register int deadFlag asm("r2");

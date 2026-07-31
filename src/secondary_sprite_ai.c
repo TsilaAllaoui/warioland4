@@ -10,6 +10,7 @@
 #include "fixed_point.h"
 #include "oam.h"
 #include "score.h"
+#include "hud.h"
 #include "sprite.h"
 #include "gba/m4a.h"
 #include "sprite_ai/shopkeeper.h"
@@ -17,8 +18,6 @@
 #include "sprite_ai/keyzer.h"
 #include "wario.h"
 
-extern void func_8076784(void);
-extern void func_8075974(void);
 extern void func_80708DC(u32 value);
 
 extern const u16 sTimeUpTextPal[];
@@ -117,7 +116,6 @@ extern const u16 sUnk_841203E[];
 extern const u16 sUnk_841204C[];
 extern const u16 sUnk_841205A[];
 extern const s16 sUnk_8416A46[];
-extern const u8 sTimeUpGfx[];
 extern const u16 sUnk_8411994[];
 extern const struct AnimationFrame sUnk_8411A4C[];
 extern const u16 sUnk_8414A4C[];
@@ -278,7 +276,7 @@ void UpdateSecondarySpriteRisingScaleTrail(void)
 
         sprite = &gCurrentSecondarySprite;
         sprite->status |= 2;
-        func_8076A0C(sUnk_8412080);
+        AdvanceSecondarySpriteAnimation(sUnk_8412080);
 
         timer = sprite->timer;
         xTable = sUnk_8416674;
@@ -419,38 +417,38 @@ void UpdateLittleHeartPopSecondarySprite(void)
 }
 void UpdateVerticalMotionEffectSecondarySprite(void)
 {
-    func_8076A0C(sUnk_840F248);
+    AdvanceSecondarySpriteAnimation(sUnk_840F248);
     ApplySecondarySpriteVerticalMotionTable();
 }
 
 void UpdateScaleMotionEffectBSecondarySprite(void)
 {
-    func_8076A0C(sUnk_840F258);
+    AdvanceSecondarySpriteAnimation(sUnk_840F258);
     ApplySecondarySpriteScaleMotionTableB();
 }
 
 void UpdateScaleMotionEffectASecondarySprite(void)
 {
-    func_8076A0C(sUnk_840F268);
+    AdvanceSecondarySpriteAnimation(sUnk_840F268);
     ApplySecondarySpriteScaleMotionTableA();
 }
 
 void UpdateScaleMotionEffectCSecondarySprite(void)
 {
-    func_8076A0C(sUnk_840F278);
+    AdvanceSecondarySpriteAnimation(sUnk_840F278);
     ApplySecondarySpriteScaleMotionTableA();
 }
 
 void UpdateScaleMotionEffectDSecondarySprite(void)
 {
-    func_8076A0C(sUnk_840F288);
+    AdvanceSecondarySpriteAnimation(sUnk_840F288);
     ApplySecondarySpriteScaleMotionTableA();
 }
 
 void UpdateTimedSecondarySpriteAnimationA(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_840FAD4);
+    AdvanceSecondarySpriteAnimation(sUnk_840FAD4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -459,7 +457,7 @@ void UpdateTimedSecondarySpriteAnimationA(void)
 void UpdateSoundedTimedSecondarySpriteAnimation(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_840FB94);
+    AdvanceSecondarySpriteAnimation(sUnk_840FB94);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -473,7 +471,7 @@ void UpdateSoundedTimedSecondarySpriteAnimation(void)
 
 void UpdateSilentTimedSecondarySpriteAnimation(void)
 {
-    func_8076A0C(sUnk_840FB94);
+    AdvanceSecondarySpriteAnimation(sUnk_840FB94);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -485,7 +483,7 @@ void UpdateSilentTimedSecondarySpriteAnimation(void)
 void UpdateGoldenDivaBlackChickIntroSecondarySprite(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8414614);
+    AdvanceSecondarySpriteAnimation(sUnk_8414614);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -494,7 +492,7 @@ void UpdateGoldenDivaBlackChickIntroSecondarySprite(void)
 void UpdateGoldenDivaBlackChickSecondarySprite(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sGoldenDivaBlackChickFinalOam);
+    AdvanceSecondarySpriteAnimation(sGoldenDivaBlackChickFinalOam);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -503,7 +501,7 @@ void UpdateGoldenDivaBlackChickSecondarySprite(void)
 void UpdateGoldenDivaFinalEffectSecondarySprite(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8414824);
+    AdvanceSecondarySpriteAnimation(sUnk_8414824);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -512,7 +510,7 @@ void UpdateGoldenDivaFinalEffectSecondarySprite(void)
 void UpdateShortShopEffectSecondarySprite(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sShopEffectShortAOam);
+    AdvanceSecondarySpriteAnimation(sShopEffectShortAOam);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -521,7 +519,7 @@ void UpdateShortShopEffectSecondarySprite(void)
 void UpdateLongShopEffectSecondarySprite(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sShopEffectLongOam);
+    AdvanceSecondarySpriteAnimation(sShopEffectLongOam);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -530,7 +528,7 @@ void UpdateLongShopEffectSecondarySprite(void)
 void UpdateTimedSecondarySpriteAnimationB(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_840FC7C);
+    AdvanceSecondarySpriteAnimation(sUnk_840FC7C);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -539,7 +537,7 @@ void UpdateTimedSecondarySpriteAnimationB(void)
 void UpdateTimedSecondarySpriteAnimationC(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_840FE74);
+    AdvanceSecondarySpriteAnimation(sUnk_840FE74);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -548,7 +546,7 @@ void UpdateTimedSecondarySpriteAnimationC(void)
 void UpdateTimedSecondarySpriteAnimationD(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_840FEA4);
+    AdvanceSecondarySpriteAnimation(sUnk_840FEA4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -557,7 +555,7 @@ void UpdateTimedSecondarySpriteAnimationD(void)
 void UpdateProfessorProjectileSecondarySprite(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sProfessorProjectileOam);
+    AdvanceSecondarySpriteAnimation(sProfessorProjectileOam);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -566,7 +564,7 @@ void UpdateProfessorProjectileSecondarySprite(void)
 void UpdateTimedSecondarySpriteAnimationE(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_841000C);
+    AdvanceSecondarySpriteAnimation(sUnk_841000C);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -575,7 +573,7 @@ void UpdateTimedSecondarySpriteAnimationE(void)
 void UpdateTimedSecondarySpriteAnimationF(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_83D86C4);
+    AdvanceSecondarySpriteAnimation(sUnk_83D86C4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -588,23 +586,23 @@ void UpdatePurchasedShopItemSecondarySprite(void)
     switch (gCurrentShopItem)
     {
         case 1:
-            func_8076A0C(sPurchasedAppleBombOam);
+            AdvanceSecondarySpriteAnimation(sPurchasedAppleBombOam);
             break;
 
         case 2:
-            func_8076A0C(sPurchasedBlastCannonOam);
+            AdvanceSecondarySpriteAnimation(sPurchasedBlastCannonOam);
             break;
 
         case 5:
-            func_8076A0C(sPurchasedBlackDogOam);
+            AdvanceSecondarySpriteAnimation(sPurchasedBlackDogOam);
             break;
 
         case 7:
-            func_8076A0C(sPurchasedBigFistOam);
+            AdvanceSecondarySpriteAnimation(sPurchasedBigFistOam);
             break;
 
         case 8:
-            func_8076A0C(sPurchasedBlackDragonOam);
+            AdvanceSecondarySpriteAnimation(sPurchasedBlackDragonOam);
             break;
 
         default:
@@ -1051,7 +1049,7 @@ void UpdateBugleNote5SecondarySprite(void)
 void UpdateTimedSecondarySpriteAnimation00(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410544);
+    AdvanceSecondarySpriteAnimation(sUnk_8410544);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1060,7 +1058,7 @@ void UpdateTimedSecondarySpriteAnimation00(void)
 void UpdateTimedSecondarySpriteAnimation01(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84105A4);
+    AdvanceSecondarySpriteAnimation(sUnk_84105A4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1069,7 +1067,7 @@ void UpdateTimedSecondarySpriteAnimation01(void)
 void UpdateTimedSecondarySpriteAnimation02(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410AB4);
+    AdvanceSecondarySpriteAnimation(sUnk_8410AB4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1078,7 +1076,7 @@ void UpdateTimedSecondarySpriteAnimation02(void)
 void UpdateTimedSecondarySpriteAnimation03(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410B14);
+    AdvanceSecondarySpriteAnimation(sUnk_8410B14);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1087,7 +1085,7 @@ void UpdateTimedSecondarySpriteAnimation03(void)
 void UpdateTimedSecondarySpriteAnimation04(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84110B8);
+    AdvanceSecondarySpriteAnimation(sUnk_84110B8);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1096,7 +1094,7 @@ void UpdateTimedSecondarySpriteAnimation04(void)
 void UpdateTimedSecondarySpriteAnimation05(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8411128);
+    AdvanceSecondarySpriteAnimation(sUnk_8411128);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1105,7 +1103,7 @@ void UpdateTimedSecondarySpriteAnimation05(void)
 void UpdateTimedSecondarySpriteAnimation06(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410D90);
+    AdvanceSecondarySpriteAnimation(sUnk_8410D90);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1114,7 +1112,7 @@ void UpdateTimedSecondarySpriteAnimation06(void)
 void UpdateTimedSecondarySpriteAnimation07(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410E00);
+    AdvanceSecondarySpriteAnimation(sUnk_8410E00);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1123,7 +1121,7 @@ void UpdateTimedSecondarySpriteAnimation07(void)
 void UpdateTimedSecondarySpriteAnimation08(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410484);
+    AdvanceSecondarySpriteAnimation(sUnk_8410484);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1132,7 +1130,7 @@ void UpdateTimedSecondarySpriteAnimation08(void)
 void UpdateTimedSecondarySpriteAnimation09(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84104E4);
+    AdvanceSecondarySpriteAnimation(sUnk_84104E4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1141,7 +1139,7 @@ void UpdateTimedSecondarySpriteAnimation09(void)
 void UpdateTimedSecondarySpriteAnimation10(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84109F4);
+    AdvanceSecondarySpriteAnimation(sUnk_84109F4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1150,7 +1148,7 @@ void UpdateTimedSecondarySpriteAnimation10(void)
 void UpdateTimedSecondarySpriteAnimation11(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8410A54);
+    AdvanceSecondarySpriteAnimation(sUnk_8410A54);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1159,7 +1157,7 @@ void UpdateTimedSecondarySpriteAnimation11(void)
 void UpdateTimedSecondarySpriteAnimation12(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412538);
+    AdvanceSecondarySpriteAnimation(sUnk_8412538);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1168,7 +1166,7 @@ void UpdateTimedSecondarySpriteAnimation12(void)
 void UpdateTimedSecondarySpriteAnimation13(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412598);
+    AdvanceSecondarySpriteAnimation(sUnk_8412598);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1177,7 +1175,7 @@ void UpdateTimedSecondarySpriteAnimation13(void)
 void UpdateTimedSecondarySpriteAnimation14(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412AA8);
+    AdvanceSecondarySpriteAnimation(sUnk_8412AA8);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1186,7 +1184,7 @@ void UpdateTimedSecondarySpriteAnimation14(void)
 void UpdateTimedSecondarySpriteAnimation15(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412B08);
+    AdvanceSecondarySpriteAnimation(sUnk_8412B08);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1195,7 +1193,7 @@ void UpdateTimedSecondarySpriteAnimation15(void)
 void UpdateTimedSecondarySpriteAnimation16(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_841317C);
+    AdvanceSecondarySpriteAnimation(sUnk_841317C);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1204,7 +1202,7 @@ void UpdateTimedSecondarySpriteAnimation16(void)
 void UpdateTimedSecondarySpriteAnimation17(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84131EC);
+    AdvanceSecondarySpriteAnimation(sUnk_84131EC);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1213,7 +1211,7 @@ void UpdateTimedSecondarySpriteAnimation17(void)
 void UpdateTimedSecondarySpriteAnimation18(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412D84);
+    AdvanceSecondarySpriteAnimation(sUnk_8412D84);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1222,7 +1220,7 @@ void UpdateTimedSecondarySpriteAnimation18(void)
 void UpdateTimedSecondarySpriteAnimation19(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412DF4);
+    AdvanceSecondarySpriteAnimation(sUnk_8412DF4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1231,7 +1229,7 @@ void UpdateTimedSecondarySpriteAnimation19(void)
 void UpdateTimedSecondarySpriteAnimation20(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412478);
+    AdvanceSecondarySpriteAnimation(sUnk_8412478);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1240,7 +1238,7 @@ void UpdateTimedSecondarySpriteAnimation20(void)
 void UpdateTimedSecondarySpriteAnimation21(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84124D8);
+    AdvanceSecondarySpriteAnimation(sUnk_84124D8);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1249,7 +1247,7 @@ void UpdateTimedSecondarySpriteAnimation21(void)
 void UpdateTimedSecondarySpriteAnimation22(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84129E8);
+    AdvanceSecondarySpriteAnimation(sUnk_84129E8);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1258,7 +1256,7 @@ void UpdateTimedSecondarySpriteAnimation22(void)
 void UpdateTimedSecondarySpriteAnimation23(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8412A48);
+    AdvanceSecondarySpriteAnimation(sUnk_8412A48);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1267,7 +1265,7 @@ void UpdateTimedSecondarySpriteAnimation23(void)
 void UpdateTimedSecondarySpriteAnimation24(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84137E4);
+    AdvanceSecondarySpriteAnimation(sUnk_84137E4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1276,7 +1274,7 @@ void UpdateTimedSecondarySpriteAnimation24(void)
 void UpdateTimedSecondarySpriteAnimation25(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413844);
+    AdvanceSecondarySpriteAnimation(sUnk_8413844);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1285,7 +1283,7 @@ void UpdateTimedSecondarySpriteAnimation25(void)
 void UpdateTimedSecondarySpriteAnimation26(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413D54);
+    AdvanceSecondarySpriteAnimation(sUnk_8413D54);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1294,7 +1292,7 @@ void UpdateTimedSecondarySpriteAnimation26(void)
 void UpdateTimedSecondarySpriteAnimation27(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413DB4);
+    AdvanceSecondarySpriteAnimation(sUnk_8413DB4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1303,7 +1301,7 @@ void UpdateTimedSecondarySpriteAnimation27(void)
 void UpdateTimedSecondarySpriteAnimation28(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8414428);
+    AdvanceSecondarySpriteAnimation(sUnk_8414428);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1312,7 +1310,7 @@ void UpdateTimedSecondarySpriteAnimation28(void)
 void UpdateTimedSecondarySpriteAnimation29(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8414498);
+    AdvanceSecondarySpriteAnimation(sUnk_8414498);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1321,7 +1319,7 @@ void UpdateTimedSecondarySpriteAnimation29(void)
 void UpdateTimedSecondarySpriteAnimation30(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8414030);
+    AdvanceSecondarySpriteAnimation(sUnk_8414030);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1330,7 +1328,7 @@ void UpdateTimedSecondarySpriteAnimation30(void)
 void UpdateTimedSecondarySpriteAnimation31(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84140A0);
+    AdvanceSecondarySpriteAnimation(sUnk_84140A0);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1339,7 +1337,7 @@ void UpdateTimedSecondarySpriteAnimation31(void)
 void UpdateTimedSecondarySpriteAnimation32(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413724);
+    AdvanceSecondarySpriteAnimation(sUnk_8413724);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1348,7 +1346,7 @@ void UpdateTimedSecondarySpriteAnimation32(void)
 void UpdateTimedSecondarySpriteAnimation33(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413784);
+    AdvanceSecondarySpriteAnimation(sUnk_8413784);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1357,7 +1355,7 @@ void UpdateTimedSecondarySpriteAnimation33(void)
 void UpdateTimedSecondarySpriteAnimation34(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413C94);
+    AdvanceSecondarySpriteAnimation(sUnk_8413C94);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1366,7 +1364,7 @@ void UpdateTimedSecondarySpriteAnimation34(void)
 void UpdateTimedSecondarySpriteAnimation35(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_8413CF4);
+    AdvanceSecondarySpriteAnimation(sUnk_8413CF4);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1375,7 +1373,7 @@ void UpdateTimedSecondarySpriteAnimation35(void)
 void UpdateTimedSecondarySpriteAnimation36(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_841162C);
+    AdvanceSecondarySpriteAnimation(sUnk_841162C);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1384,7 +1382,7 @@ void UpdateTimedSecondarySpriteAnimation36(void)
 void UpdateTimedSecondarySpriteAnimation37(void)
 {
     gCurrentSecondarySprite.timer++;
-    func_8076A0C(sUnk_84116DC);
+    AdvanceSecondarySpriteAnimation(sUnk_84116DC);
 
     if (gCurrentSecondarySprite.animationTimer == 0 && gCurrentSecondarySprite.work0 == 0)
         gCurrentSecondarySprite.status = 0;
@@ -1422,14 +1420,14 @@ void UpdateKeyzerSecondarySprite(void)
 
     if (gTimerState > 4)
     {
-        func_8076784();
+        ConvertKeyzerToTimeUpEffect();
         return;
     }
 
     switch (gCurrentSecondarySprite.pose)
     {
         case 0:
-            func_8076A0C(sKeyzerOam_83B49BC);
+            AdvanceSecondarySpriteAnimation(sKeyzerOam_83B49BC);
             gCurrentSecondarySprite.timer++;
             if (gCurrentSecondarySprite.timer > 46)
                 gCurrentSecondarySprite.pose = 1;
@@ -1441,7 +1439,7 @@ void UpdateKeyzerSecondarySprite(void)
             gCurrentSecondarySprite.work0 = 0;
             /* fall through */
         case 2:
-            func_8076A0C(sKeyzerOam_83B47C4);
+            AdvanceSecondarySpriteAnimation(sKeyzerOam_83B47C4);
             if (specialWarioPose != 0)
             {
                 gCurrentSecondarySprite.pose = 9;
@@ -1458,7 +1456,7 @@ void UpdateKeyzerSecondarySprite(void)
             gCurrentSecondarySprite.work0 = 0;
             /* fall through */
         case 4:
-            func_8076A0C(sKeyzerOam_83B47EC);
+            AdvanceSecondarySpriteAnimation(sKeyzerOam_83B47EC);
             if (specialWarioPose != 0)
             {
                 gCurrentSecondarySprite.pose = 11;
@@ -1508,7 +1506,7 @@ void UpdateKeyzerSecondarySprite(void)
         case 12:
             animation = sKeyzerOam_83B483C;
 animate_to_pose13:
-            func_8076A0C(animation);
+            AdvanceSecondarySpriteAnimation(animation);
             gCurrentSecondarySprite.timer--;
             if (gCurrentSecondarySprite.timer == 0)
                 gCurrentSecondarySprite.pose = 13;
@@ -1520,7 +1518,7 @@ animate_to_pose13:
             gCurrentSecondarySprite.work0 = 0;
             /* fall through */
         case 14:
-            func_8076A0C(sKeyzerOam_83B4864);
+            AdvanceSecondarySpriteAnimation(sKeyzerOam_83B4864);
             if (specialWarioPose == 0)
             {
                 if (gWarioData.horizontalDirection & 0x20)
@@ -1539,7 +1537,7 @@ animate_to_pose13:
         case 16:
             animation = sKeyzerOam_83B488C;
 animate_to_pose1:
-            func_8076A0C(animation);
+            AdvanceSecondarySpriteAnimation(animation);
             gCurrentSecondarySprite.timer--;
             if (gCurrentSecondarySprite.timer == 0)
                 gCurrentSecondarySprite.pose = 1;
@@ -1554,14 +1552,14 @@ animate_to_pose1:
         case 18:
             animation = sKeyzerOam_83B48B4;
 animate_to_pose3:
-            func_8076A0C(animation);
+            AdvanceSecondarySpriteAnimation(animation);
             gCurrentSecondarySprite.timer--;
             if (gCurrentSecondarySprite.timer == 0)
                 gCurrentSecondarySprite.pose = 3;
             break;
 
         default:
-            func_8076A0C(sKeyzerOam_83B4864);
+            AdvanceSecondarySpriteAnimation(sKeyzerOam_83B4864);
             break;
     }
 
@@ -1690,7 +1688,7 @@ void UpdateCoin50PointsSecondarySprite(void)
     u32 value;
     u32 tableOrPosition;
 
-    func_8076A0C(sCoin50PointsOamData);
+    AdvanceSecondarySpriteAnimation(sCoin50PointsOamData);
     sprite = &gCurrentSecondarySprite;
 
     switch (sprite->pose)
@@ -1954,7 +1952,7 @@ void UpdateTimeUpSecondarySprite(void)
                 gTimerState = 4;
                 gWarioPauseTimer = 1000;
                 gUnk_3000046 = 1;
-                func_8075974();
+                PlayWarioDefeatJingle();
             }
 
             sprite->pose = 7;
@@ -2020,13 +2018,13 @@ state_6_7_movement:
             dmaReg[2] = dmaControlSmall;
             dmaReg[2];
 
-            dmaSourceA = (u32)(sTimeUpGfx + 0x300);
+            dmaSourceA = (u32)sTimeUpTextGfx;
             dmaReg[0] = dmaSourceA;
             dmaReg[1] = 0x06010380;
             dmaReg[2] = 0x80000080;
             dmaReg[2];
 
-            dmaSourceB = (u32)(sTimeUpGfx + 0x700);
+            dmaSourceB = (u32)sTimeUpWarioGfx;
             dmaReg[0] = dmaSourceB;
             dmaReg[1] = 0x06010780;
             dmaReg[2] = 0x80000080;
@@ -2055,7 +2053,7 @@ state_6_7_movement:
             dmaReg[2] = dmaControlSmall;
             dmaReg[2];
 
-            SpriteSpawnSecondary(gWarioData.yPosition, gWarioData.xPosition, 76);
+            SpawnSecondarySprite(gWarioData.yPosition, gWarioData.xPosition, 76);
 
             if (gCurrentStageNumber == 4)
                 AutosaveDefeat();
@@ -2495,7 +2493,7 @@ void UpdateCDIconSecondarySprite(void)
             current = &gCurrentSecondarySprite;
             current->status &= 0xFD;
             current->work0--;
-            func_8076A0C(sUnk_8411A4C);
+            AdvanceSecondarySpriteAnimation(sUnk_8411A4C);
 
             timer = current->timer;
 
@@ -2530,7 +2528,7 @@ void UpdateCDIconSecondarySprite(void)
             if (gWarioPauseTimer != 0 || gSubGameMode != 2)
                 sprite->work0--;
 
-            func_8076A0C(sUnk_8411A4C);
+            AdvanceSecondarySpriteAnimation(sUnk_8411A4C);
             break;
     }
 
@@ -3125,14 +3123,14 @@ void UpdateTreasureExitSecondarySprite(void)
                 register u32 dmaControl asm("r2");
 
                 dmaReg = (volatile u32 *)0x040000D4;
-                dmaValue = (u32)(sTimeUpGfx + 0x800);
+                dmaValue = (u32)sTimeUpEffect0Gfx;
                 dmaReg[0] = dmaValue;
                 dmaValue = 0x06010B00;
                 dmaReg[1] = dmaValue;
                 dmaControl = 0x80000080;
                 dmaReg[2] = dmaControl;
                 dmaValue = dmaReg[2];
-                dmaValue = (u32)(sTimeUpGfx + 0x900);
+                dmaValue = (u32)sTimeUpEffect1Gfx;
                 dmaReg[0] = dmaValue;
                 dmaValue = 0x06010F00;
                 dmaReg[1] = dmaValue;
@@ -3187,14 +3185,14 @@ void UpdateTreasureExitSecondarySprite(void)
             scale = 0x1E0;
             gCurrentSecondarySpriteOamData = sUnk_841204C;
             dmaReg = (volatile u32 *)0x040000D4;
-            dmaValue = (u32)(sTimeUpGfx + 0xA00);
+            dmaValue = (u32)sTimeUpEffect2Gfx;
             dmaReg[0] = dmaValue;
             dmaValue = 0x06010B00;
             dmaReg[1] = dmaValue;
             dmaControl = 0x80000080;
             dmaReg[2] = dmaControl;
             dmaValue = dmaReg[2];
-            dmaValue = (u32)(sTimeUpGfx + 0xB00);
+            dmaValue = (u32)sTimeUpEffect3Gfx;
             dmaReg[0] = dmaValue;
             dmaValue = 0x06010F00;
             dmaReg[1] = dmaValue;
@@ -3586,7 +3584,7 @@ void UpdateFallingSecondarySpriteVariantA(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 10;
-    func_8076A0C(sUnk_841497C);
+    AdvanceSecondarySpriteAnimation(sUnk_841497C);
     ClampFallingSecondarySpriteAtBottom(80);
 }
 
@@ -3594,7 +3592,7 @@ void UpdateFallingSecondarySpriteVariantB(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 12;
-    func_8076A0C(sUnk_841497C);
+    AdvanceSecondarySpriteAnimation(sUnk_841497C);
     ClampFallingSecondarySpriteAtBottom(160);
 }
 
@@ -3602,7 +3600,7 @@ void UpdateFallingSecondarySpriteVariantC(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 14;
-    func_8076A0C(sUnk_841497C);
+    AdvanceSecondarySpriteAnimation(sUnk_841497C);
     ClampFallingSecondarySpriteAtBottom(96);
 }
 
@@ -3610,7 +3608,7 @@ void UpdateFallingSecondarySpriteVariantD(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 11;
-    func_8076A0C(sUnk_841497C);
+    AdvanceSecondarySpriteAnimation(sUnk_841497C);
     ClampFallingSecondarySpriteAtBottom(16);
 }
 
@@ -3618,7 +3616,7 @@ void UpdateFallingSecondarySpriteVariantE(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 12;
-    func_8076A0C(sUnk_8414A0C);
+    AdvanceSecondarySpriteAnimation(sUnk_8414A0C);
     ClampFallingSecondarySpriteAtBottom(200);
 }
 
@@ -3626,7 +3624,7 @@ void UpdateFallingSecondarySpriteVariantF(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 10;
-    func_8076A0C(sUnk_8414A1C);
+    AdvanceSecondarySpriteAnimation(sUnk_8414A1C);
     ClampFallingSecondarySpriteAtBottom(120);
 }
 
@@ -3634,7 +3632,7 @@ void UpdateFallingSecondarySpriteVariantG(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 14;
-    func_8076A0C(sUnk_8414A2C);
+    AdvanceSecondarySpriteAnimation(sUnk_8414A2C);
     ClampFallingSecondarySpriteAtBottom(100);
 }
 
@@ -3642,6 +3640,6 @@ void UpdateFallingSecondarySpriteVariantH(void)
 {
     gCurrentSecondarySprite.timer++;
     gCurrentSecondarySprite.yPosition += 16;
-    func_8076A0C(sUnk_8414A3C);
+    AdvanceSecondarySpriteAnimation(sUnk_8414A3C);
     ClampFallingSecondarySpriteAtBottom(160);
 }

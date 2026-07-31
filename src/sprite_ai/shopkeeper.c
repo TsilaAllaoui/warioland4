@@ -757,7 +757,7 @@ void StartShopkeeperSmileJump(void)
     s->pose = value;
     value = s->yPosition;
     value -= 64;
-    ((void (*)())SpriteSpawnSecondary)(value, s->xPosition, 64);
+    ((void (*)())SpawnSecondarySprite)(value, s->xPosition, 64);
     zero16 = s->yPosition;
     value = s->xPosition;
     SpriteSpawnAsChild(10, 0, 0, zero16, value);
@@ -820,7 +820,7 @@ void StartShopkeeperSmileDrop(void)
     s->pose = value;
     value = s->yPosition;
     value -= 64;
-    ((void (*)())SpriteSpawnSecondary)(value, s->xPosition, 64);
+    ((void (*)())SpawnSecondarySprite)(value, s->xPosition, 64);
     zero16 = s->yPosition;
     value = s->xPosition;
     SpriteSpawnAsChild(10, 0, 0, zero16, value);
@@ -974,7 +974,7 @@ void UpdateShopkeeperSmilePose(void)
             value -= 42;
             temp = s->xPosition;
             temp += 42;
-            SpriteSpawnSecondary(value, temp, 70);
+            SpawnSecondarySprite(value, temp, 70);
             s->pOamData = sShopkeeperSmileJumpOam;
             value = 0;
             *(volatile u8*)((u32)s + 22) = value;
@@ -1255,7 +1255,7 @@ void ShrinkShopkeeperSmile(void)
     } else {
         r0 = 0;
         s->status = r0;
-        ((void (*)())SpriteSpawnSecondary)(s->yPosition, s->xPosition, 67);
+        ((void (*)())SpawnSecondarySprite)(s->yPosition, s->xPosition, 67);
         r0 = 119;
         m4aSongNumStart(r0);
     }
@@ -2901,7 +2901,7 @@ finish:
     r0 = s->yPosition;
     r1 = s->xPosition;
     r2 = 51;
-    SpriteSpawnSecondary(r0, r1, r2);
+    SpawnSecondarySprite(r0, r1, r2);
     func_8026E78();
     r0 = 252;
     r0 <<= 1;
@@ -3027,7 +3027,7 @@ status_case:
 spawn:
     r0 = (u32)r3;
     r2 = (struct PrimarySpriteData*)51;
-    SpriteSpawnSecondary(r0, r1, (u8)(u32)r2);
+    SpawnSecondarySprite(r0, r1, (u8)(u32)r2);
     goto end;
 timer_zero:
     r3->status = r1;
@@ -3486,7 +3486,7 @@ finish:
     r0 = s->yPosition;
     r1 = s->xPosition;
     r2 = 51;
-    SpriteSpawnSecondary(r0, r1, r2);
+    SpawnSecondarySprite(r0, r1, r2);
     func_8026E78();
     r0 = 252;
     r0 <<= 1;
@@ -3612,7 +3612,7 @@ status_case:
 spawn:
     r0 = (u32)r3;
     r2 = (struct PrimarySpriteData*)51;
-    SpriteSpawnSecondary(r0, r1, (u8)(u32)r2);
+    SpawnSecondarySprite(r0, r1, (u8)(u32)r2);
     goto end;
 timer_zero:
     r3->status = r1;
@@ -4117,35 +4117,35 @@ void UpdateBugleAttack(void)
         value -= 1;
         switch (value) {
             case 0:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 53);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 53);
                 break;
             case 1:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 54);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 54);
                 break;
             case 2:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 55);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 55);
                 break;
             case 3:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 56);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 56);
                 break;
             case 4:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 57);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 57);
                 func_8026E78();
                 break;
             case 5:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 58);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 58);
                 break;
             case 6:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 59);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 59);
                 break;
             case 7:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 60);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 60);
                 break;
             case 8:
-                SpriteSpawnSecondary(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 61);
+                SpawnSecondarySprite(gCurrentSprite.yPosition - 88, gCurrentSprite.xPosition - 32, 61);
                 break;
             default:
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     ((struct PrimarySpriteData*)temp)->yPosition - 88,
                     ((struct PrimarySpriteData*)temp)->xPosition - 32,
                     52
@@ -4704,7 +4704,7 @@ void StartBlackDogAttack(void)
     r1 = r2->xPosition;
     r1 += 96;
     r2 = (struct PrimarySpriteData*)51;
-    SpriteSpawnSecondary(r0, r1, (u8)(u32)r2);
+    SpawnSecondarySprite(r0, r1, (u8)(u32)r2);
     func_8026E78();
     r0 = 255;
     r0 <<= 1;
@@ -4832,7 +4832,7 @@ spawn:
     r0 = r4;
     r1 = r2;
     r2 = 51;
-    SpriteSpawnSecondary(r0, r1, (u8)r2);
+    SpawnSecondarySprite(r0, r1, (u8)r2);
     goto end;
 timer_zero:
     r0 = 21;
@@ -6095,7 +6095,7 @@ common:
         r0 -= 64;
         r1 = s6->xPosition;
         r1 += 128;
-        ((void (*)())SpriteSpawnSecondary)(r0, r1, 51);
+        ((void (*)())SpawnSecondarySprite)(r0, r1, 51);
         func_8026E78();
         r0 = 96;
         r1 = 129;
@@ -6381,7 +6381,7 @@ maybe_spawn:
         r0 = r3;
         r1 = r2;
         r2 = 51;
-        SpriteSpawnSecondary(r0, r1, (u8)r2);
+        SpawnSecondarySprite(r0, r1, (u8)r2);
     }
     goto affine;
 
@@ -7163,14 +7163,14 @@ void UpdateBlackDragonFireCollision(void)
             counter = *(volatile u16*)(sprite + 10);
             counter -= 32;
             data = (volatile u8*)51;
-            SpriteSpawnSecondary(value, counter, (u8)(u32)data);
+            SpawnSecondarySprite(value, counter, (u8)(u32)data);
         } else {
             value = *(volatile u16*)(sprite + 8);
             value -= 32;
             counter = *(volatile u16*)(sprite + 10);
             counter += 32;
             data = (volatile u8*)51;
-            SpriteSpawnSecondary(value, counter, (u8)(u32)data);
+            SpawnSecondarySprite(value, counter, (u8)(u32)data);
         }
     }
 
@@ -7532,7 +7532,7 @@ void SpawnBossTreasureRewards(void)
         status = *timerPtr;
         value = status & 7;
         if (value == 0) {
-            SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition, 71);
+            SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition, 71);
         }
         value = *timerPtr;
         value++;

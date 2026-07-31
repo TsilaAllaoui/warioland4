@@ -214,8 +214,8 @@ void ToyCarTackledInit(void)
     gCurrentSprite.work2 = 8;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnEnemyScoreDrop(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
@@ -246,8 +246,8 @@ void ToyCarDefeatedInit(void)
     gCurrentSprite.work2 = 7;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnEnemyScoreDrop(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }
 
@@ -346,13 +346,13 @@ void ToyCarCrushed(void)
     gCurrentSprite.work0 = 11;
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;
-    func_807687C(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnEnemyScoreDrop(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }
 
 void ToyCarInstantlyKill(void)
 {
-    func_807687C(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnEnemyScoreDrop(PSPRITE_TOY_CAR, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
     SpriteUtilDie();
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }

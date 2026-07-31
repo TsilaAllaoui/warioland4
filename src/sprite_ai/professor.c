@@ -314,7 +314,7 @@ void ProfessorTackledRightInit(void)
     struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition - 32, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition - 32, 6);
     m4aSongNumStart(SE_PROFESSOR_HIT);
     if (sprite->pose == 106)
         sprite->work2 = 8;
@@ -329,7 +329,7 @@ void ProfessorTackledLeftInit(void)
     struct PrimarySpriteData* sprite;
 
     sprite = &gCurrentSprite;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition + 32, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition + 32, 6);
     m4aSongNumStart(SE_PROFESSOR_HIT);
     if (sprite->pose == 105)
         sprite->work2 = 8;
@@ -576,7 +576,7 @@ void SpriteProfessor(void)
         return;
     }
 
-    if ((sprite->status & SPRITE_STATUS_UNDERWATER) && (gUnk_3000BEC & 3))
+    if ((sprite->status & SPRITE_STATUS_UNDERWATER) && (gStageFrameCounter & 3))
         return;
 
     switch (sprite->pose) {
@@ -960,7 +960,7 @@ afterPose:
             healthState = healthFlags + 1;
             zeroValue = 0;
             spriteAfterState->health = healthState;
-            SpriteSpawnSecondary(spriteAfterState->yPosition, spriteAfterState->xPosition, SSPRITE_07);
+            SpawnSecondarySprite(spriteAfterState->yPosition, spriteAfterState->xPosition, SSPRITE_07);
             m4aSongNumStart(SE_ENTER_WATER);
             spriteAfterState->pOamData = sProfessorSplashOam;
             *(u8*)((u8*)spriteAfterState + 22) = zeroValue;

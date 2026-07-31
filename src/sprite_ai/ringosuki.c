@@ -421,7 +421,7 @@ void SetupRingosukiFallOffscreen(void)
     gCurrentSprite.work2 = 4;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gCurrentSprite.status = (gCurrentSprite.status & ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES) |
                             SPRITE_STATUS_MAYBE_DEAD;
 }
@@ -447,7 +447,7 @@ void SetupRingosukiKnockbackFall(void)
     gCurrentSprite.work2 = 3;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
 }
 
 void StartRingosukiKnockbackFallRight(void)

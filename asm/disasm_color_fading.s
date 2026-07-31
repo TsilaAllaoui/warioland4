@@ -1769,7 +1769,7 @@ func_8070E24:
 	mov	pc, r0
 	.align	2, 0
 .L_70e88:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_70e8c:
 	.4byte	.L_70e90
 .L_70e90:
