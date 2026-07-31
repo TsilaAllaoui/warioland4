@@ -467,7 +467,6 @@ extern u8 gBgAnimationTimer;
 
 extern s16 gSubGameMode;
 extern s8 gStageEntrySoftResetDisabled;
-extern s8 gStageEntryPauseMenuDisabled;
 
 extern struct SaveDataClearData gUnk_3004A70;
 

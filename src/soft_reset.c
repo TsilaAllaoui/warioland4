@@ -36,8 +36,8 @@ void SoftResetSubroutine(void)
     REG_IME = TRUE;
     m4aSoundVSyncOff();
 
-    func_8072D24();
-    func_8073BE0();
+    ValidateAndRepairSaveHeaderCopies();
+    InitializeSaveFileStatuses();
 
     gMainGameMode = GM_CUTSCENE;
     gSubGameMode = 0;

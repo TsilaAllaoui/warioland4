@@ -787,7 +787,7 @@ func_8084BCC:
 	strb	r4, [r0, #0]
 	ldr	r0, .L_84c10
 	strb	r4, [r0, #0]
-	bl	func_80741F0
+	bl	BuildTemporaryStageSelectionSave
 	ldr	r5, .L_84c14
 	mov	r6, #1
 	strb	r6, [r5, #0]
@@ -1294,7 +1294,7 @@ func_8084E10:
 	ldrb	r0, [r5, #0]
 	strb	r0, [r1, #0]
 	strb	r4, [r5, #0]
-	bl	func_80741F0
+	bl	BuildTemporaryStageSelectionSave
 	b	.L_84fbe
 	.align	2, 0
 .L_84fac:
@@ -1940,7 +1940,7 @@ func_80853B0:
 	add	r1, r1, r3
 	ldr	r0, [r1, #0]
 	strb	r0, [r4, #0]
-	bl	func_80741F0
+	bl	BuildTemporaryStageSelectionSave
 .L_85454:
 	ldrb	r0, [r6, #0]
 	add	r0, #1

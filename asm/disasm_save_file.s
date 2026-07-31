@@ -2955,8 +2955,8 @@ func_8074140:
 	bx	r1
 
 
-thumb_func_start func_80741F0
-func_80741F0:
+thumb_func_start BuildTemporaryStageSelectionSave
+BuildTemporaryStageSelectionSave:
 	push	{r4, r5, lr}
 	ldr	r0, .L_74220
 	ldrb	r1, [r0, #0]

@@ -265,8 +265,8 @@ void InitializeGame(void)
     InitializeInterruptHandler();
     InterruptCallbackSetVBlank(EmptyFunction);
 
-    func_8072D24();
-    func_8073BE0();
+    ValidateAndRepairSaveHeaderCopies();
+    InitializeSaveFileStatuses();
     m4aSoundInit();
     m4aSoundMode(SOUND_MODE_DA_BIT_8);
 

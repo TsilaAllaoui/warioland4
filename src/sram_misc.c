@@ -32,19 +32,19 @@ void func_8000D18(void)
 void func_8000D98(u8 file)
 {
     {
-        u8* src = sUnk_84009BC[file];
+        u8* src = sPrimarySaveHeaderBuffers[file];
         u8* dest = sUnk_80953EC[file];
         SramWriteChecked(src, dest, 0x10U);
         SramWriteChecked(src + 0x160, dest + 0x160, 0x10U);
     }
     {
-        u8* src = sUnk_84009C4[file];
+        u8* src = sSecondarySaveHeaderBuffers[file];
         u8* dest = sUnk_80953F4[file];
         SramWriteChecked(src, dest, 0x10U);
         SramWriteChecked(src + 0x160, dest + 0x160, 0x10U);
     }
     {
-        u8* src = sUnk_84009CC[file];
+        u8* src = sMainSaveDataBuffers[file];
         u8* dest = sUnk_8095404[file];
         SramWriteChecked(src, dest, 0x10U);
         SramWriteChecked(src + 0xA80, dest + 0xA80, 0x10U);
@@ -95,17 +95,17 @@ void func_8000F3C(void)
 
 void func_8000F64(void)
 {
-    SramWriteChecked(sUnk_84009BC[gSelectedSaveFile], sUnk_80953EC[gSelectedSaveFile], 0x200U);
+    SramWriteChecked(sPrimarySaveHeaderBuffers[gSelectedSaveFile], sUnk_80953EC[gSelectedSaveFile], 0x200U);
 }
 
 void func_8000F90(void)
 {
-    SramWriteChecked(sUnk_84009C4[gSelectedSaveFile], sUnk_80953F4[gSelectedSaveFile], 0x200U);
+    SramWriteChecked(sSecondarySaveHeaderBuffers[gSelectedSaveFile], sUnk_80953F4[gSelectedSaveFile], 0x200U);
 }
 
 void func_8000FBC(void)
 {
-    SramWriteChecked(sUnk_84009CC[gSelectedSaveFile], sUnk_8095404[gSelectedSaveFile], 0x3800U);
+    SramWriteChecked(sMainSaveDataBuffers[gSelectedSaveFile], sUnk_8095404[gSelectedSaveFile], 0x3800U);
 }
 
 void func_8000FE8(void)

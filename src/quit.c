@@ -16,7 +16,7 @@ void QuitVBlankCallback(void)
 void QuitSubroutine(void)
 {
     InterruptCallbackSetVBlank(QuitVBlankCallback);
-    func_8072F0C();
+    InitializeTemporarySaveBuffer();
     gTimerState = 0;
     gSwitchPressed = 0;
     gStageEntryPauseMenuDisabled = 0;

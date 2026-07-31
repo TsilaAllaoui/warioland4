@@ -89,7 +89,7 @@ extern const struct AnimationFrame sUnk_863FF84[];
 void VoiceSetPlay(s32 voice);
 
 void m4aSongNumStart(u16 songNum);
-void func_80741F0(void);
+void BuildTemporaryStageSelectionSave(void);
 extern u16 gUnk_3003C62;
 extern const u16 sUnk_864BD78[];
 extern const u16 sUnk_864BD98[];
@@ -477,7 +477,7 @@ void StartMapScreenAfterStageExit(void)
     value = table[*passage];
     *dst = value << 4;
     gCurrentStageNumber = 6;
-    func_80741F0();
+    BuildTemporaryStageSelectionSave();
     InitMapScreen();
 }
 
@@ -734,7 +734,7 @@ int UpdateMapScreenPassageInput(void)
             }
 
             gUnk_3003C45 = 1;
-            func_80741F0();
+            BuildTemporaryStageSelectionSave();
         }
         else
         {

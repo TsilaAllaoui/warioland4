@@ -691,7 +691,7 @@ func_8089E14:
 thumb_func_start func_8089E60
 func_8089E60:
 	push	{lr}
-	bl	func_8073880
+	bl	BuildMainSaveWorkingBuffer
 	ldr	r2, .L_89e70
 	mov	r1, #1
 	strb	r1, [r2, #0]

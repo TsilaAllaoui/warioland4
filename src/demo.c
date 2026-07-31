@@ -253,6 +253,6 @@ u32 AdvanceDemo(void)
         wrapped = 1;
     }
 
-    func_8073BE0();
+    InitializeSaveFileStatuses();
     return wrapped;
 }

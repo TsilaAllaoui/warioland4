@@ -363,8 +363,8 @@ void GameScreenInitAndLoadGenerics(void)
     gUnk_3000022 = 0;
     if (!gStageEntryPauseMenuDisabled) {
         InitializeVideoMemory();
-        func_8073418();
-        func_8073BA0();
+        RefreshTemporarySaveStageId();
+        DmaLoadSelectedSaveFileBlocks();
     }
 
     DmaCopy16(3, sUnk_82DF094, 0x06010B00, 0x100);

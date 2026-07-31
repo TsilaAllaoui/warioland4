@@ -181,7 +181,7 @@ func_8090A40:
 	lsl	r1, r1, #19
 	mov	r0, #0
 	strh	r0, [r1, #0]
-	bl	func_8073BE0
+	bl	InitializeSaveFileStatuses
 	ldr	r1, .L_90bd4
 	ldr	r5, .L_90bd8
 	mov	r0, #0
@@ -944,7 +944,7 @@ func_8090F94:
 	bx	r0
 	.align	2, 0
 .L_910dc:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_910e0:
 	.4byte	0x00002710
 .L_910e4:
@@ -1077,7 +1077,7 @@ func_80910EC:
 	bx	r0
 	.align	2, 0
 .L_911d4:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_911d8:
 	.4byte	0x0600d040
 .L_911dc:
@@ -1202,7 +1202,7 @@ func_80911E0:
 	add	r0, #1
 	b	.L_912d6
 .L_912b8:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_912bc:
 	.4byte	0x0000b240
 .L_912c0:
@@ -1280,9 +1280,9 @@ func_8091308:
 .L_91344:
 	.4byte	gUnk_3003BF8
 .L_91348:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_9134c:
-	.4byte	sUnk_84009D4
+	.4byte	sStageSelectionSaveBuffers
 .L_91350:
 	cmp	r0, #2
 	bne	.L_91364
@@ -1308,7 +1308,7 @@ func_8091308:
 	bx	r0
 	.align	2, 0
 .L_91378:
-	.4byte	sUnk_84009CC
+	.4byte	sMainSaveDataBuffers
 
 
 thumb_func_start func_809137C
@@ -1508,7 +1508,7 @@ func_80914B4:
 	beq	.L_914de
 	bl	func_809151C
 .L_914de:
-	bl	func_8074088
+	bl	BuildSelectedSaveValidationHeader
 	ldr	r1, .L_91514
 	mov	r0, #0
 	strb	r0, [r1, #0]
@@ -1559,7 +1559,7 @@ func_809151C:
 	lsr	r4, r1, #24
 	cmp	r4, #0
 	bne	.L_91580
-	bl	func_807403C
+	bl	FlushSaveFileAndRefreshSaveData
 	ldr	r0, .L_91574
 	strb	r4, [r0, #0]
 	ldr	r1, .L_91578
@@ -1571,7 +1571,7 @@ func_809151C:
 	add	r0, r0, r6
 	ldrb	r0, [r0, #4]
 	strb	r0, [r1, #0]
-	bl	func_8073880
+	bl	BuildMainSaveWorkingBuffer
 	b	.L_91584
 	.align	2, 0
 .L_91564:
@@ -1589,7 +1589,7 @@ func_809151C:
 .L_9157c:
 	.4byte	gDifficulty
 .L_91580:
-	bl	func_8073FD8
+	bl	FlushSaveFileAndMaybeRestoreTempSave
 .L_91584:
 	ldr	r2, .L_9159c
 	ldr	r1, .L_915a0
@@ -1794,7 +1794,7 @@ func_80915A8:
 .L_91700:
 	.4byte	0x040000d4
 .L_91704:
-	.4byte	sUnk_84009CC
+	.4byte	sMainSaveDataBuffers
 .L_91708:
 	.4byte	0x81001c00
 .L_9170c:
@@ -1818,9 +1818,9 @@ func_80915A8:
 .L_91730:
 	.4byte	0x040000d4
 .L_91734:
-	.4byte	sUnk_84009C4
+	.4byte	sSecondarySaveHeaderBuffers
 .L_91738:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_9173c:
 	.4byte	0x80000100
 .L_91740:
@@ -1852,7 +1852,7 @@ func_80915A8:
 .L_91774:
 	.4byte	0x040000d4
 .L_91778:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_9177c:
 	.4byte	0x81000200
 .L_91780:
@@ -2392,7 +2392,7 @@ func_8091ACC:
 	add	r0, r0, r1
 	mov	r1, #128	@ 0x80
 	strb	r1, [r0, #0]
-	bl	func_8074088
+	bl	BuildSelectedSaveValidationHeader
 	b	.L_91cf2
 .L_91ba0:
 	.4byte	gUnk_3003BF8
@@ -2522,13 +2522,13 @@ func_8091ACC:
 .L_91ca0:
 	.4byte	0x040000d4
 .L_91ca4:
-	.4byte	sUnk_84009BC
+	.4byte	sPrimarySaveHeaderBuffers
 .L_91ca8:
 	.4byte	gSelectedSaveFile
 .L_91cac:
 	.4byte	0x81000200
 .L_91cb0:
-	.4byte	sUnk_84009CC
+	.4byte	sMainSaveDataBuffers
 .L_91cb4:
 	.4byte	0x81001c00
 .L_91cb8:

@@ -71,7 +71,7 @@ void AutosaveStageClear(void)
         gHighScoreTable[gCurrentPassage][gCurrentStageNumber] = score;
     }
 
-    func_8073880();
+    BuildMainSaveWorkingBuffer();
     gSaveFlag = TRUE;
 }
 
@@ -100,14 +100,14 @@ void AutosaveBossClear(void)
         gCurrentPassage = PASSAGE_GOLDEN;
     }
 
-    func_8073880();
+    BuildMainSaveWorkingBuffer();
     gSaveFlag = 1;
     gCollectedKeyzer = 0;
 }
 
 void AutosaveDefeat(void)
 {
-    func_8073880();
+    BuildMainSaveWorkingBuffer();
     gSaveFlag = 1;
 }
 
@@ -138,14 +138,14 @@ void AutosaveFinalBoss(void)
         if (gTitleScreenStyle != TITLE_STYLE_S_HARD_UNLOCKED && gDifficulty == DIFFICULTY_HARD) {
             gClearMessage = CLEAR_MESSAGE_SUPER_HARD_UNLOCKED;
             gTitleScreenStyle = TITLE_STYLE_S_HARD_UNLOCKED;
-            func_8072CA0();
+            BuildTitleScreenSaveHeader();
         } else {
             gClearMessage = CLEAR_MESSAGE_ALL_TREASURES;
         }
     } else {
         gClearMessage = CLEAR_MESSAGE_TRY_FOR_ALL_TREASURES;
     }
-    func_8073880();
+    BuildMainSaveWorkingBuffer();
     gSaveFlag = 1;
 
     gCollectedKeyzer = 0;

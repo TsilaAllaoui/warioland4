@@ -713,7 +713,7 @@ SECTIONS {
         obj/stage_end.o(.text);
         obj/demo.o(.text);
         obj/quit.o(.text);
-        obj/disasm_save_file.o(.text);
+        obj/save_file.o(.text);
         obj/boss_pause.o(.text);
         obj/hud.o(.text);
         obj/disasm_score.o(.text);
@@ -790,7 +790,7 @@ SECTIONS {
         obj/blob_0x3FA838-0x3FDA2C.o(.rodata);
         obj/data/demo.o(.rodata);
         obj/quit.o(.rodata);
-        obj/disasm_save_file.o(.rodata);
+        obj/save_file.o(.rodata);
         obj/hud.o(.rodata);
         obj/data/sprite_data_40F1C8_41000C.o(.rodata);
         obj/data/sprite_data_41000C_6D3394.o(.rodata);
