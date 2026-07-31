@@ -137,8 +137,8 @@ void DefeatShieragutchi(void)
     gCurrentSprite.work2 = 8;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition, gCurrentSprite.xPosition, 1);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
     gCurrentSprite.status = (gCurrentSprite.status & 0xFEFF) | SPRITE_STATUS_MAYBE_DEAD;
 }

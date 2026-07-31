@@ -13,10 +13,10 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  94.1%   3,801 / 4,040</text>
-<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  85.8%   520,295 / 606,315 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  94.5%   3,817 / 4,041</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  86.3%   523,303 / 606,315 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
-<text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,020 / 4,040 exact)</text>
+<text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,021 / 4,041 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
 <g>
 <title>cutscenes: 79.0% matched, 49,304 bytes</title>
@@ -1800,32 +1800,33 @@
 <rect x="616.61" y="748.22" width="6.07" height="7.20" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/GetBackgroundScreenSize: 40 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_score: 0.0% matched, 6,232 bytes</title>
+<title>score: 48.3% matched, 6,232 bytes</title>
 <rect x="523.96" y="756.77" width="99.46" height="95.63" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip20"><rect x="525.96" y="757.77" width="96.06" height="17.32"/></clipPath>
 <rect x="524.96" y="757.77" width="98.06" height="17.32" fill="#05080d"/>
-<text x="526.46" y="770.77" clip-path="url(#moduleLabelClip20)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_score</text>
-<text x="621.02" y="769.77" text-anchor="end" clip-path="url(#moduleLabelClip20)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="524.96" y="775.09" width="30.18" height="39.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075B50: 1,012 bytes, not matched, size=symbol</title></rect>
-<rect x="524.96" y="815.21" width="30.18" height="36.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075F44: 928 bytes, not matched, size=symbol</title></rect>
-<rect x="555.49" y="775.09" width="35.36" height="29.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_80762E4: 884 bytes, not matched, size=symbol</title></rect>
-<rect x="591.19" y="775.09" width="31.48" height="29.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075388: 788 bytes, not matched, size=symbol</title></rect>
-<rect x="555.49" y="805.05" width="24.09" height="24.02" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_807569C: 492 bytes, not matched, size=symbol</title></rect>
-<rect x="555.49" y="829.42" width="24.09" height="22.23" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075988: 456 bytes, not matched, size=symbol</title></rect>
-<rect x="579.92" y="805.05" width="21.56" height="13.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/ProcessSecondarySprites: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="601.83" y="805.05" width="20.84" height="13.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075888: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="579.92" y="818.53" width="11.08" height="16.60" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_80767DC: 160 bytes, not matched, size=symbol</title></rect>
-<rect x="579.92" y="835.48" width="11.08" height="16.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpriteSpawnSecondary: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="591.35" y="818.53" width="15.92" height="10.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_80752F0: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="607.61" y="818.53" width="15.06" height="10.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/ScoreGivePoints: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="591.35" y="829.84" width="10.79" height="12.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpawnTileDebrisParticle: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="591.35" y="842.44" width="10.79" height="9.21" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8076784: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="602.49" y="829.84" width="10.71" height="8.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/ScoreGiveOrDropCoins: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="613.55" y="829.84" width="9.13" height="8.84" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpawnTenPointTileEffect: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="602.49" y="839.03" width="6.37" height="12.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8076A0C: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="609.21" y="839.03" width="11.60" height="6.54" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/SpawnOnePointTileEffect: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="609.21" y="845.92" width="11.60" height="5.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_807687C: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="621.16" y="839.03" width="1.52" height="12.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_score/func_8075974: 20 bytes, not matched, size=symbol</title></rect>
+<text x="526.46" y="770.77" clip-path="url(#moduleLabelClip20)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">score</text>
+<text x="621.02" y="769.77" text-anchor="end" clip-path="url(#moduleLabelClip20)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">48%</text>
+<rect x="524.96" y="775.09" width="30.18" height="39.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/LoadStageCollectiblesFromSave: 1,012 bytes, not matched, size=symbol</title></rect>
+<rect x="524.96" y="815.21" width="30.18" height="36.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/InitStageHudAndScore: 928 bytes, not matched, size=symbol</title></rect>
+<rect x="555.49" y="775.09" width="35.36" height="29.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/DrawCurrentSecondarySprite: 884 bytes, not matched, size=symbol</title></rect>
+<rect x="591.19" y="775.09" width="31.48" height="29.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageTimerDigitTiles: 788 bytes, matched, size=symbol</title></rect>
+<rect x="555.49" y="805.05" width="24.09" height="24.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageTimerColonTiles: 492 bytes, matched, size=symbol</title></rect>
+<rect x="555.49" y="829.42" width="24.09" height="22.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UpdateStageTimerAndScoreDrain: 456 bytes, matched, size=symbol</title></rect>
+<rect x="579.92" y="805.05" width="21.56" height="13.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/UpdateSecondarySprites: 244 bytes, not matched, size=symbol</title></rect>
+<rect x="601.83" y="805.05" width="20.84" height="13.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/StartTimeUpSequence: 236 bytes, matched, size=symbol</title></rect>
+<rect x="579.92" y="818.53" width="11.08" height="16.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnScoreCoinDropSprites: 160 bytes, matched, size=symbol</title></rect>
+<rect x="579.92" y="835.48" width="11.08" height="16.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnSecondarySprite: 156 bytes, not matched, size=symbol</title></rect>
+<rect x="591.35" y="818.53" width="15.92" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageScoreDigitTiles: 152 bytes, matched, size=symbol</title></rect>
+<rect x="607.61" y="818.53" width="15.06" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/AddStageScore: 144 bytes, matched, size=symbol</title></rect>
+<rect x="591.35" y="829.84" width="10.57" height="12.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnTileDebrisParticle: 116 bytes, matched, size=symbol</title></rect>
+<rect x="591.35" y="842.69" width="10.57" height="8.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/ChangeStageScoreAndDropCoins: 84 bytes, matched, size=symbol</title></rect>
+<rect x="602.27" y="829.84" width="10.03" height="8.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/AdvanceSecondarySpriteAnimation: 72 bytes, matched, size=symbol</title></rect>
+<rect x="612.65" y="829.84" width="10.03" height="8.05" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnTenPointTileEffect: 72 bytes, matched, size=symbol</title></rect>
+<rect x="602.27" y="838.24" width="10.91" height="6.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnOnePointTileEffect: 68 bytes, matched, size=symbol</title></rect>
+<rect x="602.27" y="845.55" width="10.91" height="6.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnEnemyScoreDrop: 60 bytes, matched, size=symbol</title></rect>
+<rect x="613.53" y="838.24" width="9.15" height="5.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/ConvertKeyzerToTimeUpEffect: 44 bytes, matched, size=symbol</title></rect>
+<rect x="613.53" y="843.84" width="6.18" height="7.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/ResetTimeUpWarioSecondarySprite: 44 bytes, matched, size=symbol</title></rect>
+<rect x="620.06" y="843.84" width="2.62" height="7.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/PlayWarioDefeatJingle: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_passage_screen: 0.0% matched, 6,196 bytes</title>

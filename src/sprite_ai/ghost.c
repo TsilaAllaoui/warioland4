@@ -1621,7 +1621,7 @@ spawn:
         spawnX = (u16)xPosition;
         spawnY = gWarioData.yPosition;
         spawnY -= 96;
-        SpriteSpawnSecondary(spawnY, spawnX, 75);
+        SpawnSecondarySprite(spawnY, spawnX, 75);
     }
 }
 

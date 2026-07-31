@@ -957,7 +957,7 @@ func_8072FB0:
 .L_73388:
 	.4byte	gUnk_3000C05
 .L_7338c:
-	.4byte	gUnk_3000C06
+	.4byte	gEnemyScoreDropCounter
 .L_73390:
 	.4byte	gCollectedNWJewelPiece
 .L_73394:
@@ -971,7 +971,7 @@ func_8072FB0:
 .L_733a4:
 	.4byte	gStageScore
 .L_733a8:
-	.4byte	gUnk_3000BEC
+	.4byte	gStageFrameCounter
 .L_733ac:
 	.4byte	gUnk_3000524
 .L_733b0:
@@ -981,7 +981,7 @@ func_8072FB0:
 .L_733b8:
 	.4byte	gSwitchStates
 .L_733bc:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_733c0:
 	.4byte	gScoreDigits
 .L_733c4:
@@ -1580,7 +1580,7 @@ func_807345C:
 .L_73818:
 	.4byte	gUnk_3000C05
 .L_7381c:
-	.4byte	gUnk_3000C06
+	.4byte	gEnemyScoreDropCounter
 .L_73820:
 	.4byte	gCollectedNWJewelPiece
 .L_73824:
@@ -1594,7 +1594,7 @@ func_807345C:
 .L_73834:
 	.4byte	gStageScore
 .L_73838:
-	.4byte	gUnk_3000BEC
+	.4byte	gStageFrameCounter
 .L_7383c:
 	.4byte	gUnk_3000524
 .L_73840:
@@ -1604,7 +1604,7 @@ func_807345C:
 .L_73848:
 	.4byte	gSwitchStates
 .L_7384c:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_73850:
 	.4byte	gScoreDigits
 .L_73854:

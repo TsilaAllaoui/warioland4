@@ -158,10 +158,10 @@ void EscapeSwitchActivate(void)
     gEscapeHBlankEffectState = 1;
     gSwitchStates[SWITCH_ESCAPE] = SWITCH_STATE_SWITCHING_ON;
     gTimerState = 1;
-    gUnk_3000BEC = zero;
-    gUnk_3000C01 = 3;
-    gUnk_3000C03 = 2;
-    SpriteSpawnSecondary(200, 384, 78);
+    gStageFrameCounter = zero;
+    gStageTimerDigitsState = 3;
+    gStageTimerColonState = 2;
+    SpawnSecondarySprite(200, 384, 78);
     {
         register struct WarioData* wario asm("r2");
         register u32 y asm("r0");
@@ -177,7 +177,7 @@ void EscapeSwitchActivate(void)
             bgX = gBg1XPosition;
             bgX += 64;
             x -= bgX;
-            SpriteSpawnSecondary(y, x, 79);
+            SpawnSecondarySprite(y, x, 79);
         }
     }
     m4aMPlayAllStop();
@@ -296,34 +296,34 @@ void SwitchUpdateActivationEffects(void)
 
     switch (gCurrentSprite.work0) {
         case 33:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 30, gCurrentSprite.xPosition, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 30, gCurrentSprite.xPosition, SSPRITE_06);
             gCurrentSprite.pOamData = sSwitchEffectActiveOam;
             gCurrentSprite.currentAnimationFrame = 0;
             gCurrentSprite.animationTimer = 0;
             break;
         case 30:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition - 16, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition - 16, SSPRITE_06);
             break;
         case 26:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition + 40, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition + 40, SSPRITE_06);
             break;
         case 22:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 128, gCurrentSprite.xPosition, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 128, gCurrentSprite.xPosition, SSPRITE_06);
             break;
         case 18:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, SSPRITE_06);
             break;
         case 14:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 128, gCurrentSprite.xPosition - 24, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 128, gCurrentSprite.xPosition - 24, SSPRITE_06);
             break;
         case 11:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 90, gCurrentSprite.xPosition + 36, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 90, gCurrentSprite.xPosition + 36, SSPRITE_06);
             break;
         case 8:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 160, gCurrentSprite.xPosition - 16, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 160, gCurrentSprite.xPosition - 16, SSPRITE_06);
             break;
         case 4:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 192, gCurrentSprite.xPosition + 24, SSPRITE_06);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 192, gCurrentSprite.xPosition + 24, SSPRITE_06);
             break;
         case 0:
             gCurrentSprite.status = 0;

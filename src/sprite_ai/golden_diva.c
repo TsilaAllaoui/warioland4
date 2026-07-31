@@ -134,7 +134,7 @@ void DespawnGoldenDivaAttack(void)
 
     sprite = &gCurrentSprite;
     sprite->status = 0;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 5);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 5);
     pose = sprite->pose;
     if (pose > 88)
         return;
@@ -378,8 +378,8 @@ void HandleGoldenDivaMaskFanCollision(void)
                         break;
                     }
                     gCurrentSprite.status = 0;
-                    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 5);
-                    SpriteSpawnSecondary(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, 6);
+                    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 5);
+                    SpawnSecondarySprite(gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition, 6);
                     SpriteSpawnAsChild(10, 0, 0, gCurrentSprite.yPosition, gCurrentSprite.xPosition);
                     VoiceSetPlay(VS_WARIO_TREASURE);
                 } else {
@@ -1132,8 +1132,8 @@ void UpdateGoldenDivaBodyPose118(void)
     value = *timer;
     switch (value) {
     case 60:
-        SpriteSpawnSecondary(sprite->yPosition + 48, sprite->xPosition + 20, 67);
-        SpriteSpawnSecondary(sprite->yPosition + 48, sprite->xPosition - 16, 67);
+        SpawnSecondarySprite(sprite->yPosition + 48, sprite->xPosition + 20, 67);
+        SpawnSecondarySprite(sprite->yPosition + 48, sprite->xPosition - 16, 67);
         m4aSongNumStart(SOUND_C2);
         break;
     case 70:
@@ -3140,28 +3140,28 @@ storeCase14:
             value -= 160;
             switch (value) {
                 case 75:
-                    SpriteSpawnSecondary(880, 360, 87);
+                    SpawnSecondarySprite(880, 360, 87);
                     break;
                 case 50:
-                    SpriteSpawnSecondary(820, 720, 89);
+                    SpawnSecondarySprite(820, 720, 89);
                     break;
                 case 47:
-                    SpriteSpawnSecondary(840, 240, 83);
+                    SpawnSecondarySprite(840, 240, 83);
                     break;
                 case 40:
-                    SpriteSpawnSecondary(896, 620, 85);
+                    SpawnSecondarySprite(896, 620, 85);
                     break;
                 case 35:
-                    SpriteSpawnSecondary(860, 540, 88);
+                    SpawnSecondarySprite(860, 540, 88);
                     break;
                 case 22:
-                    SpriteSpawnSecondary(0, 120, 82);
+                    SpawnSecondarySprite(0, 120, 82);
                     break;
                 case 20:
-                    SpriteSpawnSecondary(0, 440, 84);
+                    SpawnSecondarySprite(0, 440, 84);
                     break;
                 case 12:
-                    SpriteSpawnSecondary(0, 840, 86);
+                    SpawnSecondarySprite(0, 840, 86);
                     break;
                 case 0:
                     SpriteSpawnAsChild(128, 0, 7, gCurrentSprite.yPosition - 450,
@@ -3420,20 +3420,20 @@ void FollowGoldenDivaFaceHitbox(void)
             value = sprite->yPosition;
             value -= 32;
             temp = sprite->xPosition;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
             m4aSongNumStart(SOUND_31);
         } else if (value == 10) {
             value = sprite->yPosition;
             value += 32;
             temp = sprite->xPosition;
             temp -= 32;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
         } else if (value == 5) {
             value = sprite->yPosition;
             value += 32;
             temp = sprite->xPosition;
             temp += 32;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
         }
     } else {
         SpriteSpawnAsChild(PSPRITE_0A, 0, 0, sprite->yPosition + 72, sprite->xPosition);
@@ -3532,7 +3532,7 @@ void BreakGoldenDivaFan(void)
             value -= 32;
             temp = sprite->xPosition;
             temp -= 80;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
         } else if (value == 10) {
             dma = (volatile struct GoldenDivaDmaRegs *)0x040000D4;
             dma->src = (u32)sGoldenDivaFanDamageTiles1;
@@ -3543,7 +3543,7 @@ void BreakGoldenDivaFan(void)
             value -= 64;
             temp = sprite->xPosition;
             temp -= 16;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
         } else if (value == 5) {
             dma = (volatile struct GoldenDivaDmaRegs *)0x040000D4;
             dma->src = (u32)sGoldenDivaFanDamageTiles2;
@@ -3554,7 +3554,7 @@ void BreakGoldenDivaFan(void)
             value -= 32;
             temp = sprite->xPosition;
             temp += 48;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
         }
     } else {
         dma = (volatile struct GoldenDivaDmaRegs *)0x040000D4;
@@ -4886,9 +4886,9 @@ void UpdateGoldenDivaBlackEggLanding(void)
 void MoveGoldenDivaBlackEggOffscreenRight(void)
 {
     if (gCurrentSprite.pose == 106 && gCurrentSprite.health != 0)
-        SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition - 32, 6);
+        SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition - 32, 6);
     else if (gCurrentSprite.pose != 106)
-        SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+        SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
 
     gCurrentSprite.pose = 32;
     UpdateGoldenDivaBlackEggLanding();
@@ -4897,9 +4897,9 @@ void MoveGoldenDivaBlackEggOffscreenRight(void)
 void MoveGoldenDivaBlackEggOffscreenLeft(void)
 {
     if (gCurrentSprite.pose == 105 && gCurrentSprite.health != 0)
-        SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition + 32, 6);
+        SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition + 32, 6);
     else if (gCurrentSprite.pose != 105)
-        SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+        SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
 
     gCurrentSprite.pose = 34;
     UpdateGoldenDivaBlackEggLanding();
@@ -5197,7 +5197,7 @@ void UpdateGoldenDivaGreenEnemyLanding(void)
     value += 42;
     *(u8 *)value = zero;
     sprite->drawPriority = zero;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     sprite->status = (sprite->status & 0xFEFF) | 0x200;
 }
 
@@ -5316,7 +5316,7 @@ void UpdateGoldenDivaGreenEnemyTransformation(void)
     value -= 16;
     temp = *(u16 *)(sprite + 10);
     remaining = 64;
-    SpriteSpawnSecondary(value, temp, remaining);
+    SpawnSecondarySprite(value, temp, remaining);
     value = (u32)&gCurrentCarriedSprite;
     *(u8 *)value = zero;
 }
@@ -5389,7 +5389,7 @@ void UpdateGoldenDivaGreenEnemyDefeat(void)
     register u32 zero asm("r0");
 
     sprite = &gCurrentSprite;
-    SpriteSpawnSecondary(sprite->yPosition - 16, sprite->xPosition, 64);
+    SpawnSecondarySprite(sprite->yPosition - 16, sprite->xPosition, 64);
     zero = 0;
     sprite->status = zero;
 }
@@ -5669,7 +5669,7 @@ void MoveGoldenDivaBlackChickRight(void)
     sprite->pose = 32;
     sprite->work2 = 8;
     ResetGoldenDivaBlackChickAnimation();
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
 }
 
 void MoveGoldenDivaBlackChickLeft(void)
@@ -5680,7 +5680,7 @@ void MoveGoldenDivaBlackChickLeft(void)
     sprite->pose = 34;
     sprite->work2 = 8;
     ResetGoldenDivaBlackChickAnimation();
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
 }
 
 void BeginGoldenDivaBlackChickAttackRight(void)
@@ -6327,28 +6327,28 @@ void UpdateGoldenDivaHammerSwing(void)
             value -= 72;
             temp = *(u16 *)(sprite + 10);
             temp += 32;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
             break;
         case 8:
             value = *(u16 *)(sprite + 8);
             value -= 16;
             temp = *(u16 *)(sprite + 10);
             temp -= 32;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
             break;
         case 7:
             value = *(u16 *)(sprite + 8);
             value -= 16;
             temp = *(u16 *)(sprite + 10);
             temp += 32;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
             break;
         case 6:
             value = *(u16 *)(sprite + 8);
             value -= 72;
             temp = *(u16 *)(sprite + 10);
             temp -= 32;
-            SpriteSpawnSecondary(value, temp, 6);
+            SpawnSecondarySprite(value, temp, 6);
             break;
         case 0:
             value = 0;
@@ -6817,7 +6817,7 @@ void MoveGoldenDivaFaceRight(void)
     sprite = &gCurrentSprite;
     sprite->pose = 32;
     UpdateGoldenDivaFaceLanding();
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition - 32, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition - 32, 6);
 }
 
 void MoveGoldenDivaFaceLeft(void)
@@ -6827,7 +6827,7 @@ void MoveGoldenDivaFaceLeft(void)
     sprite = &gCurrentSprite;
     sprite->pose = 34;
     UpdateGoldenDivaFaceLanding();
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition + 32, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition + 32, 6);
 }
 
 void BeginGoldenDivaFaceGroundRight(void)

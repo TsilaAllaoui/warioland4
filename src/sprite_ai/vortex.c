@@ -92,7 +92,7 @@ void VortexFinishStage(void)
     gCurrentSprite.pose = SPOSE_CRUSHED_OR_COLLECTED;
     gDisableWario = 1;
     gWarioPauseTimer = CONVERT_SECONDS(16.0 + 2.0 / 3.0);
-    gUnk_3000C03 = 2;
+    gStageTimerColonState = 2;
     AutosaveStageClear();
     func_801E430(
         PSPRITE_WARIO_ENTERING_VORTEX,
@@ -177,7 +177,7 @@ void SpriteVortex(void)
                 gCurrentSprite.xPosition
             );
             if (gCurrentSprite.globalID == PSPRITE_VORTEX_2) {
-                SpriteSpawnSecondary(SUBPIXELS_FROM_BLOCKS(8.25), BLOCK_SIZE, SSPRITE_51);
+                SpawnSecondarySprite(SUBPIXELS_FROM_BLOCKS(8.25), BLOCK_SIZE, SSPRITE_51);
             }
             break;
 

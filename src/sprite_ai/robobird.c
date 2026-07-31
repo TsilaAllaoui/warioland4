@@ -206,7 +206,7 @@ void InitRobobirdTackledRight(void)
     sprite = &gCurrentSprite;
     sprite->pose = SPOSE_TACKLED_RIGHT;
     sprite->work2 = 8;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     SetRobobirdDefeated();
 }
 
@@ -217,7 +217,7 @@ void InitRobobirdTackledLeft(void)
     sprite = &gCurrentSprite;
     sprite->pose = SPOSE_TACKLED_LEFT;
     sprite->work2 = 8;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     SetRobobirdDefeated();
 }
 
@@ -244,7 +244,7 @@ void SpriteRobobird(void)
             RobobirdIdle();
             break;
         case SPOSE_6A:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
         case SPOSE_PUSHED_RIGHT_INIT:
         case SPOSE_33:
             InitRobobirdPushedRight();
@@ -257,7 +257,7 @@ fall_right:
             InitRobobirdTackledRight();
             goto fall_right;
         case SPOSE_69:
-            SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+            SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
         case SPOSE_PUSHED_LEFT_INIT:
         case SPOSE_35:
             InitRobobirdPushedLeft();

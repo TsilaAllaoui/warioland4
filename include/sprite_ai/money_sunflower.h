@@ -9,7 +9,7 @@ extern const struct AnimationFrame sMoneySunflowerMediumOam[];
 extern const struct AnimationFrame sMoneySunflowerSmallOam[];
 extern const struct AnimationFrame sMoneySunflowerDepletedOam[];
 
-void func_80767DC(u16 yPosition, u16 xPosition, u8 amount);
+void SpawnScoreCoinDropSprites(u16 yPosition, u16 xPosition, u8 amount);
 
 void InitMoneySunflower(void);
 void SetMoneySunflowerFull(void);

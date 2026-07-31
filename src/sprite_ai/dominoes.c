@@ -111,7 +111,7 @@ extern const struct AnimationFrame sDominoLongPieceBAnimationOam[];
 extern const struct AnimationFrame sDominoActivatorAnimationOam[];
 
 extern int GetBg2CollisionTypeAtTile(int y, int x);
-extern void func_80767DC(int y, int x, int type);
+extern void SpawnScoreCoinDropSprites(int y, int x, int type);
 
 void UpdateDominoPalette(void)
 {
@@ -1268,7 +1268,7 @@ void UpdateDominoGoalOpenRight(void)
         sprite->currentAnimationFrame = 0;
         sprite->animationTimer = 0;
         sprite->pose = 24;
-        func_80767DC(sprite->yPosition - 64, sprite->xPosition + 96, 10);
+        SpawnScoreCoinDropSprites(sprite->yPosition - 64, sprite->xPosition + 96, 10);
     }
 }
 

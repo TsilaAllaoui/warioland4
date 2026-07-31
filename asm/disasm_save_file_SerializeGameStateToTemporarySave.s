@@ -528,7 +528,7 @@ SerializeGameStateToTemporarySave:
 .L_73388:
 	.4byte	gUnk_3000C05
 .L_7338c:
-	.4byte	gUnk_3000C06
+	.4byte	gEnemyScoreDropCounter
 .L_73390:
 	.4byte	gCollectedNWJewelPiece
 .L_73394:
@@ -542,7 +542,7 @@ SerializeGameStateToTemporarySave:
 .L_733a4:
 	.4byte	gStageScore
 .L_733a8:
-	.4byte	gUnk_3000BEC
+	.4byte	gStageFrameCounter
 .L_733ac:
 	.4byte	gUnk_3000524
 .L_733b0:
@@ -552,7 +552,7 @@ SerializeGameStateToTemporarySave:
 .L_733b8:
 	.4byte	gSwitchStates
 .L_733bc:
-	.4byte	gUnk_3000BF0
+	.4byte	gStageTimerDigits
 .L_733c0:
 	.4byte	gScoreDigits
 .L_733c4:

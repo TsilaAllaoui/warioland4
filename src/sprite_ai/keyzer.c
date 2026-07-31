@@ -355,7 +355,7 @@ void KeyzerCollect()
     } else {
         m4aSongNumStart(SE_GET_KEYZER);
     }
-    SpriteSpawnSecondary(gCurrentSprite.yPosition, gCurrentSprite.xPosition, SSPRITE_KEYZER);
+    SpawnSecondarySprite(gCurrentSprite.yPosition, gCurrentSprite.xPosition, SSPRITE_KEYZER);
     VoiceSetPlay(VS_WARIO_KEYZER_GET);
 }
 

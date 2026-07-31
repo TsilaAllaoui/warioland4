@@ -597,11 +597,11 @@ void ToyBlockTriangleDoorOpen(void)
         sprite->currentAnimationFrame = truncated;
         sprite->animationTimer = truncated;
         *timerPtr = 180;
-        SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition - 64, SSPRITE_31);
-        SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition - 32, SSPRITE_32);
-        SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition, SSPRITE_31);
-        SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition + 32, SSPRITE_32);
-        SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition + 64, SSPRITE_31);
+        SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition - 64, SSPRITE_31);
+        SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition - 32, SSPRITE_32);
+        SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition, SSPRITE_31);
+        SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition + 32, SSPRITE_32);
+        SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition + 64, SSPRITE_31);
         sprite->pose = 24;
     }
 }

@@ -33,7 +33,6 @@ extern const u8 sBossLife2Gfx[];
 extern const u8 sBossLife1Gfx[];
 extern const u8 sBossLife0Gfx[];
 
-extern s8 gUnk_3000BF0[];
 extern const u8 sUnk_83BF986[];
 extern const u8 sBigBoardSpaceSpriteTable[];
 
@@ -137,8 +136,26 @@ const u8 sCDIconGfx[] = {
 #include "data/hud/cd_icon.4bpp.inc"
 };
 
-const u8 sTimeUpGfx[] = {
-#include "data/hud/time_up.4bpp.inc"
+const u8 sTimeUpBaseGfx[] = {
+#include "data/hud/time_up_base.4bpp.inc"
+};
+const u8 sTimeUpTextGfx[] = {
+#include "data/hud/time_up_text.4bpp.inc"
+};
+const u8 sTimeUpWarioGfx[] = {
+#include "data/hud/time_up_wario.4bpp.inc"
+};
+const u8 sTimeUpEffect0Gfx[] = {
+#include "data/hud/time_up_effect_0.4bpp.inc"
+};
+const u8 sTimeUpEffect1Gfx[] = {
+#include "data/hud/time_up_effect_1.4bpp.inc"
+};
+const u8 sTimeUpEffect2Gfx[] = {
+#include "data/hud/time_up_effect_2.4bpp.inc"
+};
+const u8 sTimeUpEffect3Gfx[] = {
+#include "data/hud/time_up_effect_3.4bpp.inc"
 };
 
 // clang-format off
@@ -403,7 +420,7 @@ void UpdateWarioLifeHud(void)
                 gHeartGauge.current++;
                 heartGaugeIncrease = gHeartGauge.current;
                 gHeartGauge.filling--;
-                SpriteSpawnSecondary((u16)(gWarioData.yPosition - 40), (u16)(gWarioData.xPosition - 16), 63);
+                SpawnSecondarySprite((u16)(gWarioData.yPosition - 40), (u16)(gWarioData.xPosition - 16), 63);
             }
         } else {
             gHeartGauge.unk_3--;
@@ -433,7 +450,7 @@ void UpdateWarioLifeHud(void)
             gHeartMeter.unk_3 = 8;
             gHeartMeter.current++;
             gHeartMeter.filling--;
-            SpriteSpawnSecondary((u16)(gWarioData.yPosition - 72), (u16)(gWarioData.xPosition - 32), 62);
+            SpawnSecondarySprite((u16)(gWarioData.yPosition - 72), (u16)(gWarioData.xPosition - 32), 62);
         } else {
             gHeartMeter.unk_3--;
         }
@@ -887,7 +904,7 @@ void StartCollectedJewelPieceHudEffect(void)
     u32 direction;
     s32 signedDirection;
 
-    state = gUnk_3000BF0;
+    state = gStageTimerDigits;
     if (state[0] == 0) {
         position = (u8)state[1];
         direction = (u8)state[2];
@@ -958,7 +975,7 @@ void UpdateTreasureCollectionHudEffects(void)
     s32 direction;
     s32 positionIndex;
 
-    state = gUnk_3000BF0;
+    state = gStageTimerDigits;
     if (state[0] != 0) {
         return;
     }

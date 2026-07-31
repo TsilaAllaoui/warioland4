@@ -471,9 +471,9 @@ void func_8035D2C(void)
     gCurrentSprite.work2 = 4;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, 20);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32,
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32,
         gCurrentSprite.xPosition, 6);
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;
@@ -503,9 +503,9 @@ void func_8035DD4(void)
     gCurrentSprite.work2 = 3;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, 20);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32,
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32,
         gCurrentSprite.xPosition, 6);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
 }
@@ -677,7 +677,7 @@ void func_80360E8(void)
     gCurrentSprite.work0 = 9;
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, 20);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
     if (gCurrentSprite.warioCollision != 5)
@@ -688,7 +688,7 @@ void func_80360E8(void)
 
 void func_803615C(void)
 {
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, 20);
     SpriteUtilDie();
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = 2;
@@ -964,7 +964,7 @@ void func_80364D0(void)
     gCurrentSprite.work2 = 4;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32,
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32,
         gCurrentSprite.xPosition, 6);
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;

@@ -102,18 +102,18 @@ extern u8 gCollectedSEJewelPiece;
 extern u8 gCollectedSWJewelPiece;
 extern u8 gUnk_3000C04;
 extern u8 gUnk_3000C05;
-extern u8 gUnk_3000C06;
+extern u8 gEnemyScoreDropCounter;
 extern u8 gCollectedNWJewelPiece;
 extern u8 gCollectedCD;
 extern u8 gCollectedKeyzer;
 extern u8 gUnk_3000C0E;
 extern u32 gStageScore;
-extern u32 gUnk_3000BEC;
+extern u32 gStageFrameCounter;
 extern u8 gUnk_3000524[];
 extern u8 gUnk_3000544[];
 extern u8 gPersistentSpriteData[][64];
 extern u8 gSwitchStates[];
-extern u8 gUnk_3000BF0[];
+extern u8 gStageTimerDigits[];
 extern s8 gScoreDigits[];
 extern u16 gBg0XPosition;
 extern u16 gBg0YPosition;
@@ -587,7 +587,7 @@ void SerializeGameStateToTemporarySave(void)
         { register u8 *source asm("r1"); source = switchPressed; *destination++ = *source; }
     { register u8 *source asm("r2"); source = &gUnk_3000C04; *destination++ = *source; }
     *destination++ = gUnk_3000C05;
-    *destination++ = gUnk_3000C06;
+    *destination++ = gEnemyScoreDropCounter;
     padding = destination;
     if (((u32)destination & 3) != 0)
     {
@@ -650,7 +650,7 @@ void SerializeGameStateToTemporarySave(void)
     destination += 4;
     *(u32 *)destination = gStageScore;
     destination += 4;
-    *(u32 *)destination = gUnk_3000BEC;
+    *(u32 *)destination = gStageFrameCounter;
     destination += 4;
 
     {
@@ -773,7 +773,7 @@ void SerializeGameStateToTemporarySave(void)
         register u8 *source asm("r1");
 
         index = 0;
-        source = gUnk_3000BF0;
+        source = gStageTimerDigits;
         do
         {
             *destination++ = *(u8 *)(index + (u32)source);
@@ -1005,7 +1005,7 @@ void RestoreGameStateFromTemporarySave(void)
             value = *source; destination1 = switchPressed; *destination1 = value; source++;
             value = *source; destination2 = &gUnk_3000C04; *destination2 = value; source++;
             value = *source; destination3 = &gUnk_3000C05; *destination3 = value; source++;
-            value = *source; destination5 = &gUnk_3000C06; *destination5 = value; source++;
+            value = *source; destination5 = &gEnemyScoreDropCounter; *destination5 = value; source++;
             padding = source;
             if (((u32)source & 3) != 0)
             {
@@ -1046,7 +1046,7 @@ void RestoreGameStateFromTemporarySave(void)
 
     gTotalScore = *(u32 *)source; source += 4;
     gStageScore = *(u32 *)source; source += 4;
-    gUnk_3000BEC = *(u32 *)source; source += 4;
+    gStageFrameCounter = *(u32 *)source; source += 4;
 
     {
         register s32 index asm("r2");
@@ -1096,7 +1096,7 @@ void RestoreGameStateFromTemporarySave(void)
     }
     {
         register s32 index asm("r2"); register u8 *destination asm("r3");
-        index = 0; destination = gUnk_3000BF0;
+        index = 0; destination = gStageTimerDigits;
         do { *(u8 *)(index + (u32)destination) = *source++; index++; } while (index <= 2);
         if ((index & 3) != 0) { register u32 mask asm("r1"); mask = 3; do { source++; index++; } while ((index & mask) != 0); }
     }

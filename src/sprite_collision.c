@@ -103,7 +103,7 @@ void SpriteCollisionMakeWarioDropCoins(s32 slot)
             amount = 0;
             break;
     }
-    ScoreGiveOrDropCoins(amount);
+    ChangeStageScoreAndDropCoins(amount);
 }
 
 void func_801E884(s32 slot)
@@ -5101,7 +5101,7 @@ void func_8022524(s32 slot, u16 spriteTop, u16 spriteBottom, u16 warioTop, u16 w
         if (gSpriteCollisionFlags & SPRITE_COLLISION_BELOW) {
             WarioRequestPose(WPOSE_BOUNCY_HITTING_CEILING);
             AdvanceGoldenDivaMaskGraphics();
-            SpriteSpawnSecondary(warioTop, warioX, SSPRITE_40);
+            SpawnSecondarySprite(warioTop, warioX, SSPRITE_40);
             SpriteSpawnAsChild(PSPRITE_0B, 0, 0, gSpriteData[slot].yPosition, gSpriteData[slot].xPosition);
             VoiceSetPlay(VS_WARIO_TREASURE);
             gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(0.25);
@@ -5111,9 +5111,9 @@ void func_8022524(s32 slot, u16 spriteTop, u16 spriteBottom, u16 warioTop, u16 w
             VoiceSetPlay(VS_WARIO_TREASURE);
             gSpriteData[slot].disableWarioCollisionTimer = CONVERT_SECONDS(1);
             if (gSpriteCollisionFlags & SPRITE_COLLISION_LEFT) {
-                SpriteSpawnSecondary(warioTop, warioX + BLOCK_SIZE - PIXEL_SIZE, SSPRITE_40);
+                SpawnSecondarySprite(warioTop, warioX + BLOCK_SIZE - PIXEL_SIZE, SSPRITE_40);
             } else {
-                SpriteSpawnSecondary(warioTop, warioX - (BLOCK_SIZE - PIXEL_SIZE), SSPRITE_40);
+                SpawnSecondarySprite(warioTop, warioX - (BLOCK_SIZE - PIXEL_SIZE), SSPRITE_40);
             }
         }
         return;
@@ -5335,7 +5335,7 @@ void func_8022AE8(s32 slot, u16 left, u16 right)
                 WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                 gWarioData.xVelocity = -0x48;
                 gWarioData.yVelocity = 0x78;
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gSpriteData[slot].yPosition, gSpriteData[slot].xPosition - HALF_BLOCK_SIZE, SSPRITE_06
                 );
             } else {
@@ -5343,7 +5343,7 @@ void func_8022AE8(s32 slot, u16 left, u16 right)
                 WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                 gWarioData.xVelocity = 0x48;
                 gWarioData.yVelocity = 0x78;
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gSpriteData[slot].yPosition, gSpriteData[slot].xPosition + HALF_BLOCK_SIZE, SSPRITE_06
                 );
             }
@@ -5454,7 +5454,7 @@ void func_8022CE8(
                         WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                         gWarioData.xVelocity = -0x20;
                         gWarioData.yVelocity = 0x40;
-                        SpriteSpawnSecondary(warioY - BLOCK_SIZE, warioRight + HALF_BLOCK_SIZE, SSPRITE_40);
+                        SpawnSecondarySprite(warioY - BLOCK_SIZE, warioRight + HALF_BLOCK_SIZE, SSPRITE_40);
                         m4aSongNumStart(SOUND_38);
                     } else {
                         gSpriteData[slot].pose = SPOSE_PUSHED_RIGHT_INIT;
@@ -5465,7 +5465,7 @@ void func_8022CE8(
                         WarioRequestPose(WPOSE_NORMAL_SHOULDER_BASH_BONK);
                         gWarioData.xVelocity = 0x20;
                         gWarioData.yVelocity = 0x40;
-                        SpriteSpawnSecondary(warioY - BLOCK_SIZE, warioLeft - HALF_BLOCK_SIZE, SSPRITE_40);
+                        SpawnSecondarySprite(warioY - BLOCK_SIZE, warioLeft - HALF_BLOCK_SIZE, SSPRITE_40);
                         m4aSongNumStart(SOUND_38);
                     } else {
                         gSpriteData[slot].pose = SPOSE_PUSHED_LEFT_INIT;

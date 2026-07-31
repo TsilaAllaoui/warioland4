@@ -185,7 +185,7 @@ void ApplyChanceWheelReward(void)
         case 4:
             gShopItemState = 5;
             WarioRequestPose(19);
-            ScoreGiveOrDropCoins(-40);
+            ChangeStageScoreAndDropCoins(-40);
             break;
         case 5:
             m4aSongNumStart(SE_CHANCE_WHEEL_SWITCH_REWARD);

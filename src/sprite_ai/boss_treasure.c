@@ -357,7 +357,7 @@ void SpriteBossTreasure(void)
                 sprite->yPosition = adjustedY;
                 timer = &sprite->work0;
                 if ((*timer & 7) == 0) {
-                    SpriteSpawnSecondary(sprite->yPosition + 32, sprite->xPosition, SSPRITE_47);
+                    SpawnSecondarySprite(sprite->yPosition + 32, sprite->xPosition, SSPRITE_47);
                 }
                 (*timer)++;
             } else {

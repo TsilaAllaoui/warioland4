@@ -265,9 +265,9 @@ void SpikyTackledInit(void)
         scoreType = 10;
         gCurrentSprite.work2 = 8;
     }
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, scoreType);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gCurrentSprite.status &= ~SPRITE_STATUS_CAN_HIT_OTHER_SPRITES;
     gCurrentSprite.status |= SPRITE_STATUS_MAYBE_DEAD;
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
@@ -302,9 +302,9 @@ void SpikyDefeatedInit(void)
         scoreType = 10;
         gCurrentSprite.work2 = 7;
     }
-    func_807687C(gCurrentSprite.globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(gCurrentSprite.globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, scoreType);
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }
 
@@ -410,7 +410,7 @@ void SpikyCrushed(void)
     if (globalID == 29) {
         scoreType = 30;
     }
-    func_807687C(globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, scoreType);
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;
 }
@@ -425,7 +425,7 @@ void SpikyInstantlyKill(void)
     if (globalID == 29) {
         scoreType = 30;
     }
-    func_807687C(globalID, gCurrentSprite.yPosition,
+    SpawnEnemyScoreDrop(globalID, gCurrentSprite.yPosition,
         gCurrentSprite.xPosition, scoreType);
     SpriteUtilDie();
     gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] = PERSISTENT_STATUS_DESPAWNED;

@@ -880,7 +880,7 @@ void SetWarioWaterPose(u8 pose)
         case 6:
             if (gHeartMeter.unk_2 == 0 && gHeartMeter.current != 0) {
                 gHeartMeter.current--;
-                SpriteSpawnSecondary(gWarioData.yPosition - 0x60, gWarioData.xPosition, 0x30);
+                SpawnSecondarySprite(gWarioData.yPosition - 0x60, gWarioData.xPosition, 0x30);
             }
             gWarioData.damageTimer = 1;
             m4aSongNumStart(SE_WARIO_WATER_DAMAGE);

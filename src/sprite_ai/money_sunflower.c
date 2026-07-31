@@ -85,7 +85,7 @@ void AdvanceMoneySunflowerStage(void)
 
     switch (persistentState) {
         case 0:
-            func_80767DC(sprite->yPosition, sprite->xPosition, 50);
+            SpawnScoreCoinDropSprites(sprite->yPosition, sprite->xPosition, 50);
             address = *currentRoom << 6;
             address += sprite->roomSlot;
             address += (u32)persistentData;
@@ -95,7 +95,7 @@ void AdvanceMoneySunflowerStage(void)
             SetMoneySunflowerLarge();
             break;
         case 16:
-            func_80767DC(sprite->yPosition, sprite->xPosition, 50);
+            SpawnScoreCoinDropSprites(sprite->yPosition, sprite->xPosition, 50);
             address = *currentRoom << 6;
             address += sprite->roomSlot;
             address += (u32)persistentData;
@@ -105,7 +105,7 @@ void AdvanceMoneySunflowerStage(void)
             SetMoneySunflowerMedium();
             break;
         case 32:
-            func_80767DC(sprite->yPosition, sprite->xPosition, 50);
+            SpawnScoreCoinDropSprites(sprite->yPosition, sprite->xPosition, 50);
             address = *currentRoom << 6;
             address += sprite->roomSlot;
             address += (u32)persistentData;
@@ -115,7 +115,7 @@ void AdvanceMoneySunflowerStage(void)
             SetMoneySunflowerSmall();
             break;
         case 48:
-            func_80767DC(sprite->yPosition, sprite->xPosition, 50);
+            SpawnScoreCoinDropSprites(sprite->yPosition, sprite->xPosition, 50);
             address = *currentRoom << 6;
             address += sprite->roomSlot;
             address += (u32)persistentData;

@@ -1134,7 +1134,7 @@ void AerodentCompanionUpdateCombat(void)
                 return;
             }
             if (count > 0) {
-                if (current->health <= 4 && (u8)gUnk_3000BEC == 0)
+                if (current->health <= 4 && (u8)gStageFrameCounter == 0)
                     AerodentSpawnShot();
             } else {
                 sprite->pose = 112;
@@ -1558,7 +1558,7 @@ void AerodentCompanionTakeDamage(void)
             sprite->warioCollision = collisionZero;
         }
     }
-    SpriteSpawnSecondary(sprite->yPosition, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition, sprite->xPosition, 6);
 
     health = sprite->health;
     if (health != 0) {
@@ -2402,7 +2402,7 @@ void AerodentThrowablePrepareFallWithEffect(void)
     sprite->work2 = 8;
     sprite->work3 = zero;
     sprite->drawPriority = zero;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     sprite->status = (sprite->status & ~0x100) | 0x200;
 }
 void AerodentThrowableFallRightWithEffect(void)
@@ -2427,7 +2427,7 @@ void AerodentThrowablePrepareFall(void)
     gCurrentSprite.work2 = 7;
     gCurrentSprite.work3 = 0;
     gCurrentSprite.drawPriority = 0;
-    SpriteSpawnSecondary(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
+    SpawnSecondarySprite(gCurrentSprite.yPosition - 32, gCurrentSprite.xPosition, 6);
 }
 void AerodentThrowableFallRight(void)
 {

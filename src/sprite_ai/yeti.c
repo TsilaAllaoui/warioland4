@@ -338,8 +338,8 @@ void YetiTackledInit(void)
         *work3 = zero;
     }
     sprite->drawPriority = zero;
-    func_807687C(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnEnemyScoreDrop(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     {
         register u16 oldStatus asm("r1");
         register u16 newStatus asm("r0");
@@ -390,8 +390,8 @@ void YetiDefeatedInit(void)
         *work3 = zero;
     }
     sprite->drawPriority = zero;
-    func_807687C(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnEnemyScoreDrop(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] = 2;
 }
 
@@ -494,7 +494,7 @@ void YetiCrushed(void)
         newStatus |= oldStatus;
         sprite->status = newStatus;
     }
-    func_807687C(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
+    SpawnEnemyScoreDrop(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
     gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] = 2;
 }
 
@@ -503,7 +503,7 @@ void YetiInstantlyKill(void)
     register struct PrimarySpriteData *sprite asm("r4");
 
     sprite = &gCurrentSprite;
-    func_807687C(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
+    SpawnEnemyScoreDrop(sprite->globalID, sprite->yPosition, sprite->xPosition, 5);
     SpriteUtilDie();
     gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] = 2;
 }

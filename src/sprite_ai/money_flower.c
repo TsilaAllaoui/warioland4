@@ -306,7 +306,7 @@ void CollectMoneyFlower(void)
     sprite->pose = 50;
     gPersistentSpriteData[gCurrentRoom][sprite->roomSlot] = MAKE_PERSISTENT_DATA(SPOSE_INIT_6, PERSISTENT_STATUS_LOADED);
     sprite->work1 = 6;
-    func_80767DC(sprite->yPosition - 120, sprite->xPosition, amount);
+    SpawnScoreCoinDropSprites(sprite->yPosition - 120, sprite->xPosition, amount);
 }
 
 void FinishMoneyFlowerCollection(void)

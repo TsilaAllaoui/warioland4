@@ -150,7 +150,7 @@ u32 GameScreenSubroutine(void)
         }
         UpdateWarioLifeHud();
         DrawGameplayHudOam();
-        ProcessSecondarySprites();
+        UpdateSecondarySprites();
         if (!gDisableWario) {
             GameScreenDrawWario();
         }
@@ -388,7 +388,7 @@ void GameScreenInitAndLoadGenerics(void)
     do {
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
 
-    func_8075F44();
+    InitStageHudAndScore();
     func_801DE7C();
     func_80711E8();
     InitializeRoomMusic();

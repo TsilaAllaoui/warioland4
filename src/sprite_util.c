@@ -216,7 +216,7 @@ const u16 sSpriteThrownUpHardYVelocityHeavy[] = {
 void func_80238A4(void)
 {
     if (gScreenShakeY.duration >= CONVERT_SECONDS(0.97)) {
-        if (gUnk_3000BEC & 1) {
+        if (gStageFrameCounter & 1) {
             gCurrentSprite.pose = SPOSE_33;
         } else {
             gCurrentSprite.pose = SPOSE_35;
@@ -229,7 +229,7 @@ void func_80238A4(void)
 void func_80238E8(void)
 {
     if (gScreenShakeY.duration >= CONVERT_SECONDS(0.7)) {
-        if (gUnk_3000BEC & 1) {
+        if (gStageFrameCounter & 1) {
             gCurrentSprite.pose = SPOSE_33;
         } else {
             gCurrentSprite.pose = SPOSE_35;
@@ -802,7 +802,7 @@ void SpriteUtilDieAfterDelay(void)
     gCurrentSprite.disableWarioCollisionTimer = DELTA_TIME;
     if (--gCurrentSprite.work0 == 0) {
         gCurrentSprite.status = SPRITE_STATUS_NONE;
-        SpriteSpawnSecondary(
+        SpawnSecondarySprite(
             gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition, SSPRITE_ENEMY_KILLED_EFFECT
         );
     }
@@ -811,7 +811,7 @@ void SpriteUtilDieAfterDelay(void)
 void SpriteUtilDie(void)
 {
     gCurrentSprite.status = SPRITE_STATUS_NONE;
-    SpriteSpawnSecondary(
+    SpawnSecondarySprite(
         gCurrentSprite.yPosition - HALF_BLOCK_SIZE, gCurrentSprite.xPosition, SSPRITE_ENEMY_KILLED_EFFECT
     );
 }
@@ -2725,15 +2725,15 @@ void SpriteUtilStartBossTimer(void)
     WarioRequestPose(WPOSE_NORMAL_STANDING);
     gWarioPauseTimer = CONVERT_SECONDS(3 + 1 / 3.0);
     gTimerState = 1;
-    gUnk_3000BEC = 0;
-    gUnk_3000C01 = 3;
-    gUnk_3000C03 = 2;
-    SpriteSpawnSecondary(3 * BLOCK_SIZE + EIGHTH_BLOCK_SIZE, 6 * BLOCK_SIZE, SSPRITE_4E);
+    gStageFrameCounter = 0;
+    gStageTimerDigitsState = 3;
+    gStageTimerColonState = 2;
+    SpawnSecondarySprite(3 * BLOCK_SIZE + EIGHTH_BLOCK_SIZE, 6 * BLOCK_SIZE, SSPRITE_4E);
     yPosition = gWarioData.yPosition - gBg1YPosition;
     xPosition = gWarioData.xPosition;
     xOffset = (gBg1XPosition + BLOCK_SIZE);
     xPosition -= xOffset;
-    SpriteSpawnSecondary(yPosition, xPosition, SSPRITE_4F);
+    SpawnSecondarySprite(yPosition, xPosition, SSPRITE_4F);
     m4aSongNumStart(SOUND_1BC);
     if (gCurrentPassage == PASSAGE_GOLDEN) {
         m4aSongNumStart(BGM_GOLDEN_DIVA);

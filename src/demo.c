@@ -29,7 +29,6 @@ struct DemoMusicState {
     u8 specialPlayerId;
 };
 
-extern u8 gUnk_3000BF0[];
 extern const u8 sStageRoomCounts[];
 extern const u32 sUnk_86391C4[][6];
 
@@ -91,7 +90,7 @@ void SetupDemo(void)
     gGameMusicState.songId = configuration->songId;
 
     if (stageValue == 4) {
-        bossData = gUnk_3000BF0;
+        bossData = (u8 *)gStageTimerDigits;
         bossOffset = *stageId;
         bossOffset *= 12;
         /* Keep agbcc from scheduling the independent field base before the final index shift. */

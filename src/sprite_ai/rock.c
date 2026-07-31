@@ -157,7 +157,7 @@ void RockCarriedLeftInit(void)
 
 void SpriteRock(void)
 {
-    if (gCurrentSprite.status & SPRITE_STATUS_UNDERWATER && (gUnk_3000BEC & 3)) {
+    if (gCurrentSprite.status & SPRITE_STATUS_UNDERWATER && (gStageFrameCounter & 3)) {
         return;
     }
     switch (gCurrentSprite.pose) {
@@ -406,7 +406,7 @@ void SpriteRock(void)
     if ((gCurrentSprite.health & 0xF) == 1) {
         if (gCurrentSprite.status & SPRITE_STATUS_UNDERWATER) {
             gCurrentSprite.health += 1;
-            SpriteSpawnSecondary(gCurrentSprite.yPosition, gCurrentSprite.xPosition, SSPRITE_07);
+            SpawnSecondarySprite(gCurrentSprite.yPosition, gCurrentSprite.xPosition, SSPRITE_07);
             m4aSongNumStart(SE_ENTER_WATER);
         }
     } else if ((gCurrentSprite.health & 0xF) == 2) {

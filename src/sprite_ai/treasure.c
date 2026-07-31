@@ -910,13 +910,13 @@ void SpriteJewelPieceNE(void)
             gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] =
                 MAKE_PERSISTENT_DATA(SPOSE_INIT_2, PERSISTENT_STATUS_LOADED);
             if (gWarioData.horizontalDirection & DPAD_LEFT) {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition - SUBPIXELS_FROM_PIXELS(50),
                     SSPRITE_JEWEL_PIECE_ICONS
                 );
             } else {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition + SUBPIXELS_FROM_PIXELS(18),
                     SSPRITE_JEWEL_PIECE_ICONS
@@ -949,13 +949,13 @@ void SpriteJewelPieceSE(void)
             gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] =
                 MAKE_PERSISTENT_DATA(SPOSE_INIT_2, PERSISTENT_STATUS_LOADED);
             if (gWarioData.horizontalDirection & DPAD_LEFT) {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition - SUBPIXELS_FROM_PIXELS(50),
                     SSPRITE_JEWEL_PIECE_ICONS
                 );
             } else {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition + SUBPIXELS_FROM_PIXELS(18),
                     SSPRITE_JEWEL_PIECE_ICONS
@@ -988,13 +988,13 @@ void SpriteJewelPieceSW(void)
             gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] =
                 MAKE_PERSISTENT_DATA(SPOSE_INIT_2, PERSISTENT_STATUS_LOADED);
             if (gWarioData.horizontalDirection & DPAD_LEFT) {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition - SUBPIXELS_FROM_PIXELS(50),
                     SSPRITE_JEWEL_PIECE_ICONS
                 );
             } else {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition + SUBPIXELS_FROM_PIXELS(18),
                     SSPRITE_JEWEL_PIECE_ICONS
@@ -1027,13 +1027,13 @@ void SpriteJewelPieceNW(void)
             gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] =
                 MAKE_PERSISTENT_DATA(SPOSE_INIT_2, PERSISTENT_STATUS_LOADED);
             if (gWarioData.horizontalDirection & DPAD_LEFT) {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition - SUBPIXELS_FROM_PIXELS(50),
                     SSPRITE_JEWEL_PIECE_ICONS
                 );
             } else {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition + SUBPIXELS_FROM_PIXELS(18),
                     SSPRITE_JEWEL_PIECE_ICONS
@@ -1066,13 +1066,13 @@ void SpriteCD(void)
             gPersistentSpriteData[gCurrentRoom][gCurrentSprite.roomSlot] =
                 MAKE_PERSISTENT_DATA(SPOSE_INIT_2, PERSISTENT_STATUS_LOADED);
             if (gWarioData.horizontalDirection & DPAD_LEFT) {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition - SUBPIXELS_FROM_PIXELS(34),
                     SSPRITE_CD_ICON
                 );
             } else {
-                SpriteSpawnSecondary(
+                SpawnSecondarySprite(
                     gWarioData.yPosition - SUBPIXELS_FROM_PIXELS(40),
                     gWarioData.xPosition + SUBPIXELS_FROM_PIXELS(18),
                     SSPRITE_CD_ICON

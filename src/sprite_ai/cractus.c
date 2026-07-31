@@ -810,7 +810,7 @@ void InitCractusSpawnerDefeat(void)
     sprite->work0 = 62;
     sprite->health = zero2;
     sprite->drawPriority = zero2;
-    SpriteSpawnSecondary(sprite->yPosition - 32, sprite->xPosition, 6);
+    SpawnSecondarySprite(sprite->yPosition - 32, sprite->xPosition, 6);
     SpriteUtilFindSpriteSlotWork3(216);
     sprites = gSpriteData;
     work = (u8 *)sprite;
@@ -2504,7 +2504,7 @@ void UpdateCractusBossPose49(void)
     work++;
     *work = zeroR4;
     gInitialHealth = 1;
-    SpriteSpawnSecondary(gWarioData.yPosition, gWarioData.xPosition, 5);
+    SpawnSecondarySprite(gWarioData.yPosition, gWarioData.xPosition, 5);
     func_8023BFC(sprite->yPosition + 352, sprite->xPosition);
     if (gSpriteCollisionTileType != 0)
         sprite->pose = 50;

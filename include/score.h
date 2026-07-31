@@ -2,6 +2,7 @@
 #define SCORE_H
 
 #include "global_data.h"
+#include "oam.h"
 #include "types.h"
 
 // Number of points per internal unit of score
@@ -121,23 +122,26 @@ struct ItemCollection {
 #define BOSS_DEFEATED keyzer
 #define DIVA_DEFEATED cd
 
+extern const struct AnimationFrame sUnk_840FB94[];
+extern void (*const sSecondarySpriteAITable[])(void);
+
 extern struct ItemCollection gCurrentCollection[PASSAGE_MAX][STAGE_MAX];
 extern s32 gHighScoreTable[PASSAGE_MAX][NORMAL_STAGE_COUNT];
 // gSecondarySpriteData
 // gCurrentSecondarySprite
-extern s32 gUnk_3000BEC;
-// gUnk_3000BF0
+extern s32 gStageFrameCounter;
+extern s8 gStageTimerDigits[];
 extern s32 gTotalScore;
 extern s32 gStageScore;
 extern s32 gTotalScoreTemp;
 extern u8 gNewHighScore;
 extern s8 gScoreDigits[];
-extern s8 gUnk_3000C01;
-// gUnk_3000C02
-extern u8 gUnk_3000C03;
-// gUnk_3000C04
+extern u8 gStageTimerDigitsState;
+extern u8 gStageScoreDigitsDirty;
+extern u8 gStageTimerColonState;
+extern u8 gUnk_3000C04;
 // gUnk_3000C05
-// gUnk_3000C06
+extern u8 gEnemyScoreDropCounter;
 extern u8 gCollectedNEJewelPiece;
 extern u8 gCollectedSEJewelPiece;
 extern u8 gCollectedSWJewelPiece;
@@ -146,8 +150,8 @@ extern u8 gCollectedCD;
 extern u8 gCollectedKeyzer;
 extern u8 gSwitchPressed;
 extern u8 gUnk_3000C0E;
-u8* gCurrentHeartMeterGfx;
-u8* gCurrentHeartGaugeGfx;
+extern u8* gCurrentHeartMeterGfx;
+extern u8* gCurrentHeartGaugeGfx;
 extern u8 gVortexGfxSlot;
 extern u16 gVortexYPosition;
 extern u16 gVortexXPosition;
@@ -165,17 +169,27 @@ extern u8 gHasBossTreasure10;
 extern u8 gHasBossTreasure11;
 extern u8 gHasBossTreasure12;
 
-void ProcessSecondarySprites(void);
-void func_8075F44(void);
-void ScoreGivePoints(s32);
-void SpriteSpawnSecondary(u32 y, u32 x, u8 id);
+void UpdateSecondarySprites(void);
+void UploadStageScoreDigitTiles(void);
+void UploadStageTimerDigitTiles(void);
+void UploadStageTimerColonTiles(void);
+void StartTimeUpSequence(void);
+void PlayWarioDefeatJingle(void);
+void UpdateStageTimerAndScoreDrain(void);
+void LoadStageCollectiblesFromSave(void);
+void DrawCurrentSecondarySprite(u32 index);
+void InitStageHudAndScore(void);
+void AddStageScore(s32);
+void SpawnSecondarySprite(u32 y, u32 x, u32 id);
 void SpawnOnePointTileEffect(u32 y, u32 x);
 void SpawnTenPointTileEffect(u32 y, u32 x);
 void SpawnTileDebrisParticle(u32 y, u32 x, u32 debrisOffset, u32 direction, u32 parity);
-void func_80767DC(u32 y, u32 x, s32 amount);
-// void func_80767DC(u16 yPosition, u16 xPosition, s32 amount);
-void func_807687C(u32 id, u32 y, u32 x, u32 amount);
-void ScoreGiveOrDropCoins(s32);
-void func_8076A0C(const struct AnimationFrame *animation);
+void SpawnScoreCoinDropSprites(u32 y, u32 x, s32 amount);
+// void SpawnScoreCoinDropSprites(u16 yPosition, u16 xPosition, s32 amount);
+void SpawnEnemyScoreDrop(u32 id, u32 y, u32 x, u32 amount);
+void ChangeStageScoreAndDropCoins(s32);
+void ConvertKeyzerToTimeUpEffect(void);
+void ResetTimeUpWarioSecondarySprite(void);
+void AdvanceSecondarySpriteAnimation(const struct AnimationFrame *animation);
 
 #endif  // SCORE_H
