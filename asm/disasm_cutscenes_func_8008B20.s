@@ -1,4 +1,3 @@
-
 .align 2, 0
 .global func_8008B20
 .thumb
