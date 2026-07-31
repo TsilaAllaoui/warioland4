@@ -353,6 +353,12 @@ extern u8 gUnk_3000964[][3];
 
 /* 0x03000B80 */
 extern struct SecondarySprite gSecondarySpriteData[8];
+extern struct SecondarySprite gCurrentSecondarySprite;
+extern const u16 *gCurrentSecondarySpriteOamData;
+extern s16 gSecondarySpriteAffinePA;
+extern s16 gSecondarySpriteAffinePB;
+extern s16 gSecondarySpriteAffinePC;
+extern s16 gSecondarySpriteAffinePD;
 
 /* 0x0300188E */
 extern u16 gUnk_300188E;

@@ -146,11 +146,6 @@ extern u8 gCollectedCD;
 extern u8 gCollectedKeyzer;
 extern u8 gSwitchPressed;
 extern u8 gUnk_3000C0E;
-// gUnk_3000C10
-// gUnk_3000C14
-// gUnk_3000C16
-// gUnk_3000C18
-// gUnk_3000C1A
 u8* gCurrentHeartMeterGfx;
 u8* gCurrentHeartGaugeGfx;
 extern u8 gVortexGfxSlot;
@@ -181,5 +176,6 @@ void func_80767DC(u32 y, u32 x, s32 amount);
 // void func_80767DC(u16 yPosition, u16 xPosition, s32 amount);
 void func_807687C(u32 id, u32 y, u32 x, u32 amount);
 void ScoreGiveOrDropCoins(s32);
+void func_8076A0C(const struct AnimationFrame *animation);
 
 #endif  // SCORE_H

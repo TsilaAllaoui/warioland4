@@ -124,11 +124,11 @@ SECTIONS {
         . = 0x0c0c; gCollectedKeyzer = .;
         . = 0x0c0d; gSwitchPressed = .;
         . = 0x0c0e; gUnk_3000C0E = .;
-        . = 0x0c10; gUnk_3000C10 = .;
-        . = 0x0c14; gUnk_3000C14 = .;
-        . = 0x0c16; gUnk_3000C16 = .;
-        . = 0x0c18; gUnk_3000C18 = .;
-        . = 0x0c1a; gUnk_3000C1A = .;
+        . = 0x0c10; gCurrentSecondarySpriteOamData = .;
+        . = 0x0c14; gSecondarySpriteAffinePA = .;
+        . = 0x0c16; gSecondarySpriteAffinePB = .;
+        . = 0x0c18; gSecondarySpriteAffinePC = .;
+        . = 0x0c1a; gSecondarySpriteAffinePD = .;
         . = 0x0c1c; gCurrentHeartMeterGfx = .;
         . = 0x0c20; gCurrentHeartGaugeGfx = .;
         . = 0x0c24; gVortexGfxSlot = .;
@@ -725,7 +725,7 @@ SECTIONS {
         obj/boss_pause.o(.text);
         obj/hud.o(.text);
         obj/disasm_score.o(.text);
-        obj/disasm_secondary_sprite_ai.o(.text);
+        obj/secondary_sprite_ai.o(.text);
         obj/disasm_stage_select.o(.text);
         obj/disasm_map_screen.o(.text);
         obj/stage_entry.o(.text);

@@ -2334,7 +2334,7 @@ func_80762E4:
 .L_763a0:
 	.4byte	gOamSlotsUsed
 .L_763a4:
-	.4byte	gUnk_3000C10
+	.4byte	gCurrentSecondarySpriteOamData
 .L_763a8:
 	.4byte	gOamBuffer
 .L_763ac:
@@ -2503,7 +2503,7 @@ func_80762E4:
 .L_764e0:
 	.4byte	gOamSlotsUsed
 .L_764e4:
-	.4byte	gUnk_3000C10
+	.4byte	gCurrentSecondarySpriteOamData
 .L_764e8:
 	.4byte	gOamBuffer
 .L_764ec:
@@ -2513,7 +2513,7 @@ func_80762E4:
 .L_764f4:
 	.4byte	0xfffffe00
 .L_764f8:
-	.4byte	gUnk_3000C14
+	.4byte	gSecondarySpriteAffinePA
 .L_764fc:
 	ldr	r5, .L_76524
 	cmp	r2, #73	@ 0x49
@@ -2679,7 +2679,7 @@ func_80762E4:
 .L_76630:
 	.4byte	gOamSlotsUsed
 .L_76634:
-	.4byte	gUnk_3000C10
+	.4byte	gCurrentSecondarySpriteOamData
 .L_76638:
 	.4byte	gOamBuffer
 .L_7663c:
@@ -2689,13 +2689,13 @@ func_80762E4:
 .L_76644:
 	.4byte	0xfffffe00
 .L_76648:
-	.4byte	gUnk_3000C14
+	.4byte	gSecondarySpriteAffinePA
 .L_7664c:
-	.4byte	gUnk_3000C16
+	.4byte	gSecondarySpriteAffinePB
 .L_76650:
-	.4byte	gUnk_3000C18
+	.4byte	gSecondarySpriteAffinePC
 .L_76654:
-	.4byte	gUnk_3000C1A
+	.4byte	gSecondarySpriteAffinePD
 
 
 thumb_func_start ScoreGivePoints
@@ -3246,4 +3246,4 @@ func_8076A0C:
 .L_76a4c:
 	.4byte	gCurrentSecondarySprite
 .L_76a50:
-	.4byte	gUnk_3000C10
+	.4byte	gCurrentSecondarySpriteOamData
