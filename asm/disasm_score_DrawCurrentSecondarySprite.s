@@ -1,4 +1,7 @@
-thumb_func_start DrawCurrentSecondarySprite
+.align 2, 0
+.global DrawCurrentSecondarySprite
+.thumb
+.type DrawCurrentSecondarySprite, %function
 DrawCurrentSecondarySprite:
 	push	{r4, r5, r6, r7, lr}
 	mov	r7, sl

@@ -1,4 +1,7 @@
-thumb_func_start InitStageHudAndScore
+.align 2, 0
+.global InitStageHudAndScore
+.thumb
+.type InitStageHudAndScore, %function
 InitStageHudAndScore:
 	push	{r4, r5, r6, lr}
 	ldr	r1, .L_75f7c

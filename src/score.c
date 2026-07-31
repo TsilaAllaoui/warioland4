@@ -7,9 +7,6 @@
 #include "screen_shake.h"
 #include "wario.h"
 
-
-ASM_INCLUDE("asm/macros.s.inc");
-
 #ifndef SCORE_USE_WIP_C_UPDATE_SECONDARY_SPRITES
 ASM_INCLUDE("asm/disasm_score_UpdateSecondarySprites.s");
 #else

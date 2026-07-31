@@ -42,7 +42,7 @@ BUILT_ASM = $(BUILD)/asm
 OBJ = $(BUILD)/obj
 
 SRCS_C = $(shell find $(SRC) -type f -name '*.c')
-SRCS_ASM = $(filter-out $(ASM)/disasm_score_%.s,$(shell find $(ASM) -type f -name '*.s'))
+SRCS_ASM = $(shell find $(ASM) -type f -name '*.s')
 BUILT_ASMS = $(SRCS_C:$(SRC)/%.c=$(BUILT_ASM)/%.s)
 OBJS = $(SRCS_ASM:$(ASM)/%.s=$(OBJ)/%.o) $(SRCS_C:$(SRC)/%.c=$(OBJ)/%.o)
 .PRECIOUS: $(BUILT_ASMS)

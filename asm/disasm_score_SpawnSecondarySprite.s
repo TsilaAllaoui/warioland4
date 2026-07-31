@@ -1,4 +1,8 @@
-thumb_func_start SpawnSecondarySprite
+
+.align 2, 0
+.global SpawnSecondarySprite
+.thumb
+.type SpawnSecondarySprite, %function
 SpawnSecondarySprite:
 	push	{r4, r5, r6, r7, lr}
 	mov	r7, r8

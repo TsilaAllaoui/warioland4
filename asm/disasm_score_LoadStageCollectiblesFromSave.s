@@ -1,4 +1,7 @@
-thumb_func_start LoadStageCollectiblesFromSave
+.align 2, 0
+.global LoadStageCollectiblesFromSave
+.thumb
+.type LoadStageCollectiblesFromSave, %function
 LoadStageCollectiblesFromSave:
 	push	{r4, r5, r6, lr}
 	ldr	r1, .L_75b70
