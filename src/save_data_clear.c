@@ -14,7 +14,7 @@ extern u8 sUnk_8746D72[];
 extern u8 sUnk_8746D74[];
 extern u8 sUnk_8746D76[];
 extern u8 sUnk_8746D78[];
-extern u8 gStageEntryPauseMenuDisabled;
+extern s8 gStageEntryPauseMenuDisabled;
 extern u8 sUnk_8745350[];
 extern u8 sUnk_8745B58[];
 extern u8 sUnk_8746480[];
@@ -322,7 +322,7 @@ void func_8092B30(void)
         *bgReg = clear;
         *((volatile u16*)0x0400000A) = 0x3A01;
         *((volatile u16*)0x04000008) = clear;
-        gUnk_3001874 = clear;
+        gBlendAlphaEvb = clear;
         *((volatile u16*)0x04000052) = clear;
         gStageEntryPauseMenuDisabled = clear;
         gBg1XPosition = 4;

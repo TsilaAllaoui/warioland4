@@ -3,7 +3,6 @@
 
 #include "types.h"
 
-// gUnk_3001850
 extern u16 gStageEndAffineOriginX;
 extern u16 gStageEndAffineOriginY;
 extern s32 gBg2X;
@@ -17,8 +16,8 @@ extern s16 gBg2PB;
 extern s16 gBg2PC;
 extern s16 gBg2PD;
 extern u16 gBldy;
-extern u16 gUnk_3001872;
-extern u16 gUnk_3001874;
+extern u16 gBlendAlphaEva;
+extern u16 gBlendAlphaEvb;
 extern u16 gBg0XPosition;
 extern u16 gBg0YPosition;
 extern u16 gBg1XPosition;

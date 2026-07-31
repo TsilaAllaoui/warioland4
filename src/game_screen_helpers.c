@@ -1556,10 +1556,10 @@ void ProcessGoldenPassageBossTransition(void)
             u32 value;
 
             *(vu16 *)0x04000050 = 0x3748;
-            firstAlpha = &gUnk_3001874;
+            firstAlpha = &gBlendAlphaEvb;
             value = 16;
             *firstAlpha = value;
-            gUnk_3001872 = 0;
+            gBlendAlphaEva = 0;
             blendAlpha = &gBldAlpha;
             value <<= 8;
             *blendAlpha = value;
@@ -1573,10 +1573,10 @@ void ProcessGoldenPassageBossTransition(void)
             goto increment_state;
         case 3:
             if ((gUnk_300188E & 3) == 0) {
-                gUnk_3001874--;
-                if (gUnk_3001874 == 8)
+                gBlendAlphaEvb--;
+                if (gBlendAlphaEvb == 8)
                     advanceState = 1;
-                gBldAlpha = (gUnk_3001874 << 8) | gUnk_3001872;
+                gBldAlpha = (gBlendAlphaEvb << 8) | gBlendAlphaEva;
             }
             break;
         case 4:
@@ -1587,10 +1587,10 @@ void ProcessGoldenPassageBossTransition(void)
             break;
         case 5:
             if ((gUnk_300188E & 7) == 0) {
-                gUnk_3001872++;
-                if (gUnk_3001872 == 8)
+                gBlendAlphaEva++;
+                if (gBlendAlphaEva == 8)
                     advanceState = 1;
-                gBldAlpha = gUnk_3001872 | (gUnk_3001874 << 8);
+                gBldAlpha = gBlendAlphaEva | (gBlendAlphaEvb << 8);
             }
             break;
         case 6:
@@ -1612,13 +1612,13 @@ void ProcessGoldenPassageBossTransition(void)
             goto increment_state;
         case 10:
             if ((gUnk_300188E & 3) == 0) {
-                gUnk_3001872--;
-                gUnk_3001874++;
-                if (gUnk_3001872 == 0) {
-                    gUnk_3001874 = 16;
+                gBlendAlphaEva--;
+                gBlendAlphaEvb++;
+                if (gBlendAlphaEva == 0) {
+                    gBlendAlphaEvb = 16;
                     advanceState = 1;
                 }
-                gBldAlpha = gUnk_3001872 | (gUnk_3001874 << 8);
+                gBldAlpha = gBlendAlphaEva | (gBlendAlphaEvb << 8);
             }
             break;
         case 11:

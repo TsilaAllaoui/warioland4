@@ -508,7 +508,7 @@ func_8090A40:
 .L_90d9c:
 	.4byte	gBldy
 .L_90da0:
-	.4byte	gUnk_3001874
+	.4byte	gBlendAlphaEvb
 .L_90da4:
 	.4byte	0x04000052
 .L_90da8:

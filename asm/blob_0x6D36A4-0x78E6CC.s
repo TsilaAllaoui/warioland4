@@ -1062,227 +1062,227 @@ baserom_blob 0x746D78, 0x7470E0
 
 @ Ending cutscene data
 
-.global sUnk_87470E0
-sUnk_87470E0:
+.global sCreditsSpriteStateTemplate
+sCreditsSpriteStateTemplate:
 
 baserom_blob 0x7470E0, 0x7470E8
 
-.global sUnk_87470E8
-sUnk_87470E8:
+.global sCreditsBannerFrameDurations
+sCreditsBannerFrameDurations:
 
 baserom_blob 0x7470E8, 0x7470EC
 
-.global sUnk_87470EC
-sUnk_87470EC:
+.global sCreditsBlendEvaTargets
+sCreditsBlendEvaTargets:
 
 baserom_blob 0x7470EC, 0x7470FA
 
-.global sUnk_87470FA
-sUnk_87470FA:
+.global sCreditsBlendEvbTargets
+sCreditsBlendEvbTargets:
 
 baserom_blob 0x7470FA, 0x747108
 
-.global sUnk_8747108
-sUnk_8747108:
+.global sCreditsCaptionTilemaps
+sCreditsCaptionTilemaps:
 
 baserom_blob 0x747108, 0x747140
 
-.global sUnk_8747140
-sUnk_8747140:
+.global sCreditsSceneTilemaps
+sCreditsSceneTilemaps:
 
 baserom_blob 0x747140, 0x747178
 
-.global sUnk_8747178
-sUnk_8747178:
+.global sCreditsScenePalettes
+sCreditsScenePalettes:
 
 baserom_blob 0x747178, 0x7471B0
 
-.global sGoldenTreasureGfx
-sGoldenTreasureGfx:
+.global sCreditsGoldenTreasureGfxPointers
+sCreditsGoldenTreasureGfxPointers:
 
 baserom_blob 0x7471B0, 0x7471E0
 
-.global sUnk_87471E0
-sUnk_87471E0:
+.global sCreditsTreasureFrameGfxPointers
+sCreditsTreasureFrameGfxPointers:
 
 baserom_blob 0x7471E0, 0x7471EC
 
-.global sUnk_87471EC
-sUnk_87471EC:
+.global sCreditsTreasureAnimXOffsets
+sCreditsTreasureAnimXOffsets:
 
 baserom_blob 0x7471EC, 0x74721E
 
-.global sUnk_874721E
-sUnk_874721E:
+.global sCreditsTreasureAnimYOffsets
+sCreditsTreasureAnimYOffsets:
 
 baserom_blob 0x74721E, 0x747250
 
-.global sUnk_8747250
-sUnk_8747250:
+.global sCreditsTreasureDropYTable
+sCreditsTreasureDropYTable:
 
 baserom_blob 0x747250, 0x747270
 
-.global sUnk_8747270
-sUnk_8747270:
+.global sCreditsBackgroundPalette
+sCreditsBackgroundPalette:
 
 baserom_blob 0x747270, 0x747470
 
-.global sUnk_8747470
-sUnk_8747470:
+.global sCreditsBackgroundTiles
+sCreditsBackgroundTiles:
 
 baserom_blob 0x747470, 0x749870
 
-.global sUnk_8749870
-sUnk_8749870:
+.global sCreditsBackgroundTilemap
+sCreditsBackgroundTilemap:
 
 baserom_blob 0x749870, 0x74ABB0
 
-.global sUnk_874ABB0
-sUnk_874ABB0:
+.global sCreditsForegroundTiles
+sCreditsForegroundTiles:
 
 baserom_blob 0x74ABB0, 0x74B3B0
 
-.global sUnk_874B3B0
-sUnk_874B3B0:
+.global sCreditsForegroundTilemap
+sCreditsForegroundTilemap:
 
 baserom_blob 0x74B3B0, 0x780D70
 
-.global sUnk_8780D70
-sUnk_8780D70:
+.global sCreditsOverlayTiles
+sCreditsOverlayTiles:
 
 baserom_blob 0x780D70, 0x781570
 
-.global sUnk_8781570
-sUnk_8781570:
+.global sCreditsObjPalette
+sCreditsObjPalette:
 
 baserom_blob 0x781570, 0x781770
 
-.global sUnk_8781770
-sUnk_8781770:
+.global sCreditsObjTiles
+sCreditsObjTiles:
 
 baserom_blob 0x781770, 0x78654C
 
-.global sUnk_878654C
-sUnk_878654C:
+.global sCreditsEasyForegroundLayerAnimation
+sCreditsEasyForegroundLayerAnimation:
 
 baserom_blob 0x78654C, 0x786564
 
-.global sUnk_8786564
-sUnk_8786564:
+.global sCreditsEasyAnchorAnimation
+sCreditsEasyAnchorAnimation:
 
 baserom_blob 0x786564, 0x78657C
 
-.global sUnk_878657C
-sUnk_878657C:
+.global sCreditsBannerAnimation
+sCreditsBannerAnimation:
 
 baserom_blob 0x78657C, 0x7865A4
 
-.global sUnk_87865A4
-sUnk_87865A4:
+.global sCreditsEasyDifficultyEffectAnimation
+sCreditsEasyDifficultyEffectAnimation:
 
 baserom_blob 0x7865A4, 0x7865EC
 
-.global sUnk_87865EC
-sUnk_87865EC:
+.global sCreditsForegroundStripAnimation
+sCreditsForegroundStripAnimation:
 
 baserom_blob 0x7865EC, 0x7865FC
 
-.global sUnk_87865FC
-sUnk_87865FC:
+.global sCreditsMiddleStripAnimation
+sCreditsMiddleStripAnimation:
 
 baserom_blob 0x7865FC, 0x78660C
 
-.global sUnk_878660C
-sUnk_878660C:
+.global sCreditsBackgroundStripAnimation
+sCreditsBackgroundStripAnimation:
 
 baserom_blob 0x78660C, 0x78661C
 
-.global sUnk_878661C
-sUnk_878661C:
+.global sCreditsClosingAnimation
+sCreditsClosingAnimation:
 
 baserom_blob 0x78661C, 0x78663C
 
-.global sUnk_878663C
-sUnk_878663C:
+.global sCreditsEasyAnchorCompanionAnimation
+sCreditsEasyAnchorCompanionAnimation:
 
 baserom_blob 0x78663C, 0x78667C
 
-.global sUnk_878667C
-sUnk_878667C:
+.global sCreditsEasyDifficultyLabelAnimation
+sCreditsEasyDifficultyLabelAnimation:
 
 baserom_blob 0x78667C, 0x7866A4
 
-.global sUnk_87866A4
-sUnk_87866A4:
+.global sCreditsTreasureSparkleAnimation
+sCreditsTreasureSparkleAnimation:
 
 baserom_blob 0x7866A4, 0x7866BC
 
-.global sUnk_87866BC
-sUnk_87866BC:
+.global sCreditsTreasureDropAnimation
+sCreditsTreasureDropAnimation:
 
 baserom_blob 0x7866BC, 0x7868C0
 
-.global sUnk_87868C0
-sUnk_87868C0:
+.global sCreditsNormalAnchorAnimation
+sCreditsNormalAnchorAnimation:
 
 baserom_blob 0x7868C0, 0x7868D8
 
-.global sUnk_87868D8
-sUnk_87868D8:
+.global sCreditsNormalAnchorCompanionAnimation
+sCreditsNormalAnchorCompanionAnimation:
 
 baserom_blob 0x7868D8, 0x7868F0
 
-.global sUnk_87868F0
-sUnk_87868F0:
+.global sCreditsNormalAnchorAffineAnimation
+sCreditsNormalAnchorAffineAnimation:
 
 baserom_blob 0x7868F0, 0x786908
 
-.global sUnk_8786908
-sUnk_8786908:
+.global sCreditsNormalForegroundLayerAnimation
+sCreditsNormalForegroundLayerAnimation:
 
 baserom_blob 0x786908, 0x786BA0
 
-.global sUnk_8786BA0
-sUnk_8786BA0:
+.global sCreditsHardAnchorAnimation
+sCreditsHardAnchorAnimation:
 
 baserom_blob 0x786BA0, 0x786BC8
 
-.global sUnk_8786BC8
-sUnk_8786BC8:
+.global sCreditsHardForegroundLayerAnimation
+sCreditsHardForegroundLayerAnimation:
 
 baserom_blob 0x786BC8, 0x786BF0
 
-.global sUnk_8786BF0
-sUnk_8786BF0:
+.global sCreditsHardDifficultyLabelAnimation
+sCreditsHardDifficultyLabelAnimation:
 
 baserom_blob 0x786BF0, 0x786E3C
 
-.global sUnk_8786E3C
-sUnk_8786E3C:
+.global sCreditsHardTreasureBurstAnimation
+sCreditsHardTreasureBurstAnimation:
 
 baserom_blob 0x786E3C, 0x78868C
 
-.global sUnk_878868C
-sUnk_878868C:
+.global sCreditsNormalDifficultyObjPalette
+sCreditsNormalDifficultyObjPalette:
 
 baserom_blob 0x78868C, 0x7886AC
 
-.global sUnk_87886AC
-sUnk_87886AC:
+.global sCreditsNormalDifficultyObjTiles
+sCreditsNormalDifficultyObjTiles:
 
 baserom_blob 0x7886AC, 0x78922C
 
-.global sUnk_878922C
-sUnk_878922C:
+.global sCreditsNormalDifficultyExtraTiles
+sCreditsNormalDifficultyExtraTiles:
 
 baserom_blob 0x78922C, 0x78942C
 
-.global sUnk_878942C
-sUnk_878942C:
+.global sCreditsHardDifficultyObjPalette
+sCreditsHardDifficultyObjPalette:
 
 baserom_blob 0x78942C, 0x78944C
 
-.global sUnk_878944C
-sUnk_878944C:
+.global sCreditsHardDifficultyObjTiles
+sCreditsHardDifficultyObjTiles:
 
 baserom_blob 0x78944C, 0x78E6CC
