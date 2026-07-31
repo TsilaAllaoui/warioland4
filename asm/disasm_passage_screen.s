@@ -18,7 +18,7 @@ func_80845F0:
 	mov	pc, r0
 	.align	2, 0
 .L_8460c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_84610:
 	.4byte	gUnk_3004700
 .L_84614:
@@ -464,7 +464,7 @@ func_80846F4:
 .L_8495c:
 	.4byte	gCurrentCollection
 .L_84960:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_84964:
 	.4byte	sUnk_86A23C8
 .L_84968:
@@ -651,9 +651,9 @@ func_80846F4:
 .L_84ac8:
 	.4byte	gUnk_3003C40
 .L_84acc:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_84ad0:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_84ad4:
 	.4byte	gUnk_3003C54
 .L_84ad8:
@@ -661,7 +661,7 @@ func_80846F4:
 .L_84adc:
 	.4byte	gUnk_3003C08
 .L_84ae0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_84ae4:
 	.4byte	gTotalScore
 .L_84ae8:
@@ -764,13 +764,13 @@ func_80846F4:
 .L_84bac:
 	.4byte	0x400004A
 .L_84bb0:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_84bb4:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_84bb8:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_84bbc:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_84bc0:
 	.4byte	0x4000050
 .L_84bc4:
@@ -818,7 +818,7 @@ func_8084BCC:
 .L_84c14:
 	.4byte	gUnk_3003C45
 .L_84c18:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_84c1c:
 	.4byte	sUnk_863C41C
 .L_84c20:
@@ -893,13 +893,13 @@ func_8084C28:
 .L_84ca4:
 	.4byte	gUnk_3004729
 .L_84ca8:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_84cac:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_84cb0:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_84cb4:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_84cb8:
 	.4byte	gUnk_3004700
 
@@ -978,13 +978,13 @@ func_8084CF4:
 .L_84d44:
 	.4byte	0x27F
 .L_84d48:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_84d4c:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_84d50:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_84d54:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_84d58:
 	.4byte	gUnk_3004700
 
@@ -1033,7 +1033,7 @@ func_8084D5C:
 .L_84dac:
 	.4byte	gUnk_3003C98
 .L_84db0:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_84db4:
 	ldr	r2, .L_84de0
 	ldrh	r0, [r2, #8]
@@ -1058,7 +1058,7 @@ func_8084D5C:
 	pop	{r0}
 	bx	r0
 .L_84de0:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_84de4:
 	.4byte	gUnk_3003C45
 .L_84de8:
@@ -1314,7 +1314,7 @@ func_8084E10:
 	bx	r1
 	.align	2, 0
 .L_84fc8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 
 
 thumb_func_start func_8084FCC
@@ -1736,7 +1736,7 @@ func_80852B4:
 	beq	.L_852d2
 	b	.L_853a8
 .L_852c8:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_852cc:
 	cmp	r0, #2
 	beq	.L_8535c
@@ -1760,7 +1760,7 @@ func_80852B4:
 	strh	r0, [r3, #8]
 	b	.L_85344
 .L_852f4:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_852f8:
 	.4byte	sUnk_863C424
 .L_852fc:
@@ -1805,7 +1805,7 @@ func_80852B4:
 	strb	r0, [r7, #0]
 	b	.L_853a8
 .L_8534c:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_85350:
 	.4byte	sUnk_863C42C
 .L_85354:
@@ -1842,7 +1842,7 @@ func_80852B4:
 	mov	r0, #1
 	b	.L_853aa
 .L_85398:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_8539c:
 	.4byte	sUnk_863C52C
 .L_853a0:
@@ -1870,7 +1870,7 @@ func_80853B0:
 	beq	.L_853d2
 	b	.L_85494
 .L_853c4:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_853c8:
 	cmp	r0, #2
 	beq	.L_853f4
@@ -1995,7 +1995,7 @@ func_808549C:
 	beq	.L_854ba
 	b	.L_85578
 .L_854b0:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_854b4:
 	cmp	r0, #2
 	beq	.L_85544
@@ -2019,7 +2019,7 @@ func_808549C:
 	strh	r0, [r3, #8]
 	b	.L_8552c
 .L_854dc:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_854e0:
 	.4byte	sUnk_863C42C
 .L_854e4:
@@ -2064,7 +2064,7 @@ func_808549C:
 	strb	r0, [r7, #0]
 	b	.L_85578
 .L_85534:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_85538:
 	.4byte	sUnk_863C42C
 .L_8553c:
@@ -2093,7 +2093,7 @@ func_808549C:
 	mov	r0, #1
 	b	.L_8557a
 .L_8556c:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_85570:
 	.4byte	sUnk_863C41C
 .L_85574:
@@ -3059,7 +3059,7 @@ func_8085580:
 .L_85c90:
 	.4byte	0xFFFFFE00
 .L_85c94:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_85c98:
 	.4byte	gUnk_3003C40
 .L_85c9c:
@@ -3107,13 +3107,13 @@ func_8085CA0:
 	b	.L_85d00
 	.align	2, 0
 .L_85ce8:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_85cec:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_85cf0:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_85cf4:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_85cf8:
 	mov	r0, #120	@ 0x78
 	strh	r0, [r4, #0]
@@ -3162,13 +3162,13 @@ func_8085D08:
 	mov	r0, #0
 	b	.L_85d62
 .L_85d48:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_85d4c:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_85d50:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_85d54:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_85d58:
 	mov	r0, #0
 	strh	r0, [r5, #0]
@@ -3210,13 +3210,13 @@ func_8085D68:
 .L_85d98:
 	.4byte	0x4000040
 .L_85d9c:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_85da0:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_85da4:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_85da8:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_85dac:
 	.4byte	gLanguage
 .L_85db0:

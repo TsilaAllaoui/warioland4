@@ -625,13 +625,13 @@ func_8089DCC:
 	mov	r0, #0
 	b	.L_89e0c
 .L_89df4:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_89df8:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_89dfc:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_89e00:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_89e04:
 	strh	r5, [r4, #0]
 	mov	r0, #240	@ 0xf0
@@ -669,13 +669,13 @@ func_8089E14:
 	b	.L_89e58
 	.align	2, 0
 .L_89e40:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_89e44:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_89e48:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_89e4c:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_89e50:
 	mov	r0, #120	@ 0x78
 	strh	r0, [r4, #0]
@@ -760,7 +760,7 @@ func_8089E74:
 	b	.L_89fe2
 	.align	2, 0
 .L_89ee8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_89eec:
 	.4byte	gUnk_30047B8
 .L_89ef0:
@@ -819,7 +819,7 @@ func_8089E74:
 	strb	r0, [r1, #0]
 	b	.L_89fe2
 .L_89f5c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_89f60:
 	.4byte	gMinigameState
 .L_89f64:
@@ -861,7 +861,7 @@ func_8089E74:
 	b	.L_89fe2
 	.align	2, 0
 .L_89fac:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_89fb0:
 	.4byte	gUnk_30047F8
 .L_89fb4:
@@ -1303,13 +1303,13 @@ func_8089FFC:
 .L_8a2f4:
 	.4byte	gMinigameSequenceTimer
 .L_8a2f8:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_8a2fc:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_8a300:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_8a304:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_8a308:
 	.4byte	0x04000048
 .L_8a30c:
@@ -1329,7 +1329,7 @@ func_8089FFC:
 .L_8a328:
 	.4byte	sUnk_86E534C
 .L_8a32c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a330:
 	.4byte	gUnk_30047F8
 .L_8a334:
@@ -1529,13 +1529,13 @@ func_808A46C:
 .L_8a49c:
 	.4byte	0x04000040
 .L_8a4a0:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_8a4a4:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_8a4a8:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_8a4ac:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_8a4b0:
 	.4byte	gLanguage
 .L_8a4b4:
@@ -1661,7 +1661,7 @@ func_808A4F8:
 .L_8a59c:
 	.4byte	gUnk_300482C
 .L_8a5a0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a5a4:
 	ldr	r0, .L_8a5b8
 	bl	m4aSongNumStart
@@ -1678,7 +1678,7 @@ func_808A4F8:
 .L_8a5bc:
 	.4byte	gUnk_300482C
 .L_8a5c0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a5c4:
 	mov	r0, #32
 	and	r0, r2
@@ -1814,7 +1814,7 @@ func_808A4F8:
 	b	.L_8a5b4
 	.align	2, 0
 .L_8a6bc:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a6c0:
 	ldrh	r1, [r3, #0]
 	mov	r0, #2
@@ -2102,7 +2102,7 @@ func_808A818:
 .L_8a8d4:
 	.4byte	0x00000251
 .L_8a8d8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a8dc:
 	mov	r0, #0
 .L_8a8de:

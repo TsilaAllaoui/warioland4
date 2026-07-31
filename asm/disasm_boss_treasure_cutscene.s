@@ -23,7 +23,7 @@ func_8082024:
 	ldr	r0, [r0, #0]
 	mov	pc, r0
 .L_8204c:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_82050:
 	.4byte	.L_82054
 .L_82054:
@@ -85,7 +85,7 @@ func_8082024:
 .L_820c8:
 	.4byte	gUnk_30040E8
 .L_820cc:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_820d0:
 	.4byte	gUnk_30040C8
 .L_820d4:
@@ -129,13 +129,13 @@ func_8082024:
 	bl	m4aSongNumStart
 	b	.L_8240a
 .L_82124:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82128:
 	.4byte	gBldy
 .L_8212c:
 	.4byte	0x4000054
 .L_82130:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_82134:
 	.4byte	0x1404
 .L_82138:
@@ -253,7 +253,7 @@ func_8082024:
 	strh	r0, [r4, #0]
 	b	.L_8240a
 .L_82218:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_8221c:
 	.4byte	gBldy
 .L_82220:
@@ -306,7 +306,7 @@ func_8082024:
 	b	.L_822b6
 	.align	2, 0
 .L_8227c:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82280:
 	.4byte	sUnk_863AD0E
 .L_82284:
@@ -367,7 +367,7 @@ func_8082024:
 .L_822e8:
 	.4byte	gUnk_3003C3C
 .L_822ec:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_822f0:
 	.4byte	gUnk_3004108
 .L_822f4:
@@ -425,7 +425,7 @@ func_8082024:
 .L_82354:
 	.4byte	sUnk_863AD63
 .L_82358:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_8235c:
 	.4byte	gUnk_30040F0
 .L_82360:
@@ -446,9 +446,9 @@ func_8082024:
 	mov	r0, #1
 	b	.L_8240c
 .L_82380:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82384:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_82388:
 	ldr	r1, .L_82394
 	ldrb	r0, [r1, #0]
@@ -457,7 +457,7 @@ func_8082024:
 	strh	r3, [r7, #0]
 	b	.L_8240a
 .L_82394:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_82398:
 	ldr	r1, .L_823d8
 	mov	r2, #130	@ 0x82
@@ -501,7 +501,7 @@ func_8082024:
 .L_823e8:
 	.4byte	gUnk_3004639
 .L_823ec:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_823f0:
 	.4byte	0x1AF
 .L_823f4:
@@ -531,7 +531,7 @@ func_8082024:
 .L_82420:
 	.4byte	0x4000054
 .L_82424:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 
 
 thumb_func_start func_8082428
@@ -725,9 +725,9 @@ func_8082428:
 .L_82594:
 	.4byte	gUnk_30040C0
 .L_82598:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_8259c:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_825a0:
 	.4byte	gUnk_30040E8
 .L_825a4:
@@ -808,7 +808,7 @@ func_80825D0:
 .L_8262c:
 	.4byte	sUnk_863A54C
 .L_82630:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82634:
 	.4byte	sUnk_863A5CE
 .L_82638:
@@ -871,7 +871,7 @@ func_8082640:
 .L_8269c:
 	.4byte	sUnk_863A94E
 .L_826a0:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_826a4:
 	.4byte	sUnk_863AA8E
 .L_826a8:
@@ -932,7 +932,7 @@ func_80826B0:
 .L_8270c:
 	.4byte	sUnk_863AD53
 .L_82710:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82714:
 	ldrb	r0, [r3, #0]
 	sub	r0, #1
@@ -1023,7 +1023,7 @@ func_8082734:
 .L_827c0:
 	.4byte	sUnk_863AD6E
 .L_827c4:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_827c8:
 	.4byte	sUnk_863AD58
 .L_827cc:
@@ -1056,7 +1056,7 @@ func_8082734:
 .L_82800:
 	.4byte	sUnk_863AEDE
 .L_82804:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82808:
 	.4byte	sUnk_863AD58
 .L_8280c:
@@ -1089,7 +1089,7 @@ func_8082734:
 .L_82840:
 	.4byte	sUnk_863B04E
 .L_82844:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82848:
 	.4byte	sUnk_863AD58
 .L_8284c:
@@ -1132,7 +1132,7 @@ func_8082734:
 .L_82894:
 	.4byte	sUnk_863B1BE
 .L_82898:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_8289c:
 	.4byte	sUnk_863AD58
 .L_828a0:
@@ -1175,7 +1175,7 @@ func_8082734:
 .L_828e8:
 	.4byte	sUnk_863B2DE
 .L_828ec:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_828f0:
 	.4byte	sUnk_863AD58
 .L_828f4:
@@ -1218,7 +1218,7 @@ func_8082734:
 .L_8293c:
 	.4byte	sUnk_863B3FE
 .L_82940:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82944:
 	.4byte	sUnk_863AD58
 .L_82948:
@@ -1251,7 +1251,7 @@ func_8082734:
 .L_8297c:
 	.4byte	sUnk_863B51E
 .L_82980:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82984:
 	.4byte	sUnk_863AD58
 .L_82988:
@@ -1284,7 +1284,7 @@ func_8082734:
 .L_829bc:
 	.4byte	sUnk_863B68E
 .L_829c0:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_829c4:
 	.4byte	sUnk_863AD58
 .L_829c8:
@@ -1317,7 +1317,7 @@ func_8082734:
 .L_829fc:
 	.4byte	sUnk_863B7FE
 .L_82a00:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82a04:
 	.4byte	sUnk_863AD58
 .L_82a08:
@@ -1360,7 +1360,7 @@ func_8082734:
 .L_82a50:
 	.4byte	sUnk_863B96E
 .L_82a54:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82a58:
 	.4byte	sUnk_863AD58
 .L_82a5c:
@@ -1415,7 +1415,7 @@ func_8082734:
 .L_82ab4:
 	.4byte	sUnk_863BA8E
 .L_82ab8:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_82abc:
 	.4byte	sUnk_863AD58
 .L_82ac0:
@@ -2431,7 +2431,7 @@ func_8082F60:
 .L_83258:
 	.4byte	gOamBuffer
 .L_8325c:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_83260:
 	.4byte	gUnk_30040C8
 .L_83264:

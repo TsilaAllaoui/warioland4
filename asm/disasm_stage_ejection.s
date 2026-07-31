@@ -15,7 +15,7 @@ func_808167C:
 	mov	r0, #0
 	b	.L_8169e
 .L_81694:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_81698:
 	bl	func_8081C58
 	mov	r0, #1
@@ -323,9 +323,9 @@ func_80816A4:
 .L_818d8:
 	.4byte	gUnk_3003C20
 .L_818dc:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_818e0:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_818e4:
 	.4byte	0x4000012
 
@@ -430,7 +430,7 @@ func_80818E8:
 .L_819b0:
 	.4byte	gUnk_30040B8
 .L_819b4:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_819b8:
 	.4byte	sUnk_863A4DC
 .L_819bc:
@@ -590,7 +590,7 @@ func_8081A84:
 .L_81ae4:
 	.4byte	gUnk_30040BB
 .L_81ae8:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_81aec:
 	.4byte	sUnk_863A4F4
 .L_81af0:
@@ -829,9 +829,9 @@ func_8081C8C:
 	sub	r0, #45	@ 0x2d
 	b	.L_81cb6
 .L_81ca8:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_81cac:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_81cb0:
 	ldrh	r1, [r3, #0]
 	mov	r0, #15
@@ -1246,7 +1246,7 @@ func_8081CE0:
 .L_81fd0:
 	.4byte	sUnk_863D9BC
 .L_81fd4:
-	.4byte	gUnk_3003C0C
+	.4byte	gStageEntryMainSpriteState
 .L_81fd8:
 	.4byte	sSinCosTable
 .L_81fdc:

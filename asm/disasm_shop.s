@@ -66,7 +66,7 @@ ItemShopSubroutine:
 	b	.L_8fccc
 	.align	2, 0
 .L_8fc10:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc14:
 	.4byte	gUnk_3000000
 .L_8fc18:
@@ -91,7 +91,7 @@ ItemShopSubroutine:
 	bls	.L_8fccc
 	b	.L_8fc78
 .L_8fc3c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc40:
 	.4byte	gUnk_3004A64
 .L_8fc44:
@@ -106,7 +106,7 @@ ItemShopSubroutine:
 	b	.L_8fc98
 	.align	2, 0
 .L_8fc58:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc5c:
 	ldr	r1, .L_8fc88
 	ldrh	r0, [r1, #0]
@@ -133,7 +133,7 @@ ItemShopSubroutine:
 	b	.L_8fccc
 	.align	2, 0
 .L_8fc88:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc8c:
 	.4byte	gUnk_3004A64
 .L_8fc90:
@@ -584,7 +584,7 @@ func_808FCE0:
 .L_8ffdc:
 	.4byte	gUnk_3004A50
 .L_8ffe0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8ffe4:
 	.4byte	gUnk_3004A32
 .L_8ffe8:
@@ -712,13 +712,13 @@ func_808FCE0:
 .L_900d8:
 	.4byte	0x000002aa
 .L_900dc:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_900e0:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_900e4:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_900e8:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_900ec:
 	.4byte	0x04000048
 .L_900f0:
@@ -790,13 +790,13 @@ func_8090114:
 .L_90168:
 	.4byte	0x04000040
 .L_9016c:
-	.4byte	gUnk_3003C4C
+	.4byte	gStageEntryWindowLeft
 .L_90170:
-	.4byte	gUnk_3003C4E
+	.4byte	gStageEntryWindowRight
 .L_90174:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_90178:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_9017c:
 	.4byte	gLanguage
 .L_90180:
@@ -911,7 +911,7 @@ func_80901C4:
 	b	.L_90364
 	.align	2, 0
 .L_9024c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_90250:
 	.4byte	gUnk_3004A32
 .L_90254:
@@ -975,7 +975,7 @@ func_80901C4:
 .L_902c8:
 	.4byte	gSwitchStates
 .L_902cc:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_902d0:
 	.4byte	gUnk_3004A32
 .L_902d4:
@@ -989,7 +989,7 @@ func_80901C4:
 	b	.L_90364
 	.align	2, 0
 .L_902e8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_902ec:
 	.4byte	gUnk_3004A32
 .L_902f0:
@@ -1095,7 +1095,7 @@ func_8090374:
 	ldr	r2, .L_903c0
 	b	.L_903c6
 .L_903ac:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_903b0:
 	.4byte	gUnk_3004A50
 .L_903b4:
@@ -1310,7 +1310,7 @@ Shop_DrawText:
 	b	.L_90692
 	.align	2, 0
 .L_90538:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_9053c:
 	.4byte	0x040000d4
 .L_90540:

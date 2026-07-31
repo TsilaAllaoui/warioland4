@@ -4,6 +4,11 @@
 #include "gba.h"
 #include "oam.h"
 
+#ifndef ASM_INCLUDE
+#define ASM_INCLUDE(path) \
+    __asm__(".include \"" path "\"\n")
+#endif
+
 enum Passage {
     PASSAGE_ENTRY,
     PASSAGE_EMERALD,
@@ -376,7 +381,7 @@ extern u8 gUnk_3003BF5;
 extern u8 gUnk_3003BF6;
 
 /* 0x03003C39 */
-extern u8 gUnk_3003C39;
+extern u8 gStageEntrySequenceStep;
 extern u8 gUnk_3003C4A;
 extern u8 gUnk_3003C56;
 

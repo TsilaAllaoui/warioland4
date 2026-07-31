@@ -102,7 +102,7 @@ PauseScreenSubroutine:
 	add	r0, #1
 	b	.L_88816
 .L_88744:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_88748:
 	.4byte	gUnk_3000000
 .L_8874c:
@@ -270,9 +270,9 @@ func_8088840:
 .L_88888:
 	.4byte	0x04000044
 .L_8888c:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_88890:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_88894:
 	.4byte	0x04000040
 .L_88898:
@@ -783,7 +783,7 @@ func_8088900:
 .L_88c44:
 	.4byte	0x00001c02
 .L_88c48:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_88c4c:
 	.4byte	gUnk_3004788
 .L_88c50:
@@ -1069,9 +1069,9 @@ func_8088900:
 .L_88e68:
 	.4byte	gCurrentCollection
 .L_88e6c:
-	.4byte	gUnk_3003C3A
+	.4byte	gStageEntrySequenceTimer
 .L_88e70:
-	.4byte	gUnk_3003C39
+	.4byte	gStageEntrySequenceStep
 .L_88e74:
 	.4byte	gUnk_3004798
 .L_88e78:
@@ -1085,9 +1085,9 @@ func_8088900:
 .L_88e88:
 	.4byte	sUnk_86D6838
 .L_88e8c:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_88e90:
-	.4byte	gUnk_3003C52
+	.4byte	gStageEntryWindowBottom
 .L_88e94:
 	.4byte	0x04000012
 .L_88e98:
@@ -1372,7 +1372,7 @@ func_8089080:
 	b	.L_8909e
 	.align	2, 0
 .L_89094:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_89098:
 	mov	r0, #0
 	strh	r0, [r1, #0]
@@ -1394,7 +1394,7 @@ func_80890A0:
 	mov	r0, #0
 	b	.L_890be
 .L_890b4:
-	.4byte	gUnk_3003C50
+	.4byte	gStageEntryWindowTop
 .L_890b8:
 	mov	r0, #160	@ 0xa0
 	strh	r0, [r1, #0]
