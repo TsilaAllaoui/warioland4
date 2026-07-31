@@ -235,7 +235,7 @@ void AgbMain(void)
                 break;
 
             case GM_CREDITS:
-                if (CreditsSubroutine()) {
+                if (UpdateCreditsScreen()) {
                     gMainGameMode = GM_CUTSCENE;
                     gSubGameMode = -4;
                 }

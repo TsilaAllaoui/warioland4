@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  93.0%   3,744 / 4,024</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████████░░░░░  83.2%   504,507 / 606,283 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  93.2%   3,752 / 4,024</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████████░░░░░  83.9%   508,703 / 606,283 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,020 / 4,024 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1596,21 +1596,21 @@
 <rect x="519.63" y="846.22" width="3.01" height="5.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092178: 16 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_credits: 0.0% matched, 7,716 bytes</title>
+<title>credits: 54.4% matched, 7,716 bytes</title>
 <rect x="523.99" y="113.00" width="99.47" height="118.54" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip14"><rect x="525.99" y="114.00" width="96.07" height="18.00"/></clipPath>
 <rect x="524.99" y="114.00" width="98.07" height="18.00" fill="#05080d"/>
-<text x="526.49" y="127.00" clip-path="url(#moduleLabelClip14)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_credi…</text>
-<text x="621.06" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip14)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="524.99" y="132.00" width="66.86" height="65.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_80938EC: 3,520 bytes, not matched, size=symbol</title></rect>
-<rect x="592.20" y="132.00" width="30.51" height="65.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_809329C: 1,616 bytes, not matched, size=symbol</title></rect>
-<rect x="524.99" y="197.99" width="51.50" height="32.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_80946AC: 1,364 bytes, not matched, size=symbol</title></rect>
-<rect x="576.83" y="197.99" width="18.96" height="32.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_8094C00: 508 bytes, not matched, size=symbol</title></rect>
-<rect x="596.14" y="197.99" width="16.04" height="20.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_809315C: 268 bytes, not matched, size=symbol</title></rect>
-<rect x="612.54" y="197.99" width="10.17" height="20.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/CreditsSubroutine: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="596.14" y="218.60" width="16.12" height="12.20" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_80930B8: 164 bytes, not matched, size=symbol</title></rect>
-<rect x="612.61" y="218.60" width="10.09" height="5.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_8093084: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="612.61" y="224.87" width="10.09" height="5.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_credits/func_8093268: 52 bytes, not matched, size=symbol</title></rect>
+<text x="526.49" y="127.00" clip-path="url(#moduleLabelClip14)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">credits</text>
+<text x="621.06" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip14)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">54%</text>
+<rect x="524.99" y="132.00" width="66.86" height="65.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>credits/RenderCreditsOam: 3,520 bytes, not matched, size=symbol</title></rect>
+<rect x="592.20" y="132.00" width="30.51" height="65.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/InitializeCredits: 1,616 bytes, matched, size=symbol</title></rect>
+<rect x="524.99" y="197.99" width="51.50" height="32.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/UpdateCreditsSequence: 1,364 bytes, matched, size=symbol</title></rect>
+<rect x="576.83" y="197.99" width="18.96" height="32.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/UpdateCreditsTreasureDrop: 508 bytes, matched, size=symbol</title></rect>
+<rect x="596.14" y="197.99" width="16.04" height="20.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/CreditsVBlankTreasureDma: 268 bytes, matched, size=symbol</title></rect>
+<rect x="612.54" y="197.99" width="10.17" height="20.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/UpdateCreditsScreen: 172 bytes, matched, size=symbol</title></rect>
+<rect x="596.14" y="218.60" width="16.12" height="12.20" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/CreditsVBlankMain: 164 bytes, matched, size=symbol</title></rect>
+<rect x="612.61" y="218.60" width="10.09" height="5.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/CreditsVCountUpdateBgOffset: 52 bytes, matched, size=symbol</title></rect>
+<rect x="612.61" y="224.87" width="10.09" height="5.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/SelectCreditsVBlankCallback: 52 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_map_screen: 0.0% matched, 7,356 bytes</title>

@@ -1,13 +1,12 @@
 #ifndef GLOBAL_DATA_H
 #define GLOBAL_DATA_H
 
+#ifndef ASM_INCLUDE
+#define ASM_INCLUDE(path) __asm__(".include \"" path "\"\n")
+#endif
+
 #include "gba.h"
 #include "oam.h"
-
-#ifndef ASM_INCLUDE
-#define ASM_INCLUDE(path) \
-    __asm__(".include \"" path "\"\n")
-#endif
 
 enum Passage {
     PASSAGE_ENTRY,
@@ -356,7 +355,7 @@ extern u8 gUnk_3000964[][3];
 /* 0x03000B80 */
 extern struct SecondarySprite gSecondarySpriteData[8];
 extern struct SecondarySprite gCurrentSecondarySprite;
-extern const u16 *gCurrentSecondarySpriteOamData;
+extern const u8 *gCurrentSecondarySpriteOamData;
 extern s16 gSecondarySpriteAffinePA;
 extern s16 gSecondarySpriteAffinePB;
 extern s16 gSecondarySpriteAffinePC;
@@ -391,19 +390,19 @@ extern s16 gUnk_3002C5E;
 /* 0x03002C60 */
 extern u16 gUnk_3002C60;
 extern s32 gUnk_3002C64;
+extern s32 gUnk_3002C68;
 extern u32 gUnk_3002C6C;
 extern OamData *gUnk_3002C70;
 extern u32 gUnk_3002C74;
 extern s32 gUnk_3002C78;
 extern s32 gUnk_3002C7C;
-extern s32 gUnk_3002C68;
-extern s16 gUnk_3002C80;
-extern s16 gUnk_3002C82;
-extern s16 gUnk_3002C84;
-extern s32 gUnk_3002C88;
-extern s32 gUnk_3002C8C;
-extern s32 gUnk_3002C90;
-extern s32 gUnk_3002C94;
+extern u16 gUnk_3002C80;
+extern u16 gUnk_3002C82;
+extern u16 gUnk_3002C84;
+extern u16 *gUnk_3002C88;
+extern u16 *gUnk_3002C8C;
+extern const u16 *gUnk_3002C90;
+extern const u16 *gUnk_3002C94;
 extern s16 gUnk_3002C98;
 extern s16 gUnk_3002C9A;
 extern s16 gUnk_3002C9C;
@@ -416,6 +415,7 @@ extern s16 gUnk_3002CA8[8];
 extern s16 gUnk_3002CB8[8];
 
 /* 0x030031F4 */
+extern struct BackgroundTileTables gBackgroundTileTables;
 extern struct GameMusicState gGameMusicState;
 extern u16 gRoomCameraBounds[4];
 extern struct RoomEffectState gUnk_3003214;
@@ -424,6 +424,7 @@ extern u16 gHBlankPaletteFadeColors[3];
 extern struct BackgroundPositionState gCameraPositionState;
 
 /* 0x0300342C */
+extern u8 gRoomTransitionTileDataCount;
 
 /* 0x030037BE */
 extern u8 gUnk_30037BE;
@@ -466,6 +467,7 @@ extern u8 gBgAnimationTimer;
 
 extern s16 gSubGameMode;
 extern s8 gStageEntrySoftResetDisabled;
+extern s8 gStageEntryPauseMenuDisabled;
 
 extern struct SaveDataClearData gUnk_3004A70;
 

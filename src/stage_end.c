@@ -497,7 +497,7 @@ void UpdateStageEndBlend(void)
     goto finish;
 
 initialize_blend:
-    gUnk_3001874 = 0;
+    gBlendAlphaEvb = 0;
 
     *((volatile u16 *)0x04000052) = 0x10;
     *((volatile u16 *)0x04000050) = 0x2F50;
@@ -505,7 +505,7 @@ initialize_blend:
     goto finish;
 
 update_blend:
-    currentAlpha = gUnk_3001874;
+    currentAlpha = gBlendAlphaEvb;
 
     if (currentAlpha == 0x10) {
         gUnk_3000038 = 0;
@@ -516,7 +516,7 @@ update_blend:
     }
     currentAlpha++;
     nextAlpha = currentAlpha;
-    gUnk_3001874 = nextAlpha;
+    gBlendAlphaEvb = nextAlpha;
     *((volatile u16 *)0x04000052) = (nextAlpha << 8) | (0x10 - nextAlpha);
 
 finish:

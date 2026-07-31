@@ -147,7 +147,7 @@ SECTIONS {
         . = 0x0c34; obj/main.o(iwram_data);
         obj/init_helpers.o(iwram_data);
 
-        . = 0x1850; gUnk_3001850 = .;
+        . = 0x1850; gCreditsTreasureAffineAngle = .;
         . = 0x1852; gStageEndAffineOriginX = .;
         . = 0x1854; gStageEndAffineOriginY = .;
         . = 0x1858; gBg2X = .;
@@ -161,8 +161,8 @@ SECTIONS {
         . = 0x186C; gBg2PC = .;
         . = 0x186E; gBg2PD = .;
         . = 0x1870; gBldy = .;
-        . = 0x1872; gUnk_3001872 = .;
-        . = 0x1874; gUnk_3001874 = .;
+        . = 0x1872; gBlendAlphaEva = .;
+        . = 0x1874; gBlendAlphaEvb = .;
         . = 0x1876; gBg0XPosition = .;
         . = 0x1878; gBg0YPosition = .;
         . = 0x187a; gBg1XPosition = .;
@@ -564,20 +564,20 @@ SECTIONS {
         . = 0x4a70; gUnk_3004A70 = .;
         . = 0x4ab8; gUnk_3004AB8 = .;
         . = 0x4ab9; gUnk_3004AB9 = .;
-        . = 0x4abc; gUnk_3004ABC = .;
-        . = 0x4ac4; gUnk_3004AC4 = .;
-        . = 0x4acc; gUnk_3004ACC = .;
-        . = 0x4ad4; gUnk_3004AD4 = .;
-        . = 0x4adc; gUnk_3004ADC = .;
-        . = 0x4ae4; gUnk_3004AE4 = .;
-        . = 0x4aec; gUnk_3004AEC = .;
-        . = 0x4af4; gUnk_3004AF4 = .;
-        . = 0x4afc; gUnk_3004AFC = .;
-        . = 0x4b04; gUnk_3004B04 = .;
-        . = 0x4b0c; gUnk_3004B0C = .;
-        . = 0x4b1c; gUnk_3004B1C = .;
-        . = 0x4b24; gUnk_3004B24 = .;
-        . = 0x4b25; gUnk_3004B25 = .;
+        . = 0x4abc; gCreditsBannerSpriteState = .;
+        . = 0x4ac4; gCreditsAnchorSpriteState = .;
+        . = 0x4acc; gCreditsDifficultyLabelSpriteState = .;
+        . = 0x4ad4; gCreditsDifficultyEffectSpriteState = .;
+        . = 0x4adc; gCreditsForegroundLayerSpriteState = .;
+        . = 0x4ae4; gCreditsMiddleLayerSpriteState = .;
+        . = 0x4aec; gCreditsBackgroundLayerSpriteState = .;
+        . = 0x4af4; gCreditsClosingSpriteState = .;
+        . = 0x4afc; gCreditsTreasureBurstSpriteState = .;
+        . = 0x4b04; gCreditsTreasureState = .;
+        . = 0x4b0c; gCreditsTreasureAnim = .;
+        . = 0x4b1c; gCreditsTreasureDrop = .;
+        . = 0x4b24; gCreditsMainState = .;
+        . = 0x4b25; gCreditsSequencePhase = .;
 
         . = ALIGN(4); obj/m4a.o(.bss.code);
         . = ALIGN(16); obj/m4a.o(common_data);
@@ -758,7 +758,7 @@ SECTIONS {
         obj/disasm_shop.o(.text);
         obj/disasm_file_select.o(.text);
         obj/save_data_clear.o(.text);
-        obj/disasm_credits.o(.text);
+        obj/credits.o(.text);
         */libgcc.a:*(.text);
         */libc.a:*(.text);
     } > ROM

@@ -1,6 +1,7 @@
 #ifndef COMPILER_H
 #define COMPILER_H
 
+#define COMPILER_FORGET_VALUE(value) asm("" : "=r"(value))
 #define COMPILER_BARRIER(value) asm("" : "+r"(value))
 #define COMPILER_BARRIER_MEMORY(value) asm volatile("" : "+r"(value) : : "memory")
 #define COMPILER_BARRIER_INPUT(value) asm("" : : "r"(value))
