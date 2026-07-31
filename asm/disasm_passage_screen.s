@@ -18,7 +18,7 @@ func_80845F0:
 	mov	pc, r0
 	.align	2, 0
 .L_8460c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_84610:
 	.4byte	gUnk_3004700
 .L_84614:
@@ -661,7 +661,7 @@ func_80846F4:
 .L_84adc:
 	.4byte	gStageEntryExitRequested
 .L_84ae0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_84ae4:
 	.4byte	gTotalScore
 .L_84ae8:
@@ -1314,7 +1314,7 @@ func_8084E10:
 	bx	r1
 	.align	2, 0
 .L_84fc8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 
 
 thumb_func_start func_8084FCC

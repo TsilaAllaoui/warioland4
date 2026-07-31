@@ -4,8 +4,10 @@
 #include "gba.h"
 #include "oam.h"
 
+#ifndef ASM_INCLUDE
 #define ASM_INCLUDE(path) \
     __asm__(".include \"" path "\"\n")
+#endif
 
 enum Passage {
     PASSAGE_ENTRY,

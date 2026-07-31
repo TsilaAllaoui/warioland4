@@ -1166,7 +1166,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_7a31c
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_80870D4
+	bl	InitSoundRoomScreen
 	ldr	r1, .L_7a320
 	mov	r0, #47	@ 0x2f
 .L_7a30c:
@@ -1194,7 +1194,7 @@ StageSelectSubroutine:
 .L_7a338:
 	.4byte	gSubGameMode
 .L_7a33c:
-	bl	func_808708C
+	bl	UpdateSoundRoomTransition
 	cmp	r0, #0
 	beq	.L_7a36a
 	ldr	r1, .L_7a34c
@@ -1567,7 +1567,7 @@ func_807A528:
 	bl	UpdateBossDoorOpeningDisplay
 	b	.L_7a662
 .L_7a65e:
-	bl	func_8087388
+	bl	SoundRoomVBlank
 .L_7a662:
 	pop	{r0}
 	bx	r0
@@ -2526,7 +2526,7 @@ func_807ACDC:
 	bl	UpdateBossDoorOpeningSprites
 	b	.L_7adf8
 .L_7adf4:
-	bl	func_8087DB0
+	bl	DrawSoundRoomSprites
 .L_7adf8:
 	pop	{r0}
 	bx	r0

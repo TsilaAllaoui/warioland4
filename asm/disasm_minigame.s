@@ -760,7 +760,7 @@ func_8089E74:
 	b	.L_89fe2
 	.align	2, 0
 .L_89ee8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_89eec:
 	.4byte	gUnk_30047B8
 .L_89ef0:
@@ -819,7 +819,7 @@ func_8089E74:
 	strb	r0, [r1, #0]
 	b	.L_89fe2
 .L_89f5c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_89f60:
 	.4byte	gMinigameState
 .L_89f64:
@@ -861,7 +861,7 @@ func_8089E74:
 	b	.L_89fe2
 	.align	2, 0
 .L_89fac:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_89fb0:
 	.4byte	gUnk_30047F8
 .L_89fb4:
@@ -1329,7 +1329,7 @@ func_8089FFC:
 .L_8a328:
 	.4byte	sUnk_86E534C
 .L_8a32c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a330:
 	.4byte	gUnk_30047F8
 .L_8a334:
@@ -1661,7 +1661,7 @@ func_808A4F8:
 .L_8a59c:
 	.4byte	gUnk_300482C
 .L_8a5a0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a5a4:
 	ldr	r0, .L_8a5b8
 	bl	m4aSongNumStart
@@ -1678,7 +1678,7 @@ func_808A4F8:
 .L_8a5bc:
 	.4byte	gUnk_300482C
 .L_8a5c0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a5c4:
 	mov	r0, #32
 	and	r0, r2
@@ -1814,7 +1814,7 @@ func_808A4F8:
 	b	.L_8a5b4
 	.align	2, 0
 .L_8a6bc:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a6c0:
 	ldrh	r1, [r3, #0]
 	mov	r0, #2
@@ -2102,7 +2102,7 @@ func_808A818:
 .L_8a8d4:
 	.4byte	0x00000251
 .L_8a8d8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8a8dc:
 	mov	r0, #0
 .L_8a8de:

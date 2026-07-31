@@ -18,7 +18,7 @@ func_807ADFC:
 	mov	pc, r0
 	.align	2, 0
 .L_7ae18:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_7ae1c:
 	.4byte	gUnk_3003C94
 .L_7ae20:
@@ -467,7 +467,7 @@ func_807AEF0:
 .L_7b184:
 	.4byte	0xFFFF
 .L_7b188:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_7b18c:
 	.4byte	gStageEntryMainSpriteState
 .L_7b190:
@@ -1233,7 +1233,7 @@ func_807B544:
 	bx	r1
 	.align	2, 0
 .L_7b754:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 
 
 thumb_func_start func_807B758

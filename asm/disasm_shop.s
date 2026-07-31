@@ -66,7 +66,7 @@ ItemShopSubroutine:
 	b	.L_8fccc
 	.align	2, 0
 .L_8fc10:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc14:
 	.4byte	gUnk_3000000
 .L_8fc18:
@@ -91,7 +91,7 @@ ItemShopSubroutine:
 	bls	.L_8fccc
 	b	.L_8fc78
 .L_8fc3c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc40:
 	.4byte	gUnk_3004A64
 .L_8fc44:
@@ -106,7 +106,7 @@ ItemShopSubroutine:
 	b	.L_8fc98
 	.align	2, 0
 .L_8fc58:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc5c:
 	ldr	r1, .L_8fc88
 	ldrh	r0, [r1, #0]
@@ -133,7 +133,7 @@ ItemShopSubroutine:
 	b	.L_8fccc
 	.align	2, 0
 .L_8fc88:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8fc8c:
 	.4byte	gUnk_3004A64
 .L_8fc90:
@@ -584,7 +584,7 @@ func_808FCE0:
 .L_8ffdc:
 	.4byte	gUnk_3004A50
 .L_8ffe0:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_8ffe4:
 	.4byte	gUnk_3004A32
 .L_8ffe8:
@@ -911,7 +911,7 @@ func_80901C4:
 	b	.L_90364
 	.align	2, 0
 .L_9024c:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_90250:
 	.4byte	gUnk_3004A32
 .L_90254:
@@ -975,7 +975,7 @@ func_80901C4:
 .L_902c8:
 	.4byte	gSwitchStates
 .L_902cc:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_902d0:
 	.4byte	gUnk_3004A32
 .L_902d4:
@@ -989,7 +989,7 @@ func_80901C4:
 	b	.L_90364
 	.align	2, 0
 .L_902e8:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_902ec:
 	.4byte	gUnk_3004A32
 .L_902f0:
@@ -1095,7 +1095,7 @@ func_8090374:
 	ldr	r2, .L_903c0
 	b	.L_903c6
 .L_903ac:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_903b0:
 	.4byte	gUnk_3004A50
 .L_903b4:
@@ -1310,7 +1310,7 @@ Shop_DrawText:
 	b	.L_90692
 	.align	2, 0
 .L_90538:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_9053c:
 	.4byte	0x040000d4
 .L_90540:

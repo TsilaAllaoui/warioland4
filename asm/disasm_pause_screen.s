@@ -783,7 +783,7 @@ func_8088900:
 .L_88c44:
 	.4byte	0x00001c02
 .L_88c48:
-	.4byte	gUnk_3004A30
+	.4byte	gSoundRoomMessageTimer
 .L_88c4c:
 	.4byte	gUnk_3004788
 .L_88c50:
