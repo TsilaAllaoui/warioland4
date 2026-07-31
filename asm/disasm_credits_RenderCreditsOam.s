@@ -1,7 +1,7 @@
-.include "macros.s.inc"
-
-
-thumb_func_start RenderCreditsOam
+.align 2, 0
+.global RenderCreditsOam
+.thumb
+.type RenderCreditsOam, %function
 RenderCreditsOam:
 	push	{r4, r5, r6, r7, lr}
 	mov	r7, sl

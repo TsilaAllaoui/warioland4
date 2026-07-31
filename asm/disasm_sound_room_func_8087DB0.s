@@ -1,6 +1,7 @@
-.include "macros.s.inc"
-
-thumb_func_start DrawSoundRoomSprites
+.align 2, 0
+.global DrawSoundRoomSprites
+.thumb
+.type DrawSoundRoomSprites, %function
 DrawSoundRoomSprites:
 	push	{r4, r5, r6, r7, lr}
 	mov	r7, sl

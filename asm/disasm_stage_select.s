@@ -698,7 +698,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79f88
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_80838E8
+	bl	InitializePassageClear
 	ldr	r1, .L_79f8c
 	mov	r0, #30
 	b	.L_7a30c
@@ -724,7 +724,7 @@ StageSelectSubroutine:
 .L_79fa8:
 	.4byte	gSubGameMode
 .L_79fac:
-	bl	func_8083798
+	bl	UpdatePassageClearSequence
 	cmp	r0, #0
 	bne	.L_79fb6
 	b	.L_7a36a
@@ -2517,7 +2517,7 @@ func_807ACDC:
 	bl	func_8082F60
 	b	.L_7adf8
 .L_7ade2:
-	bl	func_8083DDC
+	bl	RenderPassageClearOam
 	b	.L_7adf8
 .L_7ade8:
 	bl	func_8085580
