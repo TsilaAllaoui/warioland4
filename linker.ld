@@ -719,7 +719,7 @@ SECTIONS {
         obj/disasm_score.o(.text);
         obj/secondary_sprite_ai.o(.text);
         obj/disasm_stage_select.o(.text);
-        obj/disasm_map_screen.o(.text);
+        obj/map_screen.o(.text);
         obj/stage_entry.o(.text);
         obj/disasm_vortex_cutscene.o(.text);
         obj/stage_results.o(.text);
