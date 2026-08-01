@@ -708,7 +708,7 @@ SECTIONS {
         obj/animated_graphics.o(.text);
         obj/camera.o(.text);
         obj/tile_interaction.o(.text);
-        obj/disasm_color_fading.o(.text);
+        obj/color_fading.o(.text);
         obj/hblank.o(.text);
         obj/stage_end.o(.text);
         obj/demo.o(.text);
@@ -785,7 +785,7 @@ SECTIONS {
         obj/sprite_ai/rock.o(.rodata);
         obj/data/sprite_data_3C4B28_3F9D64.o(.rodata);
         obj/tile_interaction.o(.rodata);
-        obj/disasm_color_fading.o(.rodata);
+        obj/data/color_fading_tables.o(.rodata);
         obj/hblank.o(.rodata);
         obj/blob_0x3FA838-0x3FDA2C.o(.rodata);
         obj/data/demo.o(.rodata);

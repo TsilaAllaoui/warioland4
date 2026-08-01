@@ -94,7 +94,7 @@ StageSelectSubroutine:
 .L_79abc:
 	.4byte	gColorFading
 .L_79ac0:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A380
 	cmp	r0, #0
 	bne	.L_79ad0
@@ -120,7 +120,7 @@ StageSelectSubroutine:
 .L_79af4:
 	.4byte	gSubGameMode
 .L_79af8:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A3D4
 	cmp	r0, #0
 	bne	.L_79b08
@@ -222,7 +222,7 @@ StageSelectSubroutine:
 .L_79bc8:
 	.4byte	gSubGameMode
 .L_79bcc:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A380
 	cmp	r0, #0
 	bne	.L_79bdc
@@ -273,7 +273,7 @@ StageSelectSubroutine:
 .L_79c30:
 	.4byte	gSubGameMode
 .L_79c34:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A3D4
 	cmp	r0, #0
 	bne	.L_79c42
@@ -710,7 +710,7 @@ StageSelectSubroutine:
 .L_79f8c:
 	.4byte	gSubGameMode
 .L_79f90:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A380
 	cmp	r0, #0
 	bne	.L_79f9e
@@ -742,7 +742,7 @@ StageSelectSubroutine:
 .L_79fc8:
 	.4byte	gColorFading
 .L_79fcc:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A3D4
 	cmp	r0, #0
 	bne	.L_79fda
@@ -829,7 +829,7 @@ StageSelectSubroutine:
 .L_7a06c:
 	.4byte	gSubGameMode
 .L_7a070:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A380
 	cmp	r0, #0
 	bne	.L_7a07e
@@ -881,7 +881,7 @@ StageSelectSubroutine:
 .L_7a0d4:
 	.4byte	gSubGameMode
 .L_7a0d8:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A3D4
 	cmp	r0, #0
 	bne	.L_7a0e6
@@ -1034,7 +1034,7 @@ StageSelectSubroutine:
 .L_7a1fc:
 	.4byte	gSubGameMode
 .L_7a200:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A380
 	cmp	r0, #0
 	bne	.L_7a20e
@@ -1082,7 +1082,7 @@ StageSelectSubroutine:
 .L_7a25c:
 	.4byte	gSubGameMode
 .L_7a260:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A3D4
 	cmp	r0, #0
 	bne	.L_7a26e
@@ -1183,7 +1183,7 @@ StageSelectSubroutine:
 .L_7a320:
 	.4byte	gSubGameMode
 .L_7a324:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A380
 	cmp	r0, #0
 	beq	.L_7a36a
@@ -1204,7 +1204,7 @@ StageSelectSubroutine:
 .L_7a34c:
 	.4byte	gSubGameMode
 .L_7a350:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_807A3D4
 	cmp	r0, #0
 	beq	.L_7a36a
@@ -1237,7 +1237,7 @@ func_807A380:
 	bgt	.L_7a3a0
 	mov	r0, #0
 	mov	r1, #1
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	add	r2, r0, #0
 	b	.L_7a3ce
 .L_7a39c:
@@ -1285,7 +1285,7 @@ func_807A3D4:
 	bgt	.L_7a3f4
 	mov	r0, #1
 	mov	r1, #1
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	add	r2, r0, #0
 	b	.L_7a422
 .L_7a3f0:
@@ -1356,7 +1356,7 @@ func_807A458:
 	ldr	r1, .L_7a468
 	mov	r0, #3
 	strb	r0, [r1, #4]
-	bl	func_8071260
+	bl	FillColorFadePalettes
 	pop	{r0}
 	bx	r0
 .L_7a468:

@@ -34,7 +34,6 @@ struct GoldenDivaDmaRegs {
 extern u8 gSpriteAiDropTimer;
 extern u8 gShopItemState;
 extern u8 gShopItemTimer;
-extern u8 gGoldenDivaRoomTimer;
 extern u8 gSpriteCollisionResult;
 extern s8 gCuckooCondorPendulumLength;
 extern u8 gCuckooCondorMoveRight;
@@ -1118,11 +1117,11 @@ void UpdateGoldenDivaBodyPose118(void)
         *timer = value;
         value <<= 24;
         if (value == 0)
-            func_8070A84(4, 0, 16);
+            StartGoldenDivaPaletteFade(4, 0, 16);
         return;
     }
 
-    if (gGoldenDivaRoomTimer != 0)
+    if (gGoldenDivaRoomTimer[0] != 0)
         return;
 
     timer = &sprite->work0;
@@ -1145,7 +1144,7 @@ void UpdateGoldenDivaBodyPose118(void)
         m4aSongNumStart(SOUND_C4);
         break;
     case 100:
-        func_8070A84(3, 0, 16);
+        StartGoldenDivaPaletteFade(3, 0, 16);
         sprite->pose = 119;
         m4aSongNumStart(SOUND_7C);
         break;
@@ -1158,7 +1157,7 @@ void UpdateGoldenDivaBodyPose119(void)
     register u32 pose asm("r1");
     register u32 zero asm("r2");
 
-    zero = gGoldenDivaRoomTimer;
+    zero = gGoldenDivaRoomTimer[0];
     if (zero != 0)
         return;
 
@@ -3172,7 +3171,7 @@ storeCase14:
 finishPhase17:
             (*statePointer)++;
             LoadBossSpriteGraphics(8, 2, 14);
-            func_8070A84(8, 0, 16);
+            StartGoldenDivaPaletteFade(8, 0, 16);
             break;
         case 18: {
             register u8 *work asm("r4");
@@ -3185,7 +3184,7 @@ finishPhase17:
             value = *work;
             value--;
             *work = value;
-            if (gGoldenDivaRoomTimer != 0 || *gBossDefeatTimer != 0)
+            if (gGoldenDivaRoomTimer[0] != 0 || *gBossDefeatTimer != 0)
                 break;
             temp = (u32)&gBossSequenceState;
             value = *(u8 *)temp;

@@ -1,4 +1,5 @@
 #include "fixed_point.h"
+#include "color_effects.h"
 #include "background_registers.h"
 #include "global_data.h"
 #include "gba/m4a.h"
@@ -12,7 +13,6 @@
 #include "voice_set.h"
 #include "wario.h"
 
-extern void LoadBossSpriteGraphics(u8, u8, u8);
 extern void UpdateBossHealthGauge(void);
 extern void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 

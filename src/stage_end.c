@@ -11,12 +11,6 @@
 
 #include "gba/m4a.h"
 
-void SetCurrentStageKeyzerRecoveredFlag(void);
-void func_80703DC(void);
-void func_807053C(void);
-void func_8070BB8(void);
-void func_8070C38(void);
-s32 func_80714F0(void);
 s32 RunCurrentPassageStageEnd(void);
 
 void UpdateStageEndAffineTransform(void);
@@ -40,7 +34,7 @@ s32 UpdateStageExitSequence(void)
     u8 exitType;
 
     resultCode = 0;
-    func_80703DC();
+    UploadColorFadePalettes();
 
     if (((s8)gStageExitType) < 0) {
         resultCode = RunCurrentPassageStageEnd();
@@ -152,14 +146,14 @@ s32 UpdateStageExitSequence(void)
         case 15:
         case 23:
             gColorFading.type = 5;
-            gColorFading.unk_2 = 0;
+            gColorFading.progress = 0;
             nextState = 128;
             goto set_state;
 
         case 9:
         case 16:
         case 24:
-            transitionComplete = func_80714F0();
+            transitionComplete = CollapseColorFadeWindowVertically();
             if (transitionComplete != 0) {
                 nextState = 128;
                 goto set_state;
@@ -169,8 +163,8 @@ s32 UpdateStageExitSequence(void)
         case 4:
         case 19:
             gColorFading.type = 2;
-            gColorFading.unk_2 = 0;
-            SetCurrentStageKeyzerRecoveredFlag();
+            gColorFading.progress = 0;
+            BackupPalettesForColorFade();
             nextState = 128;
             goto set_state;
 
@@ -179,7 +173,7 @@ s32 UpdateStageExitSequence(void)
             if (gMainTimer & 1) {
                 goto finish;
             }
-            transitionComplete = func_80710D8(1, 2);
+            transitionComplete = UpdatePaletteFadeStep(1, 2);
             if (transitionComplete != 0) {
                 nextState = 128;
                 goto set_state;
@@ -233,11 +227,11 @@ s32 RunCurrentPassageStageEnd(void)
     s32 result;
     StageEndUpdateFunc updateFunction;
 
-    func_807053C();
+    UploadBossColorFadePalettes();
     updateFunction = sStageEndUpdateFunctions[gCurrentPassage];
     result = updateFunction();
-    func_8070BB8();
-    func_8070C38();
+    UpdateBossDefeatPaletteFade();
+    UpdateGoldenDivaPaletteFade();
     return result;
 }
 
@@ -324,14 +318,14 @@ s32 UpdateStageEndSequence(void)
         case 6:
             gUnk_300188E += 1;
             gColorFading.type = 2;
-            gColorFading.unk_2 = 0;
-            SetCurrentStageKeyzerRecoveredFlag();
+            gColorFading.progress = 0;
+            BackupPalettesForColorFade();
             gUnk_300188E = 0;
             gSpriteAiDropTimer += 1;
             break;
 
         case 7:
-            if (func_80710D8(1, 2) != 0) {
+            if (UpdatePaletteFadeStep(1, 2) != 0) {
                 gUnk_300188E = 0;
                 gSpriteAiDropTimer += 1;
             }

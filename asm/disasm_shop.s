@@ -41,10 +41,10 @@ ItemShopSubroutine:
 	bl	func_808FCE0
 	b	.L_8fc9c
 .L_8fbde:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	mov	r0, #0
 	mov	r1, #1
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	b	.L_8fc98
 .L_8fbec:
 	bl	ExpandMinigameWindow
@@ -153,10 +153,10 @@ ItemShopSubroutine:
 .L_8fca8:
 	.4byte	gUnk_3000000
 .L_8fcac:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	mov	r0, #1
 	mov	r1, #1
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	cmp	r0, #0
 	beq	.L_8fccc
 	bl	func_807ACCC
@@ -634,7 +634,7 @@ func_808FCE0:
 	strb	r0, [r3, #4]
 	mov	r0, #2
 	strb	r0, [r3, #0]
-	bl	func_8071260
+	bl	FillColorFadePalettes
 	ldr	r0, .L_900d0
 .L_90044:
 	.4byte	0x48238004

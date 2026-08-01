@@ -2779,7 +2779,7 @@ void func_8026E78(void)
 
 void SpriteUtilFadeBackgroundToBlack(void)
 {
-    func_8070A84(8, 0, 16);
+    StartGoldenDivaPaletteFade(8, 0, 16);
 }
 
 void SpriteUtilSetWarioBossVictoryPose(void)

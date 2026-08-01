@@ -45,10 +45,10 @@ PauseScreenSubroutine:
 .L_886d4:
 	.4byte	gUnk_3000000
 .L_886d8:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	mov	r0, #0
 	mov	r1, #1
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	cmp	r0, #0
 	bne	.L_886ea
 	b	.L_88818
@@ -116,10 +116,10 @@ PauseScreenSubroutine:
 .L_8875c:
 	.4byte	gUnk_3000000
 .L_88760:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	mov	r0, #1
 	mov	r1, #1
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	cmp	r0, #0
 	beq	.L_88818
 	ldr	r1, .L_887a4
@@ -716,7 +716,7 @@ func_8088900:
 	strb	r0, [r1, #0]
 	mov	r0, #3
 	strb	r0, [r1, #4]
-	bl	func_8071260
+	bl	FillColorFadePalettes
 	ldr	r1, .L_88c4c
 	ldr	r0, .L_88c50
 	str	r0, [r1, #0]

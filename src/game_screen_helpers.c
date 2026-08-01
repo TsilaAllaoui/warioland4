@@ -26,11 +26,7 @@ void func_8000D18();
 void StopDemo();
 void LoadCurrentRoomCameraControlData();
 void TransparencyProcessWater();
-void func_8070E24();
-void func_8070BB8();
-void func_8070C38();
 void UpdateTileEffect();
-void SetCurrentStageKeyzerRecoveredFlag();
 void UpdateAnimatedGraphics();
 void UpdateWarioTileInteractions();
 void m4aSongNumStartOrContinue();
@@ -646,11 +642,11 @@ void InitializeRoomState(void)
     gStageExitType = 0;
     gUnk_300001A = 0;
     colorBase = &gColorFading;
-    colorBase->unk_1 = 0;
-    colorBase->unk_2 = 0;
-    colorBase->unk_3 = 0;
-    colorBase->unk_4 = 0;
-    colorBase->unk_5 = 0;
+    colorBase->timer = 0;
+    colorBase->progress = 0;
+    colorBase->sourceFlags = 0;
+    colorBase->uploadFlags = 0;
+    colorBase->interpolationPending = 0;
     gShopItemState = 0;
     gBldCnt = 0;
     gScrollingUpdateFrameCounter = 0;
@@ -671,12 +667,12 @@ void InitializeRoomState(void)
         gBossDefeatTimer[3] = 0;
         gBossDefeatTimer[4] = 0;
         gBossDefeatTimer[5] = 0;
-        ((u8 *)&gGoldenDivaRoomTimer)[0] = 0;
-        ((u8 *)&gGoldenDivaRoomTimer)[1] = 0;
-        ((u8 *)&gGoldenDivaRoomTimer)[2] = 0;
-        ((u8 *)&gGoldenDivaRoomTimer)[3] = 0;
-        ((u8 *)&gGoldenDivaRoomTimer)[4] = 0;
-        ((u8 *)&gGoldenDivaRoomTimer)[5] = 0;
+        gGoldenDivaRoomTimer[0] = 0;
+        gGoldenDivaRoomTimer[1] = 0;
+        gGoldenDivaRoomTimer[2] = 0;
+        gGoldenDivaRoomTimer[3] = 0;
+        gGoldenDivaRoomTimer[4] = 0;
+        gGoldenDivaRoomTimer[5] = 0;
         gSpriteTileInteractionMode = 0;
         if (gHasTemporarySave == 0) {
             if ((gUnk_3000020 & 0x80) == 0)
@@ -1657,9 +1653,9 @@ void ProcessRoomBackgrounds(void)
             TransparencyProcessTiles(1);
     }
     if (gTimerState != 0)
-        func_8070E24();
-    func_8070BB8();
-    func_8070C38();
+        UpdateEscapePaletteFadeSequence();
+    UpdateBossDefeatPaletteFade();
+    UpdateGoldenDivaPaletteFade();
     if (gShopItemState != 0)
         ProcessRoomWindowEffect();
     if (gUnk_300001B > 1) {
@@ -1668,9 +1664,9 @@ void ProcessRoomBackgrounds(void)
             ProcessGoldenPassageBossTransition();
     }
     if (gPauseFlag != 0) {
-        SetCurrentStageKeyzerRecoveredFlag();
+        BackupPalettesForColorFade();
         gGameMusicState.state = 0;
-        gColorFading.unk_2 = 0;
+        gColorFading.progress = 0;
         gColorFading.type = 2;
     }
 }

@@ -1,5 +1,6 @@
 #include "sprite_ai/cractus.h"
 
+#include "color_effects.h"
 #include "fixed_point.h"
 #include "global_data.h"
 #include "input.h"
@@ -21,7 +22,6 @@ extern u8 gSpriteAiDynamicGraphicsTimer;
 extern const void *const sUnk_878F170[];
 
 void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 arg5);
-void LoadBossSpriteGraphics(u32 arg0, u32 arg1, u32 arg2);
 void UpdateBossHealthGauge(void);
 
 u32 UpdateCractusGraphicsAnimation(const u8 *animation)

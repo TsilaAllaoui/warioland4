@@ -1,16 +1,13 @@
-#include "types.h"
+#include "color_effects.h"
 
-u16 func_8070D20(u32, u32, u32, u32);
-u16 func_8070D68(u32, u32, u32, u32);
-u16 func_8070DAC(u32, u32, u32, u32);
-u16 func_8070DE4(u32, u32, u32, u32);
+typedef u16 (*ColorBlendFunction)(u32, u32, u32, u32);
 
-u16 (*sUnk_878F5CC[])(u32, u32, u32, u32) = {
-    func_8070D20,
+ColorBlendFunction sColorBlendFunctionTable[] = {
+    (ColorBlendFunction)BlendColorFromWhite,
 };
 
-u16 (*sUnk_878F5D0[])(u32, u32, u32, u32) = {
-    func_8070D68,
-    func_8070DAC,
-    func_8070DE4,
+ColorBlendFunction sColorBlendFunctionTableTail[] = {
+    (ColorBlendFunction)BlendColorToWhite,
+    (ColorBlendFunction)BlendColorFromBlack,
+    (ColorBlendFunction)BlendColorToBlack,
 };

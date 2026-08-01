@@ -472,7 +472,7 @@ func_8090A40:
 	ldr	r1, .L_90e10
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_8071238
+	bl	PrepareColorFadeBuffers
 	mov	r1, #128	@ 0x80
 	lsl	r1, r1, #19
 	mov	r2, #174	@ 0xae
@@ -1932,7 +1932,7 @@ FileSelectSubroutine:
 	strh	r1, [r4, #0]
 	b	.L_919b2
 .L_91818:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_8092168
 	cmp	r0, #0
 	bne	.L_91826
@@ -2104,7 +2104,7 @@ FileSelectSubroutine:
 	strh	r0, [r4, #0]
 	b	.L_919b2
 .L_9196c:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_8092178
 	cmp	r0, #0
 	beq	.L_919b2
@@ -2129,7 +2129,7 @@ FileSelectSubroutine:
 .L_9199c:
 	.4byte	gSubGameMode
 .L_919a0:
-	bl	func_80703DC
+	bl	UploadColorFadePalettes
 	bl	func_8092178
 	cmp	r0, #0
 	beq	.L_919b2
@@ -3198,7 +3198,7 @@ func_8092168:
 	push	{lr}
 	mov	r0, #0
 	mov	r1, #0
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	pop	{r1}
 	bx	r1
 	.align	2, 0
@@ -3209,7 +3209,7 @@ func_8092178:
 	push	{lr}
 	mov	r0, #1
 	mov	r1, #0
-	bl	func_80710D8
+	bl	UpdatePaletteFadeStep
 	pop	{r1}
 	bx	r1
 	.align	2, 0

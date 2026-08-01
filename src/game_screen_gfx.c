@@ -586,7 +586,7 @@ s32 GameScreenFadeIn(void)
     switch (gColorFading.type - 1) {
         case 0:
         case 1:
-            result = func_80710D8(0, 0);
+            result = UpdatePaletteFadeStep(0, 0);
             break;
 
         case 2:
@@ -599,7 +599,7 @@ s32 GameScreenFadeIn(void)
             break;
 
         case 4:
-            result = func_80712F8();
+            result = ExpandColorFadeWindow();
     }
     return result;
 }
@@ -612,7 +612,7 @@ s32 GameScreenFadeOut(void)
     switch (gColorFading.type - 1) {
         case 0:
         case 1:
-            result = func_80710D8(1, 0);
+            result = UpdatePaletteFadeStep(1, 0);
             break;
         case 2:
         case 3:
@@ -623,7 +623,7 @@ s32 GameScreenFadeOut(void)
             }
             break;
         case 4:
-            result = func_8071394();
+            result = CollapseColorFadeWindowAroundWario();
     }
     return result;
 }
