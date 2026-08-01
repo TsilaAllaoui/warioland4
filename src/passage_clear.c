@@ -8,12 +8,11 @@
 #include "stage_select.h"
 #include "stage_entry.h"
 #include "fixed_point.h"
+#include "boss_treasure_cutscene.h"
 
 
 extern u16 gStageEntrySequenceTimer;
 extern s8 gUnk_3003C3E;
-extern s8 gUnk_3003C3C;
-extern s8 gUnk_3003C3D;
 
 extern const u8 sPassageClearBgPalette[];
 extern const u8 sPassageClearBgTiles[];
@@ -209,8 +208,8 @@ void InitializePassageClear(void)
     }
     REG_DISPCNT = 0x1500;
     REG_BLDCNT = 0x1641;
-    gUnk_3003C3D = zero8;
-    gUnk_3003C3C = 16;
+    gStageTransitionBlendEvb = zero8;
+    gStageTransitionBlendEva = 16;
     gUnk_3003C3E = 16;
     {
         volatile u16 *blendAlpha;
@@ -331,10 +330,10 @@ void UpdatePassageClearBlendFade(void)
     remainder = gStageEntrySequenceTimer % 3;
     if (remainder == 0)
     {
-        gUnk_3003C3D++;
-        gUnk_3003C3C--;
-        *(volatile u16 *)0x04000052 = (gUnk_3003C3C << 8) | gUnk_3003C3D;
-        if (gUnk_3003C3D == 16)
+        gStageTransitionBlendEvb++;
+        gStageTransitionBlendEva--;
+        *(volatile u16 *)0x04000052 = (gStageTransitionBlendEva << 8) | gStageTransitionBlendEvb;
+        if (gStageTransitionBlendEvb == 16)
         {
             gPassageClearBlendFadeActive = remainder;
         }

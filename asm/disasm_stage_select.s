@@ -640,7 +640,7 @@ StageSelectSubroutine:
 	ldr	r1, .L_79f18
 	mov	r0, #4
 	strb	r0, [r1, #0]
-	bl	func_8082428
+	bl	InitializeBossTreasureCutscene
 	ldr	r1, .L_79f1c
 	mov	r0, #26
 	strh	r0, [r1, #0]
@@ -664,7 +664,7 @@ StageSelectSubroutine:
 .L_79f34:
 	.4byte	gSubGameMode
 .L_79f38:
-	bl	func_8082024
+	bl	UpdateBossTreasureCutscene
 	cmp	r0, #0
 	bne	.L_79f42
 	b	.L_7a36a
@@ -1558,7 +1558,7 @@ func_807A528:
 	bl	UpdateStageEjectionEffects
 	b	.L_7a662
 .L_7a64c:
-	bl	func_8083750
+	bl	ApplyBossTreasureAffineRegisters
 	b	.L_7a662
 .L_7a652:
 	bl	func_8085D68
@@ -1636,7 +1636,7 @@ func_807A668:
 	bl	UpdateStageEjectionEffects
 	b	.L_7a6fc
 .L_7a6f8:
-	bl	func_8083750
+	bl	ApplyBossTreasureAffineRegisters
 .L_7a6fc:
 	pop	{r0}
 	bx	r0
@@ -2514,7 +2514,7 @@ func_807ACDC:
 	bl	DrawStageEjection
 	b	.L_7adf8
 .L_7addc:
-	bl	func_8082F60
+	bl	DrawBossTreasureCutsceneSprites
 	b	.L_7adf8
 .L_7ade2:
 	bl	RenderPassageClearOam
