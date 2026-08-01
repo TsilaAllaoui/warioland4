@@ -721,7 +721,7 @@ SECTIONS {
         obj/disasm_stage_select.o(.text);
         obj/map_screen.o(.text);
         obj/stage_entry.o(.text);
-        obj/disasm_vortex_cutscene.o(.text);
+        obj/vortex_cutscene.o(.text);
         obj/stage_results.o(.text);
         obj/autosave.o(.text);
         obj/stage_ejection.o(.text);
