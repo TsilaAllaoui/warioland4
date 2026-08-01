@@ -421,7 +421,7 @@ StageSelectSubroutine:
 	ldr	r0, .L_79d78
 	mov	r5, #0
 	strh	r2, [r0, #0]
-	bl	func_807FAA4
+	bl	InitializeVortexCutsceneFromPortal
 	ldr	r0, .L_79d7c
 	strb	r5, [r0, #0]
 	ldr	r1, .L_79d80
@@ -447,12 +447,12 @@ StageSelectSubroutine:
 	ldrh	r0, [r4, #0]
 	add	r0, #1
 	strh	r0, [r4, #0]
-	bl	func_807FFD8
-	bl	func_80800EC
+	bl	UpdateVortexCutsceneAffine
+	bl	UpdateVortexCutscenePaletteCycle
 	ldrh	r0, [r4, #0]
 	cmp	r0, #10
 	bls	.L_79d9e
-	bl	func_807FD94
+	bl	UpdateVortexCutsceneMainSprite
 .L_79d9e:
 	bl	func_807A380
 	cmp	r0, #0
@@ -472,7 +472,7 @@ StageSelectSubroutine:
 	ldrh	r1, [r0, #0]
 	add	r1, #1
 	strh	r1, [r0, #0]
-	bl	func_807F8D0
+	bl	UpdateVortexCutscene
 	cmp	r0, #0
 	bne	.L_79dca
 	b	.L_7a36a
@@ -493,8 +493,8 @@ StageSelectSubroutine:
 .L_79de4:
 	.4byte	gSubGameMode
 .L_79de8:
-	bl	func_807FFD8
-	bl	func_80800EC
+	bl	UpdateVortexCutsceneAffine
+	bl	UpdateVortexCutscenePaletteCycle
 	bl	UpdateStageResults
 	cmp	r0, #0
 	bne	.L_79dfa
@@ -512,8 +512,8 @@ StageSelectSubroutine:
 	ldrh	r1, [r0, #0]
 	add	r1, #1
 	strh	r1, [r0, #0]
-	bl	func_807FFD8
-	bl	func_80800EC
+	bl	UpdateVortexCutsceneAffine
+	bl	UpdateVortexCutscenePaletteCycle
 	bl	func_807A3D4
 	cmp	r0, #0
 	bne	.L_79e22
@@ -553,7 +553,7 @@ StageSelectSubroutine:
 	strb	r0, [r1, #0]
 	ldr	r0, .L_79e78
 	strh	r2, [r0, #0]
-	bl	func_807FB20
+	bl	InitializeVortexCutsceneFromPassage
 	ldr	r0, .L_79e7c
 	strb	r5, [r0, #0]
 	ldr	r1, .L_79e80
@@ -1546,7 +1546,7 @@ func_807A528:
 	.4byte	.L_7a65e
 	.4byte	.L_7a65e
 .L_7a634:
-	bl	func_8080144
+	bl	ApplyVortexCutsceneAffineRegisters
 	b	.L_7a662
 .L_7a63a:
 	bl	UpdateStageEntryDisplayRegisters
@@ -1630,7 +1630,7 @@ func_807A668:
 	.4byte	.L_7a6fc
 	.4byte	.L_7a6f8
 .L_7a6ec:
-	bl	func_8080144
+	bl	ApplyVortexCutsceneAffineRegisters
 	b	.L_7a6fc
 .L_7a6f2:
 	bl	UpdateStageEjectionEffects
@@ -2508,7 +2508,7 @@ func_807ACDC:
 	bl	func_807E7B0
 	b	.L_7adf8
 .L_7add0:
-	bl	func_808018C
+	bl	RenderVortexCutsceneOam
 	b	.L_7adf8
 .L_7add6:
 	bl	DrawStageEjection

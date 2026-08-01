@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  94.8%   3,831 / 4,043</text>
-<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  86.8%   526,295 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  94.9%   3,838 / 4,043</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  87.0%   527,627 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,021 / 4,043 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2377,83 +2377,83 @@
 <rect x="788.34" y="289.44" width="5.02" height="2.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>kaentsubo/KillKaentsubo: 12 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_vortex_cutscene: 0.0% matched, 4,508 bytes</title>
+<title>spear_mask: 100.0% matched, 4,508 bytes</title>
 <rect x="794.71" y="210.10" width="83.28" height="82.43" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip36"><rect x="796.71" y="211.10" width="79.88" height="14.95"/></clipPath>
 <rect x="795.71" y="211.10" width="81.88" height="14.95" fill="#05080d"/>
-<text x="797.21" y="221.10" clip-path="url(#moduleLabelClip36)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_vortex…</text>
-<text x="875.60" y="220.10" text-anchor="end" clip-path="url(#moduleLabelClip36)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="795.71" y="226.04" width="40.92" height="65.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_808018C: 2,272 bytes, not matched, size=symbol</title></rect>
-<rect x="836.98" y="226.04" width="24.36" height="30.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807FB20: 628 bytes, not matched, size=symbol</title></rect>
-<rect x="861.70" y="226.04" width="15.55" height="30.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807FD94: 404 bytes, not matched, size=symbol</title></rect>
-<rect x="836.98" y="256.54" width="21.91" height="20.35" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807F924: 384 bytes, not matched, size=symbol</title></rect>
-<rect x="836.98" y="277.25" width="21.91" height="14.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807FFD8: 276 bytes, not matched, size=symbol</title></rect>
-<rect x="859.25" y="256.54" width="18.00" height="11.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807FF28: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="859.25" y="268.05" width="10.38" height="13.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807FAA4: 124 bytes, not matched, size=symbol</title></rect>
-<rect x="869.98" y="268.05" width="7.27" height="13.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_80800EC: 88 bytes, not matched, size=symbol</title></rect>
-<rect x="859.25" y="281.92" width="9.53" height="9.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_807F8D0: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="869.13" y="281.92" width="8.12" height="9.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_vortex_cutscene/func_8080144: 72 bytes, not matched, size=symbol</title></rect>
+<text x="797.21" y="221.10" clip-path="url(#moduleLabelClip36)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">spear_mask</text>
+<text x="875.60" y="220.10" text-anchor="end" clip-path="url(#moduleLabelClip36)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="795.71" y="226.04" width="26.24" height="44.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpriteSpearMask: 996 bytes, matched, size=symbol</title></rect>
+<rect x="795.71" y="271.00" width="26.24" height="20.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskWalkBlueOrRed: 468 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="226.04" width="20.74" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskWalkYellow: 296 bytes, matched, size=symbol</title></rect>
+<rect x="843.40" y="226.04" width="11.34" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTransform: 164 bytes, matched, size=symbol</title></rect>
+<rect x="855.08" y="226.04" width="11.05" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTurn: 160 bytes, matched, size=symbol</title></rect>
+<rect x="866.48" y="226.04" width="10.77" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose4D: 156 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="242.89" width="12.52" height="13.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskGetUp: 148 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="256.69" width="12.52" height="12.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledInit: 140 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="269.75" width="12.52" height="10.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskCrushed: 120 bytes, matched, size=symbol</title></rect>
+<rect x="822.31" y="280.94" width="12.52" height="10.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_8027474: 120 bytes, matched, size=symbol</title></rect>
+<rect x="835.18" y="242.89" width="11.90" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInitTransform: 104 bytes, matched, size=symbol</title></rect>
+<rect x="847.43" y="242.89" width="10.02" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInitWalk: 88 bytes, matched, size=symbol</title></rect>
+<rect x="857.80" y="242.89" width="9.55" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose6F: 84 bytes, matched, size=symbol</title></rect>
+<rect x="867.70" y="242.89" width="9.55" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose71: 84 bytes, matched, size=symbol</title></rect>
+<rect x="835.18" y="253.08" width="8.87" height="10.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskStartChase: 80 bytes, matched, size=symbol</title></rect>
+<rect x="835.18" y="263.49" width="8.87" height="9.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInit: 76 bytes, matched, size=symbol</title></rect>
+<rect x="835.18" y="273.38" width="8.87" height="9.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInstantlyKill: 76 bytes, matched, size=symbol</title></rect>
+<rect x="835.18" y="283.27" width="8.87" height="8.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_80277E0: 68 bytes, matched, size=symbol</title></rect>
+<rect x="844.40" y="253.08" width="8.97" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPushedInit: 64 bytes, matched, size=symbol</title></rect>
+<rect x="853.72" y="253.08" width="7.80" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose4E: 56 bytes, matched, size=symbol</title></rect>
+<rect x="861.87" y="253.08" width="7.80" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_802784C: 56 bytes, matched, size=symbol</title></rect>
+<rect x="870.02" y="253.08" width="7.22" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose17: 52 bytes, matched, size=symbol</title></rect>
+<rect x="844.40" y="261.32" width="7.29" height="7.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose1D: 52 bytes, matched, size=symbol</title></rect>
+<rect x="844.40" y="269.49" width="7.29" height="7.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskHitWario: 48 bytes, matched, size=symbol</title></rect>
+<rect x="844.40" y="277.04" width="7.29" height="7.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskSetWalkingHitbox: 48 bytes, matched, size=symbol</title></rect>
+<rect x="844.40" y="284.58" width="7.29" height="7.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskStartChasing: 48 bytes, matched, size=symbol</title></rect>
+<rect x="852.04" y="261.32" width="8.67" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTurnInit: 48 bytes, matched, size=symbol</title></rect>
+<rect x="861.06" y="261.32" width="8.67" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_80276C4: 48 bytes, matched, size=symbol</title></rect>
+<rect x="870.08" y="261.32" width="7.17" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose1B: 40 bytes, matched, size=symbol</title></rect>
+<rect x="852.04" y="267.71" width="5.55" height="6.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskGetUpInit: 36 bytes, matched, size=symbol</title></rect>
+<rect x="852.04" y="275.03" width="5.55" height="6.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_80275D4: 32 bytes, matched, size=symbol</title></rect>
+<rect x="852.04" y="281.54" width="5.55" height="5.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_8027ACC: 28 bytes, matched, size=symbol</title></rect>
+<rect x="852.04" y="287.24" width="5.55" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_8027A8C: 24 bytes, matched, size=symbol</title></rect>
+<rect x="857.93" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskCarriedLeft: 20 bytes, matched, size=symbol</title></rect>
+<rect x="862.85" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskCarriedRight: 20 bytes, matched, size=symbol</title></rect>
+<rect x="867.77" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskHitWarioLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="872.68" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskHitWarioRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="857.93" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="857.93" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="857.93" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose2B: 20 bytes, matched, size=symbol</title></rect>
+<rect x="857.93" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose2D: 20 bytes, matched, size=symbol</title></rect>
+<rect x="862.85" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose33: 20 bytes, matched, size=symbol</title></rect>
+<rect x="867.77" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose35: 20 bytes, matched, size=symbol</title></rect>
+<rect x="872.68" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose47: 20 bytes, matched, size=symbol</title></rect>
+<rect x="862.85" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose49: 20 bytes, matched, size=symbol</title></rect>
+<rect x="862.85" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose69: 20 bytes, matched, size=symbol</title></rect>
+<rect x="862.85" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose6A: 20 bytes, matched, size=symbol</title></rect>
+<rect x="867.77" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose6E: 20 bytes, matched, size=symbol</title></rect>
+<rect x="872.68" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose70: 20 bytes, matched, size=symbol</title></rect>
+<rect x="867.77" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="867.77" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="872.68" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
+<rect x="872.68" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>spear_mask: 100.0% matched, 4,508 bytes</title>
+<title>vortex_cutscene: 29.5% matched, 4,508 bytes</title>
 <rect x="878.60" y="210.10" width="83.28" height="82.43" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip37"><rect x="880.60" y="211.10" width="79.88" height="14.95"/></clipPath>
 <rect x="879.60" y="211.10" width="81.88" height="14.95" fill="#05080d"/>
-<text x="881.10" y="221.10" clip-path="url(#moduleLabelClip37)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">spear_mask</text>
-<text x="959.48" y="220.10" text-anchor="end" clip-path="url(#moduleLabelClip37)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
-<rect x="879.60" y="226.04" width="26.24" height="44.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpriteSpearMask: 996 bytes, matched, size=symbol</title></rect>
-<rect x="879.60" y="271.00" width="26.24" height="20.78" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskWalkBlueOrRed: 468 bytes, matched, size=symbol</title></rect>
-<rect x="906.19" y="226.04" width="20.74" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskWalkYellow: 296 bytes, matched, size=symbol</title></rect>
-<rect x="927.28" y="226.04" width="11.34" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTransform: 164 bytes, matched, size=symbol</title></rect>
-<rect x="938.96" y="226.04" width="11.05" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTurn: 160 bytes, matched, size=symbol</title></rect>
-<rect x="950.36" y="226.04" width="10.77" height="16.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose4D: 156 bytes, matched, size=symbol</title></rect>
-<rect x="906.19" y="242.89" width="12.52" height="13.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskGetUp: 148 bytes, matched, size=symbol</title></rect>
-<rect x="906.19" y="256.69" width="12.52" height="12.71" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledInit: 140 bytes, matched, size=symbol</title></rect>
-<rect x="906.19" y="269.75" width="12.52" height="10.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskCrushed: 120 bytes, matched, size=symbol</title></rect>
-<rect x="906.19" y="280.94" width="12.52" height="10.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_8027474: 120 bytes, matched, size=symbol</title></rect>
-<rect x="919.06" y="242.89" width="11.90" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInitTransform: 104 bytes, matched, size=symbol</title></rect>
-<rect x="931.31" y="242.89" width="10.02" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInitWalk: 88 bytes, matched, size=symbol</title></rect>
-<rect x="941.68" y="242.89" width="9.55" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose6F: 84 bytes, matched, size=symbol</title></rect>
-<rect x="951.58" y="242.89" width="9.55" height="9.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose71: 84 bytes, matched, size=symbol</title></rect>
-<rect x="919.06" y="253.08" width="8.87" height="10.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskStartChase: 80 bytes, matched, size=symbol</title></rect>
-<rect x="919.06" y="263.49" width="8.87" height="9.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInit: 76 bytes, matched, size=symbol</title></rect>
-<rect x="919.06" y="273.38" width="8.87" height="9.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskInstantlyKill: 76 bytes, matched, size=symbol</title></rect>
-<rect x="919.06" y="283.27" width="8.87" height="8.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_80277E0: 68 bytes, matched, size=symbol</title></rect>
-<rect x="928.28" y="253.08" width="8.97" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPushedInit: 64 bytes, matched, size=symbol</title></rect>
-<rect x="937.60" y="253.08" width="7.80" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose4E: 56 bytes, matched, size=symbol</title></rect>
-<rect x="945.75" y="253.08" width="7.80" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_802784C: 56 bytes, matched, size=symbol</title></rect>
-<rect x="953.91" y="253.08" width="7.22" height="7.89" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose17: 52 bytes, matched, size=symbol</title></rect>
-<rect x="928.28" y="261.32" width="7.29" height="7.82" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose1D: 52 bytes, matched, size=symbol</title></rect>
-<rect x="928.28" y="269.49" width="7.29" height="7.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskHitWario: 48 bytes, matched, size=symbol</title></rect>
-<rect x="928.28" y="277.04" width="7.29" height="7.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskSetWalkingHitbox: 48 bytes, matched, size=symbol</title></rect>
-<rect x="928.28" y="284.58" width="7.29" height="7.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskStartChasing: 48 bytes, matched, size=symbol</title></rect>
-<rect x="935.92" y="261.32" width="8.67" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTurnInit: 48 bytes, matched, size=symbol</title></rect>
-<rect x="944.94" y="261.32" width="8.67" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_80276C4: 48 bytes, matched, size=symbol</title></rect>
-<rect x="953.96" y="261.32" width="7.17" height="6.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose1B: 40 bytes, matched, size=symbol</title></rect>
-<rect x="935.92" y="267.71" width="5.55" height="6.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskGetUpInit: 36 bytes, matched, size=symbol</title></rect>
-<rect x="935.92" y="275.03" width="5.55" height="6.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_80275D4: 32 bytes, matched, size=symbol</title></rect>
-<rect x="935.92" y="281.54" width="5.55" height="5.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_8027ACC: 28 bytes, matched, size=symbol</title></rect>
-<rect x="935.92" y="287.24" width="5.55" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/func_8027A8C: 24 bytes, matched, size=symbol</title></rect>
-<rect x="941.82" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskCarriedLeft: 20 bytes, matched, size=symbol</title></rect>
-<rect x="946.73" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskCarriedRight: 20 bytes, matched, size=symbol</title></rect>
-<rect x="951.65" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskHitWarioLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="956.56" y="267.71" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskHitWarioRightInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="941.82" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskLiftedLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="941.82" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskLiftedRightInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="941.82" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose2B: 20 bytes, matched, size=symbol</title></rect>
-<rect x="941.82" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose2D: 20 bytes, matched, size=symbol</title></rect>
-<rect x="946.73" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose33: 20 bytes, matched, size=symbol</title></rect>
-<rect x="951.65" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose35: 20 bytes, matched, size=symbol</title></rect>
-<rect x="956.56" y="272.59" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose47: 20 bytes, matched, size=symbol</title></rect>
-<rect x="946.73" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose49: 20 bytes, matched, size=symbol</title></rect>
-<rect x="946.73" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose69: 20 bytes, matched, size=symbol</title></rect>
-<rect x="946.73" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose6A: 20 bytes, matched, size=symbol</title></rect>
-<rect x="951.65" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose6E: 20 bytes, matched, size=symbol</title></rect>
-<rect x="956.56" y="277.47" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPose70: 20 bytes, matched, size=symbol</title></rect>
-<rect x="951.65" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPushedLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="951.65" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskPushedRightInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="956.56" y="282.36" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledLeftInit: 20 bytes, matched, size=symbol</title></rect>
-<rect x="956.56" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
+<text x="881.10" y="221.10" clip-path="url(#moduleLabelClip37)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">vortex_cutsce…</text>
+<text x="959.48" y="220.10" text-anchor="end" clip-path="url(#moduleLabelClip37)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">30%</text>
+<rect x="879.60" y="226.04" width="40.92" height="65.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/RenderVortexCutsceneOam: 2,272 bytes, not matched, size=symbol</title></rect>
+<rect x="920.86" y="226.04" width="24.36" height="30.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneFromPassage: 628 bytes, not matched, size=symbol</title></rect>
+<rect x="945.58" y="226.04" width="15.55" height="30.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneMainSprite: 404 bytes, matched, size=symbol</title></rect>
+<rect x="920.86" y="256.54" width="21.91" height="20.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneResources: 384 bytes, matched, size=symbol</title></rect>
+<rect x="920.86" y="277.25" width="21.91" height="14.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneAffine: 276 bytes, not matched, size=symbol</title></rect>
+<rect x="943.13" y="256.54" width="18.00" height="11.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneKeyzerSprite: 176 bytes, matched, size=symbol</title></rect>
+<rect x="943.13" y="268.05" width="10.38" height="13.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneFromPortal: 124 bytes, matched, size=symbol</title></rect>
+<rect x="953.86" y="268.05" width="7.27" height="13.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutscenePaletteCycle: 88 bytes, matched, size=symbol</title></rect>
+<rect x="943.13" y="281.92" width="9.53" height="9.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutscene: 84 bytes, matched, size=symbol</title></rect>
+<rect x="953.01" y="281.92" width="8.12" height="9.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/ApplyVortexCutsceneAffineRegisters: 72 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>denden: 100.0% matched, 4,268 bytes</title>
