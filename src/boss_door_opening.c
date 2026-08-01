@@ -4,13 +4,12 @@
 #include "global_data.h"
 #include "init_helpers.h"
 #include "main.h"
+#include "minigame.h"
 #include "score.h"
 #include "stage_select.h"
 #include "voice_set.h"
 #include "gba/m4a.h"
 
-s32 func_8089DCC(void);
-s32 func_8089E14(void);
 extern const u8 sUnk_86A9E48[];
 extern const u8 sUnk_86AA048[];
 extern const u8 sUnk_86AE048[];
@@ -49,7 +48,7 @@ s32 UpdateBossDoorOpeningState(void)
 
     switch (state) {
     case 0:
-        if (func_8089DCC() == 0) {
+        if (ExpandMinigameWindow() == 0) {
             goto done;
         }
         if (gUnk_3003C56 != 0) {
@@ -149,7 +148,7 @@ s32 UpdateBossDoorOpeningState(void)
             gStageEntryMainSpriteState.second -= 20;
             gStageEntryMainSpriteState.first -= 4;
         }
-        if (func_8089E14() != 0) {
+        if (ContractMinigameWindow() != 0) {
             return 1;
         }
         goto done;

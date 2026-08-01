@@ -66,8 +66,6 @@ extern const u16 sUnk_86427BA[];
 extern const u16 sUnk_8642820[];
 extern const u16 sUnk_8642898[];
 
-s32 func_8089DCC(void);
-s32 func_8089E14(void);
 void Shop_DrawText(const u8 *text, u32 destination, s32 length);
 void InitMinigameScoreDisplay(void);
 
@@ -80,7 +78,7 @@ s32 UpdateSoundRoomTransition(void)
     switch (*step)
     {
         case 0:
-            result = func_8089DCC();
+            result = ExpandMinigameWindow();
             if (result != 0)
                 (*step)++;
             break;
@@ -90,7 +88,7 @@ s32 UpdateSoundRoomTransition(void)
                 (*step)++;
             break;
         case 2:
-            result = func_8089E14();
+            result = ContractMinigameWindow();
             if (result != 0)
                 return 1;
             break;

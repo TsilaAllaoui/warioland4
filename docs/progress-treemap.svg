@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  95.1%   3,846 / 4,043</text>
-<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  87.5%   530,595 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████████░  95.6%   3,866 / 4,043</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  88.3%   535,603 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,021 / 4,043 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2253,32 +2253,32 @@
 <rect x="704.53" y="583.91" width="3.46" height="5.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/SetCurrentStageKeyzerRecoveredFlag: 20 bytes, not matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_minigame: 0.0% matched, 5,008 bytes</title>
+<title>minigame: 100.0% matched, 5,008 bytes</title>
 <rect x="623.97" y="591.23" width="84.77" height="90.03" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip32"><rect x="625.97" y="592.23" width="81.37" height="16.31"/></clipPath>
 <rect x="624.97" y="592.23" width="83.37" height="16.31" fill="#05080d"/>
-<text x="626.47" y="602.23" clip-path="url(#moduleLabelClip32)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_miniga…</text>
-<text x="706.34" y="601.23" text-anchor="end" clip-path="url(#moduleLabelClip32)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="624.97" y="608.55" width="29.15" height="38.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A8E4: 940 bytes, not matched, size=symbol</title></rect>
-<rect x="624.97" y="646.91" width="29.15" height="33.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089FFC: 832 bytes, not matched, size=symbol</title></rect>
-<rect x="654.47" y="608.55" width="30.00" height="25.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/MinigameSubroutine: 640 bytes, not matched, size=symbol</title></rect>
-<rect x="684.82" y="608.55" width="23.17" height="25.04" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A4F8: 496 bytes, not matched, size=symbol</title></rect>
-<rect x="654.47" y="633.94" width="17.50" height="26.08" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089E74: 392 bytes, not matched, size=symbol</title></rect>
-<rect x="654.47" y="660.37" width="17.50" height="20.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A6E8: 304 bytes, not matched, size=symbol</title></rect>
-<rect x="672.33" y="633.94" width="18.78" height="12.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A818: 204 bytes, not matched, size=symbol</title></rect>
-<rect x="691.46" y="633.94" width="16.53" height="12.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/DrawMinigameHighScore: 180 bytes, not matched, size=symbol</title></rect>
-<rect x="672.33" y="646.77" width="11.09" height="17.75" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A3C0: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="672.33" y="664.87" width="11.09" height="15.65" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089BCC: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="683.77" y="646.77" width="12.30" height="12.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A46C: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="696.42" y="646.77" width="11.58" height="12.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_808A33C: 132 bytes, not matched, size=symbol</title></rect>
-<rect x="683.77" y="660.10" width="11.47" height="12.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089D4C: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="683.77" y="673.13" width="11.47" height="7.39" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089E14: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="695.59" y="660.10" width="12.40" height="6.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089DCC: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="695.59" y="666.89" width="7.54" height="7.58" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089C64: 52 bytes, not matched, size=symbol</title></rect>
-<rect x="703.48" y="666.89" width="4.51" height="7.58" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/MinigameWaitForFrames: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="695.59" y="674.83" width="5.23" height="5.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/MinigameRandom: 28 bytes, not matched, size=symbol</title></rect>
-<rect x="701.17" y="674.83" width="3.63" height="5.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089E60: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="705.15" y="674.83" width="2.84" height="5.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_minigame/func_8089BBC: 16 bytes, not matched, size=symbol</title></rect>
+<text x="626.47" y="602.23" clip-path="url(#moduleLabelClip32)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">minigame</text>
+<text x="706.34" y="601.23" text-anchor="end" clip-path="url(#moduleLabelClip32)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="624.97" y="608.55" width="29.15" height="38.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/DrawMinigameMenuSprites: 940 bytes, matched, size=symbol</title></rect>
+<rect x="624.97" y="646.91" width="29.15" height="33.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/InitMinigameMenu: 832 bytes, matched, size=symbol</title></rect>
+<rect x="654.47" y="608.55" width="30.00" height="25.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/MinigameSubroutine: 640 bytes, matched, size=symbol</title></rect>
+<rect x="684.82" y="608.55" width="23.17" height="25.04" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/HandleMinigameMenuInput: 496 bytes, matched, size=symbol</title></rect>
+<rect x="654.47" y="633.94" width="17.50" height="26.08" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/UpdateMinigameMenu: 392 bytes, matched, size=symbol</title></rect>
+<rect x="654.47" y="660.37" width="17.50" height="20.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/UpdateMinigameStartSequence: 304 bytes, matched, size=symbol</title></rect>
+<rect x="672.33" y="633.94" width="18.78" height="12.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/UpdateMinigameResultSequence: 204 bytes, matched, size=symbol</title></rect>
+<rect x="691.46" y="633.94" width="16.53" height="12.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/DrawMinigameHighScore: 180 bytes, matched, size=symbol</title></rect>
+<rect x="672.33" y="646.77" width="11.09" height="17.75" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/InitMinigameResultsMenu: 172 bytes, matched, size=symbol</title></rect>
+<rect x="672.33" y="664.87" width="11.09" height="15.65" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/MinigameVBlankCallback: 152 bytes, matched, size=symbol</title></rect>
+<rect x="683.77" y="646.77" width="12.30" height="12.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/ApplyMinigameMenuVBlank: 140 bytes, matched, size=symbol</title></rect>
+<rect x="696.42" y="646.77" width="11.58" height="12.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/InitMinigameMenuSelection: 132 bytes, matched, size=symbol</title></rect>
+<rect x="683.77" y="660.10" width="11.47" height="12.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/DrawActiveMinigame: 128 bytes, matched, size=symbol</title></rect>
+<rect x="683.77" y="673.13" width="11.47" height="7.39" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/ContractMinigameWindow: 76 bytes, matched, size=symbol</title></rect>
+<rect x="695.59" y="660.10" width="12.40" height="6.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/ExpandMinigameWindow: 72 bytes, matched, size=symbol</title></rect>
+<rect x="695.59" y="666.89" width="7.54" height="7.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/MinigameFadeVBlankCallback: 52 bytes, matched, size=symbol</title></rect>
+<rect x="703.48" y="666.89" width="4.51" height="7.58" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/MinigameWaitForFrames: 32 bytes, matched, size=symbol</title></rect>
+<rect x="695.59" y="674.83" width="5.23" height="5.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/MinigameRandom: 28 bytes, matched, size=symbol</title></rect>
+<rect x="701.17" y="674.83" width="3.63" height="5.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/PrepareMinigameSave: 20 bytes, matched, size=symbol</title></rect>
+<rect x="705.15" y="674.83" width="2.84" height="5.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/SetMinigameVBlankCallback: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_pause_screen: 0.0% matched, 4,744 bytes</title>
