@@ -17,9 +17,7 @@
 
 /* Neighboring modules still use these original ABI symbols on the main base. */
 void TransparencyProcessTiles();
-void func_806D3A4();
 void UpdateCamera();
-void func_806C828();
 void RefreshCollectedTileEffects();
 void InitAnimatedGraphics();
 void ApplyRoomTransitionTileOffset();
@@ -34,10 +32,6 @@ void func_8070C38();
 void UpdateTileEffect();
 void SetCurrentStageKeyzerRecoveredFlag();
 void UpdateAnimatedGraphics();
-void func_806CF28();
-void func_806D218();
-void func_806CA00();
-void func_806CCE4();
 void UpdateWarioTileInteractions();
 void m4aSongNumStartOrContinue();
 void m4aMPlayFadeOutTemporarily();
@@ -449,7 +443,7 @@ void LoadRoom(void)
     dma->source = tileset.backgroundGraphics;
     dma->destination = (void *)0x06004820;
     dma->control = (tileset.backgroundGraphicsSize >> 1) | (dmaEnable = 0x80000000);
-    func_806D3A4(dma->control);
+    WaitForDma3Transfer(dma->control);
     blankTiles = sBlankBackgroundTiles;
     dma->source = blankTiles;
     dma->destination = (void *)0x06004800;
@@ -459,7 +453,7 @@ void LoadRoom(void)
     dma->source = tileset.palette;
     dma->destination = (void *)0x05000000;
     dma->control = 0x80000100;
-    func_806D3A4(dma->control);
+    WaitForDma3Transfer(dma->control);
     if (gCurrentStageNumber != STAGE_BOSS) {
         dma->source = tileset.extraPalette;
         dma->destination = (void *)0x05000260;
@@ -472,7 +466,7 @@ void LoadRoom(void)
     dma->source = tileset.animatedGraphics;
     dma->destination = (void *)(0x0600FFE0 - tileset.animatedGraphicsSize);
     dma->control = dmaEnable | (tileset.animatedGraphicsSize >> 1);
-    func_806D3A4(dma->control);
+    WaitForDma3Transfer(dma->control);
     dma->source = blankTiles;
     dma->destination = (void *)0x0600FFE0;
     dma->control = dmaFillControl;
@@ -489,7 +483,7 @@ void LoadRoom(void)
         UpdateCamera();
     }
     ConfigureRoomDisplay();
-    func_806C828();
+    UpdateBackgroundScrollRegisters();
     DrawRoomBackgroundLayer(0);
     DrawRoomBackgroundLayer(1);
     DrawRoomBackgroundLayer(2);
@@ -659,7 +653,7 @@ void InitializeRoomState(void)
     colorBase->unk_5 = 0;
     gShopItemState = 0;
     gBldCnt = 0;
-    gUnk_30037BE = 0;
+    gScrollingUpdateFrameCounter = 0;
     initialize = gStageEntryPauseMenuDisabled;
     colorFading = colorBase;
     pauseFlag = &gPauseFlag;
@@ -830,12 +824,12 @@ void InitializeRoomEffects(void)
             effectValues[3] = zeroValue;
         }
 
-        gUnk_3003214.value = zeroValue;
-        gUnk_3003214.timer = zeroType;
+        gLayer3ScrollEffectState.value = zeroValue;
+        gLayer3ScrollEffectState.timer = zeroType;
         if (roomHeader->layer3Scrolling == 7)
-            gUnk_3003214.type = 1;
+            gLayer3ScrollEffectState.type = 1;
         else
-            gUnk_3003214.type = zeroType;
+            gLayer3ScrollEffectState.type = zeroType;
     }
 
     {
@@ -1146,7 +1140,7 @@ RenderComplete:
             controlValue = 0x80000400;
             controlRegister = controlValue;
             dmaRegister->control = controlValue;
-            func_806D3A4(dmaRegister->control);
+            WaitForDma3Transfer(dmaRegister->control);
             dmaRegister->source = bufferRegister;
             secondVramBase = 0x06000800;
             asm("" : "+r"(secondVramBase));
@@ -1770,19 +1764,19 @@ void UpdateRoomAnimatedGraphics(void)
 
 void DrawGameScreen(void)
 {
-    func_806C828();
-    gUnk_30037BE++;
-    if ((gUnk_30037BE & 1) != 0 || gCameraPositionState.xOffset < -28 || gCameraPositionState.xOffset > 28) {
-        func_806CF28(16);
-        func_806D218();
-        func_806CF28(-2);
-        func_806D218();
+    UpdateBackgroundScrollRegisters();
+    gScrollingUpdateFrameCounter++;
+    if ((gScrollingUpdateFrameCounter & 1) != 0 || gCameraPositionState.xOffset < -28 || gCameraPositionState.xOffset > 28) {
+        PrepareHorizontalScrollingTileUploads(16);
+        ApplyHorizontalScrollingTileUploads();
+        PrepareHorizontalScrollingTileUploads(-2);
+        ApplyHorizontalScrollingTileUploads();
     }
-    if ((gUnk_30037BE & 1) == 0 || gCameraPositionState.yOffset < -28 || gCameraPositionState.yOffset > 28) {
-        func_806CA00(11);
-        func_806CCE4();
-        func_806CA00(-2);
-        func_806CCE4();
+    if ((gScrollingUpdateFrameCounter & 1) == 0 || gCameraPositionState.yOffset < -28 || gCameraPositionState.yOffset > 28) {
+        PrepareVerticalScrollingTileUploads(11);
+        ApplyVerticalScrollingTileUploads();
+        PrepareVerticalScrollingTileUploads(-2);
+        ApplyVerticalScrollingTileUploads();
     }
     if (gSubGameMode == 2)
         UpdateWarioTileInteractions();

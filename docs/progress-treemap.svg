@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  94.8%   3,831 / 4,043</text>
-<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  86.8%   526,295 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  ████████████████████████████░░  95.0%   3,839 / 4,043</text>
+<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  87.3%   529,263 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,021 / 4,043 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -3647,20 +3647,20 @@
 <rect x="1127.36" y="432.25" width="5.43" height="3.75" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>petbottom/PetbottomTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_scrolling: 0.0% matched, 2,968 bytes</title>
+<title>scrolling: 100.0% matched, 2,968 bytes</title>
 <rect x="1134.14" y="371.35" width="68.88" height="65.40" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip67"><rect x="1136.14" y="372.35" width="65.48" height="11.88"/></clipPath>
 <rect x="1135.14" y="372.35" width="67.48" height="11.88" fill="#05080d"/>
-<text x="1136.64" y="381.23" clip-path="url(#moduleLabelClip67)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_scr…</text>
-<text x="1200.62" y="381.23" text-anchor="end" clip-path="url(#moduleLabelClip67)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="1135.14" y="384.23" width="33.57" height="25.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806CF28: 752 bytes, not matched, size=symbol</title></rect>
-<rect x="1135.14" y="410.50" width="33.57" height="25.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806CA00: 740 bytes, not matched, size=symbol</title></rect>
-<rect x="1169.06" y="384.23" width="33.21" height="20.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806CCE4: 580 bytes, not matched, size=symbol</title></rect>
-<rect x="1169.06" y="404.71" width="23.47" height="19.35" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806D218: 396 bytes, not matched, size=symbol</title></rect>
-<rect x="1169.06" y="424.41" width="23.47" height="11.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806C8E4: 240 bytes, not matched, size=symbol</title></rect>
-<rect x="1192.88" y="404.71" width="9.39" height="22.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806C828: 188 bytes, not matched, size=symbol</title></rect>
-<rect x="1192.88" y="427.59" width="5.60" height="8.41" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806C9D4: 44 bytes, not matched, size=symbol</title></rect>
-<rect x="1198.83" y="427.59" width="3.44" height="8.41" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_scrolling/func_806D3A4: 28 bytes, not matched, size=symbol</title></rect>
+<text x="1136.64" y="381.23" clip-path="url(#moduleLabelClip67)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">scrolling</text>
+<text x="1200.62" y="381.23" text-anchor="end" clip-path="url(#moduleLabelClip67)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="1135.14" y="384.23" width="33.57" height="25.92" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/PrepareHorizontalScrollingTileUploads: 752 bytes, matched, size=symbol</title></rect>
+<rect x="1135.14" y="410.50" width="33.57" height="25.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/PrepareVerticalScrollingTileUploads: 740 bytes, matched, size=symbol</title></rect>
+<rect x="1169.06" y="384.23" width="33.21" height="20.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/ApplyVerticalScrollingTileUploads: 580 bytes, matched, size=symbol</title></rect>
+<rect x="1169.06" y="404.71" width="23.47" height="19.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/ApplyHorizontalScrollingTileUploads: 396 bytes, matched, size=symbol</title></rect>
+<rect x="1169.06" y="424.41" width="23.47" height="11.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/UpdateLayer3ScrollPosition: 240 bytes, matched, size=symbol</title></rect>
+<rect x="1192.88" y="404.71" width="9.39" height="22.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/UpdateBackgroundScrollRegisters: 188 bytes, matched, size=symbol</title></rect>
+<rect x="1192.88" y="427.59" width="5.60" height="8.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/UpdateLayer3ScrollEffect: 44 bytes, matched, size=symbol</title></rect>
+<rect x="1198.83" y="427.59" width="3.44" height="8.41" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>scrolling/WaitForDma3Transfer: 28 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>toy_block_triangle: 100.0% matched, 2,964 bytes</title>

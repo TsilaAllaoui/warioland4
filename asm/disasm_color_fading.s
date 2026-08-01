@@ -5,7 +5,7 @@ thumb_func_start SetCurrentStageKeyzerRecoveredFlag
 SetCurrentStageKeyzerRecoveredFlag:
 	push	{lr}
 	bl	func_8070208
-	bl	func_806D3A4
+	bl	WaitForDma3Transfer
 	bl	func_8070248
 	pop	{r0}
 	bx	r0
@@ -24,7 +24,7 @@ func_8070208:
 	ldr	r5, .L_7023c
 	str	r5, [r4, #8]
 	ldr	r0, [r4, #8]
-	bl	func_806D3A4
+	bl	WaitForDma3Transfer
 	ldr	r0, .L_70240
 	str	r0, [r4, #0]
 	ldr	r0, .L_70244
@@ -59,7 +59,7 @@ func_8070248:
 	ldr	r5, .L_7027c
 	str	r5, [r4, #8]
 	ldr	r0, [r4, #8]
-	bl	func_806D3A4
+	bl	WaitForDma3Transfer
 	ldr	r0, .L_70280
 	str	r0, [r4, #0]
 	ldr	r0, .L_70284
@@ -93,7 +93,7 @@ func_8070288:
 	ldr	r5, .L_702bc
 	str	r5, [r4, #8]
 	ldr	r0, [r4, #8]
-	bl	func_806D3A4
+	bl	WaitForDma3Transfer
 	ldr	r0, .L_702c0
 	str	r0, [r4, #0]
 	ldr	r0, .L_702c4
@@ -128,7 +128,7 @@ func_80702C8:
 	ldr	r5, .L_702fc
 	str	r5, [r4, #8]
 	ldr	r0, [r4, #8]
-	bl	func_806D3A4
+	bl	WaitForDma3Transfer
 	ldr	r0, .L_70300
 	str	r0, [r4, #0]
 	ldr	r0, .L_70304
@@ -163,7 +163,7 @@ func_8070308:
 	ldr	r5, .L_7033c
 	str	r5, [r4, #8]
 	ldr	r0, [r4, #8]
-	bl	func_806D3A4
+	bl	WaitForDma3Transfer
 	ldr	r0, .L_70340
 	str	r0, [r4, #0]
 	ldr	r0, .L_70344
