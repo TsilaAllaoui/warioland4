@@ -47,7 +47,7 @@ ItemShopSubroutine:
 	bl	func_80710D8
 	b	.L_8fc98
 .L_8fbec:
-	bl	func_8089DCC
+	bl	ExpandMinigameWindow
 	b	.L_8fc98
 .L_8fbf2:
 	ldr	r1, .L_8fc10
@@ -139,7 +139,7 @@ ItemShopSubroutine:
 .L_8fc90:
 	.4byte	gUnk_3000000
 .L_8fc94:
-	bl	func_8089E14
+	bl	ContractMinigameWindow
 .L_8fc98:
 	cmp	r0, #0
 	beq	.L_8fccc
