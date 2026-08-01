@@ -7,6 +7,7 @@
 #include "minigame.h"
 #include "oam.h"
 #include "score.h"
+#include "stage_select.h"
 #include "gba/m4a.h"
 
 extern s16 gSoundRoomTileWaveOffset;
@@ -67,7 +68,6 @@ extern const u16 sUnk_8642820[];
 extern const u16 sUnk_8642898[];
 
 void Shop_DrawText(const u8 *text, u32 destination, s32 length);
-void InitMinigameScoreDisplay(void);
 
 s32 UpdateSoundRoomTransition(void)
 {

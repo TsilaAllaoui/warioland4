@@ -65,9 +65,6 @@ extern const u8 sMinigameBg1Tilemap[];
 extern const u8 sMinigameBg0Tilemap[];
 
 void func_80703DC(void);
-s32 func_807A380(void);
-s32 func_807A3D4(void);
-void func_807ACCC(void);
 void Shop_DrawText(const u16 *text, u32 destination, u32 length);
 
 u32 MinigameSubroutine(void)
@@ -87,7 +84,7 @@ u32 MinigameSubroutine(void)
         break;
     case 1:
         func_80703DC();
-        if (func_807A380() != 0) {
+        if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
             modePointer = &gSubGameMode;
@@ -108,8 +105,8 @@ u32 MinigameSubroutine(void)
         break;
     case 3:
         func_80703DC();
-        if (func_807A3D4() != 0) {
-            func_807ACCC();
+        if (UpdateStageSelectFadeOut() != 0) {
+            EnableAllLayersInWindows();
             gUnk_3000000 = 0;
             switch (gSelectedMinigame) {
             case 3:
@@ -144,7 +141,7 @@ u32 MinigameSubroutine(void)
         break;
     case 6:
         func_80703DC();
-        if (func_807A380() != 0) {
+        if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
             modePointer = &gSubGameMode;
@@ -176,7 +173,7 @@ u32 MinigameSubroutine(void)
         break;
     case 10:
         func_80703DC();
-        if (func_807A380() != 0) {
+        if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
             modePointer = &gSubGameMode;
@@ -204,7 +201,7 @@ u32 MinigameSubroutine(void)
         break;
     case 14:
         func_80703DC();
-        if (func_807A380() != 0) {
+        if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
             modePointer = &gSubGameMode;
@@ -228,7 +225,7 @@ u32 MinigameSubroutine(void)
 
 outro:
     func_80703DC();
-    if (func_807A3D4() != 0)
+    if (UpdateStageSelectFadeOut() != 0)
         gSubGameMode = 4;
 end:
     DrawActiveMinigame();
@@ -716,7 +713,7 @@ durationDone:;
         asm volatile("" : "=r"(keepR1), "=r"(keepR2));
         totalScore = gTotalScore;
         asm volatile("" : : "r"(keepR1), "r"(keepR2));
-        func_807A824(totalScore, totalScoreTiles, 0x59A0);
+        UploadTallFiveDigitNumberTiles(totalScore, totalScoreTiles, 0x59A0);
     }
     DrawMinigameNumber(gMedalCount, (const u16 *)totalScoreTiles, 0x50E0);
 
@@ -1180,7 +1177,7 @@ s32 UpdateMinigameStartSequence(void)
             scoreValue = *score;
             tiles = sMinigameTotalScoreDigitTiles;
             destination = 0x59A0;
-            func_807A824(scoreValue, tiles, destination);
+            UploadTallFiveDigitNumberTiles(scoreValue, tiles, destination);
         }
         if (*timer == gMinigameCostUnits) {
             *timer = 0;

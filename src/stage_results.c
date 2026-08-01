@@ -273,8 +273,8 @@ u32 StageResultsTimerExpired(s32 duration)
 
 void DrawStageResultsScores(void)
 {
-    func_807AA4C(gStageScore, sStageResultsDigitGfx, 0x8740);
-    func_807A824(gTotalScoreTemp, sStageResultsDigitGfx - 0x2C0, 0x8980);
+    UploadFiveDigitNumberTiles(gStageScore, sStageResultsDigitGfx, 0x8740);
+    UploadTallFiveDigitNumberTiles(gTotalScoreTemp, sStageResultsDigitGfx - 0x2C0, 0x8980);
 }
 
 u32 TransferStageScoreToTotal(void)
