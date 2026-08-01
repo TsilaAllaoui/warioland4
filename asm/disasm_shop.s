@@ -159,7 +159,7 @@ ItemShopSubroutine:
 	bl	func_80710D8
 	cmp	r0, #0
 	beq	.L_8fccc
-	bl	func_807ACCC
+	bl	EnableAllLayersInWindows
 	mov	r4, #1
 	ldr	r1, .L_8fcdc
 	mov	r0, #0

@@ -718,7 +718,7 @@ SECTIONS {
         obj/hud.o(.text);
         obj/score.o(.text);
         obj/secondary_sprite_ai.o(.text);
-        obj/disasm_stage_select.o(.text);
+        obj/stage_select.o(.text);
         obj/map_screen.o(.text);
         obj/stage_entry.o(.text);
         obj/vortex_cutscene.o(.text);

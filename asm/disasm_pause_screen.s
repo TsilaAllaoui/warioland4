@@ -989,7 +989,7 @@ func_8088900:
 	mov	r2, #170	@ 0xaa
 	lsl	r2, r2, #6
 	ldr	r1, .L_88e7c
-	bl	func_807AA4C
+	bl	UploadFiveDigitNumberTiles
 	ldr	r2, .L_88e80
 	ldr	r0, [r2, #8]
 	mov	r1, #128	@ 0x80
@@ -1007,7 +1007,7 @@ func_8088900:
 	ldr	r1, .L_88e88
 	mov	r2, #166	@ 0xa6
 	lsl	r2, r2, #6
-	bl	func_807A824
+	bl	UploadTallFiveDigitNumberTiles
 	ldr	r0, .L_88e8c
 	mov	r1, #160	@ 0xa0
 	strh	r1, [r0, #0]

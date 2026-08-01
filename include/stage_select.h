@@ -4,20 +4,20 @@
 #include "types.h"
 
 u32 StageSelectSubroutine(void);
-// func_807A380()
-// func_807A3D4()
+s32 UpdateStageSelectFadeIn(void);
+s32 UpdateStageSelectFadeOut(void);
 void InitMinigameScoreDisplay(void);
-// func_807A458()
-// func_807A46C()
-// func_807A490()
-// func_807A4B4()
-// func_807A528()
-// func_807A668()
-// func_807A700()
-void func_807A824(s32 value, const void *tiles, u32 destination);
-void func_807AA4C(s32 value, const void *tiles, u32 destination);
-void DrawMinigameNumber(u32 value, const u16 *tiles, u32 destination);
-// func_807ACCC()
-// func_807ACDC()
+void InitializeStageSelectPaletteFade(void);
+void InitializeStageSelectBrightnessFade(void);
+void InitializeStageSelectFullBrightnessFade(void);
+void SetStageSelectVBlankCallback(void);
+void StageSelectVBlank(void);
+void StageSelectFadeVBlank(void);
+s32 LoadSelectedStageData(void);
+void UploadTallFiveDigitNumberTiles(s32 value, const void *tiles, u32 destination);
+void UploadFiveDigitNumberTiles(s32 value, const void *tiles, u32 destination);
+void DrawMinigameNumber(s32 value, const u16 *tiles, u32 destination);
+void EnableAllLayersInWindows(void);
+void DrawStageSelectSprites(void);
 
 #endif  // STAGE_SELECT_H

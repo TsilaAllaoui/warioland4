@@ -598,7 +598,7 @@ func_80846F4:
 	mov	r2, #166	@ 0xa6
 	lsl	r2, r2, #6
 	ldr	r1, .L_84ae8
-	bl	func_807A824
+	bl	UploadTallFiveDigitNumberTiles
 	ldr	r0, .L_84aec
 	ldrh	r0, [r0, #0]
 	ldr	r2, .L_84af0
@@ -1642,7 +1642,7 @@ func_8085178:
 	mov	r4, r8
 	ldr	r2, .L_85254
 	add	r1, r4, #0
-	bl	func_807AA4C
+	bl	UploadFiveDigitNumberTiles
 	ldrb	r0, [r7, #0]
 	lsl	r0, r0, #2
 	ldrb	r1, [r5, #0]

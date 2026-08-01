@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  96.6%   3,907 / 4,044</text>
-<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  89.6%   543,335 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████████░  97.0%   3,923 / 4,044</text>
+<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  90.5%   548,539 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,022 / 4,044 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2190,28 +2190,28 @@
 <rect x="703.14" y="401.35" width="4.85" height="3.36" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>wario_hop/WarioHopUpdateWaitingForStart: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_stage_select: 0.0% matched, 5,204 bytes</title>
+<title>stage_select: 100.0% matched, 5,204 bytes</title>
 <rect x="623.97" y="406.06" width="84.77" height="93.58" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip30"><rect x="625.97" y="407.06" width="81.37" height="16.95"/></clipPath>
 <rect x="624.97" y="407.06" width="83.37" height="16.95" fill="#05080d"/>
-<text x="626.47" y="417.06" clip-path="url(#moduleLabelClip30)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_stage_…</text>
-<text x="706.34" y="416.06" text-anchor="end" clip-path="url(#moduleLabelClip30)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="624.97" y="424.01" width="40.02" height="74.88" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/StageSelectSubroutine: 2,520 bytes, not matched, size=symbol</title></rect>
-<rect x="665.34" y="424.01" width="26.87" height="24.09" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A824: 552 bytes, not matched, size=symbol</title></rect>
-<rect x="692.56" y="424.01" width="15.43" height="24.09" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/DrawMinigameNumber: 320 bytes, not matched, size=symbol</title></rect>
-<rect x="665.34" y="448.45" width="21.15" height="17.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A528: 320 bytes, not matched, size=symbol</title></rect>
-<rect x="686.84" y="448.45" width="21.15" height="17.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807AA4C: 320 bytes, not matched, size=symbol</title></rect>
-<rect x="665.34" y="466.39" width="20.93" height="16.19" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A700: 292 bytes, not matched, size=symbol</title></rect>
-<rect x="665.34" y="482.93" width="20.93" height="15.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807ACDC: 288 bytes, not matched, size=symbol</title></rect>
-<rect x="686.62" y="466.39" width="11.97" height="14.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A668: 152 bytes, not matched, size=symbol</title></rect>
-<rect x="698.94" y="466.39" width="9.05" height="14.52" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A4B4: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="686.62" y="481.26" width="10.91" height="8.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A380: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="686.62" y="490.25" width="10.91" height="8.64" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A3D4: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="697.89" y="481.26" width="10.11" height="5.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/InitMinigameScoreDisplay: 48 bytes, not matched, size=symbol</title></rect>
-<rect x="697.89" y="486.79" width="4.88" height="7.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A46C: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="703.11" y="486.79" width="4.88" height="7.95" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A490: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="697.89" y="495.09" width="5.46" height="3.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807A458: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="703.69" y="495.09" width="4.30" height="3.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_stage_select/func_807ACCC: 16 bytes, not matched, size=symbol</title></rect>
+<text x="626.47" y="417.06" clip-path="url(#moduleLabelClip30)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">stage_select</text>
+<text x="706.34" y="416.06" text-anchor="end" clip-path="url(#moduleLabelClip30)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="624.97" y="424.01" width="40.02" height="74.88" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/StageSelectSubroutine: 2,520 bytes, matched, size=symbol</title></rect>
+<rect x="665.34" y="424.01" width="26.87" height="24.09" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/UploadTallFiveDigitNumberTiles: 552 bytes, matched, size=symbol</title></rect>
+<rect x="692.56" y="424.01" width="15.43" height="24.09" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/DrawMinigameNumber: 320 bytes, matched, size=symbol</title></rect>
+<rect x="665.34" y="448.45" width="21.15" height="17.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/StageSelectVBlank: 320 bytes, matched, size=symbol</title></rect>
+<rect x="686.84" y="448.45" width="21.15" height="17.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/UploadFiveDigitNumberTiles: 320 bytes, matched, size=symbol</title></rect>
+<rect x="665.34" y="466.39" width="20.93" height="16.19" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/LoadSelectedStageData: 292 bytes, matched, size=symbol</title></rect>
+<rect x="665.34" y="482.93" width="20.93" height="15.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/DrawStageSelectSprites: 288 bytes, matched, size=symbol</title></rect>
+<rect x="686.62" y="466.39" width="11.97" height="14.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/StageSelectFadeVBlank: 152 bytes, matched, size=symbol</title></rect>
+<rect x="698.94" y="466.39" width="9.05" height="14.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/SetStageSelectVBlankCallback: 116 bytes, matched, size=symbol</title></rect>
+<rect x="686.62" y="481.26" width="10.91" height="8.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/UpdateStageSelectFadeIn: 84 bytes, matched, size=symbol</title></rect>
+<rect x="686.62" y="490.25" width="10.91" height="8.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/UpdateStageSelectFadeOut: 84 bytes, matched, size=symbol</title></rect>
+<rect x="697.89" y="481.26" width="10.11" height="5.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/InitMinigameScoreDisplay: 48 bytes, matched, size=symbol</title></rect>
+<rect x="697.89" y="486.79" width="4.88" height="7.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/InitializeStageSelectBrightnessFade: 36 bytes, matched, size=symbol</title></rect>
+<rect x="703.11" y="486.79" width="4.88" height="7.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/InitializeStageSelectFullBrightnessFade: 36 bytes, matched, size=symbol</title></rect>
+<rect x="697.89" y="495.09" width="5.46" height="3.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/InitializeStageSelectPaletteFade: 20 bytes, matched, size=symbol</title></rect>
+<rect x="703.69" y="495.09" width="4.30" height="3.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/EnableAllLayersInWindows: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>disasm_color_fading: 0.0% matched, 5,028 bytes</title>
