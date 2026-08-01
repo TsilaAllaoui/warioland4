@@ -13,10 +13,10 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  95.6%   3,866 / 4,043</text>
-<text x="24" y="88" class="mono">Code size  ██████████████████████████░░░░  88.3%   535,603 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████████░  96.6%   3,907 / 4,044</text>
+<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  89.6%   543,335 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
-<text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,021 / 4,043 exact)</text>
+<text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,022 / 4,044 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
 <g>
 <title>cutscenes: 79.0% matched, 49,304 bytes</title>
@@ -1548,52 +1548,53 @@
 <rect x="516.17" y="755.25" width="6.40" height="4.84" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>catbat/UpdateCatbatProjectile: 28 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_file_select: 0.0% matched, 7,732 bytes</title>
+<title>file_select: 100.0% matched, 7,732 bytes</title>
 <rect x="393.45" y="761.44" width="129.86" height="90.96" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip13"><rect x="395.45" y="762.44" width="126.46" height="16.48"/></clipPath>
 <rect x="394.45" y="762.44" width="128.46" height="16.48" fill="#05080d"/>
-<text x="395.95" y="775.44" clip-path="url(#moduleLabelClip13)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_file_select</text>
-<text x="520.92" y="774.44" text-anchor="end" clip-path="url(#moduleLabelClip13)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="394.45" y="778.92" width="27.36" height="42.59" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090A40: 980 bytes, not matched, size=symbol</title></rect>
-<rect x="394.45" y="821.86" width="27.36" height="29.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091ACC: 688 bytes, not matched, size=symbol</title></rect>
-<rect x="422.17" y="778.92" width="28.83" height="28.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092534: 688 bytes, not matched, size=symbol</title></rect>
-<rect x="422.17" y="807.55" width="28.83" height="22.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/FileSelectSubroutine: 556 bytes, not matched, size=symbol</title></rect>
-<rect x="422.17" y="830.69" width="28.83" height="20.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80915A8: 512 bytes, not matched, size=symbol</title></rect>
-<rect x="451.34" y="778.92" width="20.24" height="19.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090F94: 344 bytes, not matched, size=symbol</title></rect>
-<rect x="471.93" y="778.92" width="18.32" height="19.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_809137C: 312 bytes, not matched, size=symbol</title></rect>
-<rect x="490.60" y="778.92" width="17.36" height="19.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80911E0: 296 bytes, not matched, size=symbol</title></rect>
-<rect x="508.32" y="778.92" width="14.25" height="19.94" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80910EC: 244 bytes, not matched, size=symbol</title></rect>
-<rect x="451.34" y="799.21" width="14.09" height="19.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091E9C: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="451.34" y="819.05" width="14.09" height="16.46" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092248: 200 bytes, not matched, size=symbol</title></rect>
-<rect x="451.34" y="835.86" width="14.09" height="15.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092188: 192 bytes, not matched, size=symbol</title></rect>
-<rect x="465.79" y="799.21" width="14.74" height="13.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090E14: 176 bytes, not matched, size=symbol</title></rect>
-<rect x="465.79" y="813.37" width="14.74" height="13.49" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091D7C: 172 bytes, not matched, size=symbol</title></rect>
-<rect x="465.79" y="827.21" width="14.74" height="13.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80923B8: 168 bytes, not matched, size=symbol</title></rect>
-<rect x="465.79" y="840.73" width="14.74" height="10.92" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_809151C: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="480.87" y="799.21" width="14.22" height="11.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80919D4: 140 bytes, not matched, size=symbol</title></rect>
-<rect x="495.44" y="799.21" width="13.39" height="11.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091F88: 132 bytes, not matched, size=symbol</title></rect>
-<rect x="509.18" y="799.21" width="13.39" height="11.32" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_809200C: 132 bytes, not matched, size=symbol</title></rect>
-<rect x="480.87" y="810.87" width="10.28" height="14.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80924B0: 132 bytes, not matched, size=symbol</title></rect>
-<rect x="480.87" y="825.95" width="10.28" height="12.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091308: 116 bytes, not matched, size=symbol</title></rect>
-<rect x="480.87" y="839.21" width="10.28" height="12.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80909C0: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="491.50" y="810.87" width="10.38" height="12.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090EE4: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="502.23" y="810.87" width="10.38" height="12.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80920F8: 112 bytes, not matched, size=symbol</title></rect>
-<rect x="512.96" y="810.87" width="9.61" height="12.33" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80914B4: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="491.50" y="823.55" width="11.43" height="10.37" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092090: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="491.50" y="834.27" width="11.43" height="9.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092310: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="491.50" y="843.75" width="11.43" height="7.90" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092460: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="503.28" y="823.55" width="10.01" height="8.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_809236C: 76 bytes, not matched, size=symbol</title></rect>
-<rect x="513.65" y="823.55" width="8.92" height="8.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091A88: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="503.28" y="832.46" width="7.11" height="10.07" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090F54: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="503.28" y="842.88" width="7.11" height="8.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091E64: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="510.74" y="832.46" width="5.74" height="7.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091A60: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="516.83" y="832.46" width="5.74" height="7.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091E28: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="510.74" y="840.43" width="5.11" height="6.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090EC4: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="510.74" y="847.55" width="5.11" height="4.10" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8091E50: 20 bytes, not matched, size=symbol</title></rect>
-<rect x="516.20" y="840.43" width="3.01" height="5.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_80909B0: 16 bytes, not matched, size=symbol</title></rect>
-<rect x="519.56" y="840.43" width="3.01" height="5.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8090A30: 16 bytes, not matched, size=symbol</title></rect>
-<rect x="516.20" y="846.22" width="3.01" height="5.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092168: 16 bytes, not matched, size=symbol</title></rect>
-<rect x="519.56" y="846.22" width="3.01" height="5.43" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_file_select/func_8092178: 16 bytes, not matched, size=symbol</title></rect>
+<text x="395.95" y="775.44" clip-path="url(#moduleLabelClip13)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">file_select</text>
+<text x="520.92" y="774.44" text-anchor="end" clip-path="url(#moduleLabelClip13)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="394.45" y="778.92" width="27.36" height="42.59" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/InitializeFileSelect: 980 bytes, matched, size=symbol</title></rect>
+<rect x="394.45" y="821.86" width="27.36" height="29.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/ExecuteFileSelectAction: 688 bytes, matched, size=symbol</title></rect>
+<rect x="422.17" y="778.92" width="28.83" height="28.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateAndDrawFileSelectSprites: 688 bytes, matched, size=symbol</title></rect>
+<rect x="422.17" y="807.55" width="28.83" height="22.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/FileSelectSubroutine: 556 bytes, matched, size=symbol</title></rect>
+<rect x="422.17" y="830.69" width="28.83" height="20.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectSaveRecovery: 512 bytes, matched, size=symbol</title></rect>
+<rect x="451.34" y="778.92" width="21.56" height="18.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectScoreTiles: 344 bytes, matched, size=symbol</title></rect>
+<rect x="473.25" y="778.92" width="18.50" height="18.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectCollectionTiles: 296 bytes, matched, size=symbol</title></rect>
+<rect x="492.10" y="778.92" width="15.19" height="18.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectTreasureCountTiles: 244 bytes, matched, size=symbol</title></rect>
+<rect x="507.63" y="778.92" width="14.93" height="18.72" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectSaveNameTiles: 240 bytes, matched, size=symbol</title></rect>
+<rect x="451.34" y="797.99" width="13.77" height="19.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/HandleFileSlotNavigationInput: 236 bytes, matched, size=symbol</title></rect>
+<rect x="451.34" y="818.28" width="13.77" height="16.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectPromptAnimation: 200 bytes, matched, size=symbol</title></rect>
+<rect x="451.34" y="835.49" width="13.77" height="16.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectMainAnimationPosition: 192 bytes, matched, size=symbol</title></rect>
+<rect x="465.46" y="797.99" width="14.40" height="14.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/InitializeFileSelectAnimations: 176 bytes, matched, size=symbol</title></rect>
+<rect x="465.46" y="812.48" width="14.40" height="13.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/SetFileSelectActionAndSound: 172 bytes, matched, size=symbol</title></rect>
+<rect x="465.46" y="826.64" width="14.40" height="13.48" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectSlotAnimationTypes: 168 bytes, matched, size=symbol</title></rect>
+<rect x="465.46" y="840.47" width="14.40" height="11.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/LoadSelectedFileState: 140 bytes, matched, size=symbol</title></rect>
+<rect x="480.21" y="797.99" width="14.45" height="11.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/SetFileSelectInteractionMode: 140 bytes, matched, size=symbol</title></rect>
+<rect x="495.01" y="797.99" width="13.61" height="11.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/HandleFileDifficultyInput: 132 bytes, matched, size=symbol</title></rect>
+<rect x="508.96" y="797.99" width="13.61" height="11.14" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/HandleFileOperationInput: 132 bytes, matched, size=symbol</title></rect>
+<rect x="480.21" y="809.47" width="13.13" height="11.54" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/RefreshFileSelectSlotAnimationTypes: 132 bytes, matched, size=symbol</title></rect>
+<rect x="480.21" y="821.36" width="13.13" height="10.10" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/RefreshFileSelectSaveSummary: 116 bytes, matched, size=symbol</title></rect>
+<rect x="480.21" y="831.82" width="13.13" height="9.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectDifficultyTiles: 112 bytes, matched, size=symbol</title></rect>
+<rect x="480.21" y="841.91" width="13.13" height="9.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/FileSelectVBlankCallback: 112 bytes, matched, size=symbol</title></rect>
+<rect x="493.68" y="809.47" width="9.88" height="12.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectWindow: 112 bytes, matched, size=symbol</title></rect>
+<rect x="503.91" y="809.47" width="9.15" height="12.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/FinalizeFileSelect: 104 bytes, matched, size=symbol</title></rect>
+<rect x="513.42" y="809.47" width="9.15" height="12.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/HandleFileConfirmationInput: 104 bytes, matched, size=symbol</title></rect>
+<rect x="493.68" y="822.76" width="10.50" height="9.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectSlotMarkerAnimation: 92 bytes, matched, size=symbol</title></rect>
+<rect x="504.53" y="822.76" width="9.08" height="9.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/ResetFileSelectSelectedSlotAnimation: 80 bytes, matched, size=symbol</title></rect>
+<rect x="513.96" y="822.76" width="8.61" height="9.95" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectOperationLabelAnimation: 76 bytes, matched, size=symbol</title></rect>
+<rect x="493.68" y="833.06" width="8.63" height="9.39" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectLabelTiles: 72 bytes, matched, size=symbol</title></rect>
+<rect x="493.68" y="842.80" width="8.63" height="8.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectInteraction: 68 bytes, matched, size=symbol</title></rect>
+<rect x="502.66" y="833.06" width="7.34" height="9.75" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectSaveStatistics: 64 bytes, matched, size=symbol</title></rect>
+<rect x="502.66" y="843.16" width="7.34" height="8.49" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/HandleFileSelectInput: 56 bytes, matched, size=symbol</title></rect>
+<rect x="510.35" y="833.06" width="5.93" height="7.38" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/GetFileSelectActionResult: 40 bytes, matched, size=symbol</title></rect>
+<rect x="516.63" y="833.06" width="5.93" height="7.38" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/ResetFileSelectMainAnimation: 40 bytes, matched, size=symbol</title></rect>
+<rect x="510.35" y="840.79" width="5.28" height="6.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/DrawFileSelectSlotText: 32 bytes, matched, size=symbol</title></rect>
+<rect x="510.35" y="847.69" width="5.28" height="3.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/StartFileSelectClosingAnimation: 20 bytes, matched, size=symbol</title></rect>
+<rect x="515.98" y="840.79" width="3.12" height="5.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/FileSelectSoundMainCallback: 16 bytes, matched, size=symbol</title></rect>
+<rect x="519.45" y="840.79" width="3.12" height="5.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/SetFileSelectVBlankCallback: 16 bytes, matched, size=symbol</title></rect>
+<rect x="515.98" y="846.40" width="3.12" height="5.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectFadeIn: 16 bytes, matched, size=symbol</title></rect>
+<rect x="519.45" y="846.40" width="3.12" height="5.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectFadeOut: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>credits: 54.4% matched, 7,716 bytes</title>
