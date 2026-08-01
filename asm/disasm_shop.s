@@ -1412,7 +1412,7 @@ Shop_DrawText:
 .L_905f0:
 	.4byte	0x80000010
 .L_905f4:
-	.4byte	sUnk_8739458
+	.4byte	sFileSelectBackgroundTiles
 .L_905f8:
 	ldrh	r0, [r5, #0]
 	add	r0, ip
@@ -1507,7 +1507,7 @@ Shop_DrawText:
 .L_906a0:
 	.4byte	0x040000d4
 .L_906a4:
-	.4byte	sUnk_8739458
+	.4byte	sFileSelectBackgroundTiles
 .L_906a8:
 	.4byte	0x05ffffc0
 .L_906ac:

@@ -3238,7 +3238,7 @@ func_8085D68:
 	bl	Shop_DrawText
 	b	.L_85e02
 .L_85dd4:
-	.4byte	sUnk_863A3AC
+	.4byte	sFileSelectPassageNameTableLanguage0
 .L_85dd8:
 	.4byte	gCurrentStageNumber
 .L_85ddc:
@@ -3269,7 +3269,7 @@ func_8085D68:
 	bx	r0
 	.align	2, 0
 .L_85e10:
-	.4byte	sUnk_863A31C
+	.4byte	sFileSelectPassageNameTableLanguage1
 .L_85e14:
 	.4byte	gCurrentStageNumber
 .L_85e18:

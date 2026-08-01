@@ -560,7 +560,7 @@ SECTIONS {
         . = 0x4a58; gUnk_3004A58 = .;
         . = 0x4a62; gUnk_3004A62 = .;
         . = 0x4a64; gUnk_3004A64 = .;
-        . = 0x4a68; gUnk_3004A68 = .;
+        . = 0x4a68; gFileSelectState = .;
         . = 0x4a70; gUnk_3004A70 = .;
         . = 0x4ab8; gUnk_3004AB8 = .;
         . = 0x4ab9; gUnk_3004AB9 = .;
@@ -756,7 +756,7 @@ SECTIONS {
         obj/minigames/wario_hop.o(.text);
         obj/minigames/homerun_derby.o(.text);
         obj/disasm_shop.o(.text);
-        obj/disasm_file_select.o(.text);
+        obj/file_select.o(.text);
         obj/save_data_clear.o(.text);
         obj/credits.o(.text);
         */libgcc.a:*(.text);

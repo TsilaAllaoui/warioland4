@@ -98,8 +98,8 @@ extern const u16 sUnk_864BDB8[];
 extern const u16 sUnk_864BDD8[];
 
 extern u8 gLanguage;
-extern const u16 * const sUnk_8639588[];
-extern const u16 * const sUnk_863956C[];
+extern const u16 * const sFileSelectStageNameTableLanguage0[];
+extern const u16 * const sFileSelectStageNameTableLanguage1[];
 s32 UpdateStageEntryHorizontalShake(void);
 void Shop_DrawText(const u16 *text, u32 dst, u32 unused);
 
@@ -773,12 +773,12 @@ void UpdateMapScreenBackgroundsAndText(void)
     switch (language)
     {
     case 0:
-        text = sUnk_8639588[gCurrentPassage];
+        text = sFileSelectStageNameTableLanguage0[gCurrentPassage];
         Shop_DrawText(text, 0x7800, 26);
         break;
 
     case 1:
-        text = sUnk_863956C[gCurrentPassage];
+        text = sFileSelectStageNameTableLanguage1[gCurrentPassage];
         Shop_DrawText(text, 0x7800, 26);
         break;
     }
