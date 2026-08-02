@@ -2,15 +2,32 @@
 #define SHOP_H
 
 #include "types.h"
+#include "oam.h"
+
+struct ItemShopCursorState {
+    u16 animationTimer;
+    u16 animationFrame;
+    s16 x;
+    s16 y;
+    u8 item;
+    u8 padding[3];
+};
+
+struct ItemShopAnimationState {
+    u16 animationTimer;
+    u16 animationFrame;
+    s16 x;
+    s16 y;
+};
 
 u32 ItemShopSubroutine(void);
-// func_808FCE0()
-// func_8090104()
-// func_8090114()
-// func_80901C4()
-// func_8090374()
-// func_809047C()
-// Shop_DrawText()
-// func_80906B4()
+void InitializeItemShop(void);
+void SetItemShopVBlankCallback(void);
+void ItemShopVBlank(void);
+u32 HandleItemShopInput(void);
+void MoveItemShopCursor(u32 direction);
+u32 UpdateItemShopMedalDeduction(void);
+void Shop_DrawText(const u8 *text, u32 destination, u32 length);
+void DrawItemShopSprites(void);
 
 #endif  // SHOP_H
