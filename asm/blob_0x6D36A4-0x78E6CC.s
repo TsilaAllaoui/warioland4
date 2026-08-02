@@ -873,8 +873,8 @@ sUnk_8738A18:
 
 baserom_blob 0x738A18, 0x739458
 
-.global sUnk_8739458
-sUnk_8739458:
+.global sFileSelectBackgroundTiles
+sFileSelectBackgroundTiles:
 
 baserom_blob 0x739458, 0x73D438
 
