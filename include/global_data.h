@@ -346,11 +346,14 @@ extern struct BackgroundTileTables gBackgroundTileTables;
 extern u8 gRoomTransitionTileDataCount;
 // extern u8 gUnk_300342C; 
 
+/* 0x03000524 */
+extern u8 gRoomSpriteIds[];
+
 /* 0x03000544 */
-extern u8 gUnk_3000544[];
+extern u8 gRoomSpriteGraphicsSlots[];
 
 /* 0x03000964 */
-extern u8 gUnk_3000964[][3];
+extern u8 gRoomSpriteData[][3];
 
 /* 0x03000B80 */
 extern struct SecondarySprite gSecondarySpriteData[8];

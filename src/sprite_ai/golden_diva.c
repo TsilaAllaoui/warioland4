@@ -717,15 +717,15 @@ void InitGoldenDivaSpawner(void)
     yOffset = sprite->yPosition;
     yValue += yOffset;
     sprite->yPosition = yValue;
-    func_801E430(PSPRITE_EE, sprite->roomSlot, 0, sprite->yPosition + 192, sprite->xPosition);
-    func_801E430(PSPRITE_F1, sprite->roomSlot, 0, sprite->yPosition + 56, sprite->xPosition);
-    func_801E430(PSPRITE_EF, sprite->roomSlot, 0, sprite->yPosition + 56, sprite->xPosition);
-    func_801E430(PSPRITE_EC, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
-    func_801E430(PSPRITE_ED, sprite->roomSlot, 0, sprite->yPosition + 192, sprite->xPosition);
-    func_801E430(PSPRITE_F0, 0, 0, sprite->yPosition + 56, sprite->xPosition);
-    func_801E430(PSPRITE_F0, 1, 0, sprite->yPosition + 56, sprite->xPosition);
-    func_801E430(PSPRITE_F0, 2, 0, sprite->yPosition + 56, sprite->xPosition);
-    func_801E430(PSPRITE_F0, 3, 0, sprite->yPosition + 56, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_EE, sprite->roomSlot, 0, sprite->yPosition + 192, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_F1, sprite->roomSlot, 0, sprite->yPosition + 56, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_EF, sprite->roomSlot, 0, sprite->yPosition + 56, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_EC, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_ED, sprite->roomSlot, 0, sprite->yPosition + 192, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_F0, 0, 0, sprite->yPosition + 56, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_F0, 1, 0, sprite->yPosition + 56, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_F0, 2, 0, sprite->yPosition + 56, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(PSPRITE_F0, 3, 0, sprite->yPosition + 56, sprite->xPosition);
     sprite->status = zero;
 }
 

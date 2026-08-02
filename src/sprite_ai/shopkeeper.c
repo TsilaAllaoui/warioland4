@@ -652,7 +652,7 @@ void SetupShopkeeperSelectedItem(void)
             s = &gCurrentSprite;
             s->pose = 17;
             ShopkeeperUpdateGraphicsScript(sShopkeeperAppleBombGraphicsScript);
-            func_801E430(188, s->roomSlot, 0, s->yPosition - 84, s->xPosition + 48);
+            SpawnHighPriorityPrimarySprite(188, s->roomSlot, 0, s->yPosition - 84, s->xPosition + 48);
             SpriteUtilFindSpriteSlotWork3(188);
             break;
         case 2:
@@ -661,7 +661,7 @@ void SetupShopkeeperSelectedItem(void)
             s->status |= 8;
             s->pose = 19;
             ShopkeeperUpdateGraphicsScript(sShopkeeperItemApproachGraphicsScript);
-            func_801E430(190, s->roomSlot, 0, s->yPosition, s->xPosition - 80);
+            SpawnHighPriorityPrimarySprite(190, s->roomSlot, 0, s->yPosition, s->xPosition - 80);
             SpriteUtilFindSpriteSlotWork3(190);
             break;
         case 3:
@@ -670,7 +670,7 @@ void SetupShopkeeperSelectedItem(void)
             s->status |= 8;
             s->pose = 110;
             ShopkeeperUpdateGraphicsScript(sShopkeeperVizormanGraphicsScript);
-            func_801E430(191, s->roomSlot, 0, s->yPosition, s->xPosition + 96);
+            SpawnHighPriorityPrimarySprite(191, s->roomSlot, 0, s->yPosition, s->xPosition + 96);
             SpriteUtilFindSpriteSlotWork3(191);
             break;
         case 4:
@@ -679,7 +679,7 @@ void SetupShopkeeperSelectedItem(void)
             s->status |= 8;
             s->pose = 114;
             ShopkeeperUpdateGraphicsScript(sShopkeeperItemApproachGraphicsScript);
-            func_801E430(192, s->roomSlot, 0, s->yPosition, s->xPosition - 100);
+            SpawnHighPriorityPrimarySprite(192, s->roomSlot, 0, s->yPosition, s->xPosition - 100);
             SpriteUtilFindSpriteSlotWork3(192);
             break;
         case 5:
@@ -1345,19 +1345,19 @@ gt6:
     }
     return;
 item5:
-    func_801E430(193, s->roomSlot, 0, s->yPosition, s->xPosition);
+    SpawnHighPriorityPrimarySprite(193, s->roomSlot, 0, s->yPosition, s->xPosition);
     m4aSongNumStart(0x1FD);
     return;
 item6:
-    func_801E430(194, s->roomSlot, 0, s->yPosition - 12, s->xPosition + 20);
+    SpawnHighPriorityPrimarySprite(194, s->roomSlot, 0, s->yPosition - 12, s->xPosition + 20);
     m4aSongNumStart(0x1FF);
     return;
 item7:
-    func_801E430(195, s->roomSlot, 0, s->yPosition - 64, s->xPosition - 64);
+    SpawnHighPriorityPrimarySprite(195, s->roomSlot, 0, s->yPosition - 64, s->xPosition - 64);
     m4aSongNumStart(0x202);
     return;
 item8:
-    func_801E430(196, s->roomSlot, 0, s->yPosition - 64, s->xPosition);
+    SpawnHighPriorityPrimarySprite(196, s->roomSlot, 0, s->yPosition - 64, s->xPosition);
     m4aSongNumStart(0x205);
 }
 
@@ -2216,7 +2216,7 @@ void UpdateShopkeeperPostItemIdle(void)
     zero = 0;
     value |= status;
     sprite->status = value;
-    func_801E430(10, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
     sprite->status = zero;
 }
 
@@ -2752,7 +2752,7 @@ void UpdateAppleBombFlight(void)
         r3 = (struct PrimarySpriteData*)(u32)s->yPosition;
         r3 = (struct PrimarySpriteData*)((u32)r3 - 32);
         r0 = s->xPosition;
-        func_801E430(12, r1, 0, (u32)r3, r0);
+        SpawnHighPriorityPrimarySprite(12, r1, 0, (u32)r3, r0);
     }
 
     r0 = gCurrentPassage;
@@ -3241,7 +3241,7 @@ void UpdateBlastCannonCountdown(void)
     if (old != 32) {
         goto done;
     }
-    func_801E430(197, s->roomSlot, 0, s->yPosition - 124, s->xPosition + 64);
+    SpawnHighPriorityPrimarySprite(197, s->roomSlot, 0, s->yPosition - 124, s->xPosition + 64);
     m4aSongNumStart(505);
     goto done;
 zero:
@@ -3337,7 +3337,7 @@ void UpdateBlastCannonballFlight(void)
         r3 = (struct PrimarySpriteData*)(u32)s->yPosition;
         r3 = (struct PrimarySpriteData*)((u32)r3 - 32);
         r0 = s->xPosition;
-        func_801E430(12, r1, 0, (u32)r3, r0);
+        SpawnHighPriorityPrimarySprite(12, r1, 0, (u32)r3, r0);
     }
 
     r0 = gCurrentPassage;
@@ -3781,8 +3781,8 @@ void SpawnVizormanBeamActors(void)
 {
     register struct PrimarySpriteData* s asm("r4");
     s = &gCurrentSprite;
-    func_801E430(198, s->roomSlot, 0, s->yPosition - 112, s->xPosition + 16);
-    func_801E430(199, s->roomSlot, 0, s->yPosition - 112, s->xPosition + 16);
+    SpawnHighPriorityPrimarySprite(198, s->roomSlot, 0, s->yPosition - 112, s->xPosition + 16);
+    SpawnHighPriorityPrimarySprite(199, s->roomSlot, 0, s->yPosition - 112, s->xPosition + 16);
     s->pose = 24;
     m4aSongNumStart(506);
 }
@@ -5163,7 +5163,7 @@ void StartLargeLipsKiss(void)
         value -= 64;
         stackSlot = value;
         asm("" ::: "r1");
-        ((void (*)(u32, u32, u32, u32))func_801E430)(201, 0, 0, z);
+        ((void (*)(u32, u32, u32, u32))SpawnHighPriorityPrimarySprite)(201, 0, 0, z);
         func_8026E78();
         m4aSongNumStart(513);
     }
@@ -5272,7 +5272,7 @@ spawn2:
     r1 = 2;
 call_spawn:
     r2 = 0;
-    ((void (*)(u32, u32, u32, u32))func_801E430)(r0, r1, r2, r3);
+    ((void (*)(u32, u32, u32, u32))SpawnHighPriorityPrimarySprite)(r0, r1, r2, r3);
     goto countdown;
 
 check75:
@@ -5287,7 +5287,7 @@ check75:
     r0 = 201;
     r1 = 0;
     r2 = 0;
-    ((void (*)(u32, u32, u32, u32))func_801E430)(r0, r1, r2, r3);
+    ((void (*)(u32, u32, u32, u32))SpawnHighPriorityPrimarySprite)(r0, r1, r2, r3);
     r0 = 0;
     *r4 = r0;
 
@@ -6066,7 +6066,7 @@ void StartBigFistAttack(void)
             y += 64;
             r0 = *(u16*)(r0 + 10);
             r0 -= 64;
-            func_801E430(11, r1, 0, y, r0);
+            SpawnHighPriorityPrimarySprite(11, r1, 0, y, r0);
         }
     } else if (r0 == 8) {
         r1 = s3->status;
@@ -6391,7 +6391,7 @@ timer_zero:
     r3 = r4->yPosition;
     r0 = r4->xPosition;
     r0 += 64;
-    func_801E430(12, r1, 0, r3, r0);
+    SpawnHighPriorityPrimarySprite(12, r1, 0, r3, r0);
     r0 = gCurrentPassage;
     if (r0 != 5) {
         goto passage_not_five;
@@ -6728,7 +6728,7 @@ void UpdateBlackDragonAttackReturn(void)
             temp &= timer;
             if (temp == 0) {
                 temp = *work2Ptr;
-                func_801E430(202, temp, 0, sprite->yPosition - 72, sprite->xPosition + 48);
+                SpawnHighPriorityPrimarySprite(202, temp, 0, sprite->yPosition - 72, sprite->xPosition + 48);
                 timer = *work2Ptr;
                 timer++;
                 *work2Ptr = timer;

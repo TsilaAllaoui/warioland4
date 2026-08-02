@@ -10,7 +10,7 @@
 
 void TobawaniEnterWater(void)
 {
-    gCurrentSprite.yPosition = gUnk_3000964[gCurrentSprite.roomSlot][0] * 64 + 64;
+    gCurrentSprite.yPosition = gRoomSpriteData[gCurrentSprite.roomSlot][0] * 64 + 64;
     gCurrentSprite.pose = 39;
     gCurrentSprite.warioCollision = 80;
     m4aSongNumStart(SE_ENTER_WATER);

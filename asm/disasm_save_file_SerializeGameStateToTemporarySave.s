@@ -544,9 +544,9 @@ SerializeGameStateToTemporarySave:
 .L_733a8:
 	.4byte	gStageFrameCounter
 .L_733ac:
-	.4byte	gUnk_3000524
+	.4byte	gRoomSpriteIds
 .L_733b0:
-	.4byte	gUnk_3000544
+	.4byte	gRoomSpriteGraphicsSlots
 .L_733b4:
 	.4byte	gPersistentSpriteData
 .L_733b8:

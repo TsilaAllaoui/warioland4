@@ -9,16 +9,16 @@
 
 @ Sprite AI and sprite sets
 
-.global sUnk_878EBF0
-sUnk_878EBF0:
+.global sPrimarySpriteGraphicsPointers
+sPrimarySpriteGraphicsPointers:
 	baserom_blob 0x78EBF0, 0x78EDB4
 
-.global sUnk_878EDB4
-sUnk_878EDB4:
+.global sPrimarySpritePalettePointers
+sPrimarySpritePalettePointers:
 	baserom_blob 0x78EDB4, 0x78EF78
 
-.global sUnk_878EF78
-sUnk_878EF78:
+.global sRoomSpriteGraphicsLists
+sRoomSpriteGraphicsLists:
 	baserom_blob 0x78EF78, 0x78F0E4
 
 .global sUnk_878F0E4

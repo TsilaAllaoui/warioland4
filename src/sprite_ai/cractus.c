@@ -20,7 +20,6 @@ extern u8 gSpriteAiDynamicGraphicsTimer;
 
 extern const void *const sUnk_878F170[];
 
-void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 arg5);
 void LoadBossSpriteGraphics(u32 arg0, u32 arg1, u32 arg2);
 void UpdateBossHealthGauge(void);
 
@@ -723,12 +722,12 @@ void InitCractusSpawner(void)
     sprite->health = 12;
 
     UpdateBossHealthGauge();
-    func_801E430(220, 0, 0, sprite->yPosition - 240, sprite->xPosition - 32);
-    func_801E430(220, 1, 0, sprite->yPosition - 272, sprite->xPosition - 16);
-    func_801E430(220, 2, 0, sprite->yPosition - 272, sprite->xPosition);
-    func_801E430(220, 3, 0, sprite->yPosition - 272, sprite->xPosition + 16);
-    func_801E430(220, 4, 0, sprite->yPosition - 272, sprite->xPosition + 32);
-    func_801E430(216, 0, 0, sprite->yPosition - 384, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(220, 0, 0, sprite->yPosition - 240, sprite->xPosition - 32);
+    SpawnHighPriorityPrimarySprite(220, 1, 0, sprite->yPosition - 272, sprite->xPosition - 16);
+    SpawnHighPriorityPrimarySprite(220, 2, 0, sprite->yPosition - 272, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(220, 3, 0, sprite->yPosition - 272, sprite->xPosition + 16);
+    SpawnHighPriorityPrimarySprite(220, 4, 0, sprite->yPosition - 272, sprite->xPosition + 32);
+    SpawnHighPriorityPrimarySprite(216, 0, 0, sprite->yPosition - 384, sprite->xPosition);
     {
         register u32 yPosition asm("r3");
         register s32 yOffset asm("r2");
@@ -737,18 +736,18 @@ void InitCractusSpawner(void)
         yOffset = -320;
         asm("" : "+r"(yPosition), "+r"(yOffset));
         yPosition += yOffset;
-        func_801E430(217, 0, 0, yPosition, sprite->xPosition);
+        SpawnHighPriorityPrimarySprite(217, 0, 0, yPosition, sprite->xPosition);
     }
-    func_801E430(218, 0, 0, sprite->yPosition - 160, sprite->xPosition);
-    func_801E430(217, 1, 0, sprite->yPosition - 272, sprite->xPosition);
-    func_801E430(217, 2, 0, sprite->yPosition - 224, sprite->xPosition);
-    func_801E430(217, 3, 0, sprite->yPosition - 176, sprite->xPosition);
-    func_801E430(217, 4, 0, sprite->yPosition - 128, sprite->xPosition);
-    func_801E430(219, 4, 0, sprite->yPosition - 272, sprite->xPosition - 32);
-    func_801E430(219, 3, 0, sprite->yPosition - 272, sprite->xPosition - 48);
-    func_801E430(219, 2, 0, sprite->yPosition - 272, sprite->xPosition - 64);
-    func_801E430(219, 1, 0, sprite->yPosition - 272, sprite->xPosition - 80);
-    func_801E430(219, 0, 0, sprite->yPosition - 240, sprite->xPosition - 96);
+    SpawnHighPriorityPrimarySprite(218, 0, 0, sprite->yPosition - 160, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(217, 1, 0, sprite->yPosition - 272, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(217, 2, 0, sprite->yPosition - 224, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(217, 3, 0, sprite->yPosition - 176, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(217, 4, 0, sprite->yPosition - 128, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(219, 4, 0, sprite->yPosition - 272, sprite->xPosition - 32);
+    SpawnHighPriorityPrimarySprite(219, 3, 0, sprite->yPosition - 272, sprite->xPosition - 48);
+    SpawnHighPriorityPrimarySprite(219, 2, 0, sprite->yPosition - 272, sprite->xPosition - 64);
+    SpawnHighPriorityPrimarySprite(219, 1, 0, sprite->yPosition - 272, sprite->xPosition - 80);
+    SpawnHighPriorityPrimarySprite(219, 0, 0, sprite->yPosition - 240, sprite->xPosition - 96);
     sprite->work0 = 60;
     LoadBossSpriteGraphics(131, 8, 4);
 }
@@ -2915,8 +2914,8 @@ void UpdateCractusBossPose121(void)
         *counter = value;
         value = (u8)value;
         if (value == 80) {
-            func_801E430(10, sprite->roomSlot, 0, sprite->yPosition + 50, sprite->xPosition - 50);
-            func_801E430(10, sprite->roomSlot, 0, sprite->yPosition + 20, sprite->xPosition + 50);
+            SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition + 50, sprite->xPosition - 50);
+            SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition + 20, sprite->xPosition + 50);
             sprite->status |= 4;
         } else if (value > 239) {
             sprite->status = 0;
@@ -3099,32 +3098,32 @@ void UpdateCractusStemSegment(void)
     switch (roomSlot) {
         case 1:
             if (value > 47) {
-                func_801E430(11, 1, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(11, 1, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         case 2:
             if (value > 55) {
-                func_801E430(11, 2, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(11, 2, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         case 3:
             if (value > 63) {
-                func_801E430(11, 3, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(11, 3, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         case 4:
             if (value > 71) {
-                func_801E430(10, 4, 0, sprite->yPosition + 32, sprite->xPosition);
-                func_801E430(10, sprite->roomSlot, 0, sprite->yPosition + 64, sprite->xPosition + 100);
+                SpawnHighPriorityPrimarySprite(10, 4, 0, sprite->yPosition + 32, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition + 64, sprite->xPosition + 100);
                 sprite->status = 0;
             }
             break;
         default:
             if (*counter > 55) {
-                func_801E430(10, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
@@ -4670,31 +4669,31 @@ void UpdateCractusArmSegmentPosition(void)
         switch (roomSlot) {
         case 1:
             if (counter > 15) {
-                func_801E430(11, 1, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(11, 1, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         case 2:
             if (counter > 23) {
-                func_801E430(11, 2, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(11, 2, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         case 3:
             if (counter > 31) {
-                func_801E430(11, 3, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(11, 3, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         case 4:
             if (counter > 39) {
-                func_801E430(10, 4, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(10, 4, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;
         default:
             if (*counterPtr > 7) {
-                func_801E430(10, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
+                SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition, sprite->xPosition);
                 sprite->status = 0;
             }
             break;

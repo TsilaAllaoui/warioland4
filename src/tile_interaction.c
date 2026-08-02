@@ -1290,7 +1290,7 @@ state1:
     y = 0;
     x = 0;
     GetTileEffectPosition(effect->type, &x, &y);
-    func_801E430(14, effect->type, 0, y, x);
+    SpawnHighPriorityPrimarySprite(14, effect->type, 0, y, x);
     effect->timer = 0;
     goto advance;
 

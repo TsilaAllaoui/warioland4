@@ -973,9 +973,9 @@ func_8072FB0:
 .L_733a8:
 	.4byte	gStageFrameCounter
 .L_733ac:
-	.4byte	gUnk_3000524
+	.4byte	gRoomSpriteIds
 .L_733b0:
-	.4byte	gUnk_3000544
+	.4byte	gRoomSpriteGraphicsSlots
 .L_733b4:
 	.4byte	gPersistentSpriteData
 .L_733b8:
@@ -1596,9 +1596,9 @@ func_807345C:
 .L_73838:
 	.4byte	gStageFrameCounter
 .L_7383c:
-	.4byte	gUnk_3000524
+	.4byte	gRoomSpriteIds
 .L_73840:
-	.4byte	gUnk_3000544
+	.4byte	gRoomSpriteGraphicsSlots
 .L_73844:
 	.4byte	gPersistentSpriteData
 .L_73848:

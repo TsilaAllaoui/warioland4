@@ -75,10 +75,10 @@ SECTIONS {
         . = 0x00fc; gGoldenDivaRoomTimer = .;
 
         . = 0x0104; gSpriteData = .;
-        . = 0x0524; gUnk_3000524 = .;
-        . = 0x0544; gUnk_3000544 = .;
+        . = 0x0524; gRoomSpriteIds = .;
+        . = 0x0544; gRoomSpriteGraphicsSlots = .;
         . = 0x0564; gPersistentSpriteData = .;
-        . = 0x0964; gUnk_3000964 = .;
+        . = 0x0964; gRoomSpriteData = .;
         . = 0x0a24; gCurrentSprite = .;
         . = 0x0a4b; gUnk_3000A4B = .;
         . = 0x0a4d; gUnk_3000A4D = .;
@@ -86,7 +86,7 @@ SECTIONS {
         . = 0x0a51; gSpriteCollisionTileType = .;
         . = 0x0a52; gSpriteCollisionFlags = .;
         . = 0x0a53; gIgnoreSpriteCollision = .;
-        . = 0x0a54; gUnk_3000A54 = .;
+        . = 0x0a54; gCurrentSpriteOamData = .;
         . = 0x0a58; gBossState = .;
         . = 0x0a59; gCuckooCondorPendulumLength = .;
         . = 0x0a5a; gCuckooCondorMoveRight = .;
@@ -617,7 +617,7 @@ SECTIONS {
         obj/game_screen.o(.text);
         obj/game_screen_gfx.o(.text);
         obj/game_screen_debug.o(.text);
-        obj/disasm_sprite.o(.text);
+        obj/sprite.o(.text);
         obj/sprite_collision.o(.text);
         obj/sprite_util.o(.text);
         obj/sprite_ai/spear_mask.o(.text);

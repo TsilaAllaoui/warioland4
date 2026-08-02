@@ -23,7 +23,7 @@ void func_803F214(void)
 
     targetId = 17;
     i = 0;
-    base = gUnk_3000964;
+    base = gRoomSpriteData;
     if (*base != 0xFF) {
         persistentData = &gPersistentSpriteData[0][0];
         entry = base;
@@ -58,7 +58,7 @@ void func_803F264(void)
 
     targetId = 17;
     i = 0;
-    base = gUnk_3000964;
+    base = gRoomSpriteData;
     if (*base != 0xFF) {
         persistentData = &gPersistentSpriteData[0][0];
         entry = base;

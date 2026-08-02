@@ -143,7 +143,7 @@ u32 GameScreenSubroutine(void)
 
     if (gSubGameMode != 0) {
         UpdateRoomAnimatedGraphics();
-        func_801D684();
+        UpdatePrimarySprites();
         if (!gDisableWario) {
             UpdateCamera();
             ProcessWarioInteraction();
@@ -154,7 +154,7 @@ u32 GameScreenSubroutine(void)
         if (!gDisableWario) {
             GameScreenDrawWario();
         }
-        func_801D8C4();
+        DrawPrimarySprites();
         ResetFreeOam();
         DrawGameScreen();
     }
@@ -389,11 +389,11 @@ void GameScreenInitAndLoadGenerics(void)
     } while ((u16)(REG_VCOUNT - 0x15) < 0x8C);
 
     InitStageHudAndScore();
-    func_801DE7C();
+    InitializePrimarySprites();
     func_80711E8();
     InitializeRoomMusic();
     if (gStageEntryPauseMenuDisabled == 0) {
-        func_801D684();
+        UpdatePrimarySprites();
         UpdateWarioLifeHud();
         gStageEntryPauseMenuDisabled = 1;
         gWarioPauseTimer = 0;

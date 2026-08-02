@@ -171,7 +171,7 @@ void IcicleResetAboveRoom(void)
     u8 (*roomData)[3];
     struct PrimarySpriteData *sprite;
 
-    roomData = gUnk_3000964;
+    roomData = gRoomSpriteData;
     sprite = &gCurrentSprite;
     sprite->yPosition = roomData[sprite->roomSlot][0] * 64 + 64;
     sprite->pose = 111;

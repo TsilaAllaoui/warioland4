@@ -10,7 +10,6 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 y, u32 x, u32 status);
 
 int BowlerCheckSwitch(void)
 {
@@ -359,7 +358,7 @@ void BowlerTransformingIntoYeti(void)
     asm("" : "+r"(value));
     timer = (u8)value;
     if (timer == 0) {
-        sprite->gfxSlot = gUnk_3000544[1];
+        sprite->gfxSlot = gRoomSpriteGraphicsSlots[1];
         sprite->globalID = 96;
         sprite->pose = timer;
     }

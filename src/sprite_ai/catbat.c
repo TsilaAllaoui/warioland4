@@ -47,7 +47,6 @@ extern const s16 sUnk_83CFACE[];
 extern const void *const sUnk_878F0E4[];
 extern const void *const sUnk_878F0F8[];
 
-void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
 void UpdateBossHealthGauge(void);
 void LoadBossSpriteGraphics(u8, u8, u8);
 void DespawnActiveCatbatProjectile(void)
@@ -385,8 +384,8 @@ void InitCatbat(void)
     UpdateBossHealthGauge();
     sprite->work2 = 60;
     LoadBossSpriteGraphics(131, 8, 4);
-    func_801E430(224, 0, 0, sprite->yPosition + 352, sprite->xPosition + 128);
-    func_801E430(251, 0, 0, sprite->yPosition - 216, sprite->xPosition - 16);
+    SpawnHighPriorityPrimarySprite(224, 0, 0, sprite->yPosition + 352, sprite->xPosition + 128);
+    SpawnHighPriorityPrimarySprite(251, 0, 0, sprite->yPosition - 216, sprite->xPosition - 16);
     sprite->yPosition += 64;
 }
 void UpdateCatbatIntroWaitForShop(void)
@@ -1614,79 +1613,79 @@ void UpdateCatbatDeathExplosion(void)
     sprite = base;
     switch (timer) {
         case 110:
-            func_801E430(11, 0, 0, sprite->yPosition - 192, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 192, sprite->xPosition);
             break;
         case 107:
-            func_801E430(11, 0, 0, sprite->yPosition - 192, sprite->xPosition - 64);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 192, sprite->xPosition - 64);
             break;
         case 103:
-            func_801E430(11, 0, 0, sprite->yPosition - 192, sprite->xPosition + 128);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 192, sprite->xPosition + 128);
             break;
         case 100:
-            func_801E430(11, 0, 0, sprite->yPosition - 128, sprite->xPosition - 32);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 128, sprite->xPosition - 32);
             break;
         case 97:
-            func_801E430(11, 0, 0, sprite->yPosition - 128, sprite->xPosition - 128);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 128, sprite->xPosition - 128);
             break;
         case 93:
-            func_801E430(11, 0, 0, sprite->yPosition - 128, sprite->xPosition + 64);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 128, sprite->xPosition + 64);
             break;
         case 90:
-            func_801E430(11, 0, 0, sprite->yPosition - 64, sprite->xPosition + 32);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 64, sprite->xPosition + 32);
             break;
         case 87:
-            func_801E430(11, 0, 0, sprite->yPosition - 64, sprite->xPosition - 64);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 64, sprite->xPosition - 64);
             break;
         case 83:
-            func_801E430(11, 0, 0, sprite->yPosition - 64, sprite->xPosition + 128);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition - 64, sprite->xPosition + 128);
             break;
         case 80:
-            func_801E430(11, 0, 0, sprite->yPosition, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition, sprite->xPosition);
             break;
         case 77:
-            func_801E430(11, 0, 0, sprite->yPosition, sprite->xPosition - 128);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition, sprite->xPosition - 128);
             break;
         case 73:
-            func_801E430(11, 0, 0, sprite->yPosition, sprite->xPosition + 96);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition, sprite->xPosition + 96);
             break;
         case 70:
-            func_801E430(11, 0, 0, sprite->yPosition + 64, sprite->xPosition - 32);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition + 64, sprite->xPosition - 32);
             break;
         case 67:
-            func_801E430(11, 0, 0, sprite->yPosition + 64, sprite->xPosition - 96);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition + 64, sprite->xPosition - 96);
             break;
         case 63:
-            func_801E430(11, 0, 0, sprite->yPosition + 64, sprite->xPosition + 64);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition + 64, sprite->xPosition + 64);
             break;
         case 60:
-            func_801E430(11, 0, 0, sprite->yPosition + 128, sprite->xPosition - 32);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition + 128, sprite->xPosition - 32);
             break;
         case 57:
-            func_801E430(11, 0, 0, sprite->yPosition + 128, sprite->xPosition - 96);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition + 128, sprite->xPosition - 96);
             break;
         case 53:
-            func_801E430(11, 0, 0, sprite->yPosition + 128, sprite->xPosition + 64);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition + 128, sprite->xPosition + 64);
             break;
         case 50:
-            func_801E430(10, 0, 0, sprite->yPosition + 96, sprite->xPosition + 96);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition + 96, sprite->xPosition + 96);
             break;
         case 40:
-            func_801E430(10, 0, 0, sprite->yPosition, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition, sprite->xPosition);
             break;
         case 30:
-            func_801E430(10, 0, 0, sprite->yPosition - 64, sprite->xPosition - 64);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition - 64, sprite->xPosition - 64);
             break;
         case 20:
-            func_801E430(10, 0, 0, sprite->yPosition + 128, sprite->xPosition + 64);
-            func_801E430(10, 0, 0, sprite->yPosition + 32, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition + 128, sprite->xPosition + 64);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition + 32, sprite->xPosition);
             break;
         case 24:
-            func_801E430(10, 0, 0, sprite->yPosition + 32, sprite->xPosition - 128);
-            func_801E430(10, 0, 0, sprite->yPosition + 32, sprite->xPosition + 128);
-            func_801E430(10, 0, 0, sprite->yPosition + 128, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition + 32, sprite->xPosition - 128);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition + 32, sprite->xPosition + 128);
+            SpawnHighPriorityPrimarySprite(10, 0, 0, sprite->yPosition + 128, sprite->xPosition);
             break;
         case 0:
-            func_801E430(207, 0, 0, sprite->yPosition, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(207, 0, 0, sprite->yPosition, sprite->xPosition);
             sprite->status = 0;
             break;
     }
@@ -1896,7 +1895,7 @@ void UpdateCatbatGroundWave(void)
         one = gTimerState;
         if (one == 1) {
             sprite->status &= ~SPRITE_STATUS_HIDDEN;
-            func_801E430(11, 0, 0, sprite->yPosition, sprite->xPosition);
+            SpawnHighPriorityPrimarySprite(11, 0, 0, sprite->yPosition, sprite->xPosition);
             sprite->pose = 16;
             {
                 register u8 *work asm("r0");

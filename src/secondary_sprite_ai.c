@@ -1604,7 +1604,7 @@ animate_to_pose3:
 
         if (step == 0 && secondaryValue == 0)
         {
-            func_801E430(211, 0, gVortexGfxSlot, gVortexYPosition, *vortexXPosition);
+            SpawnHighPriorityPrimarySprite(211, 0, gVortexGfxSlot, gVortexYPosition, *vortexXPosition);
             gCurrentSecondarySprite.status = step;
         }
     }

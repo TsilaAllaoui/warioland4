@@ -569,9 +569,9 @@ void AerodentInit(void)
     SpriteUtilTurnTowardWario();
     sprite->health = 16;
     UpdateBossHealthGauge();
-    func_801E430(203, sprite->roomSlot, sprite->gfxSlot,
+    SpawnHighPriorityPrimarySprite(203, sprite->roomSlot, sprite->gfxSlot,
         sprite->yPosition - 64, sprite->xPosition + 224);
-    func_801E430(204, sprite->roomSlot, sprite->gfxSlot,
+    SpawnHighPriorityPrimarySprite(204, sprite->roomSlot, sprite->gfxSlot,
         sprite->yPosition + 240, sprite->xPosition + 128);
     LoadBossSpriteGraphics(131, 8, 4);
 }
@@ -782,17 +782,17 @@ void AerodentDefeat(void)
         base = current;
         value = base->work0;
         if (value == 20)
-            func_801E430(10, base->roomSlot, 0, base->yPosition + 160, base->xPosition + 120);
+            SpawnHighPriorityPrimarySprite(10, base->roomSlot, 0, base->yPosition + 160, base->xPosition + 120);
         else if (value == 15)
-            func_801E430(10, base->roomSlot, 0, base->yPosition + 200, base->xPosition + 80);
+            SpawnHighPriorityPrimarySprite(10, base->roomSlot, 0, base->yPosition + 200, base->xPosition + 80);
         else if (value == 10)
-            func_801E430(10, base->roomSlot, 0, base->yPosition + 130, base->xPosition + 120);
+            SpawnHighPriorityPrimarySprite(10, base->roomSlot, 0, base->yPosition + 130, base->xPosition + 120);
         else if (value == 5)
-            func_801E430(10, current->roomSlot, 0, current->yPosition + 170, current->xPosition + 90);
+            SpawnHighPriorityPrimarySprite(10, current->roomSlot, 0, current->yPosition + 170, current->xPosition + 90);
     } else {
         sprite->status = timer8;
-        func_801E430(10, sprite->roomSlot, 0, sprite->yPosition + 210, sprite->xPosition + 110);
-        func_801E430(207, sprite->roomSlot, 0, sprite->yPosition + 110, sprite->xPosition + 110);
+        SpawnHighPriorityPrimarySprite(10, sprite->roomSlot, 0, sprite->yPosition + 210, sprite->xPosition + 110);
+        SpawnHighPriorityPrimarySprite(207, sprite->roomSlot, 0, sprite->yPosition + 110, sprite->xPosition + 110);
     }
 }
 void AerodentSpawnShot(void)
@@ -2326,7 +2326,7 @@ void AerodentThrowableStartBreak(void)
     gCurrentSprite.pose = 111;
     gCurrentSprite.work0 = 40;
     SpriteUtilFindSpriteSlotWork3(105);
-    func_801E430(11, gCurrentSprite.roomSlot, 0,
+    SpawnHighPriorityPrimarySprite(11, gCurrentSprite.roomSlot, 0,
         gCurrentSprite.yPosition - 64, gCurrentSprite.xPosition);
     m4aSongNumStart(SOUND_8E);
     VoiceSetPlay(0);
@@ -2353,12 +2353,12 @@ void AerodentThrowableBreak(void)
     if (timerValue != 0) {
         next &= 7;
         if (next == 0) {
-            func_801E430(12, current->roomSlot, 0,
+            SpawnHighPriorityPrimarySprite(12, current->roomSlot, 0,
                 current->yPosition - 64, current->xPosition);
         }
     } else {
         current->status = timerValue;
-        func_801E430(10, current->roomSlot, 0,
+        SpawnHighPriorityPrimarySprite(10, current->roomSlot, 0,
             current->yPosition, current->xPosition);
     }
 }

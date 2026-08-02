@@ -425,19 +425,19 @@ void InitCuckooCondor(void)
 
     /* Make agbcc rematerialize the third argument after preparing the coordinates. */
     asm("" : : : "r2");
-    func_801E430(0xE7, four, 0, sprite->yPosition + 0x38, sprite->xPosition + 0xF8);
-    func_801E430(0xE7, 3, 0, sprite->yPosition + 0x34, sprite->xPosition + 0xE0);
-    func_801E430(0xE7, 2, 0, sprite->yPosition + 0x5C, sprite->xPosition + 0x94);
-    func_801E430(0xE7, 1, 0, sprite->yPosition + 0x56, sprite->xPosition - 0xB0);
-    func_801E430(0xE7, 0, 0, sprite->yPosition + 0x56, sprite->xPosition - 0x90);
+    SpawnHighPriorityPrimarySprite(0xE7, four, 0, sprite->yPosition + 0x38, sprite->xPosition + 0xF8);
+    SpawnHighPriorityPrimarySprite(0xE7, 3, 0, sprite->yPosition + 0x34, sprite->xPosition + 0xE0);
+    SpawnHighPriorityPrimarySprite(0xE7, 2, 0, sprite->yPosition + 0x5C, sprite->xPosition + 0x94);
+    SpawnHighPriorityPrimarySprite(0xE7, 1, 0, sprite->yPosition + 0x56, sprite->xPosition - 0xB0);
+    SpawnHighPriorityPrimarySprite(0xE7, 0, 0, sprite->yPosition + 0x56, sprite->xPosition - 0x90);
 
-    func_801E430(0xE8, 0, 0, sprite->yPosition + (u8)*horizontalOffset + 0xA8, sprite->xPosition);
-    func_801E430(0xE8, 1, 0, sprite->yPosition + (u8)*horizontalOffset + 0x60, sprite->xPosition);
-    func_801E430(0xE8, 2, 0, sprite->yPosition + (u8)*horizontalOffset + 0x40, sprite->xPosition);
-    func_801E430(0xE8, 3, 0, sprite->yPosition + (u8)*horizontalOffset + 0x20, sprite->xPosition);
-    func_801E430(0xE8, 4, 0, sprite->yPosition + (u8)*horizontalOffset, sprite->xPosition);
-    func_801E430(0xE5, 0, 0, sprite->yPosition - 0x98, sprite->xPosition);
-    func_801E430(0xE6, 0, 0, sprite->yPosition, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE8, 0, 0, sprite->yPosition + (u8)*horizontalOffset + 0xA8, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE8, 1, 0, sprite->yPosition + (u8)*horizontalOffset + 0x60, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE8, 2, 0, sprite->yPosition + (u8)*horizontalOffset + 0x40, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE8, 3, 0, sprite->yPosition + (u8)*horizontalOffset + 0x20, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE8, 4, 0, sprite->yPosition + (u8)*horizontalOffset, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE5, 0, 0, sprite->yPosition - 0x98, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(0xE6, 0, 0, sprite->yPosition, sprite->xPosition);
 
     sprite->work2 = 0x3C;
     LoadBossSpriteGraphics(0x83, 8, 4);
@@ -1402,99 +1402,99 @@ void CuckooCondorExplode(void)
     sprite = base;
     switch (value) {
     case 110:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0xC0,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0xC0,
                      sprite->xPosition);
         break;
     case 107:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0xC0,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0xC0,
                      sprite->xPosition - 0x40);
         break;
     case 103:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0xC0,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0xC0,
                      sprite->xPosition + 0x48);
         break;
     case 100:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x80,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0x80,
                      sprite->xPosition - 0x20);
         break;
     case 97:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x80,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0x80,
                      sprite->xPosition - 0x48);
         break;
     case 93:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x80,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0x80,
                      sprite->xPosition + 0x40);
         break;
     case 90:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x40,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0x40,
                      sprite->xPosition + 0x20);
         break;
     case 87:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x40,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0x40,
                      sprite->xPosition - 0x40);
         break;
     case 83:
-        func_801E430(0x0B, 0, 0, sprite->yPosition - 0x40,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition - 0x40,
                      sprite->xPosition + 0x48);
         break;
     case 80:
-        func_801E430(0x0B, 0, 0, sprite->yPosition,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition,
                      sprite->xPosition);
         break;
     case 77:
-        func_801E430(0x0B, 0, 0, sprite->yPosition,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition,
                      sprite->xPosition - 0x48);
         break;
     case 73:
-        func_801E430(0x0B, 0, 0, sprite->yPosition,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition,
                      sprite->xPosition + 0x60);
         break;
     case 70:
-        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x40,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition + 0x40,
                      sprite->xPosition - 0x20);
         break;
     case 67:
-        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x40,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition + 0x40,
                      sprite->xPosition - 0x60);
         break;
     case 63:
-        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x40,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition + 0x40,
                      sprite->xPosition + 0x40);
         break;
     case 60:
-        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x80,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition + 0x80,
                      sprite->xPosition - 0x20);
         break;
     case 57:
-        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x80,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition + 0x80,
                      sprite->xPosition - 0x60);
         break;
     case 53:
-        func_801E430(0x0B, 0, 0, sprite->yPosition + 0x80,
+        SpawnHighPriorityPrimarySprite(0x0B, 0, 0, sprite->yPosition + 0x80,
                      sprite->xPosition + 0x40);
         break;
     case 50:
-        func_801E430(0x0A, 0, 0, sprite->yPosition + 0x60,
+        SpawnHighPriorityPrimarySprite(0x0A, 0, 0, sprite->yPosition + 0x60,
                      sprite->xPosition + 0x60);
         break;
     case 40:
-        func_801E430(0x0A, 0, 0, sprite->yPosition,
+        SpawnHighPriorityPrimarySprite(0x0A, 0, 0, sprite->yPosition,
                      sprite->xPosition);
         break;
     case 30:
-        func_801E430(0x0A, 0, 0, sprite->yPosition - 0x40,
+        SpawnHighPriorityPrimarySprite(0x0A, 0, 0, sprite->yPosition - 0x40,
                      sprite->xPosition - 0x40);
         break;
     case 20:
-        func_801E430(0x0A, 0, 0, sprite->yPosition + 0x80,
+        SpawnHighPriorityPrimarySprite(0x0A, 0, 0, sprite->yPosition + 0x80,
                      sprite->xPosition - 0x20);
         break;
     case 24:
-        func_801E430(0x0A, 0, 0, sprite->yPosition + 0x60,
+        SpawnHighPriorityPrimarySprite(0x0A, 0, 0, sprite->yPosition + 0x60,
                      sprite->xPosition + 0x20);
         break;
     case 0:
-        func_801E430(0xCF, 0, 0, sprite->yPosition,
+        SpawnHighPriorityPrimarySprite(0xCF, 0, 0, sprite->yPosition,
                      sprite->xPosition);
         sprite->status = 0;
         break;
@@ -2751,7 +2751,7 @@ void CuckooCondorHeadSpawnDebris(void)
     value <<= 24;
     zero = value >> 24;
     if (zero == 0) {
-        func_801E430(0xB, 0, 0, sprite->yPosition, sprite->xPosition);
+        SpawnHighPriorityPrimarySprite(0xB, 0, 0, sprite->yPosition, sprite->xPosition);
         sprite->status = zero;
     }
 }
