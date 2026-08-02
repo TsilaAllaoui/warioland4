@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  97.8%   3,955 / 4,044</text>
-<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  91.3%   553,567 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████████░  98.0%   3,962 / 4,044</text>
+<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  91.5%   554,751 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,022 / 4,044 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2282,21 +2282,21 @@
 <rect x="705.15" y="674.83" width="2.84" height="5.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>minigame/SetMinigameVBlankCallback: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_pause_screen: 0.0% matched, 4,744 bytes</title>
+<title>pause_screen: 25.0% matched, 4,744 bytes</title>
 <rect x="623.97" y="681.87" width="84.77" height="85.26" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip33"><rect x="625.97" y="682.87" width="81.37" height="15.45"/></clipPath>
 <rect x="624.97" y="682.87" width="83.37" height="15.45" fill="#05080d"/>
-<text x="626.47" y="692.87" clip-path="url(#moduleLabelClip33)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_pause_…</text>
-<text x="706.34" y="691.87" text-anchor="end" clip-path="url(#moduleLabelClip33)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="624.97" y="698.32" width="36.77" height="68.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_80890C0: 2,112 bytes, not matched, size=symbol</title></rect>
-<rect x="662.09" y="698.32" width="45.90" height="37.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_8088900: 1,448 bytes, not matched, size=symbol</title></rect>
-<rect x="662.09" y="735.95" width="16.84" height="30.42" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/PauseScreenSubroutine: 440 bytes, not matched, size=symbol</title></rect>
-<rect x="679.28" y="735.95" width="17.98" height="21.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_8088EA8: 328 bytes, not matched, size=symbol</title></rect>
-<rect x="697.61" y="735.95" width="10.38" height="21.16" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_8088840: 192 bytes, not matched, size=symbol</title></rect>
-<rect x="679.28" y="757.46" width="18.33" height="8.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_8088FF0: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="697.96" y="757.46" width="7.95" height="4.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_8089080: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="697.96" y="762.09" width="7.95" height="4.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_80890A0: 32 bytes, not matched, size=symbol</title></rect>
-<rect x="706.27" y="757.46" width="1.73" height="8.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_pause_screen/func_8088830: 16 bytes, not matched, size=symbol</title></rect>
+<text x="626.47" y="692.87" clip-path="url(#moduleLabelClip33)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">pause_screen</text>
+<text x="706.34" y="691.87" text-anchor="end" clip-path="url(#moduleLabelClip33)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">25%</text>
+<rect x="624.97" y="698.32" width="36.77" height="68.05" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/RenderPauseScreenOam: 2,112 bytes, not matched, size=symbol</title></rect>
+<rect x="662.09" y="698.32" width="45.90" height="37.28" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/InitializePauseScreen: 1,448 bytes, not matched, size=symbol</title></rect>
+<rect x="662.09" y="735.95" width="16.84" height="30.42" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/PauseScreenSubroutine: 440 bytes, matched, size=symbol</title></rect>
+<rect x="679.28" y="735.95" width="17.98" height="21.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/UpdatePauseScreenSelection: 328 bytes, matched, size=symbol</title></rect>
+<rect x="697.61" y="735.95" width="10.38" height="21.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/PauseScreenVBlank: 192 bytes, matched, size=symbol</title></rect>
+<rect x="679.28" y="757.46" width="18.33" height="8.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/UpdatePauseScreenConfirmation: 144 bytes, matched, size=symbol</title></rect>
+<rect x="697.96" y="757.46" width="7.95" height="4.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/ClosePauseScreenWindow: 32 bytes, matched, size=symbol</title></rect>
+<rect x="697.96" y="762.09" width="7.95" height="4.28" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/OpenPauseScreenWindow: 32 bytes, matched, size=symbol</title></rect>
+<rect x="706.27" y="757.46" width="1.73" height="8.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>pause_screen/SetPauseScreenVBlankCallback: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>boss_door_opening: 100.0% matched, 4,712 bytes</title>
