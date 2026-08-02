@@ -1,4 +1,5 @@
 #include "stage_entry.h"
+#include "color_effects.h"
 #include "global_data.h"
 #include "init_helpers.h"
 #include "score.h"
@@ -1234,7 +1235,7 @@ s32 UpdateStageEntryWithKeyzerSequence(void)
             if (gStageEntryKeyzerPaletteStep > paletteStepLimit)
             {
                 gStageEntryKeyzerPaletteStep = paletteStepLimit;
-                SetCurrentStageKeyzerRecoveredFlag();
+                BackupPalettesForColorFade();
             }
             dma = (vu32 *)0x040000D4;
             dma[0] = (u32)(sStageEntryStagePalettes[gCurrentPassage][gCurrentStageNumber] + (gStageEntryKeyzerPaletteStep << 5));

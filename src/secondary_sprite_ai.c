@@ -1,5 +1,6 @@
 #include "secondary_sprite_ai.h"
 
+#include "color_effects.h"
 #include "autosave.h"
 #include "sprite_collision.h"
 
@@ -18,7 +19,6 @@
 #include "sprite_ai/keyzer.h"
 #include "wario.h"
 
-extern void func_80708DC(u32 value);
 
 extern const u16 sTimeUpTextPal[];
 extern const u16 sTimeUpWarioPal[];
@@ -2068,7 +2068,7 @@ state_6_7_movement:
                 gCurrentSecondarySpriteOamData = sUnk_8411B48;
                 scale = 32;
                 gCurrentSecondarySprite.pose++;
-                func_80708DC(8);
+                ConvertObjPaletteBankToGrayscale(8);
             }
             else
             {

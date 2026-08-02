@@ -549,7 +549,7 @@ void func_803B2A0(void)
         u8 *flagPtr;
         u8 flagValue;
 
-        flagPtr = &gGoldenDivaRoomTimer;
+        flagPtr = gGoldenDivaRoomTimer;
         flagValue = *flagPtr;
         if (flagValue != 0) {
             return;

@@ -18,8 +18,8 @@
 #include "gba/m4a.h"
 #include "gba/io_reg.h"
 
-extern void func_80703DC(void);
-extern void func_8071260(void);
+extern void UploadColorFadePalettes(void);
+extern void FillColorFadePalettes(void);
 extern void func_807E7B0(void);
 extern s32 func_80845F0(void);
 extern void func_8084BCC(void);
@@ -58,7 +58,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 1:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeIn() != 0) {
                 gSubGameMode = 2;
             }
@@ -72,7 +72,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 3:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeOut() != 0) {
                 EnableAllLayersInWindows();
                 if (gCurrentPassage == 6) {
@@ -117,7 +117,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 8:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeIn() != 0) {
                 musicPlayers = gMPlayTable;
                 songs = gSongTable;
@@ -135,7 +135,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 10:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeOut() != 0) {
                 EnableAllLayersInWindows();
                 if (gUnk_3003C56 != 0) {
@@ -318,7 +318,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 30:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeIn() != 0) {
                 gSubGameMode = 31;
             }
@@ -332,7 +332,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 32:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeOut() != 0) {
                 if (gCurrentPassage == 0) {
                     gSubGameMode = 7;
@@ -356,7 +356,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 34:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeIn() != 0) {
                 musicPlayers = gMPlayTable;
                 songs = gSongTable;
@@ -374,7 +374,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 36:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeOut() != 0) {
                 EnableAllLayersInWindows();
                 switch (gStageEntryExitRequested) {
@@ -435,7 +435,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 42:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeIn() != 0) {
                 musicPlayers = gMPlayTable;
                 songs = gSongTable;
@@ -453,7 +453,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 44:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeOut() != 0) {
                 EnableAllLayersInWindows();
                 if (gUnk_3003C56 != 0) {
@@ -496,7 +496,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 47:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeIn() != 0) {
                 gSubGameMode = 48;
             }
@@ -509,7 +509,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 49:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateStageSelectFadeOut() != 0) {
                 EnableAllLayersInWindows();
                 gSubGameMode = 0;
@@ -533,7 +533,7 @@ s32 UpdateStageSelectFadeIn(void)
     switch (gColorFading.type) {
         case 1:
         case 2:
-            result = func_80710D8(0, one);
+            result = UpdatePaletteFadeStep(0, one);
             break;
         case 3:
         case 4:
@@ -560,7 +560,7 @@ s32 UpdateStageSelectFadeOut(void)
     switch (gColorFading.type) {
         case 1:
         case 2:
-            result = func_80710D8(1, 1);
+            result = UpdatePaletteFadeStep(1, 1);
             break;
         case 3:
         case 4:
@@ -615,8 +615,8 @@ end:
 
 void InitializeStageSelectPaletteFade(void)
 {
-    gColorFading.unk_4 = 3;
-    func_8071260();
+    gColorFading.uploadFlags = 3;
+    FillColorFadePalettes();
 }
 
 void InitializeStageSelectBrightnessFade(void)

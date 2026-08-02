@@ -64,7 +64,6 @@ extern const u8 sMinigameBg2Tilemap[];
 extern const u8 sMinigameBg1Tilemap[];
 extern const u8 sMinigameBg0Tilemap[];
 
-void func_80703DC(void);
 void Shop_DrawText(const u16 *text, u32 destination, u32 length);
 
 u32 MinigameSubroutine(void)
@@ -83,7 +82,7 @@ u32 MinigameSubroutine(void)
         *(vu16 *)0x04000200 |= 1;
         break;
     case 1:
-        func_80703DC();
+        UploadColorFadePalettes();
         if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
@@ -104,7 +103,7 @@ u32 MinigameSubroutine(void)
         }
         break;
     case 3:
-        func_80703DC();
+        UploadColorFadePalettes();
         if (UpdateStageSelectFadeOut() != 0) {
             EnableAllLayersInWindows();
             gUnk_3000000 = 0;
@@ -140,7 +139,7 @@ u32 MinigameSubroutine(void)
         *(vu16 *)0x04000200 |= 1;
         break;
     case 6:
-        func_80703DC();
+        UploadColorFadePalettes();
         if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
@@ -172,7 +171,7 @@ u32 MinigameSubroutine(void)
         *(vu16 *)0x04000200 |= 1;
         break;
     case 10:
-        func_80703DC();
+        UploadColorFadePalettes();
         if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
@@ -200,7 +199,7 @@ u32 MinigameSubroutine(void)
         *(vu16 *)0x04000200 |= 1;
         break;
     case 14:
-        func_80703DC();
+        UploadColorFadePalettes();
         if (UpdateStageSelectFadeIn() != 0) {
             s16 *modePointer;
             u16 modeValue;
@@ -224,7 +223,7 @@ u32 MinigameSubroutine(void)
     goto end;
 
 outro:
-    func_80703DC();
+    UploadColorFadePalettes();
     if (UpdateStageSelectFadeOut() != 0)
         gSubGameMode = 4;
 end:

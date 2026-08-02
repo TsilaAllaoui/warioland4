@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  97.0%   3,923 / 4,044</text>
-<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  90.5%   548,539 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████████░  97.8%   3,955 / 4,044</text>
+<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  91.3%   553,567 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,022 / 4,044 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2214,44 +2214,44 @@
 <rect x="703.69" y="495.09" width="4.30" height="3.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>stage_select/EnableAllLayersInWindows: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_color_fading: 0.0% matched, 5,028 bytes</title>
+<title>color_fading: 100.0% matched, 5,028 bytes</title>
 <rect x="623.97" y="500.24" width="84.77" height="90.40" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip31"><rect x="625.97" y="501.24" width="81.37" height="16.38"/></clipPath>
 <rect x="624.97" y="501.24" width="83.37" height="16.38" fill="#05080d"/>
-<text x="626.47" y="511.24" clip-path="url(#moduleLabelClip31)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">disasm_color_…</text>
-<text x="706.34" y="510.24" text-anchor="end" clip-path="url(#moduleLabelClip31)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">0%</text>
-<rect x="624.97" y="517.62" width="19.75" height="26.01" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070E24: 440 bytes, not matched, size=symbol</title></rect>
-<rect x="624.97" y="543.98" width="19.75" height="23.86" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070748: 404 bytes, not matched, size=symbol</title></rect>
-<rect x="624.97" y="568.19" width="19.75" height="21.70" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80705D8: 368 bytes, not matched, size=symbol</title></rect>
-<rect x="645.07" y="517.62" width="22.98" height="17.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8071394: 348 bytes, not matched, size=symbol</title></rect>
-<rect x="668.40" y="517.62" width="20.29" height="17.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070A84: 308 bytes, not matched, size=symbol</title></rect>
-<rect x="689.04" y="517.62" width="18.95" height="17.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/LoadBossSpriteGraphics: 288 bytes, not matched, size=symbol</title></rect>
-<rect x="645.07" y="535.58" width="16.75" height="18.81" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80710D8: 272 bytes, not matched, size=symbol</title></rect>
-<rect x="645.07" y="554.74" width="16.75" height="17.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/ColorFadingProcess: 252 bytes, not matched, size=symbol</title></rect>
-<rect x="645.07" y="572.49" width="16.75" height="17.40" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070FDC: 252 bytes, not matched, size=symbol</title></rect>
-<rect x="662.17" y="535.58" width="15.81" height="12.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80714F0: 168 bytes, not matched, size=symbol</title></rect>
-<rect x="678.33" y="535.58" width="14.66" height="12.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_807053C: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="693.34" y="535.58" width="14.66" height="12.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80712F8: 156 bytes, not matched, size=symbol</title></rect>
-<rect x="662.17" y="548.10" width="11.42" height="14.79" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070348: 148 bytes, not matched, size=symbol</title></rect>
-<rect x="662.17" y="563.23" width="11.42" height="13.56" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80708DC: 136 bytes, not matched, size=symbol</title></rect>
-<rect x="662.17" y="577.14" width="11.42" height="12.74" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070BB8: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="673.94" y="548.10" width="12.91" height="11.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070C38: 128 bytes, not matched, size=symbol</title></rect>
-<rect x="687.20" y="548.10" width="10.43" height="11.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070CB8: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="697.98" y="548.10" width="10.01" height="11.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80703DC: 100 bytes, not matched, size=symbol</title></rect>
-<rect x="673.94" y="559.72" width="8.96" height="10.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8071260: 84 bytes, not matched, size=symbol</title></rect>
-<rect x="673.94" y="570.58" width="8.96" height="9.99" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80711E8: 80 bytes, not matched, size=symbol</title></rect>
-<rect x="673.94" y="580.92" width="8.96" height="8.96" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070D20: 72 bytes, not matched, size=symbol</title></rect>
-<rect x="683.25" y="559.72" width="8.18" height="9.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070D68: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="691.78" y="559.72" width="8.18" height="9.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80712B4: 68 bytes, not matched, size=symbol</title></rect>
-<rect x="700.31" y="559.72" width="7.68" height="9.25" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070208: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="683.25" y="569.31" width="7.02" height="10.11" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070248: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="683.25" y="579.77" width="7.02" height="10.11" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070288: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="690.62" y="569.31" width="8.51" height="8.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_80702C8: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="699.48" y="569.31" width="8.51" height="8.34" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070308: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="690.62" y="578.01" width="5.95" height="11.88" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070DE4: 64 bytes, not matched, size=symbol</title></rect>
-<rect x="696.92" y="578.01" width="11.07" height="5.55" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8070DAC: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="696.92" y="583.91" width="7.27" height="5.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/func_8071238: 40 bytes, not matched, size=symbol</title></rect>
-<rect x="704.53" y="583.91" width="3.46" height="5.97" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_color_fading/SetCurrentStageKeyzerRecoveredFlag: 20 bytes, not matched, size=symbol</title></rect>
+<text x="626.47" y="511.24" clip-path="url(#moduleLabelClip31)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">color_fading</text>
+<text x="706.34" y="510.24" text-anchor="end" clip-path="url(#moduleLabelClip31)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">100%</text>
+<rect x="624.97" y="517.62" width="19.75" height="26.01" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UpdateEscapePaletteFadeSequence: 440 bytes, matched, size=symbol</title></rect>
+<rect x="624.97" y="543.98" width="19.75" height="23.86" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UpdatePaletteInterpolation: 404 bytes, matched, size=symbol</title></rect>
+<rect x="624.97" y="568.19" width="19.75" height="21.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/ApplyPaletteFade: 368 bytes, matched, size=symbol</title></rect>
+<rect x="645.07" y="517.62" width="22.98" height="17.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/CollapseColorFadeWindowAroundWario: 348 bytes, matched, size=symbol</title></rect>
+<rect x="668.40" y="517.62" width="20.29" height="17.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/StartGoldenDivaPaletteFade: 308 bytes, matched, size=symbol</title></rect>
+<rect x="689.04" y="517.62" width="18.95" height="17.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/LoadBossSpriteGraphics: 288 bytes, matched, size=symbol</title></rect>
+<rect x="645.07" y="535.58" width="16.75" height="18.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UpdatePaletteFadeStep: 272 bytes, matched, size=symbol</title></rect>
+<rect x="645.07" y="554.74" width="16.75" height="17.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BuildRoomTintPalette: 252 bytes, matched, size=symbol</title></rect>
+<rect x="645.07" y="572.49" width="16.75" height="17.40" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/ColorFadingProcess: 252 bytes, matched, size=symbol</title></rect>
+<rect x="662.17" y="535.58" width="15.81" height="12.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/CollapseColorFadeWindowVertically: 168 bytes, matched, size=symbol</title></rect>
+<rect x="678.33" y="535.58" width="14.66" height="12.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/ExpandColorFadeWindow: 156 bytes, matched, size=symbol</title></rect>
+<rect x="693.34" y="535.58" width="14.66" height="12.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UploadBossColorFadePalettes: 156 bytes, matched, size=symbol</title></rect>
+<rect x="662.17" y="548.10" width="11.42" height="14.79" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BuildGrayscaleBgPaletteBuffer: 148 bytes, matched, size=symbol</title></rect>
+<rect x="662.17" y="563.23" width="11.42" height="13.56" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/ConvertObjPaletteBankToGrayscale: 136 bytes, matched, size=symbol</title></rect>
+<rect x="662.17" y="577.14" width="11.42" height="12.74" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UpdateBossDefeatPaletteFade: 128 bytes, matched, size=symbol</title></rect>
+<rect x="673.94" y="548.10" width="12.91" height="11.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UpdateGoldenDivaPaletteFade: 128 bytes, matched, size=symbol</title></rect>
+<rect x="687.20" y="548.10" width="10.43" height="11.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/ApplyTimedPaletteFade: 104 bytes, matched, size=symbol</title></rect>
+<rect x="697.98" y="548.10" width="10.01" height="11.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/UploadColorFadePalettes: 100 bytes, matched, size=symbol</title></rect>
+<rect x="673.94" y="559.72" width="8.96" height="10.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/FillColorFadePalettes: 84 bytes, matched, size=symbol</title></rect>
+<rect x="673.94" y="570.58" width="8.96" height="9.99" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/InitializeColorFadeEffect: 80 bytes, matched, size=symbol</title></rect>
+<rect x="673.94" y="580.92" width="8.96" height="8.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BlendColorFromWhite: 72 bytes, matched, size=symbol</title></rect>
+<rect x="683.25" y="559.72" width="8.18" height="9.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BlendColorToWhite: 68 bytes, matched, size=symbol</title></rect>
+<rect x="691.78" y="559.72" width="8.18" height="9.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/HandleSwitchColorFade: 68 bytes, matched, size=symbol</title></rect>
+<rect x="700.31" y="559.72" width="7.68" height="9.25" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BackupPalettesToPrimaryBuffers: 64 bytes, matched, size=symbol</title></rect>
+<rect x="683.25" y="569.31" width="7.02" height="10.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BackupPalettesToSecondaryBuffers: 64 bytes, matched, size=symbol</title></rect>
+<rect x="683.25" y="579.77" width="7.02" height="10.11" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BlendColorToBlack: 64 bytes, matched, size=symbol</title></rect>
+<rect x="690.62" y="569.31" width="8.51" height="8.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/CopyAlternateBgAndSecondaryObjPalettesToPrimaryBuffers: 64 bytes, matched, size=symbol</title></rect>
+<rect x="699.48" y="569.31" width="8.51" height="8.34" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/CopyAlternatePalettesToPrimaryBuffers: 64 bytes, matched, size=symbol</title></rect>
+<rect x="690.62" y="578.01" width="5.95" height="11.88" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/CopySecondaryPalettesToPrimaryBuffers: 64 bytes, matched, size=symbol</title></rect>
+<rect x="696.92" y="578.01" width="11.07" height="5.55" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BlendColorFromBlack: 56 bytes, matched, size=symbol</title></rect>
+<rect x="696.92" y="583.91" width="7.27" height="5.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/PrepareColorFadeBuffers: 40 bytes, matched, size=symbol</title></rect>
+<rect x="704.53" y="583.91" width="3.46" height="5.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>color_fading/BackupPalettesForColorFade: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>minigame: 100.0% matched, 5,008 bytes</title>

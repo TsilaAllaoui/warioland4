@@ -334,7 +334,7 @@ void SpriteBossTreasure(void)
             newY = originalY + movement;
             sprite->yPosition = newY;
 
-            if (gGoldenDivaRoomTimer != 0) {
+            if (gGoldenDivaRoomTimer[0] != 0) {
                 break;
             }
             timer = &sprite->work0;

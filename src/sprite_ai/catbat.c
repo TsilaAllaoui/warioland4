@@ -1,4 +1,5 @@
 #include "sprite_ai/catbat.h"
+#include "color_effects.h"
 #include "sprite.h"
 #include "sprite_util.h"
 #include "background_registers.h"
@@ -49,7 +50,6 @@ extern const void *const sUnk_878F0F8[];
 
 void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
 void UpdateBossHealthGauge(void);
-void LoadBossSpriteGraphics(u8, u8, u8);
 void DespawnActiveCatbatProjectile(void)
 {
     register u8 *cursor asm("r2");

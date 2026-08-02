@@ -1533,7 +1533,7 @@ func_808502C:
 	ldr	r0, .L_85174
 	str	r0, [r3, #8]
 	ldr	r0, [r3, #8]
-	bl	SetCurrentStageKeyzerRecoveredFlag
+	bl	BackupPalettesForColorFade
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}

@@ -390,7 +390,7 @@ void GameScreenInitAndLoadGenerics(void)
 
     InitStageHudAndScore();
     func_801DE7C();
-    func_80711E8();
+    InitializeColorFadeEffect();
     InitializeRoomMusic();
     if (gStageEntryPauseMenuDisabled == 0) {
         func_801D684();

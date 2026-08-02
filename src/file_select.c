@@ -10,8 +10,8 @@
 #define DMA3 ((vu32 *)0x040000D4)
 
 extern u32 DecompressRoomBackground(u32 arg0, const u8 *src, u8 *dst);
-extern void func_80703DC(void);
-extern void func_8071238(void);
+extern void UploadColorFadePalettes(void);
+extern void PrepareColorFadeBuffers(void);
 extern void func_8000D98(u32 arg0);
 extern void func_8000F64(void);
 extern void func_8000F90(void);
@@ -429,7 +429,7 @@ u32 InitializeFileSelect(void)
     }
 
     gColorFading.type = 2;
-    func_8071238();
+    PrepareColorFadeBuffers();
     *(vu16 *)0x04000000 = 0x5700;
     *(vu16 *)0x04000050 = 0x00EF;
     *(vu16 *)0x04000054 = 8;
@@ -1474,7 +1474,7 @@ u32 FileSelectSubroutine(void)
         }
         case 1:
         case 8:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateFileSelectFadeIn() != 0) {
                 gSubGameMode++;
             }
@@ -1583,7 +1583,7 @@ u32 FileSelectSubroutine(void)
             }
             break;
         case 6:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateFileSelectFadeOut() != 0) {
                 gSubGameMode++;
             }
@@ -1598,7 +1598,7 @@ u32 FileSelectSubroutine(void)
             }
             break;
         case 10:
-            func_80703DC();
+            UploadColorFadePalettes();
             if (UpdateFileSelectFadeOut() != 0) {
                 gSubGameMode = 0;
             }
@@ -2433,12 +2433,12 @@ void UpdateFileSelectWindow(void)
 
 u32 UpdateFileSelectFadeIn(void)
 {
-    return func_80710D8(0, 0);
+    return UpdatePaletteFadeStep(0, 0);
 }
 
 u32 UpdateFileSelectFadeOut(void)
 {
-    return func_80710D8(1, 0);
+    return UpdatePaletteFadeStep(1, 0);
 }
 
 void UpdateFileSelectMainAnimationPosition(void)

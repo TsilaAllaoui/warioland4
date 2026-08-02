@@ -5,7 +5,6 @@
 #include "global_data.h"
 #include "main.h"
 
-void SetCurrentStageKeyzerRecoveredFlag(void);
 
 struct BgClipStack {
     u32 bg0Attribute;
@@ -619,17 +618,17 @@ void StartRoomTransitionFade(u8 type)
     }
     else if (type == 4)
     {
-        gColorFading.unk_2 = 0;
+        gColorFading.progress = 0;
         gColorFading.type = 2;
-        SetCurrentStageKeyzerRecoveredFlag();
+        BackupPalettesForColorFade();
         gSubGameMode = 6;
         gSpriteAiDropTimer = 0;
         gStageExitType = 0x80;
     }
     else
     {
-        gColorFading.unk_2 = 0;
+        gColorFading.progress = 0;
         gColorFading.type = 2;
-        SetCurrentStageKeyzerRecoveredFlag();
+        BackupPalettesForColorFade();
     }
 }
