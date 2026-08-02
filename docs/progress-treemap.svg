@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  98.0%   3,962 / 4,044</text>
-<text x="24" y="88" class="mono">Code size  ███████████████████████████░░░  91.5%   554,751 / 606,363 bytes</text>
+<text x="24" y="68" class="mono">Functions  █████████████████████████████░  98.1%   3,968 / 4,044</text>
+<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  92.0%   557,867 / 606,363 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,022 / 4,044 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1801,22 +1801,22 @@
 <rect x="616.56" y="748.22" width="6.07" height="7.20" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/GetBackgroundScreenSize: 40 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>score: 48.3% matched, 6,232 bytes</title>
+<title>score: 83.8% matched, 6,232 bytes</title>
 <rect x="523.92" y="756.77" width="99.46" height="95.63" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip20"><rect x="525.92" y="757.77" width="96.06" height="17.32"/></clipPath>
 <rect x="524.92" y="757.77" width="98.06" height="17.32" fill="#05080d"/>
 <text x="526.42" y="770.77" clip-path="url(#moduleLabelClip20)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">score</text>
-<text x="620.97" y="769.77" text-anchor="end" clip-path="url(#moduleLabelClip20)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">48%</text>
+<text x="620.97" y="769.77" text-anchor="end" clip-path="url(#moduleLabelClip20)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">84%</text>
 <rect x="524.92" y="775.09" width="30.17" height="39.77" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/LoadStageCollectiblesFromSave: 1,012 bytes, not matched, size=symbol</title></rect>
-<rect x="524.92" y="815.21" width="30.17" height="36.44" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/InitStageHudAndScore: 928 bytes, not matched, size=symbol</title></rect>
-<rect x="555.44" y="775.09" width="35.35" height="29.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/DrawCurrentSecondarySprite: 884 bytes, not matched, size=symbol</title></rect>
+<rect x="524.92" y="815.21" width="30.17" height="36.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/InitStageHudAndScore: 928 bytes, matched, size=symbol</title></rect>
+<rect x="555.44" y="775.09" width="35.35" height="29.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/DrawCurrentSecondarySprite: 884 bytes, matched, size=symbol</title></rect>
 <rect x="591.15" y="775.09" width="31.48" height="29.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageTimerDigitTiles: 788 bytes, matched, size=symbol</title></rect>
 <rect x="555.44" y="805.05" width="24.09" height="24.02" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageTimerColonTiles: 492 bytes, matched, size=symbol</title></rect>
 <rect x="555.44" y="829.42" width="24.09" height="22.23" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UpdateStageTimerAndScoreDrain: 456 bytes, matched, size=symbol</title></rect>
-<rect x="579.88" y="805.05" width="21.56" height="13.13" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/UpdateSecondarySprites: 244 bytes, not matched, size=symbol</title></rect>
+<rect x="579.88" y="805.05" width="21.56" height="13.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UpdateSecondarySprites: 244 bytes, matched, size=symbol</title></rect>
 <rect x="601.78" y="805.05" width="20.84" height="13.13" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/StartTimeUpSequence: 236 bytes, matched, size=symbol</title></rect>
 <rect x="579.88" y="818.53" width="11.07" height="16.60" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnScoreCoinDropSprites: 160 bytes, matched, size=symbol</title></rect>
-<rect x="579.88" y="835.48" width="11.07" height="16.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnSecondarySprite: 156 bytes, not matched, size=symbol</title></rect>
+<rect x="579.88" y="835.48" width="11.07" height="16.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnSecondarySprite: 156 bytes, matched, size=symbol</title></rect>
 <rect x="591.30" y="818.53" width="15.91" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageScoreDigitTiles: 152 bytes, matched, size=symbol</title></rect>
 <rect x="607.57" y="818.53" width="15.06" height="10.96" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/AddStageScore: 144 bytes, matched, size=symbol</title></rect>
 <rect x="591.30" y="829.84" width="10.57" height="12.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/SpawnTileDebrisParticle: 116 bytes, matched, size=symbol</title></rect>
@@ -2439,17 +2439,17 @@
 <rect x="872.68" y="287.24" width="4.57" height="4.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>spear_mask/SpearMaskTackledRightInit: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>vortex_cutscene: 29.5% matched, 4,508 bytes</title>
+<title>vortex_cutscene: 49.6% matched, 4,508 bytes</title>
 <rect x="878.60" y="210.10" width="83.28" height="82.43" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip37"><rect x="880.60" y="211.10" width="79.88" height="14.95"/></clipPath>
 <rect x="879.60" y="211.10" width="81.88" height="14.95" fill="#05080d"/>
 <text x="881.10" y="221.10" clip-path="url(#moduleLabelClip37)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">vortex_cutsce…</text>
-<text x="959.48" y="220.10" text-anchor="end" clip-path="url(#moduleLabelClip37)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">30%</text>
+<text x="959.48" y="220.10" text-anchor="end" clip-path="url(#moduleLabelClip37)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">50%</text>
 <rect x="879.60" y="226.04" width="40.92" height="65.73" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/RenderVortexCutsceneOam: 2,272 bytes, not matched, size=symbol</title></rect>
-<rect x="920.86" y="226.04" width="24.36" height="30.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneFromPassage: 628 bytes, not matched, size=symbol</title></rect>
+<rect x="920.86" y="226.04" width="24.36" height="30.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneFromPassage: 628 bytes, matched, size=symbol</title></rect>
 <rect x="945.58" y="226.04" width="15.55" height="30.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneMainSprite: 404 bytes, matched, size=symbol</title></rect>
 <rect x="920.86" y="256.54" width="21.91" height="20.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneResources: 384 bytes, matched, size=symbol</title></rect>
-<rect x="920.86" y="277.25" width="21.91" height="14.53" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneAffine: 276 bytes, not matched, size=symbol</title></rect>
+<rect x="920.86" y="277.25" width="21.91" height="14.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneAffine: 276 bytes, matched, size=symbol</title></rect>
 <rect x="943.13" y="256.54" width="18.00" height="11.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutsceneKeyzerSprite: 176 bytes, matched, size=symbol</title></rect>
 <rect x="943.13" y="268.05" width="10.38" height="13.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/InitializeVortexCutsceneFromPortal: 124 bytes, matched, size=symbol</title></rect>
 <rect x="953.86" y="268.05" width="7.27" height="13.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>vortex_cutscene/UpdateVortexCutscenePaletteCycle: 88 bytes, matched, size=symbol</title></rect>
