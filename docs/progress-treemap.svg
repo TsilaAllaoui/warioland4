@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  █████████████████████████████░  98.3%   3,976 / 4,045</text>
-<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  92.3%   559,684 / 606,376 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  98.8%   3,995 / 4,045</text>
+<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  93.0%   564,056 / 606,376 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (4,022 / 4,045 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1830,32 +1830,32 @@
 <rect x="619.99" y="843.84" width="2.62" height="7.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/PlayWarioDefeatJingle: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>disasm_passage_screen: 0.0% matched, 6,196 bytes</title>
+<title>passage_screen: 70.6% matched, 6,196 bytes</title>
 <rect x="623.96" y="113.00" width="97.99" height="96.49" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip21"><rect x="625.96" y="114.00" width="94.59" height="17.48"/></clipPath>
 <rect x="624.96" y="114.00" width="96.59" height="17.48" fill="#05080d"/>
-<text x="626.46" y="127.00" clip-path="url(#moduleLabelClip21)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">disasm_passa…</text>
-<text x="719.55" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip21)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">0%</text>
-<rect x="624.96" y="131.48" width="47.42" height="45.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8085580: 1,824 bytes, not matched, size=symbol</title></rect>
-<rect x="624.96" y="177.68" width="47.42" height="31.06" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_80846F4: 1,240 bytes, not matched, size=symbol</title></rect>
-<rect x="672.73" y="131.48" width="27.59" height="18.88" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084E10: 444 bytes, not matched, size=symbol</title></rect>
-<rect x="700.66" y="131.48" width="20.54" height="18.88" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_808502C: 332 bytes, not matched, size=symbol</title></rect>
-<rect x="672.73" y="150.71" width="18.28" height="20.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8085178: 316 bytes, not matched, size=symbol</title></rect>
-<rect x="691.36" y="150.71" width="14.98" height="20.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_80845F0: 260 bytes, not matched, size=symbol</title></rect>
-<rect x="706.69" y="150.71" width="14.51" height="20.17" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_80852B4: 252 bytes, not matched, size=symbol</title></rect>
-<rect x="672.73" y="171.23" width="14.48" height="18.91" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_80853B0: 236 bytes, not matched, size=symbol</title></rect>
-<rect x="672.73" y="190.49" width="14.48" height="18.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_808549C: 228 bytes, not matched, size=symbol</title></rect>
-<rect x="687.55" y="171.23" width="18.67" height="11.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8085D68: 188 bytes, not matched, size=symbol</title></rect>
-<rect x="706.58" y="171.23" width="14.63" height="11.61" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084C28: 148 bytes, not matched, size=symbol</title></rect>
-<rect x="687.55" y="183.18" width="11.23" height="14.69" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084D5C: 144 bytes, not matched, size=symbol</title></rect>
-<rect x="687.55" y="198.23" width="11.23" height="10.51" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084CF4: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="699.14" y="183.18" width="11.31" height="10.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8085CA0: 104 bytes, not matched, size=symbol</title></rect>
-<rect x="710.79" y="183.18" width="10.41" height="10.45" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8085D08: 96 bytes, not matched, size=symbol</title></rect>
-<rect x="699.14" y="193.98" width="11.82" height="8.80" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084BCC: 92 bytes, not matched, size=symbol</title></rect>
-<rect x="699.14" y="203.13" width="11.82" height="5.62" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084FCC: 60 bytes, not matched, size=symbol</title></rect>
-<rect x="711.30" y="193.98" width="9.90" height="6.26" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084CBC: 56 bytes, not matched, size=symbol</title></rect>
-<rect x="711.30" y="200.59" width="4.77" height="8.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8084DEC: 36 bytes, not matched, size=symbol</title></rect>
-<rect x="716.43" y="200.59" width="4.77" height="8.15" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>disasm_passage_screen/func_8085008: 36 bytes, not matched, size=symbol</title></rect>
+<text x="626.46" y="127.00" clip-path="url(#moduleLabelClip21)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">passage_scre…</text>
+<text x="719.55" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip21)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">71%</text>
+<rect x="624.96" y="131.48" width="47.42" height="45.85" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/DrawPassageScreenSprites: 1,824 bytes, not matched, size=symbol</title></rect>
+<rect x="624.96" y="177.68" width="47.42" height="31.06" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/InitializePassageScreen: 1,240 bytes, matched, size=symbol</title></rect>
+<rect x="672.73" y="131.48" width="27.59" height="18.88" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/HandlePassageScreenInput: 444 bytes, matched, size=symbol</title></rect>
+<rect x="700.66" y="131.48" width="20.54" height="18.88" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/LoadPassageStageDisplayGraphics: 332 bytes, matched, size=symbol</title></rect>
+<rect x="672.73" y="150.71" width="18.28" height="20.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/DrawPassageStageScore: 316 bytes, matched, size=symbol</title></rect>
+<rect x="691.36" y="150.71" width="14.98" height="20.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/PassageScreenSubroutine: 260 bytes, matched, size=symbol</title></rect>
+<rect x="706.69" y="150.71" width="14.51" height="20.17" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/UpdatePassageStageCursorArrival: 252 bytes, matched, size=symbol</title></rect>
+<rect x="672.73" y="171.23" width="14.48" height="18.91" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/UpdatePassageStageSwitch: 236 bytes, matched, size=symbol</title></rect>
+<rect x="672.73" y="190.49" width="14.48" height="18.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/UpdatePassageScreenExitMovement: 228 bytes, matched, size=symbol</title></rect>
+<rect x="687.55" y="171.23" width="18.67" height="11.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/PassageScreenVBlank: 188 bytes, matched, size=symbol</title></rect>
+<rect x="706.58" y="171.23" width="14.63" height="11.61" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/BeginPassageStageSwitch: 148 bytes, matched, size=symbol</title></rect>
+<rect x="687.55" y="183.18" width="11.23" height="14.69" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/UpdatePassageStageCursorMovement: 144 bytes, matched, size=symbol</title></rect>
+<rect x="687.55" y="198.23" width="11.23" height="10.51" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/BeginPassageScreenWindowClose: 104 bytes, matched, size=symbol</title></rect>
+<rect x="699.14" y="183.18" width="11.31" height="10.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/ClosePassageScreenWindow: 104 bytes, matched, size=symbol</title></rect>
+<rect x="710.79" y="183.18" width="10.41" height="10.45" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/OpenPassageScreenWindow: 96 bytes, matched, size=symbol</title></rect>
+<rect x="699.14" y="193.98" width="11.82" height="8.80" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/BeginPassageStageCursorArrival: 92 bytes, matched, size=symbol</title></rect>
+<rect x="699.14" y="203.13" width="11.82" height="5.62" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/BeginPassageScreenExit: 60 bytes, matched, size=symbol</title></rect>
+<rect x="711.30" y="193.98" width="9.90" height="6.26" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/InitializePassageStageEntry: 56 bytes, matched, size=symbol</title></rect>
+<rect x="711.30" y="200.59" width="4.77" height="8.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/BeginPassageBossStageEntry: 36 bytes, matched, size=symbol</title></rect>
+<rect x="716.43" y="200.59" width="4.77" height="8.15" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/UpdatePassageStageCursorSound: 36 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
 <title>boss_treasure_cutscene: 49.4% matched, 6,052 bytes</title>

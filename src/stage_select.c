@@ -9,6 +9,7 @@
 #include "vortex_cutscene.h"
 #include "boss_treasure_cutscene.h"
 #include "passage_clear.h"
+#include "passage_screen.h"
 #include "sound_room.h"
 #include "minigame.h"
 #include "score.h"
@@ -21,13 +22,6 @@
 extern void UploadColorFadePalettes(void);
 extern void FillColorFadePalettes(void);
 extern void func_807E7B0(void);
-extern s32 func_80845F0(void);
-extern void func_8084BCC(void);
-extern void func_8084C28(void);
-extern void func_8084CBC(void);
-extern void func_8084CF4(void);
-extern void func_8085580(void);
-extern void func_8085D68(void);
 extern void UpdateBossDoorOpeningDisplay(void);
 extern void UpdateBossDoorOpeningSprites(void);
 extern void PrepareBossDoorOpeningResult(void);
@@ -350,7 +344,7 @@ u32 StageSelectSubroutine(void)
         case 33:
             *(vu16 *)0x04000200 ^= 1;
             gColorFading.type = 2;
-            func_8084BCC();
+            BeginPassageStageCursorArrival();
             gSubGameMode = 34;
             *(vu16 *)0x04000200 |= 1;
             break;
@@ -368,7 +362,7 @@ u32 StageSelectSubroutine(void)
             break;
 
         case 35:
-            if (func_80845F0() != 0 && LoadSelectedStageData() != 0) {
+            if (PassageScreenSubroutine() != 0 && LoadSelectedStageData() != 0) {
                 gSubGameMode = 36;
             }
             break;
@@ -397,7 +391,7 @@ u32 StageSelectSubroutine(void)
         case 37:
             *(vu16 *)0x04000200 ^= 1;
             gColorFading.type = 2;
-            func_8084C28();
+            BeginPassageStageSwitch();
             gSubGameMode = 34;
             *(vu16 *)0x04000200 |= 1;
             break;
@@ -405,7 +399,7 @@ u32 StageSelectSubroutine(void)
         case 38:
             *(vu16 *)0x04000200 ^= 1;
             gColorFading.type = 2;
-            func_8084CBC();
+            InitializePassageStageEntry();
             gSubGameMode = 34;
             *(vu16 *)0x04000200 |= 1;
             break;
@@ -413,7 +407,7 @@ u32 StageSelectSubroutine(void)
         case 39:
             *(vu16 *)0x04000200 ^= 1;
             gColorFading.type = 2;
-            func_8084CF4();
+            BeginPassageScreenWindowClose();
             gSubGameMode = 34;
             *(vu16 *)0x04000200 |= 1;
             break;
@@ -699,7 +693,7 @@ void StageSelectVBlank(void)
         case 37:
         case 38:
         case 39:
-            func_8085D68();
+            PassageScreenVBlank();
             break;
         case 41:
         case 42:
@@ -1109,7 +1103,7 @@ void DrawStageSelectSprites(void)
         case 37:
         case 38:
         case 39:
-            func_8085580();
+            DrawPassageScreenSprites();
             break;
         case 41:
         case 42:
