@@ -340,7 +340,6 @@ void InitializeVortexCutsceneFromPassage(void)
   {
     register u16 firstZero asm("r1");
     u16 spriteZero;
-
     firstZero = 0;
     /* Keep the first zero live in r1 until the sprite-state zero is introduced in r2. */
     asm("" : : "r"(firstZero));
@@ -349,7 +348,6 @@ void InitializeVortexCutsceneFromPassage(void)
     gUnk_3003D6E = firstZero;
     gUnk_3003D72 = firstZero;
     spriteZero = 0;
-
     sprite = gStageEntryMainSpriteState;
     sprite[0] = spriteZero;
     sprite[1] = spriteZero;
@@ -560,6 +558,7 @@ void UpdateVortexCutsceneAffine(void)
     temp -= (((*valueAlias) << 2) + value) << 4;
     *((s32 *) (affine + 8)) = *tempAlias;
 }
+
 
 
 void UpdateVortexCutscenePaletteCycle(void)

@@ -124,9 +124,9 @@ struct BossTreasureParticle
 #ifndef NONMATCHING
 ASM_INCLUDE("asm/disasm_boss_treasure_cutscene_UpdateBossTreasureCutscene.s");
 #else
+/* Best current C candidate: score 635 / 44100. */
 int UpdateBossTreasureCutscene(void)
 {
-  /* Best safe WIP C: 635 / 44100. */
   s32 treasureIndex;
   s32 sparkleIndex;
   s32 iconIndex;
@@ -400,6 +400,7 @@ int UpdateBossTreasureCutscene(void)
   gStageEntrySequenceStep++;
   return 0;
 }
+
 
 #endif
 
