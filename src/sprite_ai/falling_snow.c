@@ -13,7 +13,7 @@ extern const struct AnimationFrame sFallingSnowDropOam[];
 extern const struct AnimationFrame sFallingSnowResetOam[];
 extern const struct AnimationFrame sFallingSnowFragmentRightOam[];
 extern const struct AnimationFrame sFallingSnowFragmentLeftOam[];
-extern u8 gUnk_3000964[][3];
+extern u8 gRoomSpriteData[][3];
 extern void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
 
 void InitFallingSnow(void)
@@ -133,7 +133,7 @@ void FallingSnowRespawn(void)
     u8 roomSlot;
     u16 y;
 
-    map = gUnk_3000964;
+    map = gRoomSpriteData;
     sprite = &gCurrentSprite;
     roomSlot = sprite->roomSlot;
     y = map[roomSlot][0];

@@ -9,7 +9,6 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
 extern const struct AnimationFrame sSkeletonBirdGlideOam[];
 extern const struct AnimationFrame sSkeletonBirdTurnOam[];

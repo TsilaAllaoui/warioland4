@@ -183,7 +183,7 @@ void AdvanceDominoAtTile(int yArg, int xArg)
     x = xArg;
     found = 0;
     i = 0;
-    address = gUnk_3000964;
+    address = gRoomSpriteData;
     asm("" : "+r"(address));
     data = address;
     if (y != data[0] || x != data[1]) {
@@ -952,13 +952,13 @@ void FinishDominoChain(void)
             register int shift asm("r0");
             register int offset asm("r1");
 
-            data = gUnk_3000964;
+            data = gRoomSpriteData;
             if (y != data[0] || x != data[1]) {
 searchRoomEntry:
                 index++;
                 if (index > 63)
                     goto roomSearchDone;
-                base = gUnk_3000964;
+                base = gRoomSpriteData;
                 shift = index << 1;
                 offset = shift + index;
                 data = (u8 *)(offset + (u32)base);

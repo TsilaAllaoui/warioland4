@@ -482,7 +482,7 @@ void func_803B164(void)
     current->work0 = 31;
     current->status = (current->status & 0xFEFF) | 0x200;
 
-    func_801E430(10, current->roomSlot, 0, current->yPosition, current->xPosition);
+    SpawnHighPriorityPrimarySprite(10, current->roomSlot, 0, current->yPosition, current->xPosition);
     current->yPosition -= 128;
     m4aSongNumStart(SOUND_9B);
 }
@@ -502,16 +502,16 @@ void func_803B1F8(void)
 
     if (value != 0) {
         if (value == 24) {
-            func_801E430(11, current->roomSlot, 0,
+            SpawnHighPriorityPrimarySprite(11, current->roomSlot, 0,
                          current->yPosition - 64, current->xPosition - 96);
         } else if (value == 17) {
-            func_801E430(12, current->roomSlot, 0,
+            SpawnHighPriorityPrimarySprite(12, current->roomSlot, 0,
                          current->yPosition - 96, current->xPosition + 64);
         } else if (value == 10) {
-            func_801E430(11, current->roomSlot, 0,
+            SpawnHighPriorityPrimarySprite(11, current->roomSlot, 0,
                          current->yPosition - 112, current->xPosition + 96);
         } else if (value == 3) {
-            func_801E430(12, current->roomSlot, 0,
+            SpawnHighPriorityPrimarySprite(12, current->roomSlot, 0,
                          current->yPosition - 144, current->xPosition - 64);
         }
 

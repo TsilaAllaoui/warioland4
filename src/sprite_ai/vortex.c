@@ -94,7 +94,7 @@ void VortexFinishStage(void)
     gWarioPauseTimer = CONVERT_SECONDS(16.0 + 2.0 / 3.0);
     gStageTimerColonState = 2;
     AutosaveStageClear();
-    func_801E430(
+    SpawnHighPriorityPrimarySprite(
         PSPRITE_WARIO_ENTERING_VORTEX,
         gCurrentSprite.roomSlot,
         gCurrentSprite.gfxSlot,

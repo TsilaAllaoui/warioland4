@@ -27,7 +27,6 @@ extern const struct AnimationFrame sKaentsuboFireballTravelOam[];
 extern const struct AnimationFrame sKaentsuboDefeatSmokeOam[];
 extern const struct AnimationFrame sKaentsuboFireballSpawnOam[];
 
-void SpawnPrimarySpriteWithStatus();
 void func_8023FA8(void);
 
 void InitKaentsubo(void)

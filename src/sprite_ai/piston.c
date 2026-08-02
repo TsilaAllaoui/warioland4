@@ -140,7 +140,7 @@ void PistonWaitAfterImpact(void)
 void PistonRetract(void)
 {
     u8 value;
-    value = gUnk_3000964[gCurrentSprite.roomSlot][0];
+    value = gRoomSpriteData[gCurrentSprite.roomSlot][0];
     if (gCurrentSprite.yPosition <= (value << 6) + 64)
         gCurrentSprite.pose = 15;
     else

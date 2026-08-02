@@ -8,7 +8,6 @@
 #include "sprite_util.h"
 #include "wario.h"
 
-void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
 
 extern const struct AnimationFrame sMoguramenBurrowedOam[];
 extern const struct AnimationFrame sMoguramenIdleOam[];
@@ -76,7 +75,7 @@ void InitMoguramen(void)
     gCurrentSprite.hitboxExtentDown = 0;
     SpriteUtilTurnTowardWario();
 
-    roomData = gUnk_3000964;
+    roomData = gRoomSpriteData;
     roomSlot = gCurrentSprite.roomSlot;
     roomDataOffset = roomSlot * 3;
     roomData += 2;

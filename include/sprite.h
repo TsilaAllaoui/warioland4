@@ -468,6 +468,7 @@ extern struct PrimarySpriteData gSpriteData[MAX_SPRITE_COUNT];
 extern u8 gPersistentSpriteData[16][MAX_SPRITE_SLOTS_PER_ROOM];
 #define MAKE_PERSISTENT_DATA(pose, status) (((pose) << 4) | (status))
 extern struct PrimarySpriteData gCurrentSprite;
+extern const u16 *gCurrentSpriteOamData;
 
 extern u8 gSpriteCollisionResult;
 extern u8 gSpriteCollisionTileType;
@@ -483,15 +484,28 @@ extern u8 gSpriteAiDynamicGraphicsTimer;
 extern const u16 sUnk_83B35F8[][2];
 extern const u16 sSpriteAffineScaleTable[][2];
 
+void UpdatePrimarySprites(void);
+void AdvanceCurrentSpriteAnimation(void);
+void DrawPrimarySprites(void);
+void DrawCurrentPrimarySprite(u32 spriteIndex);
+void UpdateCurrentSpriteVisibility(void);
+void InitializePrimarySprites(void);
+void LoadRoomSpriteGraphics(void);
+void ResetPersistentSpriteData(void);
+void LoadRoomSpriteData(void);
+void ClearPrimarySpriteSlots(void);
+void SpawnRoomSprite(u32 roomSlot, u32 y, u32 x, u32 persistent);
+void SpawnVisibleRoomSprites(void);
+void SpawnRoomSpritesAtCameraBoundary(u32 distance);
+#ifndef SPRITE_IMPLEMENTATION
 void SpriteSpawnAsChild(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
 void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
-void func_801D684(void);
-void func_801D8C4(void);
-void func_801DE7C(void);
-void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
-void func_801E430(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
-void SpawnPrimarySpriteWithStatus(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
-
-void SpawnPrimarySpriteWithStatus(u8, u8, u8, u32, u32, u32);
+void SpawnHighPriorityPrimarySprite(u8 id, u8 roomSlot, u8 gfxSlot, u32 yPosition, u32 xPosition);
+#else
+/* The C implementations normalize the raw ABI-width arguments exactly as the original assembly did. */
+void SpriteSpawnAsChild(u32 id, u32 roomSlot, u32 gfxSlot, u32 yPosition, u32 xPosition);
+void SpawnPrimarySpriteWithStatus(u32 id, u32 roomSlot, u32 gfxSlot, u32 yPosition, u32 xPosition, u32 status);
+void SpawnHighPriorityPrimarySprite(u32 id, u32 roomSlot, u32 gfxSlot, u32 yPosition, u32 xPosition);
+#endif
 
 #endif  // SPRITE_H

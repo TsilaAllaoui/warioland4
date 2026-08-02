@@ -96,6 +96,7 @@ extern u32 gHeartGauge;
 extern SaveBlock12 gWarioDustEffect1;
 extern SaveBlock12 gWarioDustEffect2;
 extern SaveBlock44 gSpriteData[];
+extern u8 gPersistentSpriteData[][64];
 extern u8 gSwitchPressed;
 extern u8 gCollectedNEJewelPiece;
 extern u8 gCollectedSEJewelPiece;
@@ -109,9 +110,6 @@ extern u8 gCollectedKeyzer;
 extern u8 gUnk_3000C0E;
 extern u32 gStageScore;
 extern u32 gStageFrameCounter;
-extern u8 gUnk_3000524[];
-extern u8 gUnk_3000544[];
-extern u8 gPersistentSpriteData[][64];
 extern u8 gSwitchStates[];
 extern u8 gStageTimerDigits[];
 extern s8 gScoreDigits[];
@@ -658,7 +656,7 @@ void SerializeGameStateToTemporarySave(void)
         register u8 *source asm("r1");
 
         index = 0;
-        source = gUnk_3000524;
+        source = gRoomSpriteIds;
         do
         {
             *destination++ = *(u8 *)(index + (u32)source);
@@ -687,7 +685,7 @@ void SerializeGameStateToTemporarySave(void)
         register u8 *source asm("r1");
 
         index = 0;
-        source = gUnk_3000544;
+        source = gRoomSpriteGraphicsSlots;
         do
         {
             *destination++ = *(u8 *)(index + (u32)source);
@@ -1052,7 +1050,7 @@ void RestoreGameStateFromTemporarySave(void)
     {
         register s32 index asm("r2");
         register u8 *destination asm("r3");
-        index = 0; destination = gUnk_3000524;
+        index = 0; destination = gRoomSpriteIds;
         do { *(u8 *)(index + (u32)destination) = *source++; index++; } while (index <= 31);
         if ((index & 3) != 0)
         {
@@ -1063,7 +1061,7 @@ void RestoreGameStateFromTemporarySave(void)
     {
         register s32 index asm("r2");
         register u8 *destination asm("r3");
-        index = 0; destination = gUnk_3000544;
+        index = 0; destination = gRoomSpriteGraphicsSlots;
         do { *(u8 *)(index + (u32)destination) = *source++; index++; } while (index <= 31);
         if ((index & 3) != 0)
         {

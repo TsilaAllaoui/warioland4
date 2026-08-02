@@ -19,8 +19,8 @@ sGoldenDivaDefeatPalette:
 
 baserom_blob 0x3B2C70, 0x3B2C90
 
-.global sUnk_83B2C90
-sUnk_83B2C90:
+.global sPrimarySpriteGraphicsSizes
+sPrimarySpriteGraphicsSizes:
 
 baserom_blob 0x3B2C90, 0x3B31E8
 

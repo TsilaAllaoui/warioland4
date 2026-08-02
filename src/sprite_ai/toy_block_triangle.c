@@ -411,7 +411,7 @@ void UnlockMatchingToyBlockTriangleLock(void)
     {
         register u8* rawData asm("r0");
 
-        rawData = &gUnk_3000964[0][0];
+        rawData = &gRoomSpriteData[0][0];
         /* Preserve the separate r0-to-r3 move used for the room lookup table. */
         asm("mov %0, %1" : "=r"(data) : "r"(rawData));
     }

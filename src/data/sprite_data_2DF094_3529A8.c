@@ -36312,7 +36312,7 @@ const struct WarioAnimationFrame sWarioBarbellEndingAnimation[] = {
     {NULL, NULL, 0},
 };
 
-/* 0x0835299C - 0x083529A8: preserved shared-data symbol sUnk_835299C. */
-const u8 sUnk_835299C[] = {
+/* 0x0835299C - 0x083529A8: preserved shared-data symbol sOamWidthByShapeAndSize. */
+const u8 sOamWidthByShapeAndSize[] = {
     0x01, 0x02, 0x04, 0x08, 0x02, 0x04, 0x04, 0x08, 0x01, 0x01, 0x02, 0x04,
 };

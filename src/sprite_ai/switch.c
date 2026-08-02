@@ -82,7 +82,7 @@ void SwitchInitPressed(void)
     sprite->pOamData = sSwitchPressedOam;
     sprite->pose = 48;
     SwitchSetCommonProperties();
-    func_801E430(170, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition, sprite->xPosition);
+    SpawnHighPriorityPrimarySprite(170, sprite->roomSlot, sprite->gfxSlot, sprite->yPosition, sprite->xPosition);
     sprite->work0 = 60;
 }
 
@@ -282,7 +282,7 @@ void SwitchRespawnDelay(void)
             gfxSlot = work->gfxSlot;
             /* Place the preserved sprite pointer after both byte argument loads. */
             asm("mov %0, %1" : "=r"(callSprite) : "r"(sprite));
-            func_801E430(170, roomSlot, gfxSlot, callSprite->yPosition, callSprite->xPosition);
+            SpawnHighPriorityPrimarySprite(170, roomSlot, gfxSlot, callSprite->yPosition, callSprite->xPosition);
         }
         *timerPtr = 33;
     }

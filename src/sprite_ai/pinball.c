@@ -1051,7 +1051,7 @@ void PinballCounterUpdateDisplay(void)
 
     completedCount = 0;
     index = 0;
-    globalIDPtr = gUnk_3000964;
+    globalIDPtr = gRoomSpriteData;
     {
         s32 firstEntry;
 
