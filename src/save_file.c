@@ -11,13 +11,13 @@ extern u8 gTitleScreenStyle;
 extern u8 gUnk_300001D;
 
 extern u32 sUnk_86391C4[][6];
-extern u8 sBackupSramTestSignature[];
+extern const u8 sBackupSramTestSignature[];
 extern const u8 sSaveFooterSignature[];
-extern u8 sMainSaveHeaderSignature1[];
-extern u8 sMainSaveHeaderSignature2[];
-extern u8 sUsTitleSaveVersionString[];
-extern u8 sSaveSlotValidationSignatures[];
-extern u8 sStageSelectionSaveSignature[];
+extern const u8 sMainSaveHeaderSignature1[];
+extern const u8 sMainSaveHeaderSignature2[];
+extern const u8 sUsTitleSaveVersionString[];
+extern const u8 sSaveSlotValidationSignatures[];
+extern const u8 sStageSelectionSaveSignature[];
 extern u8 * const sPrimarySaveHeaderBuffers[];
 extern u8 * const sSecondarySaveHeaderBuffers[];
 extern u8 * const sMainSaveDataBuffers[];
@@ -39,8 +39,8 @@ u32 ClassifyAndRepairSaveSlotCopy(u8 selectedFile);
 u32 ValidateStageSelectionSaveSlot(u8 selectedFile);
 u32 ValidateMainSaveSlot(u8 selectedFile, u32 statusValue);
 u32 ValidateSelectedSaveHeader(void);
-extern u8 sPassageNameValidationStrings[];
-extern u8 sStageNameValidationStrings[];
+extern const u8 sPassageNameValidationStrings[];
+extern const u8 sStageNameValidationStrings[];
 
 void RestoreGameStateFromTemporarySave(void);
 void SerializeGlobalSaveDataToWorkingBuffer(void);
@@ -2448,5 +2448,38 @@ void RestoreTempSaveStageSelection(void)
     }
 }
 
-/* Exact ROM data retained as assembly to avoid C string terminators/alignment changes. */
-ASM_INCLUDE("asm/save_file_rodata.inc");
+const u8 sBackupSramTestSignature[16] = "Wari4_AGB_BackUp";
+const u8 sSaveFooterSignature[8] = "SAVE_END";
+const u8 sMainSaveHeaderSignature1[16] = "AutoSAVEWar4key1";
+const u8 sMainSaveHeaderSignature2[16] = "key2AutoSAVEWar4";
+const u8 sTemporarySaveHeaderSignature1[16] = "DisContinueKey1b";
+const u8 sTemporarySaveHeaderSignature2[16] = "DisContinue2bKey";
+const u8 sUsTitleSaveVersionString[20] = "AGBWarioLand-USver00";
+const u8 sJpTitleSaveVersionString[20] = "WARIOLANDNIPPONVer00";
+
+u8 * const sPrimarySaveHeaderBuffers[2] = {
+    (u8 *)0x02038100,
+    (u8 *)0x02038500,
+};
+
+u8 * const sSecondarySaveHeaderBuffers[2] = {
+    (u8 *)0x02038300,
+    (u8 *)0x02038700,
+};
+
+u8 * const sMainSaveDataBuffers[2] = {
+    (u8 *)0x02039000,
+    (u8 *)0x0203C800,
+};
+
+u8 * const sStageSelectionSaveBuffers[2] = {
+    (u8 *)0x020382E0,
+    (u8 *)0x020386E0,
+};
+
+const u8 sSaveSlotValidationSignatures[18] = "WAR4SAVEA" "BSAVEWAR4";
+const u8 sStageSelectionSaveSignature[16] __attribute__((aligned(4))) = "WARABGSELECTSAVE";
+const u8 sPassageNameValidationStrings[48] =
+    " FIRST  " "  GREEN " "   RED  " " YELLOW " "    BLUE" " GOLDEN ";
+const u8 sStageNameValidationStrings[56] =
+    "StAGe000" "01sTAgEn" "WarioSt2" "AgbWar03" "STe4boSS" "MinIGaMe" "sElecTWn";

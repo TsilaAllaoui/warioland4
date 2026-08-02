@@ -69,3 +69,12 @@ __pycache__
 
 # m2ctx
 /ctx.c
+
+# leftovers files
+*.json
+*.tar.*
+*.tar
+*.py
+*.txt
+bundles/
+tools/

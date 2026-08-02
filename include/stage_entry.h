@@ -86,6 +86,12 @@ extern const u8 *const sStageEntryCompanionSpriteDataByFrame[];
 extern const u8 sStageEntryCompanionSpriteFrameIndices[];
 extern const u32 sStageEntrySparkleTriggerFrames[][2];
 extern const u8 *const sStageEntryStagePalettes[][4];
+extern const u8 sStageEntryPassagePal[];
+extern const u8 sStageEmeraldPassagePal[];
+extern const u8 sStageRubyPassagePal[];
+extern const u8 sStageTopazPassagePal[];
+extern const u8 sStageSapphirePassagePal[];
+extern const u8 sStageGoldenPyramidPal[];
 
 extern u8 gStageEntryBlinkCounter;
 extern u32 gStageEntryBlinkVisible;

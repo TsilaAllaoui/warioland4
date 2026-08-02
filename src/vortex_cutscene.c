@@ -190,9 +190,6 @@ void InitializeVortexCutsceneFromPortal(void)
     sprite[8] = value;
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_vortex_cutscene_InitializeVortexCutsceneFromPassage.s");
-#else
 void InitializeVortexCutsceneFromPassage(void)
 {
   struct VortexSpriteStateCopy
@@ -201,7 +198,6 @@ void InitializeVortexCutsceneFromPassage(void)
   };
   u32 control;
   u16 *sprite;
-  u16 zero;
   volatile u32 *transfer;
   InitializeVortexCutsceneResources();
   if ((gCurrentPassage == 0) || (gCurrentPassage == 5))
@@ -217,7 +213,7 @@ void InitializeVortexCutsceneFromPassage(void)
     volatile u32 *dma;
     u32 status;
     u32 mask;
-    dma = (volatile u32 *)REG_ADDR_DMA3;
+    dma = (volatile u32 *) (0x4000000 + 0xd4);
     dma[0] = (u32) sUnk_868A01C;
     dma[1] = 0x0600C000;
     dma[2] = 0x80000400;
@@ -232,7 +228,7 @@ void InitializeVortexCutsceneFromPassage(void)
       }
       while (status != 0);
     }
-    transfer = (volatile u32 *)REG_ADDR_DMA3;
+    transfer = (volatile u32 *) (0x4000000 + 0xd4);
     transfer[0] = (u32) sUnk_868981C;
     transfer[1] = 0x0600D000;
     control = 0x80000400;
@@ -242,7 +238,7 @@ void InitializeVortexCutsceneFromPassage(void)
     volatile u32 *dma;
     u32 status;
     u32 mask;
-    dma = (volatile u32 *)REG_ADDR_DMA3;
+    dma = (volatile u32 *) (0x4000000 + 0xd4);
     dma[0] = (u32) sUnk_868901C;
     dma[1] = 0x0600C000;
     dma[2] = 0x80000400;
@@ -257,7 +253,7 @@ void InitializeVortexCutsceneFromPassage(void)
       }
       while (status != 0);
     }
-    dma = (volatile u32 *)REG_ADDR_DMA3;
+    dma = (volatile u32 *) (0x4000000 + 0xd4);
     dma[0] = (u32) sUnk_868981C;
     dma[1] = 0x0600D000;
     dma[2] = 0x80000400;
@@ -272,7 +268,7 @@ void InitializeVortexCutsceneFromPassage(void)
       }
       while (status != 0);
     }
-    transfer = (volatile u32 *)REG_ADDR_DMA3;
+    transfer = (volatile u32 *) (0x4000000 + 0xd4);
     transfer[0] = (u32) (&sStageEjectionPassageExtraPalettes[(gCurrentPassage - 1) << 5]);
     transfer[1] = 0x050003C0;
     control = 0x80000010;
@@ -283,7 +279,7 @@ void InitializeVortexCutsceneFromPassage(void)
     u32 mask;
     transfer[2] = control;
     status = transfer[2];
-    waitDma = (volatile u32 *)REG_ADDR_DMA3;
+    waitDma = (volatile u32 *) (0x4000000 + 0xd4);
     status = waitDma[2];
     mask = 0x80000000;
     if (((s32) status) < 0)
@@ -295,7 +291,7 @@ void InitializeVortexCutsceneFromPassage(void)
     volatile u32 *dma;
     u32 status;
     u32 mask;
-    dma = (volatile u32 *)REG_ADDR_DMA3;
+    dma = (volatile u32 *) (0x4000000 + 0xd4);
     dma[0] = (u32) (&sStageEjectionPassagePalettes[gCurrentPassage << 5]);
     dma[1] = 0x050003A0;
     dma[2] = 0x80000010;
@@ -310,7 +306,7 @@ void InitializeVortexCutsceneFromPassage(void)
       }
       while (status != 0);
     }
-    dma = (volatile u32 *)REG_ADDR_DMA3;
+    dma = (volatile u32 *) (0x4000000 + 0xd4);
     dma[0] = (u32) sUnk_868669C;
     dma[1] = 0x05000080;
     dma[2] = 0x800000C0;
@@ -325,34 +321,41 @@ void InitializeVortexCutsceneFromPassage(void)
       }
       while (status != 0);
     }
-    dma = (volatile u32 *)REG_ADDR_DMA3;
+    dma = (volatile u32 *) (0x4000000 + 0xd4);
     dma[0] = (u32) sUnk_868681C;
     dma[1] = 0x06008000;
     dma[2] = 0x80001400;
     dma[2];
   }
-  REG_BG0CNT = 0x1808;
-  REG_BG1CNT = 0x1A09;
-  zero = (gUnk_3003D6C = 0);
-  gUnk_3003D70 = zero;
-  gUnk_3003D6E = zero;
-  gUnk_3003D72 = zero;
-  sprite = gStageEntryMainSpriteState;
-  sprite[0] = zero;
-  sprite[1] = zero;
-  sprite[2] = 120;
-  sprite[3] = 80;
-  sprite[6] = zero;
-  sprite[7] = 128;
-  sprite[8] = 128;
-  gStageResultsNewHighScoreIcon.state = zero;
-  *((struct VortexSpriteStateCopy *) gUnk_3003D78) = *((struct VortexSpriteStateCopy *) sprite);
-  gUnk_3003D8C = zero;
-  gUnk_3003D90 = zero;
-  gUnk_3003D8E = zero;
-  gUnk_3003D92 = zero;
+  *((vu16 *) (0x4000000 + 0x8)) = 0x1808;
+  *((vu16 *) (0x4000000 + 0xa)) = 0x1A09;
+  {
+    register u16 firstZero asm("r1");
+    u16 spriteZero;
+    firstZero = 0;
+    /* Keep the first zero live in r1 until the sprite-state zero is introduced in r2. */
+    asm("" : : "r"(firstZero));
+    gUnk_3003D6C = firstZero;
+    gUnk_3003D70 = firstZero;
+    gUnk_3003D6E = firstZero;
+    gUnk_3003D72 = firstZero;
+    spriteZero = 0;
+    sprite = gStageEntryMainSpriteState;
+    sprite[0] = spriteZero;
+    sprite[1] = spriteZero;
+    sprite[2] = 120;
+    sprite[3] = 80;
+    sprite[6] = spriteZero;
+    sprite[7] = 128;
+    sprite[8] = 128;
+    gStageResultsNewHighScoreIcon.state = firstZero;
+    *((struct VortexSpriteStateCopy *) gUnk_3003D78) = *((struct VortexSpriteStateCopy *) sprite);
+    gUnk_3003D8C = spriteZero;
+    gUnk_3003D90 = spriteZero;
+    gUnk_3003D8E = spriteZero;
+    gUnk_3003D92 = spriteZero;
+  }
 }
-#endif
 
 u32 UpdateVortexCutsceneMainSprite(void)
 {
@@ -489,97 +492,65 @@ u32 UpdateVortexCutsceneKeyzerSprite(void)
 }
 
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_vortex_cutscene_UpdateVortexCutsceneAffine.s");
-#else
 void UpdateVortexCutsceneAffine(void)
 {
-  const s16 *table;
-  u16 *anglePtr;
-  s32 angle;
-  int new_var2;
-  s32 *new_var8;
-  long new_var4;
-  u16 **new_var3;
-  s32 value;
-  s16 inverse;
-  s32 *new_var;
-  int new_var6;
-  int new_var7;
-  s32 temp;
-  s16 *affine;
-  int new_var5;
-  s32 mask;
-
-  if (gUnk_3003C34 == 0)
-  {
-    angle = gUnk_3003D68;
-    angle = angle + 5;
-  }
-  else
-  {
-    angle = gUnk_3003D68;
-    angle = angle + 251;
-  }
-
-  mask = 0xFF;
-  angle &= mask;
-  gUnk_3003D68 = angle;
-  anglePtr = &gUnk_3003D68;
-  table = sSinCosTable;
-
-  {
-    s32 index;
-
-    index = *anglePtr;
-    index += 0x40;
-    value = table[index];
-  }
-
-  inverse = FixedInverse(0x200);
-  value = FixedMul(value, inverse);
-  affine = (s16 *) gStageEntryHorizontalScroll;
-  affine[2] = value;
-
-  value = table[*(*(new_var3 = &anglePtr))];
-  new_var = &value;
-  inverse = FixedInverse(0x200);
-  new_var4 = 4;
-  affine[3] = FixedMul(value, inverse);
-
-  value = (s16) (-table[*anglePtr]);
-  inverse = FixedInverse(0x200);
-  affine[new_var4] = FixedMul(value, inverse);
-
-  {
-    s32 index;
-
-    index = *anglePtr;
-    index += (new_var2 = 0x40);
-    value = table[index];
-  }
-
-  inverse = FixedInverse(0x200);
-  affine[5] = FixedMul(value, inverse);
-
-  new_var6 = (128 - affine[0]) << 8;
-  temp = new_var6;
-  value = affine[2];
-  temp -= ((value << 4) - value) << 3;
-  value = affine[3];
-  new_var5 = 4;
-  temp -= ((value << 2) + value) << new_var5;
-  *((s32 *) (affine + 6)) = *(new_var8 = &temp);
-
-  new_var7 = (128 - affine[1]) << 8;
-  temp = new_var7;
-  value = affine[new_var5];
-  temp -= ((value << new_var5) - value) << 3;
-  value = affine[5];
-  temp -= (((*new_var) << 2) + value) << new_var5;
-  *((s32 *) (affine + 8)) = *new_var8;
+    const s16 *table;
+    s32 *tempAlias;
+    s32 value;
+    s16 inverse;
+    s32 *valueAlias;
+    s32 temp;
+    s16 *affine;
+    if (gUnk_3003C34 == 0)
+    {
+        gUnk_3003D68 = (gUnk_3003D68 + 5) & 0xFF;
+    }
+    else
+    {
+        gUnk_3003D68 = (gUnk_3003D68 + 251) & 0xFF;
+    }
+    table = sSinCosTable;
+    {
+        s32 index;
+        index = gUnk_3003D68;
+        index += 0x40;
+        value = table[index];
+    }
+    inverse = FixedInverse(0x200);
+    value = FixedMul(value, inverse);
+    affine = (s16 *) gStageEntryHorizontalScroll;
+    affine[2] = value;
+    value = table[gUnk_3003D68];
+    valueAlias = &value;
+    inverse = FixedInverse(0x200);
+    affine[3] = FixedMul(value, inverse);
+    value = (s16) (-table[gUnk_3003D68]);
+    inverse = FixedInverse(0x200);
+    affine[4] = FixedMul(value, inverse);
+    {
+        s32 index;
+        index = gUnk_3003D68;
+        index += 0x40;
+        value = table[index];
+    }
+    inverse = FixedInverse(0x200);
+    affine[5] = FixedMul(value, inverse);
+    temp = (128 - affine[0]) << 8;
+    value = affine[2];
+    temp -= ((value << 4) - value) << 3;
+    value = affine[3];
+    temp -= ((value << 2) + value) << 4;
+    /* Keep aliases alive so agbcc preserves the original value lifetimes. */
+    tempAlias = &temp;
+    *((s32 *) (affine + 6)) = *tempAlias;
+    temp = (128 - affine[1]) << 8;
+    value = affine[4];
+    temp -= ((value << 4) - value) << 3;
+    value = affine[5];
+    temp -= (((*valueAlias) << 2) + value) << 4;
+    *((s32 *) (affine + 8)) = *tempAlias;
 }
-#endif
+
 
 
 void UpdateVortexCutscenePaletteCycle(void)

@@ -1019,9 +1019,9 @@ void RenderCreditsOam(void)
       frameOffset = anchor->frame;
       frameOffset <<= 3;
       asm("" : "+r"(frameOffset), "+r"(animation));
+      i = 0;
       animation = (const struct AnimationFrame *) (frameOffset + (u32) animation);
     }
-    i = 0;
     do
     {
       if (i == 0)
@@ -1178,8 +1178,8 @@ void RenderCreditsOam(void)
   }
   if (gCreditsTreasureDrop.state != 0)
   {
-    yOffset = gCreditsTreasureDrop.y;
     xOffset = anchor->x - gCreditsTreasureAnim.xOffset;
+    yOffset = gCreditsTreasureDrop.y;
     src = sCreditsTreasureDropAnimation[0].oam;
     nextSlot += *(src++);
     pbPtr = &affine[1];
