@@ -326,6 +326,8 @@ extern u8 gShopItemTimer;
 extern u8 gUnk_3000046;
 extern u8 gTimerState;
 extern u8 gUnk_3000A62;
+extern u8 gGoldenDivaShopItemHealthTarget;
+extern u16 gSpriteAiRadius;
 extern u8 gStageExitType;
 extern struct GameScreenDebugInfo gGameScreenDebugInfo;
 extern struct BackgroundInfo gBackgroundInfo;

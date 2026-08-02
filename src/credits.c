@@ -815,11 +815,15 @@ void RenderCreditsOam(void)
         updateState->frame++;
         {
           register u32 updatedFrame asm("r2");
+          register u32 endTime asm("r1");
+          register u32 lastFrame asm("r0");
           updatedFrame = updateState->frame;
-          if (tableCopy[updatedFrame].time == 0)
+          endTime = tableCopy[updatedFrame].time;
+          if (endTime == 0)
           {
-            updateState->frame = updatedFrame - 1;
-            updateState->active = 0;
+            lastFrame = updatedFrame - 1;
+            updateState->frame = lastFrame;
+            updateState->active = endTime;
           }
         }
       }
@@ -832,8 +836,8 @@ void RenderCreditsOam(void)
         tickState->timer++;
         effectX = tickState->x;
         xOffset = effectX;
-        effectY = tickState->y;
-        yOffset = effectY;
+        effectY = (yOffset = tickState->y);
+        asm("" : "+r"(effectY));
         outputFrame = tickState->frame;
         outputFrame <<= 3;
         animation = (const struct AnimationFrame *) (outputFrame + (u32) tableCopy);
@@ -1261,9 +1265,8 @@ void RenderCreditsOam(void)
     u32 position;
     scrollState = secondState;
     position = scrollState->x - 1;
-    positionMask = 0x1FF;
+    maskCopy = (positionMask = 0x1FF);
     asm("" : "+r"(positionMask));
-    maskCopy = positionMask;
     position &= maskCopy;
     scrollState->x = position;
     {
@@ -1367,7 +1370,6 @@ void RenderCreditsOam(void)
 
   gOamSlotsUsed = nextSlot;
 }
-
 #endif
 
 u32 UpdateCreditsSequence(void)

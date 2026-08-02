@@ -8,6 +8,22 @@
 #include "voice_set.h"
 #include "gba/m4a.h"
 #include "main.h"
+#include "fixed_point.h"
+
+#ifdef STAGE_ENTRY_USE_WIP_C_FUNC_807E7B0
+extern const u32 sUnk_8639AC4[];
+extern const u32 sUnk_8639ADC[];
+extern const u32 sUnk_863A2EC[];
+extern const struct AnimationFrame sUnk_863E12C[];
+extern const struct AnimationFrame sUnk_863E1C4[];
+extern const u16 sUnk_863E24C[];
+extern const u16 sUnk_863E4AA[];
+extern const u16 sUnk_863ECF0[];
+extern const u16 sUnk_863ECF8[];
+extern const u16 sUnk_863ED00[];
+extern const struct AnimationFrame sUnk_863EFB0[];
+extern const struct AnimationFrame sUnk_863EFE0[];
+#endif
 
 s32 UpdateStageEntry(void)
 {
@@ -1375,7 +1391,862 @@ void UpdateStageEntryBlinkState(void)
 
 // Non matching function
 // Scratch link: https://decomp.me/scratch/oXj7d
+#ifndef STAGE_ENTRY_USE_WIP_C_FUNC_807E7B0
 ASM_INCLUDE("asm/disasm_stage_entry.s");
+#else
+void func_807E7B0(void)
+{
+  const struct AnimationFrame *animation;
+  struct StageEntryPositionedAnimationState *positionedState;
+  struct StageEntryAnimationState *animationState;
+  struct StageEntryAnimationState *animationStatesBase;
+  const u16 *src;
+  u16 *dest;
+  s32 currentSlot;
+  s32 nextSlot;
+  u16 attr;
+  u32 shape;
+  u32 size;
+  s16 matrix[4];
+  s16 *finalMatrix1Ptr;
+  s16 *finalMatrix2Ptr;
+  s16 *finalMatrix3Ptr;
+  s16 *matrix1Ptr;
+  s16 *matrix2Ptr;
+  s16 *matrix3Ptr;
+  s32 i;
+  currentSlot = 0;
+  nextSlot = gOamSlotsUsed;
+  {
+    register u32 oamOffset asm("r1");
+    register OamData *oamBase asm("r0");
+    oamOffset = nextSlot << 3;
+    oamBase = gOamBuffer;
+    dest = (u16 *) (oamOffset + ((u32) oamBase));
+  }
+  {
+    u32 *entryFlagAddress;
+    u32 entryFlagValue;
+    register u32 *entryFlagPtr asm("r4");
+    register struct StageEntryPositionedAnimationState *entryState asm("r3");
+    entryFlagAddress = &gStageEntryImpactEffectActive;
+    entryFlagValue = *entryFlagAddress;
+    entryFlagPtr = entryFlagAddress;
+    asm("" : "+r"(entryFlagPtr) : "r"(entryFlagAddress));
+    if (entryFlagValue != 0)
+    {
+      if (gStageEntryMainSpriteFalling == 1)
+      {
+        {
+          struct StageEntryPositionedAnimationState *entryStateAddress;
+          u32 entryStateWord;
+          register const u16 *entryPosition asm("r1");
+          entryStateAddress = (struct StageEntryPositionedAnimationState *) gStageEntryImpactEffectState;
+          entryStateWord = *((u32 *) entryStateAddress);
+          entryState = entryStateAddress;
+          asm("" : "+r"(entryState) : "r"(entryStateAddress));
+          if (entryStateWord == 0)
+          {
+            if (entryFlagValue == 1)
+            {
+              entryPosition = gStageEntryMainSpriteState;
+              entryState->x = entryPosition[2] + 3;
+            }
+            else
+            {
+              entryPosition = gStageEntryMainSpriteState;
+              entryState->x = entryPosition[2] + 6;
+            }
+            {
+              register const u16 *entryPositionY asm("r2");
+              entryPositionY = entryPosition;
+              asm("" : "+r"(entryPositionY) : "r"(entryPosition));
+              entryState->y = entryPositionY[3];
+            }
+          }
+          {
+            register u16 entryTimer asm("r1");
+            entryTimer = entryState->timer;
+            entryTimer++;
+            entryState->timer = entryTimer;
+            animation = sUnk_863EFE0;
+            if (animation[entryState->frame].time < entryTimer)
+            {
+              entryState->timer = 1;
+              entryState->frame++;
+              if (animation[entryState->frame].time == 0)
+              {
+                if ((*entryFlagPtr) == 1)
+                {
+                  *entryFlagPtr = 0;
+                  entryState->frame = 0;
+                  entryState->x = gStageEntryMainSpriteState[2] + 3;
+                  entryState->y = 200;
+                }
+                else
+                {
+                  entryState->frame = 0;
+                  entryState->x = gStageEntryMainSpriteState[2] + 6;
+                }
+              }
+            }
+          }
+        }
+      }
+      else
+      {
+        {
+          struct StageEntryPositionedAnimationState *entryStateAddress;
+          u32 entryStateWord;
+          register const u16 *entryPosition asm("r1");
+          entryStateAddress = (struct StageEntryPositionedAnimationState *) gStageEntryImpactEffectState;
+          entryStateWord = *((u32 *) entryStateAddress);
+          entryState = entryStateAddress;
+          asm("" : "+r"(entryState) : "r"(entryStateAddress));
+          if (entryStateWord == 0)
+          {
+            if (entryFlagValue == 1)
+            {
+              entryPosition = gStageEntryMainSpriteState;
+              entryState->x = entryPosition[2] - 3;
+            }
+            else
+            {
+              entryPosition = gStageEntryMainSpriteState;
+              entryState->x = entryPosition[2] - 6;
+            }
+            {
+              register const u16 *entryPositionY asm("r2");
+              entryPositionY = entryPosition;
+              asm("" : "+r"(entryPositionY) : "r"(entryPosition));
+              entryState->y = entryPositionY[3];
+            }
+          }
+          {
+            register u16 entryTimer asm("r1");
+            entryTimer = entryState->timer;
+            entryTimer++;
+            entryState->timer = entryTimer;
+            animation = sUnk_863EFB0;
+            if (animation[entryState->frame].time < entryTimer)
+            {
+              entryState->timer = 0;
+              entryState->frame++;
+              if (animation[entryState->frame].time == 0)
+              {
+                if ((*entryFlagPtr) == 1)
+                {
+                  *entryFlagPtr = 0;
+                  entryState->frame = 0;
+                  entryState->x = gStageEntryMainSpriteState[2] - 3;
+                  entryState->y = 200;
+                }
+                else
+                {
+                  entryState->frame = 0;
+                  entryState->x = gStageEntryMainSpriteState[2] - 6;
+                }
+              }
+            }
+          }
+        }
+      }
+      src = animation[entryState->frame].oam;
+      nextSlot += *(src++);
+      if (nextSlot > 128)
+      {
+        return;
+      }
+      for (; currentSlot < nextSlot; currentSlot++)
+      {
+        attr = *(src++);
+        *(dest++) = attr;
+        gOamBuffer[currentSlot].split.y = (attr + ((struct StageEntryPositionedAnimationState *) gStageEntryImpactEffectState)->y) - 8;
+        {
+          u32 objectX;
+          attr = *(src++);
+          *(dest++) = attr;
+          objectX = attr + ((struct StageEntryPositionedAnimationState *) gStageEntryImpactEffectState)->x;
+          objectX &= 0x1FF;
+          gOamBuffer[currentSlot].split.x = objectX;
+        }
+        *(dest++) = *(src++);
+        gOamBuffer[currentSlot].split.priority = 2;
+        dest++;
+      }
+
+    }
+  }
+  if (gStageEntryBlinkVisible == 0)
+  {
+    src = gStageEntryMainAnimation[((struct StageEntryPositionedAnimationState *) gStageEntryMainSpriteState)->frame].oam;
+    nextSlot += *(src++);
+    if (nextSlot > 128)
+    {
+      return;
+    }
+    for (; currentSlot < nextSlot; currentSlot++)
+    {
+      OamData *oamBase;
+      oamBase = gOamBuffer;
+      positionedState = (struct StageEntryPositionedAnimationState *) gStageEntryMainSpriteState;
+      attr = *(src++);
+      *(dest++) = attr;
+      do
+      {
+        oamBase[currentSlot].split.y = (attr + positionedState->y) - 8;
+        if (gStageEntryUseAffineMainSprite != 0)
+        {
+          oamBase[currentSlot].split.affineMode = 1;
+        }
+        do
+        {
+        }
+        while (0);
+      }
+      while (0);
+      attr = *(src++);
+      *(dest++) = attr;
+      {
+        register u32 *stageFlag asm("r2");
+        stageFlag = &gStageEntryShowCollectionSparkle;
+        if ((*stageFlag) != 0)
+        {
+          oamBase[currentSlot].split.x = attr + positionedState->x;
+        }
+        else
+        {
+          register u8 *directionFlag asm("r2");
+          directionFlag = &gStageEntryMainSpriteFalling;
+          if (((*directionFlag) == 0) && (gStageEntryUseAffineMainSprite != 1))
+          {
+            s32 mirroredX;
+            mirroredX = positionedState->x - attr;
+            size = ((u8 *) (&oamBase[currentSlot]))[3] >> 6;
+            size <<= 2;
+            shape = ((u8 *) (&oamBase[currentSlot]))[1] >> 6;
+            shape <<= 4;
+            size += shape;
+            mirroredX -= *((const u32 *) (((const u8 *) sUnk_863A2EC) + size));
+            oamBase[currentSlot].split.x = mirroredX;
+            ((u8 *) (&oamBase[currentSlot]))[3] |= 0x10;
+          }
+          else
+          {
+            oamBase[currentSlot].split.x = attr + positionedState->x;
+            {
+              u8 priorityByte;
+              s32 priorityMask;
+              priorityByte = ((u8 *) (&oamBase[currentSlot]))[3];
+              priorityMask = -17;
+              priorityMask &= priorityByte;
+              ((u8 *) (&oamBase[currentSlot]))[3] = priorityMask;
+            }
+          }
+        }
+      }
+      {
+        register u8 modeByte asm("r1");
+        register s32 modeMask asm("r0");
+        modeByte = ((u8 *) (&oamBase[currentSlot]))[3];
+        modeMask = -15;
+        modeMask &= modeByte;
+        ((u8 *) (&oamBase[currentSlot]))[3] = modeMask;
+      }
+      *(dest++) = *(src++);
+      oamBase[currentSlot].split.priority = 2;
+      dest++;
+    }
+
+  }
+  if (gStageEntryKeyzerFlightFinished != 0)
+  {
+    gStageEntrySparkleGroupState.frame++;
+    if (sUnk_863E1C4[gStageEntrySparkleGroupState.timer].time < gStageEntrySparkleGroupState.frame)
+    {
+      gStageEntrySparkleGroupState.frame = 1;
+      gStageEntrySparkleGroupState.timer++;
+      if (sUnk_863E1C4[gStageEntrySparkleGroupState.timer].time == 0)
+      {
+        gStageEntrySparkleGroupState.frame = 0;
+        gStageEntrySparkleGroupState.timer = 0;
+        gStageEntryKeyzerFlightFinished = 0;
+      }
+    }
+    if (gStageEntryKeyzerFlightFinished != 0)
+    {
+      src = sUnk_863E1C4[gStageEntrySparkleGroupState.timer].oam;
+      nextSlot += *(src++);
+      if (nextSlot > 128)
+      {
+        return;
+      }
+      for (; currentSlot < nextSlot; currentSlot++)
+      {
+        attr = *(src++);
+        *(dest++) = attr;
+        gOamBuffer[currentSlot].split.y = attr + 120;
+        {
+          u32 objectX;
+          attr = *(src++);
+          *(dest++) = attr;
+          objectX = attr + 209;
+          objectX &= 0x1FF;
+          gOamBuffer[currentSlot].split.x = objectX;
+        }
+        *(dest++) = *(src++);
+        gOamBuffer[currentSlot].split.priority = 2;
+        dest++;
+      }
+
+    }
+  }
+  {
+    register struct StageEntryAnimationState *statesLoad asm("r2");
+    statesLoad = (animationStatesBase = gStageEntrySparkleAnimStates);
+    animationState = statesLoad;
+  }
+  i = 0;
+  do
+  {
+    {
+      register u32 *activeFlag asm("r2");
+      activeFlag = (u32 *) (((u8 *) gStageEntrySparkleFlags) + i);
+      if ((*activeFlag) != 0)
+      {
+        {
+          register u16 stateFrame asm("r0");
+          stateFrame = animationState->frame;
+          stateFrame++;
+          animationState->frame = stateFrame;
+          if (sUnk_863E12C[animationState->timer].time < stateFrame)
+          {
+            animationState->frame = 1;
+            animationState->timer++;
+            if (sUnk_863E12C[animationState->timer].time == 0)
+            {
+              animationState->frame = 0;
+              animationState->timer = 0;
+              *activeFlag = 0;
+            }
+          }
+        }
+        {
+          u32 stateFrameOffset;
+          register const struct AnimationFrame *secondTable asm("r1");
+          stateFrameOffset = animationState->timer << 3;
+          secondTable = sUnk_863E12C;
+          src = ((const struct AnimationFrame *) (stateFrameOffset + ((u32) secondTable)))->oam;
+        }
+        nextSlot += *(src++);
+        {
+          register s32 stateSlotLimit asm("r2");
+          stateSlotLimit = nextSlot;
+          if (stateSlotLimit > 128)
+          {
+            return;
+          }
+        }
+        if (currentSlot < nextSlot)
+        {
+          register u32 objectY asm("r12");
+          register u32 objectX asm("r9");
+          OamData *oam;
+          register OamData *oamBase asm("r1");
+          objectY = *((const u32 *) (((const u8 *) sUnk_8639ADC) + i));
+          {
+            register s32 slotIndex asm("r2");
+            register u32 oamOffset asm("r0");
+            slotIndex = currentSlot;
+            oamOffset = slotIndex << 3;
+            oamBase = gOamBuffer;
+            oam = (OamData *) (oamOffset + ((u32) oamBase));
+          }
+          objectX = *((const u32 *) (((const u8 *) sUnk_8639AC4) + i));
+          currentSlot = nextSlot - currentSlot;
+          do
+          {
+            attr = *(src++);
+            *(dest++) = attr;
+            oam->split.y = (attr + objectY) - 8;
+            attr = *(src++);
+            *(dest++) = attr;
+            {
+              register u32 stateX asm("r1");
+              register u32 stateMask asm("r0");
+              register u32 stateAttr1 asm("r2");
+              stateX = attr + objectX;
+              stateMask = 0x1FF;
+              stateX &= stateMask;
+              stateAttr1 = ((u16 *) oam)[1];
+              stateMask = 0xFFFFFE00;
+              stateMask &= stateAttr1;
+              stateMask |= stateX;
+              ((u16 *) oam)[1] = stateMask;
+            }
+            *(dest++) = *(src++);
+            oam->split.priority = 2;
+            dest++;
+            oam++;
+            currentSlot--;
+          }
+          while (currentSlot != 0);
+          currentSlot = nextSlot;
+        }
+      }
+    }
+    animationState++;
+    i += sizeof(u32);
+  }
+  while (((s32) animationState) <= ((s32) (animationStatesBase + 5)));
+  if ((gStageEntrySequenceStep != 0) && (gStageEntrySequenceMode == 5))
+  {
+    OamData *affineOam;
+    register s32 modeMask asm("r0");
+    register s32 priorityBase asm("r12");
+    register u8 modeByte asm("r1");
+    src = gStageEntryFlyingKeyzerAnimation[gStageEntryFlyingKeyzerState.frame].oam;
+    nextSlot += *(src++);
+    if (nextSlot > 128)
+    {
+      return;
+    }
+    matrix1Ptr = &matrix[1];
+    matrix2Ptr = &matrix[2];
+    matrix3Ptr = &matrix[3];
+    if (currentSlot < nextSlot)
+    {
+      struct StageEntryPositionedAnimationState *affineState;
+      OamData *oamBase;
+      affineState = &gStageEntryFlyingKeyzerState;
+      oamBase = gOamBuffer;
+      priorityBase = -13;
+      affineOam = &oamBase[currentSlot];
+      do
+      {
+        attr = *(src++);
+        *(dest++) = attr;
+        affineOam->split.y = (attr + affineState->y) - 8;
+        affineOam->split.affineMode = 1;
+        attr = *(src++);
+        *(dest++) = attr;
+        {
+          s16 objectX;
+          objectX = attr + affineState->x;
+          objectX &= 0x1FF;
+          affineOam->split.x = objectX;
+        }
+        modeByte = ((u8 *) affineOam)[3];
+        modeMask = -15;
+        modeMask &= modeByte;
+        modeMask |= 10;
+        ((u8 *) affineOam)[3] = modeMask;
+        *(dest++) = *(src++);
+        modeByte = ((u8 *) affineOam)[5];
+        modeMask = priorityBase;
+        modeMask &= modeByte;
+        modeMask |= 8;
+        ((u8 *) affineOam)[5] = modeMask;
+        dest++;
+        affineOam++;
+        modeMask = 1;
+        asm("" : "+r"(modeMask));
+        currentSlot += modeMask;
+      }
+      while (currentSlot < nextSlot);
+    }
+    matrix[0] = FixedMul(sSinCosTable[gStageEntryFlyingKeyzerState.attribute + 64], (s16) FixedInverse(256));
+    *matrix1Ptr = FixedMul(sSinCosTable[gStageEntryFlyingKeyzerState.attribute], (s16) FixedInverse(256));
+    *matrix2Ptr = FixedMul((s16) (-((u16) sSinCosTable[gStageEntryFlyingKeyzerState.attribute])), (s16) FixedInverse(256));
+    *matrix3Ptr = FixedMul(sSinCosTable[gStageEntryFlyingKeyzerState.attribute + 64], (s16) FixedInverse(256));
+    gOamBuffer[20].all.affineParam = matrix[0];
+    gOamBuffer[21].all.affineParam = *matrix1Ptr;
+    gOamBuffer[22].all.affineParam = *matrix2Ptr;
+    gOamBuffer[23].all.affineParam = *matrix3Ptr;
+  }
+  if (gStageEntrySequenceMode == 5)
+  {
+    src = (const u16 *) gStageEntryCompanionSpriteState.data;
+    nextSlot += *(src++);
+    if (nextSlot > 128)
+    {
+      return;
+    }
+    matrix1Ptr = &matrix[1];
+    matrix2Ptr = &matrix[2];
+    matrix3Ptr = &matrix[3];
+    if (currentSlot < nextSlot)
+    {
+      register struct StageEntrySpriteState *ce8State asm("r9");
+      u32 eight;
+      s32 priorityBase;
+      OamData *oam;
+      {
+        OamData *oamBase;
+        ce8State = &gStageEntryCompanionSpriteState;
+        eight = 8;
+        oamBase = gOamBuffer;
+        priorityBase = -13;
+        oam = oamBase + currentSlot;
+      }
+      asm("" : "+r"(ce8State), "+r"(eight), "+r"(priorityBase), "+r"(oam));
+      do
+      {
+        attr = *(src++);
+        *(dest++) = attr;
+        {
+          register struct StageEntrySpriteState *yState asm("r1");
+          yState = ce8State;
+          oam->split.y = (attr + yState->y) - 8;
+        }
+        oam->split.affineMode = 1;
+        attr = *(src++);
+        *(dest++) = attr;
+        {
+          u32 objectX;
+          {
+            register struct StageEntrySpriteState *xState asm("r2");
+            xState = ce8State;
+            asm("" : "+r"(xState));
+            objectX = attr + xState->x;
+          }
+          objectX &= 0x1FF;
+          oam->split.x = objectX;
+        }
+        {
+          u8 modeByte;
+          unsigned char modeMask;
+          modeByte = ((u8 *) oam)[3];
+          modeMask = -15;
+          modeMask &= modeByte;
+          modeMask |= eight;
+          ((u8 *) oam)[3] = modeMask;
+        }
+        *(dest++) = *(src++);
+        {
+          register u8 priorityByte asm("r1");
+          register s32 priorityMask asm("r0");
+          priorityByte = ((u8 *) oam)[5];
+          priorityMask = priorityBase;
+          priorityMask &= priorityByte;
+          priorityMask |= eight;
+          ((u8 *) oam)[5] = priorityMask;
+        }
+        dest++;
+        oam++;
+        currentSlot++;
+      }
+      while (currentSlot < nextSlot);
+    }
+    matrix[0] = FixedMul(sSinCosTable[gStageEntryCompanionSpriteState.attribute + 64], (s16) FixedInverse(256));
+    *matrix1Ptr = FixedMul(sSinCosTable[gStageEntryCompanionSpriteState.attribute], (s16) FixedInverse(256));
+    *matrix2Ptr = FixedMul((s16) (-((u16) sSinCosTable[gStageEntryCompanionSpriteState.attribute])), (s16) FixedInverse(256));
+    *matrix3Ptr = FixedMul(sSinCosTable[gStageEntryCompanionSpriteState.attribute + 64], (s16) FixedInverse(256));
+    gOamBuffer[16].all.affineParam = matrix[0];
+    gOamBuffer[17].all.affineParam = *matrix1Ptr;
+    gOamBuffer[18].all.affineParam = *matrix2Ptr;
+    gOamBuffer[19].all.affineParam = *matrix3Ptr;
+  }
+  if (((gStageEntryStageGraphicIndex == 0) && ((gCurrentPassage == PASSAGE_ENTRY) || (gCurrentPassage == PASSAGE_GOLDEN))) || ((((u8) (gStageEntryStageGraphicIndex - 1)) <= 3) && (((u8) (gCurrentPassage - 1)) <= 3)))
+  {
+    {
+      struct StageEntryPositionedAnimationState *secondaryState;
+      secondaryState = (struct StageEntryPositionedAnimationState *)&gStageEntrySecondarySpriteState;
+      src = gStageEntrySecondaryAnimation[secondaryState->frame].oam;
+    }
+    nextSlot += *(src++);
+    if (nextSlot > 128)
+    {
+      return;
+    }
+    for (; currentSlot < nextSlot; currentSlot++)
+    {
+      attr = *(src++);
+      *(dest++) = attr;
+      gOamBuffer[currentSlot].split.y = (attr + ((struct StageEntryPositionedAnimationState *)&gStageEntrySecondarySpriteState)->y) - 8;
+      {
+        u32 objectX;
+        attr = *(src++);
+        *(dest++) = attr;
+        objectX = attr + ((struct StageEntryPositionedAnimationState *)&gStageEntrySecondarySpriteState)->x;
+        objectX &= 0x1FF;
+        gOamBuffer[currentSlot].split.x = objectX;
+      }
+      *(dest++) = *(src++);
+      gOamBuffer[currentSlot].split.priority = 2;
+      dest++;
+    }
+
+  }
+  {
+    struct StageEntryPositionedAnimationState *stateCheck;
+    stateCheck = (struct StageEntryPositionedAnimationState *) gStageEntryKeyzerTargetState;
+    asm("" : "+r"(stateCheck));
+    if (stateCheck[1].timer > 64)
+    {
+      struct StageEntryPositionedAnimationState *lateState;
+      register s32 lateModeMask asm("r12");
+      register s32 latePriorityMask asm("r9");
+      src = sUnk_863ED00;
+      nextSlot += *(src++);
+      if (nextSlot > 128)
+      {
+        return;
+      }
+      if (currentSlot < nextSlot)
+      {
+        OamData *lateOam;
+        OamData *oamBase;
+        lateState = stateCheck;
+        oamBase = gOamBuffer;
+        lateModeMask = -15;
+        latePriorityMask = -13;
+        lateOam = &oamBase[currentSlot];
+        do
+        {
+          attr = *(src++);
+          *(dest++) = attr;
+          lateOam->split.y = (attr + lateState->y) - 8;
+          lateOam->split.affineMode = 1;
+          attr = *(src++);
+          *(dest++) = attr;
+          {
+            u32 objectX;
+            objectX = attr + lateState->x;
+            objectX &= 0x1FF;
+            lateOam->split.x = objectX;
+          }
+          {
+            register u8 modeByte asm("r1");
+            register s32 modeMask asm("r0");
+            modeByte = ((u8 *) lateOam)[3];
+            modeMask = lateModeMask;
+            modeMask &= modeByte;
+            modeMask |= 2;
+            ((u8 *) lateOam)[3] = modeMask;
+          }
+          *(dest++) = *(src++);
+          {
+            register u8 priorityByte asm("r1");
+            register s32 priorityMask asm("r0");
+            priorityByte = ((u8 *) lateOam)[5];
+            priorityMask = latePriorityMask;
+            priorityMask &= priorityByte;
+            priorityMask |= 8;
+            ((u8 *) lateOam)[5] = priorityMask;
+          }
+          dest++;
+          lateOam++;
+          currentSlot++;
+        }
+        while (currentSlot < nextSlot);
+      }
+      src = sUnk_863ECF8;
+      nextSlot += *(src++);
+      if (nextSlot > 128)
+      {
+        return;
+      }
+      if (currentSlot < nextSlot)
+      {
+        OamData *lateOam;
+        OamData *oamBase;
+        lateState = (struct StageEntryPositionedAnimationState *) gStageEntryKeyzerTargetState;
+        oamBase = gOamBuffer;
+        lateModeMask = -15;
+        latePriorityMask = -13;
+        lateOam = &oamBase[currentSlot];
+        do
+        {
+          attr = *(src++);
+          *(dest++) = attr;
+          lateOam->split.y = (attr + lateState->y) - 8;
+          lateOam->split.affineMode = 1;
+          attr = *(src++);
+          *(dest++) = attr;
+          {
+            u32 objectX;
+            objectX = attr + lateState->x;
+            objectX &= 0x1FF;
+            lateOam->split.x = objectX;
+          }
+          {
+            register u8 modeByte asm("r1");
+            register s32 modeMask asm("r0");
+            modeByte = ((u8 *) lateOam)[3];
+            modeMask = lateModeMask;
+            modeMask &= modeByte;
+            modeMask |= 4;
+            ((u8 *) lateOam)[3] = modeMask;
+          }
+          *(dest++) = *(src++);
+          {
+            register u8 priorityByte asm("r1");
+            register s32 priorityMask asm("r0");
+            priorityByte = ((u8 *) lateOam)[5];
+            priorityMask = latePriorityMask;
+            priorityMask &= priorityByte;
+            priorityMask |= 8;
+            ((u8 *) lateOam)[5] = priorityMask;
+          }
+          dest++;
+          lateOam++;
+          currentSlot++;
+        }
+        while (currentSlot < nextSlot);
+      }
+      src = sUnk_863ECF0;
+      nextSlot += *(src++);
+      if (nextSlot > 128)
+      {
+        return;
+      }
+      if (currentSlot < nextSlot)
+      {
+        OamData *lateOam;
+        OamData *oamBase;
+        lateState = (struct StageEntryPositionedAnimationState *) gStageEntryKeyzerTargetState;
+        oamBase = gOamBuffer;
+        lateModeMask = -15;
+        latePriorityMask = -13;
+        lateOam = &oamBase[currentSlot];
+        do
+        {
+          attr = *(src++);
+          *(dest++) = attr;
+          lateOam->split.y = (attr + lateState->y) - 8;
+          lateOam->split.affineMode = 1;
+          attr = *(src++);
+          *(dest++) = attr;
+          {
+            u32 objectX;
+            objectX = attr + lateState->x;
+            objectX &= 0x1FF;
+            lateOam->split.x = objectX;
+          }
+          {
+            register u8 modeByte asm("r1");
+            register s32 modeMask asm("r0");
+            modeByte = ((u8 *) lateOam)[3];
+            modeMask = lateModeMask;
+            modeMask &= modeByte;
+            modeMask |= 6;
+            ((u8 *) lateOam)[3] = modeMask;
+          }
+          *(dest++) = *(src++);
+          {
+            register u8 priorityByte asm("r1");
+            register s32 priorityMask asm("r0");
+            priorityByte = ((u8 *) lateOam)[5];
+            priorityMask = latePriorityMask;
+            priorityMask &= priorityByte;
+            priorityMask |= 8;
+            ((u8 *) lateOam)[5] = priorityMask;
+          }
+          dest++;
+          lateOam++;
+          currentSlot++;
+        }
+        while (currentSlot < nextSlot);
+      }
+    }
+  }
+  if (gStageEntrySequenceMode == 5)
+  {
+    src = gStageEntryCompanionKeyzerAnimation[gStageEntryCompanionKeyzerState.frame].oam;
+    nextSlot += *(src++);
+    if (nextSlot > 128)
+    {
+      return;
+    }
+    for (; currentSlot < nextSlot; currentSlot++)
+    {
+      attr = *(src++);
+      *(dest++) = attr;
+      gOamBuffer[currentSlot].split.y = (attr + gStageEntryCompanionKeyzerState.y) - 8;
+      {
+        u32 objectX;
+        attr = *(src++);
+        *(dest++) = attr;
+        objectX = attr + gStageEntryCompanionKeyzerState.x;
+        objectX &= 0x1FF;
+        gOamBuffer[currentSlot].split.x = objectX;
+      }
+      *(dest++) = *(src++);
+      gOamBuffer[currentSlot].split.priority = 2;
+      dest++;
+    }
+
+  }
+  if ((gStageEntryKeyzerPositionState[2] <= 0x103) && (gStageEntrySelectedStage != 0))
+  {
+    if (gStageEntrySelectedStage == 5)
+    {
+      src = sUnk_863E24C;
+    }
+    else
+    {
+      src = sUnk_863E4AA;
+    }
+    nextSlot += *(src++);
+    if (nextSlot > 128)
+    {
+      return;
+    }
+    for (; currentSlot < nextSlot; currentSlot++)
+    {
+      attr = *(src++);
+      *(dest++) = attr;
+      gOamBuffer[currentSlot].split.y = (attr + ((struct StageEntryPositionedAnimationState *) gStageEntryKeyzerPositionState)->y) - 8;
+      attr = *(src++);
+      *(dest++) = attr;
+      {
+        u32 objectX;
+        objectX = attr + ((struct StageEntryPositionedAnimationState *) gStageEntryKeyzerPositionState)->x;
+        objectX &= 0x1FF;
+        gOamBuffer[currentSlot].split.x = objectX;
+      }
+      *(dest++) = *(src++);
+      gOamBuffer[currentSlot].split.priority = 2;
+      dest++;
+    }
+
+  }
+  matrix[0] = FixedMul(sSinCosTable[gStageEntryMainSpriteState[6] + 64], (s16) FixedInverse((s16) gStageEntryMainSpriteState[7]));
+  *(finalMatrix1Ptr = &matrix[1]) = FixedMul(sSinCosTable[gStageEntryMainSpriteState[6]], (s16) FixedInverse((s16) gStageEntryMainSpriteState[7]));
+  *(finalMatrix2Ptr = &matrix[2]) = FixedMul((s16) (-((u16) sSinCosTable[gStageEntryMainSpriteState[6]])), (s16) FixedInverse((s16) gStageEntryMainSpriteState[7]));
+  *(finalMatrix3Ptr = &matrix[3]) = FixedMul(sSinCosTable[gStageEntryMainSpriteState[6] + 64], (s16) FixedInverse((s16) gStageEntryMainSpriteState[7]));
+  gOamBuffer[0].all.affineParam = matrix[0];
+  gOamBuffer[1].all.affineParam = *finalMatrix1Ptr;
+  gOamBuffer[2].all.affineParam = *finalMatrix2Ptr;
+  gOamBuffer[3].all.affineParam = *finalMatrix3Ptr;
+  matrix[0] = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[0] + 64], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix1Ptr = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[0]], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix2Ptr = FixedMul((s16) (-((u16) sSinCosTable[gStageEntryPaletteFadeCounters[0]])), (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix3Ptr = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[0] + 64], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  gOamBuffer[4].all.affineParam = matrix[0];
+  gOamBuffer[5].all.affineParam = *finalMatrix1Ptr;
+  gOamBuffer[6].all.affineParam = *finalMatrix2Ptr;
+  gOamBuffer[7].all.affineParam = *finalMatrix3Ptr;
+  matrix[0] = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[1] - (-64)], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix1Ptr = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[1]], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix2Ptr = FixedMul((s16) (-((u16) sSinCosTable[gStageEntryPaletteFadeCounters[1]])), (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix3Ptr = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[1] + 64], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  gOamBuffer[8].all.affineParam = matrix[0];
+  gOamBuffer[9].all.affineParam = *finalMatrix1Ptr;
+  gOamBuffer[10].all.affineParam = *finalMatrix2Ptr;
+  gOamBuffer[11].all.affineParam = *finalMatrix3Ptr;
+  matrix[0] = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[2] + 64], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix1Ptr = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[2]], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix2Ptr = FixedMul((s16) (-((u16) sSinCosTable[gStageEntryPaletteFadeCounters[2]])), (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  *finalMatrix3Ptr = FixedMul(sSinCosTable[gStageEntryPaletteFadeCounters[2] + 64], (s16) FixedInverse((s16) gStageEntryKeyzerTargetState[4]));
+  gOamBuffer[12].all.affineParam = matrix[0];
+  gOamBuffer[13].all.affineParam = *finalMatrix1Ptr;
+  gOamBuffer[14].all.affineParam = *finalMatrix2Ptr;
+  gOamBuffer[15].all.affineParam = *finalMatrix3Ptr;
+  gOamSlotsUsed = nextSlot;
+}
+#endif
 
 s32 UpdateStageEntryHorizontalShake(void)
 {

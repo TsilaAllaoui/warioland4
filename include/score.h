@@ -156,7 +156,7 @@ extern u8 gVortexGfxSlot;
 extern u16 gVortexYPosition;
 extern u16 gVortexXPosition;
 extern u8 gBossTreasureType;
-// gUnk_3000C2B
+extern u8 gBossTreasureStage;
 #define gHasBossChest55sec gCollectedNEJewelPiece
 #define gHasBossChest35sec gCollectedSEJewelPiece
 #define gHasBossChest15sec gCollectedSWJewelPiece
