@@ -10,6 +10,7 @@
 #include "minigame.h"
 #include "minigames/wario_hop.h"
 #include "oam.h"
+#include "stage_select.h"
 
 extern u8 gWarioHopSpeedLevel;
 extern u16 gWarioHopBg0Scroll[2];
@@ -76,10 +77,6 @@ extern const u16 *sUnk_870D890;
 extern const u8 sUnk_870CC18[];
 extern const u8 sUnk_870CCE0[];
 extern const u16 sUnk_870CA28[][62];
-
-void InitMinigameScoreDisplay(void);
-void DrawMinigameNumber(u32 value, const void *src, u32 dst);
-void m4aMPlayAllStop(void);
 
 u32 WarioHopUpdateStateMachine(void)
 {
@@ -902,11 +899,11 @@ s32 WarioHopCheckPlayerCollision(void)
 void WarioHopDrawScoreDigits(void)
 {
     if (gMinigameMedalHighlight != 0) {
-        DrawMinigameNumber(gMedalCount, sUnk_8711D98, 0x3840);
+        DrawMinigameNumber(gMedalCount, (const u16 *)sUnk_8711D98, 0x3840);
     } else {
-        DrawMinigameNumber(gMedalCount, sUnk_8711AF8, 0x3840);
+        DrawMinigameNumber(gMedalCount, (const u16 *)sUnk_8711AF8, 0x3840);
     }
-    DrawMinigameNumber(gMinigameScore, sUnk_8711438, 0x38C0);
+    DrawMinigameNumber(gMinigameScore, (const u16 *)sUnk_8711438, 0x38C0);
     DrawMinigameHighScore(gMinigameHighScores[1], sUnk_8711438 + 0xC20, 0x4160);
 }
 

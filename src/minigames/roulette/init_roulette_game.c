@@ -1,4 +1,5 @@
 #include "minigames/roulette.h"
+#include "stage_select.h"
 
 void InitRouletteGame(void)
 {
