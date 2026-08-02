@@ -135,7 +135,7 @@ SECTIONS {
         . = 0x0c26; gVortexYPosition = .;
         . = 0x0c28; gVortexXPosition = .;
         . = 0x0c2a; gBossTreasureType = .;
-        . = 0x0c2b; gUnk_3000C2B = .;
+        . = 0x0c2b; gBossTreasureStage = .;
         . = 0x0c2c; gHasBossTreasure5 = .;
         . = 0x0c2d; gHasBossTreasure6 = .;
         . = 0x0c2e; gHasBossTreasure7 = .;

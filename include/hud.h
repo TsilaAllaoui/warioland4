@@ -32,6 +32,16 @@ extern const u8 sTimeUpEffect2Gfx[];
 extern const u8 sTimeUpEffect3Gfx[];
 extern const u16 sTimeUpTextPal[];
 extern const u16 sTimeUpWarioPal[];
+extern const u8 sJewelPieceIconNEGfx[];
+extern const u8 sJewelPieceIconPartialNEGfx[];
+extern const u8 sJewelPieceIconSEGfx[];
+extern const u8 sJewelPieceIconPartialSEGfx[];
+extern const u8 sJewelPieceIconSWGfx[];
+extern const u8 sJewelPieceIconPartialSWGfx[];
+extern const u8 sJewelPieceIconNWGfx[];
+extern const u8 sJewelPieceIconPartialNWGfx[];
+extern const u8 sCDIconGfx[];
+extern const u8 sCDIconPartialGfx[];
 
 void LoadHudSpriteGraphics(void);
 void UpdateBossHealthGauge(void);

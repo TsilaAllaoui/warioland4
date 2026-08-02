@@ -461,12 +461,12 @@ ASM_INCLUDE("asm/disasm_save_file_SerializeGameStateToTemporarySave.s");
 #else
 void SerializeGameStateToTemporarySave(void)
 {
+    /* Best safe WIP C: 70 / 50800. */
     register u8 *destination asm("r4");
     register u8 *padding asm("r2");
     register u32 zero asm("r1");
     register u32 mask asm("r3");
     s32 i;
-    s32 j;
     u16 *clearedTileCount;
     u16 *musicState;
     u16 *unkA;
@@ -867,6 +867,7 @@ void SerializeGameStateToTemporarySave(void)
 
     CopySaveFileBlock8(destination, sSaveFooterSignature);
 }
+
 #endif
 
 void RefreshTemporarySaveStageId(void)
