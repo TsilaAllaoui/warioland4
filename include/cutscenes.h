@@ -948,7 +948,7 @@ u16 *CutsceneWarioDrawPoseOam(s32 xOffset, s32 yOffset, u16 priority, u16 heldKe
 void CutsceneWarioLoadObjTiles(void);
 void CutsceneWarioLoadObjPalette(void);
 void func_8007C30(u16 frame);
-void func_8008B20(u16 frame);
+void func_8008B20(u32 frame);
 void func_800A43C(u16 frame);
 
 #endif  // CUTSCENES_H

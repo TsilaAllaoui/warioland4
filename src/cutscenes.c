@@ -4102,7 +4102,280 @@ void ApplyCutsceneOamAffineMatrix(u16 *oamData, u16 *destination, u16 matrixInde
     }
 }
 
-ASM_INCLUDE("asm/disasm_cutscenes_func_8008B20.s");
+#define RENDER_PRIMARY_PATH(START, SELECTOR, PATHFN, MATRIX) \
+    do { \
+        s32 pathTimer = pathFrame - (START); \
+        SELECTOR(pathTimer, pathOut); \
+        if (PATHFN(pathTimer, &outputs[0], yOut, scaleXOut, scaleYOut)) { \
+            gUnk_3002CA0 |= 1; \
+            gUnk_3002CA2++; \
+        } \
+        oamDest = AppendCutsceneOamTemplate(pathOam, oamDest, (s16)outputs[0], (s16)*yOut); \
+        WriteCutsceneOamAffineMatrix((MATRIX), 0, (s16)*scaleXOut, (s16)*scaleYOut); \
+    } while (0)
+
+#define RENDER_PRIMARY_PATH_TIMER(TIMER, SELECTOR, PATHFN, MATRIX) \
+    do { \
+        s32 pathTimer = (TIMER); \
+        SELECTOR(pathTimer, pathOut); \
+        if (PATHFN(pathTimer, &outputs[0], yOut, scaleXOut, scaleYOut)) { \
+            gUnk_3002CA0 |= 1; \
+            gUnk_3002CA2++; \
+        } \
+        oamDest = AppendCutsceneOamTemplate(pathOam, oamDest, (s16)outputs[0], (s16)*yOut); \
+        WriteCutsceneOamAffineMatrix((MATRIX), 0, (s16)*scaleXOut, (s16)*scaleYOut); \
+    } while (0)
+
+#define RENDER_AFFINE_PATH(START, PATHFN, MATRIX) \
+    do { \
+        if (pathFrame >= (START)) { \
+            s32 pathTimer = pathFrame - (START); \
+            SelectEndingCutsceneOamSequence26(pathTimer, pathOut); \
+            if (!PATHFN(pathTimer, &outputs[0], yOut, scaleXOut, scaleYOut)) { \
+                oamDest = AppendCutsceneOamTemplate(pathOam, oamDest, (s16)outputs[0], (s16)*yOut); \
+                ApplyCutsceneOamAffineMatrix(pathOam, oamDest, (MATRIX)); \
+                WriteCutsceneOamAffineMatrix((MATRIX), 0, (s16)*scaleXOut, (s16)*scaleYOut); \
+            } \
+        } \
+    } while (0)
+
+void func_8008B20(u32 frame)
+{
+    u16 *mainOam;
+    u16 *secondaryOam;
+    u16 *thirdOam;
+    u16 *pathOam;
+    u16 *tempOam;
+    u16 outputs[4];
+    s32 renderPaths = 0;
+    s32 sequenceResult;
+    u32 timer;
+    register s32 pathFrame asm("r8");
+    s32 pathBase;
+
+    secondaryOam = 0;
+    mainOam = 0;
+    pathOam = 0;
+    thirdOam = 0;
+
+    switch (gUnk_3002C60) {
+    case 0:
+        if (DecreaseCutsceneBlendCoefficient(15)) {
+            u16 oldX = gUnk_3002C98;
+            if (gUnk_3002C98 > -120) {
+                if ((frame & 7) == 7) {
+                    volatile u16 *scrollRegister = (volatile u16 *)0x04000016;
+                    gUnk_3002C98 = oldX - 1;
+                    *scrollRegister = oldX;
+                }
+            } else {
+                gUnk_3002C64 = 0;
+                gUnk_3002C60++;
+            }
+        }
+        *(volatile u16 *)0x04000014 = (frame & 3) - 1;
+        SelectEndingCutsceneOamSequence00(frame, &mainOam);
+        break;
+
+    case 1:
+        timer = gUnk_3002C64;
+        if (timer <= 119) {
+            SelectEndingCutsceneOamSequence01(timer, &mainOam);
+        } else if (timer <= 239) {
+            SelectEndingCutsceneOamSequence04(timer - 120, &mainOam);
+            if (gUnk_3002C64 == 120)
+                m4aSongNumStartOrChange(0x322);
+        } else {
+            if (SelectEndingCutsceneOamSequence05(timer - 240, &mainOam)) {
+                gUnk_3002C64 = 0;
+                gUnk_3002C68 = 0;
+                gUnk_3002C60++;
+                break;
+            }
+        }
+        gUnk_3002C64++;
+        break;
+
+    case 2:
+        renderPaths = 1;
+        if (gUnk_3002CA0 != 0) {
+            m4aSongNumStartOrChange(428);
+            if (gUnk_3002CA2 == 1) {
+                gUnk_3002CA4 = 1;
+                gUnk_3002CA6 = 0;
+            }
+            gUnk_3002C68 = 8;
+        }
+
+        if (gUnk_3002C68 != 0) {
+            SelectEndingCutsceneOamSequence07(0, &secondaryOam);
+            gUnk_3002C68--;
+        } else {
+            SelectEndingCutsceneOamSequence06(0, &secondaryOam);
+        }
+
+        if (gUnk_3002CA4 != 0) {
+            u16 old = gUnk_3002CA6;
+            gUnk_3002CA6 = old + 1;
+            SelectEndingCutsceneOamSequence08((s16)old, &mainOam);
+        } else {
+            SelectEndingCutsceneOamSequence02(gUnk_3002C64, &mainOam);
+        }
+        gUnk_3002C64++;
+
+        if (gUnk_3002CA2 == 4) {
+            gUnk_3002C68 = 0;
+            gUnk_3002C64 = 0;
+            gUnk_3002C60++;
+        }
+        break;
+
+    case 3:
+        gUnk_3002C9A = 96;
+        gUnk_3002C9C = 144;
+        {
+            u16 variant = gUnk_3002C84;
+            if (variant == 0)
+                sequenceResult = SelectEndingCutsceneOamSequence32(gUnk_3002C64, &secondaryOam);
+            else if (variant == 1)
+                sequenceResult = SelectEndingCutsceneOamSequence31(gUnk_3002C64, &secondaryOam);
+            else if (variant == 2)
+                sequenceResult = SelectEndingCutsceneOamSequence29(gUnk_3002C64, &secondaryOam);
+            else if (variant == 3)
+                sequenceResult = SelectEndingCutsceneOamSequence30(gUnk_3002C64, &secondaryOam);
+        }
+
+        if (sequenceResult == 2)
+            gUnk_3002CA4 = 0;
+
+        if (gUnk_3002CA4 != 0) {
+            u16 old = gUnk_3002CA6;
+            gUnk_3002CA6 = old + 1;
+            SelectEndingCutsceneOamSequence08((s16)old, &mainOam);
+        } else {
+            SelectEndingCutsceneOamSequence09(gUnk_3002C68, &mainOam);
+            SelectEndingCutsceneOamSequence28(gUnk_3002C68, &thirdOam);
+            gUnk_3002C68++;
+        }
+
+        *(volatile u16 *)0x0400001E = frame;
+        gUnk_3002C64++;
+        if (sequenceResult == 1 && IncreaseCutsceneBlendCoefficient(7))
+            gSubGameMode++;
+        break;
+    }
+
+    {
+        register u16 *oamDest asm("r9") = (u16 *)gOamBuffer;
+        register u16 *yOut asm("r5") = &outputs[1];
+
+        {
+        register s32 renderCheck asm("r7") = renderPaths;
+        if (renderCheck) {
+        pathBase = gUnk_3002C64;
+        pathFrame = pathBase - 1;
+        if (pathFrame == 0)
+            m4aSongNumStartOrChange(0x1AD);
+        if (pathFrame == 90)
+            m4aSongNumStartOrChange(430);
+
+        gUnk_3002CA0 = 0;
+
+        {
+                    u16 **pathOut = &pathOam;
+            u16 *scaleXOut = &outputs[2];
+            u16 *scaleYOut = &outputs[3];
+        if (pathFrame > 44)
+            RENDER_PRIMARY_PATH_TIMER(pathBase - 46, SelectEndingCutsceneOamSequence24, ReadEndingCutscenePath03, 4);
+        if (pathFrame > 29)
+            RENDER_PRIMARY_PATH(30, SelectEndingCutsceneOamSequence23, ReadEndingCutscenePath02, 3);
+        if (pathFrame > 14)
+            RENDER_PRIMARY_PATH(15, SelectEndingCutsceneOamSequence22, ReadEndingCutscenePath01, 2);
+        SelectEndingCutsceneOamSequence21(pathFrame, pathOut);
+        if (ReadEndingCutscenePath00(pathFrame, &outputs[0], yOut, scaleXOut, scaleYOut)) {
+            gUnk_3002CA0 |= 1;
+            gUnk_3002CA2++;
+        }
+        oamDest = AppendCutsceneOamTemplate(pathOam, oamDest, (s16)outputs[0], (s16)*yOut);
+        WriteCutsceneOamAffineMatrix(1, 0, (s16)*scaleXOut, (s16)*scaleYOut);
+
+        RENDER_AFFINE_PATH(45, ReadEndingCutscenePath28, 29);
+        RENDER_AFFINE_PATH(49, ReadEndingCutscenePath29, 30);
+        RENDER_AFFINE_PATH(53, ReadEndingCutscenePath30, 31);
+        RENDER_AFFINE_PATH(57, ReadEndingCutscenePath31, 31);
+        RENDER_AFFINE_PATH(61, ReadEndingCutscenePath32, 31);
+        RENDER_AFFINE_PATH(65, ReadEndingCutscenePath33, 31);
+        RENDER_AFFINE_PATH(69, ReadEndingCutscenePath34, 31);
+        RENDER_AFFINE_PATH(73, ReadEndingCutscenePath35, 31);
+
+        RENDER_AFFINE_PATH(30, ReadEndingCutscenePath20, 21);
+        RENDER_AFFINE_PATH(34, ReadEndingCutscenePath21, 22);
+        RENDER_AFFINE_PATH(38, ReadEndingCutscenePath22, 23);
+        RENDER_AFFINE_PATH(42, ReadEndingCutscenePath23, 24);
+        RENDER_AFFINE_PATH(46, ReadEndingCutscenePath24, 25);
+        RENDER_AFFINE_PATH(50, ReadEndingCutscenePath25, 26);
+        RENDER_AFFINE_PATH(54, ReadEndingCutscenePath26, 27);
+        RENDER_AFFINE_PATH(58, ReadEndingCutscenePath27, 28);
+
+        RENDER_AFFINE_PATH(15, ReadEndingCutscenePath12, 13);
+        RENDER_AFFINE_PATH(19, ReadEndingCutscenePath13, 14);
+        RENDER_AFFINE_PATH(23, ReadEndingCutscenePath14, 15);
+        RENDER_AFFINE_PATH(27, ReadEndingCutscenePath15, 16);
+        RENDER_AFFINE_PATH(31, ReadEndingCutscenePath16, 17);
+        RENDER_AFFINE_PATH(35, ReadEndingCutscenePath17, 18);
+        RENDER_AFFINE_PATH(39, ReadEndingCutscenePath18, 19);
+        RENDER_AFFINE_PATH(43, ReadEndingCutscenePath19, 20);
+
+        RENDER_AFFINE_PATH(0, ReadEndingCutscenePath04, 5);
+        RENDER_AFFINE_PATH(4, ReadEndingCutscenePath05, 6);
+        RENDER_AFFINE_PATH(8, ReadEndingCutscenePath06, 7);
+        RENDER_AFFINE_PATH(12, ReadEndingCutscenePath07, 8);
+        RENDER_AFFINE_PATH(16, ReadEndingCutscenePath08, 9);
+        RENDER_AFFINE_PATH(20, ReadEndingCutscenePath09, 10);
+        RENDER_AFFINE_PATH(24, ReadEndingCutscenePath10, 11);
+        RENDER_AFFINE_PATH(28, ReadEndingCutscenePath11, 12);
+        }
+        }
+    }
+
+    if (gUnk_3002C80 != 0) {
+        SelectEndingCutsceneOamSequence25(gUnk_3002C64, &tempOam);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 184, gUnk_3002C9E);
+        {
+            s16 affineScale = gUnk_3002C82;
+            WriteCutsceneOamAffineMatrix(0, 0, affineScale, affineScale);
+        }
+    }
+
+    if (gUnk_3002C84 == 0)
+        *yOut = gUnk_3002C9C - 12;
+    else if (gUnk_3002C84 == 1)
+        *yOut = gUnk_3002C9C - 20;
+    else
+        *yOut = gUnk_3002C9C - 24;
+
+    oamDest = AppendCutsceneOamTemplate(thirdOam, oamDest, gUnk_3002C9A, (s16)*yOut);
+    oamDest = AppendCutsceneOamTemplate(secondaryOam, oamDest, gUnk_3002C9A, gUnk_3002C9C);
+    oamDest = AppendCutsceneOamTemplate(mainOam, oamDest, gUnk_3002C4A, gUnk_3002C4C);
+
+    if (gUnk_3002C60 == 0) {
+        SelectEndingCutsceneOamSequence20(frame, &tempOam);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 60, 128);
+        SelectEndingCutsceneOamSequence18(frame, &tempOam);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 72, 130);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 88, 134);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 104, 138);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 120, 140);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 136, 136);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 152, 132);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 168, 128);
+        SelectEndingCutsceneOamSequence19(frame, &tempOam);
+        oamDest = AppendCutsceneOamTemplate(tempOam, oamDest, 180, 128);
+    }
+
+    FinalizeCutsceneOamBuffer(oamDest);
+    }
+}
 
 void InitializeEndingBackgroundSetup(void)
 {
