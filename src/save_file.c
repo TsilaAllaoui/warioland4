@@ -29,6 +29,11 @@ extern u32 gUnk_3000040;
 extern const u8 sTemporarySaveHeaderSignature1[];
 extern const u8 sTemporarySaveHeaderSignature2[];
 
+typedef union RegPair8 {
+    unsigned long long q;
+    struct { u32 lo; u32 hi; } w;
+} RegPair8;
+
 void func_8000E94(void);
 void func_8000EAC(void);
 void func_8000CE0(void);
@@ -454,12 +459,8 @@ void InitializeTemporarySaveBuffer(void)
     func_8000EC4();
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_save_file_SerializeGameStateToTemporarySave.s");
-#else
 void SerializeGameStateToTemporarySave(void)
 {
-    /* Best safe WIP C: 70 / 50800. */
     register u8 *destination asm("r4");
     register u8 *padding asm("r2");
     register u32 zero asm("r1");
@@ -468,405 +469,440 @@ void SerializeGameStateToTemporarySave(void)
     u16 *clearedTileCount;
     u16 *musicState;
     u16 *unkA;
-    u16 *bossBgY;
+    u8 *sharedIp;
+    int new_var;
+    u16 *new_var2;
     register u8 *warioData asm("r8");
-
+    u8 *source7;
     destination = (u8 *)0x02039018;
-    *destination++ = gStageRoomTableIndex;
-    *destination++ = gCurrentPassage;
-    *destination++ = gCurrentStageNumber;
-    *destination++ = gUnk_3000025;
-    *destination++ = gRoomTransitionTileDataCount;
-    *destination++ = gTimerState;
-
+    *(destination++) = gStageRoomTableIndex;
+    *(destination++) = gCurrentPassage;
+    *(destination++) = gCurrentStageNumber;
+    *(destination++) = gUnk_3000025;
+    *(destination++) = gRoomTransitionTileDataCount;
+    *(destination++) = gTimerState;
     padding = destination;
     clearedTileCount = &gClearedRoomTileCount;
-    musicState = (u16 *)&gGameMusicState;
+    musicState = (u16 *)(&gGameMusicState);
     unkA = &gUnk_300003A;
-    bossBgY = &gGoldenBossTransitionBg0Y;
-    warioData = (u8 *)&gWarioData;
+    sharedIp = (u8 *)(&gGoldenBossTransitionBg0Y);
+    warioData = (u8 *)(&gWarioData);
     zero = 0;
     mask = 3;
     do
     {
-        *destination++ = zero;
+        *(destination++) = zero;
         padding++;
-    }
-    while (((u32)padding & mask) != 0);
-
-    *(u16 *)destination = *clearedTileCount;
+    } while ((((u32)padding) & mask) != 0);
+    *((u16 *)destination) = *clearedTileCount;
     destination += 2;
-    *(u16 *)destination = musicState[1];
+    *((u16 *)destination) = musicState[1];
     destination += 2;
-
     padding = destination;
-    if (((u32)destination & 3) != 0)
+    if ((((u32)destination) & 3) != 0)
     {
         zero = 0;
         mask = 3;
         do
         {
-            *destination++ = zero;
+            *(destination++) = zero;
             padding++;
-        }
-        while (((u32)padding & mask) != 0);
+        } while ((((u32)padding) & mask) != 0);
     }
-
-    *(u16 *)destination = *unkA;
+    *((u16 *)destination) = *unkA;
     destination += 2;
-    *(u16 *)destination = *bossBgY;
+    {
+        register u16 *source asm("r2");
+        source = (u16 *)sharedIp;
+        *((u16 *)destination) = *source;
+    }
     destination += 2;
-
     padding = destination;
-    if (((u32)destination & 3) != 0)
+    if ((((u32)destination) & 3) != 0)
     {
         zero = 0;
         mask = 3;
         do
         {
-            *destination++ = zero;
+            *(destination++) = zero;
             padding++;
-        }
-        while (((u32)padding & mask) != 0);
+        } while ((((u32)padding) & mask) != 0);
     }
-
     memcpy(destination, warioData, 60);
     destination += 60;
-
-    *(SaveBlock8 *)destination = gWarioDashAfterimage;
+    {
+        register u32 *source8 asm("r0");
+        register RegPair8 value8 asm("r0");
+        source8 = (u32 *)&gWarioDashAfterimage;
+        value8.w.hi = source8[1];
+        value8.w.lo = source8[0];
+        *((unsigned long long *)destination) = value8.q;
+    }
     destination += 8;
-    *(SaveBlock8 *)destination = gCurrentCarriedSprite;
+    *((SaveBlock8 *)destination) = gCurrentCarriedSprite;
     destination += 8;
-    *(SaveBlock8 *)destination = gWarioMotionAfterimage;
+    *((SaveBlock8 *)destination) = gWarioMotionAfterimage;
     destination += 8;
-    *(SaveBlock8 *)destination = gCurrentWarioEffect;
+    *((SaveBlock8 *)destination) = gCurrentWarioEffect;
     destination += 8;
-    *(u32 *)destination = gHeartMeter;
+    *((u32 *)destination) = gHeartMeter;
     destination += 4;
-    *(u32 *)destination = gHeartGauge;
+    *((u32 *)destination) = gHeartGauge;
     destination += 4;
-    *(SaveBlock12 *)destination = gWarioDustEffect1;
+    *((SaveBlock12 *)destination) = gWarioDustEffect1;
     destination += 12;
-    *(SaveBlock12 *)destination = gWarioDustEffect2;
+    *((SaveBlock12 *)destination) = gWarioDustEffect2;
     destination += 12;
-
     i = 0;
     do
     {
-        *(SaveBlock44 *)destination = gSpriteData[i];
+        *((SaveBlock44 *)destination) = gSpriteData[i];
         destination += 44;
         i++;
-    }
-    while (i <= 23);
-
+    } while (i <= 23);
     {
         register u8 *switchPressed asm("r9");
         register u8 *northEastJewel asm("r8");
-        register u8 *southEastJewel asm("r12");
         register u8 *southWestJewel asm("r10");
         register SaveBlock12 *secondarySprite asm("r3");
         register s32 secondaryIndex asm("r2");
-
+        register u8 *source1 asm("r1");
+        register u8 *source2 asm("r2");
+        register u8 *source3 asm("r3");
+        register u8 *source5 asm("r5");
+        register u8 *source6 asm("r6");
+        register u8 value asm("r0");
         switchPressed = &gSwitchPressed;
         northEastJewel = &gCollectedNEJewelPiece;
-        southEastJewel = &gCollectedSEJewelPiece;
+        new_var = 3;
+        sharedIp = &gCollectedSEJewelPiece;
         southWestJewel = &gCollectedSWJewelPiece;
         secondarySprite = (SaveBlock12 *)gSecondarySpriteData;
         secondaryIndex = 7;
         do
         {
-            *(SaveBlock12 *)destination = *secondarySprite;
+            *((SaveBlock12 *)destination) = *secondarySprite;
             destination += 12;
             secondarySprite++;
             secondaryIndex--;
-        }
-        while (secondaryIndex >= 0);
-
-        { register u8 *source asm("r1"); source = switchPressed; *destination++ = *source; }
-    { register u8 *source asm("r2"); source = &gUnk_3000C04; *destination++ = *source; }
-    *destination++ = gUnk_3000C05;
-    *destination++ = gEnemyScoreDropCounter;
-    padding = destination;
-    if (((u32)destination & 3) != 0)
-    {
-        register u32 padValue asm("r3");
-        register u32 padMask asm("r1");
-
-        padValue = 0;
-        padMask = 3;
-        do
+        } while (secondaryIndex >= 0);
+        source1 = switchPressed; value = *source1; *(destination++) = value;
+        source2 = &gUnk_3000C04; value = *source2; *(destination++) = value;
+        source3 = &gUnk_3000C05; value = *source3; *(destination++) = value;
+        source5 = &gEnemyScoreDropCounter; value = *source5; *(destination++) = value;
+        padding = destination;
+        if ((((u32)destination) & new_var) != 0)
         {
-            *destination++ = padValue;
-            padding++;
+            register u32 padValue asm("r3");
+            register u32 padMask asm("r1");
+            padValue = 0;
+            padMask = new_var;
+            do
+            {
+                *(destination++) = padValue;
+                padding++;
+            } while ((((u32)padding) & padMask) != 0);
         }
-        while (((u32)padding & padMask) != 0);
-    }
-
-        { register u8 *source asm("r6"); source = northEastJewel; *destination++ = *source; }
-        *destination++ = *southEastJewel;
-        { register u8 *source asm("r1"); source = southWestJewel; *destination++ = *source; }
-    *destination++ = gCollectedNWJewelPiece;
-    padding = destination;
-    if (((u32)destination & 3) != 0)
-    {
-        register u32 padValue asm("r3");
-        register u32 padMask asm("r1");
-
-        padValue = 0;
-        padMask = 3;
-        do
+        source6 = northEastJewel; value = *source6; *(destination++) = value;
+        source7 = sharedIp; value = *source7; *(destination++) = value;
+        asm("" : : "r"(source1), "r"(source2), "r"(source3), "r"(source5), "r"(source6));
+        source1 = southWestJewel; value = *source1; *(destination++) = value;
+        source2 = &gCollectedNWJewelPiece; value = *source2; *(destination++) = value;
+        padding = destination;
+        if ((((u32)destination) & new_var) != 0)
         {
-            *destination++ = padValue;
-            padding++;
+            register u32 padValue asm("r3");
+            register u32 padMask asm("r1");
+            padValue = 0;
+            padMask = new_var;
+            do
+            {
+                *(destination++) = padValue;
+                padding++;
+            } while ((((u32)padding) & padMask) != 0);
         }
-        while (((u32)padding & padMask) != 0);
-    }
-
-    *destination++ = gCollectedCD;
-    *destination++ = gCollectedKeyzer;
-        { register u8 *source asm("r6"); source = switchPressed; *destination++ = *source; }
-        *destination++ = gUnk_3000C0E;
-    padding = destination;
-    if (((u32)destination & 3) != 0)
-    {
-        register u32 padValue asm("r3");
-        register u32 padMask asm("r1");
-
-        padValue = 0;
-        padMask = 3;
-        do
+        source3 = &gCollectedCD; value = *source3; *(destination++) = value;
+        source5 = &gCollectedKeyzer; value = *source5; *(destination++) = value;
+        source6 = switchPressed; value = *source6; *(destination++) = value;
+        source7 = &gUnk_3000C0E; value = *source7; *(destination++) = value;
+        asm("" : : "r"(source1), "r"(source2), "r"(source3), "r"(source5), "r"(source6));
+        padding = destination;
+        if ((((u32)destination) & new_var) != 0)
         {
-            *destination++ = padValue;
-            padding++;
+            register u32 padValue asm("r3");
+            register u32 padMask asm("r1");
+            padValue = 0;
+            padMask = new_var;
+            do
+            {
+                *(destination++) = padValue;
+                padding++;
+            } while ((((u32)padding) & padMask) != 0);
         }
-        while (((u32)padding & padMask) != 0);
     }
-
+    {
+        register u32 *source asm("r1");
+        source = &gTotalScore;
+        *((u32 *)destination) = *source;
     }
-
-    *(u32 *)destination = gTotalScore;
     destination += 4;
-    *(u32 *)destination = gStageScore;
+    {
+        register u32 *source asm("r2");
+        source = &gStageScore;
+        *((u32 *)destination) = *source;
+    }
     destination += 4;
-    *(u32 *)destination = gStageFrameCounter;
+    {
+        register u32 *source asm("r3");
+        source = &gStageFrameCounter;
+        *((u32 *)destination) = *source;
+    }
     destination += 4;
-
     {
         register s32 index asm("r2");
         register u8 *source asm("r1");
-
         index = 0;
         source = gRoomSpriteIds;
         do
         {
-            *destination++ = *(u8 *)(index + (u32)source);
+            *(destination++) = *((u8 *)(index + ((u32)source)));
             index++;
-        }
-        while (index <= 31);
-
-        if ((index & 3) != 0)
+        } while (index <= 31);
+        if ((index & new_var) != 0)
         {
             register u32 padValue asm("r3");
             register u32 padMask asm("r1");
-
             padValue = 0;
-            padMask = 3;
+            padMask = new_var;
             do
             {
-                *destination++ = padValue;
+                *(destination++) = padValue;
                 index++;
-            }
-            while ((index & padMask) != 0);
+            } while ((index & padMask) != 0);
         }
     }
-
     {
         register s32 index asm("r2");
         register u8 *source asm("r1");
-
         index = 0;
         source = gRoomSpriteGraphicsSlots;
         do
         {
-            *destination++ = *(u8 *)(index + (u32)source);
+            *(destination++) = *((u8 *)(index + ((u32)source)));
             index++;
-        }
-        while (index <= 31);
-
-        if ((index & 3) != 0)
+        } while (index <= 31);
+        if ((index & new_var) != 0)
         {
             register u32 padValue asm("r3");
             register u32 padMask asm("r1");
-
             padValue = 0;
-            padMask = 3;
+            padMask = new_var;
             do
             {
-                *destination++ = padValue;
+                *(destination++) = padValue;
                 index++;
-            }
-            while ((index & padMask) != 0);
+            } while ((index & padMask) != 0);
         }
     }
-
     {
         register u32 cursor asm("r1");
         register u8 *base asm("r5");
         register s32 next asm("r3");
         register s32 remaining asm("r2");
-
         cursor = 0;
         base = (u8 *)gPersistentSpriteData;
         do
         {
             register u32 offset asm("r0");
-
             offset = cursor << 6;
             next = cursor + 1;
-            cursor = offset + (u32)base;
+            cursor = offset + ((u32)base);
             remaining = 63;
             do
             {
-                *destination++ = *(u8 *)cursor;
+                register u8 value0 asm("r0");
+                value0 = *((u8 *)cursor);
+                *(destination++) = value0;
                 cursor++;
                 remaining--;
-            }
-            while (remaining >= 0);
+            } while (remaining >= 0);
             cursor = next;
-        }
-        while ((s32)cursor <= 15);
+        } while (((s32)cursor) <= 15);
     }
-
     {
         register s32 index asm("r2");
         register u8 *source asm("r1");
-
         index = 0;
         source = gSwitchStates;
         do
         {
-            *destination++ = *(u8 *)(index + (u32)source);
+            register u8 value0 asm("r0");
+            value0 = *((u8 *)(index + ((u32)source)));
+            *(destination++) = value0;
             index++;
-        }
-        while (index <= 4);
-
-        if ((index & 3) != 0)
+        } while (index <= 4);
         {
-            register u32 padValue asm("r3");
-            register u32 padMask asm("r1");
-
+            register u32 test0 asm("r0");
+            test0 = index & new_var;
+            if (test0 != 0)
+            {
+                register u32 padValue asm("r3");
+                register u32 padMask asm("r1");
             padValue = 0;
-            padMask = 3;
+            padMask = new_var;
             do
             {
-                *destination++ = padValue;
+                *(destination++) = padValue;
                 index++;
+                } while ((index & padMask) != 0);
             }
-            while ((index & padMask) != 0);
         }
     }
-
     {
         register s32 index asm("r2");
         register u8 *source asm("r1");
-
         index = 0;
         source = gStageTimerDigits;
         do
         {
-            *destination++ = *(u8 *)(index + (u32)source);
+            register u8 value0 asm("r0");
+            value0 = *((u8 *)(index + ((u32)source)));
+            *(destination++) = value0;
             index++;
-        }
-        while (index <= 2);
-
-        if ((index & 3) != 0)
+        } while (index <= 2);
         {
-            register u32 padValue asm("r3");
-            register u32 padMask asm("r1");
-
+            register u32 test0 asm("r0");
+            test0 = index & new_var;
+            if (test0 != 0)
+            {
+                register u32 padValue asm("r3");
+                register u32 padMask asm("r1");
             padValue = 0;
-            padMask = 3;
+            padMask = new_var;
             do
             {
-                *destination++ = padValue;
+                *(destination++) = padValue;
                 index++;
+                } while ((index & padMask) != 0);
             }
-            while ((index & padMask) != 0);
         }
     }
-
     {
         register s32 index asm("r2");
         register s8 *source asm("r1");
-
         index = 0;
         source = gScoreDigits;
         do
         {
-            *destination++ = *(u8 *)(index + (u32)source);
+            register u8 value0 asm("r0");
+            value0 = *((u8 *)(index + ((u32)source)));
+            *(destination++) = value0;
             index++;
-        }
-        while (index <= 4);
-
-        if ((index & 3) != 0)
+        } while (index <= 4);
         {
-            register u32 padValue asm("r3");
-            register u32 padMask asm("r1");
-
+            register u32 test0 asm("r0");
+            test0 = index & new_var;
+            if (test0 != 0)
+            {
+                register u32 padValue asm("r3");
+                register u32 padMask asm("r1");
             padValue = 0;
-            padMask = 3;
+            padMask = new_var;
             do
             {
-                *destination++ = padValue;
+                *(destination++) = padValue;
                 index++;
+                } while ((index & padMask) != 0);
             }
-            while ((index & padMask) != 0);
         }
     }
-
     {
         register u32 cursor asm("r1");
         register u8 *base asm("r5");
         register s32 next asm("r3");
         register s32 remaining asm("r2");
-
         cursor = 0;
         base = gCurrentCollection;
         do
         {
+            register u32 offset0 asm("r0");
             next = cursor + 1;
-            cursor = (((cursor << 1) + cursor) << 3) + (u32)base;
-            remaining = 3;
+            offset0 = ((cursor << 1) + cursor) << new_var;
+            cursor = offset0 + ((u32)base);
+            remaining = new_var;
             do
             {
-                *(u32 *)destination = *(u32 *)cursor;
+                register u32 value0 asm("r0");
+                value0 = *((u32 *)cursor);
+                *((u32 *)destination) = value0;
                 destination += 4;
                 cursor += 4;
                 remaining--;
-            }
-            while (remaining >= 0);
+            } while (remaining >= 0);
             cursor = next;
-        }
-        while ((s32)cursor <= 4);
+        } while (((s32)cursor) <= 4);
     }
-
-    *(u32 *)destination = *(u32 *)&gUnk_30000D8;
+    {
+        register u32 *source asm("r5");
+        register u32 value0 asm("r0");
+        source = (u32 *)(&gUnk_30000D8);
+        value0 = *source;
+        *((u32 *)destination) = value0;
+    }
     destination += 4;
-    *(SaveBlock8 *)destination = *(SaveBlock8 *)&gCameraPositionState;
+    {
+        register u32 *source asm("r6");
+        register RegPair8 v asm("r0");
+        source = (u32 *)&gCameraPositionState;
+        v.w.lo = source[0];
+        v.w.hi = source[1];
+        *((unsigned long long *)destination) = v.q;
+    }
     destination += 8;
-    *(u16 *)destination = gBg0XPosition; destination += 2;
-    *(u16 *)destination = gBg0YPosition; destination += 2;
-    *(u16 *)destination = gBg1XPosition; destination += 2;
-    *(u16 *)destination = gBg1YPosition; destination += 2;
-    *(u16 *)destination = gBg2XPosition; destination += 2;
-    *(u16 *)destination = gBg2YPosition; destination += 2;
-    *(u16 *)destination = gBg3XPosition; destination += 2;
-    *(u16 *)destination = gBg3YPosition; destination += 2;
-
+    source7=(u8*)&gBg0XPosition; *((u16*)destination)=*((volatile u16*)source7); destination += 2;
+    {
+        register u16 *source asm("r1");
+        source = &gBg0YPosition;
+        *((u16 *)destination) = *source;
+    }
+    destination += 2;
+    {
+        register u16 *source asm("r2");
+        source = &gBg1XPosition;
+        *((u16 *)destination) = *source;
+    }
+    destination += 2;
+    {
+        register u16 *source asm("r3");
+        source = &gBg1YPosition;
+        *((u16 *)destination) = *source;
+    }
+    destination += 2;
+    {
+        register u16 *source asm("r5");
+        source = &gBg2XPosition;
+        *((u16 *)destination) = *source;
+    }
+    destination += 2;
+    {
+        register u16 *source asm("r6");
+        source = &gBg2YPosition;
+        *((u16 *)destination) = *source;
+    }
+    destination += 2;
+    source7 = (u8 *)&gBg3XPosition;
+    asm("" : "+r"(source7) : : "r0", "r1", "r2", "r3", "r5", "r6");
+    *((u16 *)destination) = *((u16 *)source7);
+    destination += 2;
+    {
+        register u16 *source asm("r1");
+        source = &gBg3YPosition;
+        new_var2 = source;
+        *((u16 *)destination) = (u16)*source;
+        destination += 2;
+    }
     CopySaveFileBlock8(destination, sSaveFooterSignature);
 }
-
-#endif
 
 void RefreshTemporarySaveStageId(void)
 {
