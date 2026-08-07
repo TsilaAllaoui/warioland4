@@ -1606,1143 +1606,1162 @@ s32 UpdatePassageScreenExitMovement(void)
   return 0;
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_passage_screen_DrawPassageScreenSprites.s");
-#else
-#define ADVANCE_FRAME(stateValue, animationValue) \
-    do { \
-        register struct PassageIconState *advanceState asm("r2"); \
-        register const struct AnimationFrame *advanceAnimation asm("r3"); \
-        register u32 advanceTimer asm("r1"); \
-        register u32 advanceFrame asm("r0"); \
-        advanceState = (stateValue); \
-        advanceAnimation = (animationValue); \
-        advanceTimer = advanceState->timer + 1; \
-        advanceState->timer = advanceTimer; \
-        advanceFrame = advanceState->frame; \
-        if (advanceAnimation[advanceFrame].time < (u16)advanceTimer) { \
-            advanceState->timer = 1; \
-            advanceState->frame++; \
-            advanceFrame = advanceState->frame; \
-            if (advanceAnimation[advanceFrame].time == 0) \
-                advanceState->frame = 0; \
-        } \
-    } while (0)
-
-
-#define DRAW_ACTIVE_STAGE(frameValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u32 coordinateOffset asm("r12"); \
-            register u32 clearMask asm("r10"); \
-            register u32 byteMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r2"); \
-            register u8 *screen asm("r4"); \
-            coordinateOffset = tableOffset; \
-            clearMask = 0xFFFFFE00; \
-            byteMask = (u32)-13; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            screenOffset += (u32)screenBase; \
-            screen = (u8 *)screenOffset; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = attr; \
-                value += 36; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = gUnk_3003C4A; \
-                value <<= 4; \
-                value += coordinateOffset; \
-                x = *(const s32 *)((const u8 *)sUnk_863C584 + value); \
-                x = attr + x; \
-                attr = 0x1FF; \
-                x &= attr; \
-                attr = *(u16 *)(screen + 2); \
-                value = clearMask; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                { \
-                    register u32 oldByte asm("r1"); \
-                    register u32 mergedByte asm("r0"); \
-                    oldByte = screen[5]; \
-                    mergedByte = byteMask; \
-                    mergedByte &= oldByte; \
-                    screen[5] = mergedByte; \
-                } \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_ACTIVE_STAGE_FIRST(frameValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u32 coordinateOffset asm("r12"); \
-            register u32 clearMask asm("r10"); \
-            register u32 byteMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r1"); \
-            register u8 *screen asm("r4"); \
-            coordinateOffset = tableOffset; \
-            clearMask = 0xFFFFFE00; \
-            byteMask = (u32)-13; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            screenOffset += (u32)screenBase; \
-            screen = (u8 *)screenOffset; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = attr; \
-                value += 36; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = gUnk_3003C4A; \
-                value <<= 4; \
-                value += coordinateOffset; \
-                x = *(const s32 *)((const u8 *)sUnk_863C584 + value); \
-                x = attr + x; \
-                attr = 0x1FF; \
-                x &= attr; \
-                attr = *(u16 *)(screen + 2); \
-                value = clearMask; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                { \
-                    register u32 oldByte asm("r1"); \
-                    register u32 mergedByte asm("r0"); \
-                    oldByte = screen[5]; \
-                    mergedByte = byteMask; \
-                    mergedByte &= oldByte; \
-                    screen[5] = mergedByte; \
-                } \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_FIRST_ACTIVE_STAGE(frameValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u32 coordinateOffset asm("r12"); \
-            register u32 clearMask asm("r10"); \
-            register u32 byteMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r2"); \
-            register u8 *screen asm("r4"); \
-            coordinateOffset = tableOffset; \
-            clearMask = 0xFFFFFE00; \
-            byteMask = (u32)-13; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            asm("" : "+r"(screenOffset)); \
-            screen = (u8 *)screenOffset; \
-            screen += (u32)screenBase; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = attr; \
-                value += 36; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = gUnk_3003C4A; \
-                value <<= 4; \
-                value += coordinateOffset; \
-                x = *(const s32 *)((const u8 *)sUnk_863C584 + value); \
-                x = attr + x; \
-                attr = 0x1FF; \
-                asm("" : "+r"(attr)); \
-                x &= attr; \
-                attr = *(u16 *)(screen + 2); \
-                value = clearMask; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                { \
-                    register u32 oldByte asm("r1"); \
-                    register u32 mergedByte asm("r0"); \
-                    oldByte = screen[5]; \
-                    mergedByte = byteMask; \
-                    mergedByte &= oldByte; \
-                    screen[5] = mergedByte; \
-                } \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_ACTIVE_PASSAGE(frameValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u8 *passagePtr asm("r12"); \
-            register const s32 *xTable asm("r10"); \
-            register u32 byteMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r1"); \
-            register u8 *screen asm("r4"); \
-            screen = &gUnk_3003C4A; \
-            asm("" : "+r"(screen)); \
-            passagePtr = screen; \
-            screenOffset = (u32)sUnk_863C5A4; \
-            asm("" : "+r"(screenOffset)); \
-            xTable = (const s32 *)screenOffset; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            asm("" : "+r"(screenOffset)); \
-            screen = (u8 *)screenOffset; \
-            screen += (u32)screenBase; \
-            { \
-                register u32 lowMask asm("r2"); \
-                lowMask = (u32)-13; \
-                asm("" : "+r"(lowMask)); \
-                byteMask = lowMask; \
-            } \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u8 *lowPtr asm("r1"); \
-                    lowPtr = passagePtr; \
-                    asm("" : "+r"(lowPtr)); \
-                    value = *lowPtr; \
-                } \
-                value = sUnk_863C5AC[value]; \
-                value += attr; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u8 *lowPtr asm("r1"); \
-                    lowPtr = passagePtr; \
-                    asm("" : "+r"(lowPtr)); \
-                    value = *lowPtr; \
-                } \
-                x = xTable[value]; \
-                x = attr + x; \
-                attr = 0x1FF; \
-                asm("" : "+r"(attr)); \
-                x &= attr; \
-                attr = *(u16 *)(screen + 2); \
-                value = 0xFFFFFE00; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                { \
-                    register u32 oldByte asm("r1"); \
-                    register u32 mergedByte asm("r0"); \
-                    oldByte = screen[5]; \
-                    mergedByte = byteMask; \
-                    mergedByte &= oldByte; \
-                    screen[5] = mergedByte; \
-                } \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_LOCKED_STAGE(frameValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u32 coordinateOffset asm("r12"); \
-            register u32 byteMask asm("r10"); \
-            register u32 coordinateMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r2"); \
-            register u8 *screen asm("r4"); \
-            coordinateOffset = tableOffset; \
-            byteMask = (u32)-13; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            screenOffset += (u32)screenBase; \
-            screen = (u8 *)screenOffset; \
-            coordinateMask = 0x1FF; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = attr; \
-                value += 20; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = gUnk_3003C4A; \
-                value <<= 4; \
-                value += coordinateOffset; \
-                x = *(const s32 *)((const u8 *)sUnk_863C584 + value); \
-                x = attr + x; \
-                x &= coordinateMask; \
-                attr = *(u16 *)(screen + 2); \
-                value = 0xFFFFFE00; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                screen[5] = byteMask & screen[5]; \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_UNAVAILABLE_STAGE(frameValue, stageIndex) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u32 coordinateOffset asm("r12"); \
-            register u32 clearMask asm("r10"); \
-            register u32 coordinateMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r2"); \
-            register u8 *screen asm("r4"); \
-            coordinateOffset = (stageIndex) << 2; \
-            clearMask = 0xFFFFFE00; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            screenOffset += (u32)screenBase; \
-            screen = (u8 *)screenOffset; \
-            coordinateMask = 0x1FF; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = attr; \
-                value += 80; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = gUnk_3003C4A; \
-                value <<= 4; \
-                value += coordinateOffset; \
-                x = *(const s32 *)((const u8 *)sUnk_863C5B4 + value); \
-                x += attr; \
-                x &= coordinateMask; \
-                attr = *(u16 *)(screen + 2); \
-                value = clearMask; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                value = screen[5]; \
-                value &= (u8)-13; \
-                value |= 8; \
-                screen[5] = value; \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_CLEAR(frameValue, yValue, xValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        asm("" : "+r"(drawn)); \
-        if (drawn < used) { \
-            register u8 *screen asm("r4"); \
-            register u32 attr asm("r2"); \
-            register u32 adjusted asm("r0"); \
-            screen = gOamBuffer + drawn * 8; \
-            drawn = used - drawn; \
-            do { \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                adjusted = attr; \
-                adjusted += (yValue); \
-                screen[0] = adjusted; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u32 x asm("r1"); \
-                    register u32 old asm("r2"); \
-                    register u32 merged asm("r0"); \
-                    x = attr + (xValue); \
-                    x &= 0x1FF; \
-                    old = *(u16 *)(screen + 2); \
-                    merged = 0xFFFFFE00; \
-                    merged &= old; \
-                    merged |= x; \
-                    *(u16 *)(screen + 2) = merged; \
-                } \
-                *copy = *drawFrame++; \
-                screen[5] &= (u8)-13; \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_PRIORITY1(frameValue, yValue, xValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        asm("" : "+r"(drawn)); \
-        if (drawn < used) { \
-            register u8 *screen asm("r4"); \
-            register u32 attr asm("r2"); \
-            register u32 adjusted asm("r0"); \
-            screen = gOamBuffer + drawn * 8; \
-            drawn = used - drawn; \
-            do { \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                adjusted = attr; \
-                adjusted += (yValue); \
-                screen[0] = adjusted; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u32 x asm("r1"); \
-                    register u32 old asm("r2"); \
-                    register u32 merged asm("r0"); \
-                    x = attr + (xValue); \
-                    x &= 0x1FF; \
-                    old = *(u16 *)(screen + 2); \
-                    merged = 0xFFFFFE00; \
-                    merged &= old; \
-                    merged |= x; \
-                    *(u16 *)(screen + 2) = merged; \
-                } \
-                *copy = *drawFrame++; \
-                screen[5] = (screen[5] & (u8)-13) | 8; \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-
-
-#define DRAW_SELECTED_UNAVAILABLE(frameValue, nextIndexValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        register s32 indexTemp asm("r4"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        indexTemp = locals.index; \
-        indexTemp++; \
-        (nextIndexValue) = indexTemp; \
-        if (drawn < used) { \
-            register u32 coordinateOffset asm("r12"); \
-            register u32 clearMask asm("r10"); \
-            register u32 coordinateMask asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screenBase asm("r2"); \
-            register u8 *screen asm("r4"); \
-            screenOffset = locals.index; \
-            screenOffset <<= 2; \
-            coordinateOffset = screenOffset; \
-            clearMask = 0xFFFFFE00; \
-            screenOffset = drawn << 3; \
-            screenBase = gOamBuffer; \
-            screenOffset += (u32)screenBase; \
-            screen = (u8 *)screenOffset; \
-            coordinateMask = 0x1FF; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = attr; \
-                value += 80; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                value = gUnk_3003C4A; \
-                value <<= 4; \
-                value += coordinateOffset; \
-                x = *(const s32 *)((const u8 *)sUnk_863C5B4 + value); \
-                x = attr + x; \
-                x &= coordinateMask; \
-                attr = *(u16 *)(screen + 2); \
-                value = clearMask; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                { \
-                    register u32 oldByte asm("r1"); \
-                    register u32 mergedByte asm("r0"); \
-                    oldByte = screen[5]; \
-                    mergedByte = (u32)-13; \
-                    mergedByte &= oldByte; \
-                    oldByte = 8; \
-                    mergedByte |= oldByte; \
-                    screen[5] = mergedByte; \
-                } \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-#define DRAW_CURSOR(frameValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u8 *screenBase asm("r1"); \
-            register u32 byteMask asm("r12"); \
-            register u8 *yPosition asm("r10"); \
-            register u8 *reverseIndex asm("r9"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screen asm("r4"); \
-            register u32 coordinateMask asm("r8"); \
-            register u32 lowValue asm("r0"); \
-            register u8 *lowPointer asm("r2"); \
-            screenBase = gOamBuffer; \
-            lowValue = (u32)-13; \
-            byteMask = lowValue; \
-            lowPointer = &gUnk_3004729; \
-            asm("" : "+r"(lowPointer)); \
-            yPosition = lowPointer; \
-            { \
-                register u8 *reverseLow asm("r4"); \
-                reverseLow = &gUnk_3004728; \
-                asm("" : "+r"(reverseLow)); \
-                reverseIndex = reverseLow; \
-            } \
-            screenOffset = drawn << 3; \
-            asm("" : "+r"(screenOffset)); \
-            screen = (u8 *)screenOffset; \
-            screen += (u32)screenBase; \
-            lowValue = 0x1FF; \
-            asm("" : "+r"(lowValue)); \
-            coordinateMask = lowValue; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register u32 value asm("r0"); \
-                register u32 x asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u8 *positionLow asm("r1"); \
-                    positionLow = yPosition; \
-                    value = positionLow[0]; \
-                } \
-                value += attr; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u8 *reverseLow asm("r1"); \
-                    reverseLow = reverseIndex; \
-                    value = reverseLow[0]; \
-                } \
-                x = 4; \
-                x -= value; \
-                x <<= 2; \
-                locals.scratch = x; \
-                { \
-                    register u8 *modePtr asm("r1"); \
-                    modePtr = &gUnk_3003C4A; \
-                    value = modePtr[0]; \
-                } \
-                value <<= 4; \
-                x = locals.scratch; \
-                value = x + value; \
-                { \
-                    register const s32 *coordinateTable asm("r1"); \
-                    coordinateTable = sUnk_863C5B4; \
-                    value += (u32)coordinateTable; \
-                } \
-                locals.scratch = value; \
-                x = *(const s32 *)value; \
-                x = attr + x; \
-                attr = coordinateMask; \
-                asm("" : "+r"(attr)); \
-                x &= attr; \
-                attr = *(u16 *)(screen + 2); \
-                value = 0xFFFFFE00; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                { \
-                    register u32 oldByte asm("r1"); \
-                    register u32 mergedByte asm("r0"); \
-                    oldByte = screen[5]; \
-                    mergedByte = byteMask; \
-                    mergedByte &= oldByte; \
-                    oldByte = 8; \
-                    mergedByte |= oldByte; \
-                    screen[5] = mergedByte; \
-                } \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-            drawn = used; \
-        } \
-    } while (0)
-
-
-#define DRAW_MAIN_SPRITE(frameValue, stateValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        if (drawn < used) { \
-            register u8 *screenBase asm("r1"); \
-            register const u16 *mainState asm("r8"); \
-            register u32 clearMask asm("r10"); \
-            register u32 screenOffset asm("r0"); \
-            register u8 *screen asm("r4"); \
-            register u32 coordinateMask asm("r9"); \
-            register u32 lowValue asm("r0"); \
-            screenBase = gOamBuffer; \
-            mainState = (stateValue); \
-            { \
-                register u32 clearLow asm("r4"); \
-                clearLow = 0xFFFFFE00; \
-                asm("" : "+r"(clearLow)); \
-                clearMask = clearLow; \
-            } \
-            screenOffset = drawn << 3; \
-            asm("" : "+r"(screenOffset)); \
-            screen = (u8 *)screenOffset; \
-            screen += (u32)screenBase; \
-            lowValue = 0x1FF; \
-            asm("" : "+r"(lowValue)); \
-            coordinateMask = lowValue; \
-            drawn = used - drawn; \
-            do { \
-                register u32 attr asm("r2"); \
-                register s32 value asm("r0"); \
-                register s32 x asm("r1"); \
-                register const u16 *stateLow asm("r1"); \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                stateLow = mainState; \
-                value = stateLow[5]; \
-                value <<= 16; \
-                value >>= 21; \
-                value += attr; \
-                screen[0] = value; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                x = stateLow[4]; \
-                x <<= 16; \
-                x >>= 21; \
-                x = attr + x; \
-                attr = coordinateMask; \
-                asm("" : "+r"(attr)); \
-                x &= attr; \
-                attr = *(u16 *)(screen + 2); \
-                value = clearMask; \
-                value &= attr; \
-                value |= x; \
-                *(u16 *)(screen + 2) = value; \
-                value = *drawFrame; \
-                *copy = value; \
-                drawFrame++; \
-                value = screen[5]; \
-                x = 12; \
-                value |= x; \
-                screen[5] = value; \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-        } \
-    } while (0)
-
-#define DRAW_MAIN(frameValue, yValue, xValue) \
-    do { \
-        register const u16 *drawFrame asm("r3"); \
-        drawFrame = (frameValue); \
-        used += *drawFrame++; \
-        if (used > 128) goto overflow; \
-        asm("" : "+r"(drawn)); \
-        if (drawn < used) { \
-            register u8 *screen asm("r4"); \
-            register u32 attr asm("r2"); \
-            register u32 adjusted asm("r0"); \
-            screen = gOamBuffer + drawn * 8; \
-            drawn = used - drawn; \
-            do { \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                adjusted = attr; \
-                adjusted += (yValue); \
-                screen[0] = adjusted; \
-                attr = *drawFrame++; \
-                *copy++ = attr; \
-                { \
-                    register u32 x asm("r1"); \
-                    register u32 old asm("r2"); \
-                    register u32 merged asm("r0"); \
-                    x = attr + (xValue); \
-                    x &= 0x1FF; \
-                    old = *(u16 *)(screen + 2); \
-                    merged = 0xFFFFFE00; \
-                    merged &= old; \
-                    merged |= x; \
-                    *(u16 *)(screen + 2) = merged; \
-                } \
-                *copy = *drawFrame++; \
-                screen[5] |= 12; \
-                copy += 2; \
-                screen += 8; \
-                drawn--; \
-            } while (drawn != 0); \
-        } \
-    } while (0)
-
-struct PassageRendererLocals
+void DrawPassageScreenSprites(void)
 {
+  register u16 *copy asm("r5");
+  register s32 used asm("r6");
+  s32 drawn;
+  register u32 tableOffset asm("r8");
+  struct {
     s32 index;
     s32 count;
     s32 stateOffset;
     s32 scratch;
-};
-
-void DrawPassageScreenSprites(void)
-{
-    register u16 *copy asm("r5");
-    register s32 used asm("r6");
-    s32 drawn;
-    register u32 tableOffset asm("r8");
-    struct PassageRendererLocals locals;
-
-    drawn = 0;
+  } locals;
+  drawn = 0;
+  {
+    register u8 *slots asm("r2");
+    register u32 offset asm("r0");
+    register u8 *oam asm("r3");
+    slots = &gOamSlotsUsed;
+    used = *slots;
+    offset = used << 3;
+    oam = gOamBuffer;
+    offset += (u32) oam;
+    copy = (u16 *) offset;
+  }
+  {
+    register u8 *modePtr asm("r0");
+    register u32 mode asm("r1");
+    register s32 four asm("r4");
+    modePtr = &gUnk_3003C4A;
+    mode = *modePtr;
+    four = 4;
+    locals.count = four;
+    if (mode != 0)
     {
-        register u8 *slots asm("r2");
-        register u32 offset asm("r0");
-        register u8 *oam asm("r3");
-        slots = &gOamSlotsUsed;
-        used = *slots;
-        offset = used << 3;
-        oam = gOamBuffer;
-        offset += (u32)oam;
-        copy = (u16 *)offset;
+      locals.count = 1;
     }
+  }
+  {
+    register s32 zero asm("r1");
+    register s32 loopCount asm("r2");
+    zero = 0;
+    locals.index = zero;
+    loopCount = locals.count;
+    if (drawn < loopCount)
     {
-        register u8 *modePtr asm("r0");
-        register u32 mode asm("r1");
-        register s32 four asm("r4");
-        modePtr = &gUnk_3003C4A;
-        mode = *modePtr;
-        four = 4;
-        locals.count = four;
-        if (mode != 0)
-            locals.count = 1;
-    }
-    {
-        register s32 zero asm("r1");
-        register s32 loopCount asm("r2");
-        zero = 0;
-        locals.index = zero;
-        loopCount = locals.count;
-        if (drawn < loopCount)
+      register s32 stateZero asm("r4");
+      tableOffset = zero;
+      stateZero = 0;
+      locals.stateOffset = stateZero;
+      asm("" : "+m"(locals.index), "+m"(locals.count), "+m"(locals.stateOffset));
+      do
+      {
+        register const struct AnimationFrame *animation asm("r3");
+        register u8 *stateBase asm("r0");
+        register s32 stateIndex asm("r1");
+        register struct PassageIconState *iconState asm("r2");
+        stateBase = (u8 *) gUnk_3004708;
+        stateIndex = locals.stateOffset;
+        asm("" : "+r"(stateIndex));
+        iconState = (struct PassageIconState *) stateIndex;
+        iconState = (struct PassageIconState *) (((u32) iconState) + ((u32) stateBase));
+        if (iconState->active != 0)
         {
-            register s32 stateZero asm("r4");
-            tableOffset = zero;
-            stateZero = 0;
-            locals.stateOffset = stateZero;
-            asm("" : "+m"(locals.index), "+m"(locals.count), "+m"(locals.stateOffset));
-        do
-        {
-            register const struct AnimationFrame *animation asm("r3");
-            register u8 *stateBase asm("r0");
-            register s32 stateIndex asm("r1");
-            register struct PassageIconState *iconState asm("r2");
-            stateBase = (u8 *)gUnk_3004708;
-            stateIndex = locals.stateOffset;
-            asm("" : "+r"(stateIndex));
-            iconState = (struct PassageIconState *)stateIndex;
-            iconState = (struct PassageIconState *)((u32)iconState + (u32)stateBase);
-            if (iconState->active != 0)
-            {
-                {
-                    register struct PassageIconState *state asm("r2");
-                    state = iconState;
-                    animation = *(const struct AnimationFrame *const *)((const u8 *)sUnk_863C4AC + tableOffset);
-                    ADVANCE_FRAME(state, animation);
-                }
-                {
-                    register s32 stateOffset2 asm("r2");
-                    register u8 *stateBase2 asm("r4");
-                    register u32 frameAddress asm("r0");
-                    register const u16 *frameOam asm("r3");
-                    stateOffset2 = locals.stateOffset;
-                    stateBase2 = (u8 *)gUnk_3004708;
-                    frameAddress = stateOffset2 + (u32)stateBase2;
-                    frameAddress = *(u16 *)(frameAddress + 2);
-                    frameAddress <<= 3;
-                    frameAddress += (u32)animation;
-                    frameOam = *(const u16 **)frameAddress;
-                    DRAW_FIRST_ACTIVE_STAGE(frameOam);
-                }
-                animation = *(const struct AnimationFrame *const *)((const u8 *)sUnk_863C4BC + tableOffset);
-                DRAW_ACTIVE_PASSAGE(animation[0].oam);
-            }
-            else
-            {
-                {
-                    register u8 *passagePtr asm("r2");
-                    register u32 passage asm("r1");
-                    register u32 offset asm("r0");
-                    register u8 *collection asm("r3");
-                    passagePtr = &gCurrentPassage;
-                    passage = *passagePtr;
-                    offset = passage << 1;
-                    offset += passage;
-                    offset <<= 3;
-                    offset += tableOffset;
-                    collection = gCurrentCollection;
-                    offset += (u32)collection;
-                    offset = *(u8 *)offset;
-                    offset <<= 31;
-                    if (offset != 0)
-                        DRAW_ACTIVE_STAGE_FIRST(sUnk_864131C[0].oam);
-                }
-                {
-                    register u8 *passagePtr asm("r3");
-                    register u32 passage asm("r0");
-                    register u32 offset asm("r1");
-                    register u8 *collection asm("r4");
-                    passagePtr = &gCurrentPassage;
-                    passage = *passagePtr;
-                    offset = passage << 1;
-                    offset += passage;
-                    offset <<= 3;
-                    offset += tableOffset;
-                    collection = gCurrentCollection;
-                    offset += (u32)collection;
-                    passage = *(u8 *)offset;
-                    passage <<= 30;
-                    if ((s32)passage < 0)
-                        DRAW_ACTIVE_STAGE(sUnk_864133C[0].oam);
-                }
-                {
-                    register u8 *passagePtr asm("r3");
-                    register u32 passage asm("r0");
-                    register u32 offset asm("r1");
-                    register u8 *collection asm("r4");
-                    passagePtr = &gCurrentPassage;
-                    passage = *passagePtr;
-                    offset = passage << 1;
-                    offset += passage;
-                    offset <<= 3;
-                    offset += tableOffset;
-                    collection = gCurrentCollection;
-                    offset += (u32)collection;
-                    passage = *(u8 *)offset;
-                    passage <<= 29;
-                    if ((s32)passage < 0)
-                        DRAW_ACTIVE_STAGE(sUnk_864132C[0].oam);
-                }
-                {
-                    register u8 *passagePtr asm("r3");
-                    register u32 passage asm("r0");
-                    register u32 offset asm("r1");
-                    register u8 *collection asm("r4");
-                    passagePtr = &gCurrentPassage;
-                    passage = *passagePtr;
-                    offset = passage << 1;
-                    offset += passage;
-                    offset <<= 3;
-                    offset += tableOffset;
-                    collection = gCurrentCollection;
-                    offset += (u32)collection;
-                    passage = *(u8 *)offset;
-                    passage <<= 28;
-                    if ((s32)passage < 0)
-                        DRAW_ACTIVE_STAGE(sUnk_864130C[0].oam);
-                }
-            }
-            {
-                register s32 four asm("r3");
-                register s32 stateOffset asm("r4");
-                register s32 index asm("r0");
-                register s32 count asm("r1");
-                four = 4;
-                tableOffset += four;
-                stateOffset = locals.stateOffset;
-                stateOffset += 8;
-                locals.stateOffset = stateOffset;
-                index = locals.index;
-                index++;
-                locals.index = index;
-                count = locals.count;
-                if (index >= count) break;
-            }
-            } while (1);
-        }
-    }
-
-    {
-        register u8 *modePtr asm("r2");
-        register u32 mode asm("r0");
-        modePtr = &gUnk_3003C4A;
-        mode = *modePtr;
-        if (mode == 0)
-        {
-            register s32 zero asm("r3");
-            zero = 0;
-            locals.index = zero;
-            tableOffset = zero;
+          {
+            register struct PassageIconState *state asm("r2");
+            state = iconState;
+            animation = *((const struct AnimationFrame * const *) (((const u8 *) sUnk_863C4AC) + tableOffset));
             do
             {
-                register u8 *passagePtr asm("r4");
-                register u32 passage asm("r0");
-                register u32 collectionOffset asm("r1");
-                register u8 *collection asm("r0");
-                register u32 flags asm("r0");
-                passagePtr = &gCurrentPassage;
-                passage = *passagePtr;
-                collectionOffset = passage << 1;
-                collectionOffset += passage;
-                collectionOffset <<= 3;
-                collectionOffset += tableOffset;
-                collection = gCurrentCollection;
-                collectionOffset += (u32)collection;
-                flags = *(u8 *)collectionOffset;
-                flags <<= 27;
-                if ((s32)flags < 0)
-                    DRAW_LOCKED_STAGE(sUnk_86413BC[0].oam);
+              register struct PassageIconState *advanceState asm("r2");
+              register const struct AnimationFrame *advanceAnimation asm("r3");
+              register u32 advanceTimer asm("r1");
+              register u32 advanceFrame asm("r0");
+              advanceState = state;
+              advanceAnimation = animation;
+              advanceTimer = advanceState->timer + 1;
+              advanceState->timer = advanceTimer;
+              advanceFrame = advanceState->frame;
+              if (advanceAnimation[advanceFrame].time < ((u16) advanceTimer))
+              {
+                advanceState->timer = 1;
+                advanceState->frame++;
+                advanceFrame = advanceState->frame;
+                if (advanceAnimation[advanceFrame].time == 0)
                 {
-                    register s32 four asm("r3");
-                    register s32 nextIndex asm("r4");
-                    four = 4;
-                    tableOffset += four;
-                    nextIndex = locals.index;
-                    nextIndex++;
-                    locals.index = nextIndex;
-                    if (nextIndex > 3)
-                        break;
+                  advanceState->frame = 0;
                 }
-            } while (1);
-        }
-    }
-
-    {
-        register u8 *selectedPtr asm("r0");
-        register u32 selected asm("r1");
-        selectedPtr = &gStageEntrySelectedStage;
-        selected = *selectedPtr;
-        if (selected != 0)
-        {
-            register s32 zero asm("r0");
-            zero = 0;
-            locals.index = zero;
+              }
+            }
+            while (0);
+          }
+          {
+            register s32 stateOffset2 asm("r2");
+            register u8 *stateBase2 asm("r4");
+            register u32 frameAddress asm("r0");
+            register const u16 *frameOam asm("r3");
+            stateOffset2 = locals.stateOffset;
+            stateBase2 = (u8 *) gUnk_3004708;
+            frameAddress = stateOffset2 + ((u32) stateBase2);
+            frameAddress = *((u16 *) (frameAddress + 2));
+            frameAddress <<= 3;
+            frameAddress += (u32) animation;
+            frameOam = *((const u16 **) frameAddress);
+            do
             {
-                register u8 *selectedPtr2 asm("r2");
-                register u32 selected2 asm("r1");
-                register s32 limit asm("r0");
-                register s32 index asm("r3");
-                selectedPtr2 = &gStageEntrySelectedStage;
-                selected2 = *selectedPtr2;
-                limit = 5;
-                limit -= selected2;
-                index = locals.index;
-                if (index < limit)
+              register const u16 *drawFrame asm("r3");
+              drawFrame = frameOam;
+              used += *(drawFrame++);
+              if (used > 128)
+              {
+                goto overflow;
+              }
+              if (drawn < used)
+              {
+                register u32 coordinateOffset asm("r12");
+                register u32 clearMask asm("r10");
+                register u32 byteMask asm("r9");
+                register u32 screenOffset asm("r0");
+                register u8 *screenBase asm("r2");
+                register u8 *screen asm("r4");
+                coordinateOffset = tableOffset;
+                clearMask = 0xFFFFFE00;
+                byteMask = (u32) (-13);
+                screenOffset = drawn << 3;
+                screenBase = gOamBuffer;
+                asm("" : "+r"(screenOffset));
+                screen = (u8 *) screenOffset;
+                screen += (u32) screenBase;
+                drawn = used - drawn;
+                do
                 {
-                    do
+                  register u32 attr asm("r2");
+                  register u32 value asm("r0");
+                  register u32 x asm("r1");
+                  attr = *(drawFrame++);
+                  *(copy++) = attr;
+                  value = attr;
+                  value += 36;
+                  screen[0] = value;
+                  attr = *(drawFrame++);
+                  *(copy++) = attr;
+                  value = gUnk_3003C4A;
+                  value <<= 4;
+                  value += coordinateOffset;
+                  x = *((const s32 *) (((const u8 *) sUnk_863C584) + value));
+                  x = attr + x;
+                  attr = 0x1FF;
+                  asm("" : "+r"(attr));
+                  x &= attr;
+                  attr = *((u16 *) (screen + 2));
+                  value = clearMask;
+                  value &= attr;
+                  value |= x;
+                  *((u16 *) (screen + 2)) = value;
+                  value = *drawFrame;
+                  *copy = value;
+                  drawFrame++;
+                  {
+                    register u32 oldByte asm("r1");
+                    register u32 mergedByte asm("r0");
+                    oldByte = screen[5];
+                    mergedByte = byteMask;
+                    mergedByte &= oldByte;
+                    screen[5] = mergedByte;
+                  }
+                  copy += 2;
+                  screen += 8;
+                  drawn--;
+                }
+                while (drawn != 0);
+                drawn = used;
+              }
+            }
+            while (0);
+          }
+          animation = *((const struct AnimationFrame * const *) (((const u8 *) sUnk_863C4BC) + tableOffset));
+          do
+          {
+            register const u16 *drawFrame asm("r3");
+            drawFrame = animation[0].oam;
+            used += *(drawFrame++);
+            if (used > 128)
+            {
+              goto overflow;
+            }
+            if (drawn < used)
+            {
+              register u8 *passagePtr asm("r12");
+              register const s32 *xTable asm("r10");
+              register u32 byteMask asm("r9");
+              register u32 screenOffset asm("r0");
+              register u8 *screenBase asm("r1");
+              register u8 *screen asm("r4");
+              screen = &gUnk_3003C4A;
+              asm("" : "+r"(screen));
+              passagePtr = screen;
+              screenOffset = (u32) sUnk_863C5A4;
+              asm("" : "+r"(screenOffset));
+              xTable = (const s32 *) screenOffset;
+              screenOffset = drawn << 3;
+              screenBase = gOamBuffer;
+              asm("" : "+r"(screenOffset));
+              screen = (u8 *) screenOffset;
+              screen += (u32) screenBase;
+              {
+                register u32 lowMask asm("r2");
+                lowMask = (u32) (-13);
+                asm("" : "+r"(lowMask));
+                byteMask = lowMask;
+              }
+              drawn = used - drawn;
+              do
+              {
+                register u32 attr asm("r2");
+                register u32 value asm("r0");
+                register u32 x asm("r1");
+                attr = *(drawFrame++);
+                *(copy++) = attr;
+                {
+                  register u8 *lowPtr asm("r1");
+                  lowPtr = passagePtr;
+                  asm("" : "+r"(lowPtr));
+                  value = *lowPtr;
+                }
+                value = sUnk_863C5AC[value];
+                value += attr;
+                screen[0] = value;
+                attr = *(drawFrame++);
+                *(copy++) = attr;
+                {
+                  register u8 *lowPtr asm("r1");
+                  lowPtr = passagePtr;
+                  asm("" : "+r"(lowPtr));
+                  value = *lowPtr;
+                }
+                x = xTable[value];
+                x = attr + x;
+                attr = 0x1FF;
+                asm("" : "+r"(attr));
+                x &= attr;
+                attr = *((u16 *) (screen + 2));
+                value = 0xFFFFFE00;
+                value &= attr;
+                value |= x;
+                *((u16 *) (screen + 2)) = value;
+                value = *drawFrame;
+                *copy = value;
+                drawFrame++;
+                {
+                  register u32 oldByte asm("r1");
+                  register u32 mergedByte asm("r0");
+                  oldByte = screen[5];
+                  mergedByte = byteMask;
+                  mergedByte &= oldByte;
+                  screen[5] = mergedByte;
+                }
+                copy += 2;
+                screen += 8;
+                drawn--;
+              }
+              while (drawn != 0);
+              drawn = used;
+ do { } while (0);
+            }
+          }
+          while (0);
+        }
+        else
+        {
+          {
+            register u8 *passagePtr asm("r2");
+            register u32 passage asm("r1");
+            register u32 offset asm("r0");
+            register u8 *collection asm("r3");
+            passagePtr = &gCurrentPassage;
+            passage = *passagePtr;
+            offset = passage << 1;
+            offset += passage;
+            offset <<= 3;
+            offset += tableOffset;
+            collection = gCurrentCollection;
+            offset += (u32) collection;
+            offset = *((u8 *) offset);
+            offset <<= 31;
+            if (offset != 0)
+            {
+              do
+              {
+                register const u16 *drawFrame asm("r3");
+                drawFrame = sUnk_864131C[0].oam;
+                used += *(drawFrame++);
+                if (used > 128)
+                {
+                  goto overflow;
+                }
+                if (drawn < used)
+                {
+                  register u32 coordinateOffset asm("r12");
+                  register u32 clearMask asm("r10");
+                  register u32 byteMask asm("r9");
+                  register u32 screenOffset asm("r0");
+                  register u8 *screenBase asm("r1");
+                  register u8 *screen asm("r4");
+                  coordinateOffset = tableOffset;
+                  {
+                    register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } p34 asm("r3");
+                    p34.w.hi = 0xFFFFFE00;
+                    clearMask = p34.w.hi;
+                  }
+                  byteMask = (u32) (-13);
+                  screenOffset = drawn << 3;
+                  screenBase = gOamBuffer;
+                  screenOffset += (u32) screenBase;
+                  screen = (u8 *) screenOffset;
+                  drawn = used - drawn;
+                  do
+                  {
+                    register u32 attr asm("r2");
+                    register u32 value asm("r0");
+                    register u32 x asm("r1");
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = attr;
+                    value += 36;
+                    screen[0] = value;
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = gUnk_3003C4A;
+                    value <<= 4;
+                    value += coordinateOffset;
+                    x = *((const s32 *) (((const u8 *) sUnk_863C584) + value));
+                    x = attr + x;
+                    attr = 0x1FF;
+                    x &= attr;
+                    attr = *((u16 *) (screen + 2));
+                    value = clearMask;
+                    value &= attr;
+                    value |= x;
+                    *((u16 *) (screen + 2)) = value;
+                    value = *drawFrame;
+                    *copy = value;
+                    drawFrame++;
                     {
-                        register s32 nextIndex asm("r8");
-                        DRAW_SELECTED_UNAVAILABLE(sUnk_86413CC[0].oam, nextIndex);
-                        {
-                            register s32 storeIndex asm("r3");
-                            register u8 *selectedPtr3 asm("r4");
-                            register u32 selected3 asm("r1");
-                            register s32 limit3 asm("r0");
-                            storeIndex = nextIndex;
-                            locals.index = storeIndex;
-                            selectedPtr3 = &gStageEntrySelectedStage;
-                            selected3 = *selectedPtr3;
-                            limit3 = 5;
-                            limit3 -= selected3;
-                            if (storeIndex >= limit3)
-                                break;
-                        }
-                    } while (1);
+                      register u32 oldByte asm("r1");
+                      register u32 mergedByte asm("r0");
+                      oldByte = screen[5];
+                      mergedByte = byteMask;
+                      mergedByte &= oldByte;
+                      screen[5] = mergedByte;
+                    }
+                    copy += 2;
+                    screen += 8;
+                    drawn--;
+                  }
+                  while (drawn != 0);
+                  drawn = used;
                 }
+              }
+              while (0);
             }
-        }
-    }
-
-    if (gUnk_3004700 == 2)
-    {
-        DRAW_CURSOR(sUnk_86413CC[0].oam);
-    }
-
-    {
-        register u16 *state asm("r2");
-        register u32 timer asm("r1");
-        register u32 frame asm("r0");
-        register const struct AnimationFrame **animationPointer asm("r3");
-        register const struct AnimationFrame *animation asm("r4");
-        register const struct AnimationFrame **savedAnimationPointer asm("r8");
-        state = gStageEntryMainSpriteState;
-        timer = state[0];
-        timer++;
-        state[0] = timer;
-        frame = state[1];
-        asm("" : "+r"(frame));
-        animationPointer = &gUnk_3003C40;
-        animation = *animationPointer;
-        {
-            register u32 frameTime asm("r0");
-            frameTime = animation[frame].time;
-            timer = (u16)timer;
-            savedAnimationPointer = animationPointer;
-            asm("" : "+r"(savedAnimationPointer));
-            if (frameTime < timer)
+          }
+          {
+            register u8 *passagePtr asm("r3");
+            register u32 passage asm("r0");
+            register u32 offset asm("r1");
+            register u8 *collection asm("r4");
+            passagePtr = &gCurrentPassage;
+            passage = *passagePtr;
+            offset = passage << 1;
+            offset += passage;
+            offset <<= 3;
+            offset += tableOffset;
+            collection = gCurrentCollection;
+            offset += (u32) collection;
+            passage = *((u8 *) offset);
+            passage <<= 30;
+            if (((s32) passage) < 0)
             {
-            state[0] = 1;
-            frame = state[1];
-            frame++;
-            state[1] = frame;
-            frame = state[1];
+              do
+              {
+                register const u16 *drawFrame asm("r3");
+                drawFrame = sUnk_864133C[0].oam;
+                used += *(drawFrame++);
+                if (used > 128)
+                {
+                  goto overflow;
+                }
+                if (drawn < used)
+                {
+                  register u32 coordinateOffset asm("r12");
+                  register u32 clearMask asm("r10");
+                  register u32 byteMask asm("r9");
+                  register u32 screenOffset asm("r0");
+                  register u8 *screenBase asm("r2");
+                  register u8 *screen asm("r4");
+                  coordinateOffset = tableOffset;
+                  clearMask = 0xFFFFFE00;
+                  byteMask = (u32) (-13);
+                  screenOffset = drawn << 3;
+                  screenBase = gOamBuffer;
+                  screenOffset += (u32) screenBase;
+                  screen = (u8 *) screenOffset;
+                  drawn = used - drawn;
+                  do
+                  {
+                    register u32 attr asm("r2");
+                    register u32 value asm("r0");
+                    register u32 x asm("r1");
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = attr;
+                    value += 36;
+                    screen[0] = value;
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = gUnk_3003C4A;
+                    value <<= 4;
+                    value += coordinateOffset;
+                    x = *((const s32 *) (((const u8 *) sUnk_863C584) + value));
+                    x = attr + x;
+                    attr = 0x1FF;
+                    x &= attr;
+                    attr = *((u16 *) (screen + 2));
+                    value = clearMask;
+                    value &= attr;
+                    value |= x;
+                    *((u16 *) (screen + 2)) = value;
+                    value = *drawFrame;
+                    *copy = value;
+                    drawFrame++;
+                    {
+                      register u32 oldByte asm("r1");
+                      register u32 mergedByte asm("r0");
+                      oldByte = screen[5];
+                      mergedByte = byteMask;
+                      mergedByte &= oldByte;
+                      screen[5] = mergedByte;
+                    }
+                    copy += 2;
+                    screen += 8;
+                    drawn--;
+                  }
+                  while (drawn != 0);
+                  drawn = used;
+                }
+              }
+              while (0);
+            }
+          }
+          {
+            register u8 *passagePtr asm("r3");
+            register u32 passage asm("r0");
+            register u32 offset asm("r1");
+            register u8 *collection asm("r4");
+            passagePtr = &gCurrentPassage;
+            passage = *passagePtr;
+            offset = passage << 1;
+            offset += passage;
+            offset <<= 3;
+            offset += tableOffset;
+            collection = gCurrentCollection;
+            offset += (u32) collection;
+            passage = *((u8 *) offset);
+            passage <<= 29;
+            if (((s32) passage) < 0)
             {
-                register u32 nextTime asm("r3");
-                nextTime = animation[frame].time;
-                if (nextTime == 0)
-                    state[1] = nextTime;
+              do
+              {
+                register const u16 *drawFrame asm("r3");
+                drawFrame = sUnk_864132C[0].oam;
+                used += *(drawFrame++);
+                if (used > 128)
+                {
+                  goto overflow;
+                }
+                if (drawn < used)
+                {
+                  register u32 coordinateOffset asm("r12");
+                  register u32 clearMask asm("r10");
+                  register u32 byteMask asm("r9");
+                  register u32 screenOffset asm("r0");
+                  register u8 *screenBase asm("r2");
+                  register u8 *screen asm("r4");
+                  coordinateOffset = tableOffset;
+                  clearMask = 0xFFFFFE00;
+                  byteMask = (u32) (-13);
+                  screenOffset = drawn << 3;
+                  screenBase = gOamBuffer;
+                  screenOffset += (u32) screenBase;
+                  screen = (u8 *) screenOffset;
+                  drawn = used - drawn;
+                  do
+                  {
+                    register u32 attr asm("r2");
+                    register u32 value asm("r0");
+                    register u32 x asm("r1");
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = attr;
+                    value += 36;
+                    screen[0] = value;
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = gUnk_3003C4A;
+                    value <<= 4;
+                    value += coordinateOffset;
+                    x = *((const s32 *) (((const u8 *) sUnk_863C584) + value));
+                    x = attr + x;
+                    attr = 0x1FF;
+                    x &= attr;
+                    attr = *((u16 *) (screen + 2));
+                    value = clearMask;
+                    value &= attr;
+                    value |= x;
+                    *((u16 *) (screen + 2)) = value;
+                    value = *drawFrame;
+                    *copy = value;
+                    drawFrame++;
+                    {
+                      register u32 oldByte asm("r1");
+                      register u32 mergedByte asm("r0");
+                      oldByte = screen[5];
+                      mergedByte = byteMask;
+                      mergedByte &= oldByte;
+                      screen[5] = mergedByte;
+                    }
+                    copy += 2;
+                    screen += 8;
+                    drawn--;
+                  }
+                  while (drawn != 0);
+                  drawn = used;
+                }
+              }
+              while (0);
             }
+          }
+          {
+            register u8 *passagePtr asm("r3");
+            register u32 passage asm("r0");
+            register u32 offset asm("r1");
+            register u8 *collection asm("r4");
+            passagePtr = &gCurrentPassage;
+            passage = *passagePtr;
+            offset = passage << 1;
+            offset += passage;
+            offset <<= 3;
+            offset += tableOffset;
+            collection = gCurrentCollection;
+            offset += (u32) collection;
+            passage = *((u8 *) offset);
+            passage <<= 28;
+            if (((s32) passage) < 0)
+            {
+              do
+              {
+                register const u16 *drawFrame asm("r3");
+                drawFrame = sUnk_864130C[0].oam;
+                used += *(drawFrame++);
+                if (used > 128)
+                {
+                  goto overflow;
+                }
+                if (drawn < used)
+                {
+                  register u32 coordinateOffset asm("r12");
+                  register u32 clearMask asm("r10");
+                  register u32 byteMask asm("r9");
+                  register u32 screenOffset asm("r0");
+                  register u8 *screenBase asm("r2");
+                  register u8 *screen asm("r4");
+                  coordinateOffset = tableOffset;
+                  clearMask = 0xFFFFFE00;
+                  byteMask = (u32) (-13);
+                  screenOffset = drawn << 3;
+                  screenBase = gOamBuffer;
+                  screenOffset += (u32) screenBase;
+                  screen = (u8 *) screenOffset;
+                  drawn = used - drawn;
+                  do
+                  {
+                    register u32 attr asm("r2");
+                    register u32 value asm("r0");
+                    register u32 x asm("r1");
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = attr;
+                    value += 36;
+                    screen[0] = value;
+                    attr = *(drawFrame++);
+                    *(copy++) = attr;
+                    value = gUnk_3003C4A;
+                    value <<= 4;
+                    value += coordinateOffset;
+                    x = *((const s32 *) (((const u8 *) sUnk_863C584) + value));
+                    x = attr + x;
+                    attr = 0x1FF;
+                    x &= attr;
+                    attr = *((u16 *) (screen + 2));
+                    value = clearMask;
+                    value &= attr;
+                    value |= x;
+                    *((u16 *) (screen + 2)) = value;
+                    value = *drawFrame;
+                    *copy = value;
+                    drawFrame++;
+                    {
+                      register u32 oldByte asm("r1");
+                      register u32 mergedByte asm("r0");
+                      oldByte = screen[5];
+                      mergedByte = byteMask;
+                      mergedByte &= oldByte;
+                      screen[5] = mergedByte;
+                    }
+                    copy += 2;
+                    screen += 8;
+                    drawn--;
+                  }
+                  while (drawn != 0);
+                  drawn = used;
+                }
+              }
+              while (0);
             }
+          }
         }
-        frame = state[1];
-        asm("" : "+r"(frame));
         {
-            register const struct AnimationFrame **pointerLow asm("r3");
-            register const struct AnimationFrame *animationLow asm("r1");
-            pointerLow = savedAnimationPointer;
-            animationLow = *pointerLow;
-            DRAW_MAIN_SPRITE(animationLow[frame].oam, state);
+          register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } pair34 asm("r3");
+          register s32 index asm("r0");
+          register s32 count asm("r1");
+          pair34.w.lo = 4;
+          tableOffset += pair34.w.lo;
+          pair34.w.hi = locals.stateOffset;
+          pair34.w.hi += 8;
+          locals.stateOffset = pair34.w.hi;
+          index = locals.index;
+          index++;
+          locals.index = index;
+          count = locals.count;
+          if (index >= count)
+          {
+            break;
+          }
         }
+      }
+      while (1);
     }
-    asm("" : : : "r3");
+  }
+  {
+    register u8 *modePtr asm("r2");
+    register u32 mode asm("r0");
+    modePtr = &gUnk_3003C4A;
+    mode = *modePtr;
+    if (mode == 0)
     {
-        register u8 *slots asm("r3");
-        slots = &gOamSlotsUsed;
-        *slots = used;
+      register s32 zero asm("r3");
+      zero = 0;
+      locals.index = zero;
+      tableOffset = zero;
+      do
+      {
+        register u8 *passagePtr asm("r4");
+        register u32 passage asm("r0");
+        register u32 collectionOffset asm("r1");
+        register u8 *collection asm("r0");
+        register u32 flags asm("r0");
+        passagePtr = &gCurrentPassage;
+        passage = *passagePtr;
+        collectionOffset = passage << 1;
+        collectionOffset += passage;
+        collectionOffset <<= 3;
+        collectionOffset += tableOffset;
+        collection = gCurrentCollection;
+        collectionOffset += (u32) collection;
+        flags = *((u8 *) collectionOffset);
+        flags <<= 27;
+        if (((s32) flags) < 0)
+        {
+          do
+          {
+            register const u16 *drawFrame asm("r3");
+            register u32 frameValue asm("r0");
+            frameValue = (u32)sUnk_86413BC;
+            drawFrame = *(const u16 **)frameValue;
+            frameValue = *drawFrame;
+            used += frameValue;
+            drawFrame++;
+            if (used > 128)
+            {
+              goto overflow;
+            }
+            if (drawn < used)
+            {
+              register u32 coordinateOffset asm("r12");
+              register u32 byteMask asm("r10");
+              register u32 coordinateMask asm("r9");
+              register u32 screenOffset asm("r0");
+              register u8 *screenBase asm("r2");
+              register u8 *screen asm("r4");
+              coordinateOffset = tableOffset;
+              {
+                register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } p01 asm("r0");
+                p01.w.hi = (u32)(-13);
+                byteMask = p01.w.hi;
+              }
+              screenOffset = drawn << 3;
+              screenBase = gOamBuffer;
+              screenOffset += (u32) screenBase;
+              screen = (u8 *) screenOffset;
+              coordinateMask = 0x1FF;
+              drawn = used - drawn;
+              do
+              {
+                register u32 attr asm("r2");
+                register u32 value asm("r0");
+                register u32 x asm("r1");
+                attr = *(drawFrame++);
+                *(copy++) = attr;
+                value = attr;
+                value += 20;
+                screen[0] = value;
+                attr = *(drawFrame++);
+                *(copy++) = attr;
+                value = gUnk_3003C4A;
+                value <<= 4;
+                value += coordinateOffset;
+                x = *((const s32 *) (((const u8 *) sUnk_863C584) + value));
+                x = attr + x;
+                {
+                  register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } pair12 asm("r1");
+                  pair12.w.lo = x;
+                  pair12.w.hi = coordinateMask;
+                  pair12.w.lo &= pair12.w.hi;
+                  x = pair12.w.lo;
+                }
+                attr = *((u16 *) (screen + 2));
+                value = 0xFFFFFE00;
+                value &= attr;
+                value |= x;
+                *((u16 *) (screen + 2)) = value;
+                value = *drawFrame;
+                *copy = value;
+                drawFrame++;
+                {
+                  register u32 oldByte asm("r1");
+                  register u32 mergedByte asm("r0");
+                  oldByte = screen[5];
+                  mergedByte = byteMask;
+                  mergedByte &= oldByte;
+                  screen[5] = mergedByte;
+                }
+                copy += 2;
+                screen += 8;
+                drawn--;
+              }
+              while (drawn != 0);
+              drawn = used;
+            }
+          }
+          while (0);
+        }
+        {
+          register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } pair23 asm("r2");
+          register s32 nextIndex asm("r4");
+          pair23.w.hi = 4;
+          tableOffset += pair23.w.hi;
+          nextIndex = locals.index;
+          nextIndex++;
+          locals.index = nextIndex;
+          if (nextIndex > 3)
+          {
+            break;
+          }
+        }
+      }
+      while (1);
     }
-overflow:
-    return;
+  }
+  {
+    register u8 *selectedPtr asm("r0");
+    register u32 selected asm("r1");
+    selectedPtr = &gStageEntrySelectedStage;
+    selected = *selectedPtr;
+    if (selected != 0)
+    {
+      register s32 zero asm("r0");
+      zero = 0;
+      locals.index = zero;
+      {
+        register u8 *selectedPtr2 asm("r2");
+        register u32 selected2 asm("r1");
+        register s32 limit asm("r0");
+        register s32 index asm("r3");
+        selectedPtr2 = &gStageEntrySelectedStage;
+        selected2 = *selectedPtr2;
+        limit = 5;
+        limit -= selected2;
+        index = locals.index;
+        if (index < limit)
+        {
+          do
+          {
+            register s32 nextIndex asm("r8");
+            do
+            {
+              register const u16 *drawFrame asm("r3");
+              register s32 indexTemp asm("r4");
+              drawFrame = sUnk_86413CC[0].oam;
+              used += *(drawFrame++);
+              if (used > 128)
+              {
+                goto overflow;
+              }
+              indexTemp = locals.index;
+              indexTemp++;
+              nextIndex = indexTemp;
+              if (drawn < used)
+              {
+                register u32 coordinateOffset asm("r12");
+                register u32 clearMask asm("r10");
+                register u32 coordinateMask asm("r9");
+                register u32 screenOffset asm("r0");
+                register u8 *screenBase asm("r2");
+                register u8 *screen asm("r4");
+                screenOffset = locals.index;
+                screenOffset <<= 2;
+                coordinateOffset = screenOffset;
+                { register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } p01 asm("r0"); p01.w.hi = 0xFFFFFE00; clearMask = p01.w.hi; }
+                screenOffset = drawn << 3;
+                screenBase = gOamBuffer;
+                screenOffset += (u32) screenBase;
+                screen = (u8 *) screenOffset;
+                coordinateMask = 0x1FF;
+                drawn = used - drawn;
+                do
+                {
+                  register u32 attr asm("r2");
+                  register u32 value asm("r0");
+                  register u32 x asm("r1");
+                  attr = *(drawFrame++);
+                  *(copy++) = attr;
+                  value = attr;
+                  value += 80;
+                  screen[0] = value;
+                  attr = *(drawFrame++);
+                  *(copy++) = attr;
+                  value = gUnk_3003C4A;
+                  value <<= 4;
+                  value += coordinateOffset;
+                  x = *((const s32 *) (((const u8 *) sUnk_863C5B4) + value));
+                  x = attr + x;
+                  {
+                  register union { unsigned long long q; struct { u32 lo; u32 hi; } w; } pair12 asm("r1");
+                  pair12.w.lo = x;
+                  pair12.w.hi = coordinateMask;
+                  pair12.w.lo &= pair12.w.hi;
+                  x = pair12.w.lo;
+                }
+                  attr = *((u16 *) (screen + 2));
+                  value = clearMask;
+                  value &= attr;
+                  value |= x;
+                  *((u16 *) (screen + 2)) = value;
+                  value = *drawFrame;
+                  *copy = value;
+                  drawFrame++;
+                  {
+                    register u32 oldByte asm("r1");
+                    register u32 mergedByte asm("r0");
+                    oldByte = screen[5];
+                    mergedByte = (u32) (-13);
+                    mergedByte &= oldByte;
+                    oldByte = 8;
+                    mergedByte |= oldByte;
+                    screen[5] = mergedByte;
+                  }
+                  copy += 2;
+                  screen += 8;
+                  drawn--;
+                }
+                while (drawn != 0);
+                drawn = used;
+              }
+            }
+            while (0);
+            {
+              register s32 storeIndex asm("r3");
+              register u8 *selectedPtr3 asm("r4");
+              register u32 selected3 asm("r1");
+              register s32 limit3 asm("r0");
+              storeIndex = nextIndex;
+              locals.index = storeIndex;
+              selectedPtr3 = &gStageEntrySelectedStage;
+              selected3 = *selectedPtr3;
+              limit3 = 5;
+              limit3 -= selected3;
+              if (storeIndex >= limit3)
+              {
+                break;
+              }
+            }
+          }
+          while (1);
+        }
+      }
+    }
+  }
+  if (gUnk_3004700 == 2)
+  {
+    do
+    {
+      register const u16 *drawFrame asm("r3");
+      drawFrame = sUnk_86413CC[0].oam;
+      used += *(drawFrame++);
+      if (used > 128)
+      {
+        goto overflow;
+      }
+      if (drawn < used)
+      {
+        register u8 *screenBase asm("r1");
+        register u32 byteMask asm("r12");
+        register u8 *yPosition asm("r10");
+        register u8 *reverseIndex asm("r9");
+        register u32 screenOffset asm("r0");
+        register u8 *screen asm("r4");
+        register u32 coordinateMask asm("r8");
+        register u32 lowValue asm("r0");
+        register u8 *lowPointer asm("r2");
+        screenBase = gOamBuffer;
+        lowValue = (u32) (-13);
+        byteMask = lowValue;
+        lowPointer = &gUnk_3004729;
+        asm("" : "+r"(lowPointer));
+        yPosition = lowPointer;
+        {
+          register u8 *reverseLow asm("r4");
+          reverseLow = &gUnk_3004728;
+          asm("" : "+r"(reverseLow));
+          reverseIndex = reverseLow;
+        }
+        screenOffset = drawn << 3;
+        asm("" : "+r"(screenOffset));
+        screen = (u8 *) screenOffset;
+        screen += (u32) screenBase;
+        lowValue = 0x1FF;
+        asm("" : "+r"(lowValue));
+        coordinateMask = lowValue;
+        drawn = used - drawn;
+        do
+        {
+          register u32 attr asm("r2");
+          register u32 value asm("r0");
+          register u32 x asm("r1");
+          attr = *(drawFrame++);
+          *(copy++) = attr;
+          {
+            register u8 *positionLow asm("r1");
+            positionLow = yPosition;
+            value = positionLow[0];
+          }
+          value += attr;
+          screen[0] = value;
+          attr = *(drawFrame++);
+          *(copy++) = attr;
+          {
+            register u8 *reverseLow asm("r1");
+            reverseLow = reverseIndex;
+            value = reverseLow[0];
+          }
+          x = 4;
+          x -= value;
+          x <<= 2;
+          locals.scratch = x;
+          {
+            register u8 *modePtr asm("r1");
+            modePtr = &gUnk_3003C4A;
+            value = modePtr[0];
+          }
+          value <<= 4;
+          x = locals.scratch;
+          value = x + value;
+          {
+            register const s32 *coordinateTable asm("r1");
+            coordinateTable = sUnk_863C5B4;
+            value += (u32) coordinateTable;
+          }
+          locals.scratch = value;
+          x = *((const s32 *) value);
+          x = attr + x;
+          attr = coordinateMask;
+          asm("" : "+r"(attr));
+          x &= attr;
+          attr = *((u16 *) (screen + 2));
+          value = 0xFFFFFE00;
+          value &= attr;
+          value |= x;
+          *((u16 *) (screen + 2)) = value;
+          value = *drawFrame;
+          *copy = value;
+          drawFrame++;
+          {
+            register u32 oldByte asm("r1");
+            register u32 mergedByte asm("r0");
+            oldByte = screen[5];
+            mergedByte = byteMask;
+            mergedByte &= oldByte;
+            oldByte = 8;
+            mergedByte |= oldByte;
+            screen[5] = mergedByte;
+          }
+          copy += 2;
+          screen += 8;
+          drawn--;
+        }
+        while (drawn != 0);
+        drawn = used;
+      }
+    }
+    while (0);
+  }
+  {
+    register u16 *state asm("r2");
+    register u32 timer asm("r1");
+    register u32 frame asm("r0");
+    register const struct AnimationFrame **animationPointer asm("r3");
+    register const struct AnimationFrame *animation asm("r4");
+    register const struct AnimationFrame **savedAnimationPointer asm("r8");
+    state = gStageEntryMainSpriteState;
+    timer = state[0];
+    timer++;
+    state[0] = timer;
+    frame = state[1];
+    asm("" : "+r"(frame));
+    animationPointer = &gUnk_3003C40;
+    animation = *animationPointer;
+    {
+      register u32 frameTime asm("r0");
+      frameTime = animation[frame].time;
+      timer = (u16) timer;
+      savedAnimationPointer = animationPointer;
+      asm("" : "+r"(savedAnimationPointer));
+      if (frameTime < timer)
+      {
+        state[0] = 1;
+        frame = state[1];
+        frame++;
+        state[1] = frame;
+        frame = state[1];
+        {
+          register u32 nextTime asm("r3");
+          nextTime = animation[frame].time;
+          if (nextTime == 0)
+          {
+            state[1] = nextTime;
+          }
+        }
+      }
+    }
+    frame = state[1];
+    asm("" : "+r"(frame));
+    {
+      register const struct AnimationFrame **pointerLow asm("r3");
+      register const struct AnimationFrame *animationLow asm("r1");
+      pointerLow = savedAnimationPointer;
+      animationLow = *pointerLow;
+      do
+      {
+        register const u16 *drawFrame asm("r3");
+        drawFrame = animationLow[frame].oam;
+        used += *(drawFrame++);
+        if (used > 128)
+        {
+          goto overflow;
+        }
+        if (drawn < used)
+        {
+          register u8 *screenBase asm("r1");
+          register const u16 *mainState asm("r8");
+          register u32 clearMask asm("r10");
+          register u32 screenOffset asm("r0");
+          register u8 *screen asm("r4");
+          register u32 coordinateMask asm("r9");
+          register u32 lowValue asm("r0");
+          screenBase = gOamBuffer;
+          mainState = state;
+          {
+            register u32 clearLow asm("r4");
+            clearLow = 0xFFFFFE00;
+            asm("" : "+r"(clearLow));
+            clearMask = clearLow;
+          }
+          screenOffset = drawn << 3;
+          asm("" : "+r"(screenOffset));
+          screen = (u8 *) screenOffset;
+          screen += (u32) screenBase;
+          lowValue = 0x1FF;
+          asm("" : "+r"(lowValue));
+          coordinateMask = lowValue;
+          drawn = used - drawn;
+          do
+          {
+            register u32 attr asm("r2");
+            register s32 value asm("r0");
+            register s32 x asm("r1");
+            register const u16 *stateLow asm("r1");
+            attr = *(drawFrame++);
+            *(copy++) = attr;
+            stateLow = mainState;
+            value = stateLow[5];
+            value <<= 16;
+            value >>= 21;
+            value += attr;
+            screen[0] = value;
+            attr = *(drawFrame++);
+            *(copy++) = attr;
+            x = stateLow[4];
+            x <<= 16;
+            x >>= 21;
+            x = attr + x;
+            attr = coordinateMask;
+            asm("" : "+r"(attr));
+            x &= attr;
+            attr = *((u16 *) (screen + 2));
+            value = clearMask;
+            value &= attr;
+            value |= x;
+            *((u16 *) (screen + 2)) = value;
+            value = *drawFrame;
+            *copy = value;
+            drawFrame++;
+            value = screen[5];
+            x = 12;
+            value |= x;
+            screen[5] = value;
+            copy += 2;
+            screen += 8;
+            drawn--;
+          }
+          while (drawn != 0);
+        }
+      }
+      while (0);
+    }
+  }
+  asm("" : : : "r3");
+  {
+    register u8 *slots asm("r3");
+    slots = &gOamSlotsUsed;
+    *slots = used;
+  }
+  overflow:
+  return;
+
 }
 
-#undef ADVANCE_FRAME
-#undef DRAW_ACTIVE_STAGE
-#undef DRAW_ACTIVE_STAGE_FIRST
-#undef DRAW_FIRST_ACTIVE_STAGE
-#undef DRAW_ACTIVE_PASSAGE
-#undef DRAW_LOCKED_STAGE
-#undef DRAW_UNAVAILABLE_STAGE
-#undef DRAW_CLEAR
-#undef DRAW_PRIORITY1
-#undef DRAW_SELECTED_UNAVAILABLE
-#undef DRAW_CURSOR
-#undef DRAW_MAIN_SPRITE
-#undef DRAW_MAIN
-#endif /* NONMATCHING */
 
 s32 ClosePassageScreenWindow(void)
 {

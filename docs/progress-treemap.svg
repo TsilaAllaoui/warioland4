@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.5%   3,976 / 3,994</text>
-<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  94.3%   568,872 / 603,112 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.6%   3,977 / 3,994</text>
+<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  94.6%   570,696 / 603,112 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (3,987 / 3,994 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1795,13 +1795,13 @@
 <rect x="703.54" y="200.53" width="2.62" height="7.85" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/PlayWarioDefeatJingle: 20 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>passage_screen: 70.6% matched, 6,196 bytes</title>
+<title>passage_screen: 100.0% matched, 6,196 bytes</title>
 <rect x="707.50" y="113.00" width="98.89" height="96.13" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip21"><rect x="709.50" y="114.00" width="95.49" height="17.41"/></clipPath>
 <rect x="708.50" y="114.00" width="97.49" height="17.41" fill="#05080d"/>
 <text x="710.00" y="127.00" clip-path="url(#moduleLabelClip21)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">passage_scre…</text>
-<text x="804.00" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip21)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">71%</text>
-<rect x="708.50" y="131.41" width="47.86" height="45.68" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/DrawPassageScreenSprites: 1,824 bytes, not matched, size=symbol</title></rect>
+<text x="804.00" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip21)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="708.50" y="131.41" width="47.86" height="45.68" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/DrawPassageScreenSprites: 1,824 bytes, matched, size=symbol</title></rect>
 <rect x="708.50" y="177.44" width="47.86" height="30.94" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/InitializePassageScreen: 1,240 bytes, matched, size=symbol</title></rect>
 <rect x="756.72" y="131.41" width="27.85" height="18.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/HandlePassageScreenInput: 444 bytes, matched, size=symbol</title></rect>
 <rect x="784.91" y="131.41" width="20.73" height="18.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/LoadPassageStageDisplayGraphics: 332 bytes, matched, size=symbol</title></rect>
