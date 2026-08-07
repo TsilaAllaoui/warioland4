@@ -931,187 +931,392 @@ void Shop_DrawText(const u8 *text, u32 destination, u32 length)
     }
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_shop_DrawItemShopSprites.s");
-#else
 void DrawItemShopSprites(void)
 {
-  const struct AnimationFrame *animation;
-  int new_var;
-  const u16 *frameData;
-  u16 *rawDestination;
-  OamData *destination;
-  long slot;
-  long used;
-  u32 i;
-  u32 state;
-  u32 attr0;
-  unsigned long attr1;
-  u32 attr2;
-  volatile int xOffset;
-  s32 yOffset;
-  const struct AnimationFrame * const *animationTable;
-  slot = 0;
-  new_var = 0xFE00;
-  used = gOamSlotsUsed;
-  rawDestination = (u16 *) (((u8 *) gOamBuffer) + (used << 3));
-  gItemShopShopkeeperAnimationState[0]++;
-  animation = gItemShopShopkeeperAnimation;
-  if (animation[gItemShopShopkeeperAnimationState[1]].time < gItemShopShopkeeperAnimationState[0])
-  {
-    gItemShopShopkeeperAnimationState[0] = 0;
-    gItemShopShopkeeperAnimationState[1]++;
-    if (animation[gItemShopShopkeeperAnimationState[1]].time == 0)
-    {
-      gItemShopShopkeeperAnimationState[1] = slot;
-      if (animation == (sItemShopShopkeeperVoiceAnimation))
-      {
-        gItemShopShopkeeperAnimation = sItemShopShopkeeperIdleAnimation;
-      }
-    }
-  }
-  animation = gItemShopShopkeeperAnimation;
-  frameData = animation[gItemShopShopkeeperAnimationState[1]].oam;
-  used += *(frameData++);
-  if (used > 128)
-  {
-    goto finish;
-  }
-  if (slot < used)
-  {
-    destination = (OamData *) (((u8 *) gOamBuffer) + (slot << 3));
-    slot = used - slot;
-    do
-    {
-      attr0 = *(frameData++);
-      *(rawDestination++) = attr0;
-      ((u8 *) destination)[0] = (u8) (attr0 + 120);
-      attr1 = *(frameData++);
-      *(rawDestination++) = attr1;
-      destination->all.attr1 = ((attr1 + 20) & 0x1FF) | (destination->all.attr1 & new_var);
-      attr2 = *(frameData++);
-      *rawDestination = attr2;
-      ((u8 *) destination)[5] &= -13;
-      rawDestination += 2;
-      destination++;
-      slot--;
-    }
-    while (slot != 0);
-    slot = used;
-  }
-  gItemShopCursor.animationTimer++;
-  animation = gItemShopCursorAnimation;
-  if (animation[gItemShopCursor.animationFrame].time < gItemShopCursor.animationTimer)
-  {
-    gItemShopCursor.animationTimer = 0;
-    gItemShopCursor.animationFrame++;
-    if (animation[gItemShopCursor.animationFrame].time == 0)
-    {
-      gItemShopCursor.animationFrame = 0;
-      if (animation == (sItemShopCursorPurchaseAnimation))
-      {
-        gItemShopCursor.animationFrame = 1;
-      }
-    }
-  }
-  animation = gItemShopCursorAnimation;
-  frameData = animation[gItemShopCursor.animationFrame].oam;
-  used += *(frameData++);
-  if (used > 128)
-  {
-    goto finish;
-  }
-  if (slot < used)
-  {
-    destination = (OamData *) (((u8 *) gOamBuffer) + (slot << 3));
-    slot = used - slot;
-    do
-    {
-      attr0 = *(frameData++);
-      *(rawDestination++) = attr0;
-      ((u8 *) destination)[0] = (u8) (attr0 + ((u8) gItemShopCursor.y));
-      attr1 = *(frameData++);
-      *(rawDestination++) = attr1;
-      destination->all.attr1 = ((attr1 + gItemShopCursor.x) & 0x1FF) | (destination->all.attr1 & new_var);
-      attr2 = *(frameData++);
-      *rawDestination = attr2;
-      ((u8 *) destination)[5] &= -13;
-      rawDestination += 2;
-      destination++;
-      slot--;
-    }
-    while (slot != 0);
-    slot = used;
-  }
-  animationTable = (const struct AnimationFrame * const *) sUnk_872FF9C;
-  i = 0;
-  do
-  {
-    state = gItemShopItemAvailability[i];
-    animation = animationTable[(i * 3) + state];
-    if (state == 1)
-    {
-      gItemShopItemIconAnimationState.animationTimer++;
-      if (animation[gItemShopItemIconAnimationState.animationFrame].time < gItemShopItemIconAnimationState.animationTimer)
-      {
-        gItemShopItemIconAnimationState.animationTimer = 0;
-        gItemShopItemIconAnimationState.animationFrame++;
-        if (animation[gItemShopItemIconAnimationState.animationFrame].time == 0)
-        {
-          gItemShopItemIconAnimationState.animationFrame = 0;
-        }
-      }
-      frameData = animation[gItemShopItemIconAnimationState.animationFrame].oam;
-    }
-    else
-    {
-      frameData = animation[0].oam;
-    }
-    used += *(frameData++);
-    if (used > 128)
-    {
-      goto finish;
-    }
-    if (slot < used)
-    {
-      const u16 *yPosition;
-      const u16 *xPosition;
-      if (gCurrentPassage == 0)
-      {
-        yPosition = (const u16 *) sUnk_872FF58;
-        xPosition = (const u16 *) sUnk_872FF4C;
-      }
-      else
-      {
-        yPosition = (const u16 *) sUnk_872FF38;
-        xPosition = (const u16 *) sUnk_872FF24;
-      }
-      yOffset = yPosition[i];
-      xOffset = xPosition[i];
-      destination = (OamData *) (((u8 *) gOamBuffer) + (slot << 3));
-      do
-      {
-        attr0 = *(frameData++);
-        *(rawDestination++) = attr0;
-        ((u8 *) destination)[0] = (u8) (attr0 + yOffset);
-        attr1 = *(frameData++);
-        *(rawDestination++) = attr1;
-        destination->all.attr1 = ((attr1 + xOffset) & 0x1FF) | (destination->all.attr1 & new_var);
-        attr2 = *(frameData++);
-        *rawDestination = attr2;
-        ((u8 *) destination)[5] &= -13;
-        rawDestination += 2;
-        destination++;
-        slot++;
-      }
-      while (slot < used);
-    }
-    i++;
-  }
-  while (i <= 9);
-  gOamSlotsUsed = used;
-  finish:
-  return;
+    register long slot asm("r8");
+    long used;
+    register u16 *rawDestination asm("r6");
+    register const u16 *frameData asm("r4");
 
+    slot = 0;
+    {
+        register u8 *slots asm("r1") = &gOamSlotsUsed;
+        used = *slots;
+    }
+    {
+        register u32 oamOffset asm("r0") = used << 3;
+        frameData = (const u16 *)gOamBuffer;
+        rawDestination = (u16 *)(oamOffset + (u32)frameData);
+    }
+
+    {
+        u16 *state = gItemShopShopkeeperAnimationState;
+        const struct AnimationFrame **animationPointer;
+        register const struct AnimationFrame *loadedAnimation asm("r5");
+        register const struct AnimationFrame *animation asm("r12");
+
+        {
+            register u16 timer asm("r1") = state[0];
+            register u16 animationFrame asm("r0");
+            timer++;
+            state[0] = timer;
+            animationFrame = state[1];
+            animationPointer = &gItemShopShopkeeperAnimation;
+            loadedAnimation = *animationPointer;
+            asm("" : "+r"(loadedAnimation));
+            animation = loadedAnimation;
+            if (animation[animationFrame].time < timer)
+        {
+            register u16 zeroTimer asm("r0") = slot;
+            state[0] = zeroTimer;
+            state[1]++;
+            if (animation[state[1]].time == 0)
+            {
+                register u16 zeroFrame asm("r1") = slot;
+                state[1] = zeroFrame;
+                if (animation == sItemShopShopkeeperVoiceAnimation)
+                    *animationPointer = sItemShopShopkeeperIdleAnimation;
+            }
+        }
+        }
+
+        {
+            u16 finalFrame = state[1];
+            const struct AnimationFrame *finalAnimation = *animationPointer;
+            frameData = finalAnimation[finalFrame].oam;
+        }
+    }
+
+    used += *frameData++;
+    if (used > 128)
+        goto finish;
+
+    {
+        register struct ItemShopCursorState *cursor asm("r5") = &gItemShopCursor;
+
+        if (slot < used)
+        {
+            register OamData *oamBase asm("r1") = gOamBuffer;
+            register u32 lowMask asm("r10");
+            register u32 highMask asm("r12");
+            register s32 byteMask asm("r9");
+            {
+                register u32 lowLoad asm("r2") = 0x1FF;
+                register u32 highLoad asm("r3") = 0xFFFFFE00;
+                register s32 byteLoad asm("r0") = -13;
+                lowMask = lowLoad;
+                highMask = highLoad;
+                byteMask = byteLoad;
+            }
+            {
+            OamData *destination;
+            destination = (OamData *)((slot << 3) + (u32)oamBase);
+            slot = used - slot;
+            do
+            {
+                register u32 attr asm("r2");
+                register u32 temp0 asm("r0");
+                register u32 temp1 asm("r1");
+
+                attr = *frameData++;
+                *rawDestination++ = attr;
+                temp0 = attr;
+                temp0 += 120;
+                ((u8 *)destination)[0] = (u8)temp0;
+
+                attr = *frameData++;
+                *rawDestination++ = attr;
+                temp1 = attr;
+                temp1 += 20;
+                temp0 = lowMask;
+                temp1 &= temp0;
+                attr = destination->all.attr1;
+                temp0 = highMask;
+                temp0 &= attr;
+                temp0 |= temp1;
+                destination->all.attr1 = temp0;
+
+                temp0 = *frameData;
+                *rawDestination = temp0;
+                frameData++;
+                temp1 = ((u8 *)destination)[5];
+                temp0 = byteMask;
+                temp0 &= temp1;
+                ((u8 *)destination)[5] = temp0;
+                rawDestination += 2;
+                destination++;
+                {
+                    register s32 step asm("r1") = -1;
+                    register s32 test asm("r2");
+                    slot += step;
+                    test = slot;
+                    if (test == 0)
+                        break;
+                }
+            }
+            while (1);
+            slot = used;
+            }
+        }
+
+        {
+            const struct AnimationFrame **animationPointer;
+            register const struct AnimationFrame *animation asm("r2");
+            u16 animationFrame;
+
+            {
+                register u16 timer asm("r0") = cursor->animationTimer;
+                register u16 frame asm("r1");
+                register const struct AnimationFrame **ap asm("r3");
+                timer++;
+                cursor->animationTimer = timer;
+                frame = cursor->animationFrame;
+                animationFrame = frame;
+                ap = &gItemShopCursorAnimation;
+                animationPointer = ap;
+                animation = *ap;
+                if (animation[frame].time < timer)
+            {
+                cursor->animationTimer = 0;
+                cursor->animationFrame++;
+                if (animation[cursor->animationFrame].time == 0)
+                {
+                    cursor->animationFrame = 0;
+                    if (animation == sItemShopCursorPurchaseAnimation)
+                        cursor->animationFrame = 1;
+                }
+            }
+            }
+
+            {
+                u16 finalFrame = cursor->animationFrame;
+                register const struct AnimationFrame **finalPointer asm("r2") = &gItemShopCursorAnimation;
+                const struct AnimationFrame *finalAnimation = *finalPointer;
+                frameData = finalAnimation[finalFrame].oam;
+            }
+        }
+
+        used += *frameData++;
+        if (used > 128)
+            goto finish;
+
+        if (slot < used)
+        {
+            register OamData *oamBase asm("r1") = gOamBuffer;
+            register u32 lowMask asm("r10");
+            register u32 highMask asm("r12");
+            register s32 byteMask asm("r9");
+            {
+                register u32 lowLoad asm("r2") = 0x1FF;
+                register u32 highLoad asm("r3") = 0xFFFFFE00;
+                register s32 byteLoad asm("r0") = -13;
+                lowMask = lowLoad;
+                highMask = highLoad;
+                byteMask = byteLoad;
+            }
+            {
+            register OamData *destination asm("r3");
+            {
+                register long oldSlot asm("r0") = slot;
+                register u32 byteOffset asm("r0") = oldSlot << 3;
+                destination = (OamData *)(byteOffset + (u32)oamBase);
+                oldSlot = slot;
+                slot = used - oldSlot;
+            }
+            do
+            {
+                register u32 attr asm("r2");
+                register u32 temp0 asm("r0");
+                register u32 temp1 asm("r1");
+
+                attr = *frameData++;
+                *rawDestination++ = attr;
+                temp0 = (u8)cursor->y;
+                temp0 += attr;
+                ((u8 *)destination)[0] = (u8)temp0;
+
+                attr = *frameData++;
+                *rawDestination++ = attr;
+                temp0 = 4;
+                temp1 = *(s16 *)((u8 *)cursor + temp0);
+                temp1 = attr + temp1;
+                attr = lowMask;
+                temp1 &= attr;
+                attr = destination->all.attr1;
+                temp0 = highMask;
+                temp0 &= attr;
+                temp0 |= temp1;
+                destination->all.attr1 = temp0;
+
+                temp0 = *frameData;
+                *rawDestination = temp0;
+                frameData++;
+                temp1 = ((u8 *)destination)[5];
+                temp0 = byteMask;
+                temp0 &= temp1;
+                ((u8 *)destination)[5] = temp0;
+                rawDestination += 2;
+                destination++;
+                {
+                    register s32 step asm("r0") = -1;
+                    register s32 test asm("r1");
+                    slot += step;
+                    test = slot;
+                    if (test == 0)
+                        break;
+                }
+            }
+            while (1);
+            slot = used;
+            }
+        }
+    }
+
+    {
+        const struct AnimationFrame * const *animationTable;
+        register s32 nextIndex asm("r12");
+
+        animationTable = (const struct AnimationFrame * const *)sUnk_872FF9C;
+        {
+            register u32 zero asm("r2") = 0;
+            nextIndex = zero;
+        }
+        do
+        {
+            u32 state;
+            u32 offset;
+            u32 savedNextIndex;
+            {
+                register u32 i asm("r12") = nextIndex;
+                register const struct AnimationFrame *animation asm("r3");
+
+                {
+                    register u32 itemState asm("r2");
+                    register u32 indexBytes asm("r1");
+                    register u32 tableIndex asm("r0");
+                    itemState = gItemShopItemAvailability[i];
+                    state = itemState;
+                    indexBytes = i << 1;
+                    asm("" : "+r"(indexBytes));
+                    tableIndex = indexBytes + i;
+                    asm("" : "+r"(tableIndex) : "l"(i));
+                    tableIndex += itemState;
+                    animation = animationTable[tableIndex];
+                    offset = indexBytes;
+                }
+                if (state == 1)
+                {
+                    struct ItemShopAnimationState *iconState = &gItemShopItemIconAnimationState;
+                    {
+                        register u16 timer asm("r1") = iconState->animationTimer;
+                        register u16 frame asm("r0");
+                        timer++;
+                        iconState->animationTimer = timer;
+                        frame = iconState->animationFrame;
+                        if (animation[frame].time < timer)
+                    {
+                        iconState->animationTimer = 0;
+                        iconState->animationFrame++;
+                        if (animation[iconState->animationFrame].time == 0)
+                            iconState->animationFrame = 0;
+                    }
+                    }
+                    frameData = animation[iconState->animationFrame].oam;
+                }
+                else
+                {
+                    frameData = animation[0].oam;
+                }
+
+                used += *frameData++;
+                if (used > 128)
+                    goto finish;
+                savedNextIndex = i + 1;
+            }
+
+            if (slot < used)
+            {
+                register const u16 *yPosition0 asm("r10") = (const u16 *)(sUnk_872FF58 + offset);
+                register const u16 *xPosition0 asm("r9") = (const u16 *)(sUnk_872FF4C + offset);
+                register const u16 *yPosition1 asm("r12") = (const u16 *)(sUnk_872FF38 + offset);
+                const u16 *xPosition1 = (const u16 *)(sUnk_872FF24 + offset);
+
+                do
+                {
+                    register u32 yOffset asm("r0");
+                    register u32 xOffset asm("r1");
+                    register u32 attr asm("r2");
+                    OamData *destination;
+
+                    if (gCurrentPassage == 0)
+                    {
+                        {
+                            register const u16 *yp asm("r2") = yPosition0;
+                            yOffset = *yp;
+                        }
+                        {
+                            register const u16 *xp asm("r3") = xPosition0;
+                            xOffset = *xp;
+                        }
+                    }
+                    else
+                    {
+                        register const u16 *yp asm("r5") = yPosition1;
+                        register const u16 *xp asm("r2") = xPosition1;
+                        yOffset = *yp;
+                        xOffset = *xp;
+                    }
+
+                    attr = *frameData++;
+                    *rawDestination++ = attr;
+                    destination = (OamData *)((u8 *)gOamBuffer + (slot << 3));
+                    yOffset = attr + yOffset;
+                    ((u8 *)destination)[0] = (u8)yOffset;
+
+                    attr = *frameData++;
+                    *rawDestination++ = attr;
+                    xOffset = attr + xOffset;
+                    {
+                        register u32 mask asm("r0") = 0x1FF;
+                        xOffset &= mask;
+                        attr = destination->all.attr1;
+                        mask = 0xFFFFFE00;
+                        mask &= attr;
+                        mask |= xOffset;
+                        destination->all.attr1 = mask;
+                    }
+                    {
+                        register u32 value asm("r0") = *frameData;
+                        register u32 byteValue asm("r1");
+                        *rawDestination = value;
+                        frameData++;
+                        byteValue = ((u8 *)destination)[5];
+                        value = -13;
+                        value &= byteValue;
+                        ((u8 *)destination)[5] = value;
+                    }
+                    rawDestination += 2;
+                    {
+                        register long one asm("r0") = 1;
+                        slot += one;
+                    }
+                }
+                while (slot < used);
+            }
+
+            {
+                register u32 next asm("r1") = savedNextIndex;
+                asm("" : "+r"(next));
+                nextIndex = next;
+            }
+        }
+        while (nextIndex <= 9);
+    }
+
+    {
+        register u8 *slots asm("r2") = &gOamSlotsUsed;
+        *slots = used;
+    }
+finish:
+    return;
 }
-#endif
