@@ -753,9 +753,6 @@ done:
     return;
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_sprite_UpdateCurrentSpriteVisibility.s");
-#else
 void UpdateCurrentSpriteVisibility(void)
 {
   register u16 status asm("r10");
@@ -772,12 +769,15 @@ void UpdateCurrentSpriteVisibility(void)
   u16 spriteXShifted;
   u16 left;
   u16 right;
-  u8 *persistent;
+  register u8 *persistent asm("r1");
   u16 new_var;
   register u16 statusMask asm("r0");
   u8 persistentValue;
   unsigned long long new_var2;
   u16 secondBgYShifted;
+  u16 secondBottom;
+  u16 secondBgX;
+  u16 secondSpriteX;
   u16 secondSpriteYShifted;
   status = gCurrentSprite.status;
   if ((status & 1) == 0)
@@ -809,13 +809,13 @@ void UpdateCurrentSpriteVisibility(void)
   secondBgYShifted = secondSpriteYShifted;
   secondSpriteYShifted = spriteY + 0x280;
   top = secondBgYShifted - 0x240;
-  bottom = secondBgYShifted + 0x4C0;
-  spriteXShifted = bgX + 0x280;
-  bgXShifted = spriteXShifted;
-  spriteXShifted = spriteX + 0x280;
-  left = bgXShifted - 0x240;
-  right = bgXShifted + 0x600;
-  if ((((left < spriteXShifted) && (spriteXShifted < right)) && (top < secondSpriteYShifted)) && (secondSpriteYShifted < bottom))
+  secondBottom = secondBgYShifted + 0x4C0;
+  secondSpriteX = bgX + 0x280;
+  secondBgX = secondSpriteX;
+  secondSpriteX = spriteX + 0x280;
+  left = secondBgX - 0x240;
+  right = secondBgX + 0x600;
+  if ((((left < secondSpriteX) && (secondSpriteX < right)) && (top < secondSpriteYShifted)) && (secondSpriteYShifted < secondBottom))
   {
     return;
   }
@@ -823,7 +823,6 @@ void UpdateCurrentSpriteVisibility(void)
   if ((new_var & 0x8000) != 0)
   {
     return;
-    asm("" : "+m"(bgX));
     if (1)
     {
     }
@@ -842,14 +841,17 @@ void UpdateCurrentSpriteVisibility(void)
     return;
   }
   persistent = &gPersistentSpriteData[0][0];
-  persistent += (((u32) gCurrentRoom) << 6) + gCurrentSprite.roomSlot;
+  {
+    u32 persistentOffset = (((u32) gCurrentRoom) << 6) + gCurrentSprite.roomSlot;
+    persistent = (u8 *) (persistentOffset + (u32) persistent);
+  }
   persistentValue = *persistent;
   if ((persistentValue & 0xF) == 1)
   {
     *persistent = persistentValue - 1;
   }
 }
-#endif
+
 
 void InitializePrimarySprites(void)
 {

@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.6%   3,978 / 3,994</text>
-<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  94.8%   571,460 / 603,112 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.6%   3,979 / 3,994</text>
+<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  94.8%   571,860 / 603,112 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (3,987 / 3,994 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -2929,16 +2929,16 @@
 <rect x="909.32" y="366.61" width="4.88" height="2.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>shop/GetPreviousShopIndex: 13 bytes, matched, size=source estimate</title></rect>
 </g>
 <g>
-<title>sprite: 77.2% matched, 3,628 bytes</title>
+<title>sprite: 88.2% matched, 3,628 bytes</title>
 <rect x="915.56" y="293.06" width="72.09" height="76.93" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip50"><rect x="917.56" y="294.06" width="68.69" height="13.95"/></clipPath>
 <rect x="916.56" y="294.06" width="70.69" height="13.95" fill="#05080d"/>
 <text x="918.06" y="304.06" clip-path="url(#moduleLabelClip50)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="8" font-weight="800">sprite</text>
-<text x="985.25" y="303.06" text-anchor="end" clip-path="url(#moduleLabelClip50)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">77%</text>
+<text x="985.25" y="303.06" text-anchor="end" clip-path="url(#moduleLabelClip50)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="7" font-weight="700">88%</text>
 <rect x="916.56" y="308.02" width="22.17" height="33.52" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/DrawCurrentPrimarySprite: 636 bytes, matched, size=symbol</title></rect>
 <rect x="916.56" y="341.89" width="22.17" height="27.35" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/UpdatePrimarySprites: 520 bytes, matched, size=symbol</title></rect>
 <rect x="939.08" y="308.02" width="24.55" height="20.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/DrawPrimarySprites: 428 bytes, not matched, size=symbol</title></rect>
-<rect x="963.98" y="308.02" width="22.92" height="20.27" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/UpdateCurrentSpriteVisibility: 400 bytes, not matched, size=symbol</title></rect>
+<rect x="963.98" y="308.02" width="22.92" height="20.27" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/UpdateCurrentSpriteVisibility: 400 bytes, matched, size=symbol</title></rect>
 <rect x="939.08" y="328.64" width="15.00" height="24.03" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/LoadRoomSpriteGraphics: 312 bytes, matched, size=symbol</title></rect>
 <rect x="939.08" y="353.02" width="15.00" height="16.22" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/SpawnRoomSprite: 212 bytes, matched, size=symbol</title></rect>
 <rect x="954.43" y="328.64" width="18.61" height="12.81" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>sprite/SpawnRoomSpritesAtCameraBoundary: 208 bytes, matched, size=symbol</title></rect>
