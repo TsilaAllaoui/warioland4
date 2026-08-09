@@ -158,9 +158,6 @@ u32 ItemShopSubroutine(void)
     return result;
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_shop_InitializeItemShop.s");
-#else
 void InitializeItemShop(void)
 {
   vu16 *interruptMasterEnable;
@@ -169,7 +166,14 @@ void InitializeItemShop(void)
   int i;
   int new_var2;
   int new_var;
-  const u16 (*prices)[9];
+  register const u16 (*prices)[9] asm("r6");
+  const void *gfx0;
+  register u32 priceOffset asm("r0");
+  const void *gfx1;
+  u8 *availabilityAlias;
+  u16 *timerPtr;
+  u8 *messagePtr;
+  struct ColorFading *fadePtr;
   *((vu16 *) 0x04000200) ^= 1;
   InitializeVideoMemory();
   interruptMasterEnable = (vu16 *) 0x04000208;
@@ -204,10 +208,12 @@ void InitializeItemShop(void)
 
   }
   *((vu16 *) 0x05000000) = 0;
+  gfx0 = sUnk_8732A58;
+  gfx1 = sUnk_8735458;
   {
     vu32 *dma;
     dma = (vu32 *) 0x040000D4;
-    dma[0] = (u32) sUnk_8732A58;
+    dma[0] = (u32) gfx0;
     dma[1] = 0x06000000;
     dma[2] = 0x80001400;
     dma[2];
@@ -219,7 +225,7 @@ void InitializeItemShop(void)
   {
     vu32 *dma;
     dma = (vu32 *) 0x040000D4;
-    dma[0] = (u32) sUnk_8735458;
+    dma[0] = (u32) gfx1;
     dma[1] = 0x06010000;
     dma[2] = 0x80002000;
     dma[2];
@@ -265,6 +271,18 @@ void InitializeItemShop(void)
     }
 
   }
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
+  asm("" : : "X"(0));
   {
     vu32 *dma;
     dma = (vu32 *) 0x040000D4;
@@ -290,7 +308,7 @@ void InitializeItemShop(void)
 
   }
   {
-    vu32 *dma;
+    register vu32 *dma asm("r1");
     vu16 *backgroundControl;
     dma = (vu32 *) 0x040000D4;
     dma[0] = new_var3;
@@ -298,13 +316,24 @@ void InitializeItemShop(void)
     dma[2] = 0x80000400;
     dma[2];
     backgroundControl = (vu16 *) (((u32) dma) - 0xCC);
-    *backgroundControl = new_var2;
-    backgroundControl++;
-    *backgroundControl = 0x1A01;
-    backgroundControl++;
-    *backgroundControl = 0x1C02;
-    backgroundControl++;
-    *backgroundControl = 0x1E03;
+    {
+      register u32 bgValue asm("r0");
+      asm("" : : "l"(0x1800));
+      bgValue = 0x1800;
+      *backgroundControl = bgValue;
+      backgroundControl++;
+      asm("" : : "l"(0x1A01));
+      bgValue = 0x1A01;
+      *backgroundControl = bgValue;
+      backgroundControl++;
+      asm("" : : "l"(0x1C02), "r"(bgValue));
+      bgValue = 0x1C02;
+      *backgroundControl = bgValue;
+      backgroundControl++;
+      asm("" : : "l"(0x1E03));
+      bgValue = 0x1E03;
+      *backgroundControl = bgValue;
+    }
   }
   gItemShopTargetMedalCount = gMedalCount;
   DrawMinigameNumber(gMedalCount, (const u16 *)sUnk_8733278, 128);
@@ -328,17 +357,24 @@ void InitializeItemShop(void)
   gItemShopCursorAnimation = sItemShopCursorIdleAnimation;
   gItemShopItemIconAnimationState.animationTimer = 0;
   gItemShopItemIconAnimationState.animationFrame = 0;
+  i = 0;
+  timerPtr = &gSoundRoomMessageTimer;
+  messagePtr = &gItemShopMessageId;
+  fadePtr = &gColorFading;
+  availabilityAlias = gItemShopItemAvailability;
+  { register u16 * medalHint asm("r7") = &gMedalCount; asm("" : : "r"(medalHint)); }
   prices = (const u16 (*)[9]) sUnk_872FF64;
-  for (i = 0; i <= 9; i++)
+  for (; i <= 9; i++)
   {
     if (i == 0)
     {
-      gItemShopItemAvailability[0] = 1;
+      availabilityAlias[0] = 1;
     }
     else
     {
       new_var = i - 1;
-      if (gMedalCount >= prices[gDifficulty][new_var])
+      priceOffset = new_var * 2 + gDifficulty * 18;
+      if (gMedalCount >= *(const u16 *)(priceOffset + (u32)prices))
       {
         gItemShopItemAvailability[i] = 0;
       }
@@ -349,10 +385,10 @@ void InitializeItemShop(void)
     }
   }
 
-  gSoundRoomMessageTimer = 0;
-  gItemShopMessageId = 10;
-  gColorFading.unk_4 = 3;
-  gColorFading.type = 2;
+  *timerPtr = 0;
+  *messagePtr = 10;
+  fadePtr->uploadFlags = 3;
+  fadePtr->type = 2;
   FillColorFadePalettes();
   *((vu16 *) 0x04000054) = 0;
   gUnk_3000C37 = 0;
@@ -377,7 +413,6 @@ void InitializeItemShop(void)
   *((vu16 *) 0x0400001C) = 0;
   *((vu16 *) 0x04000200) |= 1;
 }
-#endif
 
 void SetItemShopVBlankCallback(void)
 {
