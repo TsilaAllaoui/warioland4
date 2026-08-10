@@ -195,7 +195,7 @@ func_800A43C:
 .L_a5c4:
 	.4byte	gUnk_3002C64
 .L_a5c8:
-	.4byte	gUnk_3002C98
+	.4byte	gCutsceneAnimationFinished
 .L_a5cc:
 	.4byte	gUnk_3002C9A
 .L_a5d0:
@@ -253,7 +253,7 @@ func_800A43C:
 .L_a638:
 	.4byte	gUnk_3002C64
 .L_a63c:
-	.4byte	gUnk_3002C98
+	.4byte	gCutsceneAnimationFinished
 .L_a640:
 	.4byte	gUnk_3002C9A
 .L_a644:
@@ -433,7 +433,7 @@ func_800A43C:
 	strh	r0, [r4, #0]
 	b	.L_a8e2
 .L_a798:
-	.4byte	gUnk_3002C4A
+	.4byte	gCutscenePrimaryObjectX
 .L_a79c:
 	.4byte	gUnk_3002C64
 .L_a7a0:
@@ -466,11 +466,11 @@ func_800A43C:
 .L_a7d4:
 	.4byte	gUnk_3002C64
 .L_a7d8:
-	.4byte	gUnk_3002CA2
+	.4byte	gLayeredCutsceneOamOffsetY
 .L_a7dc:
 	.4byte	gUnk_3002C9E
 .L_a7e0:
-	.4byte	gUnk_3002CA0
+	.4byte	gLayeredCutsceneOamOffsetX
 .L_a7e4:
 	.4byte	gUnk_3002C60
 .L_a7e8:
@@ -493,7 +493,7 @@ func_800A43C:
 	b	.L_a908
 	.align	2, 0
 .L_a80c:
-	.4byte	gUnk_3002C80
+	.4byte	gEndingCutsceneCollectedTreasureCount
 .L_a810:
 	.4byte	gUnk_3002C64
 .L_a814:
@@ -560,7 +560,7 @@ func_800A43C:
 	bl	SelectEndingCutsceneOamSequence47
 	b	.L_a8a6
 .L_a894:
-	.4byte	gUnk_3002C80
+	.4byte	gEndingCutsceneCollectedTreasureCount
 .L_a898:
 	.4byte	gUnk_3002C64
 .L_a89c:
@@ -608,7 +608,7 @@ func_800A43C:
 .L_a8ec:
 	.4byte	gUnk_3002C64
 .L_a8f0:
-	.4byte	gUnk_3002C4A
+	.4byte	gCutscenePrimaryObjectX
 .L_a8f4:
 	.4byte	gUnk_3002C9C
 .L_a8f8:
@@ -1083,7 +1083,7 @@ func_800A43C:
 .L_acb0:
 	.4byte	gUnk_3002C60
 .L_acb4:
-	.4byte	gUnk_3002C80
+	.4byte	gEndingCutsceneCollectedTreasureCount
 .L_acb8:
 	.4byte	gUnk_3002C64
 .L_acbc:
@@ -1091,13 +1091,13 @@ func_800A43C:
 .L_acc0:
 	.4byte	gUnk_3002C9E
 .L_acc4:
-	.4byte	gUnk_3002C82
+	.4byte	gEndingCutsceneTreasureScale
 .L_acc8:
 	.4byte	gUnk_3002C5A
 .L_accc:
-	.4byte	gUnk_3002CA8
+	.4byte	gCutsceneObjectXPositions
 .L_acd0:
-	.4byte	gUnk_3002CB8
+	.4byte	gCutsceneObjectYPositions
 .L_acd4:
 	.4byte	gUnk_3002CA6
 .L_acd8:
@@ -1424,22 +1424,22 @@ func_800A43C:
 .L_afb0:
 	.4byte	gUnk_3002C68
 .L_afb4:
-	.4byte	gUnk_3002C98
+	.4byte	gCutsceneAnimationFinished
 .L_afb8:
 	.4byte	gUnk_3002C9A
 .L_afbc:
 	.4byte	gUnk_3002CA4
 .L_afc0:
-	.4byte	gUnk_3002C4A
+	.4byte	gCutscenePrimaryObjectX
 .L_afc4:
-	.4byte	gUnk_3002C4C
+	.4byte	gCutscenePrimaryObjectY
 .L_afc8:
 	.4byte	gUnk_3002C60
 .L_afcc:
-	.4byte	gUnk_3002C80
+	.4byte	gEndingCutsceneCollectedTreasureCount
 .L_afd0:
 	.4byte	gUnk_3002C9C
 .L_afd4:
 	.4byte	gUnk_3002C9E
 .L_afd8:
-	.4byte	gUnk_3002C82
+	.4byte	gEndingCutsceneTreasureScale

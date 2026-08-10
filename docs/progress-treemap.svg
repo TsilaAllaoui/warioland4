@@ -13,20 +13,20 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,981 / 3,994</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████████████░  95.2%   573,932 / 603,112 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,982 / 3,994</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████████████░  95.7%   577,176 / 603,112 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (3,987 / 3,994 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
 <g>
-<title>cutscenes: 86.5% matched, 46,072 bytes</title>
+<title>cutscenes: 93.5% matched, 46,072 bytes</title>
 <rect x="7.00" y="113.00" width="201.83" height="352.92" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip0"><rect x="9.00" y="114.00" width="198.43" height="18.00"/></clipPath>
 <rect x="8.00" y="114.00" width="200.43" height="18.00" fill="#05080d"/>
 <text x="9.50" y="127.00" clip-path="url(#moduleLabelClip0)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">cutscenes</text>
-<text x="206.43" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip0)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">86%</text>
+<text x="206.43" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip0)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">94%</text>
 <rect x="8.00" y="132.00" width="79.51" height="74.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscenes/func_8008B20: 4,120 bytes, matched, size=symbol</title></rect>
-<rect x="87.86" y="132.00" width="62.53" height="74.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>cutscenes/func_8007C30: 3,244 bytes, not matched, size=symbol</title></rect>
+<rect x="87.86" y="132.00" width="62.53" height="74.50" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscenes/UpdateLayeredEndingTreasureCutsceneSequence: 3,244 bytes, matched, size=symbol</title></rect>
 <rect x="150.75" y="132.00" width="57.34" height="74.50" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>cutscenes/func_800A43C: 2,976 bytes, not matched, size=symbol</title></rect>
 <rect x="8.00" y="206.85" width="59.56" height="50.12" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscenes/UpdateLayeredWarioCutsceneSequence: 2,084 bytes, matched, size=symbol</title></rect>
 <rect x="67.91" y="206.85" width="54.62" height="50.12" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>cutscenes/UpdateLayeredSpriteCutsceneSequence: 1,912 bytes, matched, size=symbol</title></rect>

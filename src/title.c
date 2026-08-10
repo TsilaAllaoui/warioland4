@@ -34,8 +34,8 @@ void ResetPrimaryCutsceneAffineState(void)
     gUnk_3002C30 = 0x100;
     gUnk_3002C42 = 0;
     gUnk_3002C44 = 0;
-    gUnk_3002C46 = 0;
-    gUnk_3002C48 = 0;
+    gCutsceneBackgroundHorizontalOffset = 0;
+    gCutsceneBackgroundVerticalOffset = 0;
     gUnk_3002C5A = 8;
     gUnk_3002C5C = 8;
     gUnk_3002C5E = 0;
@@ -43,8 +43,8 @@ void ResetPrimaryCutsceneAffineState(void)
 
 void ResetSecondaryCutsceneAffineState(void)
 {
-    gUnk_3002C4A = 0;
-    gUnk_3002C4C = 0;
+    gCutscenePrimaryObjectX = 0;
+    gCutscenePrimaryObjectY = 0;
     gUnk_3002C4E = 0;
     gUnk_3002C50 = 0x100;
     gUnk_3002C52 = 0x100;
@@ -187,7 +187,7 @@ u32 UpdateCutsceneSequence(void)
             break;
 
         case 27:
-            func_8007C30((u16)(gUnk_300188E++));
+            UpdateLayeredEndingTreasureCutsceneSequence((u16)(gUnk_300188E++));
             break;
 
         case 28:
