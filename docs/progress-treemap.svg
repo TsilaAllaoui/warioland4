@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.6%   3,980 / 3,994</text>
-<text x="24" y="88" class="mono">Code size  ████████████████████████████░░  95.0%   572,920 / 603,112 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,981 / 3,994</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████████████░  95.2%   573,932 / 603,112 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (3,987 / 3,994 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1766,13 +1766,13 @@
 <rect x="597.28" y="846.68" width="8.80" height="4.97" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>game_screen_helpers/GetBackgroundScreenSize: 40 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>score: 83.8% matched, 6,232 bytes</title>
+<title>score: 100.0% matched, 6,232 bytes</title>
 <rect x="607.43" y="113.00" width="99.47" height="96.13" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip20"><rect x="609.43" y="114.00" width="96.07" height="17.41"/></clipPath>
 <rect x="608.43" y="114.00" width="98.07" height="17.41" fill="#05080d"/>
 <text x="609.93" y="127.00" clip-path="url(#moduleLabelClip20)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">score</text>
-<text x="704.50" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip20)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">84%</text>
-<rect x="608.43" y="131.41" width="30.18" height="39.98" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>score/LoadStageCollectiblesFromSave: 1,012 bytes, not matched, size=symbol</title></rect>
+<text x="704.50" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip20)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="608.43" y="131.41" width="30.18" height="39.98" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/LoadStageCollectiblesFromSave: 1,012 bytes, matched, size=symbol</title></rect>
 <rect x="608.43" y="171.75" width="30.18" height="36.64" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/InitStageHudAndScore: 928 bytes, matched, size=symbol</title></rect>
 <rect x="638.96" y="131.41" width="35.36" height="29.77" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/DrawCurrentSecondarySprite: 884 bytes, matched, size=symbol</title></rect>
 <rect x="674.67" y="131.41" width="31.48" height="29.77" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>score/UploadStageTimerDigitTiles: 788 bytes, matched, size=symbol</title></rect>

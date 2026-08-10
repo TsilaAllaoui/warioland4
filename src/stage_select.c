@@ -775,6 +775,7 @@ s32 LoadSelectedStageData(void)
 no_stage:
     return 0;
 }
+
 void UploadTallFiveDigitNumberTiles(s32 value, const void *tiles, u32 destination)
 {
     s32 tenThousands;

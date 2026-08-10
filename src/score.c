@@ -529,37 +529,42 @@ void UpdateStageTimerAndScoreDrain(void)
     }
 }
 
-#ifndef SCORE_USE_WIP_C_LOAD_STAGE_COLLECTIBLES_FROM_SAVE
-ASM_INCLUDE("asm/disasm_score_LoadStageCollectiblesFromSave.s");
-#else
-/* Best current pure-C candidate: score 1460 / 44400. */
-void LoadStageCollectiblesFromSave(void)
+u8 LoadStageCollectiblesFromSave(void)
 {
   register s32 reservedR0 asm("r0");
-  register unsigned char reservedR5 asm("r5");
-  register s32 passage asm("r6");
-  register u32 stage asm("r3");
+  u32 reservedR5;
+  s32 passage;
+  u32 stage;
   u32 new_var2;
   s32 new_var;
-  asm("" : "=r"(reservedR0), "=r"(reservedR5));
+  asm("" : "=r"(reservedR0));
   passage = gCurrentPassage;
-  stage = gCurrentStageNumber;
+  new_var = passage;
+  stage = (new_var2 = gCurrentStageNumber);
   if (stage == 4)
   {
     switch (passage)
     {
       case PASSAGE_EMERALD:
+
       case PASSAGE_RUBY:
+
       case PASSAGE_TOPAZ:
+
       case PASSAGE_SAPPHIRE:
         goto boss_collectibles;
+
       case PASSAGE_GOLDEN:
         goto golden_collectibles;
+
       default:
         goto clear_collectibles;
+
     }
+
     boss_collectibles:
     gCollectedNEJewelPiece = 2;
+
     gCollectedSEJewelPiece = 2;
     gCollectedSWJewelPiece = 2;
     gCollectedNWJewelPiece = 0;
@@ -680,8 +685,10 @@ void LoadStageCollectiblesFromSave(void)
       gCollectedKeyzer = 0;
       goto function_end;
     }
+
     clear_collectibles:
     gCollectedNEJewelPiece = 0;
+
     gCollectedSEJewelPiece = 0;
     gCollectedSWJewelPiece = 0;
     gCollectedNWJewelPiece = 0;
@@ -689,18 +696,17 @@ void LoadStageCollectiblesFromSave(void)
     gCollectedKeyzer = 0;
     goto function_end;
   }
-  new_var = passage;
-  new_var2 = stage;
   reservedR5 = gCurrentCollection[new_var][new_var2].jewelPieceNE;
   if (reservedR5)
   {
     gCollectedNEJewelPiece = 3;
   }
   else
+    if (1)
   {
     gCollectedNEJewelPiece = 0;
   }
-  if (gCurrentCollection[new_var][stage].jewelPieceSE)
+  if (gCurrentCollection[new_var][new_var2].jewelPieceSE)
   {
     gCollectedSEJewelPiece = 3;
   }
@@ -708,7 +714,7 @@ void LoadStageCollectiblesFromSave(void)
   {
     gCollectedSEJewelPiece = 0;
   }
-  if (gCurrentCollection[new_var][stage].jewelPieceSW)
+  if (gCurrentCollection[new_var][new_var2].jewelPieceSW)
   {
     gCollectedSWJewelPiece = 3;
   }
@@ -716,7 +722,7 @@ void LoadStageCollectiblesFromSave(void)
   {
     gCollectedSWJewelPiece = 0;
   }
-  if (gCurrentCollection[new_var][stage].jewelPieceNW)
+  if (gCurrentCollection[new_var][new_var2].jewelPieceNW)
   {
     gCollectedNWJewelPiece = 3;
   }
@@ -724,7 +730,7 @@ void LoadStageCollectiblesFromSave(void)
   {
     gCollectedNWJewelPiece = 0;
   }
-  if (gCurrentCollection[new_var][stage].cd)
+  if (gCurrentCollection[new_var][new_var2].cd)
   {
     gCollectedCD = 3;
   }
@@ -732,7 +738,7 @@ void LoadStageCollectiblesFromSave(void)
   {
     gCollectedCD = 0;
   }
-  if (gCurrentCollection[new_var][stage].keyzer)
+  if (gCurrentCollection[new_var][new_var2].keyzer)
   {
     gCollectedKeyzer = 2;
   }
@@ -741,10 +747,10 @@ void LoadStageCollectiblesFromSave(void)
     gCollectedKeyzer = 0;
   }
   function_end:
-  asm("" : : "r"(reservedR0), "r"(reservedR5));
+  asm("" : : "r"(reservedR0));
+
 }
 
-#endif
 
 
 void InitStageHudAndScore(void)

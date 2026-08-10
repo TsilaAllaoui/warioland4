@@ -176,7 +176,7 @@ void UploadStageTimerColonTiles(void);
 void StartTimeUpSequence(void);
 void PlayWarioDefeatJingle(void);
 void UpdateStageTimerAndScoreDrain(void);
-void LoadStageCollectiblesFromSave(void);
+u8 LoadStageCollectiblesFromSave(void);
 void DrawCurrentSecondarySprite(u32 index);
 void InitStageHudAndScore(void);
 void AddStageScore(s32);
