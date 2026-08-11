@@ -119,12 +119,6 @@ struct BossTreasureParticle
     u8 unusedD[3];
 };
 
-
-
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_boss_treasure_cutscene_UpdateBossTreasureCutscene.s");
-#else
-/* Best current C candidate: score 635 / 44100. */
 int UpdateBossTreasureCutscene(void)
 {
   s32 treasureIndex;
@@ -216,8 +210,7 @@ int UpdateBossTreasureCutscene(void)
     case 2:
     {
       u16 initialCounter;
-      u8 *maximumPointer;
-      s32 one;
+      vu16 *caseCounterPointer;
       s32 caseTrigger;
       initialCounter = gStageEntrySequenceTimer;
       if (((initialCounter & 3) == 0) && (gBldy != 0))
@@ -226,27 +219,28 @@ int UpdateBossTreasureCutscene(void)
         *((vu16 *) (0x4000000 + 0x54)) = gBldy;
       }
       treasureIndex = 0;
-      maximumPointer = &gBossTreasureLastItemIndex;
-      if (treasureIndex <= (*maximumPointer))
+      if (treasureIndex <= gBossTreasureLastItemIndex)
       {
-        caseTrigger = 14;
+        caseCounterPointer = &gStageEntrySequenceTimer;
+        asm("" : : "r"(caseCounterPointer));
         treasure = (u8 *) gBossTreasureItems;
-        one = 1;
+        caseTrigger = 14;
         do
         {
+          caseCounterPointer = &gStageEntrySequenceTimer;
           timer = treasureIndex << 4;
-          if ((*((vu16 *) (&gStageEntrySequenceTimer))) == caseTrigger)
+          if ((*caseCounterPointer) == caseTrigger)
           {
-            treasure[6] = one;
+            treasure[6] = 1;
           }
-          if ((*((vu16 *) (&gStageEntrySequenceTimer))) == (timer + 174))
+          if (gStageEntrySequenceTimer == (timer + 174))
           {
             zero = 0;
             treasure[6] = zero;
-            gBossTreasurePaletteFlashActive = one;
+            gBossTreasurePaletteFlashActive = 1;
             gBossTreasurePaletteFlashTimer = zero;
             m4aSongNumStart(0x1AC);
-            if (treasureIndex == (*maximumPointer))
+            if (treasureIndex == gBossTreasureLastItemIndex)
             {
               goto second_phase_complete;
             }
@@ -255,7 +249,7 @@ int UpdateBossTreasureCutscene(void)
           caseTrigger += 16;
           treasureIndex++;
         }
-        while (treasureIndex <= (*maximumPointer));
+        while (treasureIndex <= gBossTreasureLastItemIndex);
       }
       UpdateBossTreasureSecondPhaseTreasureItems();
       UpdateBossTreasureParticles();
@@ -276,12 +270,12 @@ int UpdateBossTreasureCutscene(void)
 
     case 3:
     {
-      s32 stateTimer;
+      u16 stateTimer;
       sparkleIndex = 0;
       state3Counter = &gStageEntrySequenceTimer;
       blendInTimes = sBossTreasureBlendInTimes;
       sparkleStartTimes = sBossTreasureSparkleStartTimes;
-      stateTimer = *state3Counter;
+      stateTimer = gStageEntrySequenceTimer;
       blendBPointer = &gStageTransitionBlendEvb;
       blendAlphaRegister = (vu16 *) 0x04000052;
       while (sparkleIndex <= 9)
@@ -310,20 +304,17 @@ int UpdateBossTreasureCutscene(void)
         sparkleIndex++;
       }
 
-      sparkleIndex = 0;
-      while (sparkleIndex <= 10)
       {
-        timer = *((const u8 *) (((u32) sparkleIndex) + ((u32) sparkleStartTimes)));
-        if (gStageEntrySequenceTimer == timer)
+        vu16 *freshCounter;
+        sparkleIndex = 0;
+        while (sparkleIndex <= 10)
         {
-          ((struct BossTreasureSparkleSlot *) gBossTreasureUnlockSparkles)[sparkleIndex].active = 1;
+          timer = *((const u8 *) (((u32) sparkleIndex) + ((u32) sparkleStartTimes)));
+          asm("" : "=r"(freshCounter) : "0"(&gStageEntrySequenceTimer));
+          if ((*freshCounter) == timer) { register s32 activeOne asm("r0") = 1; ((struct BossTreasureSparkleSlot *) gBossTreasureUnlockSparkles)[sparkleIndex].active = activeOne; }
+          else if ((*state3Counter) == (timer + sBossTreasureSparkleDurations[sparkleIndex])) { ((struct BossTreasureSparkleSlot *) gBossTreasureUnlockSparkles)[sparkleIndex].active = 0; }
+          sparkleIndex++;
         }
-        else
-          if ((*state3Counter) == (timer + sBossTreasureSparkleDurations[sparkleIndex]))
-        {
-          ((struct BossTreasureSparkleSlot *) gBossTreasureUnlockSparkles)[sparkleIndex].active = 0;
-        }
-        sparkleIndex++;
       }
 
       UpdateBossTreasureUnlockSparkles();
@@ -333,8 +324,12 @@ int UpdateBossTreasureCutscene(void)
         asm("" : : "r"(state3Counter));
         icon = gBossTreasureUnlockIcons;
         iconTrigger = 34;
-        while (treasureIndex <= 4)
         {
+          register s32 holdR7 asm("r7");
+          asm volatile("" : "=r"(holdR7));
+          while (treasureIndex <= 4)
+          {
+            asm volatile("" : "+r"(holdR7));
           if ((*((volatile u16 *) (&gStageEntrySequenceTimer))) == iconTrigger)
           {
             icon[2] = 1;
@@ -354,6 +349,9 @@ int UpdateBossTreasureCutscene(void)
           icon += 4;
           iconTrigger -= 5;
           treasureIndex++;
+            asm volatile("" : "+r"(holdR7));
+          }
+          asm volatile("" : : "r"(holdR7));
         }
 
       }
@@ -400,9 +398,6 @@ int UpdateBossTreasureCutscene(void)
   gStageEntrySequenceStep++;
   return 0;
 }
-
-
-#endif
 
 void InitializeBossTreasureCutscene(void)
 {

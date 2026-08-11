@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,982 / 3,994</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████████████░  95.7%   577,176 / 603,112 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,983 / 3,994</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████████████░  95.9%   578,204 / 603,112 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (3,987 / 3,994 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1823,14 +1823,14 @@
 <rect x="800.18" y="201.21" width="5.47" height="7.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>passage_screen/UpdatePassageStageCursorSound: 36 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>boss_treasure_cutscene: 49.4% matched, 6,052 bytes</title>
+<title>boss_treasure_cutscene: 66.4% matched, 6,052 bytes</title>
 <rect x="807.00" y="113.00" width="96.58" height="96.13" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip22"><rect x="809.00" y="114.00" width="93.18" height="17.41"/></clipPath>
 <rect x="808.00" y="114.00" width="95.18" height="17.41" fill="#05080d"/>
 <text x="809.50" y="127.00" clip-path="url(#moduleLabelClip22)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">boss_treasur…</text>
-<text x="901.18" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip22)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">49%</text>
+<text x="901.18" y="126.00" text-anchor="end" clip-path="url(#moduleLabelClip22)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">66%</text>
 <rect x="808.00" y="131.41" width="47.77" height="51.00" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>boss_treasure_cutscene/DrawBossTreasureCutsceneSprites: 2,032 bytes, not matched, size=symbol</title></rect>
-<rect x="808.00" y="182.76" width="47.77" height="25.63" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>boss_treasure_cutscene/UpdateBossTreasureCutscene: 1,028 bytes, not matched, size=symbol</title></rect>
+<rect x="808.00" y="182.76" width="47.77" height="25.63" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>boss_treasure_cutscene/UpdateBossTreasureCutscene: 1,028 bytes, matched, size=symbol</title></rect>
 <rect x="856.12" y="131.41" width="46.71" height="23.32" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>boss_treasure_cutscene/UpdateBossTreasureUnlockSparkles: 916 bytes, matched, size=symbol</title></rect>
 <rect x="856.12" y="155.08" width="24.34" height="20.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>boss_treasure_cutscene/InitializeBossTreasureCutscene: 424 bytes, matched, size=symbol</title></rect>
 <rect x="880.81" y="155.08" width="22.01" height="20.53" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>boss_treasure_cutscene/SpawnBossTreasureParticles: 384 bytes, matched, size=symbol</title></rect>
