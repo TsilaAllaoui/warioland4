@@ -231,9 +231,6 @@ void AdvanceCurrentSpriteAnimation(void)
     }
 }
 
-#ifndef NONMATCHING
-ASM_INCLUDE("asm/disasm_sprite_DrawPrimarySprites.s");
-#else
 void DrawPrimarySprites(void)
 {
   register s32 spriteIndex asm("r4");
@@ -321,8 +318,7 @@ void DrawPrimarySprites(void)
 
   {
     register struct PrimarySpriteData *baseTemporary asm("r7");
-    baseTemporary = gSpriteData;
-    spriteBase = baseTemporary;
+    baseTemporary = (spriteBase = gSpriteData);
   }
   currentSprite = &gCurrentSprite;
   currentOam = &gCurrentSpriteOamData;
@@ -359,8 +355,7 @@ void DrawPrimarySprites(void)
   spriteIndex = 0;
   {
     register struct PrimarySpriteData *baseTemporary asm("r7");
-    baseTemporary = gSpriteData;
-    spriteBase = baseTemporary;
+    baseTemporary = (spriteBase = gSpriteData);
   }
   currentSprite = &gCurrentSprite;
   currentOam = &gCurrentSpriteOamData;
@@ -397,8 +392,7 @@ void DrawPrimarySprites(void)
   spriteIndex = 0;
   {
     register struct PrimarySpriteData *baseTemporary asm("r7");
-    baseTemporary = gSpriteData;
-    spriteBase = baseTemporary;
+    baseTemporary = (spriteBase = gSpriteData);
   }
   currentSprite = &gCurrentSprite;
   currentOam = &gCurrentSpriteOamData;
@@ -433,7 +427,6 @@ void DrawPrimarySprites(void)
     goto fifthLoop;
   }
 }
-#endif
 
 void DrawCurrentPrimarySprite(u32 spriteIndex)
 {
