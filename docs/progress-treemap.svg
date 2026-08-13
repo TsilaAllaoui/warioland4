@@ -13,8 +13,8 @@
 </defs>
 <rect width="100%" height="100%" fill="#0d1117"/>
 <text x="24" y="42" class="title">Wario Land 4 Decompilation Progress</text>
-<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,983 / 3,994</text>
-<text x="24" y="88" class="mono">Code size  █████████████████████████████░  95.9%   578,204 / 603,112 bytes</text>
+<text x="24" y="68" class="mono">Functions  ██████████████████████████████  99.7%   3,984 / 3,994</text>
+<text x="24" y="88" class="mono">Code size  █████████████████████████████░  96.5%   581,724 / 603,112 bytes</text>
 <text x="1256" y="68" text-anchor="end" class="sub">green = matched C</text>
 <text x="1256" y="88" text-anchor="end" class="sub">byte sizes: mixed/estimated (3,987 / 3,994 exact)</text>
 <rect x="6.00" y="112.00" width="1268.00" height="742.00" fill="#05080d" stroke="#000000" stroke-width="1"/>
@@ -1562,13 +1562,13 @@
 <rect x="600.69" y="224.26" width="5.40" height="3.16" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>file_select/UpdateFileSelectFadeOut: 16 bytes, matched, size=symbol</title></rect>
 </g>
 <g>
-<title>credits: 54.4% matched, 7,716 bytes</title>
+<title>credits: 100.0% matched, 7,716 bytes</title>
 <rect x="503.69" y="228.77" width="103.14" height="114.93" fill="#10151c" stroke="#000000" stroke-width="1"/>
 <clipPath id="moduleLabelClip14"><rect x="505.69" y="229.77" width="99.74" height="18.00"/></clipPath>
 <rect x="504.69" y="229.77" width="101.74" height="18.00" fill="#05080d"/>
 <text x="506.19" y="242.77" clip-path="url(#moduleLabelClip14)" fill="#e2e8f0" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="800">credits</text>
-<text x="604.43" y="241.77" text-anchor="end" clip-path="url(#moduleLabelClip14)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">54%</text>
-<rect x="504.69" y="247.77" width="46.07" height="95.18" fill="url(#unmatchedGrad)" stroke="#393b3f" stroke-opacity="0.72" stroke-width="0.45"><title>credits/RenderCreditsOam: 3,520 bytes, not matched, size=symbol</title></rect>
+<text x="604.43" y="241.77" text-anchor="end" clip-path="url(#moduleLabelClip14)" fill="#94a3b8" font-family="Inter, Segoe UI, sans-serif" font-size="10" font-weight="700">100%</text>
+<rect x="504.69" y="247.77" width="46.07" height="95.18" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/RenderCreditsOam: 3,520 bytes, matched, size=symbol</title></rect>
 <rect x="551.11" y="247.77" width="54.98" height="36.44" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/InitializeCredits: 1,616 bytes, matched, size=symbol</title></rect>
 <rect x="551.11" y="284.56" width="54.98" height="30.70" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/UpdateCreditsSequence: 1,364 bytes, matched, size=symbol</title></rect>
 <rect x="551.11" y="315.61" width="22.76" height="27.33" fill="url(#matchedGrad)" stroke="#2c7a41" stroke-opacity="0.72" stroke-width="0.45"><title>credits/UpdateCreditsTreasureDrop: 508 bytes, matched, size=symbol</title></rect>
