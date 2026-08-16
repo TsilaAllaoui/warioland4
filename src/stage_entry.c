@@ -4,26 +4,36 @@
 #include "init_helpers.h"
 #include "score.h"
 #include "stage_select.h"
-#include "score.h"
 #include "voice_set.h"
 #include "gba/m4a.h"
 #include "main.h"
 #include "fixed_point.h"
 
-#ifdef STAGE_ENTRY_USE_WIP_C_FUNC_807E7B0
-extern const u32 sUnk_8639AC4[];
-extern const u32 sUnk_8639ADC[];
-extern const u32 sUnk_863A2EC[];
-extern const struct AnimationFrame sUnk_863E12C[];
+
+
+#define PASSAGE_ENTRY 0
+#define PASSAGE_GOLDEN 5
+
+extern const struct AnimationFrame sUnk_863EFE0[];
+extern const struct AnimationFrame sUnk_863EFB0[];
 extern const struct AnimationFrame sUnk_863E1C4[];
+extern const struct AnimationFrame sUnk_863E12C[];
+extern const u32 sUnk_8639ADC[];
+extern const u32 sUnk_8639AC4[];
+extern const u16 sUnk_863ED00[];
+extern const u16 sUnk_863ECF8[];
+extern const u16 sUnk_863ECF0[];
 extern const u16 sUnk_863E24C[];
 extern const u16 sUnk_863E4AA[];
-extern const u16 sUnk_863ECF0[];
-extern const u16 sUnk_863ECF8[];
-extern const u16 sUnk_863ED00[];
-extern const struct AnimationFrame sUnk_863EFB0[];
-extern const struct AnimationFrame sUnk_863EFE0[];
-#endif
+extern const struct AnimationFrame sUnk_863A2EC[];
+extern const struct AnimationFrame sUnk_8639AC4_ANIM[];
+extern const struct AnimationFrame sUnk_8639ADC_ANIM[];
+
+
+
+
+
+
 
 s32 UpdateStageEntry(void)
 {
@@ -1389,12 +1399,8 @@ void UpdateStageEntryBlinkState(void)
     }
 }
 
-// Non matching function
-// Scratch link: https://decomp.me/scratch/oXj7d
-#ifndef STAGE_ENTRY_USE_WIP_C_FUNC_807E7B0
-ASM_INCLUDE("asm/disasm_stage_entry.s");
-#else
-void func_807E7B0(void)
+
+void RenderStageEntrySprites(void)
 {
   const struct AnimationFrame *animation;
   struct StageEntryPositionedAnimationState *positionedState;
@@ -1746,14 +1752,20 @@ void func_807E7B0(void)
           {
             return;
           }
-        }
-        if (currentSlot < nextSlot)
-        {
+          if (currentSlot < (stateSlotLimit + nextSlot - stateSlotLimit))
+          {
           register u32 objectY asm("r12");
           register u32 objectX asm("r9");
           OamData *oam;
           register OamData *oamBase asm("r1");
-          objectY = *((const u32 *) (((const u8 *) sUnk_8639ADC) + i));
+          {
+            register const u32 *stateYBase asm("r0");
+            register s32 stateOffsetY asm("r1");
+            stateYBase = sUnk_8639ADC;
+            stateOffsetY = i;
+            stateYBase = (const u32 *) (stateOffsetY + (u32) stateYBase);
+            objectY = *stateYBase;
+          }
           {
             register s32 slotIndex asm("r2");
             register u32 oamOffset asm("r0");
@@ -1762,8 +1774,21 @@ void func_807E7B0(void)
             oamBase = gOamBuffer;
             oam = (OamData *) (oamOffset + ((u32) oamBase));
           }
-          objectX = *((const u32 *) (((const u8 *) sUnk_8639AC4) + i));
-          currentSlot = nextSlot - currentSlot;
+          {
+            register const u32 *stateXBase asm("r0");
+            register s32 stateOffsetX asm("r2");
+            stateXBase = sUnk_8639AC4;
+            stateOffsetX = i;
+            stateXBase = (const u32 *) (stateOffsetX + (u32) stateXBase);
+            objectX = *stateXBase + stateOffsetX - stateOffsetX;
+          }
+          {
+            register s32 slotEnd asm("r0");
+            register s32 slotStart asm("r1");
+            slotEnd = nextSlot;
+            slotStart = currentSlot;
+            currentSlot = slotEnd - slotStart;
+          }
           do
           {
             attr = *(src++);
@@ -1793,6 +1818,7 @@ void func_807E7B0(void)
           while (currentSlot != 0);
           currentSlot = nextSlot;
         }
+        }
       }
     }
     animationState++;
@@ -1818,7 +1844,7 @@ void func_807E7B0(void)
     {
       struct StageEntryPositionedAnimationState *affineState;
       OamData *oamBase;
-      affineState = &gStageEntryFlyingKeyzerState;
+      affineState = (struct StageEntryPositionedAnimationState *)&gStageEntryFlyingKeyzerState;
       oamBase = gOamBuffer;
       priorityBase = -13;
       affineOam = &oamBase[currentSlot];
@@ -1849,9 +1875,11 @@ void func_807E7B0(void)
         ((u8 *) affineOam)[5] = modeMask;
         dest++;
         affineOam++;
-        modeMask = 1;
-        asm("" : "+r"(modeMask));
-        currentSlot += modeMask;
+        {
+          register u8 one asm("r0");
+          one = 1;
+          currentSlot += one;
+        }
       }
       while (currentSlot < nextSlot);
     }
@@ -1877,27 +1905,26 @@ void func_807E7B0(void)
     matrix3Ptr = &matrix[3];
     if (currentSlot < nextSlot)
     {
-      register struct StageEntrySpriteState *ce8State asm("r9");
+      register u8 *ce8State asm("r9");
       u32 eight;
-      s32 priorityBase;
+      register s32 priorityBase asm("r12");
       OamData *oam;
       {
         OamData *oamBase;
-        ce8State = &gStageEntryCompanionSpriteState;
+        ce8State = (u8 *) &gStageEntryCompanionSpriteState;
         eight = 8;
         oamBase = gOamBuffer;
         priorityBase = -13;
         oam = oamBase + currentSlot;
       }
-      asm("" : "+r"(ce8State), "+r"(eight), "+r"(priorityBase), "+r"(oam));
       do
       {
         attr = *(src++);
         *(dest++) = attr;
         {
-          register struct StageEntrySpriteState *yState asm("r1");
+          register u8 *yState asm("r1");
           yState = ce8State;
-          oam->split.y = (attr + yState->y) - 8;
+          oam->split.y = (attr + yState[2]) - 8;
         }
         oam->split.affineMode = 1;
         attr = *(src++);
@@ -1905,22 +1932,22 @@ void func_807E7B0(void)
         {
           u32 objectX;
           {
-            register struct StageEntrySpriteState *xState asm("r2");
+            register u8 *xState asm("r2");
             xState = ce8State;
-            asm("" : "+r"(xState));
-            objectX = attr + xState->x;
+            objectX = attr + *((u16 *) xState);
           }
           objectX &= 0x1FF;
           oam->split.x = objectX;
         }
         {
           u8 modeByte;
-          unsigned char modeMask;
+          register s32 signedMask asm("r0");
           modeByte = ((u8 *) oam)[3];
-          modeMask = -15;
-          modeMask &= modeByte;
-          modeMask |= eight;
-          ((u8 *) oam)[3] = modeMask;
+          signedMask = 15;
+          signedMask = -signedMask;
+          signedMask &= modeByte;
+          signedMask |= eight;
+          ((u8 *) oam)[3] = signedMask;
         }
         *(dest++) = *(src++);
         {
@@ -1979,9 +2006,8 @@ void func_807E7B0(void)
 
   }
   {
-    struct StageEntryPositionedAnimationState *stateCheck;
+    register struct StageEntryPositionedAnimationState *stateCheck asm("r1");
     stateCheck = (struct StageEntryPositionedAnimationState *) gStageEntryKeyzerTargetState;
-    asm("" : "+r"(stateCheck));
     if (stateCheck[1].timer > 64)
     {
       struct StageEntryPositionedAnimationState *lateState;
@@ -2246,7 +2272,7 @@ void func_807E7B0(void)
   gOamBuffer[15].all.affineParam = *finalMatrix3Ptr;
   gOamSlotsUsed = nextSlot;
 }
-#endif
+
 
 s32 UpdateStageEntryHorizontalShake(void)
 {

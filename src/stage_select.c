@@ -21,7 +21,7 @@
 
 extern void UploadColorFadePalettes(void);
 extern void FillColorFadePalettes(void);
-extern void func_807E7B0(void);
+extern void RenderStageEntrySprites(void);
 extern void UpdateBossDoorOpeningDisplay(void);
 extern void UpdateBossDoorOpeningSprites(void);
 extern void PrepareBossDoorOpeningResult(void);
@@ -1069,7 +1069,7 @@ void DrawStageSelectSprites(void)
         case 12:
         case 13:
         case 14:
-            func_807E7B0();
+            RenderStageEntrySprites();
             break;
         case 15:
         case 16:

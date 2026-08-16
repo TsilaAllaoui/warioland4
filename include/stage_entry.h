@@ -168,6 +168,7 @@ void UpdateStageEntrySecondaryAnimationAndScale(void);
 void UpdateStageEntryPaletteFadeCounters(void);
 void CycleStageEntryPalette(void);
 void UpdateStageEntryBlinkState(void);
+void RenderStageEntrySprites(void);
 s32 UpdateStageEntryHorizontalShake(void);
 s32 ExpandStageEntryWindow(void);
 s32 CollapseStageEntryWindow(void);
