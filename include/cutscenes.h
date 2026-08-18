@@ -949,6 +949,6 @@ void CutsceneWarioLoadObjTiles(void);
 void CutsceneWarioLoadObjPalette(void);
 void UpdateLayeredEndingTreasureCutsceneSequence(s32 frame);
 void func_8008B20(u32 frame);
-void func_800A43C(u16 frame);
+void func_800A43C(s32 frame);
 
 #endif  // CUTSCENES_H

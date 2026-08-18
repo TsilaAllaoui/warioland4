@@ -1100,44 +1100,12 @@ void LoadSoundRoomTrackGraphics(s32 index)
 #ifndef NONMATCHING
 ASM_INCLUDE("asm/disasm_sound_room_func_8087DB0.s");
 #else
-#define SOUND_ROOM_COPY_FRAME(yOffset, xOffset, affine)                    \
-    do                                                                     \
-    {                                                                      \
-        used += *frameData++;                                              \
-        if (used > 128)                                                    \
-            goto finish;                                                   \
-        if (slot < used)                                                   \
-        {                                                                  \
-            dst = &gOamBuffer[slot];                                       \
-            slot = used - slot;                                            \
-            do                                                             \
-            {                                                              \
-                attr0 = *frameData++;                                      \
-                *rawDst++ = attr0;                                         \
-                ((u8 *)dst)[0] = (u8)(attr0 + (yOffset));                  \
-                if (affine)                                                \
-                {                                                          \
-                    ((u8 *)dst)[1] |= 3;                                   \
-                }                                                          \
-                attr1 = *frameData++;                                      \
-                *rawDst++ = attr1;                                         \
-                dst->all.attr1 = (dst->all.attr1 & 0xFE00)                \
-                               | ((attr1 + (xOffset)) & 0x01FF);            \
-                if (affine)                                                \
-                {                                                          \
-                    ((u8 *)dst)[3] &= 0xF1;                                \
-                }                                                          \
-                attr2 = *frameData++;                                      \
-                *rawDst = attr2;                                           \
-                ((u8 *)dst)[5] &= 0xF3;                                   \
-                rawDst += 2;                                               \
-                dst++;                                                     \
-                slot--;                                                    \
-            } while (slot != 0);                                           \
-            slot = used;                                                   \
-        }                                                                  \
-        asm volatile("");                                                 \
-    } while (0)
+/* Best current WIP C for DrawSoundRoomSprites (asm file still named func_8087DB0,
+ * but the real symbol -- see include/sound_room.h and the target .s's own
+ * .thumb_func label -- is DrawSoundRoomSprites): 23579 / 94300 (75.00%), EXACT
+ * size match 0x804 (confirmed via report.json ground truth). Verified against
+ * real project context, not an isolated ctx.c -- see
+ * decomp_work/DrawSoundRoomSprites/README.md. */
 
 void DrawSoundRoomSprites(void)
 {
@@ -1158,7 +1126,6 @@ void DrawSoundRoomSprites(void)
   unsigned short remainder;
   s32 yOffset;
   s32 xOffset;
-  u16 *pdOut;
   short inverse;
   s32 sine;
   struct SoundRoomStack
@@ -1171,6 +1138,7 @@ void DrawSoundRoomSprites(void)
   } stack;
   s16 *pbOut;
   s16 *pcOut;
+  u16 *pdOut;
   slot = 0;
   used = gOamSlotsUsed;
   {
@@ -1214,19 +1182,19 @@ void DrawSoundRoomSprites(void)
       oamBase = gOamBuffer;
       state = gStageEntryMainSpriteState;
       xMask = 0x1FF;
-      highMask = 0xFFFFFE00;
-      attr2Mask = -13;
+      { register u32 highMaskTemp asm("r3"); highMaskTemp = 0xFFFFFE00; asm("" : "+r"(highMaskTemp)); highMask = highMaskTemp; }
+      { register s32 attr2MaskTemp asm("r0"); attr2MaskTemp = -13; asm("" : "+r"(attr2MaskTemp)); attr2Mask = attr2MaskTemp; }
       oamOffset = ((u32) slot) << 3;
       dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-      slot = used - slot;
+      { register long usedTemp asm("r1"); usedTemp = used; asm("" : "+r"(usedTemp)); slot = usedTemp - slot; }
       do
       {
-        attr0 = *(frameData++);
+        { register u32 loadTemp asm("r2"); loadTemp = *(frameData++); asm("" : "+r"(loadTemp)); attr0 = loadTemp; }
         *(rawDst++) = attr0;
         ((u8 *) dst)[0] = (u8) (attr0 + ((u8 *) state)[10]);
-        attr1 = *(frameData++);
+        { register u32 loadTemp asm("r2"); loadTemp = *(frameData++); asm("" : "+r"(loadTemp)); attr1 = loadTemp; }
         *(rawDst++) = attr1;
-        dst->all.attr1 = ((attr1 + ((s16 *) state)[4]) & xMask) | (dst->all.attr1 & highMask);
+        { s16 stateVal4 = ((s16 *) state)[4]; dst->all.attr1 = ((attr1 + stateVal4) & xMask) | (dst->all.attr1 & highMask); }
         attr2 = *(frameData++);
         *rawDst = attr2;
         ((u8 *) dst)[5] &= attr2Mask;
@@ -1255,12 +1223,12 @@ void DrawSoundRoomSprites(void)
       register u32 highMask asm("r10");
       register volatile int attr2Mask asm("r6");
       oamBase = gOamBuffer;
-      xMask = 0x1FF;
-      highMask = 0xFFFFFE00;
+      { register u32 xMaskTemp asm("r0"); xMaskTemp = 0x1FF; asm("" : "+r"(xMaskTemp)); xMask = xMaskTemp; }
+      { register u32 highMaskTemp asm("r2"); highMaskTemp = 0xFFFFFE00; asm("" : "+r"(highMaskTemp)); highMask = highMaskTemp; }
       attr2Mask = -13;
       oamOffset = ((u32) slot) << 3;
       dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-      slot = used - slot;
+      { register long usedTemp asm("r0"); usedTemp = used; asm("" : "+r"(usedTemp)); slot = usedTemp - slot; }
       do
       {
         attr0 = *(frameData++);

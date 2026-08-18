@@ -229,6 +229,8 @@ extern const u16 sUnk_828E714[];
 extern const u16 sUnk_828E71C[];
 extern const u16 sUnk_828E74E[];
 extern const u16 sUnk_878E760[];
+extern const s16 sUnk_878E770[];
+extern const u32 sUnk_878E778[];
 void UpdateAffineCutsceneBackground(s32 frame);
 void UpdateCutsceneSequence150(s32 frame);
 void UpdateCutsceneBackgroundVariantTransition(s32 frame);
@@ -5792,7 +5794,900 @@ void SetCutsceneOamSemiTransparentPriority(const u16 *oamData, u16 *destination)
     }
 }
 
-ASM_INCLUDE("asm/disasm_cutscenes_func_800A43C.s");
+
+
+void func_800A43C(s32 inputFrame)
+{
+    s32 frame;
+    u16 *treasureOam;
+    u16 *mainOam;
+    u16 *specialOam;
+    u16 *particleOam;
+    u16 *pathOam;
+    register u16 *destination asm("r6");
+    s32 renderTreasurePaths;
+    s16 pathX;
+    s16 pathY;
+    u32 timer;
+    s32 pathFrame;
+
+    frame = inputFrame;
+    renderTreasurePaths = 0;
+    treasureOam = 0;
+    mainOam = 0;
+    pathOam = 0;
+    specialOam = 0;
+
+    switch (gUnk_3002C60)
+    {
+    case 0:
+        if (DecreaseCutsceneBlendCoefficient(7) != 0)
+        {
+            gUnk_3002C64++;
+            if (gUnk_3002C64 == 121)
+            {
+                *(vu16 *)0x04000052 = (gUnk_3002C5C << 8) | gUnk_3002C5A;
+                *(vu16 *)0x04000050 = 0x1641;
+                *(vu16 *)0x04000000 = 0x1700;
+                gUnk_3002C60++;
+            }
+        }
+        SelectEndingCutsceneTreasureOam(frame, (u16 **)&treasureOam);
+        gUnk_3002CA4 = 1;
+        SelectEndingCutsceneOamSequence10(0, (u16 **)&mainOam);
+        break;
+
+    case 1:
+        if ((frame & 15) == 15)
+        {
+            if ((u16)gUnk_3002C5A <= 9)
+                gUnk_3002C5A++;
+            if ((u16)gUnk_3002C5C > 10)
+                gUnk_3002C5C--;
+            *(vu16 *)0x04000052 = (gUnk_3002C5C << 8) | gUnk_3002C5A;
+            if ((u16)gUnk_3002C5A == 2)
+                m4aSongNumStartOrChange(151);
+            if ((u16)gUnk_3002C5A == 10)
+            {
+                gUnk_3002C64 = 0;
+                gUnk_3002C60++;
+            }
+        }
+        SelectEndingCutsceneTreasureOam(frame, (u16 **)&treasureOam);
+        SelectEndingCutsceneOamSequence10(0, (u16 **)&mainOam);
+        break;
+
+    case 2:
+        SelectEndingCutsceneOamSequence10(0, (u16 **)&mainOam);
+        SelectEndingCutsceneTreasureOam(frame, (u16 **)&treasureOam);
+        ReadEndingCutsceneIndexedPathPair(gUnk_3002C84, gUnk_3002C64,
+                                          (u16 *)&gCutsceneAnimationFinished, (u16 *)&gUnk_3002C9A);
+        gUnk_3002C64++;
+        if (gUnk_3002C64 == 232)
+        {
+            gUnk_3002C68 = 0;
+            gUnk_3002C60++;
+        }
+        break;
+
+    case 3:
+    {
+        register s32 renderOne asm("r5");
+        renderOne = 1;
+        renderTreasurePaths = renderOne;
+    }
+        if ((u32)gUnk_3002C64 <= 358)
+            SelectEndingCutsceneTreasureOam(frame, (u16 **)&treasureOam);
+        else
+            SelectEndingCutsceneTreasureFlashOam(gUnk_3002C64, (u16 **)&treasureOam);
+
+        if (ReadEndingCutsceneIndexedPathPair(gUnk_3002C84, gUnk_3002C64,
+                                              (u16 *)&gCutsceneAnimationFinished, (u16 *)&gUnk_3002C9A) != 0)
+        {
+            renderTreasurePaths = 0;
+            gUnk_3002C60++;
+        }
+
+        if ((u32)gUnk_3002C64 <= 479)
+            SelectEndingCutsceneOamSequence10(gUnk_3002C64, (u16 **)&mainOam);
+        else
+        {
+            register s32 frameOffset asm("r1") = -480;
+            asm("" : "+r"(frameOffset));
+            SelectEndingCutsceneOamSequence16(gUnk_3002C64 + frameOffset, (u16 **)&mainOam);
+        }
+        gUnk_3002C64++;
+        gUnk_3002C68++;
+        break;
+
+    case 4:
+    {
+        register s32 frameCheck asm("r2");
+        register s32 mask asm("r0");
+        mask = 15;
+        frameCheck = frame;
+        asm("" : "+r"(mask), "+r"(frameCheck));
+        mask &= frameCheck;
+        if (mask == 15)
+        {
+            u16 *coeffAPtr = (u16 *)&gUnk_3002C5A;
+            u16 coeffA = *coeffAPtr;
+            if (coeffA != 0)
+                *coeffAPtr = coeffA - 1;
+            if ((u16)gUnk_3002C5C <= 15)
+                gUnk_3002C5C++;
+            *(vu16 *)0x04000052 = (gUnk_3002C5C << 8) | *coeffAPtr;
+            if (*coeffAPtr == 0)
+            {
+                gUnk_3002C64 = 0;
+                gUnk_3002C60++;
+            }
+        }
+        SelectEndingCutsceneOamSequence15(0, (u16 **)&mainOam);
+    }
+    break;
+
+    case 5:
+        SelectEndingCutsceneOamSequence15(0, (u16 **)&mainOam);
+        gUnk_3002C64++;
+        if (gUnk_3002C64 == 121)
+        {
+            gUnk_3002C64 = 0;
+            gUnk_3002C60++;
+        }
+        break;
+
+    case 6:
+        if ((u32)gUnk_3002C64 <= 64)
+        {
+            SelectEndingCutsceneOamSequence14(0, (u16 **)&mainOam);
+        }
+        else if ((u32)gUnk_3002C64 <= 119)
+        {
+            SelectEndingCutsceneOamSequence11(gUnk_3002C64 - 65, (u16 **)&mainOam);
+            if (gUnk_3002C64 == 65)
+                m4aSongNumStartOrChange(421);
+        }
+        else if ((u32)gUnk_3002C64 <= 311)
+        {
+            SelectEndingCutsceneOamSequence12(gUnk_3002C64 - 120, (u16 **)&mainOam);
+        }
+        else
+        {
+            if (gUnk_3002C64 == 312)
+                m4aSongNumStartOrChange(422);
+            {
+                register s32 selectorFrame asm("r0");
+                register s32 selectorOffset asm("r3");
+                selectorFrame = gUnk_3002C64;
+                selectorOffset = -312;
+                asm("" : "+r"(selectorOffset) : "r"(selectorFrame));
+                selectorFrame += selectorOffset;
+                if (SelectEndingCutsceneOamSequence13(selectorFrame, (u16 **)&mainOam) != 0)
+                {
+                    gUnk_3002C64 = 0;
+                    gUnk_3002C60++;
+                    break;
+                }
+            }
+        }
+        gUnk_3002C64++;
+        break;
+
+    case 7:
+        if (gCutscenePrimaryObjectX <= 183)
+        {
+            SelectEndingCutsceneOamSequence42(gUnk_3002C64, (u16 **)&mainOam);
+            gCutscenePrimaryObjectX += 2;
+        }
+        else
+        {
+            SelectEndingCutsceneOamSequence43(gUnk_3002C64, (u16 **)&mainOam);
+            if ((frame & gLayeredCutsceneOamOffsetY) == gLayeredCutsceneOamOffsetY)
+            {
+                if (gUnk_3002C9E <= gLayeredCutsceneOamOffsetX)
+                {
+                    gUnk_3002C64 = 0;
+                    gUnk_3002C60++;
+                    break;
+                }
+                gUnk_3002C9E--;
+            }
+        }
+        gUnk_3002C64++;
+        break;
+
+    case 8:
+        if (gEndingCutsceneCollectedTreasureCount == 0)
+        {
+            if (SelectEndingCutsceneOamSequence45(gUnk_3002C64, (u16 **)&mainOam) != 0)
+            {
+                gUnk_3002C64 = 0;
+                gUnk_3002C60++;
+                break;
+            }
+        }
+        else
+        {
+            if (gUnk_3002C64 == 0)
+            {
+                gUnk_3002C9C = sUnk_878E770[gUnk_3002C84];
+                {
+                    register u16 *destinationY asm("r3") = (u16 *)&gUnk_3002C9E;
+                    register u16 *tableY asm("r1") = (u16 *)sUnk_878E778;
+                    *destinationY = tableY[gUnk_3002C84];
+                }
+            }
+            SelectEndingCutsceneOamSequence49(gUnk_3002C64, (u16 **)&specialOam);
+            if (SelectEndingCutsceneOamSequence48(gUnk_3002C64, (u16 **)&mainOam) != 0)
+            {
+                gUnk_3002C64 = 0;
+                gUnk_3002C60++;
+                break;
+            }
+        }
+        gUnk_3002C64++;
+        break;
+
+    case 9:
+        if (gEndingCutsceneCollectedTreasureCount != 0)
+        {
+            SelectEndingCutsceneOamSequence46(gUnk_3002C64, (u16 **)&mainOam);
+            SelectEndingCutsceneOamSequence47(gUnk_3002C64, (u16 **)&specialOam);
+        }
+        else
+        {
+            SelectEndingCutsceneOamSequence44(gUnk_3002C64, (u16 **)&mainOam);
+        }
+        gCutscenePrimaryObjectX -= 2;
+        gUnk_3002C9C -= 2;
+        if (gCutscenePrimaryObjectX < -64)
+        {
+            InitCutsceneDarkenBlend(22);
+            *(vu16 *)0x04000000 = 0x1600;
+            gUnk_3002C64 = 0;
+            gUnk_3002C60++;
+        }
+        gUnk_3002C64++;
+        break;
+
+    case 10:
+        if (IncreaseCutsceneBlendCoefficient(7) != 0)
+            gSubGameMode++;
+        break;
+    }
+
+    destination = (u16 *)gOamBuffer;
+    if (gUnk_3002C60 <= 7 && gEndingCutsceneCollectedTreasureCount != 0)
+    {
+        SelectEndingCutsceneOamSequence25(gUnk_3002C64, (u16 **)&specialOam);
+        destination = AppendCutsceneOamTemplate(specialOam, destination,
+                                                gUnk_3002C9C, gUnk_3002C9E);
+        WriteCutsceneOamAffineMatrix(0, 0, *(s16 *)&gEndingCutsceneTreasureScale, *(s16 *)&gEndingCutsceneTreasureScale);
+    }
+
+    if ((u16)gUnk_3002C5A > 7)
+    {
+        register s16 *xPositions asm("r8");
+        register s16 *yPositions asm("r9");
+        xPositions = gCutsceneObjectXPositions;
+        yPositions = gCutsceneObjectYPositions;
+        UpdateEndingCutsceneParticlePositions();
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (0), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r3");
+                randomPointer = &gUnk_3002CA6;
+                value = *randomPointer;
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r1");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    register s32 negativeBase asm("r3");
+                    negativeBase = 1084;
+                    remainderBase = product + negativeBase;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                value = *randomPointer;
+                value += 24;
+                value <<= 8;
+                {
+                    register s16 *xStore asm("r5");
+                    xStore = xPositions;
+                    *xStore = value;
+                }
+            }
+            {
+                register s16 xStep asm("r3");
+                register s32 yStep asm("r5");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r1"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; xStep = 2; xPositions = (s16 *)((u8 *)xPositions + xStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r4"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yStep = 2; yPositions = (s16 *)((u8 *)yPositions + yStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (9), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                value = *randomPointer;
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            {
+                register s32 coordinateStep asm("r4");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r3"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; coordinateStep = 2; xPositions = (s16 *)((u8 *)xPositions + coordinateStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r5"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yPositions = (s16 *)((u8 *)yPositions + coordinateStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (18), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                {
+                    register s32 idxA asm("r1");
+                    idxA = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                }
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            {
+                register s32 coordinateStep asm("r4");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r3"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; coordinateStep = 2; xPositions = (s16 *)((u8 *)xPositions + coordinateStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r5"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yPositions = (s16 *)((u8 *)yPositions + coordinateStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (27), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                {
+                    register s32 idxA asm("r1");
+                    idxA = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                }
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            {
+                register s32 coordinateStep asm("r4");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r3"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; coordinateStep = 2; xPositions = (s16 *)((u8 *)xPositions + coordinateStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r5"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yPositions = (s16 *)((u8 *)yPositions + coordinateStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (36), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                {
+                    register s32 idxA asm("r1");
+                    idxA = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                }
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            {
+                register s32 coordinateStep asm("r4");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r3"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; coordinateStep = 2; xPositions = (s16 *)((u8 *)xPositions + coordinateStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r5"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yPositions = (s16 *)((u8 *)yPositions + coordinateStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (45), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                {
+                    register s32 idxA asm("r1");
+                    idxA = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                }
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            {
+                register s32 coordinateStep asm("r4");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r3"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; coordinateStep = 2; xPositions = (s16 *)((u8 *)xPositions + coordinateStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r5"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yPositions = (s16 *)((u8 *)yPositions + coordinateStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (54), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                {
+                    register s32 idxA asm("r1");
+                    idxA = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                }
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            {
+                register s32 coordinateStep asm("r4");
+                destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                        ({ register s16 *xPointer asm("r3"); u32 xValue; xPointer = xPositions; xValue = ((u16)*xPointer) >> 8; coordinateStep = 2; xPositions = (s16 *)((u8 *)xPositions + coordinateStep); xValue; }),
+                                                        ({ register s16 *yPointer asm("r5"); u32 yValue; yPointer = yPositions; yValue = (u16)*yPointer; yPositions = (s16 *)((u8 *)yPositions + coordinateStep); yValue; }));
+            }
+        } while (0);
+
+        do
+        {
+            if (SelectEndingCutsceneOamSequence27(frame + (63), &particleOam) != 0)
+            {
+                s16 *randomPointer;
+                register s32 value asm("r0");
+                register s32 multiplier asm("r5");
+                register s32 constantValue asm("r4");
+                register s32 product asm("r2");
+                register s32 sum asm("r1");
+                register s32 remainderBase asm("r0");
+                register s16 *yStore asm("r2");
+                randomPointer = &gUnk_3002CA6;
+                {
+                    register s32 idxA asm("r1");
+                    idxA = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                }
+                multiplier = 109;
+                value *= multiplier;
+                constantValue = 1021;
+                value += constantValue;
+                value = -value;
+                value %= 24;
+                yStore = yPositions;
+                *yStore = value;
+                {
+                    register s32 idxB asm("r3");
+                    idxB = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                }
+                product = value * multiplier;
+                sum = product + constantValue;
+                remainderBase = sum;
+                if (sum < 0)
+                {
+                    constantValue += 63;
+                    remainderBase = product + constantValue;
+                }
+                remainderBase >>= 6;
+                remainderBase <<= 6;
+                remainderBase = sum - remainderBase;
+                *randomPointer = remainderBase;
+                {
+                    register s32 idxC asm("r5");
+                    idxC = 0;
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                }
+                value += 24;
+                value <<= 8;
+                *xPositions = value;
+            }
+            destination = AppendCutsceneOamTemplate(particleOam, destination,
+                                                    ({ register s16 *xPointer asm("r3"); xPointer = xPositions; ((u16)*xPointer) >> 8; }),
+                                                    ({ register s16 *yPointer asm("r4"); yPointer = yPositions; (u16)*yPointer; }));
+        } while (0);
+    }
+
+    {
+        register s32 renderPathsCheck asm("r5");
+        register u32 *timerPointer asm("r9");
+        register u32 *timerPointerLow asm("r0");
+        register u16 **pathOamAddress asm("r8");
+        register u16 **pathOamAddressLow asm("r1");
+        renderPathsCheck = renderTreasurePaths;
+        if (renderPathsCheck != 0)
+        {
+            timerPointerLow = &gUnk_3002C68;
+            timerPointer = timerPointerLow;
+            timer = *timerPointerLow;
+            pathFrame = 0;
+            if (timer > 115)
+                pathFrame = timer;
+
+            pathOamAddressLow = (u16 **)&pathOam;
+            pathOamAddress = pathOamAddressLow;
+            SelectEndingCutsceneOamSequence38(pathFrame, pathOamAddressLow);
+            {
+                register s32 *readPointer asm("r2");
+                readPointer = (s32 *)timerPointer;
+                timer = *readPointer;
+            }
+            ReadEndingCutscenePath36(timer, (u16 *)&pathX, (u16 *)&pathY);
+            destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+
+            SelectEndingCutsceneOamSequence37(pathFrame + 7, pathOamAddress);
+            {
+                register s32 *readPointer asm("r1");
+                readPointer = (s32 *)timerPointer;
+                timer = *readPointer;
+            }
+            ReadEndingCutscenePath37(timer, (u16 *)&pathX, (u16 *)&pathY);
+            destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+
+            SelectEndingCutsceneOamSequence39(pathFrame, pathOamAddress);
+            {
+                register s32 *readPointer asm("r2");
+                readPointer = (s32 *)timerPointer;
+                timer = *readPointer;
+            }
+            ReadEndingCutscenePath38(timer, (u16 *)&pathX, (u16 *)&pathY);
+            destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+
+            SelectEndingCutsceneOamSequence40(pathFrame + 7, pathOamAddress);
+            {
+                register s32 *readPointer asm("r2");
+                readPointer = (s32 *)timerPointer;
+                timer = *readPointer;
+            }
+            ReadEndingCutscenePath39(timer, (u16 *)&pathX, (u16 *)&pathY);
+            destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+
+            if (pathFrame > 216)
+            {
+                pathFrame -= 216;
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath40(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath41(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath42(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath43(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath44(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath45(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath46(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+
+                do
+                {
+                    SelectEndingCutsceneOamSequence26(pathFrame, pathOamAddress);
+                    ReadEndingCutscenePath47(pathFrame, (u16 *)&pathX, (u16 *)&pathY);
+                    destination = AppendCutsceneOamTemplate(pathOam, destination, pathX, pathY);
+                    SetCutsceneOamSemiTransparentPriority(pathOam, destination);
+                } while (0);
+            }
+        }
+    }
+    asm("" : "+m"(renderTreasurePaths));
+
+    destination = AppendCutsceneOamTemplate(treasureOam, destination,
+                                            gCutsceneAnimationFinished, gUnk_3002C9A);
+    if (gUnk_3002CA4 != 0)
+        SetCutsceneOamSemiTransparentPriority(treasureOam, destination);
+
+    destination = AppendCutsceneOamTemplate(mainOam, destination,
+                                            gCutscenePrimaryObjectX, gCutscenePrimaryObjectY);
+
+    if (gUnk_3002C60 > 7 && gEndingCutsceneCollectedTreasureCount != 0)
+    {
+        destination = AppendCutsceneOamTemplate(specialOam, destination,
+                                                gUnk_3002C9C, gUnk_3002C9E);
+        WriteCutsceneOamAffineMatrix(0, 0, *(s16 *)&gEndingCutsceneTreasureScale, *(s16 *)&gEndingCutsceneTreasureScale);
+    }
+    FinalizeCutsceneOamBuffer(destination);
+}
 
 void InitializeTitleScreenLogoCutscene(void)
 {
