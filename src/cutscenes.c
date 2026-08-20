@@ -6097,9 +6097,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r1");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6155,9 +6157,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6172,9 +6176,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;
@@ -6202,9 +6208,11 @@ void func_800A43C(s32 inputFrame)
                 register s16 *yStore asm("r2");
                 randomPointer = &gUnk_3002CA6;
                 {
-                    register s32 idxA asm("r1");
-                    idxA = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 multiplier = 109;
                 value *= multiplier;
@@ -6215,9 +6223,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6232,9 +6242,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;
@@ -6262,9 +6274,11 @@ void func_800A43C(s32 inputFrame)
                 register s16 *yStore asm("r2");
                 randomPointer = &gUnk_3002CA6;
                 {
-                    register s32 idxA asm("r1");
-                    idxA = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 multiplier = 109;
                 value *= multiplier;
@@ -6275,9 +6289,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6292,9 +6308,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;
@@ -6322,9 +6340,11 @@ void func_800A43C(s32 inputFrame)
                 register s16 *yStore asm("r2");
                 randomPointer = &gUnk_3002CA6;
                 {
-                    register s32 idxA asm("r1");
-                    idxA = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 multiplier = 109;
                 value *= multiplier;
@@ -6335,9 +6355,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6352,9 +6374,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;
@@ -6382,9 +6406,11 @@ void func_800A43C(s32 inputFrame)
                 register s16 *yStore asm("r2");
                 randomPointer = &gUnk_3002CA6;
                 {
-                    register s32 idxA asm("r1");
-                    idxA = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 multiplier = 109;
                 value *= multiplier;
@@ -6395,9 +6421,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6412,9 +6440,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;
@@ -6442,9 +6472,11 @@ void func_800A43C(s32 inputFrame)
                 register s16 *yStore asm("r2");
                 randomPointer = &gUnk_3002CA6;
                 {
-                    register s32 idxA asm("r1");
-                    idxA = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 multiplier = 109;
                 value *= multiplier;
@@ -6455,9 +6487,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6472,9 +6506,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;
@@ -6502,9 +6538,11 @@ void func_800A43C(s32 inputFrame)
                 register s16 *yStore asm("r2");
                 randomPointer = &gUnk_3002CA6;
                 {
-                    register s32 idxA asm("r1");
-                    idxA = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxA));
+                    register s32 zeroIndex asm("r1");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 multiplier = 109;
                 value *= multiplier;
@@ -6515,9 +6553,11 @@ void func_800A43C(s32 inputFrame)
                 yStore = yPositions;
                 *yStore = value;
                 {
-                    register s32 idxB asm("r3");
-                    idxB = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxB));
+                    register s32 zeroIndex asm("r3");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 product = value * multiplier;
                 sum = product + constantValue;
@@ -6532,9 +6572,11 @@ void func_800A43C(s32 inputFrame)
                 remainderBase = sum - remainderBase;
                 *randomPointer = remainderBase;
                 {
-                    register s32 idxC asm("r5");
-                    idxC = 0;
-                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(idxC));
+                    register s32 zeroIndex asm("r5");
+                    zeroIndex = 0;
+                    /* Thumb-1 LDRSH has no immediate-offset form, so this load needs a zero
+                     * index register; in plain C agbcc picks it and the choice mismatches. */
+                    asm volatile("ldrsh %0, [%1, %2]" : "=r"(value) : "r"(randomPointer), "r"(zeroIndex));
                 }
                 value += 24;
                 value <<= 8;

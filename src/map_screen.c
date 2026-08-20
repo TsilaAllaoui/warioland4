@@ -1415,204 +1415,773 @@ void UpdateMapScreenTreasurePalettes(void)
 
 
 #ifdef NONMATCHING
-#define MAP_SCREEN_ADVANCE_ANIMATION(state, animation, onAdvance) \
-    do \
-    { \
-        (state)[0]++; \
-        if ((animation)[(state)[1]].time < (state)[0]) \
-        { \
-            (state)[0] = 1; \
-            (state)[1]++; \
-            onAdvance; \
-            if ((animation)[(state)[1]].time == 0) \
-            { \
-                (state)[1] = 0; \
-            } \
-        } \
-    } while (0)
-
-#define MAP_SCREEN_DRAW_FRAME(frameValue, yOffsetValue, xOffsetValue, priorityMode) \
-    do \
-    { \
-        frame = (frameValue); \
-        count = *frame++; \
-        nextUsed = used + count; \
-        if (nextUsed > MAX_OAM_SLOTS) \
-        { \
-            goto overflow; \
-        } \
-        yOffset = (yOffsetValue); \
-        xOffset = (xOffsetValue); \
-        while (drawn < nextUsed) \
-        { \
-            attr0 = *frame++; \
-            copyDst->all.attr0 = attr0; \
-            attr1 = *frame++; \
-            copyDst->all.attr1 = attr1; \
-            attr2 = *frame++; \
-            copyDst->all.attr2 = attr2; \
-            screenDst = &gOamBuffer[drawn]; \
-            screenDst->split.y = attr0 + yOffset; \
-            screenDst->all.attr1 = (screenDst->all.attr1 & 0xFE00) \
-                | ((attr1 + xOffset) & 0x1FF); \
-            if ((priorityMode) == 0) \
-            { \
-                attrByte = ((u8 *)&screenDst->all.attr2)[1]; \
-                attrByte = (attrByte & (u8)-13) | 8; \
-                ((u8 *)&screenDst->all.attr2)[1] = attrByte; \
-            } \
-            else \
-            { \
-                ((u8 *)&screenDst->all.attr2)[1] |= 12; \
-                if (((priorityMode) == 2) && (gUnk_3003C94 == 1)) \
-                { \
-                    attrByte = ((u8 *)&screenDst->all.attr2)[1]; \
-                    attrByte = (attrByte & (u8)-13) | 8; \
-                    ((u8 *)&screenDst->all.attr2)[1] = attrByte; \
-                } \
-            } \
-            copyDst++; \
-            drawn++; \
-        } \
-        used = nextUsed; \
-    } while (0)
-
+/* Best current WIP C for DrawMapScreenSprites: 60 / 102600 (99.94%),
+ * EXACT size match 0x86c. Verified 2026-08-24. Rescore: bash tools/score_func.sh
+ * src/map_screen.c DrawMapScreenSprites
+ * asm/disasm_map_screen_DrawMapScreenSprites.s us
+ * Full history/notes: decomp_work/DrawMapScreenSprites/README.md */
 void DrawMapScreenSprites(void)
 {
-    const struct AnimationFrame *animation;
-    const u16 *frame;
-    OamData *copyDst;
-    OamData *screenDst;
-    u32 drawn;
-    u32 used;
-    u32 count;
-    u32 nextUsed;
-    u32 i;
-    u16 attr0;
-    u16 attr1;
-    u16 attr2;
-    u16 *state;
-    u8 attrByte;
-    s32 yOffset;
-    s32 xOffset;
-    s32 scroll;
+  const struct AnimationFrame *animation;
+  const u16 *frame;
+  register u16 *copyRaw asm("r5");
+  OamData *screenDst;
+  s32 drawn;
+  register s32 used asm("r6");
+  s32 count;
+  u16 *attr2Ptr;
+  s32 remaining;
+  s32 i;
+  u16 attr0;
+  u16 attr1;
+  u16 attr2;
+  u16 low;
+  u16 *state;
+  int attrByte;
+  s32 yBase = 90;
+  u8 *slotsPtr = &gOamSlotsUsed;
 
-    drawn = 0;
-    used = gOamSlotsUsed;
-    copyDst = &gOamBuffer[used];
-    scroll = (s16)gUnk_3003C6C >> 4;
-
-    MAP_SCREEN_ADVANCE_ANIMATION(gUnk_3003C74, sUnk_863FFAC,
-        gUnk_3003C96++);
-    frame = sUnk_863FFAC[gUnk_3003C74[1]].oam;
-    MAP_SCREEN_DRAW_FRAME(frame, 90 - scroll, 120, 0);
-
-    if ((s16)gUnk_3003C6C != 0)
+  drawn = 0;
+  used = *slotsPtr;
+  {
+    register u32 oamByteOffset asm("r1");
+    oamByteOffset = used << 3;
+    copyRaw = (u16 *)((u8 *)gOamBuffer + oamByteOffset);
+  }
+  {
+    u16 *animState = gUnk_3003C74;
+    animState[0]++;
+    if (sUnk_863FFAC[animState[1]].time < animState[0])
     {
-        frame = gUnk_3003C40[gStageEntryMainSpriteState[1]].oam;
-        MAP_SCREEN_DRAW_FRAME(frame,
-            (s16)gStageEntryMainSpriteState[5] >> 5,
-            (s16)gStageEntryMainSpriteState[4] >> 5, 0);
+      animState[0] = 1;
+      animState[1]++;
+      gUnk_3003C96++;
+      if (sUnk_863FFAC[animState[1]].time == 0)
+        animState[1] = 0;
     }
-
-    if (gUnk_3003C95 == 2)
+  }
+  {
+    register u16 *frameState asm("r1");
+    frameState = gUnk_3003C74;
+    frame = sUnk_863FFAC[frameState[1]].oam;
+  }
+  do
+  {
+    count = *frame;
+    used += count;
+    frame++;
+    if (used > 128)
+      goto overflow;
+    if (drawn < used)
     {
-        MAP_SCREEN_ADVANCE_ANIMATION(gUnk_3003C84, sUnk_8640C68,
-            ((void)0));
-        frame = sUnk_8640C68[gUnk_3003C84[1]].oam;
-        MAP_SCREEN_DRAW_FRAME(frame, 160 - scroll, 120, 0);
+      u32 xMask;
+      u32 highMask;
+      s32 modeMask;
+      register OamData *oamBase asm("r1");
+      oamBase = gOamBuffer;
+      xMask = 0x1FF;
+      highMask = 0xFFFFFE00;
+      modeMask = -13;
+      screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBase);
+      remaining = used - drawn;
+      do
+      {
+        attr0 = *(frame++);
+        *(copyRaw++) = attr0;
+        screenDst->split.y = (((s32)attr0) + yBase) - (((s16)gUnk_3003C6C) >> 4);
+        attr1 = *(frame++);
+        *(copyRaw++) = attr1;
+        low = (attr1 + 120) & xMask;
+        screenDst->all.attr1 = (screenDst->all.attr1 & highMask) | ((attr1 + 120) & xMask);
+        attr2 = *frame;
+        *(copyRaw++) = attr2;
+        frame++;
+        {
+          register u32 oldAttrByte asm("r1");
+          register u32 maskedByte asm("r0");
+          oldAttrByte = ((u8 *)(&screenDst->all.attr2))[1];
+          maskedByte = modeMask;
+          maskedByte &= oldAttrByte;
+          maskedByte |= 8;
+          ((u8 *)(&screenDst->all.attr2))[1] = maskedByte;
+        }
+        copyRaw++;
+        screenDst++;
+        remaining--;
+      }
+      while (remaining != 0);
+      drawn = used;
     }
-
+  }
+  while (0);
+  if (*((s16 *)&gUnk_3003C6C) != 0)
+  {
+    u16 *mainState;
+    frame = gUnk_3003C40[gStageEntryMainSpriteState[1]].oam;
+    do
+    {
+      count = *frame;
+      used += count;
+      frame++;
+      if (used > 128)
+        goto overflow;
+      if (drawn < used)
+      {
+        u32 xMask;
+        u32 highMask;
+        register s32 modeMask asm("sl");
+        register OamData *oamBaseMain asm("r1");
+        oamBaseMain = gOamBuffer;
+        mainState = gStageEntryMainSpriteState;
+        highMask = 0xFFFFFE00;
+        modeMask = -13;
+        screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBaseMain);
+        xMask = 0x1FF;
+        remaining = used - drawn;
+        do
+        {
+          attr0 = *(frame++);
+          *(copyRaw++) = attr0;
+          screenDst->split.y = ((s32)attr0) + (((s16)mainState[5]) >> 5);
+          attr1 = *(frame++);
+          *(copyRaw++) = attr1;
+          low = (attr1 + (((s16)mainState[4]) >> 5)) & xMask;
+          screenDst->all.attr1 = (screenDst->all.attr1 & highMask) | ((attr1 + (((s16)mainState[4]) >> 5)) & xMask);
+          attr2 = *frame;
+          *(copyRaw++) = attr2;
+          frame++;
+          {
+            register u32 attrByteLocal asm("r1");
+            register u32 modeValue asm("r0");
+            attrByteLocal = ((u8 *)(&screenDst->all.attr2))[1];
+            modeValue = (u32)modeMask;
+            modeValue &= attrByteLocal;
+            modeValue |= 8;
+            ((u8 *)(&screenDst->all.attr2))[1] = modeValue;
+          }
+          copyRaw++;
+          screenDst++;
+          remaining--;
+        }
+        while (remaining != 0);
+        drawn = used;
+      }
+    }
+    while (0);
+  }
+  if (gUnk_3003C95 == 2)
+  {
+    gUnk_3003C84[0]++;
+    if (sUnk_8640C68[gUnk_3003C84[1]].time < gUnk_3003C84[0])
+    {
+      gUnk_3003C84[0] = 1;
+      gUnk_3003C84[1]++;
+      if (sUnk_8640C68[gUnk_3003C84[1]].time == 0)
+        gUnk_3003C84[1] = 0;
+    }
+    frame = sUnk_8640C68[gUnk_3003C84[1]].oam;
+    do
+    {
+      count = *frame;
+      used += count;
+      frame++;
+      if (used > 128)
+        goto overflow;
+      if (drawn < used)
+      {
+        u32 xMask;
+        u32 highMask;
+        s32 modeMask;
+        register OamData *oamBase asm("r1");
+        oamBase = gOamBuffer;
+        xMask = 0x1FF;
+        highMask = 0xFFFFFE00;
+        modeMask = -13;
+        screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBase);
+        remaining = used - drawn;
+        do
+        {
+          attr0 = *(frame++);
+          *(copyRaw++) = attr0;
+          {
+            s32 y160 = 160;
+            screenDst->split.y = (((s32)attr0) + y160) - (((s16)gUnk_3003C6C) >> 4);
+          }
+          attr1 = *(frame++);
+          *(copyRaw++) = attr1;
+          {
+            u32 low84;
+            low84 = (attr1 + 120) & xMask;
+            screenDst->all.attr1 = (screenDst->all.attr1 & highMask) | low84;
+          }
+          attr2 = *frame;
+          *(copyRaw++) = attr2;
+          frame++;
+          {
+            register u32 attrByteLocal asm("r1");
+            register u32 modeValue asm("r0");
+            attrByteLocal = ((u8 *)(&screenDst->all.attr2))[1];
+            modeValue = (u32)modeMask;
+            modeValue &= attrByteLocal;
+            modeValue |= 8;
+            ((u8 *)(&screenDst->all.attr2))[1] = modeValue;
+          }
+          copyRaw++;
+          screenDst++;
+          remaining--;
+        }
+        while (remaining != 0);
+        drawn = used;
+      }
+    }
+    while (0);
+  }
+  if (gUnk_3003C97 != 0)
+  {
+    gUnk_3003C80[0]++;
+    if (sUnk_8641070[gUnk_3003C80[1]].time < gUnk_3003C80[0])
+    {
+      gUnk_3003C80[0] = 1;
+      gUnk_3003C80[1]++;
+      if (sUnk_8641070[gUnk_3003C80[1]].time == 0)
+      {
+        gUnk_3003C80[1] = 0;
+        gUnk_3003C97 = 0;
+      }
+    }
     if (gUnk_3003C97 != 0)
     {
-        MAP_SCREEN_ADVANCE_ANIMATION(gUnk_3003C80, sUnk_8641070,
-            if (sUnk_8641070[gUnk_3003C80[1]].time == 0) \
-            { \
-                gUnk_3003C97 = 0; \
-            });
-        if (gUnk_3003C97 != 0)
+      i = 0;
+      do
+      {
+        frame = sUnk_8641070[gUnk_3003C80[1]].oam;
+        do
         {
-            i = 0;
-            while (i < 4)
+          count = *frame;
+          used += count;
+          frame++;
+          if (used > 128)
+            goto overflow;
+          if (drawn < used)
+          {
+            register s32 mask asm("r0");
+            register u32 yValue asm("r8");
+            register u32 xValue asm("r12");
+            register u32 lowLocal asm("r1");
             {
-                frame = sUnk_8641070[gUnk_3003C80[1]].oam;
-                MAP_SCREEN_DRAW_FRAME(frame,
-                    sUnk_86395B4[i] - scroll,
-                    sUnk_86395A4[i], 0);
-                i++;
+              const u32 *yTable;
+              yTable = (const u32 *)sUnk_86395B4;
+              yValue = yTable[i];
             }
+            screenDst = &gOamBuffer[drawn];
+            xValue = ((const u32 *)sUnk_86395A4)[i];
+            remaining = used - drawn;
+            do
+            {
+              attr0 = *(frame++);
+              *(copyRaw++) = attr0;
+              screenDst->split.y = (((s32)attr0) + yValue) - (((s16)gUnk_3003C6C) >> 4);
+              attr1 = *(frame++);
+              *(copyRaw++) = attr1;
+              lowLocal = attr1 + xValue;
+              mask = 0x1FF;
+              lowLocal &= mask;
+              {
+                u16 oldAttr1;
+                oldAttr1 = screenDst->all.attr1;
+                mask = 0xFFFFFE00;
+                mask &= oldAttr1;
+                mask |= lowLocal;
+                screenDst->all.attr1 = mask;
+              }
+              attr2 = *frame;
+              *(copyRaw++) = attr2;
+              frame++;
+              attrByte = ((u8 *)(&screenDst->all.attr2))[1];
+              mask = -13;
+              mask &= attrByte;
+              mask |= 8;
+              ((u8 *)(&screenDst->all.attr2))[1] = mask;
+              copyRaw++;
+              screenDst++;
+              remaining--;
+            }
+            while (remaining != 0);
+            drawn = used;
+          }
         }
+        while (0);
+        i++;
+      }
+      while (i <= 3);
     }
-
-    if ((gUnk_3003C94 != 4) || (gStageEntrySequenceStep != 2))
+  }
+  if ((gUnk_3003C94 != 4) || (gStageEntrySequenceStep != 2))
+  {
+    gUnk_3003C88[2]++;
+    if (gUnk_3003C68[gUnk_3003C88[3]].time < gUnk_3003C88[2])
     {
-        animation = gUnk_3003C68;
-        MAP_SCREEN_ADVANCE_ANIMATION(&gUnk_3003C88[2], animation,
-            ((void)0));
+      gUnk_3003C88[2] = 1;
+      gUnk_3003C88[3]++;
+      if (gUnk_3003C68[gUnk_3003C88[3]].time == 0)
+        gUnk_3003C88[3] = 0;
     }
-
-    if (gUnk_3003C95 != 0)
+  }
+  if (gUnk_3003C95 != 0)
+  {
+    u16 *spriteState;
+    spriteState = gUnk_3003C88;
+    frame = gUnk_3003C68[spriteState[3]].oam;
+    do
     {
-        animation = gUnk_3003C68;
-        frame = animation[gUnk_3003C88[3]].oam;
-        MAP_SCREEN_DRAW_FRAME(frame,
-            ((s16)gUnk_3003C88[1] >> 4) - scroll,
-            (s16)gUnk_3003C88[0] >> 4, 1);
+      count = *frame;
+      used += count;
+      frame++;
+      if (used > 128)
+        goto overflow;
+      if (drawn < used)
+      {
+        u16 *spritePos;
+        u32 xMask;
+        u32 highMask;
+        s32 modeMask;
+        register OamData *oamBase asm("r1");
+        oamBase = gOamBuffer;
+        spritePos = spriteState;
+        highMask = 0xFFFFFE00;
+        screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBase);
+        xMask = 0x1FF;
+        modeMask = -13;
+        remaining = used - drawn;
+        do
+        {
+          attr0 = *(frame++);
+          *(copyRaw++) = attr0;
+          screenDst->split.y = (((s32)attr0) + (spritePos[1] >> 4)) - (((s16)gUnk_3003C6C) >> 4);
+          attr1 = *(frame++);
+          *(copyRaw++) = attr1;
+          low = (attr1 + (spritePos[0] >> 4)) & xMask;
+          {
+            register u16 oldAttr1Local asm("r2");
+            register u32 mergedAttr1Local asm("r0");
+            oldAttr1Local = screenDst->all.attr1;
+            mergedAttr1Local = highMask;
+            mergedAttr1Local &= oldAttr1Local;
+            mergedAttr1Local |= low;
+            screenDst->all.attr1 = mergedAttr1Local;
+          }
+          attr2 = *frame;
+          *(copyRaw++) = attr2;
+          frame++;
+          ((u8 *)(&screenDst->all.attr2))[1] |= 12;
+          copyRaw++;
+          screenDst++;
+          remaining--;
+        }
+        while (remaining != 0);
+        drawn = used;
+      }
     }
-
-    if ((s16)gUnk_3003C6C == 0)
+    while (0);
+  }
+  if (*((s16 *)&gUnk_3003C6C) == 0)
+  {
+    u16 *mainStateZero;
+    frame = gUnk_3003C40[gStageEntryMainSpriteState[1]].oam;
+    do
     {
-        frame = gUnk_3003C40[gStageEntryMainSpriteState[1]].oam;
-        MAP_SCREEN_DRAW_FRAME(frame,
-            (s16)gStageEntryMainSpriteState[5] >> 5,
-            (s16)gStageEntryMainSpriteState[4] >> 5, 1);
+      count = *frame;
+      used += count;
+      frame++;
+      if (used > 128)
+        goto overflow;
+      if (drawn < used)
+      {
+        u32 xMask;
+        u32 highMask;
+        register OamData *oamBaseZero asm("r1");
+        oamBaseZero = gOamBuffer;
+        mainStateZero = gStageEntryMainSpriteState;
+        highMask = 0xFFFFFE00;
+        screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBaseZero);
+        xMask = 0x1FF;
+        remaining = used - drawn;
+        do
+        {
+          attr0 = *(frame++);
+          *(copyRaw++) = attr0;
+          screenDst->split.y = ((s32)attr0) + (((s16)mainStateZero[5]) >> 5);
+          attr1 = *(frame++);
+          *(copyRaw++) = attr1;
+          low = (attr1 + (((s16)mainStateZero[4]) >> 5)) & xMask;
+          {
+            register u16 oldAttr1Zero asm("r2");
+            s32 mergedAttr1;
+            oldAttr1Zero = screenDst->all.attr1;
+            mergedAttr1 = (oldAttr1Zero & highMask) | low;
+            screenDst->all.attr1 = mergedAttr1;
+          }
+          attr2 = *frame;
+          *(copyRaw++) = attr2;
+          frame++;
+          ((u8 *)(&screenDst->all.attr2))[1] |= 12;
+          copyRaw++;
+          screenDst++;
+          remaining--;
+        }
+        while (remaining != 0);
+        drawn = used;
+      }
     }
-
-    state = gUnk_3003C7C;
-    if (gUnk_3003C60 <= 2)
+    while (0);
+  }
+  {
+    register u8 *stageSelectPtr asm("r2");
+    stageSelectPtr = &gUnk_3003C60;
+    if (*stageSelectPtr <= 2)
     {
+      state = gUnk_3003C7C;
+      {
+        register u16 nextTime asm("r1");
+        nextTime = state[0];
+        nextTime++;
+        state[0] = nextTime;
         animation = sUnk_8640B28;
-        MAP_SCREEN_ADVANCE_ANIMATION(state, animation, ((void)0));
-        frame = animation[state[1]].oam;
-        i = gUnk_3003C60;
-        MAP_SCREEN_DRAW_FRAME(frame,
-            sUnk_8639550[i] - scroll,
-            sUnk_8639534[i], 1);
+        if (animation[state[1]].time < nextTime)
+        {
+          state[0] = 1;
+          state[1]++;
+          if (animation[state[1]].time == 0)
+            state[1] = 0;
+        }
+      }
+      frame = animation[state[1]].oam;
+      do
+      {
+        count = *frame;
+        used += count;
+        frame++;
+        if (used > 128)
+          goto overflow;
+        if (drawn < used)
+        {
+          register u8 *stagePtrLocal asm("r8");
+          register const u32 *xTableLocal asm("sl");
+          register u32 xMask asm("r9");
+          register u32 highMask asm("r12");
+          register OamData *oamBaseLe asm("r1");
+          s32 modeMask;
+          oamBaseLe = gOamBuffer;
+          stagePtrLocal = &gUnk_3003C60;
+          xTableLocal = (const u32 *)sUnk_8639534;
+          highMask = 0xFFFFFE00;
+          screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBaseLe);
+          xMask = 0x1FF;
+          modeMask = -13;
+          remaining = used - drawn;
+          do
+          {
+            attr0 = *(frame++);
+            *(copyRaw++) = attr0;
+            {
+              register u8 *stageReadY asm("r1");
+              stageReadY = stagePtrLocal;
+              screenDst->split.y = (((s32)attr0) + ((const u32 *)sUnk_8639550)[*stageReadY]) - (((s16)gUnk_3003C6C) >> 4);
+            }
+            attr1 = *(frame++);
+            *(copyRaw++) = attr1;
+            {
+              register u8 *stageReadX asm("r1");
+              register const u32 *xEntry asm("r0");
+              u16 oldAttr1Local;
+              register u32 merged asm("r0");
+              stageReadX = stagePtrLocal;
+              xEntry = xTableLocal + *stageReadX;
+              low = attr1 + *xEntry;
+              low &= xMask;
+              oldAttr1Local = screenDst->all.attr1;
+              asm("" : : "r"(xEntry));
+              merged = highMask;
+              merged &= oldAttr1Local;
+              merged |= low;
+              screenDst->all.attr1 = merged;
+            }
+            attr2 = *frame;
+            *(copyRaw++) = attr2;
+            frame++;
+            ((u8 *)(&screenDst->all.attr2))[1] |= 12;
+            copyRaw++;
+            screenDst++;
+            remaining--;
+          }
+          while (remaining != 0);
+          drawn = used;
+        }
+      }
+      while (0);
     }
     else
     {
-        animation = sUnk_8639618[gUnk_3003C60 - 3];
-        MAP_SCREEN_ADVANCE_ANIMATION(state, animation, ((void)0));
-        frame = animation[state[1]].oam;
-        i = gUnk_3003C60 - 3;
-        MAP_SCREEN_DRAW_FRAME(frame,
-            sUnk_8639550[i] - scroll,
-            sUnk_8639534[i], 1);
+      animation = sUnk_8639618[*stageSelectPtr - 3];
+      state = gUnk_3003C7C;
+      state[0]++;
+      if (animation[state[1]].time < state[0])
+      {
+        state[0] = 1;
+        state[1]++;
+        if (animation[state[1]].time == 0)
+          state[1] = 0;
+      }
+      frame = animation[state[1]].oam;
+      do
+      {
+        count = *frame;
+        used += count;
+        frame++;
+        if (used > 128)
+          goto overflow;
+        if (drawn < used)
+        {
+          OamData *oamBaseLate;
+          register u32 highMask asm("sl");
+          s32 modeMask;
+          u8 *stagePtrLate;
+          const u32 *yTableLate;
+          const u32 *xTableLate;
+          yTableLate = (const u32 *)sUnk_8639550;
+          stagePtrLate = &gUnk_3003C60;
+          xTableLate = (const u32 *)sUnk_8639534;
+          highMask = 0xFFFFFE00;
+          oamBaseLate = gOamBuffer;
+          asm("" : : "r"(oamBaseLate));
+          modeMask = -13;
+          screenDst = &oamBaseLate[drawn];
+          do
+          {
+            attr0 = *(frame++);
+            *(copyRaw++) = attr0;
+            {
+              u32 stageIndexY;
+              stageIndexY = *stagePtrLate;
+              stageIndexY -= 3;
+              screenDst->split.y = (((s32)attr0) + yTableLate[stageIndexY]) - (((s16)gUnk_3003C6C) >> 4);
+            }
+            attr1 = *(frame++);
+            *(copyRaw++) = attr1;
+            {
+              u32 stageIndexX;
+              register u32 lowLocal asm("r1");
+              register u32 xMaskLocal asm("r0");
+              stageIndexX = *stagePtrLate;
+              stageIndexX -= 3;
+              asm("" : "+r"(stageIndexX));
+              lowLocal = attr1 + xTableLate[stageIndexX];
+              xMaskLocal = 0x1FF;
+              lowLocal &= xMaskLocal;
+              low = lowLocal;
+            }
+            {
+              register u16 oldAttr1Local asm("r2");
+              register u32 mergedAttr1Local asm("r0");
+              oldAttr1Local = screenDst->all.attr1;
+              mergedAttr1Local = highMask;
+              mergedAttr1Local &= oldAttr1Local;
+              mergedAttr1Local |= low;
+              screenDst->all.attr1 = mergedAttr1Local;
+            }
+            attr2 = *frame;
+            *(copyRaw++) = attr2;
+            frame++;
+            ((u8 *)(attr2Ptr = &screenDst->all.attr2))[1] |= 12;
+            copyRaw++;
+            screenDst++;
+            drawn++;
+          }
+          while (drawn < used);
+        }
+      }
+      while (0);
     }
-
-    if (gUnk_3003C94 <= 3)
+  }
+  {
+    register u8 *modePtrCheck asm("r2");
+    modePtrCheck = &gUnk_3003C94;
+    if (*modePtrCheck <= 3)
     {
-        frame = gUnk_3003C64[gUnk_3003C78[1]].oam;
-        MAP_SCREEN_DRAW_FRAME(frame, 48 - scroll, 120, 2);
+      frame = gUnk_3003C64[gUnk_3003C78[1]].oam;
+      do
+      {
+        count = *frame;
+        used += count;
+        frame++;
+        if (used > 128)
+          goto overflow;
+        if (drawn < used)
+        {
+          u32 xMask;
+          u32 highMask;
+          s32 modeMask;
+          register OamData *oamBaseMode2 asm("r1");
+          oamBaseMode2 = gOamBuffer;
+          {
+            register u32 reservedR2 asm("r2");
+            asm("" : "=r"(reservedR2));
+            highMask = 0xFFFFFE00;
+            asm("" : : "r"(reservedR2));
+          }
+          modeMask = -13;
+          screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBaseMode2);
+          {
+            register u32 xMaskLow asm("r0");
+            xMaskLow = 0x1FF;
+            asm("" : : "r"(xMaskLow));
+            xMask = xMaskLow;
+          }
+          remaining = used - drawn;
+          do
+          {
+            attr0 = *(frame++);
+            *(copyRaw++) = attr0;
+            {
+              s32 attr0Late = attr0;
+              screenDst->split.y = (attr0Late + 48) - (((s16)gUnk_3003C6C) >> 4);
+            }
+            attr1 = *(frame++);
+            *(copyRaw++) = attr1;
+            low = (attr1 + 120) & xMask;
+            {
+              register u16 oldAttr1Local asm("r2");
+              register u32 merged asm("r0");
+              oldAttr1Local = screenDst->all.attr1;
+              merged = highMask;
+              merged &= oldAttr1Local;
+              merged |= low;
+              screenDst->all.attr1 = merged;
+            }
+            attr2 = *frame;
+            *copyRaw = attr2;
+            frame++;
+            copyRaw++;
+            {
+              register u32 attrByteLocal asm("r1");
+              attrByteLocal = ((u8 *)(&screenDst->all.attr2))[1] | 12;
+              ((u8 *)(&screenDst->all.attr2))[1] = attrByteLocal;
+              if (gUnk_3003C94 == 1)
+              {
+                attrByteLocal &= modeMask;
+                attrByteLocal |= 8;
+                ((u8 *)(&screenDst->all.attr2))[1] = attrByteLocal;
+              }
+            }
+            copyRaw++;
+            screenDst++;
+            remaining--;
+          }
+          while (remaining != 0);
+          drawn = used;
+        }
+      }
+      while (0);
     }
-
-    if ((gUnk_3003C95 == 0) || (gUnk_3003C94 == 2))
+  }
+  if ((gUnk_3003C95 == 0) || (gUnk_3003C94 == 2))
+  {
+    frame = sUnk_8640A58;
+    do
     {
-        MAP_SCREEN_DRAW_FRAME(sUnk_8640A58,
-            ((s32)gUnk_3003C92 - (s16)gUnk_3003C6C) >> 4,
-            (s16)gUnk_3003C90, 1);
+      count = *frame;
+      used += count;
+      frame++;
+      if (used > 128)
+        goto overflow;
+      if (drawn < used)
+      {
+        u32 xMask;
+        u32 highMask;
+        register OamData *oamBase asm("r1");
+        u16 *yPosPtr;
+        u16 *xPosPtr;
+        oamBase = gOamBuffer;
+        xMask = 0x1FF;
+        highMask = 0xFFFFFE00;
+        yPosPtr = &gUnk_3003C92;
+        xPosPtr = &gUnk_3003C90;
+        asm("" : "+r"(yPosPtr), "+r"(xPosPtr));
+        screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBase);
+        remaining = used - drawn;
+        do
+        {
+          attr0 = *(frame++);
+          *(copyRaw++) = attr0;
+          screenDst->split.y = ((s32)attr0) + ((((s32)*yPosPtr) - ((s16)gUnk_3003C6C)) >> 4);
+          attr1 = *(frame++);
+          *(copyRaw++) = attr1;
+          low = (attr1 + ((s16)*xPosPtr)) & xMask;
+          screenDst->all.attr1 = (screenDst->all.attr1 & highMask) | ((attr1 + ((s16)*xPosPtr)) & xMask);
+          attr2 = *frame;
+          *(copyRaw++) = attr2;
+          frame++;
+          ((u8 *)(&screenDst->all.attr2))[1] |= 12;
+          copyRaw++;
+          screenDst++;
+          remaining--;
+        }
+        while (remaining != 0);
+        drawn = used;
+      }
     }
-
-    frame = sUnk_863FF84[gUnk_3003C74[1]].oam;
-    MAP_SCREEN_DRAW_FRAME(frame, 90 - scroll, 120, 1);
-
-    gOamSlotsUsed = used;
+    while (0);
+  }
+  {
+    register const struct AnimationFrame *finalAnimation asm("r0");
+    finalAnimation = sUnk_863FF84;
+    frame = finalAnimation[gUnk_3003C74[1]].oam;
+  }
+  do
+  {
+    count = *frame;
+    used += count;
+    frame++;
+    if (used > 128)
+      goto overflow;
+    if (drawn < used)
+    {
+      u32 xMask;
+      u32 highMask;
+      s32 modeMask;
+      register OamData *oamBaseFinal asm("r1");
+      oamBaseFinal = gOamBuffer;
+      xMask = 0x1FF;
+      highMask = 0xFFFFFE00;
+      screenDst = (OamData *)(((u32)drawn << 3) + (u32)oamBaseFinal);
+      modeMask = -13;
+      remaining = used - drawn;
+      do
+      {
+        attr0 = *(frame++);
+        *(copyRaw++) = attr0;
+        screenDst->split.y = (((s32)attr0) + yBase) - (((s16)gUnk_3003C6C) >> 4);
+        attr1 = *(frame++);
+        *(copyRaw++) = attr1;
+        low = (attr1 + 120) & xMask;
+        screenDst->all.attr1 = (screenDst->all.attr1 & highMask) | ((attr1 + 120) & xMask);
+        attr2 = *frame;
+        *(copyRaw++) = attr2;
+        frame++;
+        ((u8 *)(&screenDst->all.attr2))[1] |= 12;
+        copyRaw++;
+        screenDst++;
+        remaining--;
+      }
+      while (remaining != 0);
+      drawn = used;
+    }
+  }
+  while (0);
+  *slotsPtr = used;
 overflow:
-    return;
+  return;
 }
-
-#undef MAP_SCREEN_DRAW_FRAME
-#undef MAP_SCREEN_ADVANCE_ANIMATION
 #else
 ASM_INCLUDE("asm/disasm_map_screen_DrawMapScreenSprites.s");
 #endif

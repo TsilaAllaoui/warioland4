@@ -1100,12 +1100,17 @@ void LoadSoundRoomTrackGraphics(s32 index)
 #ifndef NONMATCHING
 ASM_INCLUDE("asm/disasm_sound_room_func_8087DB0.s");
 #else
-/* Best current WIP C for DrawSoundRoomSprites (asm file still named func_8087DB0,
- * but the real symbol -- see include/sound_room.h and the target .s's own
- * .thumb_func label -- is DrawSoundRoomSprites): 23579 / 94300 (75.00%), EXACT
- * size match 0x804 (confirmed via report.json ground truth). Verified against
- * real project context, not an isolated ctx.c -- see
- * decomp_work/DrawSoundRoomSprites/README.md. */
+/* Best current WIP C for DrawSoundRoomSprites (asm still named func_8087DB0,
+ * real symbol is DrawSoundRoomSprites): 20 / 94300 (99.98%), EXACT size
+ * match 0x804. Verified against real project context via
+ * decomp_work/DrawSoundRoomSprites/score_any.sh src/sound_room.c
+ * DrawSoundRoomSprites asm/disasm_sound_room_func_8087DB0.s us.
+ * Full history/notes: decomp_work/DrawSoundRoomSprites/README.md */
+
+/* Best current WIP C for DrawSoundRoomSprites (asm still named func_8087DB0,
+ * real symbol is DrawSoundRoomSprites): 16885 / 94300 (82.09%), size 0x7bc
+ * vs target 0x804 (72 bytes short). Verified against real project context.
+ * Full history/notes: decomp_work/DrawSoundRoomSprites/README.md */
 
 void DrawSoundRoomSprites(void)
 {
@@ -1113,18 +1118,17 @@ void DrawSoundRoomSprites(void)
   register const u16 *frameData asm("r4");
   register u16 *rawDst asm("r5");
   register OamData *dst asm("r3");
-  register long slot asm("r7");
+  long slot;
   register u32 frameCount asm("r9");
   register u32 nextUsed asm("r10");
-  register long used asm("r8");
   u32 attr0;
-  unsigned long attr1;
+  unsigned int attr1;
   u32 attr2;
-  unsigned short index;
+  unsigned int index;
   int stage;
   u32 value;
   unsigned short remainder;
-  s32 yOffset;
+  register s32 yOffset asm("ip");
   s32 xOffset;
   short inverse;
   s32 sine;
@@ -1136,15 +1140,18 @@ void DrawSoundRoomSprites(void)
     u16 pd;
     s32 passage;
   } stack;
+  register u32 highMaskCopy asm("r0") = 0xFE00;
   s16 *pbOut;
   s16 *pcOut;
+  register long used asm("r8");
   u16 *pdOut;
   slot = 0;
   used = gOamSlotsUsed;
   {
-    register volatile int rawOffset asm("r1");
+    register int rawOffset asm("r1");
     register u16 *oamBase asm("r0");
-    rawOffset = used << 3;
+    rawOffset = used;
+    rawOffset = rawOffset << 3;
     oamBase = (u16 *) gOamBuffer;
     rawDst = (u16 *) (rawOffset + ((u32) oamBase));
   }
@@ -1181,22 +1188,65 @@ void DrawSoundRoomSprites(void)
       register s32 attr2Mask asm("r9");
       oamBase = gOamBuffer;
       state = gStageEntryMainSpriteState;
-      xMask = 0x1FF;
-      { register u32 highMaskTemp asm("r3"); highMaskTemp = 0xFFFFFE00; asm("" : "+r"(highMaskTemp)); highMask = highMaskTemp; }
-      { register s32 attr2MaskTemp asm("r0"); attr2MaskTemp = -13; asm("" : "+r"(attr2MaskTemp)); attr2Mask = attr2MaskTemp; }
-      oamOffset = ((u32) slot) << 3;
-      dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-      { register long usedTemp asm("r1"); usedTemp = used; asm("" : "+r"(usedTemp)); slot = usedTemp - slot; }
+      { register u32 xMaskTemp asm("r2"); xMaskTemp = 0x1FF; asm("" : "+r"(xMaskTemp)); xMask = xMaskTemp; }
+      {
+        register u32 highMaskTemp asm("r3");
+        highMaskTemp = 0xFFFFFE00;
+        asm("" : "+r"(highMaskTemp));
+        highMask = highMaskTemp;
+      }
+      {
+        register s32 attr2MaskTemp asm("r0");
+        attr2MaskTemp = -13;
+        asm("" : "+r"(attr2MaskTemp));
+        attr2Mask = attr2MaskTemp;
+      }
+      oamOffset = (u32) slot;
+      oamOffset = oamOffset << 3;
+      dst = (OamData *) (oamOffset + (u32) oamBase);
+      {
+        register long usedTemp asm("r1");
+        usedTemp = used;
+        asm("" : "+r"(usedTemp));
+        slot = usedTemp - slot;
+      }
       do
       {
-        { register u32 loadTemp asm("r2"); loadTemp = *(frameData++); asm("" : "+r"(loadTemp)); attr0 = loadTemp; }
-        *(rawDst++) = attr0;
+        if (1)
+        {
+          {
+            register u32 loadTemp asm("r2");
+            loadTemp = *(frameData++);
+            asm("" : "+r"(loadTemp));
+            attr0 = loadTemp;
+          }
+          *(rawDst++) = attr0;
+        }
         ((u8 *) dst)[0] = (u8) (attr0 + ((u8 *) state)[10]);
-        { register u32 loadTemp asm("r2"); loadTemp = *(frameData++); asm("" : "+r"(loadTemp)); attr1 = loadTemp; }
+        {
+          register u32 loadTemp asm("r2");
+          loadTemp = *(frameData++);
+          asm("" : "+r"(loadTemp));
+          attr1 = loadTemp;
+        }
         *(rawDst++) = attr1;
-        { s16 stateVal4 = ((s16 *) state)[4]; dst->all.attr1 = ((attr1 + stateVal4) & xMask) | (dst->all.attr1 & highMask); }
-        attr2 = *(frameData++);
-        *rawDst = attr2;
+        {
+          s16 stateVal4;
+          stateVal4 = ((s16 *) state)[4];
+          asm("" : "+r"(slot));
+          {
+            register s32 newX asm("r1");
+            newX = attr1 + stateVal4;
+            { register u32 xMaskCopy asm("r2"); xMaskCopy = xMask; asm("" : "+r"(xMaskCopy)); newX &= xMaskCopy; }
+            { register u16 oldAttr1 asm("r2"); register u32 merged asm("r0");
+            oldAttr1 = dst->all.attr1;
+            merged = highMask;
+            merged &= oldAttr1;
+            merged |= newX;
+            dst->all.attr1 = merged; }
+          }
+        }
+        *rawDst = (attr2 = *(frameData++));
         ((u8 *) dst)[5] &= attr2Mask;
         rawDst += 2;
         dst++;
@@ -1206,10 +1256,12 @@ void DrawSoundRoomSprites(void)
       slot = used;
     }
   }
-  if (((u8) gSoundRoomBonusTrackUnlocked) != 0)
   {
-    animation = sUnk_8642860;
-    frameData = animation[gSoundRoomPreviewAnimState[1]].oam;
+    register s8 bonusUnlocked asm("r0");
+    bonusUnlocked = gSoundRoomBonusTrackUnlocked;
+    if (bonusUnlocked != 0)
+    {
+    { register const struct AnimationFrame *bonusBase asm("r1"); bonusBase = sUnk_8642860; asm("" : "+r"(bonusBase)); frameData = bonusBase[gSoundRoomPreviewAnimState[1]].oam; }
     used += *(frameData++);
     if (used > 128)
     {
@@ -1221,14 +1273,30 @@ void DrawSoundRoomSprites(void)
       register u32 oamOffset asm("r0");
       register u32 xMask asm("r9");
       register u32 highMask asm("r10");
-      register volatile int attr2Mask asm("r6");
+      register int attr2Mask asm("r6");
       oamBase = gOamBuffer;
-      { register u32 xMaskTemp asm("r0"); xMaskTemp = 0x1FF; asm("" : "+r"(xMaskTemp)); xMask = xMaskTemp; }
-      { register u32 highMaskTemp asm("r2"); highMaskTemp = 0xFFFFFE00; asm("" : "+r"(highMaskTemp)); highMask = highMaskTemp; }
+      {
+        register u32 xMaskTemp asm("r0");
+        xMaskTemp = 0x1FF;
+        asm("" : "+r"(xMaskTemp));
+        xMask = xMaskTemp;
+      }
+      {
+        register u32 highMaskTemp asm("r2");
+        highMaskTemp = 0xFFFFFE00;
+        asm("" : "+r"(highMaskTemp));
+        highMask = highMaskTemp;
+      }
       attr2Mask = -13;
-      oamOffset = ((u32) slot) << 3;
-      dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-      { register long usedTemp asm("r0"); usedTemp = used; asm("" : "+r"(usedTemp)); slot = usedTemp - slot; }
+      oamOffset = (u32) slot;
+      oamOffset = oamOffset << 3;
+      dst = (OamData *) (oamOffset + (u32) oamBase);
+      {
+        register long usedTemp asm("r0");
+        usedTemp = used;
+        asm("" : "+r"(usedTemp));
+        slot = usedTemp - slot;
+      }
       do
       {
         attr0 = *(frameData++);
@@ -1236,10 +1304,33 @@ void DrawSoundRoomSprites(void)
         ((u8 *) dst)[0] = (u8) (attr0 + 8);
         attr1 = *(frameData++);
         *(rawDst++) = attr1;
-        dst->all.attr1 = ((attr1 + 56) & xMask) | (dst->all.attr1 & highMask);
-        attr2 = *(frameData++);
-        *rawDst = attr2;
-        ((u8 *) dst)[5] &= attr2Mask;
+        {
+          register unsigned short newX asm("r1");
+          register u32 xMaskCopy asm("r2");
+          newX = attr1;
+          newX += 56;
+          xMaskCopy = xMask;
+          asm("" : "+r"(newX), "+r"(xMaskCopy));
+          newX &= xMaskCopy;
+          { register u16 oldAttr1 asm("r2"); register u32 highMaskCopy asm("r0");
+          oldAttr1 = dst->all.attr1;
+          highMaskCopy = highMask;
+          if (1)
+          {
+            asm volatile("and %0, %1" : "+r"(highMaskCopy) : "r"(oldAttr1));
+            asm volatile("orr %0, %1" : "+r"(highMaskCopy) : "r"(newX));
+          }
+          dst->all.attr1 = highMaskCopy; }
+        }
+        *rawDst = (attr2 = *(frameData++));
+        {
+          register u8 old5 asm("r1");
+          register s32 maskCopy5 asm("r0");
+          old5 = ((u8 *) dst)[5];
+          maskCopy5 = attr2Mask;
+          asm("" : "+r"(maskCopy5) : "r"(old5));
+          ((u8 *) dst)[5] = maskCopy5 & old5;
+        }
         rawDst += 2;
         dst++;
         slot--;
@@ -1247,8 +1338,9 @@ void DrawSoundRoomSprites(void)
       while (slot != 0);
       slot = used;
     }
+    }
   }
-  stack.passage = 0;
+  stack.passage = (stage = 0);
   pbOut = &stack.pb;
   pcOut = &stack.pc;
   pdOut = &stack.pd;
@@ -1257,72 +1349,176 @@ void DrawSoundRoomSprites(void)
     while (stack.passage <= 3)
     {
       stage = 0;
-      nextUsed = stack.passage + 1;
+      { register s32 tNext asm("r2"); tNext = stack.passage + 1; asm("" : "+r"(tNext)); nextUsed = tNext; }
       while (stage <= 3)
       {
-        index = (stage * 4) + (stack.passage * 16);
-        frameCount = stage + 1;
-        if (((stack.passage == ((u8) gSoundRoomSelectedPassage)) && (((u8) gSoundRoomSelectedStage) == stage)) && (((u8) gSoundRoomMenuState) > 2))
-        {
-          frameData = *((const u16 * const *) (((const u8 *) sUnk_863C7D4) + index));
+        register s32 passageCmp asm("r0");
+        register u32 selectedPassage asm("r4");
+        register u32 selectedStageValue asm("r0");
+        register u32 menuPtr asm("r1");
+        register u32 menuValue asm("r0");
+        passageCmp = stack.passage;
+        selectedPassage = (u32) &gSoundRoomSelectedPassage;
+        asm("" : "+r"(selectedPassage));
+        selectedPassage = *(volatile u8 *) selectedPassage;
+        asm("" : "+r"(selectedPassage));
+        if (passageCmp != selectedPassage)
+          goto grid_unselected;
+        selectedStageValue = (u32) &gSoundRoomSelectedStage;
+        asm("" : "+r"(selectedStageValue));
+        selectedStageValue = *(volatile u8 *) selectedStageValue;
+        if (stage != selectedStageValue)
+          goto grid_unselected;
+        menuPtr = (u32) &gSoundRoomMenuState;
+        asm("" : "+r"(menuPtr));
+        menuValue = *(volatile u8 *) menuPtr;
+        asm("" : "+r"(menuValue));
+        if (menuValue <= 2)
+          goto grid_unselected;
+          {
+            register u32 stageOffset asm("r1");
+            register s32 passageValue asm("r2");
+            register u32 passageOffset asm("r0");
+            stageOffset = stage << 2;
+            passageValue = stack.passage;
+            passageOffset = passageValue << 4;
+            asm("" : "+r"(stageOffset), "+r"(passageValue), "+r"(passageOffset));
+            index = stageOffset + passageOffset;
+          }
+          { register const u8 *frameTable asm("r4"); register u32 frameAddr asm("r0"); frameTable=(const u8 *)sUnk_863C7D4; frameAddr=index+(u32)frameTable; frameData=*((const u16 * const *)frameAddr); }
           used += *(frameData++);
-          yOffset = (*((const s32 *) (((const u8 *) sUnk_863C6D4) + index))) - 8;
-          xOffset = *((const s32 *) (((const u8 *) sUnk_863C694) + index));
-          xOffset = xOffset - 8;
+          frameCount = stage + 1;
           if (slot < used)
           {
-            register OamData *oamBase asm("r1");
-            register u32 oamOffset asm("r0");
-            oamBase = gOamBuffer;
-            oamOffset = ((u32) slot) << 3;
-            dst = (OamData *) (((u8 *) oamBase) + oamOffset);
+            { register const u8 *yTable asm("r1"); register u32 yAddr asm("r0"); yTable=(const u8 *)sUnk_863C6D4; yAddr=index+(u32)yTable; yOffset=*((const s32 *)yAddr); }
+            {
+              register OamData *oamBase asm("r1");
+              register u32 oamOffset asm("r0");
+              oamBase = gOamBuffer;
+              xOffset = *((const s32 *) (((const u8 *) sUnk_863C694) + index));
+              oamOffset = ((u32) slot) << 3;
+              dst = (OamData *) (oamOffset + (u32) oamBase);
+            }
             do
             {
               attr0 = *(frameData++);
               *(rawDst++) = attr0;
-              ((u8 *) dst)[0] = (u8) (attr0 + yOffset);
+              ((u8 *) dst)[0] = (u8) (attr0 + yOffset - 8);
               ((u8 *) dst)[1] |= 3;
               attr1 = *(frameData++);
               *(rawDst++) = attr1;
-              dst->all.attr1 = ((attr1 + xOffset) & 0x01FF) | (dst->all.attr1 & 0xFE00);
-              ((u8 *) dst)[3] &= 0xF1;
-              attr2 = *(frameData++);
-              *rawDst = attr2;
-              ((u8 *) dst)[5] &= 0xF3;
+              {
+                register s32 newX asm("r1");
+                newX = attr1 + xOffset - 8;
+                { register u32 xMask asm("r2"); xMask=0x01FF; asm("" : "+r"(xMask)); newX &= xMask; }
+                { register u16 oldAttr1 asm("r2");
+                register u32 highMaskCopy asm("r0");
+                oldAttr1 = dst->all.attr1;
+                highMaskCopy = 0xFFFFFE00;
+                asm("" : "+r"(highMaskCopy));
+                asm volatile("and %0, %1" : "+r"(highMaskCopy) : "r"(oldAttr1));
+                asm volatile("orr %0, %1" : "+r"(highMaskCopy) : "r"(newX));
+                dst->all.attr1 = highMaskCopy; }
+              }
+              {
+                register u8 old3 asm("r1");
+                register s32 mask3 asm("r0");
+                old3 = ((u8 *) dst)[3];
+                mask3 = -15;
+                mask3 &= old3;
+                ((u8 *) dst)[3] = (u8) mask3;
+              }
+              *rawDst = (attr2 = *(frameData++));
+              {
+                register u8 old5 asm("r1");
+                register s32 mask5 asm("r0");
+                old5 = ((u8 *) dst)[5];
+                mask5 = -13;
+                mask5 &= old5;
+                ((u8 *) dst)[5] = (u8) mask5;
+              }
               rawDst += 2;
               dst++;
               slot++;
             }
             while (slot < used);
           }
-        }
-        else
+        goto grid_done;
+
+      grid_unselected:
         {
-          value = ((stack.passage + 1) * 24) + (stage * 4);
-          if ((((const u8 *) gCurrentCollection)[value] & 0x10) != 0)
+          u32 collectionBits;
           {
-            frameData = *((const u16 * const *) (((const u8 *) sUnk_863C7D4) + index));
-            used += *(frameData++);
-            yOffset = *((const s32 *) (((const u8 *) sUnk_863C6D4) + index));
-            xOffset = *((const s32 *) (((const u8 *) sUnk_863C694) + index));
-            if ((slot + 1) <= used)
+            register const u8 *collection asm("r2");
+            register s32 stageOffset asm("r1");
+            register s32 nextValue asm("r4");
+            register s32 collectionOffset asm("r0");
+            collection = (const u8 *) gCurrentCollection;
+            stageOffset = stage << 2;
+            nextValue = nextUsed;
+            collectionOffset = nextValue << 1;
+            collectionOffset += nextUsed;
+            collectionOffset <<= 3;
+            collectionOffset = stageOffset + collectionOffset;
+            collectionBits = *(const u8 *)((u32)collectionOffset + (u32)collection);
+            collectionBits <<= 27;
+            frameCount = stage + 1;
+            if ((s32) collectionBits < 0)
             {
-              register OamData *oamBase asm("r2");
-              register u32 oamOffset asm("r0");
-              oamOffset = ((u32) slot) << 3;
-              oamBase = gOamBuffer;
-              dst = (OamData *) (((u8 *) oamBase) + oamOffset);
+              register s32 passageValue asm("r2");
+              register s32 passageOffset asm("r0");
+              register const u8 *frameTable asm("r3");
+              passageValue = stack.passage;
+              passageOffset = passageValue << 4;
+              stageOffset += passageOffset;
+              frameTable = (const u8 *) sUnk_863C7D4;
+              { register u32 addr asm("r0"); addr = (u32) stageOffset + (u32) frameTable; frameData = *((const u16 * const *) addr); }
+              used += *(frameData++);
+              if (slot < used)
+              {
+                register const u8 *yTable asm("r2");
+                register OamData *oamBase asm("r2");
+                register const u8 *xTable asm("r0");
+                register u32 oamOffset asm("r0");
+                yTable = (const u8 *) sUnk_863C6D4;
+                { register u32 addr asm("r0"); addr = (u32) stageOffset + (u32) yTable; yOffset = *((const s32 *) addr); }
+                oamOffset = (u32) slot;
+                oamOffset <<= 3;
+                oamBase = gOamBuffer;
+                dst = (OamData *) (oamOffset + (u32) oamBase);
+                xTable = (const u8 *) sUnk_863C694;
+                xOffset = *((const s32 *) ((u32)stageOffset + (u32)xTable));
               slot = used - slot;
               do
               {
                 attr0 = *(frameData++);
                 *(rawDst++) = attr0;
-                ((u8 *) dst)[0] = (u8) (attr0 + yOffset);
+                ((u8 *) dst)[0] = (u8) (yOffset + attr0);
                 attr1 = *(frameData++);
                 *(rawDst++) = attr1;
-                dst->all.attr1 = (dst->all.attr1 & 0xFE00) | ((attr1 + xOffset) & 0x01FF);
+                {
+                  register s32 newX asm("r1");
+                  register u32 temp asm("r2");
+                  register u32 merged asm("r0");
+                  newX = attr1 + xOffset;
+                  temp = 0x01FF;
+                  asm("" : "+r"(newX), "+r"(temp) : "r"(slot));
+                  newX &= temp;
+                  temp = dst->all.attr1;
+                  merged = 0xFFFFFE00;
+                  merged &= temp;
+                  merged |= newX;
+                  dst->all.attr1 = merged;
+                }
                 attr2 = (*rawDst = *(frameData++));
-                ((u8 *) dst)[5] &= 0xF3;
+                {
+                  register u8 old5 asm("r1");
+                  register s32 mask5 asm("r0");
+                  old5 = ((u8 *) dst)[5];
+                  mask5 = -13;
+                  mask5 &= old5;
+                  ((u8 *) dst)[5] = (u8) mask5;
+                }
                 rawDst += 2;
                 dst++;
                 slot--;
@@ -1331,34 +1527,75 @@ void DrawSoundRoomSprites(void)
               slot = used;
             }
           }
+          }
+
         }
+      grid_done:
         stage = frameCount;
       }
 
-      stack.passage = nextUsed;
+      stage = nextUsed;
+      stack.passage = stage;
     }
 
-    index = (((u8) gSoundRoomSelectedStage) * 4) + (((u8) gSoundRoomSelectedPassage) * 16);
-    if (((u8) gSoundRoomMenuState) > 2)
     {
-      frameData = *((const u16 * const *) (((const u8 *) sUnk_863C814) - (-index)));
-    }
-    else
-      if (gSoundRoomMusicEnabled != 0)
-    {
-      value = (u8) gMPlayMemAccArea[0];
-      frameData = (const u16 *) sUnk_8642638;
-      if (((value & 1) == 1) && (99 >= value))
+      u8 menuStateValue;
+      menuStateValue = (u8)gSoundRoomMenuState;
+      asm("" : : "r"(stage));
+      if (menuStateValue > 2)
       {
-        frameData = (const u16 *) sUnk_864262A;
+      {
+        register const u8 *tableBase asm("r2");
+        register u32 stageIndex asm("r0");
+        register const s8 *passagePtr asm("r3");
+        register u32 passageIndex asm("r1");
+        tableBase = (const u8 *) sUnk_863C814;
+        stageIndex = (u8) gSoundRoomSelectedStage;
+        stageIndex <<= 2;
+        passagePtr = &gSoundRoomSelectedPassage;
+        passageIndex = (u8) *passagePtr;
+        passageIndex <<= 4;
+        stageIndex += passageIndex;
+        stageIndex += (u32) tableBase;
+        frameData = *((const u16 * const *) stageIndex);
       }
     }
     else
     {
-      frameData = (const u16 *) sUnk_864261C;
+      register s8 musicEnabled asm("r0");
+      musicEnabled = gSoundRoomMusicEnabled;
+      if (musicEnabled != 0)
+      {
+        {
+          u8 musicValue;
+          u8 bit;
+          musicValue = (u8)gMPlayMemAccArea[0];
+          bit = musicValue & 1;
+          frameData = (const u16 *) sUnk_8642638;
+          if ((bit == 1) && (musicValue <= 99))
+          {
+            frameData = (const u16 *) sUnk_864262A;
+          }
+        }
+      }
+      else
+      {
+        frameData = (const u16 *) sUnk_864261C;
+        if (1)
+        {
+          do
+          {
+          }
+          while (0);
+        }
+      }
     }
-    if (0 != ((u8) gSoundRoomMenuState))
+    }
     {
+      register s8 menuValue asm("r0");
+      menuValue = gSoundRoomMenuState;
+      if (menuValue != 0)
+      {
       do
       {
         used += *(frameData++);
@@ -1367,14 +1604,19 @@ void DrawSoundRoomSprites(void)
         }
         if (slot < used)
         {
-          {
-            register OamData *oamBase asm("r1");
-            register u32 oamOffset asm("r0");
-            oamBase = gOamBuffer;
-            oamOffset = ((u32) slot) << 3;
-            dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-          }
-          slot = used - slot;
+          register OamData *oamBase asm("r1");
+          register u32 oamOffset asm("r0");
+          register s32 loopAttr2Mask asm("r6");
+          register u32 loopXMask asm("r9");
+          register u32 loopHighMask asm("r10");
+          oamBase = gOamBuffer;
+          { register u32 t asm("r2"); t=0x1FF; asm("" : "+r"(t)); loopXMask=t; }
+          { register u32 t asm("r3"); t=0xFFFFFE00; asm("" : "+r"(t)); loopHighMask=t; }
+          loopAttr2Mask = -13;
+          oamOffset = (u32) slot;
+          oamOffset = oamOffset << 3;
+          dst = (OamData *) (oamOffset + (u32) oamBase);
+          { register long t asm("r0"); t=used; asm("" : "+r"(t)); slot = t - slot; }
           do
           {
             attr0 = *(frameData++);
@@ -1390,14 +1632,29 @@ void DrawSoundRoomSprites(void)
             }
             attr1 = *(frameData++);
             *(rawDst++) = attr1;
-            dst->all.attr1 = 0x01FF;
-            dst->all.attr1 = ((&dst->all)->attr1 & 0xFE00) | ((attr1 + 160) & dst->all.attr1);
+            {
+              register int newX asm("r1");
+              newX = attr1 + 160;
+              { register u32 xm asm("r2"); xm=loopXMask; asm("" : "+r"(xm)); newX &= xm; }
+              { register u16 oldAttr1 asm("r2"); register u32 merged asm("r0");
+                oldAttr1=dst->all.attr1; merged=loopHighMask;
+                asm volatile("and %0, %1" : "+r"(merged) : "r"(oldAttr1));
+                asm volatile("orr %0, %1" : "+r"(merged) : "r"(newX));
+                dst->all.attr1=merged; }
+            }
             if (0)
             {
               goto finish;
             }
             attr2 = (*rawDst = *(frameData++));
-            ((u8 *) dst)[5] &= 0xF3;
+            {
+              register u8 old5 asm("r1");
+              register s32 maskCopy5 asm("r0");
+              old5 = ((u8 *) dst)[5];
+              maskCopy5 = loopAttr2Mask;
+              asm("" : "+r"(maskCopy5) : "r"(old5));
+              ((u8 *) dst)[5] = maskCopy5 & old5;
+            }
             rawDst += 2;
             dst++;
             slot--;
@@ -1408,41 +1665,55 @@ void DrawSoundRoomSprites(void)
         asm volatile("");
       }
       while (0);
+      }
     }
     if (((u8) gSoundRoomMenuState) == 2)
     {
       remainder = gStageEntrySequenceTimer % 7;
       if (remainder == 0)
       {
-        value = MinigameRandom() % 10;
-        if (((s32) value) <= 4)
         {
-          gSoundRoomPreviewRequest = 1;
-        }
-        else
-        {
-          gSoundRoomPreviewRequest = 0;
+          s32 randomValue;
+          randomValue = MinigameRandom();
+          randomValue = randomValue % 10;
+          if (randomValue <= 4)
+          {
+            gSoundRoomPreviewRequest = 1;
+          }
+          else
+          {
+            gSoundRoomPreviewRequest = 0;
+          }
         }
       }
-      if (gSoundRoomPreviewRequest == 0)
       {
-        frameData = (const u16 *) sUnk_86427A0;
-      }
-      else
-      {
-        frameData = (const u16 *) sUnk_86427BA;
+        u8 previewRequest;
+        previewRequest = gSoundRoomPreviewRequest;
+        if (previewRequest == 0)
+        {
+          frameData = (const u16 *) sUnk_86427A0;
+        }
+        if (previewRequest == 1)
+        {
+          frameData = (const u16 *) sUnk_86427BA;
+        }
       }
       used += *(frameData++);
       if (slot < used)
       {
-        {
-          register OamData *oamBase asm("r1");
-          register u32 oamOffset asm("r0");
-          oamBase = gOamBuffer;
-          oamOffset = ((u32) slot) << 3;
-          dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-        }
-        slot = used - slot;
+        register OamData *oamBase asm("r1");
+        register u32 oamOffset asm("r0");
+        register s32 loopAttr2Mask asm("r6");
+        register u32 loopXMask asm("r9");
+        register u32 loopHighMask asm("r10");
+        oamBase = gOamBuffer;
+        loopXMask = 0x1FF;
+        { register u32 highMaskLoad asm("r2"); highMaskLoad = 0xFFFFFE00; asm("" : "+r"(highMaskLoad)); loopHighMask = highMaskLoad; }
+        loopAttr2Mask = -13;
+        oamOffset = (u32) slot;
+        oamOffset <<= 3;
+        dst = (OamData *) (oamOffset + (u32) oamBase);
+        { register long usedTemp asm("r0"); usedTemp=used; asm("" : "+r"(usedTemp)); slot = usedTemp - slot; }
         do
         {
           attr0 = *(frameData++);
@@ -1450,9 +1721,29 @@ void DrawSoundRoomSprites(void)
           ((u8 *) dst)[0] = (u8) (attr0 + 16);
           attr1 = *(frameData++);
           *(rawDst++) = attr1;
-          dst->all.attr1 = ((attr1 + 160) & 0x01FF) | (dst->all.attr1 & 0xFE00);
+                    {
+            register s32 newX asm("r1");
+            register u32 temp asm("r2");
+            register u32 merged asm("r0");
+            newX = attr1 + 160;
+            temp = loopXMask;
+            asm("" : "+r"(newX), "+r"(temp));
+            newX &= temp;
+            temp = dst->all.attr1;
+            merged = loopHighMask;
+            merged &= temp;
+            merged |= newX;
+            dst->all.attr1 = merged;
+          }
           attr2 = (*rawDst = *(frameData++));
-          ((u8 *) dst)[5] &= 0xF3;
+          {
+            register u8 old5 asm("r1");
+            register s32 maskCopy5 asm("r0");
+            old5 = ((u8 *) dst)[5];
+            maskCopy5 = loopAttr2Mask;
+            asm("" : "+r"(maskCopy5) : "r"(old5));
+            ((u8 *) dst)[5] = maskCopy5 & old5;
+          }
           rawDst += 2;
           dst++;
           slot--;
@@ -1470,34 +1761,49 @@ void DrawSoundRoomSprites(void)
         remainder = value % 7;
         if (remainder == 0)
         {
-          value = MinigameRandom() % 10;
-          if (((s32) value) <= 4)
           {
-            gSoundRoomPreviewRequest = 1;
-          }
-          else
-          {
-            gSoundRoomPreviewRequest = 0;
+            s32 randomValue;
+            randomValue = MinigameRandom() % 10;
+            if (randomValue <= 4)
+            {
+              gSoundRoomPreviewRequest = 1;
+            }
+            else
+            {
+              gSoundRoomPreviewRequest = 0;
+              if (1)
+              {
+              }
+            }
           }
         }
-        if (gSoundRoomPreviewRequest == 0)
         {
-          frameData = (const u16 *) sUnk_86427A0;
-        }
-        else
-        {
-          frameData = (const u16 *) sUnk_86427BA;
+          u8 previewRequest;
+          previewRequest = gSoundRoomPreviewRequest;
+          if (previewRequest == 0)
+          {
+            frameData = (const u16 *) sUnk_86427A0;
+          }
+          if (previewRequest == 1)
+          {
+            frameData = (const u16 *) sUnk_86427BA;
+          }
         }
         used += *(frameData++);
         if (slot < used)
         {
-          {
-            register OamData *oamBase asm("r1");
-            register u32 oamOffset asm("r0");
-            oamBase = gOamBuffer;
-            oamOffset = ((u32) slot) << 3;
-            dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-          }
+          register OamData *oamBase asm("r1");
+          register u32 oamOffset asm("r0");
+          register s32 loopAttr2Mask asm("r6");
+          register u32 loopXMask asm("r9");
+          register u32 loopHighMask asm("r10");
+          oamBase = gOamBuffer;
+          loopXMask = 0x1FF;
+          loopHighMask = 0xFFFFFE00;
+          loopAttr2Mask = -13;
+          oamOffset = (u32) slot;
+          oamOffset <<= 3;
+          dst = (OamData *) (oamOffset + (u32) oamBase);
           slot = used - slot;
           do
           {
@@ -1506,10 +1812,29 @@ void DrawSoundRoomSprites(void)
             ((u8 *) dst)[0] = (u8) (attr0 + 16);
             attr1 = *(frameData++);
             *(rawDst++) = attr1;
-            dst->all.attr1 = ((attr1 + 160) & 0x01FF) | (dst->all.attr1 & 0xFE00);
-            attr2 = *(frameData++);
-            *rawDst = attr2;
-            ((u8 *) dst)[5] &= 0xF3;
+                        {
+              register s32 newX asm("r1");
+              register u32 temp asm("r2");
+              register u32 merged asm("r0");
+              newX = attr1 + 160;
+              temp = loopXMask;
+              asm("" : "+r"(newX), "+r"(temp));
+              newX &= temp;
+              temp = dst->all.attr1;
+              merged = loopHighMask;
+              merged &= temp;
+              merged |= newX;
+              dst->all.attr1 = merged;
+            }
+            attr2 = (*rawDst = *(frameData++));
+            {
+              register u8 old5 asm("r1");
+              register s32 maskCopy5 asm("r0");
+              old5 = ((u8 *) dst)[5];
+              maskCopy5 = loopAttr2Mask;
+              asm("" : "+r"(maskCopy5) : "r"(old5));
+              ((u8 *) dst)[5] = maskCopy5 & old5;
+            }
             rawDst += 2;
             dst++;
             slot--;
@@ -1518,24 +1843,31 @@ void DrawSoundRoomSprites(void)
         }
         goto updateAffine;
       }
-      remainder = gStageEntrySequenceTimer % 600;
-      if ((remainder == 0) || (remainder == 300))
       {
-        gSoundRoomTrackAnimState[0] = 1;
-        gSoundRoomTrackAnimState[1] = 0;
-      }
-      if (remainder <= 299)
-      {
-        animation = (const struct AnimationFrame *) sUnk_863C854[0];
-      }
-      else
-      {
-        animation = (const struct AnimationFrame *) sUnk_863C854[1];
+        s32 remainder600;
+        remainder600 = gStageEntrySequenceTimer % 600;
+        if ((remainder600 == 0) || (remainder600 == 300))
+        {
+          gSoundRoomTrackAnimState[0] = 1;
+          gSoundRoomTrackAnimState[1] = 0;
+        }
+        if (remainder600 <= 299)
+        {
+          animation = (const struct AnimationFrame *) sUnk_863C854[0];
+        }
+        else
+        {
+          animation = (const struct AnimationFrame *) sUnk_863C854[1];
+        }
       }
       gSoundRoomTrackAnimState[0]++;
       if (animation[gSoundRoomTrackAnimState[1]].time < gSoundRoomTrackAnimState[0])
       {
-        gSoundRoomTrackAnimState[0] = 0;
+        {
+          register u16 zero asm("r0");
+          zero = 0;
+          gSoundRoomTrackAnimState[0] = zero;
+        }
         gSoundRoomTrackAnimState[1]++;
         if ((&animation[gSoundRoomTrackAnimState[1]])->time == 0)
         {
@@ -1546,13 +1878,18 @@ void DrawSoundRoomSprites(void)
       used += *(frameData++);
       if (slot < used)
       {
-        {
-          register OamData *oamBase asm("r1");
-          register u32 oamOffset asm("r0");
-          oamBase = gOamBuffer;
-          oamOffset = ((u32) slot) << 3;
-          dst = (OamData *) (((u8 *) oamBase) + oamOffset);
-        }
+        register OamData *oamBase asm("r1");
+        register u32 oamOffset asm("r0");
+        register s32 loopAttr2Mask asm("r6");
+        register u32 loopXMask asm("r9");
+        register u32 loopHighMask asm("r10");
+        oamBase = gOamBuffer;
+        loopXMask = 0x1FF;
+        loopHighMask = 0xFFFFFE00;
+        loopAttr2Mask = -13;
+        oamOffset = (u32) slot;
+        oamOffset <<= 3;
+        dst = (OamData *) (oamOffset + (u32) oamBase);
         slot = used - slot;
         do
         {
@@ -1561,17 +1898,35 @@ void DrawSoundRoomSprites(void)
           ((u8 *) dst)[0] = (u8) (attr0 + 16);
           attr1 = *(frameData++);
           *(rawDst++) = attr1;
-          dst->all.attr1 = ((attr1 + 160) & 0x01FF) | (dst->all.attr1 & 0xFE00);
-          attr2 = *(frameData++);
-          *rawDst = attr2;
-          ((u8 *) dst)[5] &= 0xF3;
+                    {
+            register s32 newX asm("r1");
+            register u32 temp asm("r2");
+            register u32 merged asm("r0");
+            newX = attr1 + 160;
+            temp = loopXMask;
+            asm("" : "+r"(newX), "+r"(temp));
+            newX &= temp;
+            temp = dst->all.attr1;
+            merged = loopHighMask;
+            merged &= temp;
+            merged |= newX;
+            dst->all.attr1 = merged;
+          }
+          *rawDst = (attr2 = *(frameData++));
+          {
+            register u8 old5 asm("r1");
+            register s32 maskCopy5 asm("r0");
+            old5 = ((u8 *) dst)[5];
+            maskCopy5 = loopAttr2Mask;
+            asm("" : "+r"(maskCopy5) : "r"(old5));
+            ((u8 *) dst)[5] = maskCopy5 & old5;
+          }
           rawDst += 2;
           dst++;
           slot--;
         }
         while (slot != 0);
       }
-      asm volatile("");
       goto updateAffine;
     }
     else
@@ -1591,14 +1946,27 @@ void DrawSoundRoomSprites(void)
       used += *(frameData++);
       if (slot < used)
       {
+        register OamData *oamBase asm("r1");
+        register u32 oamOffset asm("r0");
+        register s32 loopAttr2Mask asm("r6");
+        register u32 loopXMask asm("r9");
+        register u32 loopHighMask asm("r10");
+        oamBase = gOamBuffer;
+        loopXMask = 0x1FF;
         {
-          register OamData *oamBase asm("r1");
-          register u32 oamOffset asm("r0");
-          oamBase = gOamBuffer;
-          oamOffset = ((u32) slot) << 3;
-          dst = (OamData *) (((u8 *) oamBase) + oamOffset);
+          register u32 highMaskLoad asm("r0");
+          highMaskLoad = 0xFFFFFE00;
+          asm volatile("" : "+r"(highMaskLoad));
+          loopHighMask = highMaskLoad;
         }
-        slot = used - slot;
+        loopAttr2Mask = -13;
+        oamOffset = (u32) slot;
+        oamOffset <<= 3;
+        if (1)
+        {
+        }
+        dst = (OamData *) (oamOffset + (u32) oamBase);
+        { register long t asm("r1"); t=used; asm("" : "+r"(t)); slot = t - slot; }
         do
         {
           attr0 = *(frameData++);
@@ -1606,36 +1974,54 @@ void DrawSoundRoomSprites(void)
           ((u8 *) dst)[0] = (u8) (attr0 + 16);
           attr1 = *(frameData++);
           *(rawDst++) = attr1;
-          dst->all.attr1 = ((attr1 + 160) & 0x01FF) | (dst->all.attr1 & 0xFE00);
-          attr2 = *(frameData++);
-          *rawDst = attr2;
-          ((u8 *) dst)[5] &= 0xF3;
+                    {
+            register s32 newX asm("r1");
+            register u32 temp asm("r2");
+            register u32 merged asm("r0");
+            newX = attr1 + 160;
+            temp = loopXMask;
+            asm("" : "+r"(newX), "+r"(temp));
+            newX &= temp;
+            temp = dst->all.attr1;
+            merged = loopHighMask;
+            merged &= temp;
+            merged |= newX;
+            dst->all.attr1 = merged;
+          }
+          *rawDst = (attr2 = *(frameData++));
+          {
+            register u8 old5 asm("r1");
+            register s32 maskCopy5 asm("r0");
+            old5 = ((u8 *) dst)[5];
+            maskCopy5 = loopAttr2Mask;
+            asm("" : "+r"(maskCopy5) : "r"(old5));
+            ((u8 *) dst)[5] = maskCopy5 & old5;
+          }
           rawDst += 2;
           dst++;
           slot--;
         }
-        while (slot != 0);
+        while (0 != slot);
       }
       asm volatile("");
     }
+    highMaskCopy = 0xFE00;
   }
   while (0);
   updateAffine:
-  sine = sSinCosTable[((u16) gSoundRoomTileWaveOffset) + 64];
-
+  { register s16 *wavePtr asm("r3"); register u32 phase asm("r0"); register const u8 *sinBase asm("r4"); wavePtr=&gSoundRoomTileWaveOffset; phase=(u16)*wavePtr; phase += 64; phase <<= 1; sinBase=(const u8 *)sSinCosTable; sine=*(const s16 *)(phase + (u32) sinBase); }
   inverse = FixedInverse(384);
   stack.pa = FixedMul(sine, (s16) inverse);
-  sine = sSinCosTable[(u16) gSoundRoomTileWaveOffset];
+  { register s16 *wavePtr asm("r2"); register u32 phase asm("r0"); register const u8 *sinBase asm("r3"); wavePtr=&gSoundRoomTileWaveOffset; phase=(u16)*wavePtr; phase <<= 1; sinBase=(const u8 *)sSinCosTable; phase += (u32)sinBase; { register u32 hold asm("r3"); asm volatile("" : "=r"(hold)); sine=*(const s16 *)phase; asm volatile("" : : "r"(hold)); } }
   inverse = FixedInverse(384);
-  *pbOut = FixedMul(sine, (s16) inverse);
-  sine = (u16) sSinCosTable[(u16) gSoundRoomTileWaveOffset];
-  sine = -sine;
-  sine = (s16) sine;
+  { s32 v; register s16 *p asm("r2"); v = FixedMul(sine, (s16) inverse); p = pbOut; asm volatile("" : "+r"(p)); *p = v; }
+  { register s16 *wavePtr asm("r3"); register u32 phase asm("r0"); register const u8 *sinBase asm("r4"); wavePtr=&gSoundRoomTileWaveOffset; phase=(u16)*wavePtr; phase <<= 1; sinBase=(const u8 *)sSinCosTable; sine=*(const u16 *)(phase + (u32) sinBase); }
+  { register s32 neg asm("r4"); neg=sine; neg=-neg; neg=(s16)neg; sine=neg; }
   inverse = FixedInverse(384);
-  *pcOut = FixedMul(sine, (s16) inverse);
-  sine = sSinCosTable[((u16) gSoundRoomTileWaveOffset) + 64];
+  { s32 v; register s16 *p asm("r1"); v = FixedMul(sine, (s16) inverse); p = pcOut; asm volatile("" : "+r"(p)); *p = v; }
+  { register s16 *wavePtr asm("r2"); register u32 phase asm("r0"); register const u8 *sinBase asm("r3"); wavePtr=&gSoundRoomTileWaveOffset; phase=(u16)*wavePtr; phase += 64; phase <<= 1; sinBase=(const u8 *)sSinCosTable; phase += (u32)sinBase; { register u32 hold asm("r3"); asm volatile("" : "=r"(hold)); sine=*(const s16 *)phase; asm volatile("" : : "r"(hold)); } }
   inverse = FixedInverse(384);
-  *pdOut = FixedMul(sine, (s16) inverse);
+  { u16 pdValue; register u32 h3 asm("r3"); pdValue = FixedMul(sine, (s16) inverse); asm volatile("" : "=r"(h3)); *pdOut = pdValue; asm volatile("" : : "r"(h3)); }
   gOamBuffer[0].all.affineParam = stack.pa;
   gOamBuffer[1].all.affineParam = *pbOut;
   gOamBuffer[2].all.affineParam = *pcOut;
@@ -1645,7 +2031,6 @@ void DrawSoundRoomSprites(void)
   return;
 
 }
-
 #endif
 
 
