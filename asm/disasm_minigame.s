@@ -253,7 +253,7 @@ MinigameSubroutine:
 	ldr	r1, .L_89b24
 	mov	r0, #2
 	strb	r0, [r1, #0]
-	bl	func_808B104
+	bl	InitRouletteGame
 .L_89b10:
 	ldr	r1, .L_89b28
 	ldrh	r0, [r1, #0]
@@ -281,7 +281,7 @@ MinigameSubroutine:
 .L_89b40:
 	.4byte	gSubGameMode
 .L_89b44:
-	bl	func_808AC90
+	bl	UpdateRouletteGame
 	cmp	r0, #0
 	beq	.L_89b6a
 	ldr	r1, .L_89b54
@@ -418,7 +418,7 @@ func_8089BCC:
 	bl	func_808A46C
 	b	.L_89c60
 .L_89c56:
-	bl	func_808B0E0
+	bl	ApplyRouletteBlend
 	b	.L_89c60
 .L_89c5c:
 	bl	func_808CC24
@@ -589,7 +589,7 @@ func_8089D4C:
 	bl	func_808A8E4
 	b	.L_89dc6
 .L_89db6:
-	bl	func_808BE4C
+	bl	DrawRoulette
 	b	.L_89dc6
 .L_89dbc:
 	bl	func_808D824
